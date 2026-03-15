@@ -186,5 +186,83 @@
         "bytes": 88664
       }
     ]
+  },
+  "ai-reshaping-digital-marketing-2026": {
+    "hero": {
+      "src": "/images/posts/ai-reshaping-digital-marketing-2026-hero.webp",
+      "alt": "Laptop with AI workspace interface representing the intersection of AI and digital marketing",
+      "photographer": "Jo Lin",
+      "photographerUrl": "https://unsplash.com/@jolin974658",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/laptop-with-ai-workspace-logo-on-screen-MSg17QHWf5Y",
+      "width": 1200,
+      "height": 675,
+      "bytes": 25946
+    },
+    "inline": [
+      {
+        "src": "/images/posts/ai-reshaping-digital-marketing-2026-inline-1.webp",
+        "alt": "Marketing professional working on analytics and strategy at a laptop",
+        "photographer": "Negative Space",
+        "photographerUrl": "https://www.pexels.com/@negativespace",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/macbook-pro-on-brown-table-139387/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 30762
+      }
+    ]
+  },
+  "how-ai-changes-search-learn-decide": {
+    "hero": {
+      "src": "/images/posts/how-ai-changes-search-learn-decide-hero.webp",
+      "alt": "Person holding a smartphone showing an AI interface, representing how people now search with AI",
+      "photographer": "UMA media",
+      "photographerUrl": "https://www.pexels.com/@uma-media-2149408028",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/hand-holding-smartphone-with-grok-3-announcement-30875540/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 31006
+    },
+    "inline": [
+      {
+        "src": "/images/posts/how-ai-changes-search-learn-decide-inline-1.webp",
+        "alt": "Two people collaborating and learning together using laptop computers",
+        "photographer": "Code Ninja",
+        "photographerUrl": "https://unsplash.com/@ogelamar",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/two-men-using-laptop-computes-DThlV4dYlnE",
+        "width": 1200,
+        "height": 675,
+        "bytes": 49636
+      }
+    ]
+  },
+  "seo-in-2026-complete-guide": {
+    "hero": {
+      "src": "/images/posts/seo-in-2026-complete-guide-hero.webp",
+      "alt": "Magnifying glass next to a laptop representing search engine optimization and discovery",
+      "photographer": "MJ Duford",
+      "photographerUrl": "https://unsplash.com/@duforddigital",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/magnifying-glass-sits-near-a-laptop-on-a-table-P_5mirRrg0k",
+      "width": 1200,
+      "height": 675,
+      "bytes": 23700
+    },
+    "inline": [
+      {
+        "src": "/images/posts/seo-in-2026-complete-guide-inline-1.webp",
+        "alt": "Content creator writing and working on a laptop with notebook",
+        "photographer": "Karolina Grabowska",
+        "photographerUrl": "https://www.pexels.com/@karola-g2",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/women-typing-on-the-notebook-6168/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 66642
+      }
+    ]
   }
 }
