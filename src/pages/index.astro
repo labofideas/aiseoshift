@@ -9,32 +9,12 @@ import { getFeaturedPost, getLatestPosts, sortPostsByDate } from '../utils/blog'
 
 const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft));
 const featured = getFeaturedPost(posts);
-const latest = getLatestPosts(posts, 6).filter((post) => post.id !== featured?.id);
+const latest = getLatestPosts(posts, 9).filter((post) => post.id !== featured?.id);
 const topStories = posts.filter((post) => post.id !== featured?.id).slice(0, 3);
-const strategy = posts.filter((post) => post.data.category === 'Strategy').slice(0, 2);
-const research = posts.filter((post) => post.data.category === 'Research').slice(0, 2);
-const tooling = posts.filter((post) => post.data.category === 'Tooling').slice(0, 2);
-const playbooks = posts.filter((post) => post.data.category === 'Playbooks').slice(0, 2);
-const labNotes = [
-	{
-		label: 'Publishing Stack',
-		title: 'Static delivery with Astro',
-		description: 'Fast pages, clean markup, and a publishing workflow that stays easy to maintain.',
-		href: '/blog',
-	},
-	{
-		label: 'Workflow',
-		title: 'GitHub-driven updates',
-		description: 'Layout, content, and media changes all ship through versioned pushes and Cloudflare deploys.',
-		href: '/about',
-	},
-	{
-		label: 'Next Issue',
-		title: 'Field reports and benchmark pages',
-		description: 'The strongest next additions are prompt studies, comparison hubs, and narrow citation playbooks.',
-		href: '/blog',
-	},
-];
+const strategy = posts.filter((post) => post.data.category === 'Strategy').slice(0, 3);
+const research = posts.filter((post) => post.data.category === 'Research').slice(0, 3);
+const tooling = posts.filter((post) => post.data.category === 'Tooling').slice(0, 3);
+const playbooks = posts.filter((post) => post.data.category === 'Playbooks').slice(0, 3);
 const homepageStructuredData = [
 	{
 		'@context': 'https://schema.org',
@@ -69,50 +49,52 @@ const homepageStructuredData = [
 				padding: 1.4rem 0 4rem;
 			}
 
+			/* ── Hero ── */
 			.hero-intro {
 				display: grid;
-				grid-template-columns: minmax(0, 1fr) auto;
-				gap: 1.2rem;
+				grid-template-columns: 1.1fr 0.9fr;
+				gap: 2.5rem;
 				align-items: center;
-				padding: 0.2rem 0 1.65rem;
-				margin-bottom: 1.55rem;
+				padding: 2.5rem 0 2.5rem;
+				margin-bottom: 2rem;
 				border-bottom: 1px solid rgba(var(--ink), 0.08);
-			}
-
-			.hero-intro-copy {
-				max-width: 38rem;
-			}
-
-			.hero-intro-copy p {
-				margin: 0;
 			}
 
 			.hero-intro-copy h1 {
 				font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
-				font-size: clamp(2.35rem, 4.5vw, 3.65rem);
-				line-height: 0.92;
-				letter-spacing: -0.045em;
-				margin: 0 0 0.8rem;
-				max-width: 10ch;
-			}
-
-			.hero-intro-copy strong {
-				display: block;
-				margin-bottom: 0.45rem;
-				font-size: 0.72rem;
-				letter-spacing: 0.18em;
-				text-transform: uppercase;
-				color: var(--signal-deep);
+				font-size: clamp(2rem, 3.5vw, 3rem);
+				line-height: 1.08;
+				letter-spacing: -0.03em;
+				margin: 0 0 1rem;
 			}
 
 			.hero-intro-copy p {
-				font-size: 1rem;
-				line-height: 1.7;
-				color: rgba(var(--ink), 0.84);
+				margin: 0;
+				font-size: 1.02rem;
+				line-height: 1.72;
+				color: rgba(var(--ink), 0.82);
+				max-width: 34rem;
 			}
 
-			.hero-intro-copy .hero-intro-link {
-				margin-top: 1.2rem;
+			.hero-intro-link {
+				display: inline-flex;
+				align-items: center;
+				margin-top: 1.4rem;
+				padding: 0.85rem 1.3rem;
+				border: 1px solid rgba(var(--ink), 0.14);
+				border-radius: 999px;
+				background: rgba(255, 255, 255, 0.6);
+				font-size: 0.74rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				text-decoration: none;
+				color: rgb(var(--ink));
+				transition: background 0.2s;
+			}
+
+			.hero-intro-link:hover {
+				background: rgba(255, 255, 255, 0.95);
 			}
 
 			.hero-intro-visual {
@@ -120,13 +102,11 @@ const homepageStructuredData = [
 				text-decoration: none;
 				border-radius: 18px;
 				overflow: hidden;
-				position: relative;
 			}
 
 			.hero-intro-img {
 				width: 100%;
-				height: 100%;
-				min-height: 220px;
+				aspect-ratio: 16 / 10;
 				object-fit: cover;
 				display: block;
 				border-radius: 18px;
@@ -139,334 +119,22 @@ const homepageStructuredData = [
 
 			.hero-intro-img-caption {
 				display: block;
-				margin-top: 0.5rem;
+				margin-top: 0.55rem;
 				font-size: 0.78rem;
 				font-weight: 600;
-				color: rgba(var(--ink), 0.7);
+				color: rgba(var(--ink), 0.6);
 				line-height: 1.4;
 			}
 
-			.hero-intro-link {
-				display: inline-flex;
-				align-items: center;
-				padding: 0.9rem 1.15rem;
-				border: 1px solid rgba(var(--ink), 0.12);
-				border-radius: 999px;
-				background: rgba(255, 255, 255, 0.5);
-				font-size: 0.72rem;
-				font-weight: 700;
-				letter-spacing: 0.16em;
-				text-transform: uppercase;
-				text-decoration: none;
-				color: rgb(var(--ink));
-			}
-
-			.hero-stage {
-				display: grid;
-				grid-template-columns: minmax(0, 1.7fr) minmax(320px, 0.85fr);
-				gap: 1.4rem;
-				margin-bottom: 2.2rem;
-			}
-
-			.hero-story,
-			.digest-panel,
-			.story-card,
-			.topic-panel,
-			feature-strip article {
-				border: 1px solid var(--line);
-				border-radius: 28px;
-				background:
-					linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(244, 243, 239, 0.72));
-				box-shadow: 0 18px 40px rgba(23, 28, 46, 0.06);
-			}
-
-			.hero-story {
-				padding: 1.1rem;
-				position: relative;
-				overflow: hidden;
-			}
-
+			/* ── Shared ── */
 			.eyebrow,
 			.section-label {
-				margin: 0 0 1rem;
+				margin: 0 0 0.8rem;
 				font-size: 0.72rem;
 				font-weight: 700;
 				letter-spacing: 0.16em;
 				text-transform: uppercase;
 				color: var(--signal-deep);
-			}
-
-			.hero-story h2 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(2.1rem, 4.3vw, 3.5rem);
-				line-height: 0.96;
-				letter-spacing: -0.04em;
-				margin: 0 0 0.9rem;
-				max-width: 12ch;
-			}
-
-			.hero-story p {
-				max-width: 42rem;
-				font-size: 0.96rem;
-				line-height: 1.7;
-			}
-
-			.hero-thumb,
-			.card-thumb {
-				width: 100%;
-				aspect-ratio: 16 / 9;
-				object-fit: cover;
-				border-radius: 10px;
-				margin-bottom: 1rem;
-			}
-
-			.hero-shell {
-				display: grid;
-				grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-				gap: 1.25rem;
-				align-items: stretch;
-			}
-
-			.hero-copy {
-				padding: 1.15rem 1rem 1.15rem 0.3rem;
-			}
-
-			.hero-thumb {
-				height: 100%;
-				margin-bottom: 0;
-				min-height: 24rem;
-				box-shadow: 0 18px 34px rgba(23, 28, 46, 0.18);
-			}
-
-			.hero-meta,
-			.card-meta {
-				color: rgba(var(--ink), 0.62);
-				font-size: 0.8rem;
-			}
-
-			.hero-meta {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.75rem;
-				margin-top: 1rem;
-				padding-top: 0.85rem;
-				border-top: 1px solid rgba(var(--ink), 0.08);
-				text-transform: uppercase;
-				letter-spacing: 0.08em;
-				font-size: 0.72rem;
-			}
-
-			.hero-link,
-			.card-link {
-				color: inherit;
-				text-decoration: none;
-			}
-
-			.hero-link:hover h2,
-			.card-link:hover h3 {
-				color: var(--signal-deep);
-			}
-
-			.digest-panel {
-				padding: 1.5rem 1.45rem;
-				background:
-					linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(249, 246, 241, 0.94));
-			}
-
-			.digest-panel h2 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(1.35rem, 2vw, 1.85rem);
-				line-height: 1.2;
-				letter-spacing: -0.025em;
-				margin-bottom: 0.8rem;
-			}
-
-			.digest-panel p {
-				font-size: 0.9rem;
-				line-height: 1.62;
-			}
-
-			.digest-panel ol {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				display: grid;
-				gap: 1rem;
-			}
-
-			.digest-panel li {
-				padding-top: 1rem;
-				border-top: 1px solid rgba(var(--ink), 0.08);
-			}
-
-			.digest-panel li:first-child {
-				padding-top: 0;
-				border-top: 0;
-			}
-
-			.stories-grid,
-			.topics-grid {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				gap: 1rem;
-				margin-bottom: 2rem;
-			}
-
-			.desks-layout {
-				display: grid;
-				grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.85fr);
-				gap: 1rem;
-				margin-bottom: 2rem;
-			}
-
-			.desks-stack {
-				display: grid;
-				grid-template-columns: repeat(2, minmax(0, 1fr));
-				gap: 1rem;
-			}
-
-			.story-card,
-			.topic-panel {
-				padding: 1.35rem 1.3rem 1.4rem;
-				background:
-					linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(250, 249, 246, 0.74));
-			}
-
-			.story-card h3,
-			.topic-panel h3 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: 1.05rem;
-				line-height: 1.35;
-				letter-spacing: -0.015em;
-				margin-bottom: 0.75rem;
-			}
-
-			.story-card p,
-			.topic-panel p {
-				font-size: 0.88rem;
-				line-height: 1.62;
-			}
-
-			.topic-panel ul {
-				list-style: none;
-				padding: 0;
-				margin: 0.95rem 0 0;
-			}
-
-			.topic-panel {
-				padding-top: 1.35rem;
-			}
-
-			.topic-panel li + li {
-				margin-top: 0.85rem;
-				padding-top: 0.85rem;
-				border-top: 1px solid rgba(var(--ink), 0.08);
-			}
-
-			.topic-panel a {
-				text-decoration: none;
-				color: rgb(var(--ink));
-				font-weight: 700;
-			}
-
-			.topic-panel.lead-desk {
-				background:
-					linear-gradient(180deg, rgba(217, 106, 58, 0.1), rgba(255, 255, 255, 0.84));
-			}
-
-			.lab-panel {
-				display: grid;
-				grid-template-rows: auto auto 1fr;
-				gap: 1.2rem;
-				padding: 1.45rem;
-				border: 1px solid rgba(var(--ink), 0.1);
-				border-radius: 32px;
-				background:
-					linear-gradient(155deg, rgba(23, 28, 46, 0.94), rgba(58, 45, 41, 0.92));
-				color: rgb(var(--paper));
-				box-shadow: 0 22px 44px rgba(23, 28, 46, 0.18);
-			}
-
-			.lab-panel .section-label,
-			.lab-panel a,
-			.lab-panel h2,
-			.lab-panel strong {
-				color: inherit;
-			}
-
-			.lab-panel h2 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(1.6rem, 2.6vw, 2.25rem);
-				line-height: 1.05;
-				letter-spacing: -0.03em;
-				margin: 0;
-				max-width: 11ch;
-			}
-
-			.lab-panel p {
-				margin: 0;
-				color: rgba(250, 249, 246, 0.78);
-				font-size: 0.92rem;
-				line-height: 1.65;
-			}
-
-			.lab-notes {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-				display: grid;
-				gap: 1rem;
-			}
-
-			.lab-notes li {
-				padding-top: 1rem;
-				border-top: 1px solid rgba(250, 249, 246, 0.14);
-			}
-
-			.lab-notes li:first-child {
-				padding-top: 0;
-				border-top: 0;
-			}
-
-			.lab-notes span {
-				display: block;
-				margin-bottom: 0.35rem;
-				font-size: 0.68rem;
-				font-weight: 700;
-				letter-spacing: 0.14em;
-				text-transform: uppercase;
-				color: rgba(250, 249, 246, 0.58);
-			}
-
-			.lab-notes a {
-				text-decoration: none;
-				font-weight: 700;
-			}
-
-			.feature-strip {
-				display: grid;
-				grid-template-columns: repeat(2, minmax(0, 1fr));
-				gap: 1rem;
-				margin: 0 0 2rem;
-			}
-
-			.feature-strip article {
-				padding: 1.35rem 1.3rem;
-			}
-
-			.feature-strip article:first-child {
-				background:
-					linear-gradient(180deg, rgba(217, 106, 58, 0.18), rgba(255, 255, 255, 0.78));
-			}
-
-			.feature-strip article:last-child {
-				background:
-					linear-gradient(180deg, rgba(23, 28, 46, 0.04), rgba(255, 255, 255, 0.78));
-			}
-
-			.feature-strip p {
-				font-size: 0.88rem;
-				line-height: 1.62;
 			}
 
 			.page-intro {
@@ -480,7 +148,7 @@ const homepageStructuredData = [
 			.page-intro h2 {
 				margin-bottom: 0;
 				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(1.4rem, 2vw, 1.85rem);
+				font-size: clamp(1.35rem, 2vw, 1.75rem);
 				line-height: 1.18;
 				letter-spacing: -0.02em;
 			}
@@ -492,36 +160,234 @@ const homepageStructuredData = [
 				text-transform: uppercase;
 			}
 
+			/* ── Lead Story + Signals ── */
+			.hero-stage {
+				display: grid;
+				grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.85fr);
+				gap: 1.4rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.hero-story,
+			.digest-panel,
+			.story-card,
+			.topic-panel {
+				border: 1px solid var(--line);
+				border-radius: 24px;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(244, 243, 239, 0.72));
+				box-shadow: 0 12px 30px rgba(23, 28, 46, 0.05);
+			}
+
+			.hero-story {
+				padding: 1.1rem;
+				overflow: hidden;
+			}
+
+			.hero-shell {
+				display: grid;
+				grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+				gap: 1.25rem;
+				align-items: stretch;
+			}
+
+			.hero-copy {
+				padding: 1rem 1rem 1rem 0.3rem;
+			}
+
+			.hero-story h2 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+				line-height: 1;
+				letter-spacing: -0.035em;
+				margin: 0 0 0.8rem;
+			}
+
+			.hero-story p {
+				max-width: 42rem;
+				font-size: 0.94rem;
+				line-height: 1.68;
+			}
+
+			.hero-thumb {
+				width: 100%;
+				height: 100%;
+				min-height: 20rem;
+				object-fit: cover;
+				border-radius: 14px;
+				box-shadow: 0 14px 28px rgba(23, 28, 46, 0.14);
+			}
+
+			.hero-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				margin-top: 0.8rem;
+				padding-top: 0.75rem;
+				border-top: 1px solid rgba(var(--ink), 0.08);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				font-size: 0.72rem;
+				color: rgba(var(--ink), 0.6);
+			}
+
+			.hero-link,
+			.card-link {
+				color: inherit;
+				text-decoration: none;
+			}
+
+			.hero-link:hover h2,
+			.card-link:hover h3 {
+				color: var(--signal-deep);
+			}
+
+			/* ── Signals Desk ── */
+			.digest-panel {
+				padding: 1.4rem 1.35rem;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(249, 246, 241, 0.94));
+			}
+
+			.digest-panel h2 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+				line-height: 1.22;
+				letter-spacing: -0.02em;
+				margin-bottom: 0.7rem;
+			}
+
+			.digest-panel p {
+				font-size: 0.88rem;
+				line-height: 1.62;
+			}
+
+			.digest-panel ol {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				gap: 0.9rem;
+			}
+
+			.digest-panel li {
+				padding-top: 0.9rem;
+				border-top: 1px solid rgba(var(--ink), 0.08);
+			}
+
+			.digest-panel li:first-child {
+				padding-top: 0;
+				border-top: 0;
+			}
+
+			.card-meta {
+				color: rgba(var(--ink), 0.55);
+				font-size: 0.78rem;
+			}
+
+			/* ── Stories Grid ── */
+			.stories-grid {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 1rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.story-card {
+				padding: 1.25rem 1.2rem 1.3rem;
+			}
+
+			.card-thumb {
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				object-fit: cover;
+				border-radius: 10px;
+				margin-bottom: 0.9rem;
+			}
+
+			.story-card h3 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 1.02rem;
+				line-height: 1.32;
+				letter-spacing: -0.01em;
+				margin-bottom: 0.6rem;
+			}
+
+			.story-card p {
+				font-size: 0.86rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.78);
+			}
+
+			/* ── Topics Grid ── */
+			.topics-grid {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: 1rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.topic-panel {
+				padding: 1.25rem 1.2rem 1.3rem;
+			}
+
+			.topic-panel ul {
+				list-style: none;
+				padding: 0;
+				margin: 0.8rem 0 0;
+			}
+
+			.topic-panel li + li {
+				margin-top: 0.75rem;
+				padding-top: 0.75rem;
+				border-top: 1px solid rgba(var(--ink), 0.08);
+			}
+
+			.topic-panel a {
+				text-decoration: none;
+				color: rgb(var(--ink));
+				font-weight: 700;
+				font-size: 0.92rem;
+				line-height: 1.35;
+			}
+
+			.topic-panel a:hover {
+				color: var(--signal-deep);
+			}
+
+			.topic-panel p {
+				font-size: 0.82rem;
+				line-height: 1.55;
+				color: rgba(var(--ink), 0.68);
+				margin-top: 0.25rem;
+			}
+
+			.topic-panel.lead-desk {
+				background: linear-gradient(180deg, rgba(217, 106, 58, 0.08), rgba(255, 255, 255, 0.84));
+			}
+
+			/* ── Responsive ── */
 			@media (max-width: 960px) {
+				.hero-intro,
 				.hero-stage,
 				.hero-shell,
-				.feature-strip,
-				.desks-layout,
-				.desks-stack,
-				.stories-grid,
-				.topics-grid {
+				.stories-grid {
 					grid-template-columns: 1fr;
 				}
 
+				.topics-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+
 				.hero-thumb {
-					min-height: 18rem;
+					min-height: 16rem;
 				}
 
 				.digest-panel {
 					padding: 1.2rem;
 				}
-
-				.feature-strip article:last-child {
-					padding-left: 1.3rem;
-				}
-
-				.lab-panel h2 {
-					max-width: none;
-				}
 			}
 
-			@media (max-width: 720px) {
-				.hero-intro {
+			@media (max-width: 600px) {
+				.topics-grid {
 					grid-template-columns: 1fr;
 				}
 			}
@@ -552,41 +418,33 @@ const homepageStructuredData = [
 			</section>
 
 			<section class="hero-stage">
-				{
-					featured && (
-						<article class="hero-story">
-							<div class="hero-shell">
-								<div class="hero-copy">
-									<p class="eyebrow">Lead Story</p>
-									<a class="hero-link" href={`/blog/${featured.id}/`}>
-										<h2>{featured.data.title}</h2>
-										<p>{featured.data.deck}</p>
-									</a>
-									<p class="hero-meta">
-										<span>{featured.data.category}</span>
-										<span>{featured.data.author}</span>
-									</p>
-								</div>
-								{
-									imageManifest[featured.id as keyof typeof imageManifest]?.hero && (
-										<img
-											class="hero-thumb"
-											src={imageManifest[featured.id as keyof typeof imageManifest].hero.src}
-											alt={imageManifest[featured.id as keyof typeof imageManifest].hero.alt}
-										/>
-									)
-								}
+				{featured && (
+					<article class="hero-story">
+						<div class="hero-shell">
+							<div class="hero-copy">
+								<p class="eyebrow">Lead Story</p>
+								<a class="hero-link" href={`/blog/${featured.id}/`}>
+									<h2>{featured.data.title}</h2>
+									<p>{featured.data.deck}</p>
+								</a>
+								<p class="hero-meta">
+									<span>{featured.data.category}</span>
+									<span>{featured.data.author}</span>
+								</p>
 							</div>
-						</article>
-					)
-				}
+							{imageManifest[featured.id as keyof typeof imageManifest]?.hero && (
+								<img
+									class="hero-thumb"
+									src={imageManifest[featured.id as keyof typeof imageManifest].hero.src}
+									alt={imageManifest[featured.id as keyof typeof imageManifest].hero.alt}
+								/>
+							)}
+						</div>
+					</article>
+				)}
 				<aside class="digest-panel">
-					<p class="section-label">Signals Desk</p>
-					<h2>The AI search beat is moving faster than the old SEO playbook.</h2>
-					<p>
-						AISEOShift tracks the mechanics behind citations, answer engines, structured authority, and the
-						content systems that still move traffic.
-					</p>
+					<p class="section-label">Trending</p>
+					<h2>Recent coverage across AI search, SEO, and visibility.</h2>
 					<ol>
 						{topStories.map((post) => (
 							<li>
@@ -600,73 +458,72 @@ const homepageStructuredData = [
 				</aside>
 			</section>
 
-
 			<section>
 				<div class="page-intro">
 					<div>
-						<p class="section-label">Top Stories</p>
-						<h2>The latest coverage</h2>
+						<p class="section-label">Latest</p>
+						<h2>Recent articles</h2>
 					</div>
-					<a href="/blog">Browse the archive</a>
+					<a href="/blog">View all</a>
 				</div>
 				<div class="stories-grid">
-					{latest.slice(0, 3).map((post) => (
+					{latest.slice(0, 6).map((post) => (
 						<article class="story-card">
 							<p class="eyebrow">{post.data.category}</p>
 							<a class="card-link" href={`/blog/${post.id}/`}>
-								{
-									imageManifest[post.id as keyof typeof imageManifest]?.hero && (
-										<img
-											class="card-thumb"
-											src={imageManifest[post.id as keyof typeof imageManifest].hero.src}
-											alt={imageManifest[post.id as keyof typeof imageManifest].hero.alt}
-											loading="lazy"
-										/>
-									)
-								}
+								{imageManifest[post.id as keyof typeof imageManifest]?.hero && (
+									<img
+										class="card-thumb"
+										src={imageManifest[post.id as keyof typeof imageManifest].hero.src}
+										alt={imageManifest[post.id as keyof typeof imageManifest].hero.alt}
+										loading="lazy"
+									/>
+								)}
 								<h3>{post.data.title}</h3>
 								<p>{post.data.description}</p>
 							</a>
-							<div class="card-meta">{post.data.author}</div>
 						</article>
 					))}
 				</div>
 			</section>
 
-			<section class="desks-layout" aria-label="Editorial desks">
-				<div class="desks-stack">
+			<section aria-label="Browse by topic">
+				<div class="page-intro">
+					<div>
+						<p class="section-label">Topics</p>
+						<h2>Browse by category</h2>
+					</div>
+				</div>
+				<div class="topics-grid">
 					<section class="topic-panel lead-desk">
-					<p class="section-label">Strategy Desk</p>
-					<ul>
-						{strategy.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								<p>{post.data.description}</p>
-							</li>
-						))}
-					</ul>
+						<p class="section-label">Strategy</p>
+						<ul>
+							{strategy.map((post) => (
+								<li>
+									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+								</li>
+							))}
+						</ul>
 					</section>
 					<section class="topic-panel">
-					<p class="section-label">Research Desk</p>
-					<ul>
-						{research.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								<p>{post.data.description}</p>
-							</li>
-						))}
-					</ul>
+						<p class="section-label">Research</p>
+						<ul>
+							{research.map((post) => (
+								<li>
+									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+								</li>
+							))}
+						</ul>
 					</section>
 					<section class="topic-panel">
-					<p class="section-label">Tooling Desk</p>
-					<ul>
-						{tooling.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								<p>{post.data.description}</p>
-							</li>
-						))}
-					</ul>
+						<p class="section-label">Tooling</p>
+						<ul>
+							{tooling.map((post) => (
+								<li>
+									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+								</li>
+							))}
+						</ul>
 					</section>
 					<section class="topic-panel">
 						<p class="section-label">Playbooks</p>
@@ -674,31 +531,11 @@ const homepageStructuredData = [
 							{playbooks.map((post) => (
 								<li>
 									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-									<p>{post.data.description}</p>
 								</li>
 							))}
 						</ul>
 					</section>
 				</div>
-				<aside class="lab-panel">
-					<div>
-						<p class="section-label">Editor&apos;s Note</p>
-						<h2>The publication should feel like a working desk, not a generic blog grid.</h2>
-					</div>
-					<p>
-						AISEOShift is strongest when it behaves like a narrow operating manual for the answer-engine era:
-						clear definitions, citation logic, retrieval strategy, and practical playbooks that teams can use.
-					</p>
-					<ul class="lab-notes">
-						{labNotes.map((item) => (
-							<li>
-								<span>{item.label}</span>
-								<a href={item.href}>{item.title}</a>
-								<p>{item.description}</p>
-							</li>
-						))}
-					</ul>
-				</aside>
 			</section>
 		</main>
 		<Footer />
