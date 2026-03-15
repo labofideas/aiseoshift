@@ -160,5 +160,31 @@
       "bytes": 28294
     },
     "inline": []
+  },
+  "chatgpt-interactive-visuals-math-science": {
+    "hero": {
+      "src": "/images/posts/chatgpt-interactive-visuals-math-science-hero.webp",
+      "alt": "Virtual lesson displayed on a computer screen showing interactive educational content",
+      "photographer": "Duc Van",
+      "photographerUrl": "https://unsplash.com/@duke91",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/a-virtual-lesson-is-taking-place-on-a-computer-screen--lWBt4ctRfc",
+      "width": 1200,
+      "height": 675,
+      "bytes": 49934
+    },
+    "inline": [
+      {
+        "src": "/images/posts/chatgpt-interactive-visuals-math-science-inline-1.webp",
+        "alt": "Teacher demonstrating a science concept to students in a classroom",
+        "photographer": "kimmi jun",
+        "photographerUrl": "https://www.pexels.com/@kimmi-jun-201206578",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/young-woman-teaching-a-group-of-school-students-at-a-chemistry-class-18506741/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 88664
+      }
+    ]
   }
 }
