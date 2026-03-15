@@ -1,62 +1,60 @@
-# Astro Starter Kit: Blog
+# AISEOShift
 
-```sh
-npm create astro@latest -- --template blog
+Astro-based editorial site for `aiseoshift.com`, designed as a fast news-style publication covering AI visibility, answer engines, GEO, AI citations, tooling, and search strategy.
+
+## Stack
+
+- Astro
+- Markdown content collection
+- Static build output
+- GitHub for version control and publishing workflow
+- GitHub Actions for deploy to cPanel hosting
+
+## Local development
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Publish a new article
 
-Features:
+1. Add a Markdown file in `src/content/blog/`
+2. Include the required frontmatter:
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```yaml
+title:
+description:
+deck:
+pubDate:
+category:
+tags:
+author:
+featured:
+draft:
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+3. Push to `main`
+4. GitHub Actions builds the site and deploys `dist/` to hosting
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Deploy setup
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+The repo includes `.github/workflows/deploy.yml`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+To activate deployment, add these GitHub repository secrets:
 
-## 🧞 Commands
+- `FTP_SERVER`
+- `FTP_USERNAME`
+- `FTP_PASSWORD`
+- `FTP_SERVER_DIR`
 
-All commands are run from the root of the project, from a terminal:
+Typical `FTP_SERVER_DIR` values:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- `/public_html/`
+- `/public_html/aiseoshift/`
 
-## 👀 Want to learn more?
+Use the document root that serves `aiseoshift.com`.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Domain notes
 
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+If `aiseoshift.com` already points to the same hosting account in WHM/cPanel, deployment is enough. If not, the final domain step is updating DNS or the document root to the correct hosting destination.

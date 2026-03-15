@@ -3,17 +3,19 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
-	schema: ({ image }) =>
+	schema: () =>
 		z.object({
 			title: z.string(),
 			description: z.string(),
-			// Transform string to Date object
+			deck: z.string(),
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
-			heroImage: z.optional(image()),
+			category: z.enum(['Strategy', 'Research', 'Tooling', 'Playbooks']),
+			tags: z.array(z.string()).min(2),
+			author: z.string().default('AISEOShift Editorial Desk'),
+			featured: z.boolean().default(false),
+			draft: z.boolean().default(false),
 		}),
 });
 

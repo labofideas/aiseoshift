@@ -1,0 +1,19 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F8F4EC"/>
+  <circle cx="1040" cy="118" r="210" fill="#171C2E" fill-opacity="0.08"/>
+  <circle cx="165" cy="90" r="190" fill="#FF6B2C" fill-opacity="0.16"/>
+  <rect x="66" y="68" width="1068" height="494" rx="36" fill="white" fill-opacity="0.72" stroke="#171C2E" stroke-opacity="0.1"/>
+  <circle cx="133" cy="135" r="38" fill="url(#paint0_linear_522_4)"/>
+  <text x="133" y="145" text-anchor="middle" fill="#FFF8ED" font-family="Georgia, Times New Roman, serif" font-size="24" font-weight="700" letter-spacing="4">AI</text>
+  <text x="196" y="142" fill="#171C2E" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">AISEOSHIFT</text>
+  <text x="95" y="260" fill="#171C2E" font-family="Georgia, Times New Roman, serif" font-size="68" font-weight="700">AI visibility, answer engines,</text>
+  <text x="95" y="338" fill="#171C2E" font-family="Georgia, Times New Roman, serif" font-size="68" font-weight="700">and the new organic playbook.</text>
+  <text x="95" y="430" fill="#5A6270" font-family="Arial, sans-serif" font-size="28">News, research, tooling, and field guides for search teams adapting to AI-first discovery.</text>
+  <text x="95" y="498" fill="#B54213" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3">AISEOShift.com</text>
+  <defs>
+    <linearGradient id="paint0_linear_522_4" x1="95" y1="97" x2="171" y2="173" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF6B2C"/>
+      <stop offset="1" stop-color="#171C2E"/>
+    </linearGradient>
+  </defs>
+</svg>

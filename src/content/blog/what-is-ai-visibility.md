@@ -1,0 +1,87 @@
+---
+title: What Is AI Visibility?
+description: AI visibility measures how often your brand appears, gets cited, and stays attributable inside AI-driven answer experiences.
+deck: AI visibility is no longer just about ranking first in traditional search. It is about being discoverable, quotable, and attributable inside the systems that generate answers.
+pubDate: 2026-03-15
+category: Strategy
+tags:
+  - AI visibility
+  - brand mentions
+  - organic growth
+author: AISEOShift Editorial Desk
+featured: true
+---
+
+AI visibility is the share of attention your brand earns inside AI-generated answers, summaries, product comparisons, and recommendation flows. If a traditional SEO dashboard asked, "Do you rank?", AI visibility asks, "Do you get surfaced, cited, and remembered when the answer is assembled for the user?"
+
+## Why the term matters now
+
+Search is no longer a single results page with ten links. Users now move through:
+
+- classic search results
+- AI overviews and answer engines
+- chat interfaces
+- embedded assistants inside browsers, apps, and SaaS tools
+
+In each of those environments, the user may never see a blue link first. They often see a synthesized answer. That means the winning asset is not only the page that ranks. It is the source that gets selected during synthesis.
+
+## The three layers of AI visibility
+
+### 1. Retrieval visibility
+
+Can the system find your page, entity, or documentation in the first place?
+
+This depends on crawlability, site structure, indexable assets, entity clarity, and topical depth.
+
+### 2. Citation visibility
+
+When the model forms an answer, does it cite you as a source?
+
+This depends on authority signals, quotable language, unique data, clean page structure, and whether your site is used by source selection systems as evidence.
+
+### 3. Recall visibility
+
+Does the user leave the answer remembering your brand or viewpoint?
+
+This depends on naming consistency, opinionated framing, original terms, and recurring references.
+
+## What AI visibility is not
+
+AI visibility is not a replacement for SEO fundamentals. It is the next layer on top of them.
+
+If your site is slow, thin, unstructured, or hard to crawl, AI systems will not rescue it. But even a technically solid site can still miss AI visibility if it produces bland, non-citable content.
+
+## Signals that usually improve AI visibility
+
+- pages that answer a narrow question clearly
+- structured headings and schema where appropriate
+- data points, research, and original comparisons
+- entity consistency across the site
+- internal links that reinforce topic relationships
+- content that is easy to quote without rewriting
+
+## A simple working definition
+
+If you need a practical internal definition, use this:
+
+> AI visibility is the likelihood that a brand or page will be retrieved, used, and attributed in AI-generated answers.
+
+That definition is useful because it connects content, technical SEO, and brand authority in one metric family.
+
+## What teams should measure
+
+A first measurement model can track:
+
+- frequency of brand mentions in AI answers
+- frequency of direct citations and links
+- share of topic prompts where the brand appears
+- source overlap with competitors
+- landing pages that attract citation behavior
+
+Traditional rank tracking still matters. It is simply no longer the whole story.
+
+## The shift to make right now
+
+The old model optimized for position. The new model optimizes for presence inside the answer itself.
+
+That means the best content teams will publish pages that are easier to retrieve, easier to trust, and easier to cite.
