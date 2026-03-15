@@ -89,7 +89,19 @@
       "height": 675,
       "bytes": 89246
     },
-    "inline": []
+    "inline": [
+      {
+        "src": "/images/posts/best-surfer-seo-alternatives-2026-inline-1.webp",
+        "alt": "SEO audit wooden blocks on a surface representing content optimization tools",
+        "photographer": "Pixabay",
+        "photographerUrl": "https://www.pexels.com/@pixabay",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/seo-audit-white-blocks-on-brown-wooden-surface-267415/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 55888
+      }
+    ]
   },
   "best-ai-visibility-tools-2026": {
     "hero": {
@@ -103,7 +115,19 @@
       "height": 675,
       "bytes": 85204
     },
-    "inline": []
+    "inline": [
+      {
+        "src": "/images/posts/best-ai-visibility-tools-2026-inline-1.webp",
+        "alt": "Analytics dashboard on a laptop showing marketing and visibility metrics",
+        "photographer": "Negative Space",
+        "photographerUrl": "https://www.pexels.com/@negativespace",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/macbook-pro-on-brown-table-139387/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 28978
+      }
+    ]
   },
   "master-programmatic-seo": {
     "hero": {
@@ -117,7 +141,19 @@
       "height": 675,
       "bytes": 69752
     },
-    "inline": []
+    "inline": [
+      {
+        "src": "/images/posts/master-programmatic-seo-inline-1.webp",
+        "alt": "Computer screen showing code and structured data patterns",
+        "photographer": "Bernd Dittrich",
+        "photographerUrl": "https://unsplash.com/@hdbernd",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/a-computer-screen-with-a-bunch-of-lines-on-it-aYosQyFcC8k",
+        "width": 1200,
+        "height": 675,
+        "bytes": 48086
+      }
+    ]
   },
   "what-is-generative-engine-optimization-geo": {
     "hero": {
@@ -131,7 +167,19 @@
       "height": 675,
       "bytes": 27608
     },
-    "inline": []
+    "inline": [
+      {
+        "src": "/images/posts/what-is-generative-engine-optimization-geo-inline-1.webp",
+        "alt": "Abstract AI neural network illustration representing generative systems",
+        "photographer": "Google DeepMind",
+        "photographerUrl": "https://www.pexels.com/@googledeepmind",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje-17483870/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 35044
+      }
+    ]
   },
   "build-a-topic-cluster": {
     "hero": {
@@ -145,7 +193,19 @@
       "height": 675,
       "bytes": 32986
     },
-    "inline": []
+    "inline": [
+      {
+        "src": "/images/posts/build-a-topic-cluster-inline-1.webp",
+        "alt": "Person writing on a whiteboard while planning content strategy",
+        "photographer": "Campaign Creators",
+        "photographerUrl": "https://unsplash.com/@campaign_creators",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/man-writing-on-whiteboard-8F4EX4Nw1yY",
+        "width": 1200,
+        "height": 675,
+        "bytes": 37536
+      }
+    ]
   },
   "user-intent-for-better-seo": {
     "hero": {
@@ -159,7 +219,71 @@
       "height": 675,
       "bytes": 28294
     },
-    "inline": []
+    "inline": [
+      {
+        "src": "/images/posts/user-intent-for-better-seo-inline-1.webp",
+        "alt": "Person using Google search on a laptop to research information",
+        "photographer": "cottonbro studio",
+        "photographerUrl": "https://www.pexels.com/@cottonbro",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/google-browser-on-laptop-6986455/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 38976
+      }
+    ]
+  },
+  "how-to-get-cited-by-ai-search-systems": {
+    "hero": {
+      "src": "/images/posts/how-to-get-cited-by-ai-search-systems-hero.webp",
+      "alt": "People holding printed papers with research graphs and citation data",
+      "photographer": "Artem Podrez",
+      "photographerUrl": "https://www.pexels.com/@artempodrez",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/persons-holding-printer-papers-with-graphs-5716025/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 35692
+    },
+    "inline": [
+      {
+        "src": "/images/posts/how-to-get-cited-by-ai-search-systems-inline-1.webp",
+        "alt": "Person typing on a laptop keyboard while working on content strategy",
+        "photographer": "Tina Devidze",
+        "photographerUrl": "https://unsplash.com/@teenytina",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/person-typing-on-a-laptop-keyboard-AvIC3xvZCAI",
+        "width": 1200,
+        "height": 675,
+        "bytes": 53392
+      }
+    ]
+  },
+  "how-to-refresh-old-seo-content": {
+    "hero": {
+      "src": "/images/posts/how-to-refresh-old-seo-content-hero.webp",
+      "alt": "Person editing and updating content on a computer screen",
+      "photographer": "Jacob Mindak",
+      "photographerUrl": "https://unsplash.com/@aiaiandai",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/a-persons-feet-resting-on-a-computer-screen-ugkxpq87qOk",
+      "width": 1200,
+      "height": 675,
+      "bytes": 20420
+    },
+    "inline": [
+      {
+        "src": "/images/posts/how-to-refresh-old-seo-content-inline-1.webp",
+        "alt": "Analytics chart showing growth data representing content performance improvement",
+        "photographer": "Negative Space",
+        "photographerUrl": "https://www.pexels.com/@negativespace",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/blue-and-green-pie-chart-97080/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 14494
+      }
+    ]
   },
   "chatgpt-interactive-visuals-math-science": {
     "hero": {
