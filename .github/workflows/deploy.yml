@@ -1,4 +1,4 @@
-name: Build Site
+name: Deploy Site
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,8 +26,24 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+      - name: Prepare target directory
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          name: aiseoshift-dist
-          path: dist/
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            mkdir -p "${{ secrets.SSH_TARGET_DIR }}"
+            rm -rf "${{ secrets.SSH_TARGET_DIR }}"/*
+
+      - name: Deploy via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          source: "dist/*"
+          target: ${{ secrets.SSH_TARGET_DIR }}
+          strip_components: 1
