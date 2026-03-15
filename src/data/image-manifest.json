@@ -518,5 +518,109 @@
         "bytes": 49452
       }
     ]
+  },
+  "geo-vs-aeo-vs-seo": {
+    "hero": {
+      "src": "/images/posts/geo-vs-aeo-vs-seo-hero.webp",
+      "alt": "Data visualization on a computer screen representing framework comparison and analysis",
+      "photographer": "Sharad Bhat",
+      "photographerUrl": "https://www.pexels.com/@sharadbhat",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/computer-display-with-statistics-of-covid-19-cases-4007745/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 51194
+    },
+    "inline": [
+      {
+        "src": "/images/posts/geo-vs-aeo-vs-seo-inline-1.webp",
+        "alt": "Abstract visualization of overlapping AI systems and optimization layers",
+        "photographer": "Google DeepMind",
+        "photographerUrl": "https://unsplash.com/@googledeepmind",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/a-black-and-white-photo-of-an-egg-vyATC00PGAQ",
+        "width": 1200,
+        "height": 675,
+        "bytes": 54430
+      }
+    ]
+  },
+  "how-to-structure-pages-ai-extraction": {
+    "hero": {
+      "src": "/images/posts/how-to-structure-pages-ai-extraction-hero.webp",
+      "alt": "Structured workflow diagram and document organization representing content architecture",
+      "photographer": "Kelly Sikkema",
+      "photographerUrl": "https://unsplash.com/@kellysikkema",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/workflow-diagram-product-brief-and-user-goals-are-shown-wdnpaTNwOEQ",
+      "width": 1200,
+      "height": 675,
+      "bytes": 111886
+    },
+    "inline": [
+      {
+        "src": "/images/posts/how-to-structure-pages-ai-extraction-inline-1.webp",
+        "alt": "Programming code and structured data displayed on a computer screen",
+        "photographer": "Bibek ghosh",
+        "photographerUrl": "https://www.pexels.com/@bibek-ghosh",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/programming-data-on-a-computer-14553707/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 35324
+      }
+    ]
+  },
+  "how-chatgpt-perplexity-google-cite-differently": {
+    "hero": {
+      "src": "/images/posts/how-chatgpt-perplexity-google-cite-differently-hero.webp",
+      "alt": "Two smartphones displayed side by side representing AI platform comparison",
+      "photographer": "Andrey Matveev",
+      "photographerUrl": "https://www.pexels.com/@andrey-matveev",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/comparative-display-of-two-modern-smartphones-34190305/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 187976
+    },
+    "inline": [
+      {
+        "src": "/images/posts/how-chatgpt-perplexity-google-cite-differently-inline-1.webp",
+        "alt": "Data-driven decision making dashboard showing search and citation analytics",
+        "photographer": "Team Nocoloco",
+        "photographerUrl": "https://unsplash.com/@nocoloco",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/a-screenshot-of-a-web-page-with-the-words-make-data-driven-decision-in-OsbWPpHtjrU",
+        "width": 1200,
+        "height": 675,
+        "bytes": 27286
+      }
+    ]
+  },
+  "eeat-in-the-ai-era": {
+    "hero": {
+      "src": "/images/posts/eeat-in-the-ai-era-hero.webp",
+      "alt": "Professional expert in their field representing expertise, experience, and trust",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@vitalygariev",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/elderly-doctor-wearing-glasses-and-stethoscope-in-office-XSPFs82j_v0",
+      "width": 1200,
+      "height": 675,
+      "bytes": 35166
+    },
+    "inline": [
+      {
+        "src": "/images/posts/eeat-in-the-ai-era-inline-1.webp",
+        "alt": "Professional writing notes and documenting expertise in a notebook",
+        "photographer": "Pavel Danilyuk",
+        "photographerUrl": "https://www.pexels.com/@pavel-danilyuk",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/professional-lawyer-writing-on-a-notebook-8112113/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 48660
+      }
+    ]
   }
 }
