@@ -16,6 +16,8 @@ import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
 Answer Engine Optimization is the practice of improving how your content performs in AI-powered answer environments. The goal is not only to rank in search results, but to become the source material the engine uses when it generates a response.
 
+The simplest way to think about AEO is this: classic SEO helped users find your page; AEO helps answer systems use your page.
+
 ## Why AEO is different from classic SEO
 
 Classic SEO optimized for a page that users clicked from a results page. AEO optimizes for a system that may:
@@ -27,7 +29,9 @@ Classic SEO optimized for a page that users clicked from a results page. AEO opt
 
 That means the page must do more than rank. It must be useful to the answering system.
 
-<InlineEditorialImage slug="what-is-answer-engine-optimization" index={0} />
+Google’s documentation on [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features) is direct about this: there are no special extra requirements to appear in AI Overviews beyond strong SEO fundamentals. But operationally, teams still need to think about how answers are formed and which pages are easy to extract from.
+
+That is the part many teams still underestimate. The fundamentals are not dead, but the standard for useful content is higher when the system is choosing sources instead of simply ranking pages.
 
 ## The core job of AEO
 
@@ -38,7 +42,7 @@ At a practical level, AEO has four goals:
 3. Make the source trustworthy.
 4. Make the information easy to quote.
 
-If your page fails on any of those, the engine has a reason to use another source.
+If your page fails on any one of those, the engine has a reason to use another source.
 
 ## What content tends to win
 
@@ -50,6 +54,10 @@ Pages that perform well in answer engines usually have:
 - evidence, examples, or first-party data
 - minimal ambiguity about the entity, product, or concept being discussed
 
+This is why "helpful content" advice needs a more precise interpretation. Helpful to a human is necessary. Helpful to an answering system means the content is also structured, extractable, and attributable.
+
+<InlineEditorialImage slug="what-is-answer-engine-optimization" index={0} />
+
 ## AEO content design principles
 
 ### Lead with the answer
@@ -58,7 +66,7 @@ If the topic is "What is AEO?", the answer should appear immediately, not halfwa
 
 ### Expand after the answer
 
-Once the concise answer is clear, support it with definitions, frameworks, examples, and comparisons.
+Once the concise answer is clear, support it with definitions, frameworks, examples, comparisons, and edge cases.
 
 ### Use quotable language
 
@@ -66,7 +74,19 @@ Write lines that can be extracted cleanly by systems and still make sense on the
 
 ### Reduce structural noise
 
-Aggressive popups, weak heading structure, and bloated intros make extraction harder.
+Aggressive popups, weak heading structure, buried definitions, and bloated intros make extraction harder.
+
+## What AEO is trying to influence
+
+Answer systems do not behave exactly like ranking algorithms, but the workflow is close enough to think in stages:
+
+- the system interprets the query
+- it retrieves candidate sources
+- it evaluates relevance and trust
+- it synthesizes a response
+- it decides whether to cite or link sources
+
+AEO work aims to improve how your page performs in each of those stages.
 
 ## Technical support still matters
 
@@ -79,7 +99,21 @@ AEO depends on the same base systems that support search visibility:
 - mobile performance
 - structured data where relevant
 
-Without these, answer engines have less confidence in your source quality.
+Without those basics, answer systems have less confidence in your source quality and less ability to process your content correctly.
+
+## Editorial signals matter just as much
+
+Technical quality gets you into the game. Editorial differentiation helps you win.
+
+That means:
+
+- original definitions
+- first-hand examples
+- real comparisons
+- decision frameworks
+- explicit sourcing
+
+Google’s [people-first content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) is especially relevant here because it maps closely to what answer systems need: clear expertise, trust signals, and content that leaves the reader satisfied.
 
 ## A working AEO checklist
 
@@ -88,5 +122,42 @@ Without these, answer engines have less confidence in your source quality.
 - Are there structured subsections for related subquestions?
 - Does the page include original proof or synthesis?
 - Is the page easy to attribute to a specific brand or author?
+- Would a reader understand why this page is more useful than a generic summary?
 
-If the answer is yes across that list, you are operating much closer to answer-engine readiness.
+If the answer is yes across that list, you are much closer to answer-engine readiness.
+
+## Where teams overcomplicate AEO
+
+Some teams treat AEO like an entirely new discipline with mysterious tactics. In practice, most of the work comes down to better execution of fundamentals:
+
+- answer clearly
+- structure tightly
+- prove your claims
+- build authority around a topic
+
+The difference is in the target surface. You are not only trying to earn a click. You are trying to become part of the answer experience itself.
+
+My view is that AEO is less a new trick set and more a forcing function. It exposes which content is genuinely useful and which content was only surviving because the old SERP gave it a chance to be clicked.
+
+## AEO and traffic expectations
+
+One important caveat: stronger AEO does not always mean more traffic in a direct line. In some cases, the user will get part of the answer without clicking. But if your site becomes the trusted source behind high-value prompts, the upside can still be large:
+
+- higher-quality traffic
+- stronger brand recall
+- more repeated mentions
+- more authority around the topic
+
+That is why AEO should be treated as a visibility strategy, not only a click-maximization tactic.
+
+## Related reading
+
+- [What Is AI Visibility?](/blog/what-is-ai-visibility/)
+- [What is Generative Engine Optimization (GEO)?](/blog/what-is-generative-engine-optimization-geo/)
+- [User intent for better SEO](/blog/user-intent-for-better-seo/)
+
+## References
+
+- [Google Search Central: AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
+- [Google Search Central: Creating helpful, reliable, people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
+- [OpenAI: Introducing ChatGPT search](https://openai.com/index/introducing-chatgpt-search/)

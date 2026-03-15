@@ -5,10 +5,10 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 <header class="site-header">
 	<div class="header-wrap">
 		<a class="brand" href="/">
-			<span class="brand-mark">AI</span>
 			<span class="brand-copy">
+				<span class="brand-kicker">AI Search Publication</span>
 				<span class="brand-title">{SITE_TITLE}</span>
-				<span class="brand-tagline">{SITE_TAGLINE}</span>
+				<span class="brand-tagline">Tracking citations, answer engines, and authority systems.</span>
 			</span>
 		</a>
 		<nav aria-label="Primary">
@@ -24,8 +24,8 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 		position: sticky;
 		top: 0;
 		z-index: 20;
-		backdrop-filter: blur(18px);
-		background: rgba(248, 244, 236, 0.8);
+		backdrop-filter: blur(14px);
+		background: rgba(248, 244, 236, 0.94);
 		border-bottom: 1px solid rgba(26, 32, 44, 0.08);
 	}
 
@@ -36,50 +36,41 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 		align-items: center;
 		justify-content: space-between;
 		gap: 1.5rem;
-		padding: 0.9rem 0;
+		padding: 1rem 0;
 	}
 
 	.brand {
-		display: flex;
-		align-items: center;
-		gap: 0.85rem;
 		text-decoration: none;
 		color: rgb(var(--ink));
-	}
-
-	.brand-mark {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.8rem;
-		height: 2.8rem;
-		border-radius: 999px;
-		background:
-			radial-gradient(circle at top, rgba(255, 255, 255, 0.85), transparent 58%),
-			linear-gradient(135deg, #ff6b2c, #171c2e);
-		color: #fff8ed;
-		font-family: 'Georgia', 'Times New Roman', serif;
-		font-size: 1rem;
-		font-weight: 700;
-		letter-spacing: 0.12em;
 	}
 
 	.brand-copy {
 		display: flex;
 		flex-direction: column;
+		gap: 0.1rem;
+		max-width: 32rem;
+	}
+
+	.brand-kicker {
+		font-size: 0.62rem;
+		font-weight: 700;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--signal-deep);
 	}
 
 	.brand-title {
-		font-size: 1rem;
+		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
+		font-size: clamp(1.45rem, 1.6vw, 1.9rem);
 		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
+		line-height: 0.98;
+		letter-spacing: 0.01em;
 	}
 
 	.brand-tagline {
-		font-size: 0.78rem;
+		font-size: 0.72rem;
 		color: rgba(var(--ink), 0.7);
-		max-width: 32rem;
+		max-width: 28rem;
 	}
 
 	nav a {
@@ -87,10 +78,10 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 		margin-left: 1.25rem;
 		color: rgba(var(--ink), 0.82);
 		text-decoration: none;
-		font-size: 0.9rem;
+		font-size: 0.74rem;
 		font-weight: 700;
 		text-transform: uppercase;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.14em;
 		border-bottom: 2px solid transparent;
 	}
 
@@ -115,10 +106,6 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 	@media (max-width: 640px) {
 		.brand-tagline {
 			max-width: none;
-		}
-
-		.brand {
-			align-items: flex-start;
 		}
 	}
 </style>

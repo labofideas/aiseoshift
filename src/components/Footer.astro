@@ -28,6 +28,9 @@ const today = new Date();
 	.footer-wrap {
 		width: min(1200px, calc(100% - 2rem));
 		margin: 0 auto;
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+		gap: 2rem;
 	}
 
 	.footer-mark {
@@ -58,5 +61,11 @@ const today = new Date();
 	.footer-links a:hover,
 	.footer-links a:focus-visible {
 		color: var(--signal);
+	}
+
+	@media (max-width: 800px) {
+		.footer-wrap {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

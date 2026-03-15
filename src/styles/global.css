@@ -5,6 +5,25 @@
 	--ink-muted: 86, 91, 109;
 	--signal: #ff6b2c;
 	--signal-deep: #b54213;
+	--panel: rgba(255, 255, 255, 0.72);
+	--shadow-soft: 0 18px 40px rgba(23, 28, 46, 0.08);
+	--shadow-tight: 0 8px 22px rgba(23, 28, 46, 0.08);
+}
+
+@font-face {
+	font-family: 'Atkinson';
+	src: url('/fonts/atkinson-regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Atkinson';
+	src: url('/fonts/atkinson-bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
 }
 
 *,
@@ -20,16 +39,17 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	font-family: 'Georgia', 'Times New Roman', serif;
+	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
 	background:
-		radial-gradient(circle at top left, rgba(255, 107, 44, 0.14), transparent 30%),
+		radial-gradient(circle at top left, rgba(255, 107, 44, 0.16), transparent 24%),
 		radial-gradient(circle at top right, rgba(23, 28, 46, 0.08), transparent 28%),
+		linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(23, 28, 46, 0.03)),
 		rgb(var(--paper));
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--ink));
-	font-size: 18px;
-	line-height: 1.75;
+	font-size: 16px;
+	line-height: 1.7;
 }
 
 main {
@@ -46,22 +66,23 @@ h6 {
 	color: rgb(var(--ink));
 	line-height: 1.05;
 	font-weight: 700;
+	font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
 }
 
 h1 {
-	font-size: clamp(2.8rem, 6vw, 5.5rem);
+	font-size: clamp(2.3rem, 5vw, 4.6rem);
 }
 
 h2 {
-	font-size: clamp(2rem, 3vw, 3rem);
+	font-size: clamp(1.7rem, 2.8vw, 2.5rem);
 }
 
 h3 {
-	font-size: 1.65rem;
+	font-size: 1.4rem;
 }
 
 h4 {
-	font-size: 1.3rem;
+	font-size: 1.15rem;
 }
 
 h5 {
@@ -83,12 +104,22 @@ a:focus-visible {
 	color: var(--signal);
 }
 
+a,
+img,
+button {
+	transition: 160ms ease;
+}
+
 p {
 	margin-bottom: 1em;
 }
 
 .prose p {
 	margin-bottom: 1.35em;
+}
+
+.prose > :first-child {
+	margin-top: 0;
 }
 
 textarea {
@@ -167,7 +198,7 @@ li + li {
 
 @media (max-width: 720px) {
 	body {
-		font-size: 18px;
+		font-size: 16px;
 	}
 }
 

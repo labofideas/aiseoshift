@@ -24,7 +24,12 @@ const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.dr
 
 			.archive-header {
 				margin-bottom: 2rem;
-				max-width: 48rem;
+				max-width: 56rem;
+				padding: 1.6rem 1.8rem;
+				border-radius: 2rem;
+				border: 1px solid rgba(var(--ink), 0.1);
+				background: var(--panel);
+				box-shadow: var(--shadow-soft);
 			}
 
 			.archive-grid {
@@ -40,7 +45,8 @@ const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.dr
 				padding: 1.5rem;
 				border: 1px solid rgba(var(--ink), 0.1);
 				border-radius: 1.75rem;
-				background: rgba(255, 255, 255, 0.68);
+				background: var(--panel);
+				box-shadow: var(--shadow-tight);
 			}
 
 			.archive-card a {
@@ -48,8 +54,12 @@ const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.dr
 				color: inherit;
 			}
 
+			.archive-card:hover {
+				transform: translateY(-3px);
+			}
+
 			.archive-card h2 {
-				font-size: 1.8rem;
+				font-size: 1.45rem;
 				margin-bottom: 0.75rem;
 			}
 
@@ -67,11 +77,11 @@ const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.dr
 
 			.meta {
 				color: rgba(var(--ink), 0.68);
-				font-size: 0.95rem;
+				font-size: 0.84rem;
 			}
 
 			.category {
-				font-size: 0.78rem;
+				font-size: 0.68rem;
 				letter-spacing: 0.12em;
 				text-transform: uppercase;
 				font-weight: 700;
