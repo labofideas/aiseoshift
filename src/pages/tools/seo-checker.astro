@@ -1,0 +1,454 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Free On-Page SEO Checker | ${SITE_TITLE}`}
+			description="Free on-page SEO checker. Paste your HTML to analyze title tags, meta descriptions, headings, images, links, and word count against best practices."
+		/>
+		<style>
+			.tool-page {
+				width: min(1000px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2rem 0 4rem;
+			}
+
+			.tool-header { margin-bottom: 1.5rem; }
+
+			.tool-header h1 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: clamp(1.8rem, 3vw, 2.4rem);
+				line-height: 1.1;
+				margin: 0.4rem 0 0.6rem;
+			}
+
+			.tool-header p {
+				color: rgba(var(--ink), 0.72);
+				max-width: 36rem;
+			}
+
+			.tool-input {
+				margin-bottom: 1.5rem;
+			}
+
+			.tool-input label {
+				display: block;
+				font-size: 0.78rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				margin-bottom: 0.5rem;
+				color: rgba(var(--ink), 0.6);
+			}
+
+			.tool-input textarea {
+				width: 100%;
+				min-height: 180px;
+				padding: 1rem;
+				border: 1px solid var(--line);
+				border-radius: 12px;
+				background: rgba(var(--paper-strong), 0.5);
+				color: rgb(var(--ink));
+				font-family: 'SFMono-Regular', Consolas, monospace;
+				font-size: 0.82rem;
+				line-height: 1.5;
+				resize: vertical;
+			}
+
+			.tool-input textarea:focus {
+				outline: 2px solid var(--signal);
+				outline-offset: 1px;
+			}
+
+			.tool-actions {
+				display: flex;
+				gap: 0.75rem;
+				margin-bottom: 2rem;
+			}
+
+			.btn-primary {
+				padding: 0.75rem 1.5rem;
+				border: none;
+				border-radius: 999px;
+				background: var(--signal);
+				color: #fff;
+				font-size: 0.82rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				cursor: pointer;
+				transition: background 140ms ease;
+			}
+
+			.btn-primary:hover { background: var(--signal-deep); }
+
+			.btn-secondary {
+				padding: 0.75rem 1.5rem;
+				border: 1px solid var(--line);
+				border-radius: 999px;
+				background: transparent;
+				color: rgb(var(--ink));
+				font-size: 0.82rem;
+				font-weight: 700;
+				cursor: pointer;
+			}
+
+			.results { display: none; }
+			.results.visible { display: block; }
+
+			.score-bar {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				padding: 1.25rem 1.5rem;
+				border-radius: 1rem;
+				border: 1px solid var(--line);
+				background: rgba(var(--paper-strong), 0.55);
+				margin-bottom: 1.5rem;
+			}
+
+			.score-circle {
+				width: 64px;
+				height: 64px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.4rem;
+				font-weight: 700;
+				flex-shrink: 0;
+			}
+
+			.score-good { background: rgba(34, 197, 94, 0.15); color: #16a34a; border: 2px solid #16a34a; }
+			.score-ok { background: rgba(234, 179, 8, 0.15); color: #ca8a04; border: 2px solid #ca8a04; }
+			.score-bad { background: rgba(239, 68, 68, 0.15); color: #dc2626; border: 2px solid #dc2626; }
+
+			.score-label {
+				font-size: 0.86rem;
+				color: rgba(var(--ink), 0.7);
+			}
+
+			.score-label strong {
+				display: block;
+				font-size: 1.1rem;
+				color: rgb(var(--ink));
+			}
+
+			.check-group {
+				margin-bottom: 1.25rem;
+				padding: 1.25rem;
+				border-radius: 1rem;
+				border: 1px solid var(--line);
+				background: rgba(var(--paper-strong), 0.35);
+			}
+
+			.check-group h3 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 0.95rem;
+				margin: 0 0 0.75rem;
+			}
+
+			.check-item {
+				display: flex;
+				align-items: flex-start;
+				gap: 0.6rem;
+				padding: 0.5rem 0;
+				font-size: 0.86rem;
+				line-height: 1.5;
+				border-top: 1px solid var(--line);
+			}
+
+			.check-item:first-of-type { border-top: none; }
+
+			.check-icon {
+				flex-shrink: 0;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.7rem;
+				font-weight: 700;
+				margin-top: 0.1rem;
+			}
+
+			.pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
+			.warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
+			.fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
+
+			.check-detail {
+				color: rgba(var(--ink), 0.6);
+				font-size: 0.8rem;
+			}
+
+			.back-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				font-size: 0.78rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				margin-bottom: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="tool-page">
+			<a href="/tools" class="back-link">&larr; All Tools</a>
+
+			<div class="tool-header">
+				<p class="section-kicker">On-Page SEO</p>
+				<h1>On-Page SEO Checker</h1>
+				<p>Paste your page's HTML source code to analyze title tags, meta descriptions, headings, images, links, and word count against SEO best practices.</p>
+			</div>
+
+			<div class="tool-input">
+				<label for="html-input">Paste HTML Source Code</label>
+				<textarea id="html-input" placeholder="Right-click your page → View Page Source → Copy All → Paste here"></textarea>
+			</div>
+
+			<div class="tool-actions">
+				<button class="btn-primary" id="analyze-btn">Analyze Page</button>
+				<button class="btn-secondary" id="clear-btn">Clear</button>
+			</div>
+
+			<div class="results" id="results"></div>
+		</main>
+		<Footer />
+
+		<script>
+			const analyzeBtn = document.getElementById('analyze-btn')!;
+			const clearBtn = document.getElementById('clear-btn')!;
+			const input = document.getElementById('html-input') as HTMLTextAreaElement;
+			const results = document.getElementById('results')!;
+
+			interface Check {
+				label: string;
+				status: 'pass' | 'warn' | 'fail';
+				detail: string;
+			}
+
+			function analyze(html: string) {
+				const doc = new DOMParser().parseFromString(html, 'text/html');
+				const checks: { group: string; items: Check[] }[] = [];
+				let score = 0;
+				let total = 0;
+
+				// Title
+				const titleChecks: Check[] = [];
+				const title = doc.querySelector('title')?.textContent?.trim() || '';
+				total += 2;
+				if (!title) {
+					titleChecks.push({ label: 'Title tag', status: 'fail', detail: 'No title tag found.' });
+				} else if (title.length < 30) {
+					titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Title is short (${title.length} chars). Aim for 50-60 characters.` });
+					score += 0.5;
+				} else if (title.length > 65) {
+					titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Title is long (${title.length} chars). May be truncated in search results. Aim for 50-60.` });
+					score += 0.5;
+				} else {
+					titleChecks.push({ label: 'Title tag', status: 'pass', detail: `"${title}" (${title.length} chars)` });
+					score += 1;
+				}
+
+				const metaDesc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
+				if (!metaDesc) {
+					titleChecks.push({ label: 'Meta description', status: 'fail', detail: 'No meta description found.' });
+				} else if (metaDesc.length < 120) {
+					titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Description is short (${metaDesc.length} chars). Aim for 150-160.` });
+					score += 0.5;
+				} else if (metaDesc.length > 170) {
+					titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Description may be truncated (${metaDesc.length} chars). Aim for 150-160.` });
+					score += 0.5;
+				} else {
+					titleChecks.push({ label: 'Meta description', status: 'pass', detail: `${metaDesc.length} characters` });
+					score += 1;
+				}
+				checks.push({ group: 'Title & Meta', items: titleChecks });
+
+				// Headings
+				const headingChecks: Check[] = [];
+				const h1s = doc.querySelectorAll('h1');
+				const h2s = doc.querySelectorAll('h2');
+				total += 3;
+				if (h1s.length === 0) {
+					headingChecks.push({ label: 'H1 tag', status: 'fail', detail: 'No H1 heading found. Every page should have exactly one H1.' });
+				} else if (h1s.length > 1) {
+					headingChecks.push({ label: 'H1 tag', status: 'warn', detail: `Found ${h1s.length} H1 tags. Best practice is exactly one H1 per page.` });
+					score += 0.5;
+				} else {
+					headingChecks.push({ label: 'H1 tag', status: 'pass', detail: `"${h1s[0].textContent?.trim().slice(0, 60)}${(h1s[0].textContent?.trim().length || 0) > 60 ? '...' : ''}"` });
+					score += 1;
+				}
+
+				if (h2s.length === 0) {
+					headingChecks.push({ label: 'H2 tags', status: 'warn', detail: 'No H2 headings found. Use H2s to structure your content into sections.' });
+				} else {
+					headingChecks.push({ label: 'H2 tags', status: 'pass', detail: `Found ${h2s.length} H2 heading${h2s.length > 1 ? 's' : ''}.` });
+					score += 1;
+				}
+
+				// Check heading hierarchy
+				const allHeadings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+				let hierarchyOk = true;
+				let prevLevel = 0;
+				allHeadings.forEach((h) => {
+					const level = parseInt(h.tagName[1]);
+					if (prevLevel > 0 && level > prevLevel + 1) hierarchyOk = false;
+					prevLevel = level;
+				});
+				if (hierarchyOk) {
+					headingChecks.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a logical order without skipping levels.' });
+					score += 1;
+				} else {
+					headingChecks.push({ label: 'Heading hierarchy', status: 'warn', detail: 'Heading levels are skipped (e.g., H1 → H3). Use sequential levels.' });
+					score += 0.5;
+				}
+				checks.push({ group: 'Headings', items: headingChecks });
+
+				// Images
+				const imgChecks: Check[] = [];
+				const imgs = doc.querySelectorAll('img');
+				total += 2;
+				if (imgs.length === 0) {
+					imgChecks.push({ label: 'Images', status: 'warn', detail: 'No images found on the page. Images can improve engagement and SEO.' });
+					score += 0.5;
+				} else {
+					const noAlt = Array.from(imgs).filter((img) => !img.getAttribute('alt')?.trim());
+					if (noAlt.length === 0) {
+						imgChecks.push({ label: 'Image alt tags', status: 'pass', detail: `All ${imgs.length} images have alt text.` });
+						score += 1;
+					} else {
+						imgChecks.push({ label: 'Image alt tags', status: 'fail', detail: `${noAlt.length} of ${imgs.length} images missing alt text.` });
+					}
+
+					const noDimensions = Array.from(imgs).filter((img) => !img.getAttribute('width') || !img.getAttribute('height'));
+					if (noDimensions.length === 0) {
+						imgChecks.push({ label: 'Image dimensions', status: 'pass', detail: 'All images have width and height attributes.' });
+						score += 1;
+					} else {
+						imgChecks.push({ label: 'Image dimensions', status: 'warn', detail: `${noDimensions.length} images missing width/height. This can cause layout shifts.` });
+						score += 0.5;
+					}
+				}
+				checks.push({ group: 'Images', items: imgChecks });
+
+				// Links
+				const linkChecks: Check[] = [];
+				const links = doc.querySelectorAll('a[href]');
+				const internalLinks = Array.from(links).filter((a) => {
+					const href = a.getAttribute('href') || '';
+					return href.startsWith('/') || href.startsWith('#');
+				});
+				const externalLinks = Array.from(links).filter((a) => {
+					const href = a.getAttribute('href') || '';
+					return href.startsWith('http');
+				});
+				total += 1;
+				linkChecks.push({ label: 'Total links', status: 'pass', detail: `${links.length} links found (${internalLinks.length} internal, ${externalLinks.length} external).` });
+				score += 1;
+
+				if (internalLinks.length < 2) {
+					linkChecks.push({ label: 'Internal links', status: 'warn', detail: 'Fewer than 2 internal links. Add more to strengthen site structure.' });
+				} else {
+					linkChecks.push({ label: 'Internal links', status: 'pass', detail: `${internalLinks.length} internal links found.` });
+				}
+				checks.push({ group: 'Links', items: linkChecks });
+
+				// Content
+				const contentChecks: Check[] = [];
+				const bodyText = doc.body?.textContent?.trim() || '';
+				const wordCount = bodyText.split(/\s+/).filter((w) => w.length > 0).length;
+				total += 2;
+				if (wordCount < 300) {
+					contentChecks.push({ label: 'Word count', status: 'fail', detail: `${wordCount} words. Pages with fewer than 300 words often underperform in search.` });
+				} else if (wordCount < 1000) {
+					contentChecks.push({ label: 'Word count', status: 'warn', detail: `${wordCount} words. Consider expanding to 1,000+ for competitive topics.` });
+					score += 0.5;
+				} else {
+					contentChecks.push({ label: 'Word count', status: 'pass', detail: `${wordCount} words.` });
+					score += 1;
+				}
+
+				const canonical = doc.querySelector('link[rel="canonical"]');
+				if (canonical) {
+					contentChecks.push({ label: 'Canonical URL', status: 'pass', detail: canonical.getAttribute('href') || 'Set' });
+					score += 1;
+				} else {
+					contentChecks.push({ label: 'Canonical URL', status: 'warn', detail: 'No canonical URL found. Add one to prevent duplicate content issues.' });
+					score += 0.5;
+				}
+
+				const viewport = doc.querySelector('meta[name="viewport"]');
+				if (viewport) {
+					contentChecks.push({ label: 'Viewport meta', status: 'pass', detail: 'Mobile viewport configured.' });
+				} else {
+					contentChecks.push({ label: 'Viewport meta', status: 'fail', detail: 'No viewport meta tag. Page may not be mobile-friendly.' });
+				}
+
+				const lang = doc.documentElement.getAttribute('lang');
+				if (lang) {
+					contentChecks.push({ label: 'Language attribute', status: 'pass', detail: `lang="${lang}"` });
+				} else {
+					contentChecks.push({ label: 'Language attribute', status: 'warn', detail: 'No lang attribute on <html>. Add one for accessibility and SEO.' });
+				}
+				checks.push({ group: 'Content & Technical', items: contentChecks });
+
+				const finalScore = Math.round((score / total) * 100);
+				return { score: finalScore, checks };
+			}
+
+			function renderResults(data: { score: number; checks: { group: string; items: Check[] }[] }) {
+				const scoreClass = data.score >= 80 ? 'score-good' : data.score >= 50 ? 'score-ok' : 'score-bad';
+				const scoreText = data.score >= 80 ? 'Good' : data.score >= 50 ? 'Needs Work' : 'Poor';
+				const iconMap = { pass: '\u2713', warn: '!', fail: '\u2717' };
+
+				let html = `
+					<div class="score-bar">
+						<div class="score-circle ${scoreClass}">${data.score}</div>
+						<div class="score-label"><strong>${scoreText}</strong>Your page scored ${data.score} out of 100</div>
+					</div>
+				`;
+
+				for (const group of data.checks) {
+					html += `<div class="check-group"><h3>${group.group}</h3>`;
+					for (const item of group.items) {
+						html += `
+							<div class="check-item">
+								<span class="check-icon ${item.status}">${iconMap[item.status]}</span>
+								<div><strong>${item.label}</strong><br><span class="check-detail">${item.detail}</span></div>
+							</div>
+						`;
+					}
+					html += `</div>`;
+				}
+
+				results.innerHTML = html;
+				results.classList.add('visible');
+			}
+
+			analyzeBtn.addEventListener('click', () => {
+				const html = input.value.trim();
+				if (!html) { alert('Please paste HTML source code first.'); return; }
+				const data = analyze(html);
+				renderResults(data);
+				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+
+			clearBtn.addEventListener('click', () => {
+				input.value = '';
+				results.innerHTML = '';
+				results.classList.remove('visible');
+			});
+		</script>
+	</body>
+</html>

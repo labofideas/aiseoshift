@@ -1,0 +1,171 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const tools = [
+	{
+		name: 'On-Page SEO Checker',
+		description: 'Check title tags, meta descriptions, headings, images, links, and word count against SEO best practices.',
+		href: '/tools/seo-checker',
+		category: 'On-Page',
+	},
+	{
+		name: 'Meta & OG Tag Checker',
+		description: 'Validate Open Graph tags, Twitter cards, canonical URLs, favicon, viewport, and other head meta elements.',
+		href: '/tools/meta-checker',
+		category: 'Technical',
+	},
+	{
+		name: 'Keyword Density Analyzer',
+		description: 'Analyze keyword frequency, percentage, and prominence across your page content. Find over-optimization or gaps.',
+		href: '/tools/keyword-density',
+		category: 'Content',
+	},
+	{
+		name: 'Heading Structure Checker',
+		description: 'Validate your H1-H6 hierarchy for proper nesting, duplicate headings, missing levels, and SEO best practices.',
+		href: '/tools/heading-checker',
+		category: 'On-Page',
+	},
+	{
+		name: 'Image SEO Checker',
+		description: 'Find missing alt tags, oversized images, missing dimensions, and optimization opportunities across all page images.',
+		href: '/tools/image-checker',
+		category: 'On-Page',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Free SEO Tools | ${SITE_TITLE}`}
+			description="Free client-side SEO tools to check on-page SEO, meta tags, keyword density, heading structure, and image optimization. No signup required."
+		/>
+		<style>
+			.tools-page {
+				width: min(1200px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2.5rem 0 4rem;
+			}
+
+			.tools-hero {
+				margin-bottom: 2.5rem;
+				padding-bottom: 2rem;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.tools-hero h1 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: clamp(2rem, 3.5vw, 2.8rem);
+				line-height: 1.1;
+				letter-spacing: -0.025em;
+				margin: 0.5rem 0 1rem;
+			}
+
+			.tools-hero p {
+				font-size: 1.02rem;
+				line-height: 1.72;
+				color: rgba(var(--ink), 0.78);
+				max-width: 40rem;
+			}
+
+			.tools-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.25rem;
+			}
+
+			.tool-card {
+				display: flex;
+				flex-direction: column;
+				padding: 1.5rem;
+				border-radius: 1.25rem;
+				border: 1px solid var(--line);
+				background: rgba(var(--paper-strong), 0.55);
+				text-decoration: none;
+				color: inherit;
+				transition: transform 140ms ease, box-shadow 140ms ease;
+			}
+
+			.tool-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 24px rgba(var(--ink), 0.08);
+			}
+
+			.tool-cat {
+				font-size: 0.66rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--signal-deep);
+				margin-bottom: 0.5rem;
+			}
+
+			.tool-card h2 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 1.15rem;
+				line-height: 1.25;
+				margin: 0 0 0.6rem;
+				letter-spacing: -0.01em;
+			}
+
+			.tool-card p {
+				font-size: 0.86rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.7);
+				margin: 0;
+				flex: 1;
+			}
+
+			.tool-cta {
+				display: inline-flex;
+				align-items: center;
+				margin-top: 1rem;
+				font-size: 0.74rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--signal-deep);
+			}
+
+			.tool-cta::after {
+				content: ' \2192';
+				margin-left: 0.3rem;
+			}
+
+			@media (max-width: 860px) {
+				.tools-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="tools-page">
+			<section class="tools-hero">
+				<p class="section-kicker">Free SEO Tools</p>
+				<h1>Check your pages against SEO best practices.</h1>
+				<p>
+					Paste your page's HTML source code and get instant analysis. All tools run entirely in your browser — no data is sent to any server, no signup required.
+				</p>
+			</section>
+
+			<div class="tools-grid">
+				{tools.map((tool) => (
+					<a href={tool.href} class="tool-card">
+						<span class="tool-cat">{tool.category}</span>
+						<h2>{tool.name}</h2>
+						<p>{tool.description}</p>
+						<span class="tool-cta">Use tool</span>
+					</a>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

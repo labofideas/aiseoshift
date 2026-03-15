@@ -1,0 +1,210 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Free Meta & OG Tag Checker | ${SITE_TITLE}`}
+			description="Check Open Graph tags, Twitter cards, canonical URLs, and head meta elements. Free client-side tool, no signup required."
+		/>
+		<style>
+			.tool-page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+			.tool-header { margin-bottom: 1.5rem; }
+			.tool-header h1 { font-family: 'Atkinson', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0.4rem 0 0.6rem; }
+			.tool-header p { color: rgba(var(--ink), 0.72); max-width: 36rem; }
+			.tool-input { margin-bottom: 1.5rem; }
+			.tool-input label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: rgba(var(--ink), 0.6); }
+			.tool-input textarea { width: 100%; min-height: 180px; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-family: monospace; font-size: 0.82rem; line-height: 1.5; resize: vertical; }
+			.tool-input textarea:focus { outline: 2px solid var(--signal); outline-offset: 1px; }
+			.tool-actions { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
+			.btn-primary { padding: 0.75rem 1.5rem; border: none; border-radius: 999px; background: var(--signal); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+			.btn-primary:hover { background: var(--signal-deep); }
+			.btn-secondary { padding: 0.75rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: rgb(var(--ink)); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+			.results { display: none; }
+			.results.visible { display: block; }
+			.score-bar { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.55); margin-bottom: 1.5rem; }
+			.score-circle { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
+			.score-good { background: rgba(34, 197, 94, 0.15); color: #16a34a; border: 2px solid #16a34a; }
+			.score-ok { background: rgba(234, 179, 8, 0.15); color: #ca8a04; border: 2px solid #ca8a04; }
+			.score-bad { background: rgba(239, 68, 68, 0.15); color: #dc2626; border: 2px solid #dc2626; }
+			.score-label { font-size: 0.86rem; color: rgba(var(--ink), 0.7); }
+			.score-label strong { display: block; font-size: 1.1rem; color: rgb(var(--ink)); }
+			.check-group { margin-bottom: 1.25rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
+			.check-group h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
+			.check-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; font-size: 0.86rem; line-height: 1.5; border-top: 1px solid var(--line); }
+			.check-item:first-of-type { border-top: none; }
+			.check-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 0.1rem; }
+			.pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
+			.warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
+			.fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
+			.check-detail { color: rgba(var(--ink), 0.6); font-size: 0.8rem; }
+			.back-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+			.preview-box { margin-top: 1.5rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
+			.preview-box h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
+			.og-preview { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; max-width: 500px; }
+			.og-preview img { width: 100%; aspect-ratio: 1.91/1; object-fit: cover; display: block; }
+			.og-preview-text { padding: 0.75rem 1rem; }
+			.og-preview-text .og-site { font-size: 0.72rem; color: rgba(var(--ink), 0.5); text-transform: uppercase; }
+			.og-preview-text .og-title { font-size: 0.92rem; font-weight: 700; margin: 0.2rem 0; line-height: 1.3; }
+			.og-preview-text .og-desc { font-size: 0.8rem; color: rgba(var(--ink), 0.6); line-height: 1.4; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="tool-page">
+			<a href="/tools" class="back-link">&larr; All Tools</a>
+			<div class="tool-header">
+				<p class="section-kicker">Technical SEO</p>
+				<h1>Meta & OG Tag Checker</h1>
+				<p>Paste your page's HTML to validate Open Graph tags, Twitter cards, canonical URLs, and essential head meta elements.</p>
+			</div>
+			<div class="tool-input">
+				<label for="html-input">Paste HTML Source Code</label>
+				<textarea id="html-input" placeholder="Right-click your page → View Page Source → Copy All → Paste here"></textarea>
+			</div>
+			<div class="tool-actions">
+				<button class="btn-primary" id="analyze-btn">Check Meta Tags</button>
+				<button class="btn-secondary" id="clear-btn">Clear</button>
+			</div>
+			<div class="results" id="results"></div>
+		</main>
+		<Footer />
+
+		<script>
+			const analyzeBtn = document.getElementById('analyze-btn')!;
+			const clearBtn = document.getElementById('clear-btn')!;
+			const input = document.getElementById('html-input') as HTMLTextAreaElement;
+			const results = document.getElementById('results')!;
+
+			interface Check { label: string; status: 'pass' | 'warn' | 'fail'; detail: string; }
+
+			function getMeta(doc: Document, name: string, attr = 'name'): string {
+				return doc.querySelector(`meta[${attr}="${name}"]`)?.getAttribute('content')?.trim() || '';
+			}
+
+			function analyze(html: string) {
+				const doc = new DOMParser().parseFromString(html, 'text/html');
+				const checks: { group: string; items: Check[] }[] = [];
+				let score = 0, total = 0;
+
+				// Essential Meta
+				const essential: Check[] = [];
+				total += 4;
+				const title = doc.querySelector('title')?.textContent?.trim() || '';
+				essential.push(title ? { label: 'Title tag', status: 'pass', detail: `"${title}"` } : { label: 'Title tag', status: 'fail', detail: 'Missing.' });
+				if (title) score++;
+
+				const desc = getMeta(doc, 'description');
+				essential.push(desc ? { label: 'Meta description', status: 'pass', detail: `${desc.length} chars` } : { label: 'Meta description', status: 'fail', detail: 'Missing.' });
+				if (desc) score++;
+
+				const viewport = getMeta(doc, 'viewport');
+				essential.push(viewport ? { label: 'Viewport', status: 'pass', detail: viewport } : { label: 'Viewport', status: 'fail', detail: 'Missing. Page may not be mobile-friendly.' });
+				if (viewport) score++;
+
+				const charset = doc.querySelector('meta[charset]');
+				essential.push(charset ? { label: 'Charset', status: 'pass', detail: charset.getAttribute('charset') || 'set' } : { label: 'Charset', status: 'warn', detail: 'No charset meta tag found.' });
+				if (charset) score++; else score += 0.5;
+				checks.push({ group: 'Essential Meta', items: essential });
+
+				// Open Graph
+				const og: Check[] = [];
+				total += 4;
+				const ogTitle = getMeta(doc, 'og:title', 'property');
+				og.push(ogTitle ? { label: 'og:title', status: 'pass', detail: `"${ogTitle}"` } : { label: 'og:title', status: 'fail', detail: 'Missing. Required for social sharing.' });
+				if (ogTitle) score++;
+
+				const ogDesc = getMeta(doc, 'og:description', 'property');
+				og.push(ogDesc ? { label: 'og:description', status: 'pass', detail: `${ogDesc.length} chars` } : { label: 'og:description', status: 'fail', detail: 'Missing.' });
+				if (ogDesc) score++;
+
+				const ogImage = getMeta(doc, 'og:image', 'property');
+				og.push(ogImage ? { label: 'og:image', status: 'pass', detail: ogImage.slice(0, 80) + (ogImage.length > 80 ? '...' : '') } : { label: 'og:image', status: 'fail', detail: 'Missing. Social shares will have no image.' });
+				if (ogImage) score++;
+
+				const ogType = getMeta(doc, 'og:type', 'property');
+				og.push(ogType ? { label: 'og:type', status: 'pass', detail: ogType } : { label: 'og:type', status: 'warn', detail: 'Missing. Defaults to "website".' });
+				if (ogType) score++; else score += 0.5;
+
+				const ogUrl = getMeta(doc, 'og:url', 'property');
+				og.push(ogUrl ? { label: 'og:url', status: 'pass', detail: ogUrl } : { label: 'og:url', status: 'warn', detail: 'Missing.' });
+				checks.push({ group: 'Open Graph', items: og });
+
+				// Twitter
+				const tw: Check[] = [];
+				total += 2;
+				const twCard = getMeta(doc, 'twitter:card');
+				tw.push(twCard ? { label: 'twitter:card', status: 'pass', detail: twCard } : { label: 'twitter:card', status: 'warn', detail: 'Missing. Falls back to OG tags.' });
+				if (twCard) score++; else score += 0.5;
+
+				const twTitle = getMeta(doc, 'twitter:title');
+				tw.push(twTitle ? { label: 'twitter:title', status: 'pass', detail: `"${twTitle}"` } : { label: 'twitter:title', status: 'warn', detail: 'Missing. Falls back to og:title.' });
+				if (twTitle) score++; else score += 0.5;
+				checks.push({ group: 'Twitter Card', items: tw });
+
+				// Technical
+				const tech: Check[] = [];
+				total += 2;
+				const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href') || '';
+				tech.push(canonical ? { label: 'Canonical URL', status: 'pass', detail: canonical } : { label: 'Canonical URL', status: 'warn', detail: 'No canonical URL found.' });
+				if (canonical) score++; else score += 0.5;
+
+				const favicon = doc.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
+				tech.push(favicon ? { label: 'Favicon', status: 'pass', detail: favicon.getAttribute('href') || 'Set' } : { label: 'Favicon', status: 'warn', detail: 'No favicon link found.' });
+				if (favicon) score++; else score += 0.5;
+
+				const lang = doc.documentElement.getAttribute('lang');
+				tech.push(lang ? { label: 'Language', status: 'pass', detail: `lang="${lang}"` } : { label: 'Language', status: 'warn', detail: 'No lang attribute on <html>.' });
+				checks.push({ group: 'Technical', items: tech });
+
+				const finalScore = Math.round((score / total) * 100);
+
+				// OG Preview data
+				const previewData = { title: ogTitle || title, description: ogDesc || desc, image: ogImage, site: ogUrl ? new URL(ogUrl).hostname : '' };
+
+				return { score: finalScore, checks, preview: previewData };
+			}
+
+			function renderResults(data: ReturnType<typeof analyze>) {
+				const scoreClass = data.score >= 80 ? 'score-good' : data.score >= 50 ? 'score-ok' : 'score-bad';
+				const scoreText = data.score >= 80 ? 'Good' : data.score >= 50 ? 'Needs Work' : 'Poor';
+				const iconMap: Record<string, string> = { pass: '\u2713', warn: '!', fail: '\u2717' };
+
+				let html = `<div class="score-bar"><div class="score-circle ${scoreClass}">${data.score}</div><div class="score-label"><strong>${scoreText}</strong>Meta tags scored ${data.score} out of 100</div></div>`;
+
+				for (const group of data.checks) {
+					html += `<div class="check-group"><h3>${group.group}</h3>`;
+					for (const item of group.items) {
+						html += `<div class="check-item"><span class="check-icon ${item.status}">${iconMap[item.status]}</span><div><strong>${item.label}</strong><br><span class="check-detail">${item.detail}</span></div></div>`;
+					}
+					html += `</div>`;
+				}
+
+				if (data.preview.title) {
+					html += `<div class="preview-box"><h3>Social Share Preview</h3><div class="og-preview">`;
+					if (data.preview.image) html += `<img src="${data.preview.image}" alt="OG preview" onerror="this.style.display='none'" />`;
+					html += `<div class="og-preview-text"><div class="og-site">${data.preview.site || 'your-site.com'}</div><div class="og-title">${data.preview.title}</div>`;
+					if (data.preview.description) html += `<div class="og-desc">${data.preview.description.slice(0, 160)}</div>`;
+					html += `</div></div></div>`;
+				}
+
+				results.innerHTML = html;
+				results.classList.add('visible');
+			}
+
+			analyzeBtn.addEventListener('click', () => {
+				const html = input.value.trim();
+				if (!html) { alert('Please paste HTML source code first.'); return; }
+				renderResults(analyze(html));
+				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+
+			clearBtn.addEventListener('click', () => { input.value = ''; results.innerHTML = ''; results.classList.remove('visible'); });
+		</script>
+	</body>
+</html>

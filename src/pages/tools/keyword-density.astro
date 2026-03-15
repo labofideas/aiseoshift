@@ -1,0 +1,181 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Free Keyword Density Analyzer | ${SITE_TITLE}`}
+			description="Analyze keyword frequency, density percentage, and prominence in your page content. Free client-side tool."
+		/>
+		<style>
+			.tool-page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
+			.tool-header { margin-bottom: 1.5rem; }
+			.tool-header h1 { font-family: 'Atkinson', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0.4rem 0 0.6rem; }
+			.tool-header p { color: rgba(var(--ink), 0.72); max-width: 36rem; }
+			.tool-input { margin-bottom: 1rem; }
+			.tool-input label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: rgba(var(--ink), 0.6); }
+			.tool-input textarea { width: 100%; min-height: 160px; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-family: monospace; font-size: 0.82rem; line-height: 1.5; resize: vertical; }
+			.tool-input textarea:focus, .keyword-field:focus { outline: 2px solid var(--signal); outline-offset: 1px; }
+			.keyword-row { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; align-items: end; }
+			.keyword-field { flex: 1; padding: 0.7rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-size: 0.92rem; }
+			.tool-actions { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
+			.btn-primary { padding: 0.75rem 1.5rem; border: none; border-radius: 999px; background: var(--signal); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+			.btn-primary:hover { background: var(--signal-deep); }
+			.btn-secondary { padding: 0.75rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: rgb(var(--ink)); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+			.results { display: none; }
+			.results.visible { display: block; }
+			.density-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; }
+			.density-table th, .density-table td { padding: 0.6rem 0.8rem; border: 1px solid var(--line); text-align: left; }
+			.density-table th { background: rgba(var(--ink), 0.04); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+			.density-bar { height: 6px; border-radius: 3px; background: var(--signal); margin-top: 0.3rem; }
+			.check-group { margin-bottom: 1.25rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
+			.check-group h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
+			.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+			.stat-card { padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.55); text-align: center; }
+			.stat-num { font-size: 1.6rem; font-weight: 700; color: var(--signal-deep); }
+			.stat-label { font-size: 0.72rem; color: rgba(var(--ink), 0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
+			.back-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+			@media (max-width: 600px) { .stat-grid { grid-template-columns: 1fr; } .keyword-row { flex-direction: column; } }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main class="tool-page">
+			<a href="/tools" class="back-link">&larr; All Tools</a>
+			<div class="tool-header">
+				<p class="section-kicker">Content Analysis</p>
+				<h1>Keyword Density Analyzer</h1>
+				<p>Paste your page content or HTML and enter a target keyword to analyze frequency, density, and prominence.</p>
+			</div>
+			<div class="tool-input">
+				<label for="html-input">Paste Page Content or HTML</label>
+				<textarea id="html-input" placeholder="Paste your page's text content or full HTML source code here"></textarea>
+			</div>
+			<div class="keyword-row">
+				<div class="tool-input" style="flex:1;margin-bottom:0">
+					<label for="keyword-input">Target Keyword</label>
+					<input type="text" id="keyword-input" class="keyword-field" placeholder="e.g. AI visibility" />
+				</div>
+			</div>
+			<div class="tool-actions">
+				<button class="btn-primary" id="analyze-btn">Analyze Density</button>
+				<button class="btn-secondary" id="clear-btn">Clear</button>
+			</div>
+			<div class="results" id="results"></div>
+		</main>
+		<Footer />
+
+		<script>
+			const analyzeBtn = document.getElementById('analyze-btn')!;
+			const clearBtn = document.getElementById('clear-btn')!;
+			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
+			const keywordInput = document.getElementById('keyword-input') as HTMLInputElement;
+			const results = document.getElementById('results')!;
+
+			function getTextFromHtml(html: string): string {
+				if (html.includes('<') && html.includes('>')) {
+					const doc = new DOMParser().parseFromString(html, 'text/html');
+					return doc.body?.textContent?.trim() || html;
+				}
+				return html;
+			}
+
+			function analyze() {
+				const raw = htmlInput.value.trim();
+				const keyword = keywordInput.value.trim().toLowerCase();
+				if (!raw) { alert('Please paste content first.'); return; }
+				if (!keyword) { alert('Please enter a target keyword.'); return; }
+
+				const text = getTextFromHtml(raw);
+				const words = text.split(/\s+/).filter(w => w.length > 0);
+				const totalWords = words.length;
+				const lowerText = text.toLowerCase();
+
+				// Keyword count (exact phrase match)
+				const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+				const matches = lowerText.match(regex);
+				const kwCount = matches ? matches.length : 0;
+				const kwWords = keyword.split(/\s+/).length;
+				const density = totalWords > 0 ? ((kwCount * kwWords) / totalWords * 100) : 0;
+
+				// Prominence checks
+				let doc: Document | null = null;
+				if (raw.includes('<') && raw.includes('>')) {
+					doc = new DOMParser().parseFromString(raw, 'text/html');
+				}
+
+				const inTitle = doc ? (doc.querySelector('title')?.textContent?.toLowerCase().includes(keyword) || false) : false;
+				const h1 = doc ? doc.querySelector('h1')?.textContent?.toLowerCase() || '' : '';
+				const inH1 = h1.includes(keyword);
+				const firstPara = text.slice(0, 500).toLowerCase();
+				const inFirstPara = firstPara.includes(keyword);
+				const metaDesc = doc ? (doc.querySelector('meta[name="description"]')?.getAttribute('content')?.toLowerCase() || '') : '';
+				const inMetaDesc = metaDesc.includes(keyword);
+
+				// Top words frequency (single words, exclude common stop words)
+				const sw = 'the,a,an,is,are,was,were,be,been,being,have,has,had,do,does,did,will,would,shall,should,may,might,must,can,could,to,of,in,for,on,with,at,by,from,as,into,through,during,before,after,above,below,between,and,but,or,nor,not,so,yet,both,either,neither,each,every,all,any,few,more,most,other,some,such,no,only,own,same,than,too,very,just,because,if,when,while,that,this,these,those,it,its,i,me,my,we,our,you,your,he,him,his,she,her,they,them,their,what,which,who,whom,how,where,why,also,about,up,out,then,there,here,new,one,two,like,well,back,even,us,much,get,go,make,many,way,use,over,take';
+				const stopWords = new Set(sw.split(','));
+				const wordFreq = new Map();
+				words.forEach(w => {
+					const lw = w.toLowerCase().replace(/[^a-z0-9]/g, '');
+					if (lw.length > 2 && !stopWords.has(lw)) {
+						wordFreq.set(lw, (wordFreq.get(lw) || 0) + 1);
+					}
+				});
+				const topWords = [...wordFreq.entries()].sort((a, b) => b[1] - a[1]).slice(0, 15);
+				const maxFreq = topWords.length > 0 ? topWords[0][1] : 1;
+
+				// Render
+				let densityStatus = 'Good';
+				let densityColor = '#16a34a';
+				if (density < 0.5) { densityStatus = 'Low'; densityColor = '#ca8a04'; }
+				else if (density > 3) { densityStatus = 'High (over-optimized)'; densityColor = '#dc2626'; }
+
+				let html = `
+					<div class="stat-grid">
+						<div class="stat-card"><div class="stat-num">${kwCount}</div><div class="stat-label">Occurrences</div></div>
+						<div class="stat-card"><div class="stat-num">${density.toFixed(2)}%</div><div class="stat-label">Density</div></div>
+						<div class="stat-card"><div class="stat-num">${totalWords.toLocaleString()}</div><div class="stat-label">Total Words</div></div>
+					</div>
+					<div class="check-group">
+						<h3>Density Assessment: <span style="color:${densityColor}">${densityStatus}</span></h3>
+						<p style="font-size:0.86rem;color:rgba(var(--ink),0.7)">
+							${density < 0.5 ? 'Your keyword density is below 0.5%. Consider using the keyword more naturally throughout your content.' :
+							  density > 3 ? 'Your keyword density exceeds 3%. This may appear as keyword stuffing. Reduce usage and focus on natural language.' :
+							  'Your keyword density is within the recommended 0.5-3% range. This looks natural and well-optimized.'}
+						</p>
+					</div>
+					<div class="check-group">
+						<h3>Keyword Prominence</h3>
+						<div class="check-item" style="border-top:none"><span class="check-icon ${inTitle ? 'pass' : 'fail'}">${inTitle ? '\u2713' : '\u2717'}</span><div><strong>In title tag</strong></div></div>
+						<div class="check-item"><span class="check-icon ${inH1 ? 'pass' : 'fail'}">${inH1 ? '\u2713' : '\u2717'}</span><div><strong>In H1 heading</strong></div></div>
+						<div class="check-item"><span class="check-icon ${inFirstPara ? 'pass' : 'warn'}">${inFirstPara ? '\u2713' : '!'}</span><div><strong>In first 500 characters</strong></div></div>
+						<div class="check-item"><span class="check-icon ${inMetaDesc ? 'pass' : 'warn'}">${inMetaDesc ? '\u2713' : '!'}</span><div><strong>In meta description</strong></div></div>
+					</div>
+				`;
+
+				if (topWords.length > 0) {
+					html += `<div class="check-group"><h3>Top 15 Words by Frequency</h3><table class="density-table"><thead><tr><th>Word</th><th>Count</th><th>Density</th><th>Distribution</th></tr></thead><tbody>`;
+					topWords.forEach(([word, count]) => {
+						const wd = ((count / totalWords) * 100).toFixed(2);
+						const barWidth = Math.round((count / maxFreq) * 100);
+						html += `<tr><td><strong>${word}</strong></td><td>${count}</td><td>${wd}%</td><td><div class="density-bar" style="width:${barWidth}%"></div></td></tr>`;
+					});
+					html += `</tbody></table></div>`;
+				}
+
+				results.innerHTML = html;
+				results.classList.add('visible');
+				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+
+			analyzeBtn.addEventListener('click', analyze);
+			clearBtn.addEventListener('click', () => { htmlInput.value = ''; keywordInput.value = ''; results.innerHTML = ''; results.classList.remove('visible'); });
+		</script>
+	</body>
+</html>
