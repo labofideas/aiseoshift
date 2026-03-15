@@ -37,6 +37,19 @@ draft:
 3. Push to `main`
 4. GitHub Actions builds the site and deploys `dist/` to hosting
 
+## Editorial images
+
+The site supports local optimized editorial images generated from API search results.
+
+```bash
+PEXELS_API_KEY=your_key npm run images:fetch
+```
+
+- Images are downloaded to `public/images/posts/`
+- Attribution metadata is stored in `src/data/image-manifest.json`
+- The fetch script targets sub-`300 KB` `.webp` assets
+- Update `scripts/fetch-editorial-images.mjs` to change queries or add more inline images
+
 ## Deploy setup
 
 The repo includes `.github/workflows/deploy.yml`.

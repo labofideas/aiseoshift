@@ -1,0 +1,62 @@
+---
+interface ImageRecord {
+	src: string;
+	alt: string;
+	photographer: string;
+	photographerUrl: string;
+	sourceName: string;
+	sourceUrl: string;
+	width?: number;
+	height?: number;
+	bytes?: number;
+}
+
+interface Props {
+	image?: ImageRecord;
+	className?: string;
+	loading?: 'lazy' | 'eager';
+}
+
+const { image, className = '', loading = 'lazy' } = Astro.props;
+---
+
+{
+	image && (
+		<figure class={`editorial-image ${className}`.trim()}>
+			<img
+				src={image.src}
+				alt={image.alt}
+				loading={loading}
+				width={image.width}
+				height={image.height}
+			/>
+			<figcaption>
+				Photo by <a href={image.photographerUrl} target="_blank" rel="noreferrer">{image.photographer}</a> on{' '}
+				<a href={image.sourceUrl} target="_blank" rel="noreferrer">{image.sourceName}</a>
+			</figcaption>
+		</figure>
+	)
+}
+
+<style>
+	.editorial-image {
+		margin: 0;
+	}
+
+	.editorial-image img {
+		display: block;
+		width: 100%;
+		border-radius: 1.25rem;
+	}
+
+	.editorial-image figcaption {
+		margin-top: 0.75rem;
+		font-size: 0.84rem;
+		line-height: 1.5;
+		color: rgba(var(--ink), 0.68);
+	}
+
+	.editorial-image a {
+		font-weight: 700;
+	}
+</style>

@@ -1,0 +1,164 @@
+{
+  "what-is-ai-visibility": {
+    "hero": {
+      "src": "/images/posts/what-is-ai-visibility-hero.webp",
+      "alt": "Abstract editorial visual representing AI visibility across digital interfaces",
+      "photographer": "Matheus Bertelli",
+      "photographerUrl": "https://www.pexels.com/@bertellifotografia",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/ai-chat-interface-on-computer-screen-30530407/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 7772
+    },
+    "inline": [
+      {
+        "src": "/images/posts/what-is-ai-visibility-inline-1.webp",
+        "alt": "Team reviewing performance data and search visibility metrics",
+        "photographer": "RDNE Stock project",
+        "photographerUrl": "https://www.pexels.com/@rdne",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/hands-holding-business-analysis-8068691/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 31596
+      }
+    ]
+  },
+  "what-is-answer-engine-optimization": {
+    "hero": {
+      "src": "/images/posts/what-is-answer-engine-optimization-hero.webp",
+      "alt": "Modern search and answer interface on a laptop at a desk",
+      "photographer": "cottonbro studio",
+      "photographerUrl": "https://www.pexels.com/@cottonbro",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/google-browser-on-laptop-6986455/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 38976
+    },
+    "inline": [
+      {
+        "src": "/images/posts/what-is-answer-engine-optimization-inline-1.webp",
+        "alt": "Person researching and typing on a laptop while reviewing answers",
+        "photographer": "Ron Lach",
+        "photographerUrl": "https://www.pexels.com/@ron-lach",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/man-in-green-dress-shirt-wearing-eyeglasses-8036332/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 45524
+      }
+    ]
+  },
+  "ai-citation-landscape-2026": {
+    "hero": {
+      "src": "/images/posts/ai-citation-landscape-2026-hero.webp",
+      "alt": "Research documents and notes representing source citations and analysis",
+      "photographer": "Ron Lach",
+      "photographerUrl": "https://www.pexels.com/@ron-lach",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/person-in-black-shirt-writing-on-white-paper-8085938/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 59858
+    },
+    "inline": [
+      {
+        "src": "/images/posts/ai-citation-landscape-2026-inline-1.webp",
+        "alt": "Analyst reviewing reports and source material for research work",
+        "photographer": "Tima Miroshnichenko",
+        "photographerUrl": "https://www.pexels.com/@tima-miroshnichenko",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/man-in-black-suit-jacket-analyzing-data-reports-7567485/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 33002
+      }
+    ]
+  },
+  "best-surfer-seo-alternatives-2026": {
+    "hero": {
+      "src": "/images/posts/best-surfer-seo-alternatives-2026-hero.webp",
+      "alt": "Marketing team reviewing SEO dashboards and software options",
+      "photographer": "Lukas Blazek",
+      "photographerUrl": "https://www.pexels.com/@goumbik",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/turned-on-laptop-computer-577195/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 89246
+    },
+    "inline": []
+  },
+  "best-ai-visibility-tools-2026": {
+    "hero": {
+      "src": "/images/posts/best-ai-visibility-tools-2026-hero.webp",
+      "alt": "Analytics dashboards on multiple screens representing AI visibility tooling",
+      "photographer": "Egor Komarov",
+      "photographerUrl": "https://www.pexels.com/@egorkomarov",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/options-on-device-screen-27141316/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 85204
+    },
+    "inline": []
+  },
+  "master-programmatic-seo": {
+    "hero": {
+      "src": "/images/posts/master-programmatic-seo-hero.webp",
+      "alt": "Developer workspace with structured data and code on screen",
+      "photographer": "Саша Алалыкин",
+      "photographerUrl": "https://www.pexels.com/@sash2s",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/software-source-code-program-code-code-on-a-computer-screen-the-developer-is-working-on-program-codes-in-the-office-photo-with-source-code-16592498/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 69752
+    },
+    "inline": []
+  },
+  "what-is-generative-engine-optimization-geo": {
+    "hero": {
+      "src": "/images/posts/what-is-generative-engine-optimization-geo-hero.webp",
+      "alt": "Abstract network visual representing generative search systems",
+      "photographer": "Google DeepMind",
+      "photographerUrl": "https://www.pexels.com/@googledeepmind",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje-17483871/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 27608
+    },
+    "inline": []
+  },
+  "build-a-topic-cluster": {
+    "hero": {
+      "src": "/images/posts/build-a-topic-cluster-hero.webp",
+      "alt": "Strategy board with connected notes representing a topic cluster",
+      "photographer": "Walls.io",
+      "photographerUrl": "https://www.pexels.com/@walls-io-440716388",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/hand-placing-sticky-note-on-whiteboard-15505431/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 32986
+    },
+    "inline": []
+  },
+  "user-intent-for-better-seo": {
+    "hero": {
+      "src": "/images/posts/user-intent-for-better-seo-hero.webp",
+      "alt": "Search strategist reviewing intent and analytics on screen",
+      "photographer": "cottonbro studio",
+      "photographerUrl": "https://www.pexels.com/@cottonbro",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/man-wearing-a-gray-suit-8369518/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 28294
+    },
+    "inline": []
+  }
+}

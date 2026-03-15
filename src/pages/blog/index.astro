@@ -4,6 +4,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
+import imageManifest from '../../data/image-manifest.json';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import { sortPostsByDate } from '../../utils/blog';
 
@@ -52,6 +53,14 @@ const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.dr
 				margin-bottom: 0.75rem;
 			}
 
+			.archive-thumb {
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				object-fit: cover;
+				border-radius: 1.25rem;
+				margin-bottom: 1rem;
+			}
+
 			.archive-card p {
 				margin-bottom: 0.75rem;
 			}
@@ -93,6 +102,16 @@ const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.dr
 						posts.map((post) => (
 							<li class="archive-card">
 								<a href={`/blog/${post.id}/`}>
+									{
+										imageManifest[post.id as keyof typeof imageManifest]?.hero && (
+											<img
+												class="archive-thumb"
+												src={imageManifest[post.id as keyof typeof imageManifest].hero.src}
+												alt={imageManifest[post.id as keyof typeof imageManifest].hero.alt}
+												loading="lazy"
+											/>
+										)
+									}
 									<p class="category">{post.data.category}</p>
 									<h2>{post.data.title}</h2>
 									<p>{post.data.deck}</p>

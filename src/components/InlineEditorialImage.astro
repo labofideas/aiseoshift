@@ -1,0 +1,21 @@
+---
+import manifest from '../data/image-manifest.json';
+import EditorialImage from './EditorialImage.astro';
+
+interface Props {
+	slug: string;
+	index?: number;
+}
+
+const { slug, index = 0 } = Astro.props;
+const entry = manifest[slug as keyof typeof manifest];
+const image = entry?.inline?.[index];
+---
+
+<EditorialImage image={image} className="inline-image" />
+
+<style>
+	.inline-image {
+		margin: 2rem 0;
+	}
+</style>

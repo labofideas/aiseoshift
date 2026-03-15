@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
+import imageManifest from '../../data/image-manifest.json';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
@@ -13,8 +14,9 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
+const heroImage = imageManifest[post.id as keyof typeof imageManifest]?.hero;
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} heroImage={heroImage}>
 	<Content />
 </BlogPost>
