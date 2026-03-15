@@ -187,6 +187,32 @@
       }
     ]
   },
+  "ai-overviews-seo-strategy": {
+    "hero": {
+      "src": "/images/posts/ai-overviews-seo-strategy-hero.webp",
+      "alt": "Google search engine results page on a screen representing AI Overviews and search visibility",
+      "photographer": "Sarah Blocksidge",
+      "photographerUrl": "https://www.pexels.com/@sarah-blocksidge-69426152",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/google-search-engine-on-screen-13628541/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 19376
+    },
+    "inline": [
+      {
+        "src": "/images/posts/ai-overviews-seo-strategy-inline-1.webp",
+        "alt": "Close-up of analytics data and survey spreadsheet representing SEO data analysis",
+        "photographer": "Lukas Blazek",
+        "photographerUrl": "https://www.pexels.com/@goumbik",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/close-up-photo-of-survey-spreadsheet-590022/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 28468
+      }
+    ]
+  },
   "ai-reshaping-digital-marketing-2026": {
     "hero": {
       "src": "/images/posts/ai-reshaping-digital-marketing-2026-hero.webp",
