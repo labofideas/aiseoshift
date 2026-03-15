@@ -4,7 +4,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import imageManifest from '../data/image-manifest.json';
-import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE, SITE_URL } from '../consts';
 import { getFeaturedPost, getLatestPosts, sortPostsByDate } from '../utils/blog';
 
 const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft));
@@ -15,17 +15,83 @@ const strategy = posts.filter((post) => post.data.category === 'Strategy').slice
 const research = posts.filter((post) => post.data.category === 'Research').slice(0, 2);
 const tooling = posts.filter((post) => post.data.category === 'Tooling').slice(0, 2);
 const playbooks = posts.filter((post) => post.data.category === 'Playbooks').slice(0, 2);
+const homepageStructuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: SITE_TITLE,
+		url: SITE_URL,
+		description: SITE_DESCRIPTION,
+		inLanguage: 'en',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		name: SITE_TITLE,
+		url: SITE_URL,
+		description: SITE_DESCRIPTION,
+	},
+];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`${SITE_TITLE} | ${SITE_TAGLINE}`} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={`AI Visibility, AEO, and Answer Engine Search Strategy | ${SITE_TITLE}`}
+			description={SITE_DESCRIPTION}
+			structuredData={homepageStructuredData}
+		/>
 		<style>
 			.front-page {
 				width: min(1200px, calc(100% - 2rem));
 				margin: 0 auto;
-				padding: 1.5rem 0 4rem;
+				padding: 1.2rem 0 4rem;
+			}
+
+			.hero-intro {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) auto;
+				gap: 1rem;
+				align-items: end;
+				padding: 0.2rem 0 1.35rem;
+				margin-bottom: 1.35rem;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.hero-intro-copy {
+				max-width: 42rem;
+			}
+
+			.hero-intro-copy p {
+				margin: 0;
+			}
+
+			.hero-intro-copy h1 {
+				font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
+				font-size: clamp(2rem, 4vw, 3.3rem);
+				line-height: 0.95;
+				letter-spacing: -0.04em;
+				margin: 0 0 0.7rem;
+				max-width: 12ch;
+			}
+
+			.hero-intro-copy strong {
+				display: block;
+				margin-bottom: 0.35rem;
+				font-size: 0.78rem;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: var(--signal-deep);
+			}
+
+			.hero-intro-link {
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				text-decoration: none;
+				color: rgb(var(--ink));
 			}
 
 			.hero-stage {
@@ -35,50 +101,23 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				margin-bottom: 2rem;
 			}
 
-			.market-bar {
-				display: grid;
-				grid-template-columns: repeat(4, minmax(0, 1fr));
-				gap: 0.85rem;
-				margin: 0 0 1rem;
-			}
-
 			.market-chip,
 			.hero-story,
 			.digest-panel,
 			.story-card,
 			.topic-panel,
 			feature-strip article {
-				border: 1px solid rgba(var(--ink), 0.1);
-				border-radius: 2rem;
-				background: var(--panel);
-				box-shadow: var(--shadow-tight);
-			}
-
-			.market-chip {
-				padding: 1rem 1.1rem;
-			}
-
-			.market-chip strong {
-				display: block;
-				font-size: 0.72rem;
-				font-weight: 700;
-				letter-spacing: 0.12em;
-				text-transform: uppercase;
-				color: rgba(var(--ink), 0.54);
-			}
-
-			.market-chip span {
-				display: block;
-				margin-top: 0.35rem;
-				font-size: 0.88rem;
-				line-height: 1.58;
+				border: 1px solid var(--line);
+				border-radius: 0;
+				background: transparent;
+				box-shadow: none;
 			}
 
 			.hero-story {
-				padding: 1.2rem;
-				background:
-					linear-gradient(150deg, rgba(255, 107, 44, 0.16), rgba(23, 28, 46, 0.03) 50%),
-					var(--panel);
+				padding: 0 0 1.25rem;
+				border-left: 0;
+				border-right: 0;
+				position: relative;
 			}
 
 			.eyebrow,
@@ -91,7 +130,7 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				color: var(--signal-deep);
 			}
 
-			.hero-story h1 {
+			.hero-story h2 {
 				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
 				font-size: clamp(2.35rem, 5vw, 3.8rem);
 				line-height: 1;
@@ -111,7 +150,7 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				width: 100%;
 				aspect-ratio: 16 / 9;
 				object-fit: cover;
-				border-radius: 1.4rem;
+				border-radius: 10px;
 				margin-bottom: 1rem;
 			}
 
@@ -123,7 +162,7 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 			}
 
 			.hero-copy {
-				padding: 1rem 1rem 1.2rem;
+				padding: 1.1rem 1rem 1.2rem 0;
 			}
 
 			.hero-thumb {
@@ -138,22 +177,35 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				font-size: 0.8rem;
 			}
 
+			.hero-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				margin-top: 1rem;
+				padding-top: 0.85rem;
+				border-top: 1px solid rgba(var(--ink), 0.08);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				font-size: 0.72rem;
+			}
+
 			.hero-link,
 			.card-link {
 				color: inherit;
 				text-decoration: none;
 			}
 
-			.hero-link:hover h1,
+			.hero-link:hover h2,
 			.card-link:hover h3 {
 				color: var(--signal-deep);
 			}
 
 			.digest-panel {
-				padding: 1.5rem;
-				background:
-					linear-gradient(180deg, rgba(23, 28, 46, 0.02), rgba(255, 255, 255, 0.75)),
-					var(--panel);
+				padding: 0.15rem 0 0 1.25rem;
+				border-top: 0;
+				border-right: 0;
+				border-bottom: 0;
+				border-left: 1px solid var(--line);
 			}
 
 			.digest-panel h2 {
@@ -197,7 +249,10 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 
 			.story-card,
 			.topic-panel {
-				padding: 1.35rem;
+				padding: 1rem 0 1.1rem;
+				border-left: 0;
+				border-right: 0;
+				background: transparent;
 			}
 
 			.story-card h3,
@@ -218,7 +273,11 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 			.topic-panel ul {
 				list-style: none;
 				padding: 0;
-				margin: 1.25rem 0 0;
+				margin: 0.75rem 0 0;
+			}
+
+			.topic-panel {
+				padding-top: 1.2rem;
 			}
 
 			.topic-panel li + li {
@@ -241,15 +300,20 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 			}
 
 			.feature-strip article {
-				padding: 1.25rem 1.35rem;
+				padding: 1rem 0 1.1rem;
+				border-left: 0;
+				border-right: 0;
 			}
 
-			.feature-strip h3 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: 1.05rem;
-				line-height: 1.35;
-				letter-spacing: -0.015em;
-				margin-bottom: 0.7rem;
+			.feature-strip article:first-child {
+				background:
+					linear-gradient(180deg, rgba(217, 106, 58, 0.08), rgba(217, 106, 58, 0));
+				padding-top: 1.2rem;
+			}
+
+			.feature-strip article:last-child {
+				padding-left: 1rem;
+				border-left: 1px solid var(--line);
 			}
 
 			.feature-strip p {
@@ -279,7 +343,6 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 			}
 
 			@media (max-width: 960px) {
-				.market-bar,
 				.hero-stage,
 				.hero-shell,
 				.feature-strip,
@@ -291,29 +354,40 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				.hero-thumb {
 					min-height: 18rem;
 				}
+
+				.digest-panel {
+					padding-left: 0;
+					border-left: 0;
+					border-top: 1px solid var(--line);
+					padding-top: 1rem;
+				}
+
+				.feature-strip article:last-child {
+					padding-left: 0;
+					border-left: 0;
+				}
+			}
+
+			@media (max-width: 720px) {
+				.hero-intro {
+					grid-template-columns: 1fr;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main class="front-page">
-			<section class="market-bar" aria-label="Coverage areas">
-				<div class="market-chip">
-					<strong>Coverage</strong>
-					<span>AI visibility, AEO, GEO, citations, tooling, and scalable content systems.</span>
+			<section class="hero-intro" aria-label="Site introduction">
+				<div class="hero-intro-copy">
+					<strong>Signals for the AI search transition</strong>
+					<h1>AI visibility, AEO, and answer engine search strategy.</h1>
+					<p>
+						AISEOShift covers citations, answer engines, retrieval patterns, and the editorial systems SEO
+						teams need now that classic blue-link ranking is no longer the whole game.
+					</p>
 				</div>
-				<div class="market-chip">
-					<strong>Format</strong>
-					<span>News-style explainers and field guides built for SEO teams adapting to AI search.</span>
-				</div>
-				<div class="market-chip">
-					<strong>Speed</strong>
-					<span>Static Astro build, fast image pipeline, GitHub publishing workflow.</span>
-				</div>
-				<div class="market-chip">
-					<strong>Mission</strong>
-					<span>Turn shifting search mechanics into practical editorial signal.</span>
-				</div>
+				<a class="hero-intro-link" href="/blog">View all coverage</a>
 			</section>
 
 			<section class="hero-stage">
@@ -324,10 +398,13 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 								<div class="hero-copy">
 									<p class="eyebrow">Lead Story</p>
 									<a class="hero-link" href={`/blog/${featured.id}/`}>
-										<h1>{featured.data.title}</h1>
+										<h2>{featured.data.title}</h2>
 										<p>{featured.data.deck}</p>
 									</a>
-									<p class="hero-meta">{featured.data.category} · {featured.data.author}</p>
+									<p class="hero-meta">
+										<span>{featured.data.category}</span>
+										<span>{featured.data.author}</span>
+									</p>
 								</div>
 								{
 									imageManifest[featured.id as keyof typeof imageManifest]?.hero && (
@@ -365,7 +442,6 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 			<section class="feature-strip">
 				<article>
 					<p class="section-label">What Matters</p>
-					<h3>Winning the answer is becoming as important as ranking the page.</h3>
 					<p>
 						The strongest brands are designing content for retrieval, synthesis, and attribution instead of
 						stopping at keyword position.
@@ -373,9 +449,9 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				</article>
 				<article>
 					<p class="section-label">Editorial Angle</p>
-					<h3>This site is built to feel like a newsroom for AI-era organic growth.</h3>
 					<p>
-						Every post sits inside a broader beat: strategy, research, tooling, or playbooks.
+						Every story lives inside a desk, so readers can move from the lead story into strategy, research,
+						tooling, or repeatable playbooks without hitting visual filler first.
 					</p>
 				</article>
 			</section>
@@ -415,7 +491,6 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 			<section class="topics-grid" aria-label="Editorial desks">
 				<section class="topic-panel">
 					<p class="section-label">Strategy Desk</p>
-					<h3>Frameworks for ranking in answer-first search</h3>
 					<ul>
 						{strategy.map((post) => (
 							<li>
@@ -427,7 +502,6 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				</section>
 				<section class="topic-panel">
 					<p class="section-label">Research Desk</p>
-					<h3>Citations, sources, and the systems shaping trust</h3>
 					<ul>
 						{research.map((post) => (
 							<li>
@@ -439,7 +513,6 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				</section>
 				<section class="topic-panel">
 					<p class="section-label">Tooling Desk</p>
-					<h3>Software and workflows worth paying attention to</h3>
 					<ul>
 						{tooling.map((post) => (
 							<li>
@@ -454,7 +527,6 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 			<section class="topics-grid" aria-label="Playbook and archive highlights">
 				<section class="topic-panel">
 					<p class="section-label">Playbooks</p>
-					<h3>Repeatable systems for sustainable growth</h3>
 					<ul>
 						{playbooks.map((post) => (
 							<li>
@@ -466,7 +538,6 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				</section>
 				<section class="topic-panel">
 					<p class="section-label">Publishing Stack</p>
-					<h3>Fast by design and simple to maintain</h3>
 					<ul>
 						<li>
 							<a href="/blog">Static delivery with Astro</a>
@@ -480,7 +551,6 @@ const playbooks = posts.filter((post) => post.data.category === 'Playbooks').sli
 				</section>
 				<section class="topic-panel">
 					<p class="section-label">Next Issues</p>
-					<h3>The next publishing pass can go deeper</h3>
 					<ul>
 						<li>
 							<a href="/blog">More field reports</a>

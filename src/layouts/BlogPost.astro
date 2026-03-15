@@ -46,13 +46,13 @@ const structuredData = {
 			.article-shell {
 				width: min(1240px, calc(100% - 2rem));
 				margin: 0 auto;
-				padding: 2rem 0 5rem;
+				padding: 1.6rem 0 5rem;
 			}
 
 			.story-grid {
 				display: grid;
 				grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
-				gap: 2.5rem;
+				gap: 2rem;
 				align-items: start;
 			}
 
@@ -60,6 +60,8 @@ const structuredData = {
 				position: sticky;
 				top: 6rem;
 				padding: 1rem 0 0;
+				border-right: 1px solid var(--line);
+				padding-right: 1.2rem;
 			}
 
 			.story-meta p,
@@ -118,8 +120,9 @@ const structuredData = {
 			.kicker {
 				display: inline-flex;
 				padding: 0.4rem 0.8rem;
-				border-radius: 999px;
-				background: rgba(255, 107, 44, 0.12);
+				border-radius: 0;
+				background: transparent;
+				border-bottom: 1px solid rgba(217, 106, 58, 0.25);
 				color: var(--signal-deep);
 				font-size: 0.68rem;
 				font-weight: 700;
@@ -152,7 +155,7 @@ const structuredData = {
 				color: rgba(var(--ink), 0.64);
 				font-size: 0.82rem;
 				padding-bottom: 1rem;
-				border-bottom: 1px solid rgba(var(--ink), 0.1);
+				border-bottom: 1px solid var(--line);
 			}
 
 			.prose {
@@ -237,7 +240,9 @@ const structuredData = {
 					position: static;
 					order: 2;
 					padding-top: 1rem;
-					border-top: 1px solid rgba(var(--ink), 0.08);
+					border-top: 1px solid var(--line);
+					border-right: 0;
+					padding-right: 0;
 					display: grid;
 					grid-template-columns: repeat(2, minmax(0, 1fr));
 					column-gap: 1.25rem;

@@ -5,17 +5,17 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 <header class="site-header">
 	<div class="header-wrap">
 		<a class="brand" href="/">
-			<span class="brand-copy">
-				<span class="brand-kicker">AI Search Publication</span>
-				<span class="brand-title">{SITE_TITLE}</span>
-				<span class="brand-tagline">Tracking citations, answer engines, and authority systems.</span>
-			</span>
+			<span class="brand-kicker">AI Search Publication</span>
+			<span class="brand-title">{SITE_TITLE}</span>
 		</a>
-		<nav aria-label="Primary">
-			<a href="/">Front Page</a>
-			<a href="/blog">Latest</a>
-			<a href="/about">About</a>
-		</nav>
+		<div class="header-meta">
+			<p class="header-note">{SITE_TAGLINE}</p>
+			<nav aria-label="Primary">
+				<a href="/">Front Page</a>
+				<a href="/blog">Latest</a>
+				<a href="/about">About</a>
+			</nav>
+		</div>
 	</div>
 </header>
 
@@ -24,9 +24,9 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 		position: sticky;
 		top: 0;
 		z-index: 20;
-		backdrop-filter: blur(14px);
-		background: rgba(248, 244, 236, 0.94);
-		border-bottom: 1px solid rgba(26, 32, 44, 0.08);
+		backdrop-filter: blur(10px);
+		background: rgba(250, 249, 246, 0.92);
+		border-bottom: 1px solid var(--line);
 	}
 
 	.header-wrap {
@@ -35,24 +35,27 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1.5rem;
-		padding: 1rem 0;
+		gap: 1rem 1.5rem;
+		padding: 0.7rem 0;
 	}
 
 	.brand {
+		display: inline-flex;
+		flex-direction: column;
+		gap: 0.08rem;
 		text-decoration: none;
 		color: rgb(var(--ink));
 	}
 
-	.brand-copy {
+	.header-meta {
 		display: flex;
 		flex-direction: column;
-		gap: 0.1rem;
-		max-width: 32rem;
+		align-items: flex-end;
+		gap: 0.45rem;
 	}
 
 	.brand-kicker {
-		font-size: 0.62rem;
+		font-size: 0.58rem;
 		font-weight: 700;
 		letter-spacing: 0.18em;
 		text-transform: uppercase;
@@ -61,16 +64,20 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 
 	.brand-title {
 		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
-		font-size: clamp(1.45rem, 1.6vw, 1.9rem);
+		font-size: clamp(1.3rem, 1.5vw, 1.7rem);
 		font-weight: 700;
 		line-height: 0.98;
 		letter-spacing: 0.01em;
 	}
 
-	.brand-tagline {
-		font-size: 0.72rem;
-		color: rgba(var(--ink), 0.7);
-		max-width: 28rem;
+	.header-note {
+		margin: 0;
+		max-width: 30rem;
+		font-size: 0.68rem;
+		line-height: 1.4;
+		letter-spacing: 0.02em;
+		text-align: right;
+		color: rgba(var(--ink), 0.62);
 	}
 
 	nav a {
@@ -78,11 +85,11 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 		margin-left: 1.25rem;
 		color: rgba(var(--ink), 0.82);
 		text-decoration: none;
-		font-size: 0.74rem;
+		font-size: 0.7rem;
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.14em;
-		border-bottom: 2px solid transparent;
+		border-bottom: 1px solid transparent;
 	}
 
 	nav a:hover,
@@ -97,6 +104,17 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 			align-items: flex-start;
 		}
 
+		.header-meta {
+			align-items: flex-start;
+			width: 100%;
+			padding-top: 0.45rem;
+			border-top: 1px solid rgba(var(--ink), 0.08);
+		}
+
+		.header-note {
+			text-align: left;
+		}
+
 		nav a {
 			margin-left: 0;
 			margin-right: 1rem;
@@ -104,8 +122,8 @@ import { SITE_TAGLINE, SITE_TITLE } from '../consts';
 	}
 
 	@media (max-width: 640px) {
-		.brand-tagline {
-			max-width: none;
+		.header-note {
+			display: none;
 		}
 	}
 </style>

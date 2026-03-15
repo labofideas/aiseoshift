@@ -1,13 +1,12 @@
 :root {
-	--paper: 248, 244, 236;
-	--paper-strong: 242, 236, 225;
+	--paper: 250, 249, 246;
+	--paper-strong: 244, 243, 239;
 	--ink: 23, 28, 46;
 	--ink-muted: 86, 91, 109;
-	--signal: #ff6b2c;
-	--signal-deep: #b54213;
-	--panel: rgba(255, 255, 255, 0.72);
-	--shadow-soft: 0 18px 40px rgba(23, 28, 46, 0.08);
-	--shadow-tight: 0 8px 22px rgba(23, 28, 46, 0.08);
+	--signal: #d96a3a;
+	--signal-deep: #995035;
+	--panel: rgba(255, 255, 255, 0.58);
+	--line: rgba(23, 28, 46, 0.1);
 }
 
 @font-face {
@@ -40,11 +39,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-	background:
-		radial-gradient(circle at top left, rgba(255, 107, 44, 0.16), transparent 24%),
-		radial-gradient(circle at top right, rgba(23, 28, 46, 0.08), transparent 28%),
-		linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(23, 28, 46, 0.03)),
-		rgb(var(--paper));
+	background: rgb(var(--paper));
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--ink));
@@ -107,7 +102,7 @@ a:focus-visible {
 a,
 img,
 button {
-	transition: 160ms ease;
+	transition: 140ms ease;
 }
 
 p {
@@ -138,7 +133,7 @@ table {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 14px;
+	border-radius: 10px;
 }
 
 code {
@@ -151,7 +146,7 @@ code {
 
 pre {
 	padding: 1.5em;
-	border-radius: 16px;
+	border-radius: 10px;
 	overflow-x: auto;
 	background: rgb(var(--ink));
 	color: rgb(var(--paper));
@@ -162,7 +157,7 @@ pre > code {
 }
 
 blockquote {
-	border-left: 4px solid var(--signal);
+	border-left: 3px solid var(--signal);
 	padding: 0 0 0 20px;
 	margin: 1.5rem 0;
 	font-size: 1.12em;
