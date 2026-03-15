@@ -4,17 +4,41 @@ import { SITE_TITLE } from '../consts';
 
 <header class="site-header">
 	<div class="header-wrap">
-		<a class="brand" href="/">
-			<span class="brand-kicker">AI Search & Visibility</span>
-			<span class="brand-title">{SITE_TITLE}</span>
+		<a class="brand" href="/" aria-label="AISEOShift home">
+			<svg class="brand-logo" viewBox="0 0 220 50" width="180" height="42" aria-hidden="true">
+				<text x="0" y="13" class="logo-kicker">AI SEARCH & VISIBILITY</text>
+				<text x="0" y="43" class="logo-title">AISEOShift</text>
+			</svg>
 		</a>
-		<nav aria-label="Primary">
-			<a href="/">Home</a>
-			<a href="/blog">Latest</a>
-			<a href="/about">About</a>
-		</nav>
+		<div class="header-right">
+			<nav aria-label="Primary">
+				<a href="/">Home</a>
+				<a href="/blog">Latest</a>
+				<a href="/about">About</a>
+			</nav>
+			<button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+				<svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+					<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+				</svg>
+				<svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+					<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+				</svg>
+			</button>
+		</div>
 	</div>
 </header>
+
+<script>
+	const toggle = document.querySelector('.theme-toggle');
+	if (toggle) {
+		toggle.addEventListener('click', () => {
+			const current = document.documentElement.getAttribute('data-theme');
+			const next = current === 'dark' ? 'light' : 'dark';
+			document.documentElement.setAttribute('data-theme', next);
+			localStorage.setItem('theme', next);
+		});
+	}
+</script>
 
 <style>
 	.site-header {
@@ -22,7 +46,7 @@ import { SITE_TITLE } from '../consts';
 		top: 0;
 		z-index: 20;
 		backdrop-filter: blur(10px);
-		background: rgba(250, 249, 246, 0.92);
+		background: rgba(var(--paper), 0.92);
 		border-bottom: 1px solid var(--line);
 	}
 
@@ -33,31 +57,39 @@ import { SITE_TITLE } from '../consts';
 		align-items: center;
 		justify-content: space-between;
 		gap: 1.25rem 1.5rem;
-		padding: 0.85rem 0;
+		padding: 0.75rem 0;
 	}
 
 	.brand {
 		display: inline-flex;
-		flex-direction: column;
-		gap: 0.12rem;
 		text-decoration: none;
 		color: rgb(var(--ink));
 	}
 
-	.brand-kicker {
-		font-size: 0.62rem;
-		font-weight: 700;
-		letter-spacing: 0.17em;
-		text-transform: uppercase;
-		color: var(--signal-deep);
+	.brand-logo {
+		display: block;
 	}
 
-	.brand-title {
-		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
-		font-size: clamp(1.45rem, 1.6vw, 1.85rem);
+	.logo-kicker {
+		font-size: 7.5px;
 		font-weight: 700;
-		line-height: 0.96;
+		letter-spacing: 0.18em;
+		fill: var(--signal-deep);
+		font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+	}
+
+	.logo-title {
+		font-size: 28px;
+		font-weight: 700;
+		fill: rgb(var(--ink));
+		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
 		letter-spacing: 0.01em;
+	}
+
+	.header-right {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
 	}
 
 	nav a {
@@ -78,10 +110,53 @@ import { SITE_TITLE } from '../consts';
 		color: rgb(var(--ink));
 	}
 
+	.theme-toggle {
+		background: none;
+		border: 1px solid var(--line);
+		border-radius: 50%;
+		padding: 0.45rem;
+		cursor: pointer;
+		color: rgb(var(--ink));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 140ms ease;
+	}
+
+	.theme-toggle:hover {
+		background: rgba(var(--ink), 0.06);
+	}
+
+	/* Light mode: show moon (click to go dark), hide sun */
+	.icon-sun { display: none; }
+	.icon-moon { display: block; }
+
+	/* Dark mode: show sun (click to go light), hide moon */
+	:global([data-theme="dark"]) .icon-sun { display: block; }
+	:global([data-theme="dark"]) .icon-moon { display: none; }
+
 	@media (max-width: 860px) {
 		.header-wrap {
-			flex-direction: column;
-			align-items: flex-start;
+			display: grid;
+			grid-template-columns: 1fr auto;
+			grid-template-rows: auto auto;
+			gap: 0.5rem;
+		}
+
+		.brand {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.header-right {
+			grid-column: 2;
+			grid-row: 1;
+			align-self: center;
+		}
+
+		nav {
+			grid-column: 1 / -1;
+			grid-row: 2;
 		}
 
 		nav a {

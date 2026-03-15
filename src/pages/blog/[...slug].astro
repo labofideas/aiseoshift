@@ -7,16 +7,37 @@ export async function getStaticPaths() {
 	const posts = await getCollection('blog', ({ data }) => !data.draft);
 	return posts.map((post) => ({
 		params: { slug: post.id },
-		props: post,
+		props: { post, allPosts: posts },
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
-const { Content } = await render(post);
+const { post, allPosts } = Astro.props;
+const { Content, headings } = await render(post);
 const heroImage = imageManifest[post.id as keyof typeof imageManifest]?.hero;
+
+// Compute related posts: +3 for same category, +1 per shared tag
+const relatedPosts = allPosts
+	.filter((p: CollectionEntry<'blog'>) => p.id !== post.id)
+	.map((p: CollectionEntry<'blog'>) => {
+		let score = 0;
+		if (p.data.category === post.data.category) score += 3;
+		const sharedTags = p.data.tags.filter((t: string) => post.data.tags.includes(t));
+		score += sharedTags.length;
+		return { post: p, score };
+	})
+	.sort((a: { score: number; post: CollectionEntry<'blog'> }, b: { score: number; post: CollectionEntry<'blog'> }) =>
+		b.score - a.score || b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf()
+	)
+	.slice(0, 3)
+	.map((s: { post: CollectionEntry<'blog'> }) => s.post);
 ---
 
-<BlogPost {...post.data} heroImage={heroImage}>
+<BlogPost
+	{...post.data}
+	heroImage={heroImage}
+	headings={headings}
+	relatedPosts={relatedPosts}
+	imageManifest={imageManifest}
+>
 	<Content />
 </BlogPost>

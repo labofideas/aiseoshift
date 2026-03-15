@@ -9,6 +9,17 @@
 	--line: rgba(23, 28, 46, 0.1);
 }
 
+[data-theme="dark"] {
+	--paper: 18, 22, 36;
+	--paper-strong: 26, 30, 46;
+	--ink: 228, 226, 220;
+	--ink-muted: 155, 160, 174;
+	--signal: #e8834f;
+	--signal-deep: #d98a68;
+	--panel: rgba(28, 32, 50, 0.58);
+	--line: rgba(228, 226, 220, 0.1);
+}
+
 @font-face {
 	font-family: 'Atkinson';
 	src: url('/fonts/atkinson-regular.woff') format('woff');
@@ -49,6 +60,28 @@ body {
 	color: rgb(var(--ink));
 	font-size: 16px;
 	line-height: 1.7;
+	transition: background-color 200ms ease, color 200ms ease;
+}
+
+[data-theme="dark"] body {
+	background:
+		radial-gradient(circle at top left, rgba(232, 131, 79, 0.06), transparent 24%),
+		radial-gradient(circle at top right, rgba(228, 226, 220, 0.03), transparent 28%),
+		rgb(var(--paper));
+}
+
+[data-theme="dark"] pre {
+	background: rgba(var(--ink), 0.08);
+	color: rgb(var(--ink));
+	border: 1px solid var(--line);
+}
+
+[data-theme="dark"] code {
+	background-color: rgba(var(--ink), 0.1);
+}
+
+[data-theme="dark"] img {
+	opacity: 0.92;
 }
 
 main {
