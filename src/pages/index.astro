@@ -111,6 +111,41 @@ const homepageStructuredData = [
 				color: rgba(var(--ink), 0.84);
 			}
 
+			.hero-intro-copy .hero-intro-link {
+				margin-top: 1.2rem;
+			}
+
+			.hero-intro-visual {
+				display: block;
+				text-decoration: none;
+				border-radius: 18px;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.hero-intro-img {
+				width: 100%;
+				height: 100%;
+				min-height: 220px;
+				object-fit: cover;
+				display: block;
+				border-radius: 18px;
+				transition: transform 0.3s ease;
+			}
+
+			.hero-intro-visual:hover .hero-intro-img {
+				transform: scale(1.02);
+			}
+
+			.hero-intro-img-caption {
+				display: block;
+				margin-top: 0.5rem;
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: rgba(var(--ink), 0.7);
+				line-height: 1.4;
+			}
+
 			.hero-intro-link {
 				display: inline-flex;
 				align-items: center;
@@ -497,14 +532,23 @@ const homepageStructuredData = [
 		<main class="front-page">
 			<section class="hero-intro" aria-label="Site introduction">
 				<div class="hero-intro-copy">
-					<strong>Signals for the AI search transition</strong>
 					<h1>AI visibility, AEO, and answer engine search strategy.</h1>
 					<p>
 						AISEOShift covers citations, answer engines, retrieval patterns, and the editorial systems SEO
 						teams need now that classic blue-link ranking is no longer the whole game.
 					</p>
+					<a class="hero-intro-link" href="/blog">Browse all articles</a>
 				</div>
-				<a class="hero-intro-link" href="/blog">View all coverage</a>
+				{featured && imageManifest[featured.id as keyof typeof imageManifest]?.hero && (
+					<a class="hero-intro-visual" href={`/blog/${featured.id}/`}>
+						<img
+							src={imageManifest[featured.id as keyof typeof imageManifest].hero.src}
+							alt={imageManifest[featured.id as keyof typeof imageManifest].hero.alt}
+							class="hero-intro-img"
+						/>
+						<span class="hero-intro-img-caption">Featured: {featured.data.title}</span>
+					</a>
+				)}
 			</section>
 
 			<section class="hero-stage">
@@ -556,22 +600,6 @@ const homepageStructuredData = [
 				</aside>
 			</section>
 
-			<section class="feature-strip">
-				<article>
-					<p class="section-label">What Matters</p>
-					<p>
-						The strongest brands are designing content for retrieval, synthesis, and attribution instead of
-						stopping at keyword position.
-					</p>
-				</article>
-				<article>
-					<p class="section-label">Editorial Angle</p>
-					<p>
-						Every story lives inside a desk, so readers can move from the lead story into strategy, research,
-						tooling, or repeatable playbooks without hitting visual filler first.
-					</p>
-				</article>
-			</section>
 
 			<section>
 				<div class="page-intro">
