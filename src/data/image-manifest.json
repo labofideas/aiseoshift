@@ -414,5 +414,109 @@
         "bytes": 66642
       }
     ]
+  },
+  "is-chatgpt-replacing-google": {
+    "hero": {
+      "src": "/images/posts/is-chatgpt-replacing-google-hero.webp",
+      "alt": "Google search engine displayed on a laptop screen representing the search landscape",
+      "photographer": "Pixabay",
+      "photographerUrl": "https://www.pexels.com/@pixabay",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/google-search-engine-on-macbook-pro-40185/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 64892
+    },
+    "inline": [
+      {
+        "src": "/images/posts/is-chatgpt-replacing-google-inline-1.webp",
+        "alt": "Person using a smartphone to search for information on the go",
+        "photographer": "Xuancong Meng",
+        "photographerUrl": "https://unsplash.com/@edgehua",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/a-woman-standing-on-a-street-corner-holding-a-cell-phone-F_U9BmBVs_w",
+        "width": 1200,
+        "height": 675,
+        "bytes": 123376
+      }
+    ]
+  },
+  "will-ai-replace-seo-jobs": {
+    "hero": {
+      "src": "/images/posts/will-ai-replace-seo-jobs-hero.webp",
+      "alt": "Person working alongside AI technology in a modern workspace",
+      "photographer": "Kyle Ryan",
+      "photographerUrl": "https://unsplash.com/@kylry",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/a-man-standing-in-front-of-a-coffee-maker-_FXH5DUsMuo",
+      "width": 1200,
+      "height": 675,
+      "bytes": 50684
+    },
+    "inline": [
+      {
+        "src": "/images/posts/will-ai-replace-seo-jobs-inline-1.webp",
+        "alt": "Marketing team collaborating in a strategy meeting at the office",
+        "photographer": "Alena Darmel",
+        "photographerUrl": "https://www.pexels.com/@a-darmel",
+        "sourceName": "Pexels",
+        "sourceUrl": "https://www.pexels.com/photo/a-group-of-people-having-a-meeting-in-the-office-7710139/",
+        "width": 1200,
+        "height": 675,
+        "bytes": 65806
+      }
+    ]
+  },
+  "can-you-trust-ai-search-answers": {
+    "hero": {
+      "src": "/images/posts/can-you-trust-ai-search-answers-hero.webp",
+      "alt": "Wooden letter tiles on a table representing AI fact-checking and verification",
+      "photographer": "Markus Winkler",
+      "photographerUrl": "https://www.pexels.com/@markuswinkler",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/wooden-scrabble-tiles-spelling-deepseek-on-table-30839684/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 42678
+    },
+    "inline": [
+      {
+        "src": "/images/posts/can-you-trust-ai-search-answers-inline-1.webp",
+        "alt": "Person reading content on a laptop screen with a skeptical expression",
+        "photographer": "Siarhei Palishchuk",
+        "photographerUrl": "https://unsplash.com/@psiarhei",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/orange-and-white-cat-on-macbook-pro-qHHQXLUrKC0",
+        "width": 1200,
+        "height": 675,
+        "bytes": 70970
+      }
+    ]
+  },
+  "what-is-seo-does-it-still-work-2026": {
+    "hero": {
+      "src": "/images/posts/what-is-seo-does-it-still-work-2026-hero.webp",
+      "alt": "SEO letter blocks on a wooden surface representing search engine optimization basics",
+      "photographer": "Pixabay",
+      "photographerUrl": "https://www.pexels.com/@pixabay",
+      "sourceName": "Pexels",
+      "sourceUrl": "https://www.pexels.com/photo/seo-audit-white-blocks-on-brown-wooden-surface-267415/",
+      "width": 1200,
+      "height": 675,
+      "bytes": 55888
+    },
+    "inline": [
+      {
+        "src": "/images/posts/what-is-seo-does-it-still-work-2026-inline-1.webp",
+        "alt": "Website analytics dashboard showing performance metrics and growth data",
+        "photographer": "Luke Chesser",
+        "photographerUrl": "https://unsplash.com/@lukechesser",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/graphs-of-performance-analytics-on-a-laptop-screen-JKUTrJ4vK00",
+        "width": 1200,
+        "height": 675,
+        "bytes": 49452
+      }
+    ]
   }
 }
