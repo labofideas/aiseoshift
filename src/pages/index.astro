@@ -15,6 +15,26 @@ const strategy = posts.filter((post) => post.data.category === 'Strategy').slice
 const research = posts.filter((post) => post.data.category === 'Research').slice(0, 2);
 const tooling = posts.filter((post) => post.data.category === 'Tooling').slice(0, 2);
 const playbooks = posts.filter((post) => post.data.category === 'Playbooks').slice(0, 2);
+const labNotes = [
+	{
+		label: 'Publishing Stack',
+		title: 'Static delivery with Astro',
+		description: 'Fast pages, clean markup, and a publishing workflow that stays easy to maintain.',
+		href: '/blog',
+	},
+	{
+		label: 'Workflow',
+		title: 'GitHub-driven updates',
+		description: 'Layout, content, and media changes all ship through versioned pushes and Cloudflare deploys.',
+		href: '/about',
+	},
+	{
+		label: 'Next Issue',
+		title: 'Field reports and benchmark pages',
+		description: 'The strongest next additions are prompt studies, comparison hubs, and narrow citation playbooks.',
+		href: '/blog',
+	},
+];
 const homepageStructuredData = [
 	{
 		'@context': 'https://schema.org',
@@ -251,6 +271,19 @@ const homepageStructuredData = [
 				margin-bottom: 2rem;
 			}
 
+			.desks-layout {
+				display: grid;
+				grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.85fr);
+				gap: 1rem;
+				margin-bottom: 2rem;
+			}
+
+			.desks-stack {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1rem;
+			}
+
 			.story-card,
 			.topic-panel {
 				padding: 1.35rem 1.3rem 1.4rem;
@@ -292,6 +325,80 @@ const homepageStructuredData = [
 			.topic-panel a {
 				text-decoration: none;
 				color: rgb(var(--ink));
+				font-weight: 700;
+			}
+
+			.topic-panel.lead-desk {
+				background:
+					linear-gradient(180deg, rgba(217, 106, 58, 0.1), rgba(255, 255, 255, 0.84));
+			}
+
+			.lab-panel {
+				display: grid;
+				grid-template-rows: auto auto 1fr;
+				gap: 1.2rem;
+				padding: 1.45rem;
+				border: 1px solid rgba(var(--ink), 0.1);
+				border-radius: 32px;
+				background:
+					linear-gradient(155deg, rgba(23, 28, 46, 0.94), rgba(58, 45, 41, 0.92));
+				color: rgb(var(--paper));
+				box-shadow: 0 22px 44px rgba(23, 28, 46, 0.18);
+			}
+
+			.lab-panel .section-label,
+			.lab-panel a,
+			.lab-panel h2,
+			.lab-panel strong {
+				color: inherit;
+			}
+
+			.lab-panel h2 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: clamp(1.6rem, 2.6vw, 2.25rem);
+				line-height: 1.05;
+				letter-spacing: -0.03em;
+				margin: 0;
+				max-width: 11ch;
+			}
+
+			.lab-panel p {
+				margin: 0;
+				color: rgba(250, 249, 246, 0.78);
+				font-size: 0.92rem;
+				line-height: 1.65;
+			}
+
+			.lab-notes {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				gap: 1rem;
+			}
+
+			.lab-notes li {
+				padding-top: 1rem;
+				border-top: 1px solid rgba(250, 249, 246, 0.14);
+			}
+
+			.lab-notes li:first-child {
+				padding-top: 0;
+				border-top: 0;
+			}
+
+			.lab-notes span {
+				display: block;
+				margin-bottom: 0.35rem;
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: rgba(250, 249, 246, 0.58);
+			}
+
+			.lab-notes a {
+				text-decoration: none;
 				font-weight: 700;
 			}
 
@@ -346,6 +453,8 @@ const homepageStructuredData = [
 				.hero-stage,
 				.hero-shell,
 				.feature-strip,
+				.desks-layout,
+				.desks-stack,
 				.stories-grid,
 				.topics-grid {
 					grid-template-columns: 1fr;
@@ -361,6 +470,10 @@ const homepageStructuredData = [
 
 				.feature-strip article:last-child {
 					padding-left: 1.3rem;
+				}
+
+				.lab-panel h2 {
+					max-width: none;
 				}
 			}
 
@@ -484,8 +597,9 @@ const homepageStructuredData = [
 				</div>
 			</section>
 
-			<section class="topics-grid" aria-label="Editorial desks">
-				<section class="topic-panel">
+			<section class="desks-layout" aria-label="Editorial desks">
+				<div class="desks-stack">
+					<section class="topic-panel lead-desk">
 					<p class="section-label">Strategy Desk</p>
 					<ul>
 						{strategy.map((post) => (
@@ -495,8 +609,8 @@ const homepageStructuredData = [
 							</li>
 						))}
 					</ul>
-				</section>
-				<section class="topic-panel">
+					</section>
+					<section class="topic-panel">
 					<p class="section-label">Research Desk</p>
 					<ul>
 						{research.map((post) => (
@@ -506,8 +620,8 @@ const homepageStructuredData = [
 							</li>
 						))}
 					</ul>
-				</section>
-				<section class="topic-panel">
+					</section>
+					<section class="topic-panel">
 					<p class="section-label">Tooling Desk</p>
 					<ul>
 						{tooling.map((post) => (
@@ -517,47 +631,38 @@ const homepageStructuredData = [
 							</li>
 						))}
 					</ul>
-				</section>
-			</section>
-
-			<section class="topics-grid" aria-label="Playbook and archive highlights">
-				<section class="topic-panel">
-					<p class="section-label">Playbooks</p>
-					<ul>
-						{playbooks.map((post) => (
+					</section>
+					<section class="topic-panel">
+						<p class="section-label">Playbooks</p>
+						<ul>
+							{playbooks.map((post) => (
+								<li>
+									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+									<p>{post.data.description}</p>
+								</li>
+							))}
+						</ul>
+					</section>
+				</div>
+				<aside class="lab-panel">
+					<div>
+						<p class="section-label">Editor&apos;s Note</p>
+						<h2>The publication should feel like a working desk, not a generic blog grid.</h2>
+					</div>
+					<p>
+						AISEOShift is strongest when it behaves like a narrow operating manual for the answer-engine era:
+						clear definitions, citation logic, retrieval strategy, and practical playbooks that teams can use.
+					</p>
+					<ul class="lab-notes">
+						{labNotes.map((item) => (
 							<li>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								<p>{post.data.description}</p>
+								<span>{item.label}</span>
+								<a href={item.href}>{item.title}</a>
+								<p>{item.description}</p>
 							</li>
 						))}
 					</ul>
-				</section>
-				<section class="topic-panel">
-					<p class="section-label">Publishing Stack</p>
-					<ul>
-						<li>
-							<a href="/blog">Static delivery with Astro</a>
-							<p>No WordPress overhead, no database dependency, and clean SEO markup.</p>
-						</li>
-						<li>
-							<a href="/about">GitHub-driven updates</a>
-							<p>Content, media, and layout changes all stay versioned and easy to publish.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="topic-panel">
-					<p class="section-label">Next Issues</p>
-					<ul>
-						<li>
-							<a href="/blog">More field reports</a>
-							<p>We can keep expanding this with new beats, comparison hubs, and research roundups.</p>
-						</li>
-						<li>
-							<a href="/blog">Richer article layouts</a>
-							<p>Pull quotes, comparison tables, and citation blocks can be added without changing the stack.</p>
-						</li>
-					</ul>
-				</section>
+				</aside>
 			</section>
 		</main>
 		<Footer />
