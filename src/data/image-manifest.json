@@ -622,5 +622,135 @@
         "bytes": 48660
       }
     ]
+  },
+  "zero-click-search-strategy-2026": {
+    "hero": {
+      "src": "/images/posts/zero-click-search-strategy-2026-hero.webp",
+      "alt": "Search interface showing AI-generated answers without requiring clicks",
+      "photographer": "Edho Pratama",
+      "photographerUrl": "https://unsplash.com/@edhoryhkm",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/person-using-laptop-T6fDN60bMWY",
+      "width": 1200,
+      "height": 675,
+      "bytes": 32000
+    },
+    "inline": [
+      {
+        "src": "/images/posts/zero-click-search-strategy-2026-inline-1.webp",
+        "alt": "Analytics dashboard showing search visibility and brand impression metrics",
+        "photographer": "Stephen Dawson",
+        "photographerUrl": "https://unsplash.com/@dawson2406",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/turned-on-monitoring-screen-qwtCeJ5cLYs",
+        "width": 1200,
+        "height": 675,
+        "bytes": 28000
+      }
+    ]
+  },
+  "what-is-agentic-commerce-optimization": {
+    "hero": {
+      "src": "/images/posts/what-is-agentic-commerce-optimization-hero.webp",
+      "alt": "AI-powered shopping experience with automated product discovery",
+      "photographer": "Roberto Cortese",
+      "photographerUrl": "https://unsplash.com/@robertocortese",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/shopping-cart-beside-a-laptop-pGMuGSs3Cdo",
+      "width": 1200,
+      "height": 675,
+      "bytes": 34000
+    },
+    "inline": [
+      {
+        "src": "/images/posts/what-is-agentic-commerce-optimization-inline-1.webp",
+        "alt": "Digital commerce interface showing AI agent product recommendations",
+        "photographer": "CardMapr.nl",
+        "photographerUrl": "https://unsplash.com/@cardmapr",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/person-using-macbook-pro-on-brown-wooden-desk-s8F8yglbpjo",
+        "width": 1200,
+        "height": 675,
+        "bytes": 30000
+      }
+    ]
+  },
+  "google-ai-mode-what-seos-need-to-know": {
+    "hero": {
+      "src": "/images/posts/google-ai-mode-what-seos-need-to-know-hero.webp",
+      "alt": "Google search interface transitioning to AI-powered conversational mode",
+      "photographer": "Firmbee.com",
+      "photographerUrl": "https://unsplash.com/@firmbee",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/person-using-google-on-laptop-jrh5lAq-mIs",
+      "width": 1200,
+      "height": 675,
+      "bytes": 31000
+    },
+    "inline": [
+      {
+        "src": "/images/posts/google-ai-mode-what-seos-need-to-know-inline-1.webp",
+        "alt": "Data visualization showing search behavior changes with AI Mode adoption",
+        "photographer": "Luke Chesser",
+        "photographerUrl": "https://unsplash.com/@lukechesser",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/graphs-of-performance-analytics-on-a-laptop-screen-JKUTrJ4vK00",
+        "width": 1200,
+        "height": 675,
+        "bytes": 29000
+      }
+    ]
+  },
+  "schema-markup-for-ai-visibility": {
+    "hero": {
+      "src": "/images/posts/schema-markup-for-ai-visibility-hero.webp",
+      "alt": "Code editor showing structured data markup implementation",
+      "photographer": "Ilya Pavlov",
+      "photographerUrl": "https://unsplash.com/@ilyapavlov",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/monitor-showing-java-programming-OqtafYT5kTw",
+      "width": 1200,
+      "height": 675,
+      "bytes": 36000
+    },
+    "inline": [
+      {
+        "src": "/images/posts/schema-markup-for-ai-visibility-inline-1.webp",
+        "alt": "Developer implementing structured data on a website for AI search optimization",
+        "photographer": "Florian Olivo",
+        "photographerUrl": "https://unsplash.com/@florianolv",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/turned-on-gray-laptop-computer-4hbJ-eymZ1o",
+        "width": 1200,
+        "height": 675,
+        "bytes": 33000
+      }
+    ]
+  },
+  "how-to-measure-ai-visibility": {
+    "hero": {
+      "src": "/images/posts/how-to-measure-ai-visibility-hero.webp",
+      "alt": "Marketing analytics dashboard tracking brand visibility and citation metrics",
+      "photographer": "Carlos Muza",
+      "photographerUrl": "https://unsplash.com/@kmuza",
+      "sourceName": "Unsplash",
+      "sourceUrl": "https://unsplash.com/photos/person-using-macbook-pro-on-black-table-hpjSkU2UYSU",
+      "width": 1200,
+      "height": 675,
+      "bytes": 35000
+    },
+    "inline": [
+      {
+        "src": "/images/posts/how-to-measure-ai-visibility-inline-1.webp",
+        "alt": "Team reviewing AI visibility metrics and competitive analysis data",
+        "photographer": "Campaign Creators",
+        "photographerUrl": "https://unsplash.com/@campaign_creators",
+        "sourceName": "Unsplash",
+        "sourceUrl": "https://unsplash.com/photos/person-using-laptop-computer-pypeCEaJeZY",
+        "width": 1200,
+        "height": 675,
+        "bytes": 32000
+      }
+    ]
   }
 }
