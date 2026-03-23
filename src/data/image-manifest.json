@@ -623,9 +623,9 @@
       }
     ]
   },
-  "zero-click-search-strategy-2026": {
+  "zero-click-search-strategy": {
     "hero": {
-      "src": "/images/posts/zero-click-search-strategy-2026-hero.webp",
+      "src": "/images/posts/zero-click-search-strategy-hero.webp",
       "alt": "Search interface showing AI-generated answers without requiring clicks",
       "photographer": "Edho Pratama",
       "photographerUrl": "https://unsplash.com/@edhoryhkm",
@@ -637,7 +637,7 @@
     },
     "inline": [
       {
-        "src": "/images/posts/zero-click-search-strategy-2026-inline-1.webp",
+        "src": "/images/posts/zero-click-search-strategy-inline-1.webp",
         "alt": "Analytics dashboard showing search visibility and brand impression metrics",
         "photographer": "Stephen Dawson",
         "photographerUrl": "https://unsplash.com/@dawson2406",
