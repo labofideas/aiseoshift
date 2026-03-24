@@ -18,7 +18,7 @@ const today = new Date();
 
 <style>
 	.site-footer {
-		padding: 4rem 0 5rem;
+		padding: 3rem 0 4rem;
 		border-top: 1px solid rgba(var(--ink), 0.08);
 		background:
 			linear-gradient(180deg, rgba(var(--paper), 0), rgba(var(--ink), 0.04)),
@@ -29,7 +29,7 @@ const today = new Date();
 		width: min(1200px, calc(100% - 2rem));
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
 		gap: 2rem;
 	}
 
@@ -45,6 +45,11 @@ const today = new Date();
 		color: rgba(var(--ink), 0.72);
 	}
 
+	.footer-meta {
+		font-size: 0.85rem;
+		margin-top: 0.5rem;
+	}
+
 	.footer-links {
 		display: flex;
 		gap: 1.25rem;
@@ -56,6 +61,7 @@ const today = new Date();
 		text-decoration: none;
 		color: rgb(var(--ink));
 		font-weight: 700;
+		font-size: 0.9rem;
 	}
 
 	.footer-links a:hover,
@@ -64,8 +70,21 @@ const today = new Date();
 	}
 
 	@media (max-width: 800px) {
+		.site-footer {
+			padding: 2rem 0 3rem;
+		}
+
 		.footer-wrap {
 			grid-template-columns: 1fr;
+			gap: 1.25rem;
+		}
+
+		.footer-mark {
+			font-size: 1.5rem;
+		}
+
+		.footer-links {
+			margin: 1rem 0;
 		}
 	}
 </style>
