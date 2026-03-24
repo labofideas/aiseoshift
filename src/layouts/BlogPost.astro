@@ -50,6 +50,7 @@ const structuredData = {
 				width: min(1240px, calc(100% - 2rem));
 				margin: 0 auto;
 				padding: 1.6rem 0 3rem;
+				overflow-x: hidden;
 			}
 
 			.story-grid {
@@ -245,6 +246,9 @@ const structuredData = {
 				border-collapse: collapse;
 				margin: 1.8rem 0;
 				font-size: 0.94rem;
+				display: block;
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
 			}
 
 			.prose th,
