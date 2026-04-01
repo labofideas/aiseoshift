@@ -50,6 +50,7 @@ const structuredData = {
 				width: min(1240px, calc(100% - 2rem));
 				margin: 0 auto;
 				padding: 1.6rem 0 3rem;
+				overflow-x: hidden;
 			}
 
 			.story-grid {
@@ -200,6 +201,8 @@ const structuredData = {
 			}
 
 			/* ── Prose Typography ── */
+			/* Use :global() for child selectors because slotted MDX content
+			   does not receive Astro's scoped data-astro-cid attribute. */
 			.prose {
 				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
 				font-size: 1rem;
@@ -208,13 +211,13 @@ const structuredData = {
 				max-width: 70ch;
 			}
 
-			.prose > p:first-of-type {
+			.prose > :global(p:first-of-type) {
 				font-size: 1.06rem;
 				line-height: 1.78;
 				color: rgba(var(--ink), 0.88);
 			}
 
-			.prose h2 {
+			.prose :global(h2) {
 				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
 				font-size: clamp(1.45rem, 1.8vw, 1.9rem);
 				line-height: 1.22;
@@ -225,12 +228,12 @@ const structuredData = {
 				border-top: 1px solid var(--line);
 			}
 
-			.prose h2:first-child {
+			.prose :global(h2:first-child) {
 				border-top: none;
 				padding-top: 0;
 			}
 
-			.prose h3 {
+			.prose :global(h3) {
 				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
 				font-size: 1.14rem;
 				line-height: 1.35;
@@ -239,58 +242,65 @@ const structuredData = {
 				margin-bottom: 0.6rem;
 			}
 
-			.prose h2, .prose h3 { scroll-margin-top: 6rem; }
+			.prose :global(h2), .prose :global(h3) { scroll-margin-top: 6rem; }
 
-			.prose table {
+			.prose :global(table) {
 				border-collapse: collapse;
 				margin: 1.8rem 0;
 				font-size: 0.94rem;
+				display: block;
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
 			}
 
-			.prose th,
-			.prose td {
+			.prose :global(th),
+			.prose :global(td) {
 				padding: 0.75rem 0.85rem;
 				border: 1px solid rgba(var(--ink), 0.1);
 			}
 
-			.prose th {
+			.prose :global(th) {
 				background: rgba(var(--ink), 0.04);
 				font-weight: 700;
 				text-align: left;
 			}
 
-			.prose ul, .prose ol {
+			.prose :global(ul), .prose :global(ol) {
 				padding-left: 1.1rem;
 				margin: 1rem 0 1.4rem;
 			}
 
-			.prose li {
+			.prose :global(li) {
 				padding-left: 0.2rem;
 				margin-top: 0.45rem;
 			}
 
-			.prose p, .prose ul, .prose ol, .prose table, .prose blockquote {
+			.prose :global(p), .prose :global(ul), .prose :global(ol), .prose :global(table), .prose :global(blockquote) {
 				margin-bottom: 1.4rem;
 			}
 
-			.prose blockquote {
+			.prose :global(blockquote) {
 				font-size: 1rem;
 				line-height: 1.75;
 				margin: 2rem 0;
 			}
 
-			.prose ul + h2, .prose ol + h2, .prose table + h2,
-			.prose ul + h3, .prose ol + h3, .prose table + h3 {
+			.prose :global(ul + h2), .prose :global(ol + h2), .prose :global(table + h2),
+			.prose :global(ul + h3), .prose :global(ol + h3), .prose :global(table + h3) {
 				margin-top: 3.2rem;
 			}
 
-			.prose hr {
+			.prose :global(hr) {
 				margin: 3rem 0;
 				border: none;
 				border-top: 1px solid var(--line);
 			}
 
-			.prose img { border-radius: 10px; }
+			.prose :global(img) { border-radius: 10px; }
+
+			.prose :global(pre) {
+				max-width: 100%;
+			}
 
 			/* ── Related Posts ── */
 			.related-section {
