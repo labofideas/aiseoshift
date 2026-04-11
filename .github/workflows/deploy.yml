@@ -25,6 +25,10 @@ jobs:
 
       - name: Build site
         run: npm run build
+        env:
+          PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
+          PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
+          PUBLIC_MAILCHIMP_FORM_ACTION: ${{ secrets.PUBLIC_MAILCHIMP_FORM_ACTION }}
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
