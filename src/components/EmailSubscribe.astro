@@ -1,0 +1,114 @@
+---
+/**
+ * Mailchimp email subscribe form.
+ *
+ * Set the MAILCHIMP_FORM_ACTION env var to your Mailchimp embedded form action URL.
+ * Find it at: Mailchimp → Audience → Signup forms → Embedded forms → copy the action="..." URL.
+ *
+ * Example: https://aiseoshift.us21.list-manage.com/subscribe/post?u=XXXXX&amp;id=YYYYY
+ */
+
+const formAction = import.meta.env.PUBLIC_MAILCHIMP_FORM_ACTION || '#';
+---
+
+<div class="subscribe-bar">
+	<p class="subscribe-label">Like this post?</p>
+	<form
+		action={formAction}
+		method="post"
+		class="subscribe-form"
+		target="_blank"
+		novalidate
+	>
+		<input
+			type="email"
+			name="EMAIL"
+			class="subscribe-input"
+			placeholder="you@example.com"
+			aria-label="Email address"
+			required
+		/>
+		<!-- bot protection -->
+		<div style="position: absolute; left: -5000px;" aria-hidden="true">
+			<input type="text" name="b_mailchimp_honeypot" tabindex="-1" value="" />
+		</div>
+		<button type="submit" class="subscribe-btn">Subscribe by Email</button>
+	</form>
+</div>
+
+<style>
+	.subscribe-bar {
+		display: flex;
+		align-items: center;
+		gap: 0.9rem;
+		flex-wrap: wrap;
+	}
+
+	.subscribe-label {
+		margin: 0;
+		font-size: 1.05rem;
+		font-weight: 700;
+		font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+		color: rgba(var(--ink), 0.82);
+	}
+
+	.subscribe-form {
+		display: flex;
+		gap: 0;
+		position: relative;
+	}
+
+	.subscribe-input {
+		padding: 0.55rem 0.9rem;
+		font-size: 0.85rem;
+		font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+		border: 1.5px solid var(--line);
+		border-right: none;
+		border-radius: 2rem 0 0 2rem;
+		background: rgba(var(--paper-strong), 0.6);
+		color: rgb(var(--ink));
+		outline: none;
+		min-width: 180px;
+		transition: border-color 140ms ease;
+	}
+
+	.subscribe-input:focus {
+		border-color: var(--signal);
+	}
+
+	.subscribe-input::placeholder {
+		color: rgba(var(--ink), 0.35);
+	}
+
+	.subscribe-btn {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.55rem 1.2rem;
+		background: var(--signal);
+		color: #fff;
+		border: none;
+		border-radius: 0 2rem 2rem 0;
+		font-size: 0.82rem;
+		font-weight: 700;
+		font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+		cursor: pointer;
+		white-space: nowrap;
+		transition: opacity 140ms ease, transform 100ms ease;
+	}
+
+	.subscribe-btn:hover {
+		opacity: 0.88;
+		transform: translateY(-1px);
+	}
+
+	@media (max-width: 520px) {
+		.subscribe-bar {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.subscribe-input {
+			min-width: 140px;
+		}
+	}
+</style>
