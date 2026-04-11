@@ -133,7 +133,7 @@
     "hero": {
       "src": "/images/posts/master-programmatic-seo-hero.webp",
       "alt": "Developer workspace with structured data and code on screen",
-      "photographer": "Саша Алалыкин",
+      "photographer": "\u0421\u0430\u0448\u0430 \u0410\u043b\u0430\u043b\u044b\u043a\u0438\u043d",
       "photographerUrl": "https://www.pexels.com/@sash2s",
       "sourceName": "Pexels",
       "sourceUrl": "https://www.pexels.com/photo/software-source-code-program-code-code-on-a-computer-screen-the-developer-is-working-on-program-codes-in-the-office-photo-with-source-code-16592498/",
@@ -750,6 +750,32 @@
         "width": 1200,
         "height": 675,
         "bytes": 32000
+      }
+    ]
+  },
+  "25-best-ai-website-builders": {
+    "hero": {
+      "src": "/images/posts/25-best-ai-website-builders-hero.webp",
+      "alt": "Editorial visual representing AI-powered website building tools and platforms",
+      "photographer": "AISEOShift",
+      "photographerUrl": "https://aiseoshift.com",
+      "sourceName": "AISEOShift",
+      "sourceUrl": "https://aiseoshift.com/blog/25-best-ai-website-builders",
+      "width": 1200,
+      "height": 675,
+      "bytes": 9202
+    },
+    "inline": [
+      {
+        "src": "/images/posts/25-best-ai-website-builders-inline-1.webp",
+        "alt": "Comparison visual for choosing the right AI website builder by use case and budget",
+        "photographer": "AISEOShift",
+        "photographerUrl": "https://aiseoshift.com",
+        "sourceName": "AISEOShift",
+        "sourceUrl": "https://aiseoshift.com/blog/25-best-ai-website-builders",
+        "width": 1200,
+        "height": 675,
+        "bytes": 9218
       }
     ]
   }
