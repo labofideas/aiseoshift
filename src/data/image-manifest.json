@@ -830,5 +830,31 @@
         "bytes": 123376
       }
     ]
+  },
+  "claude-updates-march-april-2026": {
+    "hero": {
+      "src": "/images/posts/claude-updates-march-april-2026-hero.webp",
+      "alt": "Editorial visual representing Claude AI model updates and Anthropic news",
+      "photographer": "AISEOShift",
+      "photographerUrl": "https://aiseoshift.com",
+      "sourceName": "AISEOShift",
+      "sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026",
+      "width": 1200,
+      "height": 675,
+      "bytes": 44680
+    },
+    "inline": [
+      {
+        "src": "/images/posts/claude-updates-march-april-2026-inline-1.webp",
+        "alt": "Timeline of Anthropic Claude releases in March and April 2026",
+        "photographer": "AISEOShift",
+        "photographerUrl": "https://aiseoshift.com",
+        "sourceName": "AISEOShift",
+        "sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026",
+        "width": 1200,
+        "height": 675,
+        "bytes": 31596
+      }
+    ]
   }
 }
