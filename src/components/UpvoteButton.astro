@@ -165,13 +165,14 @@ const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI
 	}
 
 	.upvote-btn.voted {
-		background: var(--signal);
-		border-color: var(--signal);
+		background: var(--signal-deep);
+		border-color: var(--signal-deep);
 		color: #fff;
 	}
 
-	.upvote-btn.voted:hover:not(:disabled) {
-		opacity: 0.88;
+	.upvote-btn.voted:hover:not(:disabled),
+	.upvote-btn.voted:focus-visible {
+		opacity: 0.92;
 		color: #fff;
 	}
 
@@ -182,13 +183,13 @@ const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI
 	.upvote-count {
 		padding-left: 0.35rem;
 		border-left: 1px solid currentColor;
-		opacity: 0.7;
+		opacity: 0.85;
 		min-width: 1.2em;
 	}
 
 	.upvote-summary {
 		margin: 0;
 		font-size: 0.82rem;
-		color: rgba(var(--ink), 0.52);
+		color: rgba(var(--ink), 0.72);
 	}
 </style>

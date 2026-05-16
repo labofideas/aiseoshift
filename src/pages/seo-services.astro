@@ -143,7 +143,7 @@ const structuredData = {
 				margin: 0;
 				font-size: 0.92rem;
 				line-height: 1.6;
-				color: rgba(var(--ink), 0.72);
+				color: rgba(var(--ink), 0.78);
 			}
 
 			.svc-card ul {
@@ -151,7 +151,7 @@ const structuredData = {
 				padding-left: 1.1rem;
 				font-size: 0.88rem;
 				line-height: 1.55;
-				color: rgba(var(--ink), 0.72);
+				color: rgba(var(--ink), 0.78);
 			}
 
 			.svc-card li { margin-top: 0.25rem; }
@@ -212,16 +212,29 @@ const structuredData = {
 			.contact-card > p {
 				font-size: 0.93rem;
 				line-height: 1.6;
-				color: rgba(var(--ink), 0.72);
+				color: rgba(var(--ink), 0.78);
 				margin: 0 0 1rem;
 			}
 
 			.contact-form { display: flex; flex-direction: column; gap: 0.7rem; }
 
 			.contact-form label {
-				font-size: 0.78rem;
+				font-size: 0.82rem;
 				font-weight: 700;
-				color: rgba(var(--ink), 0.78);
+				color: rgba(var(--ink), 0.82);
+			}
+
+			.contact-form .req {
+				color: var(--signal-deep);
+				margin-left: 0.15rem;
+			}
+
+			.contact-form input:focus-visible,
+			.contact-form select:focus-visible,
+			.contact-form textarea:focus-visible {
+				outline: 2px solid var(--signal);
+				outline-offset: 1px;
+				border-color: var(--signal-deep);
 			}
 
 			.contact-form input,
@@ -280,7 +293,7 @@ const structuredData = {
 	</head>
 	<body>
 		<Header />
-		<main class="svc-page">
+		<main id="main-content" class="svc-page">
 
 			<section class="svc-hero">
 				<span class="svc-kicker">SEO Services</span>
@@ -389,28 +402,28 @@ const structuredData = {
 					</div>
 
 					<div class="contact-card">
-						<h3>Request a quote by form</h3>
+						<h3 id="quote-form-heading">Request a quote by form</h3>
 						<p>
 							Prefer to write it out? Send a brief description and we'll reply with a quote and
 							next steps.
 						</p>
-						<form class="contact-form" id="quote-form">
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
 							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
 							<input type="hidden" name="subject" value="New quote request from aiseoshift.com" />
 							<input type="hidden" name="from_name" value="AISEOShift Quote Form" />
-							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-							<label for="q-name">Name</label>
-							<input id="q-name" type="text" name="name" required autocomplete="name" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
 
-							<label for="q-email">Email</label>
-							<input id="q-email" type="email" name="email" required autocomplete="email" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
 
 							<label for="q-company">Company / website</label>
 							<input id="q-company" type="text" name="company" autocomplete="organization" />
 
-							<label for="q-service">Service interested in</label>
-							<select id="q-service" name="service" required>
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
 								<option value="">Select a service…</option>
 								<option value="AI Search Visibility Audit">AI Search Visibility Audit</option>
 								<option value="GEO / Answer Engine Optimization">GEO / Answer Engine Optimization</option>
@@ -418,11 +431,11 @@ const structuredData = {
 								<option value="Not sure yet">Not sure yet</option>
 							</select>
 
-							<label for="q-message">What are you trying to achieve?</label>
-							<textarea id="q-message" name="message" required placeholder="Tell us about your business and goals."></textarea>
+							<label for="q-message">What are you trying to achieve? <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Tell us about your business and goals."></textarea>
 
 							<button type="submit">Send quote request</button>
-							<div class="form-status" id="form-status"></div>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
 						</form>
 					</div>
 				</div>
