@@ -3,6 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
+import '../../styles/tools.css';
 ---
 
 <!doctype html>
@@ -10,178 +11,233 @@ import { SITE_TITLE } from '../../consts';
 	<head>
 		<BaseHead
 			title={`Free Image SEO Checker | ${SITE_TITLE}`}
-			description="Check your page's images for missing alt tags, missing dimensions, lazy loading, and format optimization. Free tool."
+			description="Audit every image on a page for alt text, width/height, lazy loading, and modern formats (WebP/AVIF). Free SEO and Core Web Vitals tool."
 		/>
-		<style>
-			.tool-page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
-			.tool-header { margin-bottom: 1.5rem; }
-			.tool-header h1 { font-family: 'Atkinson', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0.4rem 0 0.6rem; }
-			.tool-header p { color: rgba(var(--ink), 0.72); max-width: 36rem; }
-			.tool-input { margin-bottom: 1.5rem; }
-			.tool-input label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: rgba(var(--ink), 0.6); }
-			.tool-input textarea { width: 100%; min-height: 180px; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-family: monospace; font-size: 0.82rem; line-height: 1.5; resize: vertical; }
-			.tool-input textarea:focus { outline: 2px solid var(--signal); outline-offset: 1px; }
-			.tool-actions { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
-			.btn-primary { padding: 0.75rem 1.5rem; border: none; border-radius: 999px; background: var(--signal); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
-			.btn-primary:hover { background: var(--signal-deep); }
-			.btn-secondary { padding: 0.75rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: rgb(var(--ink)); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
-			.results { display: none; }
-			.results.visible { display: block; }
-			.check-group { margin-bottom: 1.25rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
-			.check-group h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
-			.check-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; font-size: 0.86rem; line-height: 1.5; border-top: 1px solid var(--line); }
-			.check-item:first-of-type { border-top: none; }
-			.check-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 0.1rem; }
-			.pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
-			.warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
-			.fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-			.check-detail { color: rgba(var(--ink), 0.6); font-size: 0.8rem; }
-			.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
-			.stat-card { padding: 0.8rem; border-radius: 0.75rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.55); text-align: center; }
-			.stat-num { font-size: 1.4rem; font-weight: 700; color: var(--signal-deep); }
-			.stat-label { font-size: 0.66rem; color: rgba(var(--ink), 0.6); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.15rem; }
-			.img-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 0.75rem; }
-			.img-table th, .img-table td { padding: 0.5rem 0.6rem; border: 1px solid var(--line); text-align: left; }
-			.img-table th { background: rgba(var(--ink), 0.04); font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
-			.img-src { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: monospace; font-size: 0.74rem; }
-			.badge { display: inline-block; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; }
-			.badge-pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
-			.badge-fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-			.badge-warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
-			.back-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-			@media (max-width: 600px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } .img-table { font-size: 0.74rem; } }
-		</style>
 	</head>
 	<body>
 		<Header />
 		<main id="main-content" class="tool-page">
-			<a href="/tools" class="back-link">&larr; All Tools</a>
+			<a href="/tools" class="tool-back">← All Tools</a>
 			<div class="tool-header">
-				<p class="section-kicker">On-Page SEO</p>
+				<p class="section-kicker">Performance + SEO</p>
 				<h1>Image SEO Checker</h1>
-				<p>Paste your page's HTML to find missing alt tags, missing dimensions, format issues, and lazy loading opportunities.</p>
+				<p>Audit every <code>&lt;img&gt;</code> tag on a page for alt text, dimensions, lazy loading, and modern formats. Helps fix accessibility and Core Web Vitals issues.</p>
 			</div>
-			<div class="tool-input">
-				<label for="html-input">Paste HTML Source Code</label>
-				<textarea id="html-input" placeholder="Right-click your page → View Page Source → Copy All → Paste here"></textarea>
+
+			<div class="tool-input-card">
+				<div class="input-tabs" role="tablist" aria-label="Input mode">
+					<button class="tab-btn" role="tab" aria-selected="true" data-tab="url" type="button">URL</button>
+					<button class="tab-btn" role="tab" aria-selected="false" data-tab="html" type="button">Paste HTML</button>
+				</div>
+				<div class="tab-panel active" id="tab-url" role="tabpanel">
+					<div class="tool-field">
+						<label for="url-input">Page URL</label>
+						<input id="url-input" type="url" placeholder="https://example.com/page" autocomplete="url" />
+					</div>
+				</div>
+				<div class="tab-panel" id="tab-html" role="tabpanel">
+					<div class="tool-field">
+						<label for="html-input">Raw HTML</label>
+						<textarea id="html-input" placeholder="Paste the page's HTML source"></textarea>
+					</div>
+				</div>
+				<div class="tool-actions">
+					<button class="btn-primary" id="analyze-btn" type="button">Analyze</button>
+					<button class="btn-secondary" id="clear-btn" type="button">Clear</button>
+				</div>
+				<div class="tool-status" id="tool-status" role="status" aria-live="polite"></div>
 			</div>
-			<div class="tool-actions">
-				<button class="btn-primary" id="analyze-btn">Check Images</button>
-				<button class="btn-secondary" id="clear-btn">Clear</button>
-			</div>
-			<div class="results" id="results"></div>
+
+			<section class="report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
-			const analyzeBtn = document.getElementById('analyze-btn')!;
-			const clearBtn = document.getElementById('clear-btn')!;
-			const input = document.getElementById('html-input') as HTMLTextAreaElement;
-			const results = document.getElementById('results')!;
+			const tabBtns = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+			const tabPanels = document.querySelectorAll<HTMLElement>('.tab-panel');
+			const urlInput = document.getElementById('url-input') as HTMLInputElement;
+			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
+			const analyzeBtn = document.getElementById('analyze-btn') as HTMLButtonElement;
+			const clearBtn = document.getElementById('clear-btn') as HTMLButtonElement;
+			const statusEl = document.getElementById('tool-status')!;
+			const reportEl = document.getElementById('report')!;
+			let activeTab: 'url' | 'html' = 'url';
+
+			tabBtns.forEach((b) =>
+				b.addEventListener('click', () => {
+					tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+					tabPanels.forEach((p) => p.classList.toggle('active', p.id === `tab-${b.dataset.tab}`));
+					activeTab = b.dataset.tab as 'url' | 'html';
+					statusEl.textContent = '';
+					statusEl.classList.remove('error');
+				}),
+			);
+
+			const setStatus = (t: string, err = false) => { statusEl.textContent = t; statusEl.classList.toggle('error', err); };
+			const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+			async function fetchPage(url: string) {
+				const res = await fetch(`/api/fetch-page?url=${encodeURIComponent(url)}`);
+				if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `Fetch failed (${res.status})`); }
+				return res.json();
+			}
 
 			function analyze(html: string) {
 				const doc = new DOMParser().parseFromString(html, 'text/html');
 				const imgs = Array.from(doc.querySelectorAll('img'));
+				const issues: { label: string; status: 'pass' | 'warn' | 'fail'; detail: string }[] = [];
 
 				if (imgs.length === 0) {
-					return { total: 0, issues: [{ label: 'No images found', status: 'warn' as const, detail: 'This page has no <img> tags.' }], images: [], stats: { noAlt: 0, noDim: 0, noLazy: 0, nonWebp: 0 } };
+					issues.push({ label: 'No images found', status: 'warn', detail: 'This page has no <img> tags.' });
+					return { total: 0, issues, images: [], stats: { noAlt: 0, noDim: 0, noLazy: 0, nonModern: 0 } };
 				}
 
-				const issues: { label: string; status: 'pass' | 'warn' | 'fail'; detail: string }[] = [];
-				let noAlt = 0, noDim = 0, noLazy = 0, nonWebp = 0;
-
-				const imageData = imgs.map((img) => {
+				let noAlt = 0, noDim = 0, noLazy = 0, nonModern = 0;
+				const imageData = imgs.map((img, idx) => {
 					const src = img.getAttribute('src') || '';
-					const alt = img.getAttribute('alt')?.trim();
+					const alt = img.getAttribute('alt');
 					const width = img.getAttribute('width');
 					const height = img.getAttribute('height');
 					const loading = img.getAttribute('loading');
-					const ext = src.split('.').pop()?.split('?')[0]?.toLowerCase() || '';
-
-					const hasAlt = alt !== undefined && alt !== '';
+					const ext = (src.split('?')[0].split('#')[0].split('.').pop() || '').toLowerCase();
+					const hasAlt = alt !== null && alt.trim() !== '';
 					const hasDim = !!width && !!height;
 					const hasLazy = loading === 'lazy';
-					const isWebp = ext === 'webp' || ext === 'avif' || ext === 'svg';
-
+					const isFirst = idx === 0;
+					const isModern = ext === 'webp' || ext === 'avif' || ext === 'svg' || src.startsWith('data:');
 					if (!hasAlt) noAlt++;
 					if (!hasDim) noDim++;
-					if (!hasLazy) noLazy++;
-					if (!isWebp && ext) nonWebp++;
-
-					return { src: src.slice(0, 60) + (src.length > 60 ? '...' : ''), alt: hasAlt, dim: hasDim, lazy: hasLazy, format: ext || '?', modern: isWebp };
+					if (!hasLazy && !isFirst) noLazy++;
+					if (!isModern && ext) nonModern++;
+					return { src, alt: hasAlt, dim: hasDim, lazy: hasLazy, modern: isModern, format: ext || '?', isFirst };
 				});
 
-				// Summary checks
-				if (noAlt === 0) {
-					issues.push({ label: 'Alt text', status: 'pass', detail: `All ${imgs.length} images have alt text.` });
-				} else {
-					issues.push({ label: 'Alt text', status: 'fail', detail: `${noAlt} of ${imgs.length} images missing alt text. Alt text is critical for accessibility and SEO.` });
-				}
+				issues.push(noAlt === 0
+					? { label: 'Alt text', status: 'pass', detail: `All ${imgs.length} images have alt text.` }
+					: { label: 'Alt text', status: 'fail', detail: `${noAlt} of ${imgs.length} images missing alt text. Critical for accessibility and SEO.` });
 
-				if (noDim === 0) {
-					issues.push({ label: 'Dimensions', status: 'pass', detail: 'All images have width and height attributes.' });
-				} else {
-					issues.push({ label: 'Dimensions', status: 'warn', detail: `${noDim} images missing width/height attributes. This causes layout shifts (CLS).` });
-				}
+				issues.push(noDim === 0
+					? { label: 'Dimensions', status: 'pass', detail: 'All images have width and height attributes.' }
+					: { label: 'Dimensions', status: 'warn', detail: `${noDim} images missing width/height. Causes Cumulative Layout Shift.` });
 
-				const belowFold = imgs.length > 1 ? imgs.length - 1 : 0;
-				if (noLazy === 0 || belowFold === 0) {
-					issues.push({ label: 'Lazy loading', status: 'pass', detail: 'Images use lazy loading appropriately.' });
-				} else if (noLazy > 1) {
-					issues.push({ label: 'Lazy loading', status: 'warn', detail: `${noLazy} images without loading="lazy". Add it to below-the-fold images.` });
-				}
+				issues.push(noLazy === 0
+					? { label: 'Lazy loading', status: 'pass', detail: 'Below-the-fold images use lazy loading.' }
+					: { label: 'Lazy loading', status: 'warn', detail: `${noLazy} below-the-fold images without loading="lazy".` });
 
-				if (nonWebp === 0) {
-					issues.push({ label: 'Modern formats', status: 'pass', detail: 'All images use modern formats (WebP/AVIF/SVG).' });
-				} else {
-					issues.push({ label: 'Modern formats', status: 'warn', detail: `${nonWebp} images use older formats. Consider converting to WebP for better performance.` });
-				}
+				issues.push(nonModern === 0
+					? { label: 'Modern formats', status: 'pass', detail: 'All images use WebP, AVIF, SVG, or data URIs.' }
+					: { label: 'Modern formats', status: 'warn', detail: `${nonModern} images use legacy formats. Convert to WebP/AVIF for better LCP.` });
 
-				return { total: imgs.length, issues, images: imageData, stats: { noAlt, noDim, noLazy, nonWebp } };
+				const firstImg = imageData[0];
+				if (firstImg && !firstImg.lazy) issues.push({ label: 'Hero image (LCP)', status: 'pass', detail: 'First image loads eagerly — good for LCP.' });
+
+				return { total: imgs.length, issues, images: imageData, stats: { noAlt, noDim, noLazy, nonModern } };
 			}
 
-			function render(data: ReturnType<typeof analyze>) {
-				const iconMap: Record<string, string> = { pass: '\u2713', warn: '!', fail: '\u2717' };
-				const passRate = data.total > 0 ? Math.round(((data.total - data.stats.noAlt) / data.total) * 100) : 0;
+			function score(stats: { noAlt: number; noDim: number; noLazy: number; nonModern: number }, total: number) {
+				if (total === 0) return 0;
+				const deductions = (stats.noAlt / total) * 50 + (stats.noDim / total) * 25 + (stats.noLazy / total) * 15 + (stats.nonModern / total) * 15;
+				return Math.max(0, Math.round(100 - deductions));
+			}
 
-				let html = `<div class="stat-grid">
-					<div class="stat-card"><div class="stat-num">${data.total}</div><div class="stat-label">Total Images</div></div>
-					<div class="stat-card"><div class="stat-num">${data.stats.noAlt}</div><div class="stat-label">Missing Alt</div></div>
-					<div class="stat-card"><div class="stat-num">${data.stats.noDim}</div><div class="stat-label">Missing Size</div></div>
-					<div class="stat-card"><div class="stat-num">${data.stats.nonWebp}</div><div class="stat-label">Non-Modern</div></div>
-				</div>`;
+			function render(data: ReturnType<typeof analyze>, source: string) {
+				const s = score(data.stats, data.total);
+				const tier = s >= 80 ? 'good' : s >= 55 ? 'fair' : 'poor';
+				const iconMap = { pass: '✓', warn: '!', fail: '✕' };
 
-				html += `<div class="check-group"><h3>Summary</h3>`;
-				for (const item of data.issues) {
-					html += `<div class="check-item"><span class="check-icon ${item.status}">${iconMap[item.status]}</span><div><strong>${item.label}</strong><br><span class="check-detail">${item.detail}</span></div></div>`;
-				}
-				html += `</div>`;
+				let html = `
+					<header class="report-header">
+						<div class="score-badge score-${tier}" aria-label="Score ${s} out of 100">${data.total === 0 ? '–' : s}</div>
+						<div class="report-title">
+							<h2>Image SEO report</h2>
+							<p>${escapeHtml(source)} · ${data.total} image${data.total === 1 ? '' : 's'} analyzed</p>
+						</div>
+					</header>
+
+					<div class="stat-row">
+						<div class="stat"><span class="stat-num">${data.total}</span><span class="stat-label">Images</span></div>
+						<div class="stat"><span class="stat-num">${data.stats.noAlt}</span><span class="stat-label">Missing alt</span></div>
+						<div class="stat"><span class="stat-num">${data.stats.noDim}</span><span class="stat-label">No dimensions</span></div>
+						<div class="stat"><span class="stat-num">${data.stats.nonModern}</span><span class="stat-label">Legacy format</span></div>
+					</div>
+
+					<div class="report-section">
+						<h3>Checks</h3>
+						<ul class="issue-list">
+							${data.issues.map((i) => `
+								<li class="issue">
+									<span class="issue-icon ${i.status}" aria-hidden="true">${iconMap[i.status]}</span>
+									<div class="issue-body">
+										<p class="issue-label">${escapeHtml(i.label)}</p>
+										<p class="issue-detail">${escapeHtml(i.detail)}</p>
+									</div>
+								</li>
+							`).join('')}
+						</ul>
+					</div>
+				`;
 
 				if (data.images.length > 0) {
-					html += `<div class="check-group"><h3>Image Details</h3><table class="img-table"><thead><tr><th>Source</th><th>Alt</th><th>Size</th><th>Lazy</th><th>Format</th></tr></thead><tbody>`;
-					for (const img of data.images) {
-						html += `<tr>
-							<td class="img-src">${img.src}</td>
-							<td><span class="badge ${img.alt ? 'badge-pass' : 'badge-fail'}">${img.alt ? 'Yes' : 'No'}</span></td>
-							<td><span class="badge ${img.dim ? 'badge-pass' : 'badge-warn'}">${img.dim ? 'Yes' : 'No'}</span></td>
-							<td><span class="badge ${img.lazy ? 'badge-pass' : 'badge-warn'}">${img.lazy ? 'Yes' : 'No'}</span></td>
-							<td><span class="badge ${img.modern ? 'badge-pass' : 'badge-warn'}">${img.format}</span></td>
-						</tr>`;
-					}
-					html += `</tbody></table></div>`;
+					html += `
+						<div class="report-section">
+							<h3>Per-image details</h3>
+							<table class="report-table">
+								<thead><tr><th>#</th><th>Source</th><th>Alt</th><th>W×H</th><th>Lazy</th><th>Format</th></tr></thead>
+								<tbody>
+									${data.images.map((img, i) => `
+										<tr>
+											<td>${i + 1}</td>
+											<td style="max-width:280px;word-break:break-all">${escapeHtml(img.src.length > 80 ? img.src.slice(0, 80) + '…' : img.src)}</td>
+											<td class="${img.alt ? 'flag-pass' : 'flag-fail'}">${img.alt ? 'Yes' : 'No'}</td>
+											<td class="${img.dim ? 'flag-pass' : 'flag-warn'}">${img.dim ? 'Yes' : 'No'}</td>
+											<td class="${img.lazy || img.isFirst ? 'flag-pass' : 'flag-warn'}">${img.isFirst ? 'Eager (hero)' : img.lazy ? 'Yes' : 'No'}</td>
+											<td class="${img.modern ? 'flag-pass' : 'flag-warn'}">${img.format}</td>
+										</tr>
+									`).join('')}
+								</tbody>
+							</table>
+						</div>
+					`;
 				}
 
-				results.innerHTML = html;
-				results.classList.add('visible');
+				reportEl.innerHTML = html;
+				reportEl.classList.add('visible');
+				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
-			analyzeBtn.addEventListener('click', () => {
-				const html = input.value.trim();
-				if (!html) { alert('Please paste HTML source code first.'); return; }
-				render(analyze(html));
-				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			async function run() {
+				analyzeBtn.disabled = true;
+				try {
+					let html: string;
+					let source: string;
+					if (activeTab === 'url') {
+						const u = urlInput.value.trim();
+						if (!u) { setStatus('Enter a URL to analyze.', true); return; }
+						setStatus('Fetching page…');
+						const r = await fetchPage(u);
+						html = r.html;
+						source = r.url;
+					} else {
+						html = htmlInput.value.trim();
+						if (!html) { setStatus('Paste HTML to analyze.', true); return; }
+						source = 'Pasted HTML';
+					}
+					setStatus('');
+					render(analyze(html), source);
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
+					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+				} finally {
+					analyzeBtn.disabled = false;
+				}
+			}
+
+			analyzeBtn.addEventListener('click', run);
+			urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); run(); } });
+			clearBtn.addEventListener('click', () => {
+				urlInput.value = ''; htmlInput.value = '';
+				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
 			});
-			clearBtn.addEventListener('click', () => { input.value = ''; results.innerHTML = ''; results.classList.remove('visible'); });
 		</script>
 	</body>
 </html>

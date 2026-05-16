@@ -1,0 +1,425 @@
+/* Shared styles for the SEO tools at /tools/*. Imported by each tool page. */
+
+.tool-page {
+	width: min(1000px, calc(100% - 2rem));
+	margin: 0 auto;
+	padding: 2.5rem 0 4rem;
+}
+
+.tool-back {
+	display: inline-block;
+	color: rgba(var(--ink), 0.7);
+	font-size: 0.85rem;
+	text-decoration: none;
+	margin-bottom: 1.5rem;
+}
+.tool-back:hover { color: var(--signal-deep); }
+
+.tool-header h1 {
+	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+	font-size: clamp(2rem, 3.5vw, 2.8rem);
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	margin: 0.5rem 0 0.6rem;
+}
+.tool-header > p {
+	color: rgba(var(--ink), 0.78);
+	font-size: 1rem;
+	line-height: 1.65;
+	max-width: 44rem;
+	margin: 0 0 2rem;
+}
+
+/* ── Input panel ── */
+.tool-input-card {
+	background: rgba(var(--paper-strong), 0.55);
+	border: 1px solid var(--line);
+	border-radius: 16px;
+	padding: 1.5rem;
+	margin-bottom: 1.25rem;
+	box-shadow: var(--shadow-tight);
+}
+
+.input-tabs {
+	display: flex;
+	gap: 0.4rem;
+	margin-bottom: 1rem;
+	flex-wrap: wrap;
+}
+
+.tab-btn {
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--line);
+	background: transparent;
+	color: rgba(var(--ink), 0.78);
+	font-size: 0.85rem;
+	font-weight: 700;
+	border-radius: 999px;
+	cursor: pointer;
+	font-family: inherit;
+}
+
+.tab-btn[aria-selected="true"] {
+	background: var(--signal-deep);
+	border-color: var(--signal-deep);
+	color: #fff;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.tool-field { display: block; }
+.tool-field label {
+	display: block;
+	font-size: 0.78rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: rgba(var(--ink), 0.78);
+	margin-bottom: 0.5rem;
+}
+.tool-field input[type="url"],
+.tool-field input[type="text"],
+.tool-field textarea {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border: 1px solid var(--line);
+	border-radius: 10px;
+	background: rgb(var(--paper));
+	color: rgb(var(--ink));
+	font-family: inherit;
+	font-size: 0.95rem;
+	box-sizing: border-box;
+}
+.tool-field textarea {
+	font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+	font-size: 0.82rem;
+	line-height: 1.5;
+	min-height: 180px;
+	resize: vertical;
+}
+.tool-field input[type="url"]:focus-visible,
+.tool-field input[type="text"]:focus-visible,
+.tool-field textarea:focus-visible {
+	outline: 2px solid var(--signal);
+	outline-offset: 1px;
+	border-color: var(--signal-deep);
+}
+.tool-field .hint {
+	display: block;
+	margin-top: 0.4rem;
+	font-size: 0.78rem;
+	color: rgba(var(--ink), 0.7);
+}
+
+.field-row {
+	display: flex;
+	gap: 0.6rem;
+	flex-wrap: wrap;
+}
+.field-row .tool-field { flex: 1 1 200px; min-width: 0; }
+
+.tool-actions {
+	display: flex;
+	gap: 0.6rem;
+	margin-top: 1rem;
+	flex-wrap: wrap;
+}
+
+.btn-primary {
+	padding: 0.7rem 1.4rem;
+	background: var(--signal-deep);
+	color: #fff;
+	border: none;
+	border-radius: 999px;
+	font-size: 0.92rem;
+	font-weight: 700;
+	cursor: pointer;
+	font-family: inherit;
+}
+.btn-primary:hover,
+.btn-primary:focus-visible { opacity: 0.92; }
+.btn-primary:disabled { opacity: 0.5; cursor: default; }
+
+.btn-secondary {
+	padding: 0.7rem 1.3rem;
+	background: transparent;
+	color: rgb(var(--ink));
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	font-size: 0.92rem;
+	font-weight: 700;
+	cursor: pointer;
+	font-family: inherit;
+}
+.btn-secondary:hover { background: rgba(var(--ink), 0.04); }
+
+.tool-status {
+	margin-top: 0.8rem;
+	font-size: 0.88rem;
+	color: rgba(var(--ink), 0.78);
+	min-height: 1.2em;
+}
+.tool-status.error { color: #b91c1c; }
+[data-theme="dark"] .tool-status.error { color: #fca5a5; }
+
+/* ── Report ── */
+.report {
+	display: none;
+	margin-top: 2rem;
+}
+.report.visible { display: block; }
+
+.report-header {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+	padding: 1.25rem 1.5rem;
+	border-radius: 16px;
+	background: rgba(var(--paper-strong), 0.55);
+	border: 1px solid var(--line);
+	margin-bottom: 1.5rem;
+	box-shadow: var(--shadow-tight);
+}
+
+.score-badge {
+	flex-shrink: 0;
+	width: 76px;
+	height: 76px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+	font-weight: 700;
+	font-size: 1.8rem;
+	color: #fff;
+	background: var(--signal-deep);
+	letter-spacing: -0.02em;
+}
+.score-badge.score-good { background: #047857; }
+.score-badge.score-fair { background: #b45309; }
+.score-badge.score-poor { background: #b91c1c; }
+
+.report-title h2 {
+	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+	font-size: 1.35rem;
+	margin: 0 0 0.25rem;
+	letter-spacing: -0.01em;
+}
+.report-title p {
+	margin: 0;
+	font-size: 0.88rem;
+	color: rgba(var(--ink), 0.74);
+	word-break: break-word;
+}
+
+.stat-row {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	gap: 0.7rem;
+	margin-bottom: 1.5rem;
+}
+
+.stat {
+	background: rgba(var(--paper-strong), 0.45);
+	border: 1px solid var(--line);
+	border-radius: 12px;
+	padding: 1rem 1.1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+.stat-num {
+	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: rgb(var(--ink));
+	line-height: 1.05;
+}
+.stat-label {
+	font-size: 0.74rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: rgba(var(--ink), 0.74);
+}
+
+.report-section {
+	background: rgba(var(--paper-strong), 0.55);
+	border: 1px solid var(--line);
+	border-radius: 16px;
+	padding: 1.25rem 1.5rem 1.5rem;
+	margin-bottom: 1.25rem;
+}
+.report-section h3 {
+	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+	font-size: 1.1rem;
+	margin: 0 0 0.85rem;
+	letter-spacing: -0.01em;
+}
+
+/* ── Issue list ── */
+.issue-list { list-style: none; padding: 0; margin: 0; }
+.issue {
+	display: flex;
+	gap: 0.85rem;
+	padding: 0.8rem 0;
+	border-top: 1px solid var(--line);
+	align-items: flex-start;
+}
+.issue:first-child { border-top: 0; padding-top: 0.2rem; }
+.issue-icon {
+	flex-shrink: 0;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 0.85rem;
+	color: #fff;
+	line-height: 1;
+}
+.issue-icon.pass { background: #047857; }
+.issue-icon.warn { background: #b45309; }
+.issue-icon.fail { background: #b91c1c; }
+.issue-body { flex: 1; min-width: 0; }
+.issue-label {
+	font-weight: 700;
+	color: rgb(var(--ink));
+	font-size: 0.96rem;
+	margin: 0;
+	line-height: 1.35;
+}
+.issue-detail {
+	margin: 0.2rem 0 0;
+	font-size: 0.88rem;
+	color: rgba(var(--ink), 0.78);
+	line-height: 1.55;
+}
+
+/* ── Heading tree (heading-checker) ── */
+.heading-tree {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+	font-size: 0.86rem;
+}
+.heading-tree li {
+	padding: 0.35rem 0;
+	border-top: 1px dashed var(--line);
+	display: flex;
+	gap: 0.6rem;
+	align-items: baseline;
+	flex-wrap: wrap;
+}
+.heading-tree li:first-child { border-top: 0; }
+.h-tag {
+	display: inline-flex;
+	align-items: center;
+	min-width: 30px;
+	padding: 0.1rem 0.45rem;
+	background: rgba(var(--signal-deep), 0.12);
+	color: var(--signal-deep);
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 0.78rem;
+}
+.h-text { color: rgba(var(--ink), 0.86); flex: 1; }
+.h-error {
+	color: #b91c1c;
+	font-size: 0.78rem;
+	font-weight: 700;
+}
+
+/* ── Meta preview (meta-checker / seo-checker) ── */
+.serp-preview {
+	border: 1px solid var(--line);
+	border-radius: 12px;
+	padding: 1rem 1.2rem;
+	background: rgb(var(--paper));
+	margin-bottom: 1rem;
+}
+.serp-url {
+	font-size: 0.78rem;
+	color: rgba(var(--ink), 0.66);
+}
+.serp-title {
+	color: #1a0dab;
+	font-size: 1.15rem;
+	line-height: 1.3;
+	margin: 0.2rem 0;
+	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+}
+[data-theme="dark"] .serp-title { color: #8ab4f8; }
+.serp-desc {
+	font-size: 0.86rem;
+	color: rgba(var(--ink), 0.74);
+	line-height: 1.4;
+	margin: 0;
+}
+
+/* ── Keyword chips (keyword-density) ── */
+.chip-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.45rem;
+	margin: 0.5rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.3rem 0.7rem;
+	background: rgba(var(--paper-strong), 0.7);
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	font-size: 0.82rem;
+}
+.chip strong { color: var(--signal-deep); }
+
+/* ── Tables (image-checker etc.) ── */
+.report-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.88rem;
+	display: block;
+	overflow-x: auto;
+	max-width: 100%;
+}
+.report-table th,
+.report-table td {
+	padding: 0.6rem 0.7rem;
+	border-bottom: 1px solid var(--line);
+	text-align: left;
+	vertical-align: top;
+}
+.report-table th {
+	font-weight: 700;
+	font-size: 0.76rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: rgba(var(--ink), 0.74);
+}
+.report-table td.flag-fail { color: #b91c1c; font-weight: 700; }
+.report-table td.flag-warn { color: #b45309; font-weight: 700; }
+.report-table td.flag-pass { color: #047857; }
+
+/* ── Empty state ── */
+.report-empty {
+	text-align: center;
+	padding: 2rem 1rem;
+	color: rgba(var(--ink), 0.7);
+}
+
+@media (max-width: 600px) {
+	.report-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+	.score-badge { width: 64px; height: 64px; font-size: 1.5rem; }
+	.stat-row { grid-template-columns: repeat(2, 1fr); }
+	.tool-input-card { padding: 1.1rem; }
+}

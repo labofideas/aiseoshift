@@ -3,6 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
+import '../../styles/tools.css';
 ---
 
 <!doctype html>
@@ -10,183 +11,264 @@ import { SITE_TITLE } from '../../consts';
 	<head>
 		<BaseHead
 			title={`Free Heading Structure Checker | ${SITE_TITLE}`}
-			description="Validate your H1-H6 heading hierarchy for proper nesting, duplicate headings, and SEO best practices. Free tool."
+			description="Validate H1–H6 heading hierarchy on any URL. Checks H1 count, sequential nesting, duplicates, empty headings, and length. Free tool."
 		/>
-		<style>
-			.tool-page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
-			.tool-header { margin-bottom: 1.5rem; }
-			.tool-header h1 { font-family: 'Atkinson', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0.4rem 0 0.6rem; }
-			.tool-header p { color: rgba(var(--ink), 0.72); max-width: 36rem; }
-			.tool-input { margin-bottom: 1.5rem; }
-			.tool-input label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: rgba(var(--ink), 0.6); }
-			.tool-input textarea { width: 100%; min-height: 180px; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-family: monospace; font-size: 0.82rem; line-height: 1.5; resize: vertical; }
-			.tool-input textarea:focus { outline: 2px solid var(--signal); outline-offset: 1px; }
-			.tool-actions { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
-			.btn-primary { padding: 0.75rem 1.5rem; border: none; border-radius: 999px; background: var(--signal); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
-			.btn-primary:hover { background: var(--signal-deep); }
-			.btn-secondary { padding: 0.75rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: rgb(var(--ink)); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
-			.results { display: none; }
-			.results.visible { display: block; }
-			.check-group { margin-bottom: 1.25rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
-			.check-group h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
-			.check-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; font-size: 0.86rem; line-height: 1.5; border-top: 1px solid var(--line); }
-			.check-item:first-of-type { border-top: none; }
-			.check-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 0.1rem; }
-			.pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
-			.warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
-			.fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-			.check-detail { color: rgba(var(--ink), 0.6); font-size: 0.8rem; }
-			.heading-tree { list-style: none; padding: 0; margin: 0; }
-			.heading-tree li { padding: 0.4rem 0; font-size: 0.86rem; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 0.5rem; }
-			.heading-tree li:first-child { border-top: none; }
-			.h-tag { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 22px; border-radius: 4px; background: rgba(var(--ink), 0.08); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; flex-shrink: 0; }
-			.h-text { color: rgba(var(--ink), 0.8); }
-			.h-error { color: #dc2626; font-size: 0.72rem; font-weight: 700; }
-			.back-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-			.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
-			.stat-card { padding: 0.8rem; border-radius: 0.75rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.55); text-align: center; }
-			.stat-num { font-size: 1.4rem; font-weight: 700; color: var(--signal-deep); }
-			.stat-label { font-size: 0.66rem; color: rgba(var(--ink), 0.6); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.15rem; }
-			@media (max-width: 600px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
-		</style>
 	</head>
 	<body>
 		<Header />
 		<main id="main-content" class="tool-page">
-			<a href="/tools" class="back-link">&larr; All Tools</a>
+			<a href="/tools" class="tool-back">← All Tools</a>
 			<div class="tool-header">
 				<p class="section-kicker">On-Page SEO</p>
 				<h1>Heading Structure Checker</h1>
-				<p>Paste your page's HTML to validate the H1-H6 heading hierarchy, check for duplicates, and ensure proper nesting.</p>
+				<p>Validate your H1–H6 hierarchy for proper nesting, duplicate headings, empty tags, and length. Enter a URL or paste HTML source.</p>
 			</div>
-			<div class="tool-input">
-				<label for="html-input">Paste HTML Source Code</label>
-				<textarea id="html-input" placeholder="Right-click your page → View Page Source → Copy All → Paste here"></textarea>
+
+			<div class="tool-input-card">
+				<div class="input-tabs" role="tablist" aria-label="Input mode">
+					<button class="tab-btn" role="tab" aria-selected="true" aria-controls="tab-url" data-tab="url" type="button">URL</button>
+					<button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-html" data-tab="html" type="button">Paste HTML</button>
+				</div>
+
+				<div class="tab-panel active" id="tab-url" role="tabpanel">
+					<div class="tool-field">
+						<label for="url-input">Page URL</label>
+						<input id="url-input" type="url" placeholder="https://example.com/page" autocomplete="url" />
+						<span class="hint">We'll fetch the page server-side and analyze the rendered HTML.</span>
+					</div>
+				</div>
+
+				<div class="tab-panel" id="tab-html" role="tabpanel">
+					<div class="tool-field">
+						<label for="html-input">Raw HTML</label>
+						<textarea id="html-input" placeholder="Paste the page's HTML source code here"></textarea>
+					</div>
+				</div>
+
+				<div class="tool-actions">
+					<button class="btn-primary" id="analyze-btn" type="button">Analyze</button>
+					<button class="btn-secondary" id="clear-btn" type="button">Clear</button>
+				</div>
+				<div class="tool-status" id="tool-status" role="status" aria-live="polite"></div>
 			</div>
-			<div class="tool-actions">
-				<button class="btn-primary" id="analyze-btn">Check Headings</button>
-				<button class="btn-secondary" id="clear-btn">Clear</button>
-			</div>
-			<div class="results" id="results"></div>
+
+			<section class="report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
-			const analyzeBtn = document.getElementById('analyze-btn')!;
-			const clearBtn = document.getElementById('clear-btn')!;
-			const input = document.getElementById('html-input') as HTMLTextAreaElement;
-			const results = document.getElementById('results')!;
+			type Issue = { label: string; status: 'pass' | 'warn' | 'fail'; detail: string };
+			type Analysis = {
+				counts: Record<string, number>;
+				tree: { tag: string; text: string; level: number; error?: string }[];
+				issues: Issue[];
+				total: number;
+			};
 
-			function analyze(html: string) {
+			const tabBtns = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+			const tabPanels = document.querySelectorAll<HTMLElement>('.tab-panel');
+			const urlInput = document.getElementById('url-input') as HTMLInputElement;
+			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
+			const analyzeBtn = document.getElementById('analyze-btn') as HTMLButtonElement;
+			const clearBtn = document.getElementById('clear-btn') as HTMLButtonElement;
+			const statusEl = document.getElementById('tool-status')!;
+			const reportEl = document.getElementById('report')!;
+			let activeTab: 'url' | 'html' = 'url';
+
+			tabBtns.forEach((btn) => {
+				btn.addEventListener('click', () => {
+					tabBtns.forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
+					tabPanels.forEach((p) => p.classList.toggle('active', p.id === `tab-${btn.dataset.tab}`));
+					activeTab = btn.dataset.tab as 'url' | 'html';
+					statusEl.textContent = '';
+					statusEl.classList.remove('error');
+				});
+			});
+
+			function setStatus(text: string, error = false) {
+				statusEl.textContent = text;
+				statusEl.classList.toggle('error', error);
+			}
+
+			async function fetchPage(url: string): Promise<{ url: string; html: string }> {
+				const res = await fetch(`/api/fetch-page?url=${encodeURIComponent(url)}`);
+				if (!res.ok) {
+					const data = await res.json().catch(() => ({}));
+					throw new Error(data.error || `Fetch failed (${res.status})`);
+				}
+				return res.json();
+			}
+
+			function analyze(html: string): Analysis {
 				const doc = new DOMParser().parseFromString(html, 'text/html');
 				const headings = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'));
-
 				const counts: Record<string, number> = { H1: 0, H2: 0, H3: 0, H4: 0, H5: 0, H6: 0 };
-				const tree: { tag: string; text: string; level: number; error?: string }[] = [];
-				const issues: { label: string; status: 'pass' | 'warn' | 'fail'; detail: string }[] = [];
-
+				const tree: Analysis['tree'] = [];
+				const issues: Issue[] = [];
 				let prevLevel = 0;
 				let skippedLevels = false;
-
 				headings.forEach((h) => {
 					const tag = h.tagName;
 					const level = parseInt(tag[1]);
-					const text = h.textContent?.trim().slice(0, 80) || '(empty)';
+					const raw = h.textContent?.trim() || '';
+					const text = (raw.slice(0, 80) || '(empty)') + (raw.length > 80 ? '…' : '');
 					counts[tag]++;
-
 					let error: string | undefined;
 					if (prevLevel > 0 && level > prevLevel + 1) {
-						error = `Skipped from H${prevLevel} to H${level}`;
+						error = `Skipped H${prevLevel} → H${level}`;
 						skippedLevels = true;
 					}
-					tree.push({ tag, text: text + ((h.textContent?.trim().length || 0) > 80 ? '...' : ''), level, error });
+					tree.push({ tag, text, level, error });
 					prevLevel = level;
 				});
 
-				// Checks
-				if (counts.H1 === 0) {
-					issues.push({ label: 'H1 heading', status: 'fail', detail: 'No H1 found. Every page needs exactly one H1.' });
-				} else if (counts.H1 === 1) {
-					issues.push({ label: 'H1 heading', status: 'pass', detail: 'Exactly one H1 found.' });
-				} else {
-					issues.push({ label: 'H1 heading', status: 'warn', detail: `Found ${counts.H1} H1 tags. Best practice is exactly one.` });
-				}
+				if (counts.H1 === 0) issues.push({ label: 'H1 tag', status: 'fail', detail: 'No H1 found. Every page needs exactly one H1.' });
+				else if (counts.H1 === 1) issues.push({ label: 'H1 tag', status: 'pass', detail: 'Exactly one H1 found.' });
+				else issues.push({ label: 'H1 tag', status: 'warn', detail: `Found ${counts.H1} H1 tags. Best practice is exactly one per page.` });
 
-				if (counts.H2 === 0 && headings.length > 1) {
-					issues.push({ label: 'H2 headings', status: 'warn', detail: 'No H2 headings. Use H2s to divide content into sections.' });
-				} else if (counts.H2 > 0) {
-					issues.push({ label: 'H2 headings', status: 'pass', detail: `${counts.H2} H2 headings found.` });
-				}
+				if (counts.H2 === 0 && headings.length > 1) issues.push({ label: 'H2 sections', status: 'warn', detail: 'No H2 headings. Use H2s to break content into scannable sections.' });
+				else if (counts.H2 > 0) issues.push({ label: 'H2 sections', status: 'pass', detail: `${counts.H2} H2 headings divide the page.` });
 
-				if (skippedLevels) {
-					issues.push({ label: 'Heading hierarchy', status: 'fail', detail: 'Heading levels are skipped. Use sequential levels (H1→H2→H3).' });
-				} else if (headings.length > 0) {
-					issues.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a logical sequential order.' });
-				}
+				if (skippedLevels) issues.push({ label: 'Hierarchy', status: 'fail', detail: 'Heading levels are skipped. Keep them sequential (H1 → H2 → H3) for accessibility and SEO.' });
+				else if (headings.length > 0) issues.push({ label: 'Hierarchy', status: 'pass', detail: 'Headings follow a logical sequential order.' });
 
-				// Duplicate headings
-				const texts = headings.map(h => h.textContent?.trim().toLowerCase() || '');
-				const dupes = texts.filter((t, i) => t && texts.indexOf(t) !== i);
-				const uniqueDupes = [...new Set(dupes)];
-				if (uniqueDupes.length > 0) {
-					issues.push({ label: 'Duplicate headings', status: 'warn', detail: `${uniqueDupes.length} duplicate heading text(s) found.` });
-				} else if (headings.length > 0) {
-					issues.push({ label: 'Duplicate headings', status: 'pass', detail: 'No duplicate heading text found.' });
-				}
+				const texts = headings.map((h) => h.textContent?.trim().toLowerCase() || '').filter(Boolean);
+				const dupes = [...new Set(texts.filter((t, i) => texts.indexOf(t) !== i))];
+				if (dupes.length > 0) issues.push({ label: 'Duplicate headings', status: 'warn', detail: `${dupes.length} duplicate heading text${dupes.length > 1 ? 's' : ''} found.` });
+				else if (headings.length > 0) issues.push({ label: 'Duplicate headings', status: 'pass', detail: 'No duplicate heading text.' });
 
-				// Empty headings
-				const empty = headings.filter(h => !h.textContent?.trim());
-				if (empty.length > 0) {
-					issues.push({ label: 'Empty headings', status: 'fail', detail: `${empty.length} heading(s) have no text content.` });
-				}
+				const empty = headings.filter((h) => !h.textContent?.trim()).length;
+				if (empty > 0) issues.push({ label: 'Empty headings', status: 'fail', detail: `${empty} heading${empty > 1 ? 's have' : ' has'} no text content.` });
+				else if (headings.length > 0) issues.push({ label: 'Empty headings', status: 'pass', detail: 'All headings contain text.' });
 
-				// Long headings
-				const longH = headings.filter(h => (h.textContent?.trim().length || 0) > 70);
-				if (longH.length > 0) {
-					issues.push({ label: 'Heading length', status: 'warn', detail: `${longH.length} heading(s) exceed 70 characters. Shorter headings are more scannable.` });
-				} else if (headings.length > 0) {
-					issues.push({ label: 'Heading length', status: 'pass', detail: 'All headings are 70 characters or fewer.' });
-				}
+				const longH = headings.filter((h) => (h.textContent?.trim().length || 0) > 70).length;
+				if (longH > 0) issues.push({ label: 'Heading length', status: 'warn', detail: `${longH} heading${longH > 1 ? 's exceed' : ' exceeds'} 70 characters. Shorter headings scan better.` });
+				else if (headings.length > 0) issues.push({ label: 'Heading length', status: 'pass', detail: 'All headings are 70 characters or fewer.' });
 
 				return { counts, tree, issues, total: headings.length };
 			}
 
-			function render(data: ReturnType<typeof analyze>) {
-				const iconMap: Record<string, string> = { pass: '\u2713', warn: '!', fail: '\u2717' };
-
-				let html = `<div class="stat-grid">
-					<div class="stat-card"><div class="stat-num">${data.total}</div><div class="stat-label">Total Headings</div></div>
-					<div class="stat-card"><div class="stat-num">${data.counts.H1}</div><div class="stat-label">H1 Tags</div></div>
-					<div class="stat-card"><div class="stat-num">${data.counts.H2}</div><div class="stat-label">H2 Tags</div></div>
-					<div class="stat-card"><div class="stat-num">${data.counts.H3 + data.counts.H4 + data.counts.H5 + data.counts.H6}</div><div class="stat-label">H3-H6 Tags</div></div>
-				</div>`;
-
-				html += `<div class="check-group"><h3>Validation Results</h3>`;
-				for (const item of data.issues) {
-					html += `<div class="check-item"><span class="check-icon ${item.status}">${iconMap[item.status]}</span><div><strong>${item.label}</strong><br><span class="check-detail">${item.detail}</span></div></div>`;
+			function calcScore(issues: Issue[]): { score: number; tier: 'good' | 'fair' | 'poor' } {
+				let weight = 0;
+				let lost = 0;
+				for (const i of issues) {
+					weight += 1;
+					if (i.status === 'fail') lost += 1;
+					else if (i.status === 'warn') lost += 0.45;
 				}
-				html += `</div>`;
-
-				if (data.tree.length > 0) {
-					html += `<div class="check-group"><h3>Heading Tree</h3><ul class="heading-tree">`;
-					for (const h of data.tree) {
-						const indent = (h.level - 1) * 1.2;
-						html += `<li style="padding-left:${indent}rem"><span class="h-tag">${h.tag}</span><span class="h-text">${h.text}</span>${h.error ? `<span class="h-error">${h.error}</span>` : ''}</li>`;
-					}
-					html += `</ul></div>`;
-				}
-
-				results.innerHTML = html;
-				results.classList.add('visible');
+				const score = weight === 0 ? 0 : Math.round((1 - lost / weight) * 100);
+				const tier = score >= 80 ? 'good' : score >= 55 ? 'fair' : 'poor';
+				return { score, tier };
 			}
 
-			analyzeBtn.addEventListener('click', () => {
-				const html = input.value.trim();
-				if (!html) { alert('Please paste HTML source code first.'); return; }
-				render(analyze(html));
-				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			function escapeHtml(s: string) {
+				return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+			}
+
+			function render(data: Analysis, source: string) {
+				const { score, tier } = calcScore(data.issues);
+				const iconMap = { pass: '✓', warn: '!', fail: '✕' };
+
+				let html = `
+					<header class="report-header">
+						<div class="score-badge score-${tier}" aria-label="Score ${score} out of 100">${score}</div>
+						<div class="report-title">
+							<h2>Heading Structure Report</h2>
+							<p>${escapeHtml(source)} · ${data.total} heading${data.total === 1 ? '' : 's'} found</p>
+						</div>
+					</header>
+
+					<div class="stat-row">
+						<div class="stat"><span class="stat-num">${data.total}</span><span class="stat-label">Total headings</span></div>
+						<div class="stat"><span class="stat-num">${data.counts.H1}</span><span class="stat-label">H1</span></div>
+						<div class="stat"><span class="stat-num">${data.counts.H2}</span><span class="stat-label">H2</span></div>
+						<div class="stat"><span class="stat-num">${data.counts.H3 + data.counts.H4 + data.counts.H5 + data.counts.H6}</span><span class="stat-label">H3–H6</span></div>
+					</div>
+
+					<div class="report-section">
+						<h3>Checks</h3>
+						<ul class="issue-list">
+							${data.issues.map((i) => `
+								<li class="issue">
+									<span class="issue-icon ${i.status}" aria-hidden="true">${iconMap[i.status]}</span>
+									<div class="issue-body">
+										<p class="issue-label">${escapeHtml(i.label)}</p>
+										<p class="issue-detail">${escapeHtml(i.detail)}</p>
+									</div>
+								</li>
+							`).join('')}
+						</ul>
+					</div>
+				`;
+
+				if (data.tree.length > 0) {
+					html += `
+						<div class="report-section">
+							<h3>Heading tree</h3>
+							<ul class="heading-tree">
+								${data.tree.map((h) => `
+									<li style="padding-left:${(h.level - 1) * 1.1}rem">
+										<span class="h-tag">${h.tag}</span>
+										<span class="h-text">${escapeHtml(h.text)}</span>
+										${h.error ? `<span class="h-error">${escapeHtml(h.error)}</span>` : ''}
+									</li>
+								`).join('')}
+							</ul>
+						</div>
+					`;
+				} else {
+					html += `<div class="report-section report-empty">No headings found in the source.</div>`;
+				}
+
+				reportEl.innerHTML = html;
+				reportEl.classList.add('visible');
+				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+
+			async function run() {
+				analyzeBtn.disabled = true;
+				try {
+					let html: string;
+					let source: string;
+					if (activeTab === 'url') {
+						const url = urlInput.value.trim();
+						if (!url) { setStatus('Enter a URL to analyze.', true); return; }
+						setStatus('Fetching page…');
+						const result = await fetchPage(url);
+						html = result.html;
+						source = result.url;
+					} else {
+						html = htmlInput.value.trim();
+						if (!html) { setStatus('Paste HTML to analyze.', true); return; }
+						source = 'Pasted HTML';
+					}
+					setStatus('');
+					render(analyze(html), source);
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
+					reportEl.classList.remove('visible');
+					reportEl.innerHTML = '';
+				} finally {
+					analyzeBtn.disabled = false;
+				}
+			}
+
+			analyzeBtn.addEventListener('click', run);
+			[urlInput, htmlInput].forEach((el) => {
+				el.addEventListener('keydown', (e) => {
+					if ((e as KeyboardEvent).key === 'Enter' && (el.tagName === 'INPUT' || (e as KeyboardEvent).metaKey || (e as KeyboardEvent).ctrlKey)) {
+						e.preventDefault();
+						run();
+					}
+				});
 			});
-			clearBtn.addEventListener('click', () => { input.value = ''; results.innerHTML = ''; results.classList.remove('visible'); });
+			clearBtn.addEventListener('click', () => {
+				urlInput.value = '';
+				htmlInput.value = '';
+				reportEl.innerHTML = '';
+				reportEl.classList.remove('visible');
+				setStatus('');
+			});
 		</script>
 	</body>
 </html>
