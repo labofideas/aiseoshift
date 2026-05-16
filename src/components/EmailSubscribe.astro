@@ -12,13 +12,14 @@ const formAction = import.meta.env.PUBLIC_MAILCHIMP_FORM_ACTION || '#';
 ---
 
 <div class="subscribe-bar">
-	<p class="subscribe-label">Like this post?</p>
+	<p class="subscribe-label" id="subscribe-label">Like this post?</p>
 	<form
 		action={formAction}
 		method="post"
 		class="subscribe-form"
 		target="_blank"
 		novalidate
+		aria-labelledby="subscribe-label"
 	>
 		<input
 			type="email"
@@ -77,14 +78,14 @@ const formAction = import.meta.env.PUBLIC_MAILCHIMP_FORM_ACTION || '#';
 	}
 
 	.subscribe-input::placeholder {
-		color: rgba(var(--ink), 0.35);
+		color: rgba(var(--ink), 0.55);
 	}
 
 	.subscribe-btn {
 		display: inline-flex;
 		align-items: center;
 		padding: 0.55rem 1.2rem;
-		background: var(--signal);
+		background: var(--signal-deep);
 		color: #fff;
 		border: none;
 		border-radius: 0 2rem 2rem 0;
@@ -96,8 +97,9 @@ const formAction = import.meta.env.PUBLIC_MAILCHIMP_FORM_ACTION || '#';
 		transition: opacity 140ms ease, transform 100ms ease;
 	}
 
-	.subscribe-btn:hover {
-		opacity: 0.88;
+	.subscribe-btn:hover,
+	.subscribe-btn:focus-visible {
+		opacity: 0.92;
 		transform: translateY(-1px);
 	}
 
