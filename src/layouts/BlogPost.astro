@@ -23,7 +23,10 @@ const {
 const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
 const readTime = Math.max(3, Math.round((description.length + deck.length + title.length + tags.join(' ').length * 30) / 180));
 const tocHeadings = headings.filter((h) => h.depth <= 3 && h.text !== 'Related reading' && h.text !== 'References');
-const structuredData = {
+
+const heroImageAbs = heroImage?.src ? new URL(heroImage.src, SITE_URL).toString() : undefined;
+
+const articleSchema: Record<string, unknown> = {
 	'@context': 'https://schema.org',
 	'@type': 'Article',
 	headline: title,
@@ -34,6 +37,24 @@ const structuredData = {
 	dateModified: (updatedDate ?? pubDate).toISOString(),
 	mainEntityOfPage: canonical,
 };
+if (heroImageAbs) articleSchema.image = heroImageAbs;
+
+const toolHeadings = headings.filter((h) => h.depth === 3 && /^\d+\.\s/.test(h.text));
+const itemListSchema = toolHeadings.length >= 5 ? {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: title,
+	itemListOrder: 'https://schema.org/ItemListOrderDescending',
+	numberOfItems: toolHeadings.length,
+	itemListElement: toolHeadings.map((h, i) => ({
+		'@type': 'ListItem',
+		position: i + 1,
+		name: h.text.replace(/^\d+\.\s*/, '').replace(/\s*[—–-]\s.*$/, ''),
+		url: `${canonical}#${h.slug}`,
+	})),
+} : null;
+
+const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articleSchema;
 ---
 
 <html lang="en">
@@ -42,6 +63,7 @@ const structuredData = {
 			title={`${title} | ${SITE_TITLE}`}
 			description={description}
 			canonical={canonical}
+			image={heroImageAbs}
 			ogType="article"
 			publishedTime={pubDate.toISOString()}
 			modifiedTime={(updatedDate ?? pubDate).toISOString()}
