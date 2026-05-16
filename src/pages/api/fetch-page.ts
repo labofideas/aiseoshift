@@ -1,7 +1,6 @@
-// Cloudflare Pages Function: fetch a public URL server-side so the SEO
-// tools can analyze it without hitting browser CORS limits.
-//
-// GET /api/fetch-page?url=https://example.com
+import type { APIRoute } from 'astro';
+
+export const prerender = false;
 
 const MAX_BYTES = 3 * 1024 * 1024;
 const TIMEOUT_MS = 10000;
@@ -33,8 +32,8 @@ function jsonError(message: string, status = 400): Response {
 	});
 }
 
-export async function onRequestGet(context: { request: Request }): Promise<Response> {
-	const url = new URL(context.request.url);
+export const GET: APIRoute = async ({ request }) => {
+	const url = new URL(request.url);
 	const target = url.searchParams.get('url');
 	if (!target) return jsonError('Missing url parameter');
 
@@ -102,4 +101,4 @@ export async function onRequestGet(context: { request: Request }): Promise<Respo
 			err && typeof err === 'object' && 'name' in err && (err as { name: string }).name === 'AbortError';
 		return jsonError(isAbort ? 'Request timed out' : 'Fetch failed', 504);
 	}
-}
+};
