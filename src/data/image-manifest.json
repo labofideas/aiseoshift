@@ -778,5 +778,70 @@
 			"height": 675,
 			"bytes": 48198
 		}
+	},
+	"ai-tools-for-lawyers": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-lawyers-hero.webp",
+			"alt": "Lawyer working with legal documents at an office desk",
+			"photographer": "www.kaboompics.com",
+			"photographerUrl": "https://www.pexels.com/@karola-g",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/book-and-binder-on-a-desk-7876088/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 50072
+		}
+	},
+	"ai-tools-for-doctors": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-doctors-hero.webp",
+			"alt": "Doctor reviewing patient information on a laptop",
+			"photographer": "Tara Winstead",
+			"photographerUrl": "https://www.pexels.com/@tara-winstead",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/a-black-laptop-and-a-black-stethoscope-7723528/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 36760
+		}
+	},
+	"ai-tools-for-real-estate-agents": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-real-estate-agents-hero.webp",
+			"alt": "Real estate agent with house keys representing modern property sales",
+			"photographer": "Pavel Danilyuk",
+			"photographerUrl": "https://www.pexels.com/@pavel-danilyuk",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/close-up-shot-of-keychain-on-person-s-hand-7937684/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 29660
+		}
+	},
+	"ai-tools-for-accountants": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-accountants-hero.webp",
+			"alt": "Accountant reviewing financial reports with a calculator",
+			"photographer": "RDNE Stock project",
+			"photographerUrl": "https://www.pexels.com/@rdne",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/black-and-white-pen-on-white-printer-paper-7821914/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 147486
+		}
+	},
+	"ai-tools-for-sales-reps": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-sales-reps-hero.webp",
+			"alt": "Sales professional on a call with a laptop and business notes",
+			"photographer": "Anna Shvets",
+			"photographerUrl": "https://www.pexels.com/@shvetsa",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/woman-in-black-blazer-holding-smartphone-3727469/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 46526
+		}
 	}
 }
