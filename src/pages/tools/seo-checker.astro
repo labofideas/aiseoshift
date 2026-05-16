@@ -4,6 +4,7 @@ import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
 import '../../styles/tools.css';
+import '../../styles/tools-polish.css';
 ---
 
 <!doctype html>
@@ -11,7 +12,7 @@ import '../../styles/tools.css';
 	<head>
 		<BaseHead
 			title={`Free On-Page SEO Checker | ${SITE_TITLE}`}
-			description="Comprehensive on-page SEO audit: title, meta, headings, images, links, content, mobile, and technical signals — scored out of 100. Free tool."
+			description="Comprehensive on-page SEO audit: title, meta, headings, images, links, content, mobile, and technical signals — scored out of 100 with a visual report."
 		/>
 	</head>
 	<body>
@@ -21,7 +22,7 @@ import '../../styles/tools.css';
 			<div class="tool-header">
 				<p class="section-kicker">On-Page SEO</p>
 				<h1>SEO Audit</h1>
-				<p>Run a complete on-page SEO audit on any URL. Scores title, meta, headings, images, links, content depth, and technical signals — with prioritized fixes.</p>
+				<p>Run a complete on-page SEO audit on any URL. Scored out of 100 across five categories — title &amp; meta, headings, images, links, content &amp; technical — with prioritized fixes.</p>
 			</div>
 
 			<div class="tool-input-card">
@@ -53,8 +54,8 @@ import '../../styles/tools.css';
 		<Footer />
 
 		<script>
-			type Issue = { label: string; status: 'pass' | 'warn' | 'fail'; detail: string };
-			type Group = { group: string; items: Issue[] };
+			type Tier = 'good' | 'fair' | 'poor';
+			type Issue = { label: string; status: 'pass' | 'warn' | 'fail'; detail: string; weight: number; category: string };
 
 			const tabBtns = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
 			const tabPanels = document.querySelectorAll<HTMLElement>('.tab-panel');
@@ -71,180 +72,286 @@ import '../../styles/tools.css';
 					tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
 					tabPanels.forEach((p) => p.classList.toggle('active', p.id === `tab-${b.dataset.tab}`));
 					activeTab = b.dataset.tab as 'url' | 'html';
-					statusEl.textContent = '';
-					statusEl.classList.remove('error');
+					setStatus('');
 				}),
 			);
 
-			const setStatus = (t: string, err = false) => { statusEl.textContent = t; statusEl.classList.toggle('error', err); };
-			const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+			function setStatus(t: string, error = false, loading = false) {
+				statusEl.textContent = t;
+				statusEl.classList.toggle('error', error);
+				statusEl.classList.toggle('loading', loading);
+			}
+			function escapeHtml(s: string) {
+				return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+			}
+			function tierFor(score: number): Tier { return score >= 80 ? 'good' : score >= 55 ? 'fair' : 'poor'; }
 
 			async function fetchPage(url: string) {
 				const res = await fetch(`/api/fetch-page?url=${encodeURIComponent(url)}`);
-				if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `Fetch failed (${res.status})`); }
+				if (!res.ok) {
+					const d = await res.json().catch(() => ({}));
+					throw new Error(d.error || `Fetch failed (${res.status})`);
+				}
 				return res.json();
 			}
 
 			function analyze(html: string) {
 				const doc = new DOMParser().parseFromString(html, 'text/html');
-				const checks: Group[] = [];
-				let score = 0, total = 0;
+				const issues: Issue[] = [];
 
-				const titleChecks: Issue[] = [];
+				// --- Title & meta ---
 				const title = doc.querySelector('title')?.textContent?.trim() || '';
-				total += 2;
-				if (!title) titleChecks.push({ label: 'Title tag', status: 'fail', detail: 'No title tag found.' });
-				else if (title.length < 30) { titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Short title (${title.length} chars). Aim for 50–60.` }); score += 0.5; }
-				else if (title.length > 65) { titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Long title (${title.length} chars). May truncate in search results.` }); score += 0.5; }
-				else { titleChecks.push({ label: 'Title tag', status: 'pass', detail: `"${title}" (${title.length} chars)` }); score++; }
+				if (!title) issues.push({ label: 'Title tag', status: 'fail', detail: 'No <title> found.', weight: 10, category: 'Title & meta' });
+				else if (title.length < 30) issues.push({ label: 'Title tag', status: 'warn', detail: `Short title (${title.length} chars). Aim for 50–60.`, weight: 6, category: 'Title & meta' });
+				else if (title.length > 65) issues.push({ label: 'Title tag', status: 'warn', detail: `Long title (${title.length} chars). May truncate in SERPs.`, weight: 5, category: 'Title & meta' });
+				else issues.push({ label: 'Title tag', status: 'pass', detail: `"${title}" — ${title.length} chars.`, weight: 0, category: 'Title & meta' });
 
-				const metaDesc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
-				if (!metaDesc) titleChecks.push({ label: 'Meta description', status: 'fail', detail: 'No meta description found.' });
-				else if (metaDesc.length < 120) { titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Short (${metaDesc.length} chars). Aim for 140–160.` }); score += 0.5; }
-				else if (metaDesc.length > 170) { titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Long (${metaDesc.length} chars). May truncate.` }); score += 0.5; }
-				else { titleChecks.push({ label: 'Meta description', status: 'pass', detail: `${metaDesc.length} characters.` }); score++; }
-				checks.push({ group: 'Title & meta', items: titleChecks });
+				const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
+				if (!desc) issues.push({ label: 'Meta description', status: 'fail', detail: 'No meta description found.', weight: 9, category: 'Title & meta' });
+				else if (desc.length < 120) issues.push({ label: 'Meta description', status: 'warn', detail: `Short (${desc.length} chars). Aim for 140–160.`, weight: 4, category: 'Title & meta' });
+				else if (desc.length > 170) issues.push({ label: 'Meta description', status: 'warn', detail: `Long (${desc.length} chars). May truncate.`, weight: 4, category: 'Title & meta' });
+				else issues.push({ label: 'Meta description', status: 'pass', detail: `${desc.length} chars.`, weight: 0, category: 'Title & meta' });
 
-				const headingChecks: Issue[] = [];
+				// --- Headings ---
 				const h1s = doc.querySelectorAll('h1');
 				const h2s = doc.querySelectorAll('h2');
-				total += 3;
-				if (h1s.length === 0) headingChecks.push({ label: 'H1 tag', status: 'fail', detail: 'No H1 found. Every page needs exactly one H1.' });
-				else if (h1s.length > 1) { headingChecks.push({ label: 'H1 tag', status: 'warn', detail: `Found ${h1s.length} H1 tags. Use exactly one.` }); score += 0.5; }
+				if (h1s.length === 0) issues.push({ label: 'H1 tag', status: 'fail', detail: 'No H1 found. Every page needs exactly one H1.', weight: 10, category: 'Headings' });
+				else if (h1s.length > 1) issues.push({ label: 'H1 tag', status: 'warn', detail: `Found ${h1s.length} H1 tags. Use exactly one.`, weight: 5, category: 'Headings' });
 				else {
 					const txt = h1s[0].textContent?.trim() || '';
-					headingChecks.push({ label: 'H1 tag', status: 'pass', detail: `"${txt.length > 60 ? txt.slice(0, 60) + '…' : txt}"` });
-					score++;
+					issues.push({ label: 'H1 tag', status: 'pass', detail: `"${txt.length > 60 ? txt.slice(0, 60) + '…' : txt}"`, weight: 0, category: 'Headings' });
 				}
-				if (h2s.length === 0) headingChecks.push({ label: 'H2 sections', status: 'warn', detail: 'No H2 headings. Use H2s to break content into sections.' });
-				else { headingChecks.push({ label: 'H2 sections', status: 'pass', detail: `${h2s.length} H2 heading${h2s.length === 1 ? '' : 's'}.` }); score++; }
+				if (h2s.length === 0) issues.push({ label: 'H2 sections', status: 'warn', detail: 'No H2 headings. Use H2s to break content into sections.', weight: 4, category: 'Headings' });
+				else issues.push({ label: 'H2 sections', status: 'pass', detail: `${h2s.length} H2 heading${h2s.length === 1 ? '' : 's'}.`, weight: 0, category: 'Headings' });
 
 				const allH = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
-				let hierarchyOk = true, prev = 0;
+				let hierarchyOk = true; let prev = 0;
 				allH.forEach((h) => { const lvl = parseInt(h.tagName[1]); if (prev > 0 && lvl > prev + 1) hierarchyOk = false; prev = lvl; });
-				if (hierarchyOk) { headingChecks.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a sequential order.' }); score++; }
-				else { headingChecks.push({ label: 'Heading hierarchy', status: 'warn', detail: 'Heading levels are skipped. Keep them sequential (H1→H2→H3).' }); score += 0.5; }
-				checks.push({ group: 'Headings', items: headingChecks });
+				if (hierarchyOk && allH.length > 0) issues.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a sequential order.', weight: 0, category: 'Headings' });
+				else if (!hierarchyOk) issues.push({ label: 'Heading hierarchy', status: 'warn', detail: 'Heading levels skipped. Keep them sequential (H1→H2→H3).', weight: 5, category: 'Headings' });
 
-				const imgChecks: Issue[] = [];
+				// --- Images ---
 				const imgs = Array.from(doc.querySelectorAll('img'));
-				total += 2;
-				if (imgs.length === 0) { imgChecks.push({ label: 'Images', status: 'warn', detail: 'No images found. Images can improve engagement.' }); score += 0.5; }
+				if (imgs.length === 0) issues.push({ label: 'Images', status: 'warn', detail: 'No images found. Images improve engagement.', weight: 3, category: 'Images' });
 				else {
 					const noAlt = imgs.filter((img) => !img.getAttribute('alt')?.trim()).length;
-					if (noAlt === 0) { imgChecks.push({ label: 'Alt text', status: 'pass', detail: `All ${imgs.length} images have alt text.` }); score++; }
-					else imgChecks.push({ label: 'Alt text', status: 'fail', detail: `${noAlt} of ${imgs.length} images missing alt text.` });
+					if (noAlt === 0) issues.push({ label: 'Alt text', status: 'pass', detail: `All ${imgs.length} images have alt text.`, weight: 0, category: 'Images' });
+					else issues.push({ label: 'Alt text', status: 'fail', detail: `${noAlt} of ${imgs.length} images missing alt text.`, weight: 8, category: 'Images' });
 
 					const noDim = imgs.filter((img) => !img.getAttribute('width') || !img.getAttribute('height')).length;
-					if (noDim === 0) { imgChecks.push({ label: 'Image dimensions', status: 'pass', detail: 'All images have width and height set.' }); score++; }
-					else { imgChecks.push({ label: 'Image dimensions', status: 'warn', detail: `${noDim} images missing dimensions. Causes layout shifts (CLS).` }); score += 0.5; }
+					if (noDim === 0) issues.push({ label: 'Image dimensions', status: 'pass', detail: 'All images have width and height set.', weight: 0, category: 'Images' });
+					else issues.push({ label: 'Image dimensions', status: 'warn', detail: `${noDim} images missing dimensions. Causes layout shifts (CLS).`, weight: 5, category: 'Images' });
 				}
-				checks.push({ group: 'Images', items: imgChecks });
 
-				const linkChecks: Issue[] = [];
+				// --- Links ---
 				const links = Array.from(doc.querySelectorAll('a[href]'));
 				const internal = links.filter((a) => { const h = a.getAttribute('href') || ''; return h.startsWith('/') || h.startsWith('#'); }).length;
 				const external = links.filter((a) => (a.getAttribute('href') || '').startsWith('http')).length;
-				total += 1;
-				linkChecks.push({ label: 'Total links', status: 'pass', detail: `${links.length} links — ${internal} internal, ${external} external.` });
-				score++;
-				if (internal < 2) linkChecks.push({ label: 'Internal links', status: 'warn', detail: 'Fewer than 2 internal links. Add more to strengthen site structure.' });
-				else linkChecks.push({ label: 'Internal links', status: 'pass', detail: `${internal} internal links.` });
-				checks.push({ group: 'Links', items: linkChecks });
+				if (links.length > 0) issues.push({ label: 'Link count', status: 'pass', detail: `${links.length} links — ${internal} internal, ${external} external.`, weight: 0, category: 'Links' });
+				if (internal < 2) issues.push({ label: 'Internal links', status: 'warn', detail: 'Fewer than 2 internal links. Add more to strengthen site structure.', weight: 4, category: 'Links' });
+				else issues.push({ label: 'Internal links', status: 'pass', detail: `${internal} internal links.`, weight: 0, category: 'Links' });
 
-				const contentChecks: Issue[] = [];
+				// --- Content & technical ---
 				const bodyText = doc.body?.textContent?.trim() || '';
 				const wc = bodyText.split(/\s+/).filter(Boolean).length;
-				total += 2;
-				if (wc < 300) contentChecks.push({ label: 'Word count', status: 'fail', detail: `${wc} words. Below 300 underperforms in search.` });
-				else if (wc < 1000) { contentChecks.push({ label: 'Word count', status: 'warn', detail: `${wc} words. Consider 1,000+ for competitive topics.` }); score += 0.5; }
-				else { contentChecks.push({ label: 'Word count', status: 'pass', detail: `${wc.toLocaleString()} words.` }); score++; }
+				if (wc < 300) issues.push({ label: 'Word count', status: 'fail', detail: `${wc} words. Below 300 underperforms in search.`, weight: 8, category: 'Content & technical' });
+				else if (wc < 1000) issues.push({ label: 'Word count', status: 'warn', detail: `${wc} words. Consider 1,000+ for competitive topics.`, weight: 3, category: 'Content & technical' });
+				else issues.push({ label: 'Word count', status: 'pass', detail: `${wc.toLocaleString()} words.`, weight: 0, category: 'Content & technical' });
 
 				const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href');
-				if (canonical) { contentChecks.push({ label: 'Canonical URL', status: 'pass', detail: canonical }); score++; }
-				else { contentChecks.push({ label: 'Canonical URL', status: 'warn', detail: 'No canonical URL. Add one to prevent duplicate-content issues.' }); score += 0.5; }
+				if (canonical) issues.push({ label: 'Canonical URL', status: 'pass', detail: canonical.length > 80 ? canonical.slice(0, 80) + '…' : canonical, weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Canonical URL', status: 'warn', detail: 'No canonical URL. Add one to prevent duplicate-content issues.', weight: 5, category: 'Content & technical' });
 
 				const viewport = doc.querySelector('meta[name="viewport"]');
-				contentChecks.push(viewport ? { label: 'Viewport meta', status: 'pass', detail: 'Mobile viewport configured.' } : { label: 'Viewport meta', status: 'fail', detail: 'No viewport meta tag. Page may not be mobile-friendly.' });
+				if (viewport) issues.push({ label: 'Viewport meta', status: 'pass', detail: 'Mobile viewport configured.', weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Viewport meta', status: 'fail', detail: 'No viewport meta. Page may not be mobile-friendly.', weight: 8, category: 'Content & technical' });
 
 				const lang = doc.documentElement.getAttribute('lang');
-				contentChecks.push(lang ? { label: 'Language attribute', status: 'pass', detail: `lang="${lang}"` } : { label: 'Language attribute', status: 'warn', detail: 'No lang attribute on <html>.' });
+				if (lang) issues.push({ label: 'Language', status: 'pass', detail: `lang="${lang}"`, weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Language', status: 'warn', detail: 'No lang attribute on <html>.', weight: 2, category: 'Content & technical' });
 
 				const ogTitle = doc.querySelector('meta[property="og:title"]');
 				const ogImage = doc.querySelector('meta[property="og:image"]');
-				if (ogTitle && ogImage) contentChecks.push({ label: 'Open Graph', status: 'pass', detail: 'og:title and og:image present.' });
-				else contentChecks.push({ label: 'Open Graph', status: 'warn', detail: 'Missing og:title or og:image. Social shares may look poor.' });
+				if (ogTitle && ogImage) issues.push({ label: 'Open Graph', status: 'pass', detail: 'og:title and og:image present.', weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Open Graph', status: 'warn', detail: 'Missing og:title or og:image. Social shares may look poor.', weight: 4, category: 'Content & technical' });
 
-				const schemaScripts = doc.querySelectorAll('script[type="application/ld+json"]');
-				contentChecks.push(schemaScripts.length > 0
-					? { label: 'Structured data', status: 'pass', detail: `${schemaScripts.length} JSON-LD block${schemaScripts.length === 1 ? '' : 's'} found.` }
-					: { label: 'Structured data', status: 'warn', detail: 'No JSON-LD schema found. Add Article/FAQPage/etc. for rich-result eligibility.' });
+				const schema = doc.querySelectorAll('script[type="application/ld+json"]');
+				if (schema.length > 0) issues.push({ label: 'Structured data', status: 'pass', detail: `${schema.length} JSON-LD block${schema.length === 1 ? '' : 's'} found.`, weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Structured data', status: 'warn', detail: 'No JSON-LD schema found. Add Article/FAQPage for rich-result eligibility.', weight: 5, category: 'Content & technical' });
 
-				checks.push({ group: 'Content & technical', items: contentChecks });
+				const cats = ['Title & meta', 'Headings', 'Images', 'Links', 'Content & technical'];
+				const catScores = cats.map((cat) => {
+					const items = issues.filter((i) => i.category === cat);
+					const denom = items.length || 1;
+					const passes = items.filter((i) => i.status === 'pass').length;
+					const halves = items.filter((i) => i.status === 'warn').length * 0.5;
+					return { name: cat, score: Math.round(((passes + halves) / denom) * 100), items };
+				});
+				const overall = Math.round(catScores.reduce((s, c) => s + c.score, 0) / catScores.length);
 
-				const finalScore = Math.round((score / total) * 100);
-				const summary = { wc, links: links.length, internal, external, imgs: imgs.length, h1: h1s.length, h2: h2s.length };
-				return { score: finalScore, checks, summary };
+				const fails = issues.filter((i) => i.status === 'fail').length;
+				const warns = issues.filter((i) => i.status === 'warn').length;
+				const passes = issues.filter((i) => i.status === 'pass').length;
+
+				return {
+					overall, catScores, issues,
+					counts: { fails, warns, passes },
+					summary: { wc, links: links.length, internal, external, imgs: imgs.length, h1: h1s.length, h2: h2s.length },
+				};
+			}
+
+			function renderScoreRing(score: number, tier: Tier) {
+				const r = 64;
+				const c = 2 * Math.PI * r;
+				const offset = c - (score / 100) * c;
+				return `
+					<div class="score-ring">
+						<svg viewBox="0 0 140 140" aria-hidden="true">
+							<circle class="track" cx="70" cy="70" r="${r}"/>
+							<circle class="fill tier-${tier}" cx="70" cy="70" r="${r}" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"/>
+						</svg>
+						<div class="score-center">
+							<div class="score-num tier-${tier}">${score}</div>
+							<div class="score-label">Overall</div>
+						</div>
+					</div>
+				`;
+			}
+
+			function renderDonut(fails: number, warns: number, passes: number) {
+				const total = fails + warns + passes;
+				if (total === 0) return '';
+				const r = 56;
+				const c = 2 * Math.PI * r;
+				const pct = (n: number) => (n / total) * c;
+				const failLen = pct(fails);
+				const warnLen = pct(warns);
+				const passLen = pct(passes);
+				let off = 0;
+				const seg = (color: string, len: number) => {
+					const arc = `<circle cx="70" cy="70" r="${r}" fill="none" stroke="${color}" stroke-width="14" stroke-dasharray="${len.toFixed(1)} ${(c - len).toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}"/>`;
+					off += len;
+					return arc;
+				};
+				return `
+					<div class="donut-wrap">
+						<div class="donut">
+							<svg viewBox="0 0 140 140" aria-label="Issues by severity: ${fails} failing, ${warns} warnings, ${passes} passing">
+								<circle cx="70" cy="70" r="${r}" fill="none" stroke="var(--tool-surface-soft)" stroke-width="14"/>
+								${fails > 0 ? seg('var(--tool-bad)', failLen) : ''}
+								${warns > 0 ? seg('var(--tool-warn)', warnLen) : ''}
+								${passes > 0 ? seg('var(--tool-ok)', passLen) : ''}
+							</svg>
+							<div class="donut-center">
+								<div class="total">${total}</div>
+								<div class="label">Checks</div>
+							</div>
+						</div>
+						<ul class="donut-legend" role="list" style="list-style:none;padding:0;margin:0">
+							<li class="li"><span class="swatch" style="background:var(--tool-bad)"></span><span class="name">Failing</span><span class="count">${fails}</span></li>
+							<li class="li"><span class="swatch" style="background:var(--tool-warn)"></span><span class="name">Warnings</span><span class="count">${warns}</span></li>
+							<li class="li"><span class="swatch" style="background:var(--tool-ok)"></span><span class="name">Passing</span><span class="count">${passes}</span></li>
+						</ul>
+					</div>
+				`;
 			}
 
 			function render(data: ReturnType<typeof analyze>, source: string) {
-				const tier = data.score >= 80 ? 'good' : data.score >= 55 ? 'fair' : 'poor';
-				const iconMap = { pass: '✓', warn: '!', fail: '✕' };
-				const allIssues = data.checks.flatMap((g) => g.items);
-				const fails = allIssues.filter((i) => i.status === 'fail');
-				const warns = allIssues.filter((i) => i.status === 'warn');
+				const tier = tierFor(data.overall);
+				const tierLabel = { good: 'Good', fair: 'Needs work', poor: 'Poor' }[tier];
+				const { counts, summary, catScores, issues } = data;
+
+				const sortedIssues = [...issues].sort((a, b) => {
+					const r = { fail: 0, warn: 1, pass: 2 } as const;
+					return r[a.status] - r[b.status] || b.weight - a.weight;
+				}).filter((i) => i.status !== 'pass');
+
+				const chips = [];
+				if (counts.fails > 0) chips.push(`<span class="chip bad">${counts.fails} failing</span>`);
+				if (counts.warns > 0) chips.push(`<span class="chip warn">${counts.warns} warnings</span>`);
+				if (counts.passes > 0) chips.push(`<span class="chip ok">${counts.passes} passing</span>`);
+				chips.push(`<span class="chip">${summary.wc.toLocaleString()} words</span>`);
+				chips.push(`<span class="chip">${summary.imgs} image${summary.imgs === 1 ? '' : 's'}</span>`);
+				chips.push(`<span class="chip">${summary.links} link${summary.links === 1 ? '' : 's'}</span>`);
 
 				let html = `
-					<header class="report-header">
-						<div class="score-badge score-${tier}" aria-label="Score ${data.score} out of 100">${data.score}</div>
-						<div class="report-title">
-							<h2>On-page SEO report</h2>
-							<p>${escapeHtml(source)} · ${data.summary.wc.toLocaleString()} words · ${data.summary.imgs} images · ${data.summary.links} links</p>
+					<header class="report-hero">
+						${renderScoreRing(data.overall, tier)}
+						<div class="hero-meta">
+							<h2 class="hero-title">On-page SEO report</h2>
+							<div class="hero-url" title="${escapeHtml(source)}">🔗 ${escapeHtml(source)}</div>
+							<p class="hero-summary">Scored <strong style="color:var(--tool-${tier === 'good' ? 'ok' : tier === 'fair' ? 'warn' : 'bad'})">${data.overall}/100 (${tierLabel})</strong>${counts.fails > 0 ? ` — <strong style="color:var(--tool-bad)">${counts.fails} critical fix${counts.fails === 1 ? '' : 'es'}</strong>` : ''}${counts.warns > 0 ? ` and ${counts.warns} warning${counts.warns === 1 ? '' : 's'}` : ''}.</p>
+							<div class="hero-chips">${chips.join('')}</div>
 						</div>
 					</header>
 
-					<div class="stat-row">
-						<div class="stat"><span class="stat-num">${fails.length}</span><span class="stat-label">Failing</span></div>
-						<div class="stat"><span class="stat-num">${warns.length}</span><span class="stat-label">Warnings</span></div>
-						<div class="stat"><span class="stat-num">${data.summary.h2}</span><span class="stat-label">H2 sections</span></div>
-						<div class="stat"><span class="stat-num">${data.summary.internal}</span><span class="stat-label">Internal links</span></div>
+					<div class="score-grid">
+						${catScores.map((c) => {
+							const t = tierFor(c.score);
+							return `
+								<div class="score-card tier-${t}">
+									<div class="sc-label">${escapeHtml(c.name)}</div>
+									<div class="sc-num tier-${t}">${c.score}</div>
+									<div class="sc-bar"><div class="sc-bar-fill" style="width:${c.score}%"></div></div>
+								</div>
+							`;
+						}).join('')}
+					</div>
+
+					<div class="panel">
+						<div class="panel-header">
+							<h3 class="panel-title">Issues overview</h3>
+							<span class="panel-badge">${counts.fails + counts.warns} to fix</span>
+						</div>
+						${renderDonut(counts.fails, counts.warns, counts.passes)}
 					</div>
 				`;
 
-				if (fails.length || warns.length) {
+				if (sortedIssues.length > 0) {
 					html += `
-						<div class="report-section">
-							<h3>Top fixes (sorted by impact)</h3>
-							<ul class="issue-list">
-								${[...fails, ...warns].slice(0, 6).map((i) => `
-									<li class="issue">
-										<span class="issue-icon ${i.status}" aria-hidden="true">${iconMap[i.status]}</span>
-										<div class="issue-body">
-											<p class="issue-label">${escapeHtml(i.label)}</p>
-											<p class="issue-detail">${escapeHtml(i.detail)}</p>
+						<div class="panel">
+							<div class="panel-header">
+								<h3 class="panel-title">Prioritized fixes</h3>
+								<span class="panel-badge ${counts.fails > 0 ? 'tier-poor' : 'tier-fair'}">Sorted by impact</span>
+							</div>
+							<div class="panel-body flush">
+								<div class="issues-table">
+									${sortedIssues.map((i) => `
+										<div class="row">
+											<div><div class="sev-dot ${i.status}" aria-hidden="true"></div></div>
+											<div>
+												<p class="row-title">${escapeHtml(i.label)}</p>
+												<p class="row-sub">${escapeHtml(i.detail)}</p>
+											</div>
+											<div><span class="row-cat">${escapeHtml(i.category)}</span></div>
+											<div><div class="impact-bar ${i.status}"><span style="width:${Math.min(100, i.weight * 10)}%"></span></div></div>
 										</div>
-									</li>
-								`).join('')}
-							</ul>
+									`).join('')}
+								</div>
+							</div>
 						</div>
 					`;
 				}
 
-				for (const group of data.checks) {
+				const checks = issues.filter((i) => i.status === 'pass');
+				if (checks.length > 0) {
 					html += `
-						<div class="report-section">
-							<h3>${escapeHtml(group.group)}</h3>
-							<ul class="issue-list">
-								${group.items.map((i) => `
-									<li class="issue">
-										<span class="issue-icon ${i.status}" aria-hidden="true">${iconMap[i.status]}</span>
-										<div class="issue-body">
-											<p class="issue-label">${escapeHtml(i.label)}</p>
-											<p class="issue-detail">${escapeHtml(i.detail)}</p>
+						<div class="panel">
+							<div class="panel-header">
+								<h3 class="panel-title">Passing checks</h3>
+								<span class="panel-badge tier-good">${checks.length} passed</span>
+							</div>
+							<div class="check-grid">
+								${checks.map((i) => `
+									<div class="check-card">
+										<div class="check-icon pass" aria-hidden="true">✓</div>
+										<div class="check-body">
+											<strong>${escapeHtml(i.label)}</strong>
+											<span>${escapeHtml(i.detail)}</span>
 										</div>
-									</li>
+									</div>
 								`).join('')}
-							</ul>
+							</div>
 						</div>
 					`;
 				}
@@ -262,7 +369,7 @@ import '../../styles/tools.css';
 					if (activeTab === 'url') {
 						const u = urlInput.value.trim();
 						if (!u) { setStatus('Enter a URL to audit.', true); return; }
-						setStatus('Fetching page…');
+						setStatus('Fetching page', false, true);
 						const r = await fetchPage(u);
 						html = r.html;
 						source = r.url;

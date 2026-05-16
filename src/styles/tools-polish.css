@@ -1,0 +1,271 @@
+/* ============================================================
+   Shared SaaS polish layer for all tool reports.
+   Applies to: seo-checker, meta-checker, keyword-density,
+               heading-checker, image-checker.
+   Targets generic patterns (cards, tables, panels, sidebars)
+   so each tool inherits the same rhythm without per-tool rules.
+   ============================================================ */
+
+:root {
+	/* Spacing scale (matches 4/8 base) */
+	--ts-1: 4px;
+	--ts-2: 8px;
+	--ts-3: 12px;
+	--ts-4: 16px;
+	--ts-5: 24px;
+	--ts-6: 32px;
+	--ts-7: 48px;
+	--ts-8: 64px;
+
+	/* Radii */
+	--tr-sm: 6px;
+	--tr-md: 10px;
+	--tr-lg: 14px;
+	--tr-xl: 20px;
+
+	/* Shadows (soft, layered SaaS depth) */
+	--ts-shadow-1: 0 1px 2px rgba(20, 16, 12, 0.04);
+	--ts-shadow-2: 0 4px 12px rgba(20, 16, 12, 0.05), 0 1px 3px rgba(20, 16, 12, 0.04);
+	--ts-shadow-3: 0 14px 36px rgba(20, 16, 12, 0.07), 0 2px 6px rgba(20, 16, 12, 0.04);
+}
+
+html.dark {
+	--ts-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+	--ts-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.3);
+	--ts-shadow-3: 0 14px 36px rgba(0, 0, 0, 0.45), 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ----- Smooth entrance for any report when .visible is added ----- */
+.report,
+.mt-report,
+.kd-report,
+.hc-report,
+.ic-report {
+	opacity: 0;
+	transform: translateY(6px);
+	transition:
+		opacity 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+		transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.report.visible,
+.mt-report.visible,
+.kd-report.visible,
+.hc-report.visible,
+.ic-report.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.report,
+	.mt-report,
+	.kd-report,
+	.hc-report,
+	.ic-report {
+		transition: none;
+		transform: none;
+	}
+}
+
+/* ----- Tool input card lift on focus-within ----- */
+.tool-input-card {
+	transition: box-shadow 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+.tool-input-card:focus-within {
+	box-shadow: var(--ts-shadow-2);
+}
+
+/* ----- Buttons inside tool reports get hover lift ----- */
+.btn-primary,
+.btn-secondary {
+	transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.btn-primary:hover:not(:disabled),
+.btn-secondary:hover:not(:disabled) {
+	transform: translateY(-1px);
+	box-shadow: var(--ts-shadow-1);
+}
+.btn-primary:active:not(:disabled),
+.btn-secondary:active:not(:disabled) {
+	transform: translateY(0);
+}
+
+/* ----- Tile / card hover micro-interaction ----- */
+.stat-tile,
+.mt-stat-tile,
+.kd-meta-tile,
+.hc-stat-tile,
+.ic-stat-tile,
+.check-card {
+	transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+}
+.stat-tile:hover,
+.mt-stat-tile:hover,
+.kd-meta-tile:hover,
+.hc-stat-tile:hover,
+.ic-stat-tile:hover {
+	box-shadow: var(--ts-shadow-1);
+}
+
+/* ----- Issues / table rows: hover highlight ----- */
+.issues-table .row,
+.report-table tbody tr,
+.mt-table tbody tr,
+.kd-table tbody tr,
+.hc-table tbody tr,
+.ic-table tbody tr {
+	transition: background-color 160ms ease;
+}
+
+/* ----- Make any table inside a panel horizontally scrollable
+        with a subtle gradient mask at the right edge ----- */
+.table-scroll,
+.mt-table-scroll,
+.kd-table-scroll,
+.hc-table-scroll,
+.ic-table-scroll {
+	position: relative;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+/* Force a sane min width on the inner table so columns don't collapse
+   into single-word stacks on narrow screens. Each tool's table reads
+   naturally once the user scrolls horizontally. */
+.hc-table-scroll > .hc-table,
+.mt-table-scroll > .mt-table,
+.kd-table-scroll > .kd-table,
+.ic-table-scroll > .ic-table {
+	min-width: 560px;
+}
+.table-scroll::after,
+.mt-table-scroll::after,
+.kd-table-scroll::after,
+.hc-table-scroll::after,
+.ic-table-scroll::after {
+	content: '';
+	position: sticky;
+	top: 0;
+	right: 0;
+	float: right;
+	width: 24px;
+	height: 100%;
+	pointer-events: none;
+	background: linear-gradient(to right, transparent, rgba(var(--paper-strong), 0.85));
+	opacity: 0;
+	transition: opacity 200ms ease;
+}
+.table-scroll:hover::after,
+.mt-table-scroll:hover::after,
+.kd-table-scroll:hover::after,
+.hc-table-scroll:hover::after,
+.ic-table-scroll:hover::after {
+	opacity: 1;
+}
+
+/* ----- Mobile: hide editorial sidebar by default, expose toggle ----- */
+@media (max-width: 860px) {
+	.mt-sidebar,
+	.kd-sidebar,
+	.hc-sidebar,
+	.ic-sidebar {
+		display: none !important;
+	}
+	.mt-layout,
+	.kd-layout,
+	.hc-layout,
+	.ic-layout {
+		grid-template-columns: 1fr !important;
+		gap: var(--ts-4) !important;
+	}
+}
+
+/* ----- Mobile: ensure inputs / buttons have 44px touch targets ----- */
+@media (max-width: 600px) {
+	.tool-input-card input[type='url'],
+	.tool-input-card input[type='text'],
+	.tool-input-card textarea {
+		min-height: 44px;
+		font-size: 16px; /* prevents iOS zoom */
+	}
+	.tool-input-card .btn-primary,
+	.tool-input-card .btn-secondary,
+	.tool-input-card .tab-btn {
+		min-height: 44px;
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+}
+
+/* ----- Mobile: stat bars become a horizontal scroller for very wide stat rows ----- */
+@media (max-width: 480px) {
+	.hc-stat-bar,
+	.ic-stat-bar {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		flex-wrap: nowrap !important;
+		padding-bottom: var(--ts-2);
+		scroll-snap-type: x mandatory;
+	}
+	.hc-stat-tile,
+	.ic-stat-tile {
+		flex: 0 0 auto;
+		min-width: 110px;
+		scroll-snap-align: start;
+	}
+}
+
+/* ----- Focus rings: visible, calm, brand-aligned ----- */
+.tool-input-card :focus-visible,
+.report :focus-visible,
+.mt-report :focus-visible,
+.kd-report :focus-visible,
+.hc-report :focus-visible,
+.ic-report :focus-visible {
+	outline: 2px solid var(--signal-deep);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* ----- Print: clean, readable, no decorative chrome ----- */
+@media print {
+	header,
+	footer,
+	.tool-back,
+	.tool-input-card,
+	nav,
+	.skip-link {
+		display: none !important;
+	}
+	body {
+		background: #fff !important;
+		color: #111 !important;
+	}
+	.report,
+	.mt-report,
+	.kd-report,
+	.hc-report,
+	.ic-report {
+		opacity: 1 !important;
+		transform: none !important;
+	}
+	.panel,
+	.mt-card,
+	.kd-card,
+	.hc-card,
+	.ic-card {
+		box-shadow: none !important;
+		break-inside: avoid;
+		page-break-inside: avoid;
+		border: 1px solid #ddd !important;
+	}
+	.report-table,
+	.mt-table,
+	.kd-table,
+	.hc-table,
+	.ic-table {
+		font-size: 11pt;
+	}
+	a[href]::after {
+		content: '';
+	}
+}
