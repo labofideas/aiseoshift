@@ -68,6 +68,7 @@ const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articl
 			publishedTime={pubDate.toISOString()}
 			modifiedTime={(updatedDate ?? pubDate).toISOString()}
 			structuredData={structuredData}
+			preloadHero={heroImage?.src}
 		/>
 		<style>
 			.article-shell {
