@@ -856,5 +856,53 @@
         "bytes": 31596
       }
     ]
+  },
+  "ai-citation-generators": {
+    "hero": { "src": "/images/posts/ai-citation-generators-hero.webp", "alt": "Editorial visual for best AI citation generators in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-citation-generators", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-citation-generators-inline-1.webp", "alt": "Comparison of AI citation generator tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-citation-generators", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-content-detection-tools": {
+    "hero": { "src": "/images/posts/ai-content-detection-tools-hero.webp", "alt": "Editorial visual for best AI content detection tools in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-content-detection-tools", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-content-detection-tools-inline-1.webp", "alt": "Comparison of AI content detection tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-content-detection-tools", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-content-humanizers": {
+    "hero": { "src": "/images/posts/ai-content-humanizers-hero.webp", "alt": "Editorial visual for best AI content humanizers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-content-humanizers", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-content-humanizers-inline-1.webp", "alt": "Comparison of AI content humanizer tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-content-humanizers", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-detection-tools-for-writers": {
+    "hero": { "src": "/images/posts/ai-detection-tools-for-writers-hero.webp", "alt": "Editorial visual for best AI detection tools for writers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-detection-tools-for-writers", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-detection-tools-for-writers-inline-1.webp", "alt": "Comparison of AI detection tools for writers", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-detection-tools-for-writers", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-grammar-checkers": {
+    "hero": { "src": "/images/posts/ai-grammar-checkers-hero.webp", "alt": "Editorial visual for best AI grammar checkers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-grammar-checkers", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-grammar-checkers-inline-1.webp", "alt": "Comparison of AI grammar checking tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-grammar-checkers", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-image-generators": {
+    "hero": { "src": "/images/posts/ai-image-generators-hero.webp", "alt": "Editorial visual for best AI image generators in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-image-generators", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-image-generators-inline-1.webp", "alt": "Comparison of AI image generator tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-image-generators", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-paraphrasing-tools": {
+    "hero": { "src": "/images/posts/ai-paraphrasing-tools-hero.webp", "alt": "Editorial visual for best AI paraphrasing tools in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-paraphrasing-tools", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-paraphrasing-tools-inline-1.webp", "alt": "Comparison of AI paraphrasing tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-paraphrasing-tools", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-presentation-tools": {
+    "hero": { "src": "/images/posts/ai-presentation-tools-hero.webp", "alt": "Editorial visual for best AI presentation tools in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-presentation-tools", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-presentation-tools-inline-1.webp", "alt": "Comparison of AI presentation tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-presentation-tools", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-product-listing-tools": {
+    "hero": { "src": "/images/posts/ai-product-listing-tools-hero.webp", "alt": "Editorial visual for best AI product listing tools in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-product-listing-tools", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-product-listing-tools-inline-1.webp", "alt": "Comparison of AI product listing tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-product-listing-tools", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-summarizers": {
+    "hero": { "src": "/images/posts/ai-summarizers-hero.webp", "alt": "Editorial visual for best AI summarizer tools in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-summarizers", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-summarizers-inline-1.webp", "alt": "Comparison of AI summarizer tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-summarizers", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "ai-translators": {
+    "hero": { "src": "/images/posts/ai-translators-hero.webp", "alt": "Editorial visual for best AI translator tools in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-translators", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/ai-translators-inline-1.webp", "alt": "Comparison of AI translator tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-translators", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "plagiarism-checkers": {
+    "hero": { "src": "/images/posts/plagiarism-checkers-hero.webp", "alt": "Editorial visual for best plagiarism checkers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/plagiarism-checkers", "width": 1200, "height": 675, "bytes": 85204 },
+    "inline": [{ "src": "/images/posts/plagiarism-checkers-inline-1.webp", "alt": "Comparison of plagiarism checking tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/plagiarism-checkers", "width": 1200, "height": 675, "bytes": 28978 }]
   }
 }

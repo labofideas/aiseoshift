@@ -42,6 +42,7 @@ const structuredData = {
 			title={`${title} | ${SITE_TITLE}`}
 			description={description}
 			canonical={canonical}
+			image={heroImage?.src ?? '/social-card.svg'}
 			ogType="article"
 			publishedTime={pubDate.toISOString()}
 			modifiedTime={(updatedDate ?? pubDate).toISOString()}
