@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "images:fetch": "node ./scripts/fetch-editorial-images.mjs"
+    "images:fetch": "node ./scripts/fetch-editorial-images.mjs",
+    "images:fetch-missing": "node ./scripts/fetch-missing-images.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.0",
