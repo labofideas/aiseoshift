@@ -2,18 +2,11 @@
 // tools can analyze it without hitting browser CORS limits.
 //
 // GET /api/fetch-page?url=https://example.com
-//
-// Safety:
-// - Only http(s) URLs
-// - Block private / local / loopback / link-local hosts (SSRF defense)
-// - Hard timeout (10s)
-// - Max response size (3 MB)
-// - Returns plain HTML body as text/plain
 
 const MAX_BYTES = 3 * 1024 * 1024;
 const TIMEOUT_MS = 10000;
 
-const BLOCKED_HOST_PREFIXES = [
+const BLOCKED_PREFIXES = [
 	'localhost',
 	'127.',
 	'10.',
@@ -24,26 +17,24 @@ const BLOCKED_HOST_PREFIXES = [
 	'fc00:',
 	'fe80:',
 ];
-const BLOCKED_HOSTS_EXACT = new Set(['metadata.google.internal']);
 
 function isBlockedHost(hostname: string): boolean {
 	const h = hostname.toLowerCase();
-	if (BLOCKED_HOSTS_EXACT.has(h)) return true;
-	if (BLOCKED_HOST_PREFIXES.some((p) => h.startsWith(p))) return true;
-	// 172.16.0.0 – 172.31.255.255 private range
+	if (h === 'metadata.google.internal') return true;
+	if (BLOCKED_PREFIXES.some((p) => h.startsWith(p))) return true;
 	if (/^172\.(1[6-9]|2[0-9]|3[01])\./.test(h)) return true;
 	return false;
 }
 
-function jsonError(message: string, status = 400) {
+function jsonError(message: string, status = 400): Response {
 	return new Response(JSON.stringify({ error: message }), {
 		status,
 		headers: { 'content-type': 'application/json' },
 	});
 }
 
-export const onRequestGet: PagesFunction = async ({ request }) => {
-	const url = new URL(request.url);
+export async function onRequestGet(context: { request: Request }): Promise<Response> {
+	const url = new URL(context.request.url);
 	const target = url.searchParams.get('url');
 	if (!target) return jsonError('Missing url parameter');
 
@@ -73,49 +64,29 @@ export const onRequestGet: PagesFunction = async ({ request }) => {
 					'Mozilla/5.0 (compatible; AISEOShiftBot/1.0; +https://aiseoshift.com/tools)',
 				accept: 'text/html,application/xhtml+xml',
 			},
-			cf: { cacheTtl: 60, cacheEverything: false },
-		} as RequestInit);
+		});
 
 		clearTimeout(timer);
 
-		if (!res.ok) {
-			return jsonError(`Target returned ${res.status}`, 502);
-		}
+		if (!res.ok) return jsonError(`Target returned ${res.status}`, 502);
+
 		const contentType = res.headers.get('content-type') || '';
 		if (!contentType.includes('html') && !contentType.includes('xml')) {
 			return jsonError('Target is not an HTML page', 415);
 		}
 
-		const reader = res.body!.getReader();
-		const chunks: Uint8Array[] = [];
-		let total = 0;
-		while (true) {
-			const { done, value } = await reader.read();
-			if (done) break;
-			total += value.byteLength;
-			if (total > MAX_BYTES) {
-				try {
-					await reader.cancel();
-				} catch {}
-				return jsonError('Response too large', 413);
-			}
-			chunks.push(value);
-		}
-		const merged = new Uint8Array(total);
-		let offset = 0;
-		for (const c of chunks) {
-			merged.set(c, offset);
-			offset += c.byteLength;
-		}
-		const text = new TextDecoder('utf-8', { fatal: false }).decode(merged);
+		const buf = await res.arrayBuffer();
+		if (buf.byteLength > MAX_BYTES) return jsonError('Response too large', 413);
+
+		const html = new TextDecoder('utf-8', { fatal: false }).decode(buf);
 
 		return new Response(
 			JSON.stringify({
 				url: res.url,
 				status: res.status,
 				contentType,
-				bytes: total,
-				html: text,
+				bytes: buf.byteLength,
+				html,
 			}),
 			{
 				status: 200,
@@ -127,10 +98,8 @@ export const onRequestGet: PagesFunction = async ({ request }) => {
 		);
 	} catch (err) {
 		clearTimeout(timer);
-		const msg =
-			err instanceof Error && err.name === 'AbortError'
-				? 'Request timed out'
-				: 'Fetch failed';
-		return jsonError(msg, 504);
+		const isAbort =
+			err && typeof err === 'object' && 'name' in err && (err as { name: string }).name === 'AbortError';
+		return jsonError(isAbort ? 'Request timed out' : 'Fetch failed', 504);
 	}
-};
+}
