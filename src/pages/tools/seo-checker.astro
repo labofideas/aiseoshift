@@ -3,6 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
+import '../../styles/tools.css';
 ---
 
 <!doctype html>
@@ -10,444 +11,281 @@ import { SITE_TITLE } from '../../consts';
 	<head>
 		<BaseHead
 			title={`Free On-Page SEO Checker | ${SITE_TITLE}`}
-			description="Free on-page SEO checker. Paste your HTML to analyze title tags, meta descriptions, headings, images, links, and word count against best practices."
+			description="Comprehensive on-page SEO audit: title, meta, headings, images, links, content, mobile, and technical signals — scored out of 100. Free tool."
 		/>
-		<style>
-			.tool-page {
-				width: min(1000px, calc(100% - 2rem));
-				margin: 0 auto;
-				padding: 2rem 0 4rem;
-			}
-
-			.tool-header { margin-bottom: 1.5rem; }
-
-			.tool-header h1 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(1.8rem, 3vw, 2.4rem);
-				line-height: 1.1;
-				margin: 0.4rem 0 0.6rem;
-			}
-
-			.tool-header p {
-				color: rgba(var(--ink), 0.72);
-				max-width: 36rem;
-			}
-
-			.tool-input {
-				margin-bottom: 1.5rem;
-			}
-
-			.tool-input label {
-				display: block;
-				font-size: 0.78rem;
-				font-weight: 700;
-				text-transform: uppercase;
-				letter-spacing: 0.1em;
-				margin-bottom: 0.5rem;
-				color: rgba(var(--ink), 0.6);
-			}
-
-			.tool-input textarea {
-				width: 100%;
-				min-height: 180px;
-				padding: 1rem;
-				border: 1px solid var(--line);
-				border-radius: 12px;
-				background: rgba(var(--paper-strong), 0.5);
-				color: rgb(var(--ink));
-				font-family: 'SFMono-Regular', Consolas, monospace;
-				font-size: 0.82rem;
-				line-height: 1.5;
-				resize: vertical;
-			}
-
-			.tool-input textarea:focus {
-				outline: 2px solid var(--signal);
-				outline-offset: 1px;
-			}
-
-			.tool-actions {
-				display: flex;
-				gap: 0.75rem;
-				margin-bottom: 2rem;
-			}
-
-			.btn-primary {
-				padding: 0.75rem 1.5rem;
-				border: none;
-				border-radius: 999px;
-				background: var(--signal);
-				color: #fff;
-				font-size: 0.82rem;
-				font-weight: 700;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				cursor: pointer;
-				transition: background 140ms ease;
-			}
-
-			.btn-primary:hover { background: var(--signal-deep); }
-
-			.btn-secondary {
-				padding: 0.75rem 1.5rem;
-				border: 1px solid var(--line);
-				border-radius: 999px;
-				background: transparent;
-				color: rgb(var(--ink));
-				font-size: 0.82rem;
-				font-weight: 700;
-				cursor: pointer;
-			}
-
-			.results { display: none; }
-			.results.visible { display: block; }
-
-			.score-bar {
-				display: flex;
-				align-items: center;
-				gap: 1rem;
-				padding: 1.25rem 1.5rem;
-				border-radius: 1rem;
-				border: 1px solid var(--line);
-				background: rgba(var(--paper-strong), 0.55);
-				margin-bottom: 1.5rem;
-			}
-
-			.score-circle {
-				width: 64px;
-				height: 64px;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 1.4rem;
-				font-weight: 700;
-				flex-shrink: 0;
-			}
-
-			.score-good { background: rgba(34, 197, 94, 0.15); color: #16a34a; border: 2px solid #16a34a; }
-			.score-ok { background: rgba(234, 179, 8, 0.15); color: #ca8a04; border: 2px solid #ca8a04; }
-			.score-bad { background: rgba(239, 68, 68, 0.15); color: #dc2626; border: 2px solid #dc2626; }
-
-			.score-label {
-				font-size: 0.86rem;
-				color: rgba(var(--ink), 0.7);
-			}
-
-			.score-label strong {
-				display: block;
-				font-size: 1.1rem;
-				color: rgb(var(--ink));
-			}
-
-			.check-group {
-				margin-bottom: 1.25rem;
-				padding: 1.25rem;
-				border-radius: 1rem;
-				border: 1px solid var(--line);
-				background: rgba(var(--paper-strong), 0.35);
-			}
-
-			.check-group h3 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: 0.95rem;
-				margin: 0 0 0.75rem;
-			}
-
-			.check-item {
-				display: flex;
-				align-items: flex-start;
-				gap: 0.6rem;
-				padding: 0.5rem 0;
-				font-size: 0.86rem;
-				line-height: 1.5;
-				border-top: 1px solid var(--line);
-			}
-
-			.check-item:first-of-type { border-top: none; }
-
-			.check-icon {
-				flex-shrink: 0;
-				width: 20px;
-				height: 20px;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 0.7rem;
-				font-weight: 700;
-				margin-top: 0.1rem;
-			}
-
-			.pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
-			.warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
-			.fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-
-			.check-detail {
-				color: rgba(var(--ink), 0.6);
-				font-size: 0.8rem;
-			}
-
-			.back-link {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.3rem;
-				font-size: 0.78rem;
-				font-weight: 700;
-				text-transform: uppercase;
-				letter-spacing: 0.1em;
-				margin-bottom: 1rem;
-			}
-		</style>
 	</head>
 	<body>
 		<Header />
 		<main id="main-content" class="tool-page">
-			<a href="/tools" class="back-link">&larr; All Tools</a>
-
+			<a href="/tools" class="tool-back">← All Tools</a>
 			<div class="tool-header">
 				<p class="section-kicker">On-Page SEO</p>
-				<h1>On-Page SEO Checker</h1>
-				<p>Paste your page's HTML source code to analyze title tags, meta descriptions, headings, images, links, and word count against SEO best practices.</p>
+				<h1>SEO Audit</h1>
+				<p>Run a complete on-page SEO audit on any URL. Scores title, meta, headings, images, links, content depth, and technical signals — with prioritized fixes.</p>
 			</div>
 
-			<div class="tool-input">
-				<label for="html-input">Paste HTML Source Code</label>
-				<textarea id="html-input" placeholder="Right-click your page → View Page Source → Copy All → Paste here"></textarea>
+			<div class="tool-input-card">
+				<div class="input-tabs" role="tablist" aria-label="Input mode">
+					<button class="tab-btn" role="tab" aria-selected="true" data-tab="url" type="button">URL</button>
+					<button class="tab-btn" role="tab" aria-selected="false" data-tab="html" type="button">Paste HTML</button>
+				</div>
+				<div class="tab-panel active" id="tab-url" role="tabpanel">
+					<div class="tool-field">
+						<label for="url-input">Page URL</label>
+						<input id="url-input" type="url" placeholder="https://example.com/page" autocomplete="url" />
+					</div>
+				</div>
+				<div class="tab-panel" id="tab-html" role="tabpanel">
+					<div class="tool-field">
+						<label for="html-input">Raw HTML</label>
+						<textarea id="html-input" placeholder="Paste the page's HTML source"></textarea>
+					</div>
+				</div>
+				<div class="tool-actions">
+					<button class="btn-primary" id="analyze-btn" type="button">Run audit</button>
+					<button class="btn-secondary" id="clear-btn" type="button">Clear</button>
+				</div>
+				<div class="tool-status" id="tool-status" role="status" aria-live="polite"></div>
 			</div>
 
-			<div class="tool-actions">
-				<button class="btn-primary" id="analyze-btn">Analyze Page</button>
-				<button class="btn-secondary" id="clear-btn">Clear</button>
-			</div>
-
-			<div class="results" id="results"></div>
+			<section class="report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
-			const analyzeBtn = document.getElementById('analyze-btn')!;
-			const clearBtn = document.getElementById('clear-btn')!;
-			const input = document.getElementById('html-input') as HTMLTextAreaElement;
-			const results = document.getElementById('results')!;
+			type Issue = { label: string; status: 'pass' | 'warn' | 'fail'; detail: string };
+			type Group = { group: string; items: Issue[] };
 
-			interface Check {
-				label: string;
-				status: 'pass' | 'warn' | 'fail';
-				detail: string;
+			const tabBtns = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+			const tabPanels = document.querySelectorAll<HTMLElement>('.tab-panel');
+			const urlInput = document.getElementById('url-input') as HTMLInputElement;
+			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
+			const analyzeBtn = document.getElementById('analyze-btn') as HTMLButtonElement;
+			const clearBtn = document.getElementById('clear-btn') as HTMLButtonElement;
+			const statusEl = document.getElementById('tool-status')!;
+			const reportEl = document.getElementById('report')!;
+			let activeTab: 'url' | 'html' = 'url';
+
+			tabBtns.forEach((b) =>
+				b.addEventListener('click', () => {
+					tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+					tabPanels.forEach((p) => p.classList.toggle('active', p.id === `tab-${b.dataset.tab}`));
+					activeTab = b.dataset.tab as 'url' | 'html';
+					statusEl.textContent = '';
+					statusEl.classList.remove('error');
+				}),
+			);
+
+			const setStatus = (t: string, err = false) => { statusEl.textContent = t; statusEl.classList.toggle('error', err); };
+			const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+			async function fetchPage(url: string) {
+				const res = await fetch(`/api/fetch-page?url=${encodeURIComponent(url)}`);
+				if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `Fetch failed (${res.status})`); }
+				return res.json();
 			}
 
 			function analyze(html: string) {
 				const doc = new DOMParser().parseFromString(html, 'text/html');
-				const checks: { group: string; items: Check[] }[] = [];
-				let score = 0;
-				let total = 0;
+				const checks: Group[] = [];
+				let score = 0, total = 0;
 
-				// Title
-				const titleChecks: Check[] = [];
+				const titleChecks: Issue[] = [];
 				const title = doc.querySelector('title')?.textContent?.trim() || '';
 				total += 2;
-				if (!title) {
-					titleChecks.push({ label: 'Title tag', status: 'fail', detail: 'No title tag found.' });
-				} else if (title.length < 30) {
-					titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Title is short (${title.length} chars). Aim for 50-60 characters.` });
-					score += 0.5;
-				} else if (title.length > 65) {
-					titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Title is long (${title.length} chars). May be truncated in search results. Aim for 50-60.` });
-					score += 0.5;
-				} else {
-					titleChecks.push({ label: 'Title tag', status: 'pass', detail: `"${title}" (${title.length} chars)` });
-					score += 1;
-				}
+				if (!title) titleChecks.push({ label: 'Title tag', status: 'fail', detail: 'No title tag found.' });
+				else if (title.length < 30) { titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Short title (${title.length} chars). Aim for 50–60.` }); score += 0.5; }
+				else if (title.length > 65) { titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Long title (${title.length} chars). May truncate in search results.` }); score += 0.5; }
+				else { titleChecks.push({ label: 'Title tag', status: 'pass', detail: `"${title}" (${title.length} chars)` }); score++; }
 
 				const metaDesc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
-				if (!metaDesc) {
-					titleChecks.push({ label: 'Meta description', status: 'fail', detail: 'No meta description found.' });
-				} else if (metaDesc.length < 120) {
-					titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Description is short (${metaDesc.length} chars). Aim for 150-160.` });
-					score += 0.5;
-				} else if (metaDesc.length > 170) {
-					titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Description may be truncated (${metaDesc.length} chars). Aim for 150-160.` });
-					score += 0.5;
-				} else {
-					titleChecks.push({ label: 'Meta description', status: 'pass', detail: `${metaDesc.length} characters` });
-					score += 1;
-				}
-				checks.push({ group: 'Title & Meta', items: titleChecks });
+				if (!metaDesc) titleChecks.push({ label: 'Meta description', status: 'fail', detail: 'No meta description found.' });
+				else if (metaDesc.length < 120) { titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Short (${metaDesc.length} chars). Aim for 140–160.` }); score += 0.5; }
+				else if (metaDesc.length > 170) { titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Long (${metaDesc.length} chars). May truncate.` }); score += 0.5; }
+				else { titleChecks.push({ label: 'Meta description', status: 'pass', detail: `${metaDesc.length} characters.` }); score++; }
+				checks.push({ group: 'Title & meta', items: titleChecks });
 
-				// Headings
-				const headingChecks: Check[] = [];
+				const headingChecks: Issue[] = [];
 				const h1s = doc.querySelectorAll('h1');
 				const h2s = doc.querySelectorAll('h2');
 				total += 3;
-				if (h1s.length === 0) {
-					headingChecks.push({ label: 'H1 tag', status: 'fail', detail: 'No H1 heading found. Every page should have exactly one H1.' });
-				} else if (h1s.length > 1) {
-					headingChecks.push({ label: 'H1 tag', status: 'warn', detail: `Found ${h1s.length} H1 tags. Best practice is exactly one H1 per page.` });
-					score += 0.5;
-				} else {
-					headingChecks.push({ label: 'H1 tag', status: 'pass', detail: `"${h1s[0].textContent?.trim().slice(0, 60)}${(h1s[0].textContent?.trim().length || 0) > 60 ? '...' : ''}"` });
-					score += 1;
+				if (h1s.length === 0) headingChecks.push({ label: 'H1 tag', status: 'fail', detail: 'No H1 found. Every page needs exactly one H1.' });
+				else if (h1s.length > 1) { headingChecks.push({ label: 'H1 tag', status: 'warn', detail: `Found ${h1s.length} H1 tags. Use exactly one.` }); score += 0.5; }
+				else {
+					const txt = h1s[0].textContent?.trim() || '';
+					headingChecks.push({ label: 'H1 tag', status: 'pass', detail: `"${txt.length > 60 ? txt.slice(0, 60) + '…' : txt}"` });
+					score++;
 				}
+				if (h2s.length === 0) headingChecks.push({ label: 'H2 sections', status: 'warn', detail: 'No H2 headings. Use H2s to break content into sections.' });
+				else { headingChecks.push({ label: 'H2 sections', status: 'pass', detail: `${h2s.length} H2 heading${h2s.length === 1 ? '' : 's'}.` }); score++; }
 
-				if (h2s.length === 0) {
-					headingChecks.push({ label: 'H2 tags', status: 'warn', detail: 'No H2 headings found. Use H2s to structure your content into sections.' });
-				} else {
-					headingChecks.push({ label: 'H2 tags', status: 'pass', detail: `Found ${h2s.length} H2 heading${h2s.length > 1 ? 's' : ''}.` });
-					score += 1;
-				}
-
-				// Check heading hierarchy
-				const allHeadings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
-				let hierarchyOk = true;
-				let prevLevel = 0;
-				allHeadings.forEach((h) => {
-					const level = parseInt(h.tagName[1]);
-					if (prevLevel > 0 && level > prevLevel + 1) hierarchyOk = false;
-					prevLevel = level;
-				});
-				if (hierarchyOk) {
-					headingChecks.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a logical order without skipping levels.' });
-					score += 1;
-				} else {
-					headingChecks.push({ label: 'Heading hierarchy', status: 'warn', detail: 'Heading levels are skipped (e.g., H1 → H3). Use sequential levels.' });
-					score += 0.5;
-				}
+				const allH = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+				let hierarchyOk = true, prev = 0;
+				allH.forEach((h) => { const lvl = parseInt(h.tagName[1]); if (prev > 0 && lvl > prev + 1) hierarchyOk = false; prev = lvl; });
+				if (hierarchyOk) { headingChecks.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a sequential order.' }); score++; }
+				else { headingChecks.push({ label: 'Heading hierarchy', status: 'warn', detail: 'Heading levels are skipped. Keep them sequential (H1→H2→H3).' }); score += 0.5; }
 				checks.push({ group: 'Headings', items: headingChecks });
 
-				// Images
-				const imgChecks: Check[] = [];
-				const imgs = doc.querySelectorAll('img');
+				const imgChecks: Issue[] = [];
+				const imgs = Array.from(doc.querySelectorAll('img'));
 				total += 2;
-				if (imgs.length === 0) {
-					imgChecks.push({ label: 'Images', status: 'warn', detail: 'No images found on the page. Images can improve engagement and SEO.' });
-					score += 0.5;
-				} else {
-					const noAlt = Array.from(imgs).filter((img) => !img.getAttribute('alt')?.trim());
-					if (noAlt.length === 0) {
-						imgChecks.push({ label: 'Image alt tags', status: 'pass', detail: `All ${imgs.length} images have alt text.` });
-						score += 1;
-					} else {
-						imgChecks.push({ label: 'Image alt tags', status: 'fail', detail: `${noAlt.length} of ${imgs.length} images missing alt text.` });
-					}
+				if (imgs.length === 0) { imgChecks.push({ label: 'Images', status: 'warn', detail: 'No images found. Images can improve engagement.' }); score += 0.5; }
+				else {
+					const noAlt = imgs.filter((img) => !img.getAttribute('alt')?.trim()).length;
+					if (noAlt === 0) { imgChecks.push({ label: 'Alt text', status: 'pass', detail: `All ${imgs.length} images have alt text.` }); score++; }
+					else imgChecks.push({ label: 'Alt text', status: 'fail', detail: `${noAlt} of ${imgs.length} images missing alt text.` });
 
-					const noDimensions = Array.from(imgs).filter((img) => !img.getAttribute('width') || !img.getAttribute('height'));
-					if (noDimensions.length === 0) {
-						imgChecks.push({ label: 'Image dimensions', status: 'pass', detail: 'All images have width and height attributes.' });
-						score += 1;
-					} else {
-						imgChecks.push({ label: 'Image dimensions', status: 'warn', detail: `${noDimensions.length} images missing width/height. This can cause layout shifts.` });
-						score += 0.5;
-					}
+					const noDim = imgs.filter((img) => !img.getAttribute('width') || !img.getAttribute('height')).length;
+					if (noDim === 0) { imgChecks.push({ label: 'Image dimensions', status: 'pass', detail: 'All images have width and height set.' }); score++; }
+					else { imgChecks.push({ label: 'Image dimensions', status: 'warn', detail: `${noDim} images missing dimensions. Causes layout shifts (CLS).` }); score += 0.5; }
 				}
 				checks.push({ group: 'Images', items: imgChecks });
 
-				// Links
-				const linkChecks: Check[] = [];
-				const links = doc.querySelectorAll('a[href]');
-				const internalLinks = Array.from(links).filter((a) => {
-					const href = a.getAttribute('href') || '';
-					return href.startsWith('/') || href.startsWith('#');
-				});
-				const externalLinks = Array.from(links).filter((a) => {
-					const href = a.getAttribute('href') || '';
-					return href.startsWith('http');
-				});
+				const linkChecks: Issue[] = [];
+				const links = Array.from(doc.querySelectorAll('a[href]'));
+				const internal = links.filter((a) => { const h = a.getAttribute('href') || ''; return h.startsWith('/') || h.startsWith('#'); }).length;
+				const external = links.filter((a) => (a.getAttribute('href') || '').startsWith('http')).length;
 				total += 1;
-				linkChecks.push({ label: 'Total links', status: 'pass', detail: `${links.length} links found (${internalLinks.length} internal, ${externalLinks.length} external).` });
-				score += 1;
-
-				if (internalLinks.length < 2) {
-					linkChecks.push({ label: 'Internal links', status: 'warn', detail: 'Fewer than 2 internal links. Add more to strengthen site structure.' });
-				} else {
-					linkChecks.push({ label: 'Internal links', status: 'pass', detail: `${internalLinks.length} internal links found.` });
-				}
+				linkChecks.push({ label: 'Total links', status: 'pass', detail: `${links.length} links — ${internal} internal, ${external} external.` });
+				score++;
+				if (internal < 2) linkChecks.push({ label: 'Internal links', status: 'warn', detail: 'Fewer than 2 internal links. Add more to strengthen site structure.' });
+				else linkChecks.push({ label: 'Internal links', status: 'pass', detail: `${internal} internal links.` });
 				checks.push({ group: 'Links', items: linkChecks });
 
-				// Content
-				const contentChecks: Check[] = [];
+				const contentChecks: Issue[] = [];
 				const bodyText = doc.body?.textContent?.trim() || '';
-				const wordCount = bodyText.split(/\s+/).filter((w) => w.length > 0).length;
+				const wc = bodyText.split(/\s+/).filter(Boolean).length;
 				total += 2;
-				if (wordCount < 300) {
-					contentChecks.push({ label: 'Word count', status: 'fail', detail: `${wordCount} words. Pages with fewer than 300 words often underperform in search.` });
-				} else if (wordCount < 1000) {
-					contentChecks.push({ label: 'Word count', status: 'warn', detail: `${wordCount} words. Consider expanding to 1,000+ for competitive topics.` });
-					score += 0.5;
-				} else {
-					contentChecks.push({ label: 'Word count', status: 'pass', detail: `${wordCount} words.` });
-					score += 1;
-				}
+				if (wc < 300) contentChecks.push({ label: 'Word count', status: 'fail', detail: `${wc} words. Below 300 underperforms in search.` });
+				else if (wc < 1000) { contentChecks.push({ label: 'Word count', status: 'warn', detail: `${wc} words. Consider 1,000+ for competitive topics.` }); score += 0.5; }
+				else { contentChecks.push({ label: 'Word count', status: 'pass', detail: `${wc.toLocaleString()} words.` }); score++; }
 
-				const canonical = doc.querySelector('link[rel="canonical"]');
-				if (canonical) {
-					contentChecks.push({ label: 'Canonical URL', status: 'pass', detail: canonical.getAttribute('href') || 'Set' });
-					score += 1;
-				} else {
-					contentChecks.push({ label: 'Canonical URL', status: 'warn', detail: 'No canonical URL found. Add one to prevent duplicate content issues.' });
-					score += 0.5;
-				}
+				const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href');
+				if (canonical) { contentChecks.push({ label: 'Canonical URL', status: 'pass', detail: canonical }); score++; }
+				else { contentChecks.push({ label: 'Canonical URL', status: 'warn', detail: 'No canonical URL. Add one to prevent duplicate-content issues.' }); score += 0.5; }
 
 				const viewport = doc.querySelector('meta[name="viewport"]');
-				if (viewport) {
-					contentChecks.push({ label: 'Viewport meta', status: 'pass', detail: 'Mobile viewport configured.' });
-				} else {
-					contentChecks.push({ label: 'Viewport meta', status: 'fail', detail: 'No viewport meta tag. Page may not be mobile-friendly.' });
-				}
+				contentChecks.push(viewport ? { label: 'Viewport meta', status: 'pass', detail: 'Mobile viewport configured.' } : { label: 'Viewport meta', status: 'fail', detail: 'No viewport meta tag. Page may not be mobile-friendly.' });
 
 				const lang = doc.documentElement.getAttribute('lang');
-				if (lang) {
-					contentChecks.push({ label: 'Language attribute', status: 'pass', detail: `lang="${lang}"` });
-				} else {
-					contentChecks.push({ label: 'Language attribute', status: 'warn', detail: 'No lang attribute on <html>. Add one for accessibility and SEO.' });
-				}
-				checks.push({ group: 'Content & Technical', items: contentChecks });
+				contentChecks.push(lang ? { label: 'Language attribute', status: 'pass', detail: `lang="${lang}"` } : { label: 'Language attribute', status: 'warn', detail: 'No lang attribute on <html>.' });
+
+				const ogTitle = doc.querySelector('meta[property="og:title"]');
+				const ogImage = doc.querySelector('meta[property="og:image"]');
+				if (ogTitle && ogImage) contentChecks.push({ label: 'Open Graph', status: 'pass', detail: 'og:title and og:image present.' });
+				else contentChecks.push({ label: 'Open Graph', status: 'warn', detail: 'Missing og:title or og:image. Social shares may look poor.' });
+
+				const schemaScripts = doc.querySelectorAll('script[type="application/ld+json"]');
+				contentChecks.push(schemaScripts.length > 0
+					? { label: 'Structured data', status: 'pass', detail: `${schemaScripts.length} JSON-LD block${schemaScripts.length === 1 ? '' : 's'} found.` }
+					: { label: 'Structured data', status: 'warn', detail: 'No JSON-LD schema found. Add Article/FAQPage/etc. for rich-result eligibility.' });
+
+				checks.push({ group: 'Content & technical', items: contentChecks });
 
 				const finalScore = Math.round((score / total) * 100);
-				return { score: finalScore, checks };
+				const summary = { wc, links: links.length, internal, external, imgs: imgs.length, h1: h1s.length, h2: h2s.length };
+				return { score: finalScore, checks, summary };
 			}
 
-			function renderResults(data: { score: number; checks: { group: string; items: Check[] }[] }) {
-				const scoreClass = data.score >= 80 ? 'score-good' : data.score >= 50 ? 'score-ok' : 'score-bad';
-				const scoreText = data.score >= 80 ? 'Good' : data.score >= 50 ? 'Needs Work' : 'Poor';
-				const iconMap = { pass: '\u2713', warn: '!', fail: '\u2717' };
+			function render(data: ReturnType<typeof analyze>, source: string) {
+				const tier = data.score >= 80 ? 'good' : data.score >= 55 ? 'fair' : 'poor';
+				const iconMap = { pass: '✓', warn: '!', fail: '✕' };
+				const allIssues = data.checks.flatMap((g) => g.items);
+				const fails = allIssues.filter((i) => i.status === 'fail');
+				const warns = allIssues.filter((i) => i.status === 'warn');
 
 				let html = `
-					<div class="score-bar">
-						<div class="score-circle ${scoreClass}">${data.score}</div>
-						<div class="score-label"><strong>${scoreText}</strong>Your page scored ${data.score} out of 100</div>
+					<header class="report-header">
+						<div class="score-badge score-${tier}" aria-label="Score ${data.score} out of 100">${data.score}</div>
+						<div class="report-title">
+							<h2>On-page SEO report</h2>
+							<p>${escapeHtml(source)} · ${data.summary.wc.toLocaleString()} words · ${data.summary.imgs} images · ${data.summary.links} links</p>
+						</div>
+					</header>
+
+					<div class="stat-row">
+						<div class="stat"><span class="stat-num">${fails.length}</span><span class="stat-label">Failing</span></div>
+						<div class="stat"><span class="stat-num">${warns.length}</span><span class="stat-label">Warnings</span></div>
+						<div class="stat"><span class="stat-num">${data.summary.h2}</span><span class="stat-label">H2 sections</span></div>
+						<div class="stat"><span class="stat-num">${data.summary.internal}</span><span class="stat-label">Internal links</span></div>
 					</div>
 				`;
 
-				for (const group of data.checks) {
-					html += `<div class="check-group"><h3>${group.group}</h3>`;
-					for (const item of group.items) {
-						html += `
-							<div class="check-item">
-								<span class="check-icon ${item.status}">${iconMap[item.status]}</span>
-								<div><strong>${item.label}</strong><br><span class="check-detail">${item.detail}</span></div>
-							</div>
-						`;
-					}
-					html += `</div>`;
+				if (fails.length || warns.length) {
+					html += `
+						<div class="report-section">
+							<h3>Top fixes (sorted by impact)</h3>
+							<ul class="issue-list">
+								${[...fails, ...warns].slice(0, 6).map((i) => `
+									<li class="issue">
+										<span class="issue-icon ${i.status}" aria-hidden="true">${iconMap[i.status]}</span>
+										<div class="issue-body">
+											<p class="issue-label">${escapeHtml(i.label)}</p>
+											<p class="issue-detail">${escapeHtml(i.detail)}</p>
+										</div>
+									</li>
+								`).join('')}
+							</ul>
+						</div>
+					`;
 				}
 
-				results.innerHTML = html;
-				results.classList.add('visible');
+				for (const group of data.checks) {
+					html += `
+						<div class="report-section">
+							<h3>${escapeHtml(group.group)}</h3>
+							<ul class="issue-list">
+								${group.items.map((i) => `
+									<li class="issue">
+										<span class="issue-icon ${i.status}" aria-hidden="true">${iconMap[i.status]}</span>
+										<div class="issue-body">
+											<p class="issue-label">${escapeHtml(i.label)}</p>
+											<p class="issue-detail">${escapeHtml(i.detail)}</p>
+										</div>
+									</li>
+								`).join('')}
+							</ul>
+						</div>
+					`;
+				}
+
+				reportEl.innerHTML = html;
+				reportEl.classList.add('visible');
+				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
-			analyzeBtn.addEventListener('click', () => {
-				const html = input.value.trim();
-				if (!html) { alert('Please paste HTML source code first.'); return; }
-				const data = analyze(html);
-				renderResults(data);
-				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-			});
+			async function run() {
+				analyzeBtn.disabled = true;
+				try {
+					let html: string;
+					let source: string;
+					if (activeTab === 'url') {
+						const u = urlInput.value.trim();
+						if (!u) { setStatus('Enter a URL to audit.', true); return; }
+						setStatus('Fetching page…');
+						const r = await fetchPage(u);
+						html = r.html;
+						source = r.url;
+					} else {
+						html = htmlInput.value.trim();
+						if (!html) { setStatus('Paste HTML to audit.', true); return; }
+						source = 'Pasted HTML';
+					}
+					setStatus('');
+					render(analyze(html), source);
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
+					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+				} finally {
+					analyzeBtn.disabled = false;
+				}
+			}
 
+			analyzeBtn.addEventListener('click', run);
+			urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); run(); } });
 			clearBtn.addEventListener('click', () => {
-				input.value = '';
-				results.innerHTML = '';
-				results.classList.remove('visible');
+				urlInput.value = ''; htmlInput.value = '';
+				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
 			});
 		</script>
 	</body>
