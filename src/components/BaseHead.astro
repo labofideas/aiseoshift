@@ -12,6 +12,7 @@ interface Props {
 	publishedTime?: string;
 	modifiedTime?: string;
 	structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+	preloadHero?: string;
 }
 
 const canonicalURL = Astro.props.canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
@@ -24,6 +25,7 @@ const {
 	publishedTime,
 	modifiedTime,
 	structuredData,
+	preloadHero,
 } = Astro.props;
 
 const imageUrl =
@@ -40,6 +42,10 @@ const imageUrl =
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('rss.xml', Astro.site)} />
 <meta name="generator" content={Astro.generator} />
+
+<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+{preloadHero && <link rel="preload" href={preloadHero} as="image" fetchpriority="high" />}
 
 <link rel="canonical" href={canonicalURL} />
 
