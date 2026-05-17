@@ -229,6 +229,121 @@ import '../../styles/tools-polish.css';
 				border-left: 1px solid var(--kd-border);
 				border-right: 1px solid var(--kd-border);
 			}
+
+			/* Focus keyword executive summary */
+			.kd-focus-card {
+				width: min(1100px, calc(100% - 2rem));
+				margin: 0 auto 0.75rem;
+				background: var(--kd-white);
+				border: 1px solid var(--kd-border);
+				border-radius: 14px;
+				padding: 1.4rem 1.5rem 1.25rem;
+				box-shadow: var(--ts-shadow-1, 0 1px 2px rgba(20, 16, 12, 0.04));
+			}
+			.kd-focus-head {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 0.75rem;
+				margin-bottom: 0.35rem;
+			}
+			.kd-focus-kicker {
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--kd-ink-4);
+			}
+			.kd-focus-verdict {
+				font-size: 0.72rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				padding: 0.25rem 0.65rem;
+				border-radius: 999px;
+				white-space: nowrap;
+			}
+			.kd-focus-verdict.bad { background: var(--kd-red-bg); color: var(--kd-red); }
+			.kd-focus-verdict.warn { background: var(--kd-amber-bg); color: var(--kd-amber); }
+			.kd-focus-verdict.ok { background: var(--kd-green-bg); color: var(--kd-green); }
+			.kd-focus-keyword {
+				font-family: 'Iowan Old Style', 'Iowan Old Style W01', Georgia, serif;
+				font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+				font-weight: 600;
+				color: var(--kd-ink);
+				margin: 0 0 1rem;
+				line-height: 1.2;
+				letter-spacing: -0.01em;
+			}
+			.kd-focus-stats {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 0;
+				border: 1px solid var(--kd-border);
+				border-radius: 10px;
+				background: var(--kd-cream);
+				margin-bottom: 1rem;
+				overflow: hidden;
+			}
+			.kd-focus-stat {
+				padding: 0.85rem 1rem;
+				text-align: center;
+				border-right: 1px solid var(--kd-border);
+			}
+			.kd-focus-stat:last-child { border-right: 0; }
+			.kd-focus-stat-val {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 1.5rem;
+				font-weight: 600;
+				color: var(--kd-ink);
+				line-height: 1.1;
+				letter-spacing: -0.01em;
+			}
+			.kd-focus-stat-val.bad { color: var(--kd-red); }
+			.kd-focus-stat-val.warn { color: var(--kd-amber); }
+			.kd-focus-stat-val.ok { color: var(--kd-green); }
+			.kd-focus-stat-lbl {
+				font-size: 0.66rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--kd-ink-4);
+				margin-top: 0.25rem;
+			}
+			.kd-focus-placement {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4rem;
+				margin-bottom: 0.85rem;
+			}
+			.kd-fp {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				font-size: 0.78rem;
+				font-weight: 600;
+				padding: 0.32rem 0.65rem;
+				border-radius: 6px;
+				border: 1px solid var(--kd-border);
+			}
+			.kd-fp.on { background: var(--kd-green-bg); color: var(--kd-green); border-color: transparent; }
+			.kd-fp.off { background: transparent; color: var(--kd-ink-4); text-decoration: line-through; text-decoration-color: var(--kd-red); text-decoration-thickness: 1.5px; }
+			.kd-fp-mark { font-weight: 800; font-size: 0.85rem; }
+			.kd-focus-verdict-text {
+				font-size: 0.92rem;
+				line-height: 1.5;
+				color: var(--kd-ink-2);
+				padding: 0.85rem 1rem;
+				background: var(--kd-cream-2);
+				border-radius: 8px;
+				border-left: 3px solid var(--kd-rust);
+			}
+			.kd-focus-verdict-text strong { color: var(--kd-ink); font-weight: 700; }
+			@media (max-width: 600px) {
+				.kd-focus-card { padding: 1.1rem 1rem 1rem; }
+				.kd-focus-stats { grid-template-columns: 1fr; }
+				.kd-focus-stat { border-right: 0; border-bottom: 1px solid var(--kd-border); }
+				.kd-focus-stat:last-child { border-bottom: 0; }
+			}
 			.kd-meta-tile {
 				padding: 1rem 1.1rem;
 				border-right: 1px solid var(--kd-border);
@@ -442,14 +557,17 @@ import '../../styles/tools-polish.css';
 			.kd-tfidf-cell.mid { color: var(--kd-amber); }
 			.kd-tfidf-cell.low { color: var(--kd-ink-4); }
 
-			.kd-placement { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+			.kd-placement { display: flex; gap: 0.3rem; flex-wrap: wrap; align-items: center; }
 			.kd-place {
-				font-size: 0.68rem;
+				font-size: 0.72rem;
 				font-weight: 700;
 				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
-				padding: 0.1rem 0.45rem;
-				border-radius: 4px;
+				padding: 0.18rem 0.55rem;
+				border-radius: 5px;
+				cursor: help;
+				transition: transform 120ms ease;
 			}
+			.kd-place:hover { transform: translateY(-1px); }
 			.kd-place.title { background: var(--kd-blue-bg); color: var(--kd-blue); }
 			.kd-place.desc { background: var(--kd-amber-bg); color: var(--kd-amber); }
 			.kd-place.h1 { background: var(--kd-red-bg); color: var(--kd-red); }
@@ -850,17 +968,27 @@ import '../../styles/tools-polish.css';
 
 				const recos: { title: string; detail: string; sev: 'over' | 'low' | 'miss' }[] = [];
 				if (focus && focusEntry && focusEntry.count === 0) recos.push({ title: `Focus keyword "${focus}" not found`, detail: `Your focus keyword does not appear anywhere on the page. Add it naturally to the title, H1, intro paragraph, and at least 2–3 times in body content.`, sev: 'miss' });
-				if (focus && focusEntry && !focusEntry.placements.includes('title')) recos.push({ title: `Add "${focus}" to the title tag`, detail: 'The page title is the strongest on-page ranking signal. Include the focus keyword naturally.', sev: 'low' });
-				if (focus && focusEntry && !focusEntry.placements.includes('h1')) recos.push({ title: `Add "${focus}" to the H1`, detail: 'No H1 contains your focus keyword. Add a single H1 with the keyword for highest-impact relevance signal.', sev: 'miss' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('title')) recos.push({ title: `Add "${focus}" to the title tag`, detail: 'The page title is the strongest on-page ranking signal. Include the focus keyword naturally.', sev: 'miss' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('h1')) recos.push({ title: `Add "${focus}" to the H1`, detail: 'No H1 contains your focus keyword. Add a single H1 with the keyword for highest-impact relevance signal.', sev: 'miss' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('desc')) recos.push({ title: `Add "${focus}" to the meta description`, detail: 'Meta description influences SERP click-through and confirms topical relevance to search engines. Include the focus keyword once, naturally.', sev: 'low' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('h2')) recos.push({ title: `Mention "${focus}" in at least one H2`, detail: 'Variations of the focus keyword in H2 subheadings signal topical depth to search engines.', sev: 'low' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('alt')) recos.push({ title: `Use "${focus}" in at least one image alt`, detail: 'Image alt attributes are an additional placement signal and improve accessibility.', sev: 'low' });
 				if (focus && focusEntry && focusEntry.density > 4) recos.push({ title: `"${focus}" is over-optimized (${focusEntry.density}%)`, detail: 'Density above 4% looks like keyword stuffing. Replace some instances with synonyms or related terms.', sev: 'over' });
-				if (focus && focusEntry && focusEntry.density < 0.5 && focusEntry.count > 0) recos.push({ title: `"${focus}" density is low (${focusEntry.density}%)`, detail: 'Below 0.5%. Use the keyword 2–3 more times across body, H2s, or alt text without forcing it.', sev: 'low' });
+				if (focus && focusEntry && focusEntry.count > 0 && focusEntry.density < 0.3) recos.push({ title: `"${focus}" density is very low (${focusEntry.density}%)`, detail: 'Below the 0.5% healthy floor. Use the keyword 4–6 more times across body, H2s, or alt text without forcing it.', sev: 'miss' });
+				else if (focus && focusEntry && focusEntry.density >= 0.3 && focusEntry.density < 0.5) recos.push({ title: `"${focus}" density is low (${focusEntry.density}%)`, detail: 'Slightly below the 0.5% healthy floor. Add 2–3 more natural mentions across body and subheadings.', sev: 'low' });
 				singles.slice(0, 5).forEach((s) => {
 					if (s.severity === 'over') recos.push({ title: `"${s.term}" is over-optimized (${s.density}%)`, detail: `Appears ${s.count} times. Density above 4% risks keyword stuffing penalties. Vary with synonyms.`, sev: 'over' });
 				});
 				if (alts.length === 0 && doc) recos.push({ title: 'Add keywords to image alt text', detail: 'No images with alt text detected. Alt attributes are a placement signal — include relevant keywords naturally.', sev: 'low' });
 				if (h1 === '' && doc) recos.push({ title: 'Add an H1 tag', detail: 'No H1 found on the page. H1 placement is a strong relevance signal for top keywords.', sev: 'miss' });
 				if (h2s.length === 0 && doc) recos.push({ title: 'Add H2 subheadings', detail: 'No H2 headings detected. Use H2s to break content and place secondary keywords.', sev: 'low' });
-				if (recos.length === 0) recos.push({ title: 'No critical issues', detail: 'Your keyword distribution looks balanced. Continue using related terms naturally and monitor over time.', sev: 'low' });
+				if (recos.length === 0) {
+					const topTerm = singles[0]?.term;
+					recos.push({ title: 'Distribution looks balanced', detail: topTerm
+						? `Your page is most strongly themed around "${topTerm}" (${singles[0].density}% density). ${focus ? 'Focus keyword placement is solid across all major tags.' : 'No focus keyword was provided — set one above to get targeted recommendations.'} Continue using related terms naturally and monitor over time.`
+						: 'Your keyword distribution looks balanced. Continue using related terms naturally and monitor over time.',
+						sev: 'low' });
+				}
 
 				const distBands = {
 					over: singles.filter((s) => s.density > 4).length,
@@ -888,7 +1016,15 @@ import '../../styles/tools-polish.css';
 
 			function placementPills(places: Placement[]) {
 				const order: Placement[] = ['title', 'desc', 'h1', 'h2', 'body', 'alt'];
-				return order.filter((p) => places.includes(p)).map((p) => `<span class="kd-place ${p}">${p}</span>`).join('');
+				const tips: Record<Placement, string> = {
+					title: 'Appears in <title> tag',
+					desc: 'Appears in meta description',
+					h1: 'Appears in H1 heading',
+					h2: 'Appears in an H2 subheading',
+					body: 'Appears in body text',
+					alt: 'Appears in image alt text',
+				};
+				return order.filter((p) => places.includes(p)).map((p) => `<span class="kd-place ${p}" title="${tips[p]}">${p}</span>`).join('');
 			}
 
 			function tableHtml(entries: Entry[], maxTfidf: number, focusKw: string) {
@@ -983,7 +1119,75 @@ import '../../styles/tools-polish.css';
 				const totalForDensityScore = data.focusEntry ? data.focusEntry.density : 0;
 				const focusDensityClass = totalForDensityScore > 4 ? 'bad' : totalForDensityScore > 3 ? 'warn' : totalForDensityScore >= 0.5 ? 'ok' : 'warn';
 
+				// Focus keyword executive summary
+				let focusCardHtml = '';
+				if (focusKw && data.focusEntry) {
+					const fe = data.focusEntry;
+					const d = fe.density;
+					const c = fe.count;
+					const present = (p: Placement) => fe.placements.includes(p);
+					const tagsPresent = (['title','desc','h1','h2','body','alt'] as Placement[]).filter(present).length;
+
+					let verdictLabel: string, verdictClass: 'ok' | 'warn' | 'bad', densityClass: 'ok' | 'warn' | 'bad', verdictText: string;
+					if (c === 0) {
+						verdictLabel = 'Missing entirely'; verdictClass = 'bad'; densityClass = 'bad';
+						verdictText = `Your focus keyword <strong>does not appear anywhere</strong> on the page. Add it to the <strong>&lt;title&gt;</strong>, <strong>H1</strong>, the opening paragraph, and 2–3 times in body content to start ranking for it.`;
+					} else if (d < 0.3) {
+						verdictLabel = 'Very low'; verdictClass = 'bad'; densityClass = 'bad';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> is well below the 0.5%+ healthy floor. Use the focus keyword <strong>4–6 more times</strong> naturally across body content, H2 subheadings, and image alt text.`;
+					} else if (d < 0.5) {
+						verdictLabel = 'Low'; verdictClass = 'warn'; densityClass = 'warn';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> is slightly below the 0.5%–2.5% healthy range. Add <strong>2–3 more natural mentions</strong> across body and subheadings.`;
+					} else if (d <= 2.5) {
+						verdictLabel = 'Healthy'; verdictClass = 'ok'; densityClass = 'ok';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> sits in the natural 0.5%–2.5% range. ${tagsPresent < 6 ? `Still missing from <strong>${6 - tagsPresent} placement${tagsPresent === 5 ? '' : 's'}</strong> — consider adding to the unchecked tags below.` : 'Strong placement across all major tags.'}`;
+					} else if (d <= 4) {
+						verdictLabel = 'High'; verdictClass = 'warn'; densityClass = 'warn';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> is approaching keyword stuffing. Consider replacing <strong>2–3 instances</strong> with synonyms or related terms.`;
+					} else {
+						verdictLabel = 'Over-optimized'; verdictClass = 'bad'; densityClass = 'bad';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> looks like keyword stuffing. Replace <strong>several instances</strong> with synonyms (e.g. semantically related phrases) — this can trigger algorithmic dampening.`;
+					}
+
+					const fp = (key: Placement, label: string) =>
+						`<span class="kd-fp ${present(key) ? 'on' : 'off'}"><span class="kd-fp-mark">${present(key) ? '✓' : '×'}</span>${label}</span>`;
+
+					focusCardHtml = `
+						<div class="kd-focus-card">
+							<div class="kd-focus-head">
+								<div class="kd-focus-kicker">Focus keyword analysis</div>
+								<span class="kd-focus-verdict ${verdictClass}">${verdictLabel}</span>
+							</div>
+							<div class="kd-focus-keyword">"${esc(focusKw)}"</div>
+							<div class="kd-focus-stats">
+								<div class="kd-focus-stat">
+									<div class="kd-focus-stat-val ${densityClass}">${d.toFixed(2)}%</div>
+									<div class="kd-focus-stat-lbl">Density</div>
+								</div>
+								<div class="kd-focus-stat">
+									<div class="kd-focus-stat-val">${c.toLocaleString()}</div>
+									<div class="kd-focus-stat-lbl">Occurrences</div>
+								</div>
+								<div class="kd-focus-stat">
+									<div class="kd-focus-stat-val ${tagsPresent >= 5 ? 'ok' : tagsPresent >= 3 ? 'warn' : 'bad'}">${tagsPresent}/6</div>
+									<div class="kd-focus-stat-lbl">Tag placements</div>
+								</div>
+							</div>
+							<div class="kd-focus-placement">
+								${fp('title', 'Title')}
+								${fp('desc', 'Meta description')}
+								${fp('h1', 'H1')}
+								${fp('h2', 'H2')}
+								${fp('body', 'Body')}
+								${fp('alt', 'Image alt')}
+							</div>
+							<div class="kd-focus-verdict-text">${verdictText}</div>
+						</div>
+					`;
+				}
+
 				let html = `
+					${focusCardHtml}
 					<div class="kd-meta-bar">
 						<div class="kd-meta-tile"><div class="kd-meta-val ink">${data.totalWords.toLocaleString()}</div><div class="kd-meta-lbl">Total words</div></div>
 						<div class="kd-meta-tile"><div class="kd-meta-val ink">${data.uniqueCount.toLocaleString()}</div><div class="kd-meta-lbl">Unique terms</div></div>
