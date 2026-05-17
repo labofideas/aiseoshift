@@ -843,5 +843,21 @@
 			"height": 675,
 			"bytes": 46526
 		}
+	},
+	"best-ai-image-detectors-2026": {
+		"hero": { "src": "/images/posts/best-ai-image-detectors-2026-hero.webp", "alt": "AI image detection and content authenticity analysis", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-image-detectors-2026", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/best-ai-image-detectors-2026-inline-1.webp", "alt": "Comparison of AI image detector tools by accuracy", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-image-detectors-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"new-chatgpt-plans-2026": {
+		"hero": { "src": "/images/posts/new-chatgpt-plans-2026-hero.webp", "alt": "ChatGPT subscription plans and pricing tiers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/new-chatgpt-plans-2026", "width": 1200, "height": 675, "bytes": 64892 },
+		"inline": [{ "src": "/images/posts/new-chatgpt-plans-2026-inline-1.webp", "alt": "ChatGPT plan comparison table", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/new-chatgpt-plans-2026", "width": 1200, "height": 675, "bytes": 123376 }]
+	},
+	"claude-updates-march-april-2026": {
+		"hero": { "src": "/images/posts/claude-updates-march-april-2026-hero.webp", "alt": "Claude AI model updates and Anthropic news roundup", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026", "width": 1200, "height": 675, "bytes": 187976 },
+		"inline": [{ "src": "/images/posts/claude-updates-march-april-2026-inline-1.webp", "alt": "Timeline of Anthropic Claude releases", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026", "width": 1200, "height": 675, "bytes": 27286 }]
+	},
+	"semantic-seo-new-website-ranking": {
+		"hero": { "src": "/images/posts/semantic-seo-new-website-ranking-hero.webp", "alt": "Semantic SEO strategy for new websites without domain authority", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking", "width": 1200, "height": 675, "bytes": 32986 },
+		"inline": [{ "src": "/images/posts/semantic-seo-new-website-ranking-inline-1.webp", "alt": "Topic cluster diagram showing semantic SEO authority building", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking", "width": 1200, "height": 675, "bytes": 37536 }]
 	}
 }
