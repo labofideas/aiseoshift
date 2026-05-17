@@ -834,7 +834,20 @@ import '../../styles/tools-polish.css';
 					.toLowerCase()
 					.replace(/[^a-zà-ÿ0-9'\s-]/gi, ' ')
 					.split(/\s+/)
-					.filter(Boolean);
+					.filter(Boolean)
+					.filter((t) => !looksLikeCode(t));
+			}
+
+			// Reject tokens that look like CSS class names, CSS variables,
+			// CSS units, or hex/code identifiers — they aren't content words.
+			function looksLikeCode(t: string): boolean {
+				if (/\d/.test(t)) return true;                // any digit → 20px, etc.
+				if (t.startsWith('--') || t.startsWith('-')) return true; // --ast-global-color
+				if (t.includes('--')) return true;            // CSS custom props anywhere
+				const dashCount = (t.match(/-/g) || []).length;
+				if (dashCount >= 2) return true;              // ast-mm-icon-label, has-3-items, etc.
+				if (/^[a-z]+:[a-z]+/.test(t)) return true;    // namespaced (xmlns:foo)
+				return false;
 			}
 
 			function ngrams(tokens: string[], n: number, minLen: number, useStop: boolean): Map<string, number> {
@@ -878,7 +891,25 @@ import '../../styles/tools-polish.css';
 
 				const isHtml = html.includes('<') && html.includes('>');
 				const doc = isHtml ? new DOMParser().parseFromString(html, 'text/html') : null;
-				const text = doc ? doc.body?.textContent?.trim() || html : html;
+
+				// Extract visible body text only — strip elements whose textContent
+				// is code/markup noise (inline CSS, scripts, SVG <text>, etc.) and
+				// chrome (nav, footer, aside) that isn't part of the article.
+				// Prefer <main> or <article> when present, fall back to <body>.
+				function extractContentText(d: Document | null, rawHtml: string): string {
+					if (!d || !d.body) return rawHtml;
+					const clone = d.body.cloneNode(true) as HTMLElement;
+					const noise = clone.querySelectorAll(
+						'script, style, noscript, template, iframe, svg, code, pre, ' +
+						'nav, footer, aside, header[role="banner"], [role="navigation"], ' +
+						'[role="banner"], [role="contentinfo"], [aria-hidden="true"]'
+					);
+					noise.forEach((n) => n.remove());
+					const main = clone.querySelector('main, article, [role="main"]');
+					const source = (main as HTMLElement | null) || clone;
+					return (source.textContent || '').trim();
+				}
+				const text = extractContentText(doc, html);
 
 				const title = doc?.querySelector('title')?.textContent?.trim() || '';
 				const desc = doc?.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';

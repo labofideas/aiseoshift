@@ -152,7 +152,19 @@ import '../../styles/tools-polish.css';
 				else issues.push({ label: 'Internal links', status: 'pass', detail: `${internal} internal links.`, weight: 0, category: 'Links' });
 
 				// --- Content & technical ---
-				const bodyText = doc.body?.textContent?.trim() || '';
+				// Strip code/markup/chrome so word count reflects visible text,
+				// not inline styles, scripts, or boilerplate nav/footer.
+				const bodyText = (() => {
+					if (!doc.body) return '';
+					const clone = doc.body.cloneNode(true) as HTMLElement;
+					clone.querySelectorAll(
+						'script, style, noscript, template, iframe, svg, code, pre, ' +
+						'nav, footer, aside, [role="navigation"], [role="banner"], ' +
+						'[role="contentinfo"], [aria-hidden="true"]'
+					).forEach((n) => n.remove());
+					const main = clone.querySelector('main, article, [role="main"]');
+					return ((main as HTMLElement | null) || clone).textContent?.trim() || '';
+				})();
 				const wc = bodyText.split(/\s+/).filter(Boolean).length;
 				if (wc < 300) issues.push({ label: 'Word count', status: 'fail', detail: `${wc} words. Below 300 underperforms in search.`, weight: 8, category: 'Content & technical' });
 				else if (wc < 1000) issues.push({ label: 'Word count', status: 'warn', detail: `${wc} words. Consider 1,000+ for competitive topics.`, weight: 3, category: 'Content & technical' });

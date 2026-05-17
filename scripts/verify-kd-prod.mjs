@@ -1,0 +1,33 @@
+import { chromium } from 'playwright';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+const SHOTS = path.join(process.cwd(), 'scripts', '.shots');
+await fs.mkdir(SHOTS, { recursive: true });
+const b = await chromium.launch();
+const p = await (await b.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+await p.goto('https://aiseoshift.com/tools/keyword-density/', { waitUntil: 'networkidle' });
+await p.locator('#url-input').fill('https://aiseoshift.com/blog/ai-tools-for-lawyers/');
+await p.locator('#keyword-input').fill('AI tools for lawyers');
+await p.locator('#analyze-btn').click();
+await p.locator('.kd-report.visible').waitFor({ timeout: 40000 });
+const focusCardExists = await p.locator('.kd-focus-card').count();
+console.log('focus card present:', focusCardExists);
+if (focusCardExists) {
+	const vals = await p.locator('.kd-focus-stat-val').allInnerTexts();
+	const lbls = await p.locator('.kd-focus-stat-lbl').allInnerTexts();
+	const verdict = await p.locator('.kd-focus-verdict').first().innerText();
+	const verdictText = await p.locator('.kd-focus-verdict-text').innerText();
+	const fps = await p.locator('.kd-fp').allInnerTexts();
+	console.log('stats:', vals.map((v, i) => `${lbls[i] || '?'}=${v}`).join(' | '));
+	console.log('verdict pill:', verdict);
+	console.log('verdict text:', verdictText.slice(0, 160));
+	console.log('placement pills (' + fps.length + '):');
+	fps.forEach(f => console.log('  ' + f.replace('\n', ' ')));
+}
+const recoItems = await p.locator('.kd-reco-item').allInnerTexts();
+console.log('\nrecommendations (' + recoItems.length + '):');
+recoItems.forEach((t, i) => console.log(`  ${i+1}. ${t.split('\n').slice(0,2).join(' — ')}`));
+await p.waitForTimeout(800);
+await p.screenshot({ path: path.join(SHOTS, 'kd-prod-verify.png'), fullPage: true });
+await b.close();
+console.log('\nshot: scripts/.shots/kd-prod-verify.png');
