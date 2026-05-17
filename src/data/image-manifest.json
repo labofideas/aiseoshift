@@ -904,5 +904,9 @@
   "plagiarism-checkers": {
     "hero": { "src": "/images/posts/plagiarism-checkers-hero.webp", "alt": "Editorial visual for best plagiarism checkers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/plagiarism-checkers", "width": 1200, "height": 675, "bytes": 85204 },
     "inline": [{ "src": "/images/posts/plagiarism-checkers-inline-1.webp", "alt": "Comparison of plagiarism checking tools", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/plagiarism-checkers", "width": 1200, "height": 675, "bytes": 28978 }]
+  },
+  "semantic-seo-new-website-ranking": {
+    "hero": { "src": "/images/posts/semantic-seo-new-website-ranking-hero.webp", "alt": "Editorial visual representing semantic SEO strategy for new websites", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking", "width": 1200, "height": 675, "bytes": 42580 },
+    "inline": [{ "src": "/images/posts/semantic-seo-new-website-ranking-inline-1.webp", "alt": "Topic cluster diagram showing how semantic SEO builds authority", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking", "width": 1200, "height": 675, "bytes": 31596 }]
   }
 }
