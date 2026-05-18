@@ -1,23 +1,15 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
-import imageManifest from '../../data/image-manifest.json';
-import BlogPost from '../../layouts/BlogPost.astro';
+import { type CollectionEntry, getCollection, getEntry, render } from 'astro:content';
+import imageManifest from '../data/image-manifest.json';
+import BlogPost from '../layouts/BlogPost.astro';
 
-export async function getStaticPaths() {
-	const posts = await getCollection('blog', ({ data }) => !data.draft);
-	return posts
-		.filter((post) => post.id !== 'ai-seo-shift')
-		.map((post) => ({
-			params: { slug: post.id },
-			props: { post, allPosts: posts },
-		}));
-}
+const post = await getEntry('blog', 'ai-seo-shift');
+if (!post) return Astro.redirect('/blog/');
 
-const { post, allPosts } = Astro.props;
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const { Content, headings } = await render(post);
 const heroImage = imageManifest[post.id as keyof typeof imageManifest]?.hero;
 
-// Compute related posts: +3 for same category, +1 per shared tag
 const relatedPosts = allPosts
 	.filter((p: CollectionEntry<'blog'>) => p.id !== post.id)
 	.map((p: CollectionEntry<'blog'>) => {
