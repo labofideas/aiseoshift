@@ -863,5 +863,9 @@
 	"ai-news-roundup-march-april-2026": {
 		"hero": { "src": "/images/posts/ai-news-roundup-march-april-2026-hero.webp", "alt": "AI industry news roundup covering model releases funding and regulation", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-news-roundup-march-april-2026", "width": 1200, "height": 675, "bytes": 52340 },
 		"inline": [{ "src": "/images/posts/ai-news-roundup-march-april-2026-inline-1.webp", "alt": "AI funding and model release timeline March April 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-news-roundup-march-april-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"ai-seo-shift": {
+		"hero": { "src": "/images/posts/ai-seo-shift-hero.webp", "alt": "The AI SEO shift from traditional rankings to AI citations and visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift", "width": 1200, "height": 675, "bytes": 7772 },
+		"inline": [{ "src": "/images/posts/ai-seo-shift-inline-1.webp", "alt": "Comparison of traditional SEO vs AI SEO strategy approaches", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift", "width": 1200, "height": 675, "bytes": 31596 }]
 	}
 }
