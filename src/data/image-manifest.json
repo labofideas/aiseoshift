@@ -867,5 +867,21 @@
 	"ai-seo-shift": {
 		"hero": { "src": "/images/posts/ai-seo-shift-hero.webp", "alt": "The AI SEO shift from traditional rankings to AI citations and visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift", "width": 1200, "height": 675, "bytes": 7772 },
 		"inline": [{ "src": "/images/posts/ai-seo-shift-inline-1.webp", "alt": "Comparison of traditional SEO vs AI SEO strategy approaches", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift", "width": 1200, "height": 675, "bytes": 31596 }]
+	},
+	"ai-keyword-research-reddit-youtube-forums": {
+		"hero": { "src": "/images/posts/ai-keyword-research-reddit-youtube-forums-hero.webp", "alt": "Mining Reddit YouTube and forums for AI keyword research", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-keyword-research-reddit-youtube-forums", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/ai-keyword-research-reddit-youtube-forums-inline-1.webp", "alt": "Question-first content calendar for AI keyword research", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-keyword-research-reddit-youtube-forums", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"multimodal-seo-images-video-audio": {
+		"hero": { "src": "/images/posts/multimodal-seo-images-video-audio-hero.webp", "alt": "Multimodal SEO optimizing images video and audio for AI search", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/multimodal-seo-images-video-audio", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/multimodal-seo-images-video-audio-inline-1.webp", "alt": "Image alt text and video transcript optimization for AI", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/multimodal-seo-images-video-audio", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"llm-crawler-optimization": {
+		"hero": { "src": "/images/posts/llm-crawler-optimization-hero.webp", "alt": "LLM crawler optimization for GPTBot ClaudeBot and AI search bots", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/llm-crawler-optimization", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/llm-crawler-optimization-inline-1.webp", "alt": "Robots.txt and ai.txt configuration for AI crawlers", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/llm-crawler-optimization", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"omnichannel-ai-brand-presence": {
+		"hero": { "src": "/images/posts/omnichannel-ai-brand-presence-hero.webp", "alt": "Building omnichannel AI brand presence across LinkedIn YouTube Reddit", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/omnichannel-ai-brand-presence-inline-1.webp", "alt": "Platform strategy for AI visibility across multiple channels", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence", "width": 1200, "height": 675, "bytes": 28978 }]
 	}
 }
