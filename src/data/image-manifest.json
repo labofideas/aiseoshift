@@ -883,5 +883,9 @@
 	"omnichannel-ai-brand-presence": {
 		"hero": { "src": "/images/posts/omnichannel-ai-brand-presence-hero.webp", "alt": "Building omnichannel AI brand presence across LinkedIn YouTube Reddit", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence", "width": 1200, "height": 675, "bytes": 85204 },
 		"inline": [{ "src": "/images/posts/omnichannel-ai-brand-presence-inline-1.webp", "alt": "Platform strategy for AI visibility across multiple channels", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"best-ai-sales-tools-2026": {
+		"hero": { "src": "/images/posts/best-ai-sales-tools-2026-hero.webp", "alt": "Best AI sales tools for pipeline building and revenue growth in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/best-ai-sales-tools-2026-inline-1.webp", "alt": "Comparison of AI sales platforms by category and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026", "width": 1200, "height": 675, "bytes": 28978 }]
 	}
 }
