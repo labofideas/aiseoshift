@@ -887,5 +887,9 @@
 	"best-ai-sales-tools-2026": {
 		"hero": { "src": "/images/posts/best-ai-sales-tools-2026-hero.webp", "alt": "Best AI sales tools for pipeline building and revenue growth in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026", "width": 1200, "height": 675, "bytes": 85204 },
 		"inline": [{ "src": "/images/posts/best-ai-sales-tools-2026-inline-1.webp", "alt": "Comparison of AI sales platforms by category and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"best-web-scraping-proxy-tools-2026": {
+		"hero": { "src": "/images/posts/best-web-scraping-proxy-tools-2026-hero.webp", "alt": "Web scraping and proxy tools for AI data collection and SEO monitoring", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026", "width": 1200, "height": 675, "bytes": 69752 },
+		"inline": [{ "src": "/images/posts/best-web-scraping-proxy-tools-2026-inline-1.webp", "alt": "Comparison of proxy and scraping platforms by type and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026", "width": 1200, "height": 675, "bytes": 48086 }]
 	}
 }
