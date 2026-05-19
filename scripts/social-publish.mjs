@@ -15,6 +15,7 @@ import { basename } from 'node:path';
 
 const SITE_URL = (process.env.SITE_URL || 'https://aiseoshift.com').replace(/\/$/, '');
 const DRY_RUN = process.env.DRY_RUN === '1';
+const POST_INTERVAL_MS = parseInt(process.env.POST_INTERVAL_MS || '1800000', 10);
 
 const ADDED_FILES = (process.env.ADDED_FILES || '')
 	.split('\n')
@@ -31,7 +32,14 @@ for (const f of ADDED_FILES) console.log(`  - ${f}`);
 
 const results = [];
 
-for (const file of ADDED_FILES) {
+for (let i = 0; i < ADDED_FILES.length; i++) {
+	const file = ADDED_FILES[i];
+	// Stagger posts to avoid flooding social feeds on multi-post commits.
+	if (i > 0 && POST_INTERVAL_MS > 0 && !DRY_RUN) {
+		const mins = Math.round(POST_INTERVAL_MS / 60000);
+		console.log(`\nSleeping ${mins} min before next post...`);
+		await new Promise((r) => setTimeout(r, POST_INTERVAL_MS));
+	}
 	try {
 		const post = await loadPost(file);
 		if (post.draft) {
