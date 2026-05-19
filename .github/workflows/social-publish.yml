@@ -1,0 +1,80 @@
+name: Social Publish
+
+# Runs after Deploy Site succeeds, so the live page (and its OG image) is reachable
+# by the time Bluesky and Tumblr try to render link cards.
+on:
+  workflow_run:
+    workflows: ['Deploy Site']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'Manually trigger for a specific blog file (e.g. src/content/blog/my-post.mdx)'
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    # Only run if Deploy Site succeeded (skip on failures / cancelled runs).
+    # workflow_dispatch invocations have no `workflow_run` payload and should always run.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Determine commit SHA
+        id: sha
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout commit with parent
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.sha.outputs.sha }}
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Detect newly added blog posts
+        id: detect
+        run: |
+          set -euo pipefail
+          if [ -n "${{ github.event.inputs.file }}" ]; then
+            ADDED="${{ github.event.inputs.file }}"
+          else
+            # Compare commit against its parent. Only files newly added under blog/.
+            ADDED=$(git diff --name-only --diff-filter=A "HEAD~1" "HEAD" -- 'src/content/blog/*.mdx' || true)
+          fi
+          echo "Added files:"
+          echo "$ADDED"
+          {
+            echo 'added<<__EOF__'
+            echo "$ADDED"
+            echo '__EOF__'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish to Bluesky and Tumblr
+        if: steps.detect.outputs.added != ''
+        env:
+          ADDED_FILES: ${{ steps.detect.outputs.added }}
+          SITE_URL: https://aiseoshift.com
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
+          TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
+          TUMBLR_BLOG: ${{ secrets.TUMBLR_BLOG }}
+        run: node ./scripts/social-publish.mjs
+
+      - name: No new posts
+        if: steps.detect.outputs.added == ''
+        run: echo "No newly added blog posts in this commit. Skipping."
