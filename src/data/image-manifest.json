@@ -891,5 +891,9 @@
 	"best-web-scraping-proxy-tools-2026": {
 		"hero": { "src": "/images/posts/best-web-scraping-proxy-tools-2026-hero.webp", "alt": "Web scraping and proxy tools for AI data collection and SEO monitoring", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026", "width": 1200, "height": 675, "bytes": 69752 },
 		"inline": [{ "src": "/images/posts/best-web-scraping-proxy-tools-2026-inline-1.webp", "alt": "Comparison of proxy and scraping platforms by type and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026", "width": 1200, "height": 675, "bytes": 48086 }]
+	},
+	"best-ai-coding-tools-2026": {
+		"hero": { "src": "/images/posts/best-ai-coding-tools-2026-hero.webp", "alt": "Best AI coding tools for developers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-coding-tools-2026", "width": 1200, "height": 675, "bytes": 69752 },
+		"inline": [{ "src": "/images/posts/best-ai-coding-tools-2026-inline-1.webp", "alt": "Comparison of AI code editors and app builders by features and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-coding-tools-2026", "width": 1200, "height": 675, "bytes": 48086 }]
 	}
 }
