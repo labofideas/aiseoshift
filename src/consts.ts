@@ -1,7 +1,7 @@
 export const SITE_TITLE = 'AISEOShift';
-export const SITE_TAGLINE = 'News and field notes on AI visibility, answer engines, and organic growth.';
+export const SITE_TAGLINE = 'AI SEO Shift, AI visibility, answer engines, and search strategy.';
 export const SITE_DESCRIPTION =
-	'AISEOShift covers AI visibility, AEO, GEO, citations, content systems, and search strategy with an editorial news-style lens.';
+	'AISEOShift covers the AI SEO Shift, AI visibility, AEO, GEO, citations, and search strategy for brands adapting to AI-powered search.';
 export const SITE_URL = 'https://aiseoshift.com';
 export const SITE_AUTHOR = 'AISEOShift Editorial Desk';
 export const SITE_KEYWORDS = [

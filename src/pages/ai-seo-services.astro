@@ -1,0 +1,210 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	provider: { '@type': 'Organization', name: SITE_TITLE },
+	areaServed: 'Worldwide',
+	serviceType: 'AI SEO Services',
+	description:
+		'AI SEO services for businesses that need visibility in Google, ChatGPT, Perplexity, Claude, and other AI search environments.',
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO Services | ${SITE_TITLE}`}
+			description="AI SEO services for businesses that want stronger visibility in Google Search, AI Overviews, ChatGPT, Claude, and Perplexity."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; padding: 2.5rem 0 4rem; }
+			.svc-hero { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+			.svc-kicker { display: inline-flex; padding: 0.35rem 0.7rem; border-bottom: 1px solid rgba(217, 106, 58, 0.25); color: var(--signal-deep); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+			.svc-hero h1 { font-family: 'Atkinson', 'Trebuchet MS', sans-serif; font-size: clamp(2rem, 3.8vw, 3rem); line-height: 1.08; letter-spacing: -0.025em; margin: 0.5rem 0 1rem; max-width: 22ch; }
+			.svc-hero p { font-size: 1.06rem; line-height: 1.72; color: rgba(var(--ink), 0.8); max-width: 42rem; }
+			.svc-cta-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.4rem; }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.7rem 1.3rem; border-radius: 0.6rem; font-weight: 700; font-size: 0.92rem; text-decoration: none; transition: transform 120ms ease, background 120ms ease; }
+			.svc-btn-primary { background: var(--signal-deep); color: #fff; }
+			.svc-btn-primary:hover { transform: translateY(-1px); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line); }
+			.svc-btn-secondary:hover { background: rgba(var(--ink), 0.04); }
+			.svc-section h2 { font-family: 'Atkinson', 'Trebuchet MS', sans-serif; font-size: clamp(1.4rem, 2.2vw, 1.85rem); line-height: 1.2; letter-spacing: -0.02em; margin: 2.5rem 0 1.2rem; }
+			.svc-section > p { font-size: 1rem; line-height: 1.72; color: rgba(var(--ink), 0.78); max-width: 42rem; margin: 0 0 1.4rem; }
+			.svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin: 1rem 0 2rem; }
+			.svc-card { padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--ink), 0.02); }
+			.svc-card h3 { font-family: 'Atkinson', 'Trebuchet MS', sans-serif; font-size: 1.1rem; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+			.svc-card p { margin: 0; font-size: 0.92rem; line-height: 1.6; color: rgba(var(--ink), 0.78); }
+			.svc-card ul { margin: 0.7rem 0 0; padding-left: 1.1rem; font-size: 0.88rem; line-height: 1.55; color: rgba(var(--ink), 0.78); }
+			.svc-card li { margin-top: 0.25rem; }
+			.outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin: 1rem 0 2rem; }
+			.outcome { padding: 1rem 1.2rem; border-radius: 0.7rem; background: rgba(var(--ink), 0.03); border-left: 3px solid var(--signal); }
+			.outcome strong { display: block; font-size: 1.6rem; font-family: 'Atkinson', 'Trebuchet MS', sans-serif; color: var(--signal-deep); margin-bottom: 0.2rem; }
+			.outcome span { font-size: 0.88rem; color: rgba(var(--ink), 0.7); line-height: 1.4; }
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; margin: 2rem 0; align-items: start; }
+			@media (max-width: 780px) { .contact-block { grid-template-columns: 1fr; } }
+			.contact-card { padding: 1.6rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--ink), 0.02); }
+			.contact-card h3 { font-family: 'Atkinson', 'Trebuchet MS', sans-serif; font-size: 1.15rem; margin: 0 0 0.5rem; }
+			.contact-card > p { font-size: 0.93rem; line-height: 1.6; color: rgba(var(--ink), 0.78); margin: 0 0 1rem; }
+			.contact-form { display: flex; flex-direction: column; gap: 0.7rem; }
+			.contact-form label { font-size: 0.82rem; font-weight: 700; color: rgba(var(--ink), 0.82); }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: var(--signal-deep); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid var(--line); border-radius: 0.5rem; font-size: 0.92rem; font-family: inherit; background: rgba(var(--ink), 0.02); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 110px; resize: vertical; }
+			.contact-form button { margin-top: 0.4rem; padding: 0.75rem 1rem; background: var(--signal-deep); color: #fff; font-weight: 700; font-size: 0.92rem; border: none; border-radius: 0.6rem; cursor: pointer; }
+			.contact-form button:hover { opacity: 0.92; }
+			.form-status { margin-top: 0.7rem; font-size: 0.88rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+			.faq h3 { font-family: 'Atkinson', 'Trebuchet MS', sans-serif; font-size: 1.05rem; margin: 1.4rem 0 0.4rem; letter-spacing: -0.01em; }
+			.faq p { margin: 0 0 0.6rem; font-size: 0.95rem; line-height: 1.65; color: rgba(var(--ink), 0.74); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<span class="svc-kicker">AI SEO Services</span>
+				<h1>AI SEO services for brands that need visibility in search and AI answers.</h1>
+				<p>
+					Google AI Overviews, ChatGPT, Perplexity, and other answer engines now shape how people
+					discover and trust businesses. We help you improve traditional search visibility while
+					making your site easier to cite, summarize, and trust in AI-generated results.
+				</p>
+				<div class="svc-cta-row">
+					<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min strategy call →</a>
+					<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do</h2>
+				<p>Three AI SEO services covering audits, implementation, and ongoing growth across traditional search and AI search surfaces.</p>
+				<div class="svc-grid">
+					<div class="svc-card">
+						<h3>AI Search Visibility Audit</h3>
+						<p>One-time audit of how your site appears across Google Search, AI Overviews, ChatGPT, and Perplexity, with a prioritized action plan.</p>
+						<ul><li>SERP and AI citation audit</li><li>E-E-A-T and schema review</li><li>Topic gap analysis</li><li>Action roadmap</li></ul>
+					</div>
+					<div class="svc-card">
+						<h3>AI SEO Implementation</h3>
+						<p>Project work to improve page structure, entity clarity, schema, internal linking, and content formatting so your site is easier for AI systems to understand and cite.</p>
+						<ul><li>Page structure for answer extraction</li><li>Schema implementation</li><li>Content refresh and rewriting</li><li>Internal linking improvements</li></ul>
+					</div>
+					<div class="svc-card">
+						<h3>Ongoing AI SEO Retainer</h3>
+						<p>Monthly support that combines technical SEO, content strategy, topical growth, and AI visibility monitoring into one operating rhythm.</p>
+						<ul><li>Monthly content production</li><li>Technical SEO maintenance</li><li>AI citation monitoring</li><li>Monthly reporting</li></ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Who we work with</h2>
+				<p>Professional service businesses, SaaS companies, and expertise-driven brands that need to be found by people researching solutions in both search engines and AI answer engines.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Both surfaces</strong><span>Optimization for Google rankings and AI answer visibility together.</span></div>
+					<div class="outcome"><strong>Authority first</strong><span>Content and structure built around expertise, trust, and topical depth.</span></div>
+					<div class="outcome"><strong>Measured</strong><span>Reporting that looks beyond rankings into citations, branded demand, and qualified traffic.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your current visibility, your goals, and where AI SEO can have the biggest impact.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly →</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Send a short description of your business and goals, and we will reply with next steps.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="New quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Company / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+								<option value="AI Search Visibility Audit">AI Search Visibility Audit</option>
+								<option value="AI SEO Implementation">AI SEO Implementation</option>
+								<option value="Ongoing AI SEO Retainer">Ongoing AI SEO Retainer</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">What are you trying to achieve? <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Tell us about your business and goals."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section faq">
+				<h2>FAQs</h2>
+				<h3>What is AI SEO?</h3>
+				<p>AI SEO is the practice of improving your site so it can perform better in both traditional search results and AI-generated answers, summaries, and citations.</p>
+				<h3>How is AI SEO different from standard SEO?</h3>
+				<p>Standard SEO focuses heavily on rankings and click-throughs. AI SEO also focuses on how pages are interpreted, summarized, and cited by systems like ChatGPT, Perplexity, Claude, and Google AI Overviews.</p>
+				<h3>Do you only work with specific industries?</h3>
+				<p>We work best with expertise-driven businesses where trust, authority, and organic discovery matter.</p>
+				<h3>Do you offer one-time projects or only retainers?</h3>
+				<p>Both. Audits and implementation projects can be one-time. Ongoing retainers are available for continued growth.</p>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email shashank@wbcomdesigns.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email shashank@wbcomdesigns.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email shashank@wbcomdesigns.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

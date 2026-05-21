@@ -1,20 +1,53 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import imageManifest from '../data/image-manifest.json';
-import { SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE, SITE_URL } from '../consts';
-import { getFeaturedPost, getLatestPosts, sortPostsByDate } from '../utils/blog';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../consts';
+import { sortPostsByDate } from '../utils/blog';
+
+const guide = await getEntry('blog', 'ai-seo-shift');
+if (!guide) throw new Error('Missing required guide: ai-seo-shift');
 
 const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft));
-const featured = getFeaturedPost(posts);
-const latest = getLatestPosts(posts, 9).filter((post) => post.id !== featured?.id);
-const topStories = posts.filter((post) => post.id !== featured?.id).slice(0, 3);
-const strategy = posts.filter((post) => post.data.category === 'Strategy').slice(0, 3);
-const research = posts.filter((post) => post.data.category === 'Research').slice(0, 3);
-const tooling = posts.filter((post) => post.data.category === 'Tooling').slice(0, 3);
-const playbooks = posts.filter((post) => post.data.category === 'Playbooks').slice(0, 3);
+const latestPosts = posts.filter((post) => post.id !== guide.id).slice(0, 6);
+const featuredTopics = [
+	{ href: '/blog/what-is-answer-engine-optimization/', label: 'What is Answer Engine Optimization?', kicker: 'AEO' },
+	{ href: '/blog/geo-vs-aeo-vs-seo/', label: 'GEO vs AEO vs SEO: What Actually Changed?', kicker: 'Framework' },
+	{ href: '/blog/how-to-measure-ai-visibility/', label: 'How to Measure AI Visibility', kicker: 'Measurement' },
+];
+const commercialLinks = [
+	{
+		href: '/ai-seo-services/',
+		kicker: 'AI SEO Services',
+		title: 'Get help with AI SEO strategy, audits, and ongoing growth',
+		copy: 'For businesses that need stronger visibility in Google, AI Overviews, ChatGPT, Perplexity, and other AI search surfaces.',
+	},
+	{
+		href: '/ai-seo-tools/',
+		kicker: 'AI SEO Tools',
+		title: 'Use free AI SEO tools to review pages, metadata, and structure',
+		copy: 'Browser-based tools to check on-page SEO, content structure, heading hierarchy, keyword usage, and image optimization.',
+	},
+];
+const homepageSections = [
+	{
+		title: 'What the AI SEO Shift means',
+		body: 'The AI SEO Shift is the move from chasing rankings alone to building visibility inside AI-generated answers, citations, and recommendation systems. SEO still matters, but it now works alongside answer engine optimization and generative engine optimization.',
+	},
+	{
+		title: 'Why this matters now',
+		body: 'Users increasingly discover brands through Google AI Overviews, ChatGPT, Claude, and Perplexity before they ever click a website. That means authority, structure, attribution, and topical depth now shape how your brand appears in search.',
+	},
+	{
+		title: 'How to adapt',
+		body: 'Winning this shift requires strong technical SEO, direct answer-first content, clear entity signals, and supporting topic clusters that help AI systems understand what your site covers and why it should be trusted.',
+	},
+];
+const guideImage = imageManifest[guide.id as keyof typeof imageManifest]?.hero;
+
 const homepageStructuredData = [
 	{
 		'@context': 'https://schema.org',
@@ -26,10 +59,16 @@ const homepageStructuredData = [
 	},
 	{
 		'@context': 'https://schema.org',
-		'@type': 'Organization',
-		name: SITE_TITLE,
+		'@type': 'WebPage',
+		name: 'AI SEO Shift',
 		url: SITE_URL,
-		description: SITE_DESCRIPTION,
+		description: guide.data.description,
+		isPartOf: {
+			'@type': 'WebSite',
+			name: SITE_TITLE,
+			url: SITE_URL,
+		},
+		about: ['AI SEO', 'Answer Engine Optimization', 'Generative Engine Optimization', 'AI visibility'],
 	},
 ];
 ---
@@ -38,505 +77,559 @@ const homepageStructuredData = [
 <html lang="en">
 	<head>
 		<BaseHead
-			title={`AI Visibility, AEO, and Answer Engine Search Strategy | ${SITE_TITLE}`}
-			description={SITE_DESCRIPTION}
+			title={`AI SEO Shift | AISEOShift`}
+			description="AI SEO Shift explained: how AI visibility, AEO, GEO, citations, and answer engine search are changing SEO, and what to do next."
 			structuredData={homepageStructuredData}
+			preloadHero={guideImage?.src}
 		/>
 		<style>
-			.front-page {
-				width: min(1200px, calc(100% - 2rem));
+			.home-shell {
+				width: min(1180px, calc(100% - 2rem));
 				margin: 0 auto;
 				padding: 1.4rem 0 4rem;
 			}
 
-			/* ── Hero ── */
-			.hero-intro {
+			.hero {
 				display: grid;
-				grid-template-columns: 1.1fr 0.9fr;
-				gap: 2.5rem;
-				align-items: center;
-				padding: 2.5rem 0 2.5rem;
-				margin-bottom: 2rem;
-				border-bottom: 1px solid rgba(var(--ink), 0.08);
+				grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+				gap: 1.5rem;
+				align-items: stretch;
+				margin: 1rem 0 1.5rem;
 			}
 
-			.hero-intro-copy h1 {
-				font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
-				font-size: clamp(2rem, 3.5vw, 3rem);
-				line-height: 1.08;
-				letter-spacing: -0.03em;
-				margin: 0 0 1rem;
+			.hero-panel,
+			.hero-visual,
+			.topic-card,
+			.post-card,
+			.summary-shell,
+			.guide-shell {
+				border: 1px solid var(--line);
+				border-radius: 26px;
+				background: rgba(var(--paper-strong), 0.7);
+				box-shadow: var(--shadow-soft);
 			}
 
-			.hero-intro-copy p {
-				margin: 0;
-				font-size: 1.02rem;
-				line-height: 1.72;
-				color: rgba(var(--ink), 0.82);
-				max-width: 34rem;
+			.hero-panel {
+				padding: 1.6rem;
 			}
 
-			.hero-intro-link {
-				display: inline-flex;
-				align-items: center;
-				margin-top: 1.4rem;
-				padding: 0.85rem 1.3rem;
-				border: 1px solid rgba(var(--ink), 0.14);
-				border-radius: 999px;
-				background: rgba(var(--paper-strong), 0.6);
-				font-size: 0.74rem;
-				font-weight: 700;
-				letter-spacing: 0.14em;
-				text-transform: uppercase;
-				text-decoration: none;
-				color: rgb(var(--ink));
-				transition: background 0.2s;
-			}
-
-			.hero-intro-link:hover {
-				background: rgba(var(--paper-strong), 0.95);
-			}
-
-			.hero-intro-visual {
-				display: block;
-				text-decoration: none;
-				border-radius: 18px;
-				overflow: hidden;
-			}
-
-			.hero-intro-img {
-				width: 100%;
-				aspect-ratio: 16 / 10;
-				object-fit: cover;
-				display: block;
-				border-radius: 18px;
-				transition: transform 0.3s ease;
-			}
-
-			.hero-intro-visual:hover .hero-intro-img {
-				transform: scale(1.02);
-			}
-
-			.hero-intro-img-caption {
-				display: block;
-				margin-top: 0.55rem;
-				font-size: 0.78rem;
-				font-weight: 600;
-				color: rgba(var(--ink), 0.6);
-				line-height: 1.4;
-			}
-
-			/* ── Shared ── */
-			.eyebrow,
-			.section-label {
-				margin: 0 0 0.8rem;
-				font-size: 0.72rem;
+			.eyebrow {
+				margin: 0 0 0.75rem;
+				font-size: 0.75rem;
 				font-weight: 700;
 				letter-spacing: 0.16em;
 				text-transform: uppercase;
 				color: var(--signal-deep);
 			}
 
-			.page-intro {
+			.hero-panel h1 {
+				font-size: clamp(2.4rem, 5vw, 4.8rem);
+				line-height: 0.94;
+				letter-spacing: -0.05em;
+				margin-bottom: 1rem;
+			}
+
+			.hero-panel p {
+				max-width: 40rem;
+				font-size: 1rem;
+				line-height: 1.72;
+				color: rgba(var(--ink), 0.84);
+			}
+
+			.hero-actions,
+			.hero-metrics,
+			.post-meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.8rem;
+			}
+
+			.hero-actions {
+				margin-top: 1.4rem;
+			}
+
+			.hero-actions a {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.88rem 1.2rem;
+				border-radius: 999px;
+				text-decoration: none;
+				font-size: 0.76rem;
+				font-weight: 700;
+				letter-spacing: 0.13em;
+				text-transform: uppercase;
+			}
+
+			.hero-actions .primary-action {
+				background: var(--signal-deep);
+				color: #fff4ee;
+			}
+
+			.hero-actions .secondary-action {
+				border: 1px solid rgba(var(--ink), 0.14);
+				color: rgb(var(--ink));
+			}
+
+			.hero-metrics {
+				margin-top: 1.5rem;
+			}
+
+			.metric {
+				flex: 1 1 180px;
+				padding: 0.9rem 1rem;
+				border-radius: 18px;
+				background: rgba(var(--paper), 0.8);
+				border: 1px solid rgba(var(--ink), 0.08);
+			}
+
+			.metric strong {
+				display: block;
+				font-size: 1.35rem;
+				letter-spacing: -0.03em;
+				margin-bottom: 0.2rem;
+			}
+
+			.metric span {
+				display: block;
+				font-size: 0.82rem;
+				line-height: 1.45;
+				color: rgba(var(--ink), 0.74);
+			}
+
+			.hero-visual {
+				padding: 1rem;
+				display: grid;
+				gap: 1rem;
+			}
+
+			.hero-visual img {
+				width: 100%;
+				aspect-ratio: 16 / 10;
+				object-fit: cover;
+				border-radius: 18px;
+			}
+
+			.hero-caption {
+				font-size: 0.88rem;
+				line-height: 1.55;
+				color: rgba(var(--ink), 0.72);
+			}
+
+			.section-head {
 				display: flex;
 				align-items: end;
 				justify-content: space-between;
 				gap: 1rem;
-				margin-bottom: 1.15rem;
+				margin: 2.5rem 0 1rem;
 			}
 
-			.page-intro h2 {
-				margin-bottom: 0;
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(1.35rem, 2vw, 1.75rem);
-				line-height: 1.18;
-				letter-spacing: -0.02em;
+			.section-head h2 {
+				margin: 0;
+				font-size: clamp(1.5rem, 2vw, 2rem);
+				letter-spacing: -0.03em;
 			}
 
-			.page-intro a {
+			.section-head p,
+			.section-head a {
+				margin: 0;
+				font-size: 0.9rem;
+				color: rgba(var(--ink), 0.72);
+			}
+
+			.section-head a {
+				font-weight: 700;
+				text-decoration: none;
+				color: var(--signal-deep);
+			}
+
+			.topic-grid,
+			.posts-grid,
+			.summary-grid {
+				display: grid;
+				gap: 1rem;
+			}
+
+			.topic-grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			.topic-card {
+				padding: 1.2rem;
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.topic-card:hover,
+			.post-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 14px 34px rgba(var(--ink), 0.08);
+			}
+
+			.topic-card span {
+				display: block;
 				font-size: 0.72rem;
 				font-weight: 700;
 				letter-spacing: 0.14em;
 				text-transform: uppercase;
-			}
-
-			/* ── Lead Story + Signals ── */
-			.hero-stage {
-				display: grid;
-				grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.85fr);
-				gap: 1.4rem;
-				margin-bottom: 2.5rem;
-			}
-
-			.hero-story,
-			.digest-panel,
-			.story-card,
-			.topic-panel {
-				border: 1px solid var(--line);
-				border-radius: 24px;
-				background: rgba(var(--paper-strong), 0.55);
-				box-shadow: 0 12px 30px rgba(var(--ink), 0.05);
-			}
-
-			.hero-story {
-				padding: 1.1rem;
-				overflow: hidden;
-			}
-
-			.hero-shell {
-				display: grid;
-				grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-				gap: 1.25rem;
-				align-items: stretch;
-			}
-
-			.hero-copy {
-				padding: 1rem 1rem 1rem 0.3rem;
-			}
-
-			.hero-story h2 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-				line-height: 1;
-				letter-spacing: -0.035em;
-				margin: 0 0 0.8rem;
-			}
-
-			.hero-story p {
-				max-width: 42rem;
-				font-size: 0.94rem;
-				line-height: 1.68;
-			}
-
-			.hero-thumb {
-				width: 100%;
-				height: 100%;
-				min-height: 20rem;
-				object-fit: cover;
-				border-radius: 14px;
-				box-shadow: 0 14px 28px rgba(var(--ink), 0.14);
-			}
-
-			.hero-meta {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.75rem;
-				margin-top: 0.8rem;
-				padding-top: 0.75rem;
-				border-top: 1px solid rgba(var(--ink), 0.08);
-				text-transform: uppercase;
-				letter-spacing: 0.08em;
-				font-size: 0.72rem;
-				color: rgba(var(--ink), 0.6);
-			}
-
-			.hero-link,
-			.card-link {
-				color: inherit;
-				text-decoration: none;
-			}
-
-			.hero-link:hover h2,
-			.card-link:hover h3 {
 				color: var(--signal-deep);
+				margin-bottom: 0.5rem;
 			}
 
-			/* ── Signals Desk ── */
-			.digest-panel {
-				padding: 1.4rem 1.35rem;
-				background: rgba(var(--paper-strong), 0.7);
+			.topic-card strong {
+				display: block;
+				font-size: 1.15rem;
+				line-height: 1.2;
 			}
 
-			.digest-panel h2 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(1.2rem, 1.8vw, 1.6rem);
-				line-height: 1.22;
-				letter-spacing: -0.02em;
-				margin-bottom: 0.7rem;
+			.topic-card p {
+				margin: 0.7rem 0 0;
+				font-size: 0.9rem;
+				line-height: 1.58;
+				color: rgba(var(--ink), 0.76);
 			}
 
-			.digest-panel p {
-				font-size: 0.88rem;
-				line-height: 1.62;
+			.summary-shell {
+				padding: 1.35rem;
 			}
 
-			.digest-panel ol {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				display: grid;
-				gap: 0.9rem;
+			.summary-grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
 			}
 
-			.digest-panel li {
-				padding-top: 0.9rem;
+			.summary-card {
+				padding: 1rem 0.2rem;
 				border-top: 1px solid rgba(var(--ink), 0.08);
 			}
 
-			.digest-panel li:first-child {
+			.summary-card:first-child {
+				border-top: none;
 				padding-top: 0;
-				border-top: 0;
 			}
 
-			.card-meta {
-				color: rgba(var(--ink), 0.55);
-				font-size: 0.78rem;
-			}
-
-			/* ── Stories Grid ── */
-			.stories-grid {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				gap: 1rem;
-				margin-bottom: 2.5rem;
-			}
-
-			.story-card {
-				padding: 1.25rem 1.2rem 1.3rem;
-			}
-
-			.card-thumb {
-				width: 100%;
-				aspect-ratio: 16 / 9;
-				object-fit: cover;
-				border-radius: 10px;
-				margin-bottom: 0.9rem;
-			}
-
-			.story-card h3 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: 1.02rem;
-				line-height: 1.32;
-				letter-spacing: -0.01em;
+			.summary-card h3 {
+				font-size: 1.15rem;
+				line-height: 1.2;
 				margin-bottom: 0.6rem;
 			}
 
-			.story-card p {
-				font-size: 0.86rem;
+			.summary-card p {
+				margin: 0;
+				font-size: 0.95rem;
+				line-height: 1.68;
+				color: rgba(var(--ink), 0.78);
+			}
+
+			.summary-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.85rem;
+				margin-top: 1.4rem;
+				padding-top: 1rem;
+				border-top: 1px solid rgba(var(--ink), 0.08);
+			}
+
+			.summary-actions a {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0.82rem 1.15rem;
+				border-radius: 999px;
+				text-decoration: none;
+				font-size: 0.76rem;
+				font-weight: 700;
+				letter-spacing: 0.13em;
+				text-transform: uppercase;
+			}
+
+			.summary-actions .primary-action {
+				background: var(--signal-deep);
+				color: #fff4ee;
+			}
+
+			.summary-actions .secondary-action {
+				border: 1px solid rgba(var(--ink), 0.14);
+				color: rgb(var(--ink));
+			}
+
+			.guide-shell {
+				padding: 1.4rem;
+				margin-top: 1.1rem;
+			}
+
+			.guide-meta {
+				padding: 1.15rem;
+				border-radius: 20px;
+				background: rgba(var(--paper), 0.9);
+				border: 1px solid rgba(var(--ink), 0.08);
+			}
+
+			.guide-meta h3 {
+				font-size: 1rem;
+				margin-bottom: 0.8rem;
+			}
+
+			.guide-meta p,
+			.guide-meta li {
+				font-size: 0.9rem;
 				line-height: 1.6;
 				color: rgba(var(--ink), 0.78);
 			}
 
-			/* ── Topics Grid ── */
-			.topics-grid {
-				display: grid;
-				grid-template-columns: repeat(4, minmax(0, 1fr));
-				gap: 1rem;
-				margin-bottom: 2.5rem;
+			.guide-meta ul {
+				margin: 0.85rem 0 0;
 			}
 
-			.topic-panel {
-				padding: 1.25rem 1.2rem 1.3rem;
+			.posts-grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
 			}
 
-			.topic-panel ul {
-				list-style: none;
-				padding: 0;
-				margin: 0.8rem 0 0;
-			}
-
-			.topic-panel li + li {
-				margin-top: 0.75rem;
-				padding-top: 0.75rem;
-				border-top: 1px solid rgba(var(--ink), 0.08);
-			}
-
-			.topic-panel a {
+			.post-card {
+				overflow: hidden;
 				text-decoration: none;
-				color: rgb(var(--ink));
+				color: inherit;
+			}
+
+			.post-card img {
+				width: 100%;
+				aspect-ratio: 16 / 10;
+				object-fit: cover;
+				border-radius: 0;
+			}
+
+			.post-copy {
+				padding: 1.1rem 1.15rem 1.2rem;
+			}
+
+			.post-kicker {
+				display: block;
+				font-size: 0.72rem;
 				font-weight: 700;
-				font-size: 0.92rem;
-				line-height: 1.35;
-			}
-
-			.topic-panel a:hover {
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
 				color: var(--signal-deep);
+				margin-bottom: 0.55rem;
 			}
 
-			.topic-panel p {
-				font-size: 0.82rem;
-				line-height: 1.55;
-				color: rgba(var(--ink), 0.68);
-				margin-top: 0.25rem;
+			.post-card h3 {
+				font-size: 1.2rem;
+				line-height: 1.2;
+				margin-bottom: 0.65rem;
 			}
 
-			.topic-panel.lead-desk {
-				background: linear-gradient(180deg, rgba(232, 131, 79, 0.1), rgba(var(--paper-strong), 0.7));
+			.post-card p {
+				margin: 0 0 0.9rem;
+				font-size: 0.92rem;
+				line-height: 1.62;
+				color: rgba(var(--ink), 0.78);
 			}
 
-			/* ── Responsive ── */
-			@media (max-width: 960px) {
-				.hero-intro,
-				.hero-stage,
-				.hero-shell,
-				.stories-grid {
-					grid-template-columns: 1fr;
-				}
-
-				.topics-grid {
-					grid-template-columns: repeat(2, minmax(0, 1fr));
-				}
-
-				.hero-thumb {
-					min-height: 16rem;
-				}
-
-				.digest-panel {
-					padding: 1.2rem;
-				}
+			.post-meta {
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: rgba(var(--ink), 0.56);
 			}
 
-			@media (max-width: 600px) {
-				.topics-grid {
-					grid-template-columns: 1fr;
+			@media (max-width: 1040px) {
+				.hero,
+					.posts-grid,
+					.topic-grid,
+					.summary-grid {
+						grid-template-columns: 1fr;
+					}
+				}
+
+			@media (max-width: 720px) {
+				.home-shell {
+					padding-bottom: 3rem;
+				}
+
+				.hero-panel,
+				.hero-visual,
+				.guide-shell {
+					padding: 1rem;
+				}
+
+				.hero-panel h1 {
+					font-size: clamp(2.1rem, 11vw, 3.2rem);
+				}
+
+				.section-head {
+					align-items: start;
+					flex-direction: column;
 				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main id="main-content" class="front-page">
-			<section class="hero-intro" aria-label="Site introduction">
-				<div class="hero-intro-copy">
-					<h1>AI visibility, AEO, and answer engine search strategy.</h1>
-					<p>
-						AISEOShift covers citations, answer engines, retrieval patterns, and the editorial systems SEO
-						teams need now that classic blue-link ranking is no longer the whole game.
-					</p>
-					<a class="hero-intro-link" href="/blog">Browse all articles</a>
-				</div>
-				{featured && imageManifest[featured.id as keyof typeof imageManifest]?.hero && (
-					<a class="hero-intro-visual" href={`/blog/${featured.id}/`}>
-						<img
-							src={imageManifest[featured.id as keyof typeof imageManifest].hero.src}
-							alt={imageManifest[featured.id as keyof typeof imageManifest].hero.alt}
-							class="hero-intro-img"
-						/>
-						<span class="hero-intro-img-caption">Featured: {featured.data.title}</span>
-					</a>
-				)}
-			</section>
-
-			<section class="hero-stage">
-				{featured && (
-					<article class="hero-story">
-						<div class="hero-shell">
-							<div class="hero-copy">
-								<p class="eyebrow">Lead Story</p>
-								<a class="hero-link" href={`/blog/${featured.id}/`}>
-									<h2>{featured.data.title}</h2>
-									<p>{featured.data.deck}</p>
-								</a>
-								<p class="hero-meta">
-									<span>{featured.data.category}</span>
-									<span>{featured.data.author}</span>
-								</p>
-							</div>
-							{imageManifest[featured.id as keyof typeof imageManifest]?.hero && (
-								<img
-									class="hero-thumb"
-									src={imageManifest[featured.id as keyof typeof imageManifest].hero.src}
-									alt={imageManifest[featured.id as keyof typeof imageManifest].hero.alt}
-								/>
-							)}
+		<main id="main-content">
+			<div class="home-shell">
+				<section class="hero" aria-labelledby="homepage-title">
+					<div class="hero-panel">
+						<p class="eyebrow">AISEOShift</p>
+						<h1 id="homepage-title">AI SEO Shift</h1>
+						<p>AI SEO Shift is the move from ranking-first SEO to visibility across AI answers, citations, and search systems like Google AI Overviews, ChatGPT, Claude, and Perplexity.</p>
+						<div class="hero-actions">
+							<a class="primary-action" href="#guide">Read the guide</a>
+							<a class="secondary-action" href="#latest">Latest posts</a>
 						</div>
-					</article>
-				)}
-				<aside class="digest-panel">
-					<p class="section-label">Trending</p>
-					<h2>Recent coverage across AI search, SEO, and visibility.</h2>
-					<ol>
-						{topStories.map((post) => (
-							<li>
-								<a class="card-link" href={`/blog/${post.id}/`}>
-									<strong>{post.data.title}</strong>
-								</a>
-								<div class="card-meta">{post.data.category}</div>
-							</li>
-						))}
-					</ol>
-				</aside>
-			</section>
-
-			<section>
-				<div class="page-intro">
-					<div>
-						<p class="section-label">Latest</p>
-						<h2>Recent articles</h2>
+						<div class="hero-metrics" aria-label="Core homepage highlights">
+							<div class="metric">
+								<strong>AI SEO</strong>
+								<span>Understand how traditional SEO now overlaps with AI visibility, citations, and answer engines.</span>
+							</div>
+							<div class="metric">
+								<strong>AEO + GEO</strong>
+								<span>Learn how to structure content so ChatGPT, Google AI Overviews, Claude, and Perplexity can trust it.</span>
+							</div>
+							<div class="metric">
+								<strong>Fresh Publishing</strong>
+								<span>The homepage stays active with current posts, while the core guide anchors the brand term AI SEO Shift.</span>
+							</div>
+						</div>
 					</div>
-					<a href="/blog">View all</a>
-				</div>
-				<div class="stories-grid">
-					{latest.slice(0, 6).map((post) => (
-						<article class="story-card">
-							<p class="eyebrow">{post.data.category}</p>
-							<a class="card-link" href={`/blog/${post.id}/`}>
-								{imageManifest[post.id as keyof typeof imageManifest]?.hero && (
-									<img
-										class="card-thumb"
-										src={imageManifest[post.id as keyof typeof imageManifest].hero.src}
-										alt={imageManifest[post.id as keyof typeof imageManifest].hero.alt}
-										loading="lazy"
-									/>
-								)}
-								<h3>{post.data.title}</h3>
-								<p>{post.data.description}</p>
+
+					<div class="hero-visual">
+						{guideImage && <img src={guideImage.src} alt={guideImage.alt} loading="eager" />}
+						<div class="hero-caption">
+							<strong>AISEOShift is built around one core topic: the AI SEO Shift.</strong>
+							<div>
+								This homepage explains the topic clearly, links to the supporting guides that define it,
+								and surfaces the latest reporting underneath.
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section aria-labelledby="core-topics">
+					<div class="section-head">
+						<div>
+							<p class="eyebrow">Core Topics</p>
+							<h2 id="core-topics">Core guides that define the AI SEO Shift</h2>
+						</div>
+						<p>These pages support the homepage with definitions, frameworks, and measurement.</p>
+					</div>
+					<div class="topic-grid">
+						{featuredTopics.map((topic) => (
+							<a class="topic-card" href={topic.href}>
+								<span>{topic.kicker}</span>
+								<strong>{topic.label}</strong>
 							</a>
-						</article>
-					))}
-				</div>
-			</section>
-
-			<section aria-label="Browse by topic">
-				<div class="page-intro">
-					<div>
-						<p class="section-label">Topics</p>
-						<h2>Browse by category</h2>
+						))}
 					</div>
-				</div>
-				<div class="topics-grid">
-					<section class="topic-panel lead-desk">
-						<p class="section-label">Strategy</p>
-						<ul>
-							{strategy.map((post) => (
-								<li>
-									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								</li>
-							))}
-						</ul>
-					</section>
-					<section class="topic-panel">
-						<p class="section-label">Research</p>
-						<ul>
-							{research.map((post) => (
-								<li>
-									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								</li>
-							))}
-						</ul>
-					</section>
-					<section class="topic-panel">
-						<p class="section-label">Tooling</p>
-						<ul>
-							{tooling.map((post) => (
-								<li>
-									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								</li>
-							))}
-						</ul>
-					</section>
-					<section class="topic-panel">
-						<p class="section-label">Playbooks</p>
-						<ul>
-							{playbooks.map((post) => (
-								<li>
-									<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								</li>
-							))}
-						</ul>
-					</section>
-				</div>
-			</section>
+				</section>
+
+				<section aria-labelledby="services-tools">
+					<div class="section-head">
+						<div>
+							<p class="eyebrow">Explore More</p>
+							<h2 id="services-tools">AI SEO services and AI SEO tools</h2>
+						</div>
+						<p>Two clear paths for visitors who want expert help or want to self-audit.</p>
+					</div>
+					<div class="topic-grid">
+						{commercialLinks.map((item) => (
+							<a class="topic-card" href={item.href}>
+								<span>{item.kicker}</span>
+								<strong>{item.title}</strong>
+								<p>{item.copy}</p>
+							</a>
+						))}
+					</div>
+				</section>
+
+				<section id="guide" aria-labelledby="guide-title">
+					<div class="section-head">
+						<div>
+							<p class="eyebrow">Start Here</p>
+							<h2 id="guide-title">Understand the AI SEO Shift quickly</h2>
+						</div>
+						<a href="/ai-seo-shift/">Read the full guide</a>
+					</div>
+					<div class="guide-shell">
+						<div class="guide-meta">
+							<p class="eyebrow">Guide Snapshot</p>
+							<h3>{guide.data.title}</h3>
+							<p>{guide.data.description}</p>
+							<ul>
+								<li>Published: <FormattedDate date={guide.data.pubDate} /></li>
+								<li>Category: {guide.data.category}</li>
+								<li>Author: {guide.data.author}</li>
+							</ul>
+						</div>
+						<div class="summary-shell">
+							<div class="summary-grid">
+								{homepageSections.map((section) => (
+									<article class="summary-card">
+										<h3>{section.title}</h3>
+										<p>{section.body}</p>
+									</article>
+								))}
+							</div>
+							<div class="summary-actions">
+								<a class="primary-action" href="/ai-seo-shift/">Read the full guide</a>
+								<a class="secondary-action" href="#core-topics">Explore related topics</a>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="latest" aria-labelledby="latest-title">
+					<div class="section-head">
+						<div>
+							<p class="eyebrow">Latest Posts</p>
+							<h2 id="latest-title">Latest AI visibility and search strategy posts</h2>
+						</div>
+						<a href="/blog/">View all posts</a>
+					</div>
+					<div class="posts-grid">
+						{latestPosts.map((post) => {
+							const cardImage = imageManifest[post.id as keyof typeof imageManifest]?.hero;
+							return (
+								<a class="post-card" href={`/blog/${post.id}/`}>
+									{cardImage && <img src={cardImage.src} alt={cardImage.alt} loading="lazy" />}
+									<div class="post-copy">
+										<span class="post-kicker">{post.data.category}</span>
+										<h3>{post.data.title}</h3>
+										<p>{post.data.description}</p>
+										<div class="post-meta">
+											<span><FormattedDate date={post.data.pubDate} /></span>
+											<span>{post.data.author}</span>
+										</div>
+									</div>
+								</a>
+							);
+						})}
+					</div>
+				</section>
+
+				<section aria-labelledby="about-brand">
+					<div class="section-head">
+						<div>
+							<p class="eyebrow">About AISEOShift</p>
+							<h2 id="about-brand">A site focused on AI visibility, citations, and answer engine search</h2>
+						</div>
+					</div>
+					<div class="summary-shell">
+						<div class="summary-grid">
+							<article class="summary-card">
+								<h3>Focused topical coverage</h3>
+								<p>AISEOShift publishes around AI search, AI visibility, AEO, GEO, citations, content structure, and modern SEO strategy.</p>
+							</article>
+							<article class="summary-card">
+								<h3>Built to support the main topic</h3>
+								<p>The homepage targets AI SEO Shift directly, while supporting guides and recent posts reinforce the topic cluster around it.</p>
+							</article>
+							<article class="summary-card">
+								<h3>Designed for readers and search systems</h3>
+								<p>Clear definitions, structured pages, and internal linking help both human visitors and AI systems understand what the site is about.</p>
+							</article>
+						</div>
+					</div>
+				</section>
+			</div>
 		</main>
 		<Footer />
 	</body>
