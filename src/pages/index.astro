@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
@@ -470,6 +471,55 @@ const homepageStructuredData = [
 				padding: 1.4rem;
 			}
 
+			.entity-strip {
+				margin-top: 1.1rem;
+				padding: 1rem 1.2rem;
+				border: 1px solid var(--line);
+				border-radius: 18px;
+				background: rgba(var(--paper-strong), 0.5);
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.55rem 0.85rem;
+			}
+
+			.entity-strip-label {
+				margin: 0 0.5rem 0 0;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--signal-deep);
+			}
+
+			.entity-strip ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4rem 0.55rem;
+			}
+
+			.entity-strip a {
+				display: inline-flex;
+				padding: 0.38rem 0.75rem;
+				border-radius: 999px;
+				border: 1px solid rgba(var(--ink), 0.14);
+				background: rgba(var(--paper), 0.85);
+				color: rgb(var(--ink));
+				text-decoration: none;
+				font-size: 0.82rem;
+				font-weight: 600;
+				line-height: 1;
+			}
+
+			.entity-strip a:hover,
+			.entity-strip a:focus-visible {
+				color: var(--signal-deep);
+				border-color: rgba(217, 106, 58, 0.4);
+			}
+
 			.faq-item {
 				border-top: 1px solid rgba(var(--ink), 0.08);
 				padding: 1.05rem 0;
@@ -616,6 +666,30 @@ const homepageStructuredData = [
 							</a>
 						))}
 					</div>
+				</section>
+
+				<section id="compare" aria-labelledby="compare-title">
+					<div class="section-head">
+						<div>
+							<p class="eyebrow">Frameworks</p>
+							<h2 id="compare-title">SEO vs AEO vs GEO at a glance</h2>
+						</div>
+						<p>Side-by-side comparison of the three disciplines that now make up modern search.</p>
+					</div>
+					<ComparisonTable />
+					<nav class="entity-strip" aria-label="Explore the SEO Guide by topic">
+						<p class="entity-strip-label">Explore by topic</p>
+						<ul>
+							<li><a href="/seo/ai-search-optimization/">AEO &amp; GEO</a></li>
+							<li><a href="/seo/ai-citation-building/">AI Citation Building</a></li>
+							<li><a href="/seo/schema-markup/">Schema</a></li>
+							<li><a href="/seo/eeat/">E-E-A-T</a></li>
+							<li><a href="/seo/technical-seo/">Technical SEO</a></li>
+							<li><a href="/seo/keyword-research/">Keyword Research</a></li>
+							<li><a href="/seo/content-strategy/">Content Strategy</a></li>
+							<li><a href="/seo/measuring-seo/">Measurement</a></li>
+						</ul>
+					</nav>
 				</section>
 
 				<section aria-labelledby="services-tools">

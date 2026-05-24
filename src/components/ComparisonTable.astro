@@ -1,0 +1,175 @@
+---
+const rows = [
+	{
+		label: 'Primary goal',
+		seo: 'Rank in Google’s organic blue-link results.',
+		aeo: 'Get cited as a source inside ChatGPT, Claude, and Perplexity answers.',
+		geo: 'Appear in Google AI Overviews and Gemini generative responses.',
+	},
+	{
+		label: 'Surfaces',
+		seo: 'Google Search, Bing.',
+		aeo: 'ChatGPT Search, Claude, Perplexity.',
+		geo: 'Google AI Overviews, Gemini, Search Generative Experience.',
+	},
+	{
+		label: 'Primary crawler',
+		seo: 'Googlebot, Bingbot.',
+		aeo: 'OAI-SearchBot, PerplexityBot, Claude-SearchBot.',
+		geo: 'Googlebot (same crawl, different ranking layer).',
+	},
+	{
+		label: 'Ranking / citation signal',
+		seo: 'Backlinks, on-page relevance, E-E-A-T, page experience.',
+		aeo: 'Direct answer formatting, schema, named entities, brand mentions.',
+		geo: 'Pre-existing Google rank plus AI-friendly structure and citations.',
+	},
+	{
+		label: 'Best content format',
+		seo: 'In-depth articles with strong internal linking.',
+		aeo: 'Q&A blocks, definitions, tables, lists with attributed stats.',
+		geo: 'Short direct answers under H2s plus topical cluster depth.',
+	},
+	{
+		label: 'How to measure',
+		seo: 'Search Console clicks, impressions, positions.',
+		aeo: 'Citation mentions across ChatGPT / Claude / Perplexity, brand share of voice.',
+		geo: 'Presence in AI Overview cards, GSC position when AIO is shown.',
+	},
+];
+---
+
+<div class="cmp-shell">
+	<div class="cmp-head">
+		<p class="cmp-eyebrow">Side-by-side</p>
+		<h3>SEO vs AEO vs GEO</h3>
+		<p class="cmp-lede">Three overlapping disciplines for the modern search landscape. Most brands need all three.</p>
+	</div>
+	<div class="cmp-table-scroll">
+		<table class="cmp-table">
+			<thead>
+				<tr>
+					<th scope="col">&nbsp;</th>
+					<th scope="col">SEO<br /><span>Search Engine Optimization</span></th>
+					<th scope="col">AEO<br /><span>Answer Engine Optimization</span></th>
+					<th scope="col">GEO<br /><span>Generative Engine Optimization</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				{rows.map((r) => (
+					<tr>
+						<th scope="row">{r.label}</th>
+						<td>{r.seo}</td>
+						<td>{r.aeo}</td>
+						<td>{r.geo}</td>
+					</tr>
+				))}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<style>
+	.cmp-shell {
+		border: 1px solid var(--line);
+		border-radius: 26px;
+		background: rgba(var(--paper-strong), 0.7);
+		box-shadow: var(--shadow-soft);
+		padding: 1.5rem;
+	}
+
+	.cmp-head {
+		margin-bottom: 1.25rem;
+	}
+
+	.cmp-eyebrow {
+		margin: 0 0 0.4rem;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--signal-deep);
+	}
+
+	.cmp-head h3 {
+		margin: 0 0 0.4rem;
+		font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+	}
+
+	.cmp-lede {
+		margin: 0;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: rgba(var(--ink), 0.74);
+		max-width: 56rem;
+	}
+
+	.cmp-table-scroll {
+		overflow-x: auto;
+		border-radius: 18px;
+		border: 1px solid rgba(var(--ink), 0.08);
+		background: rgba(var(--paper), 0.6);
+	}
+
+	.cmp-table {
+		width: 100%;
+		min-width: 720px;
+		border-collapse: collapse;
+		font-size: 0.92rem;
+	}
+
+	.cmp-table th,
+	.cmp-table td {
+		padding: 0.9rem 1rem;
+		text-align: left;
+		vertical-align: top;
+		line-height: 1.55;
+		border-bottom: 1px solid rgba(var(--ink), 0.08);
+	}
+
+	.cmp-table thead th {
+		background: rgba(var(--ink), 0.04);
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: rgba(var(--ink), 0.78);
+	}
+
+	.cmp-table thead th span {
+		display: block;
+		margin-top: 0.2rem;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: none;
+		color: rgba(var(--ink), 0.56);
+	}
+
+	.cmp-table tbody th {
+		width: 11.5rem;
+		font-weight: 700;
+		color: rgb(var(--ink));
+	}
+
+	.cmp-table tbody td {
+		color: rgba(var(--ink), 0.82);
+	}
+
+	.cmp-table tbody tr:last-child th,
+	.cmp-table tbody tr:last-child td {
+		border-bottom: none;
+	}
+
+	@media (max-width: 720px) {
+		.cmp-shell {
+			padding: 1.1rem;
+		}
+
+		.cmp-table {
+			font-size: 0.85rem;
+		}
+	}
+</style>

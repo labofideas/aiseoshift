@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
@@ -145,6 +146,10 @@ const articleSchema = {
 
 			.guide-overview :global(p) { margin-bottom: 1.4rem; }
 
+			.guide-compare {
+				margin: 2.5rem 0;
+			}
+
 			.chapters-heading {
 				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
 				font-size: 1.4rem;
@@ -224,6 +229,10 @@ const articleSchema = {
 					<overviewContent.Content />
 				</div>
 			)}
+
+			<div class="guide-compare">
+				<ComparisonTable />
+			</div>
 
 			<h2 class="chapters-heading">Guide Chapters</h2>
 			<div class="chapters-grid">
