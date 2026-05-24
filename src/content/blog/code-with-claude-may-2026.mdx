@@ -1,0 +1,255 @@
+---
+title: "Code with Claude 2026: Every Announcement from Anthropic's Biggest Event Yet"
+description: "Complete coverage of Code with Claude 2026 — doubled limits, Dreaming agents, multi-agent orchestration, Claude Finance, Claude for Small Business, Claude Security, and the SpaceX compute deal."
+deck: "Anthropic held its second annual developer conference on May 6 and followed up with a wave of product launches through the month. Doubled usage limits, self-improving agents, a SpaceX compute partnership, and Claude entering small business workflows. Here is everything that shipped."
+pubDate: 2026-05-22
+category: Research
+tags:
+  - Claude
+  - Anthropic
+  - AI models
+  - AI tools
+  - AI search
+author: AISEOShift Editorial Desk
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+Anthropic's Code with Claude 2026 — held in San Francisco on May 6 with follow-up events in London (May 19) and Tokyo (June 10) — was the company's most significant product event to date. Five major features shipped, usage limits doubled across every paid plan, and a compute partnership with SpaceX gave Anthropic access to over 220,000 Nvidia GPUs.
+
+Then on May 13, Anthropic launched Claude for Small Business, extending AI agents into QuickBooks, PayPal, HubSpot, and a dozen other tools that small businesses use daily.
+
+This roundup covers every announcement, what each one means, and how it connects to the broader [AI SEO shift](/ai-seo-shift/).
+
+## The SpaceX compute deal: 220,000 GPUs
+
+The foundation beneath every other announcement: Anthropic struck a deal with SpaceX to use the Colossus 1 data center in Memphis — over 220,000 Nvidia GPUs and 300 megawatts of power. This is one of the largest compute partnerships in AI history.
+
+The immediate impact: **doubled usage limits across every paid plan.** Pro, Max, Team, and Enterprise users all received 2x their previous token limits. Peak-hour throttling was removed for Pro and Max accounts entirely.
+
+For API users, the increases were even larger:
+- **Tier 1:** 1,500 percent increase in maximum input tokens per minute, 900 percent increase in output tokens per minute
+- **Higher tiers:** proportional increases across the board
+
+The deal also includes an exploration partnership to develop orbital AI compute capacity — literally putting data centers in space to bypass terrestrial power constraints. That part is still exploratory, but the Memphis data center is operational now.
+
+**Why this matters:** Anthropic's biggest competitive weakness has been capacity constraints. Users hitting rate limits during peak hours, Claude Code sessions timing out during long tasks, and API customers facing throttling. The SpaceX deal addresses all of these at once. More capacity means more consistent performance, which means Claude becomes more viable for production workloads that cannot tolerate interruptions.
+
+## Doubled usage limits: what you actually get now
+
+Here is the practical impact by plan:
+
+| Plan | Before | After | Peak Hours |
+|---|---|---|---|
+| Free | Limited | Unchanged | Still throttled |
+| Pro ($20/mo) | Standard limits | 2x limits | No peak throttling |
+| Max ($100-200/mo) | 5-20x Pro | 2x previous | No peak throttling |
+| Team ($25/user/mo) | Team limits | 2x limits | Reduced throttling |
+| Enterprise | Custom | 2x limits | Custom SLAs |
+
+The removal of peak-hour throttling for Pro and Max is arguably more impactful than the raw limit increase. Previously, Claude would reduce output quality and speed during high-traffic periods (typically US business hours). That restriction is gone.
+
+For developers using [Claude Code](/blog/best-ai-coding-tools-2026/) for multi-hour autonomous coding sessions, this means fewer interruptions and more consistent performance during the workday when it matters most.
+
+## Dreaming: agents that learn from their own mistakes
+
+The most technically ambitious announcement: **Dreaming** is a new capability where Claude agents review their own past sessions, extract patterns, and write notes that future agents can reference.
+
+### How Dreaming works
+
+When a Claude Code agent completes a task — say, refactoring a module — it may have encountered errors, discovered undocumented patterns in the codebase, or found approaches that worked better than others. Without Dreaming, that knowledge disappears when the session ends.
+
+With Dreaming, a scheduled background process reviews completed sessions and curates a memory store. The next agent that works on the same codebase can access these notes, getting up to speed faster and avoiding mistakes that previous agents already made.
+
+Dreaming surfaces patterns that no single agent can see on its own:
+- **Recurring mistakes** across sessions
+- **Workflows** that agents converge on independently
+- **Team preferences** shared across multiple developers' sessions
+- **Codebase-specific knowledge** that is not documented anywhere
+
+### Real-world impact
+
+Harvey, the legal AI company, reported a **6x jump in task completion rates** after enabling Dreaming for their Claude agents. The agents learned which approaches worked for their specific legal document formats and stopped repeating errors across sessions.
+
+Dreaming is available in research preview. It represents a shift from stateless AI tools (every session starts from zero) to persistent AI agents that accumulate expertise over time.
+
+## Outcomes: defining what success looks like
+
+**Outcomes** lets you write a rubric describing what a successful result looks like. A separate grader — running in its own context window, independent from the working agent — evaluates the output against your criteria.
+
+When something does not meet the rubric, the grader pinpoints what needs to change and the agent takes another pass. This creates a feedback loop: the agent works, the grader evaluates, the agent improves, until the outcome criteria are met.
+
+The key design decision: the grader runs in a **separate context window** so it is not influenced by the agent's reasoning. It evaluates the output objectively, not the process that produced it.
+
+For teams building AI-powered content workflows, Outcomes means you can define quality standards — "the meta description must be under 155 characters, include the primary keyword, and match the page's actual content" — and the agent will iterate until the standard is met. This connects directly to [how AI systems evaluate content quality](/blog/eeat-in-the-ai-era/).
+
+## Multi-agent orchestration: scaling complex tasks
+
+When a task is too large or complex for a single agent, **multi-agent orchestration** lets a lead agent break it into pieces and delegate each one to a specialist.
+
+Each specialist has its own model, prompt, and tools. Specialists work in parallel on a shared filesystem and contribute to the lead agent's overall context. The lead agent coordinates, merges results, and handles the overall task flow.
+
+### Practical example
+
+A lead agent receives the instruction: "Audit this website's SEO and create a report." It delegates:
+- Specialist 1: Analyze [schema markup](/blog/schema-markup-for-ai-visibility/) and structured data
+- Specialist 2: Check heading structure and content hierarchy
+- Specialist 3: Evaluate [image optimization](/blog/multimodal-seo-images-video-audio/) and alt text
+- Specialist 4: Test [LLM crawler accessibility](/blog/llm-crawler-optimization/)
+
+All four specialists work simultaneously. The lead agent collects their findings and produces a unified report. What would take a single agent 30 minutes takes four specialists 8 minutes working in parallel.
+
+Multi-agent orchestration is available in public beta as part of Managed Agents.
+
+<InlineEditorialImage slug="code-with-claude-may-2026" index={0} />
+
+## Claude Finance: 10 pre-built agents for financial services
+
+Anthropic shipped **Claude Finance** — a package of 10 pre-built agents targeting financial services workflows:
+
+- **Pitch Builder** — generates investment pitch decks from data inputs
+- **Meeting Preparer** — briefs analysts before client meetings with relevant context
+- **Market Researcher** — monitors market developments and surfaces relevant insights
+- **Evaluation Reviewer** — reviews valuation models and flags inconsistencies
+- **Month-End Closer** — automates reconciliation and reporting workflows
+- Plus five additional specialized financial agents
+
+Claude Finance is designed for regulated environments with enterprise-grade compliance features. For financial services firms, these agents replace hours of manual research and document preparation with AI-powered workflows that maintain audit trails.
+
+## Claude for Small Business: AI in QuickBooks, PayPal, and HubSpot
+
+On May 13, Anthropic launched **Claude for Small Business** — bringing AI agents into the tools small businesses already use daily.
+
+### 15 ready-to-run agentic workflows
+
+The launch included 15 pre-built workflows covering:
+- **Payroll planning** and processing
+- **Month-end close** and financial reporting
+- **Invoice chasing** and accounts receivable
+- **Lead triage** and qualification
+- **Contract review** and summarization
+- **Campaign creation** for marketing
+- **Cash-flow monitoring** and alerts
+- **Business pulse reporting** with weekly summaries
+
+### Tool integrations
+
+Connectors ship for QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, Microsoft 365, and Slack. Claude works inside these tools — it reads your QuickBooks data, drafts invoices, prepares reports, and handles follow-ups.
+
+The critical design principle: **Claude asks for approval before anything sends, posts, or pays.** It is designed as a drafting and preparation layer, not an autonomous spending agent.
+
+### Pricing and availability
+
+Claude for Small Business is available through Claude Team ($25/user/month) or Enterprise plans. The workflows and connectors are included free — partner tool costs (QuickBooks, HubSpot, etc.) remain unchanged.
+
+Anthropic also launched:
+- **Free AI Fluency for Small Business course** built with PayPal
+- **10-city US tour** starting in Chicago with free half-day workshops
+- **Free month of Claude Max** for every workshop attendee
+
+This is Anthropic's most aggressive go-to-market move. By embedding Claude into the daily workflows of small businesses, Anthropic creates sticky usage that goes beyond the chatbot interface. When Claude handles your invoicing, you do not switch to a competitor.
+
+## Claude Security: vulnerability scanning for enterprises
+
+**Claude Security** launched in public beta for Enterprise customers. It scans code repositories for security vulnerabilities and proposes fixes using Opus 4.7.
+
+This connects directly to [Claude Mythos](/blog/claude-updates-march-april-2026/) — Anthropic's cybersecurity-focused model that demonstrated unprecedented vulnerability detection capabilities. Claude Security brings a production-ready version of that capability to enterprise code reviews.
+
+## Claude Code desktop app redesign
+
+The Claude Code desktop application received a complete overhaul:
+
+- **Session sidebar** for managing multiple parallel coding sessions
+- **Drag-and-drop workspace** for organizing files and projects
+- **Integrated terminal and file editor** — no need to switch to a separate editor
+- **Faster diffs** with expanded previews
+- **SSH support on Mac** for remote development
+- **Performance and reliability improvements** across the board
+
+The redesign reflects how developers actually use Claude Code in 2026: running multiple autonomous sessions in parallel, switching between projects, and monitoring long-running tasks. The new sidebar makes it possible to manage 5 to 10 simultaneous coding agents without losing track of what each one is doing.
+
+## Claude Design expansion
+
+[Claude Design](/blog/claude-updates-march-april-2026/), launched in April, received expanded capabilities in May:
+
+- More template options for presentations, wireframes, and social assets
+- Improved export to Canva, PDF, PPTX, and URL formats
+- Better design system awareness for brand consistency
+- Higher-quality visual output powered by continued Opus 4.7 vision improvements
+
+Claude Design is available for Pro, Max, Team, and Enterprise subscribers.
+
+## What this means for AI visibility and SEO
+
+Several Code with Claude announcements directly impact [AI visibility strategy](/ai-seo-shift/):
+
+**1. Doubled limits mean more AI browsing.** With 2x token limits and no peak throttling, Claude users will run more searches, ask more questions, and consume more web content. The volume of AI-mediated content discovery is increasing — making [AI visibility optimization](/blog/what-is-ai-visibility/) more valuable.
+
+**2. Multi-agent orchestration changes competitive research.** Teams can now run parallel AI agents that audit competitor websites, analyze content gaps, and generate reports — all simultaneously. The speed of competitive intelligence is accelerating.
+
+**3. Dreaming creates persistent AI expertise.** As Claude agents accumulate knowledge about specific industries and topics through Dreaming, they develop preferences for certain sources. Content that gets cited by Claude agents early builds compounding advantage as those agents' memories persist.
+
+**4. Claude for Small Business expands the AI user base.** When small businesses use Claude for invoicing, marketing, and reporting, they also start using it for research — including searching for vendors, products, and services. [Being visible to these AI-mediated searches](/blog/how-to-get-cited-by-ai-search-systems/) becomes a customer acquisition channel.
+
+## Timeline of May 2026 announcements
+
+| Date | Announcement |
+|---|---|
+| May 6 | Code with Claude conference (San Francisco) |
+| May 6 | SpaceX Colossus 1 compute partnership |
+| May 6 | Doubled limits across all paid plans |
+| May 6 | Dreaming, Outcomes, Multi-agent orchestration |
+| May 6 | Claude Finance (10 pre-built agents) |
+| May 6 | Claude Security (public beta) |
+| May 7 | Claude Code desktop app redesign |
+| May 13 | Claude for Small Business launch |
+| May 19 | Code with Claude London |
+| May 20 | Claude Design expanded features |
+| June 10 | Code with Claude Tokyo (upcoming) |
+
+## Frequently asked questions
+
+### What is Code with Claude 2026?
+
+Code with Claude is Anthropic's annual developer conference. The 2026 edition was held in San Francisco on May 6, with follow-up events in London (May 19) and Tokyo (June 10). Major announcements included doubled usage limits, Dreaming for self-improving agents, multi-agent orchestration, Claude Finance, Claude for Small Business, and a compute partnership with SpaceX.
+
+### Did Claude really double its limits?
+
+Yes. Pro, Max, Team, and Enterprise plans all received 2x their previous token limits. Peak-hour throttling was removed for Pro and Max accounts. API limits saw increases of 900 to 1,500 percent depending on tier. This was enabled by Anthropic's deal with SpaceX for the Colossus 1 data center (220,000+ Nvidia GPUs).
+
+### What is Claude Dreaming?
+
+Dreaming is a new capability where Claude agents review their past sessions, extract patterns, and curate a memory store. Future agents accessing the same codebase or project can reference these notes, learning from previous sessions' mistakes and successes. Harvey reported a 6x jump in task completion rates after enabling Dreaming.
+
+### What is Claude for Small Business?
+
+Claude for Small Business launched May 13, 2026 with 15 pre-built agentic workflows and connectors to QuickBooks, PayPal, HubSpot, Canva, DocuSign, Google Workspace, Microsoft 365, and Slack. Workflows handle payroll, invoicing, lead triage, contract review, marketing campaigns, and financial reporting. Available on Team ($25/user/month) and Enterprise plans.
+
+### How does multi-agent orchestration work?
+
+A lead agent breaks complex tasks into pieces and delegates each one to specialist agents. Each specialist has its own model, prompt, and tools, and works in parallel on a shared filesystem. The lead agent coordinates results. This is useful for large-scale tasks like website audits, codebase refactoring, and multi-document analysis.
+
+### Is Claude competing with Salesforce and HubSpot now?
+
+Not directly. Claude for Small Business integrates with these platforms rather than replacing them. Claude connects to HubSpot for lead management and to QuickBooks for accounting — it does not offer its own CRM or accounting features. The positioning is "AI layer on top of your existing tools," not a replacement.
+
+## Related reading
+
+- [Claude AI Updates: Everything Anthropic Shipped in March-April 2026](/blog/claude-updates-march-april-2026/)
+- [The AI SEO Shift: the complete guide](/ai-seo-shift/)
+- [Best AI coding tools 2026](/blog/best-ai-coding-tools-2026/)
+- [Claude vs ChatGPT: the battle heats up](/blog/claude-vs-chatgpt-battle-heats-up-april-2026/)
+- [What is AI visibility?](/blog/what-is-ai-visibility/)
+- [How to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/)
+
+## References
+
+- [Code with Claude 2026 — Anthropic](https://claude.com/code-with-claude)
+- [5 New Agent Features — MindStudio](https://www.mindstudio.ai/blog/code-with-claude-2026-new-agent-features)
+- [New in Claude Managed Agents — Claude Blog](https://claude.com/blog/new-in-claude-managed-agents)
+- [Claude Code Limits Doubled — 9to5Google](https://9to5google.com/2026/05/06/claude-code-is-getting-higher-usage-limits-doubled-for-most-users/)
+- [Anthropic SpaceX Deal — PCWorld](https://www.pcworld.com/article/3132997/anthropic-doubles-claude-code-limits-thanks-to-a-deal-with-spacex.html)
+- [Claude for Small Business — Anthropic](https://www.anthropic.com/news/claude-for-small-business)
+- [Claude for Small Business — Axios](https://www.axios.com/2026/05/13/anthropic-claude-small-business-smb)
+- [Code with Claude Review — MIT Technology Review](https://www.technologyreview.com/2026/05/21/1137735/anthropics-code-with-claude-showed-off-codings-future-whether-you-like-it-or-not/)
