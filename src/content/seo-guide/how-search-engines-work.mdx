@@ -14,7 +14,7 @@ Google, Bing, and other conventional search engines operate through a three-stag
 
 ### Crawling
 
-Crawling is discovery. Search engines deploy automated programs called crawlers or spiders that follow links across the web, downloading pages and tracking the connections between them. Google's primary crawler is Googlebot. Bing uses Bingbot. Each crawler identifies itself through its user-agent string, which allows site owners to serve different responses or block specific crawlers through robots.txt directives.
+Crawling is discovery. Search engines deploy automated programs called crawlers or spiders that follow links across the web, downloading pages and tracking the connections between them. Google's primary crawler is [Googlebot](https://developers.google.com/search/docs/crawling-indexing/googlebot). Bing uses Bingbot. Each crawler identifies itself through its user-agent string, which allows site owners to serve different responses or block specific crawlers through robots.txt directives.
 
 Googlebot does not crawl every page equally. It allocates a crawl budget to each site based on the site's perceived importance, server health, and content freshness. Large, authoritative sites get crawled more frequently. New or small sites may wait days or weeks between crawl visits. Understanding crawl budget matters because pages that are not crawled cannot be indexed, and pages that are not indexed cannot rank.
 
@@ -48,11 +48,11 @@ The traditional crawler ecosystem expanded significantly between 2023 and 2026. 
 
 ### GPTBot (OpenAI)
 
-OpenAI's crawler retrieves web content for two purposes: training data collection and real-time retrieval for ChatGPT's search features. GPTBot identifies itself with the user-agent string "GPTBot" and respects robots.txt directives. Blocking GPTBot prevents your content from being used in future training and from being retrieved during live ChatGPT searches.
+OpenAI's crawler retrieves web content for two purposes: training data collection and real-time retrieval for ChatGPT's search features. [GPTBot](https://platform.openai.com/docs/bots/overview) identifies itself with the user-agent string "GPTBot" and respects robots.txt directives. Blocking GPTBot prevents your content from being used in future training and from being retrieved during live ChatGPT searches.
 
 ### ClaudeBot (Anthropic)
 
-Anthropic's crawler serves similar functions for Claude. It retrieves content for training and for Claude's web access capabilities. ClaudeBot also respects robots.txt.
+Anthropic's crawler serves similar functions for Claude. It retrieves content for training and for Claude's [web access capabilities](https://docs.anthropic.com/en/docs/build-with-claude/web-search). ClaudeBot also respects robots.txt.
 
 ### PerplexityBot
 
