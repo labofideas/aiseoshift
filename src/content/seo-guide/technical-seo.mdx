@@ -90,7 +90,7 @@ Techniques for optimizing crawl budget include eliminating duplicate content, fi
 
 ## Indexing Controls
 
-Crawling and indexing are separate processes. A page can be crawled but not indexed, or indexed but not ranked. Understanding the tools that control indexing is essential for managing which pages appear in search results.
+Indexing controls are HTML meta tags, HTTP headers, and directives that tell search engines whether to add a page to their search index. Crawling and indexing are separate processes. A page can be crawled but not indexed, or indexed but not ranked. Understanding the tools that control indexing is essential for managing which pages appear in search results.
 
 ### Meta Robots Tags
 
@@ -122,7 +122,7 @@ Ensure your HTTPS implementation is complete: all pages, images, scripts, and re
 
 ## JavaScript Rendering and Client-Side Content
 
-JavaScript-heavy sites, particularly single-page applications built with React, Vue, or Angular, present specific challenges for both search engine crawlers and AI systems.
+JavaScript rendering is the process by which search engines execute client-side JavaScript to discover and index dynamically generated content. JavaScript-heavy sites, particularly single-page applications built with React, Vue, or Angular, present specific challenges for both search engine crawlers and AI systems.
 
 ### The Rendering Problem
 
@@ -191,6 +191,24 @@ Server logs reveal how all crawlers interact with your site, including AI crawle
 Run a comprehensive technical SEO audit quarterly for most sites and monthly for large or rapidly changing sites. Spot-check critical metrics weekly. Automate monitoring for Core Web Vitals, indexing status, and crawl errors to catch issues promptly.
 
 The tools and processes described in this chapter create the foundation that all other SEO efforts build upon. In the next chapter, we cover [schema markup and structured data](/seo/schema-markup/), which bridges the gap between raw content and machine-readable information.
+
+## Frequently asked questions
+
+### What is technical SEO?
+
+Technical SEO is the practice of optimizing a website's infrastructure so that search engines and AI systems can crawl, render, index, and understand its content. It covers server performance, site architecture, crawl management, indexing controls, and structured data implementation. Unlike content-focused SEO, technical SEO deals with the underlying systems that make content discoverable.
+
+### What are Core Web Vitals?
+
+Core Web Vitals are three specific metrics that Google uses to measure real-world user experience: Largest Contentful Paint (loading speed), Interaction to Next Paint (interactivity), and Cumulative Layout Shift (visual stability). They became an official Google ranking signal in 2021, and pages that fail the recommended thresholds face a measurable disadvantage in search results, especially on mobile.
+
+### Should I block AI crawlers in robots.txt?
+
+Whether to block AI crawlers depends on your goals. If you want AI systems like ChatGPT, Perplexity, or Google AI Overviews to cite your content, you should allow their crawlers (GPTBot, PerplexityBot, ClaudeBot) access to your pages. Blocking them prevents your content from appearing in AI-generated answers, which is an increasingly significant traffic and visibility channel.
+
+### What is the difference between crawling and indexing?
+
+Crawling is when a search engine bot discovers and downloads your web pages, while indexing is when the search engine analyzes that content and adds it to its searchable database. A page can be crawled but never indexed if it has a noindex tag, and a page cannot be indexed if it is blocked from crawling via robots.txt.
 
 ## Go Deeper
 

@@ -12,7 +12,7 @@ In 2026, structured data has moved from an SEO bonus to a core requirement. Goog
 
 ## What Structured Data Is and Why It Matters
 
-Structured data is a standardized format for providing explicit information about a page and its content. It uses a shared vocabulary, primarily from [Schema.org](https://schema.org/), to classify content into types (Article, Product, FAQ, Person, Organization) and describe properties of each type (author, date published, price, rating).
+Structured data is a standardized format for providing explicit information about a page and its content. The [Schema.org Getting Started guide](https://schema.org/docs/gs.html) explains the core vocabulary, which is used to classify content into types (Article, Product, FAQ, Person, Organization) and describe properties of each type (author, date published, price, rating).
 
 ### The Problem Structured Data Solves
 
@@ -24,7 +24,7 @@ Schema markup removes this ambiguity. It says explicitly: this is a Product, its
 
 Google uses structured data to generate rich results, the enhanced search listings that include star ratings, prices, images, FAQ accordions, recipe cards, event dates, and other visual elements. Rich results consistently achieve higher click-through rates than standard blue links. A product listing with star ratings, price, and availability stands out visually and provides information that helps searchers decide whether to click.
 
-Not all schema types trigger rich results. Google supports a [specific subset of Schema.org types](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) for rich result eligibility, and each type has required and optional properties. Meeting the required properties gets you eligible for the rich result; adding optional properties can improve the quality and comprehensiveness of what appears.
+Not all schema types trigger rich results. Google's [Structured Data Search Gallery](https://developers.google.com/search/docs/appearance/structured-data/search-gallery) shows the [specific subset of Schema.org types](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) eligible for rich results, and each type has required and optional properties. Meeting the required properties gets you eligible for the rich result; adding optional properties can improve the quality and comprehensiveness of what appears.
 
 ### Benefits for AI Systems
 
@@ -36,7 +36,7 @@ For a detailed exploration of how schema markup specifically enhances AI visibil
 
 ## JSON-LD: The Preferred Format
 
-Schema markup can be implemented in three formats: JSON-LD (JavaScript Object Notation for Linked Data), Microdata, and RDFa. Google explicitly recommends JSON-LD, and it is the format you should use.
+JSON-LD (JavaScript Object Notation for Linked Data) is a method of encoding structured data as a standalone script block in your page's HTML, separate from the visible markup. Schema markup can be implemented in three formats: JSON-LD, Microdata, and RDFa. Google explicitly recommends JSON-LD, and it is the format you should use.
 
 ### Why JSON-LD Wins
 
@@ -202,7 +202,7 @@ This aligns with Google's E-E-A-T framework, explored in our [E-E-A-T chapter](/
 
 ## Testing and Validation
 
-Structured data must be syntactically correct and semantically valid to deliver its benefits. Several tools help ensure your markup meets the required standards.
+Schema markup testing is the process of verifying that your structured data is syntactically correct, semantically valid, and eligible to trigger rich results. Structured data must be syntactically correct and semantically valid to deliver its benefits. Several tools help ensure your markup meets the required standards.
 
 ### Google's Rich Results Test
 
@@ -222,7 +222,7 @@ Before deploying new structured data, follow a testing sequence. First, validate
 
 ## Schema Stacking: Combining Multiple Types
 
-The most effective structured data implementations do not use a single schema type per page. They stack multiple complementary types to provide a comprehensive machine-readable description of the page.
+Schema stacking is the practice of applying multiple complementary schema types to a single page to give search engines and AI systems a complete, machine-readable description. The most effective structured data implementations do not use a single schema type per page. They stack multiple complementary types to provide a comprehensive machine-readable description of the page.
 
 ### How Schema Stacking Works
 
@@ -263,6 +263,24 @@ For one-off pages or small sites, manual JSON-LD is straightforward. Write the J
 ### Programmatic Validation
 
 At scale, automated testing catches schema issues before they reach production. Integrate schema validation into your deployment pipeline by running JSON-LD through a validator during the build process. This catches syntax errors, missing required properties, and type mismatches before they affect your live site.
+
+## Frequently asked questions
+
+### What is schema markup?
+
+Schema markup is code you add to your web pages that provides search engines and AI systems with explicit, structured information about your content. It uses the Schema.org vocabulary to classify content into types like Article, Product, FAQ, and Organization, and to describe specific properties of each type. Schema markup helps machines understand the meaning of your content rather than just reading it as unstructured text.
+
+### Does schema markup help SEO?
+
+Schema markup does not directly boost rankings, but it enables rich results in Google Search -- enhanced listings with star ratings, prices, FAQ accordions, and other visual elements that significantly increase click-through rates. It also helps AI systems understand and cite your content with higher confidence, making it an increasingly important factor for visibility in both traditional and AI-powered search.
+
+### What is JSON-LD?
+
+JSON-LD (JavaScript Object Notation for Linked Data) is the structured data format that Google explicitly recommends for implementing schema markup. It is added as a self-contained script block in your page's HTML head section, separate from your visible content, which makes it easier to add, modify, and maintain than inline formats like Microdata or RDFa.
+
+### How do I test schema markup?
+
+Use Google's Rich Results Test (search.google.com/test/rich-results) to check whether your markup qualifies for rich results, and the Schema.org Validator to verify correctness against the full vocabulary. After deploying, monitor Google Search Console's Enhancements report for 48 to 72 hours to confirm that Google processes your markup without errors or warnings.
 
 ## Go Deeper
 

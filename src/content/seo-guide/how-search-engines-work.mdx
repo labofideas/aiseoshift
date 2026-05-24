@@ -10,7 +10,7 @@ Every SEO decision you make is ultimately an attempt to influence a system you d
 
 ## How Traditional Search Engines Work
 
-Google, Bing, and other conventional search engines operate through a three-stage process that has been refined over two decades but remains structurally consistent: crawling, indexing, and ranking.
+Google, Bing, and other conventional search engines operate through a three-stage process that has been refined over two decades but remains structurally consistent: crawling, indexing, and ranking. Google's own [How Search Works](https://www.google.com/search/howsearchworks/) resource provides an official overview of this pipeline.
 
 ### Crawling
 
@@ -44,7 +44,7 @@ When a user enters a query, Google's ranking system sifts through its index to f
 
 ## The AI Crawlers
 
-The traditional crawler ecosystem expanded significantly between 2023 and 2026. Alongside Googlebot, site owners now see traffic from a growing list of AI-specific crawlers, each serving a different purpose. Understanding these crawlers is critical to [managing LLM crawler access](/blog/llm-crawler-optimization/) effectively.
+AI crawlers are automated bots deployed by companies like OpenAI, Anthropic, and Google to retrieve web content for AI training and real-time search features. The traditional crawler ecosystem expanded significantly between 2023 and 2026. Alongside Googlebot, site owners now see traffic from a growing list of AI-specific crawlers, each serving a different purpose. Understanding these crawlers is critical to [managing LLM crawler access](/blog/llm-crawler-optimization/) effectively.
 
 ### GPTBot (OpenAI)
 
@@ -68,7 +68,7 @@ The question of which AI crawlers to allow is a strategic one, not a binary deci
 
 ## The AI Layer: How LLMs Process Information
 
-Understanding how large language models find and use your content is the single biggest knowledge gap in SEO today. Most practitioners understand Google's traditional pipeline. Far fewer understand the retrieval and synthesis pipeline that powers AI-generated responses.
+Large language models process information by retrieving relevant web documents, evaluating their credibility, and synthesizing responses that may cite specific sources. Understanding how LLMs find and use your content is the single biggest knowledge gap in SEO today. Most practitioners understand Google's traditional pipeline. Far fewer understand the retrieval and synthesis pipeline that powers AI-generated responses.
 
 ### Retrieval-Augmented Generation (RAG)
 
@@ -96,7 +96,7 @@ This creates both a challenge and an opportunity for content creators. The chall
 
 ## Google's Dual System
 
-Google in 2026 runs two systems simultaneously for many queries: the traditional organic ranking system and the AI Overview system. Understanding how these interact is essential because [Google's AI Mode is reshaping how SEOs need to think](/blog/google-ai-mode-what-seos-need-to-know/) about optimization.
+Google runs two systems simultaneously for many queries: the traditional organic ranking system and the AI Overview system, which generates summarized answers using Gemini. Understanding how these interact is essential. Understanding how these interact is essential because [Google's AI Mode is reshaping how SEOs need to think](/blog/google-ai-mode-what-seos-need-to-know/) about optimization.
 
 ### How AI Overviews Work
 
@@ -106,7 +106,7 @@ AI Overviews do not always pull from the top-ranking organic results. Google has
 
 ### The Click-Through Impact
 
-AI Overviews significantly affect click-through rates for the queries where they appear. Studies consistently show that pages below the AI Overview receive fewer clicks, while pages cited within the AI Overview can actually see increased traffic. The net effect varies by query type. Informational queries see the largest click reduction. Commercial and transactional queries, where users need to take action on a specific site, retain most of their click-through traffic.
+AI Overviews significantly affect click-through rates for the queries where they appear. Studies from [Search Engine Journal](https://www.searchenginejournal.com/) and other industry sources consistently show that pages below the AI Overview receive fewer clicks, while pages cited within the AI Overview can actually see increased traffic. The net effect varies by query type. Informational queries see the largest click reduction. Commercial and transactional queries, where users need to take action on a specific site, retain most of their click-through traffic.
 
 ### AI Mode
 
@@ -114,7 +114,7 @@ Google's AI Mode, introduced in 2025, takes this further by offering a fully con
 
 ## Beyond Google: Other AI Search Surfaces
 
-Google remains the dominant search engine, but the [way AI is changing how people search, learn, and make decisions](/blog/how-ai-changes-search-learn-decide/) extends far beyond Google.
+AI search surfaces include ChatGPT, Perplexity, Claude, and Gemini, each of which retrieves and synthesizes web content differently from traditional search engines. Google remains the dominant search engine, but the [way AI is changing how people search, learn, and make decisions](/blog/how-ai-changes-search-learn-decide/) extends far beyond Google.
 
 ### ChatGPT Search
 
@@ -136,9 +136,27 @@ Google's Gemini operates both as a standalone AI assistant and as the engine beh
 
 ## What This Means for Your SEO Strategy
 
-The practical takeaway from understanding these systems is that modern SEO requires a multi-surface approach. Your content needs to be technically accessible to multiple crawlers, structured for both human readers and machine extraction, factually precise enough to survive LLM evaluation, authoritative enough to be selected over competing sources, and formatted in ways that make citation easy and natural. Our chapter on [AI search optimization](/seo/ai-search-optimization/) explains how to put these principles into practice for LLM-driven search surfaces.
+Modern SEO requires a multi-surface approach that ensures your content is accessible, structured, and authoritative enough to perform across traditional search, AI Overviews, and independent AI platforms. Your content needs to be technically accessible to multiple crawlers, structured for both human readers and machine extraction, factually precise enough to survive LLM evaluation, authoritative enough to be selected over competing sources, and formatted in ways that make citation easy and natural. Our chapter on [AI search optimization](/seo/ai-search-optimization/) explains how to put these principles into practice for LLM-driven search surfaces.
 
 The remaining chapters in this guide will show you how to achieve each of these requirements, starting with how to identify the right topics and queries to target.
+
+## Frequently asked questions
+
+### How does Google rank websites?
+
+Google ranks websites by evaluating hundreds of signals across four main categories: relevance to the query, authority measured primarily through backlinks, user experience factors like page speed and mobile usability, and content quality assessed through the E-E-A-T framework. The algorithm weighs these signals differently depending on the query type and intent.
+
+### What is the difference between crawling and indexing?
+
+Crawling is the discovery phase where search engine bots follow links across the web to find and download pages, while indexing is the processing phase where the search engine analyzes that content and stores it in a structured database. A page must be crawled before it can be indexed, and it must be indexed before it can appear in search results.
+
+### Do AI search engines use Google's index?
+
+Most independent AI search platforms like ChatGPT and Perplexity maintain their own retrieval systems rather than relying on Google's index directly. Google's AI Overviews and Gemini, however, do draw from Google's existing index. This means optimizing for Google's index benefits AI Overviews, but reaching other AI platforms requires ensuring your content is accessible to their specific crawlers.
+
+### What is an AI Overview?
+
+An AI Overview is an AI-generated summary that Google displays at the top of search results for queries that benefit from a synthesized answer. It is powered by Gemini, pulls information from Google's index, and cites specific sources, though it does not always cite the top-ranking organic results.
 
 ## Go Deeper
 
