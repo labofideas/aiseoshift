@@ -1,10 +1,12 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import EditorialImage from '../components/EditorialImage.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import GuideNav from '../components/GuideNav.astro';
 import GuidePrevNext from '../components/GuidePrevNext.astro';
 import Header from '../components/Header.astro';
+import imageManifest from '../data/image-manifest.json';
 import { SITE_AUTHOR, SITE_TITLE, SITE_URL } from '../consts';
 
 interface ChapterMeta {
@@ -29,6 +31,7 @@ const {
 	slug, headings = [], allChapters,
 } = Astro.props;
 
+const heroImage = imageManifest[`guide-${slug}` as keyof typeof imageManifest]?.hero;
 const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
 const tocHeadings = headings.filter((h) => h.depth <= 3 && h.text !== 'Related reading' && h.text !== 'References' && h.text !== 'Go deeper');
 
@@ -366,6 +369,7 @@ const structuredData = [articleSchema, breadcrumbSchema];
 							{updatedDate && <span>Updated <FormattedDate date={updatedDate} /></span>}
 						</div>
 					</header>
+					<EditorialImage image={heroImage} className="hero-visual" loading="eager" />
 					<div class="prose">
 						<slot />
 					</div>
