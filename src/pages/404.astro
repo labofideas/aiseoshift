@@ -1,0 +1,87 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Page Not Found | ${SITE_TITLE}`}
+			description="The page you are looking for does not exist or has been moved."
+		/>
+		<style>
+			.error-page {
+				width: min(680px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 6rem 0 8rem;
+				text-align: center;
+			}
+			.error-code {
+				font-size: clamp(4rem, 10vw, 8rem);
+				font-weight: 700;
+				letter-spacing: -0.04em;
+				color: var(--signal);
+				line-height: 1;
+				margin: 0;
+			}
+			.error-page h1 {
+				font-size: clamp(1.6rem, 3vw, 2.2rem);
+				letter-spacing: -0.02em;
+				margin: 1rem 0 1.2rem;
+			}
+			.error-page p {
+				font-size: 1.05rem;
+				line-height: 1.65;
+				color: rgba(var(--ink), 0.7);
+				max-width: 44ch;
+				margin: 0 auto 2rem;
+			}
+			.error-links {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			.error-link {
+				display: inline-flex;
+				align-items: center;
+				padding: 0.7rem 1.4rem;
+				border-radius: 2rem;
+				font-size: 0.9rem;
+				font-weight: 700;
+				text-decoration: none;
+				transition: transform 140ms ease, opacity 140ms ease;
+			}
+			.error-link:hover {
+				transform: translateY(-2px);
+				opacity: 0.9;
+			}
+			.error-link-primary {
+				background: var(--signal-deep);
+				color: #fff;
+			}
+			.error-link-secondary {
+				border: 1.5px solid var(--line);
+				color: rgb(var(--ink));
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="error-page">
+			<p class="error-code">404</p>
+			<h1>Page not found</h1>
+			<p>The page you are looking for does not exist, has been moved, or the URL may be incorrect. Try one of these instead:</p>
+			<div class="error-links">
+				<a href="/" class="error-link error-link-primary">Go Home</a>
+				<a href="/seo/" class="error-link error-link-secondary">SEO Guide</a>
+				<a href="/blog/" class="error-link error-link-secondary">Latest Posts</a>
+				<a href="/ai-seo-tools/" class="error-link error-link-secondary">SEO Tools</a>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
