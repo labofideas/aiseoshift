@@ -1,0 +1,197 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE, SITE_URL } from '../../consts';
+
+const allChapters = await getCollection('guide', ({ data }) => !data.draft);
+const sorted = allChapters.filter((c) => c.data.chapter > 0).sort((a, b) => a.data.chapter - b.data.chapter);
+
+const overview = allChapters.find((c) => c.data.chapter === 0);
+const overviewContent = overview ? await render(overview) : null;
+
+const canonical = new URL('/seo/', SITE_URL).toString();
+
+const itemListSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: 'The Complete SEO Guide',
+	description: 'A 12-chapter guide to SEO in 2026 covering fundamentals, technical optimization, AI search, and measurement.',
+	numberOfItems: sorted.length,
+	itemListElement: sorted.map((ch) => ({
+		'@type': 'ListItem',
+		position: ch.data.chapter,
+		name: ch.data.title,
+		url: `${SITE_URL}/seo/${ch.id}/`,
+	})),
+};
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+		{ '@type': 'ListItem', position: 2, name: 'SEO Guide' },
+	],
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`The Complete SEO Guide for 2026 | ${SITE_TITLE}`}
+			description="The definitive 12-chapter guide to SEO in 2026. Covers fundamentals, technical optimization, schema markup, E-E-A-T, AI search (AEO, GEO), content strategy, and measurement."
+			canonical={canonical}
+			structuredData={[itemListSchema, breadcrumbSchema]}
+		/>
+		<style>
+			.guide-page {
+				width: min(1000px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2.5rem 0 4rem;
+			}
+
+			.guide-hero {
+				margin-bottom: 2.5rem;
+				padding-bottom: 2rem;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.guide-hero .kicker {
+				display: inline-flex;
+				padding: 0.35rem 0.7rem;
+				border-bottom: 1px solid rgba(217, 106, 58, 0.25);
+				color: var(--signal-deep);
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+			}
+
+			.guide-hero h1 {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: clamp(2.2rem, 4vw, 3.2rem);
+				line-height: 1.06;
+				letter-spacing: -0.025em;
+				margin: 0.85rem 0 1rem;
+			}
+
+			.guide-hero p {
+				font-size: 1.08rem;
+				line-height: 1.72;
+				color: rgba(var(--ink), 0.72);
+				max-width: 44rem;
+			}
+
+			.guide-overview {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 1rem;
+				line-height: 1.78;
+				max-width: 70ch;
+				margin-bottom: 3rem;
+			}
+
+			.guide-overview :global(h2) {
+				font-size: clamp(1.45rem, 1.8vw, 1.9rem);
+				line-height: 1.22;
+				letter-spacing: -0.02em;
+				margin-top: 2.5rem;
+				margin-bottom: 0.9rem;
+			}
+
+			.guide-overview :global(p) { margin-bottom: 1.4rem; }
+
+			.chapters-heading {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 1.4rem;
+				letter-spacing: -0.015em;
+				margin: 0 0 1.5rem;
+			}
+
+			.chapters-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.25rem;
+			}
+
+			.chapter-card {
+				display: flex;
+				gap: 1rem;
+				padding: 1.25rem;
+				border: 1px solid var(--line);
+				border-radius: 1.15rem;
+				background: rgba(var(--paper-strong), 0.5);
+				text-decoration: none;
+				color: inherit;
+				transition: transform 140ms ease, box-shadow 140ms ease;
+			}
+
+			.chapter-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 24px rgba(var(--ink), 0.08);
+			}
+
+			.chapter-num {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 1.6rem;
+				font-weight: 700;
+				color: var(--signal);
+				min-width: 2rem;
+				line-height: 1;
+			}
+
+			.chapter-info { flex: 1; }
+
+			.chapter-title {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 1.05rem;
+				font-weight: 700;
+				line-height: 1.28;
+				margin: 0 0 0.35rem;
+			}
+
+			.chapter-desc {
+				font-size: 0.85rem;
+				line-height: 1.5;
+				color: rgba(var(--ink), 0.62);
+				margin: 0;
+			}
+
+			@media (max-width: 720px) {
+				.chapters-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="guide-page">
+			<header class="guide-hero">
+				<p class="kicker">12-Chapter Guide</p>
+				<h1>The Complete SEO Guide for 2026</h1>
+				<p>Everything you need to know about SEO in the AI era. From fundamentals to AI search optimization, structured data to measurement. Written for practitioners who need to rank in Google, get cited by AI, and build visibility across every search surface.</p>
+			</header>
+
+			{overviewContent && (
+				<div class="guide-overview">
+					<overviewContent.Content />
+				</div>
+			)}
+
+			<h2 class="chapters-heading">Guide Chapters</h2>
+			<div class="chapters-grid">
+				{sorted.map((ch) => (
+					<a href={`/seo/${ch.id}/`} class="chapter-card">
+						<span class="chapter-num">{ch.data.chapter}</span>
+						<div class="chapter-info">
+							<h3 class="chapter-title">{ch.data.title}</h3>
+							<p class="chapter-desc">{ch.data.description}</p>
+						</div>
+					</a>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

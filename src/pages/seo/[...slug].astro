@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import GuideChapter from '../../layouts/GuideChapter.astro';
+
+export async function getStaticPaths() {
+	const chapters = await getCollection('guide', ({ data }) => !data.draft);
+	return chapters
+		.filter((ch) => ch.id !== 'index')
+		.map((ch) => ({
+			params: { slug: ch.id },
+			props: { chapter: ch, allChapters: chapters },
+		}));
+}
+
+const { chapter, allChapters } = Astro.props;
+const { Content, headings } = await render(chapter);
+---
+
+<GuideChapter
+	{...chapter.data}
+	slug={chapter.id}
+	headings={headings}
+	allChapters={allChapters}
+>
+	<Content />
+</GuideChapter>
