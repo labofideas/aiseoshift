@@ -82,7 +82,7 @@ Place JSON-LD script blocks in the `<head>` section of your page. While Google c
 
 **Marking up content that is not visible.** Google requires that structured data represents content that users can see on the page. Marking up hidden content, content behind tabs or accordions (unless the content is accessible without user interaction), or content that exists only in the structured data violates Google's guidelines.
 
-## Key Schema Types for SEO
+## Key Schema Markup Types for SEO
 
 Not every Schema.org type matters equally for SEO. The following types have the most impact on search visibility and AI citation in 2026.
 
@@ -141,7 +141,7 @@ The Offer subtype within Product markup specifies pricing details including pric
 
 Organization markup establishes your business entity in search engines' knowledge systems. It includes your organization's name, logo, founding date, contact information, social media profiles, and the same-as links that connect your entity across platforms.
 
-Place Organization markup on your homepage (or a dedicated about page) to help search engines build your knowledge panel. The sameAs property is particularly important: listing your official profiles on LinkedIn, Twitter, Wikipedia, Crunchbase, and other platforms helps search engines and AI systems verify your entity and connect information about you across the web.
+Place Organization markup on your homepage (or a dedicated about page) to help search engines build your knowledge panel. Proper implementation depends on the [technical SEO](/seo/technical-seo/) foundations covered earlier in this guide. The sameAs property is particularly important: listing your official profiles on LinkedIn, Twitter, Wikipedia, Crunchbase, and other platforms helps search engines and AI systems verify your entity and connect information about you across the web.
 
 For AI systems, Organization markup provides the entity-level context that influences trust assessments. When an LLM encounters your content and checks the publisher's Organization markup, it gains structured information about who you are, how long you have existed, and where else you are referenced online. This context contributes to the authority evaluation that determines whether your content gets cited.
 
@@ -192,13 +192,13 @@ For people, using Person schema with identifiers like ORCID, social profiles, or
 
 Schema.org includes types like Claim, ClaimReview, and StatisticalPopulation that let you explicitly mark up factual assertions and their sources. While these types are not widely used for traditional SEO rich results, they provide high-value signals to AI systems that need to evaluate the factual reliability of your content.
 
-Marking up statistics with their source, date, and methodology gives AI systems the metadata they need to assess whether your data is current, credible, and citable.
+Marking up statistics with their source, date, and methodology gives AI systems the metadata they need to assess whether your data is current, credible, and citable. Combined with the strategies in our [AI search optimization](/seo/ai-search-optimization/) chapter, structured fact markup can significantly increase your citation rate.
 
 ### Author Authority Markup
 
 Connecting your content to identifiable, credible authors through Person schema is one of the strongest structured data signals for AI visibility. Include the author's name, job title, employer, credentials, and links to their authoritative profiles. When an AI system evaluates whether to cite your content, the author's credentials can be a deciding factor.
 
-This aligns with Google's E-E-A-T framework. Google's quality guidelines emphasize that content on YMYL (Your Money or Your Life) topics should be created by people with relevant expertise. Schema markup makes that expertise machine-readable.
+This aligns with Google's E-E-A-T framework, explored in our [E-E-A-T chapter](/seo/eeat/). Google's quality guidelines emphasize that content on YMYL (Your Money or Your Life) topics should be created by people with relevant expertise. Schema markup makes that expertise machine-readable.
 
 ## Testing and Validation
 
