@@ -1,0 +1,104 @@
+---
+title: "Perplexity Open-Sources Bumblebee: A Supply-Chain Security Scanner for Developer Machines"
+description: "Perplexity released Bumblebee, a free open-source scanner that checks developer machines for risky packages, browser extensions, and AI tool configs. Here is what it does and why it matters."
+deck: "AI coding tools install packages autonomously. Bumblebee checks whether any of them are compromised — scanning npm, PyPI, Go modules, MCP configs, and browser extensions without executing a single line of code."
+pubDate: 2026-05-23
+category: Research
+tags:
+  - AI tools
+  - developer tools
+  - security
+  - open source
+author: AISEOShift Editorial Desk
+featured: false
+---
+
+Perplexity just open-sourced [Bumblebee](https://github.com/perplexityai/bumblebee) — a read-only security scanner for macOS and Linux that checks developer machines for risky packages, compromised browser extensions, and misconfigured AI tool settings.
+
+The timing matters. In 2026, [AI coding tools](/blog/best-ai-coding-tools-2026/) like Claude Code, Cursor, Replit Agent, and GitHub Copilot routinely install and update packages without manual developer review. Each autonomous installation is a potential supply-chain attack vector. Bumblebee was built to catch those risks before they become breaches.
+
+## What Bumblebee scans
+
+Bumblebee covers the full surface area of a modern developer workstation:
+
+**Package managers:**
+- npm, pnpm, Yarn, Bun (JavaScript/Node.js)
+- PyPI (Python)
+- Go modules
+- RubyGems
+- Composer (PHP)
+
+**Developer tool configs:**
+- MCP (Model Context Protocol) configurations — the protocol that connects AI assistants to external tools and data sources
+- Editor/IDE extensions (VS Code, JetBrains, etc.)
+- Browser extensions
+
+**What it does not scan:** Source code files, runtime processes, or network traffic. Bumblebee is strictly read-only. It reads metadata — lockfiles, manifests, and installed package metadata — without executing code, invoking package managers, or reading your source files.
+
+## Why "read-only" matters
+
+Most security scanners need elevated permissions and execute code to do their jobs. Bumblebee's design is deliberately minimal:
+
+- **Zero code execution** — it never runs any of the packages it scans
+- **No package manager invocation** — it reads lockfiles directly instead of calling `npm list` or `pip show`
+- **No source file reading** — it only examines metadata, not your actual code
+- **Zero non-stdlib dependencies** — the entire tool is written in Go with no external libraries, eliminating the ironic risk of a security scanner introducing its own supply-chain vulnerability
+- **Single static binary** — one file, no installation chain
+
+This means you can run Bumblebee on production developer machines without worrying that the scanner itself could trigger or mask a compromise.
+
+## The AI tool config angle
+
+The most novel aspect of Bumblebee is its scanning of AI tool configurations — specifically MCP configs. MCP (Model Context Protocol) is the standard that [Claude Code](/blog/best-ai-coding-tools-2026/), Cursor, and other AI coding tools use to connect to external data sources, APIs, and tools.
+
+A misconfigured MCP setup can expose credentials, grant excessive permissions, or connect to untrusted servers. As AI coding agents become more autonomous — running multi-step tasks, installing packages, and accessing external services — the attack surface of MCP configurations grows.
+
+Bumblebee flags MCP misconfigurations before they become security incidents.
+
+## Connection to Perplexity Computer
+
+Bumblebee was originally built as an internal tool for Perplexity's own developer systems. Connected to [Perplexity Computer](https://www.perplexity.ai/) — Perplexity's agentic AI product — Bumblebee can trigger deeper scans automatically whenever a new supply-chain risk emerges in the wild.
+
+This represents an emerging pattern: AI systems that monitor their own security posture. Rather than waiting for a human to run a scan after a CVE is published, the AI agent detects the new risk and initiates a scan across all connected developer machines immediately.
+
+As Perplexity CEO Aravind Srinivas noted, getting agentic AI tools embedded in enterprises requires continuous security engineering — and Bumblebee is part of that investment.
+
+## How to use it
+
+Bumblebee requires Go 1.25+ and runs on macOS and Linux:
+
+```bash
+git clone https://github.com/perplexityai/bumblebee.git
+cd bumblebee
+go build -o bumblebee .
+./bumblebee scan
+```
+
+The output lists all detected packages, extensions, and configs with risk assessments. No account, API key, or cloud connection required — everything runs locally.
+
+The project is licensed under Apache 2.0.
+
+## Why this matters for the AI ecosystem
+
+Three reasons Bumblebee matters beyond Perplexity's own use case:
+
+**1. AI-generated code needs AI-grade security.** When AI agents install packages autonomously, the traditional model of "developer reviews every dependency" breaks down. Automated scanners like Bumblebee fill the gap between AI speed and human review capacity.
+
+**2. MCP security is an emerging concern.** As MCP becomes the standard protocol for AI tool integration, misconfigured MCP setups will become a common attack vector. Bumblebee is one of the first tools to address this specifically.
+
+**3. Open source builds trust.** By open-sourcing Bumblebee, Perplexity lets the community audit the scanner itself, contribute new detection rules, and adapt it for their own environments. For enterprise teams evaluating Perplexity Computer, an open-source security tool is a meaningful trust signal.
+
+For teams building [AI-optimized web presence](/ai-seo-shift/), the broader lesson is that security tooling is becoming part of the AI infrastructure stack — not an afterthought. As [LLM crawlers](/blog/llm-crawler-optimization/) and AI agents interact with more of the web, the security surface expands, and tools like Bumblebee become essential infrastructure.
+
+## Related reading
+
+- [Best AI coding tools 2026](/blog/best-ai-coding-tools-2026/)
+- [Code with Claude May 2026: every announcement](/blog/code-with-claude-may-2026/)
+- [LLM crawler optimization](/blog/llm-crawler-optimization/)
+- [The AI SEO Shift: the complete guide](/ai-seo-shift/)
+
+## References
+
+- [Perplexity Is Open-Sourcing Bumblebee — Perplexity Blog](https://www.perplexity.ai/hub/blog/perplexity-is-open-sourcing-bumblebee)
+- [Bumblebee GitHub Repository](https://github.com/perplexityai/bumblebee)
+- [Perplexity Open-Sources Bumblebee — MarkTechPost](https://www.marktechpost.com/2026/05/23/perplexity-open-sources-bumblebee-a-read-only-supply-chain-scanner-for-developer-endpoints/)
