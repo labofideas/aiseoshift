@@ -48,17 +48,60 @@ const homepageSections = [
 ];
 const guideImage = imageManifest[guide.id as keyof typeof imageManifest]?.hero;
 
-const homepageStructuredData = {
-	'@context': 'https://schema.org',
-	'@type': 'WebPage',
-	'@id': `${SITE_URL}/#webpage`,
-	name: 'AI SEO Shift',
-	url: SITE_URL,
-	description: guide.data.description,
-	isPartOf: { '@id': `${SITE_URL}/#website` },
-	about: ['AI SEO', 'Answer Engine Optimization', 'Generative Engine Optimization', 'AI visibility'],
-	primaryImageOfPage: { '@id': `${SITE_URL}/#logo` },
-};
+const faqs = [
+	{
+		q: 'What is the AI SEO Shift?',
+		a: 'The AI SEO Shift is the move from optimizing for blue-link rankings to optimizing for AI answer citations. It combines classical SEO (Google rankings) with AEO (Answer Engine Optimization) for ChatGPT, Claude, and Perplexity, and GEO (Generative Engine Optimization) for Google AI Overviews. Brands that adapt get cited inside AI answers; brands that do not lose visibility as users stop clicking through to websites.',
+	},
+	{
+		q: "What's the difference between SEO, AEO, and GEO?",
+		a: 'SEO optimizes content to rank in Google’s organic results. AEO (Answer Engine Optimization) optimizes content to be cited inside answers from ChatGPT, Claude, and Perplexity. GEO (Generative Engine Optimization) optimizes content to appear in Google AI Overviews and Gemini. All three are needed in 2026: they share fundamentals like structured content and E-E-A-T, but differ in format, citation mechanics, and measurement.',
+	},
+	{
+		q: 'How do I get cited by ChatGPT, Claude, and Perplexity?',
+		a: 'AI engines cite content that is structured, authoritative, and unambiguous. Five high-leverage moves: (1) add direct one-paragraph answers under every H2; (2) implement FAQ, HowTo, and Organization schema; (3) include cited statistics and named entities; (4) maintain consistent author bylines and E-E-A-T signals; (5) ensure your robots.txt and llms.txt explicitly allow assistant crawlers.',
+	},
+	{
+		q: 'Does ChatGPT use Google?',
+		a: 'ChatGPT does not use Google. ChatGPT Search uses Microsoft Bing and OpenAI’s own crawler (OAI-SearchBot) to retrieve sources. Perplexity uses its own crawler (PerplexityBot) plus partnerships. Google AI Overviews uses Google’s own index. Optimizing for one does not automatically optimize for the others: each has its own crawler, ranking signals, and citation behavior.',
+	},
+	{
+		q: 'Is SEO dead in 2026?',
+		a: 'SEO is not dead: it has expanded. Classical Google rankings still drive significant traffic, but they now compete with AI Overviews, ChatGPT Search, and direct AI assistant answers. The discipline has grown from "rank in Google" to "be discoverable, retrievable, and citable across every surface where your audience searches." Brands abandoning SEO are losing ground; brands extending SEO into AEO and GEO are gaining.',
+	},
+	{
+		q: 'How do I optimize for Google AI Overviews?',
+		a: 'AI Overviews extract concise, factual answers from pages that already rank well in classical Google. To be the source: (1) put a direct 1-3 sentence answer immediately under the H1 or relevant H2; (2) use clear, scannable structure (lists, tables, definitions); (3) implement FAQPage and HowTo schema; (4) build topical authority through clusters rather than isolated posts; (5) cite primary sources to demonstrate the trust signals AI Overviews look for.',
+	},
+];
+
+const homepageStructuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebPage',
+		'@id': `${SITE_URL}/#webpage`,
+		name: 'AI SEO Shift',
+		url: SITE_URL,
+		description: guide.data.description,
+		isPartOf: { '@id': `${SITE_URL}/#website` },
+		about: ['AI SEO', 'Answer Engine Optimization', 'Generative Engine Optimization', 'AI visibility'],
+		primaryImageOfPage: { '@id': `${SITE_URL}/#logo` },
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		'@id': `${SITE_URL}/#faq`,
+		isPartOf: { '@id': `${SITE_URL}/#webpage` },
+		mainEntity: faqs.map((item) => ({
+			'@type': 'Question',
+			name: item.q,
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: item.a,
+			},
+		})),
+	},
+];
 ---
 
 <!doctype html>
@@ -419,6 +462,72 @@ const homepageStructuredData = {
 				color: rgba(var(--ink), 0.56);
 			}
 
+			.faq-shell {
+				border: 1px solid var(--line);
+				border-radius: 26px;
+				background: rgba(var(--paper-strong), 0.7);
+				box-shadow: var(--shadow-soft);
+				padding: 1.4rem;
+			}
+
+			.faq-item {
+				border-top: 1px solid rgba(var(--ink), 0.08);
+				padding: 1.05rem 0;
+			}
+
+			.faq-item:first-child {
+				border-top: none;
+				padding-top: 0;
+			}
+
+			.faq-item:last-child {
+				padding-bottom: 0;
+			}
+
+			.faq-item summary {
+				cursor: pointer;
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				gap: 1rem;
+				font-size: 1.1rem;
+				font-weight: 700;
+				line-height: 1.3;
+				letter-spacing: -0.01em;
+				color: rgb(var(--ink));
+			}
+
+			.faq-item summary::-webkit-details-marker {
+				display: none;
+			}
+
+			.faq-item summary::after {
+				content: '+';
+				font-size: 1.4rem;
+				font-weight: 400;
+				line-height: 1;
+				color: var(--signal-deep);
+				transition: transform 0.18s ease;
+			}
+
+			.faq-item[open] summary::after {
+				content: '−';
+			}
+
+			.faq-item summary:hover,
+			.faq-item summary:focus-visible {
+				color: var(--signal-deep);
+			}
+
+			.faq-item .faq-answer {
+				margin: 0.85rem 0 0;
+				font-size: 0.95rem;
+				line-height: 1.7;
+				color: rgba(var(--ink), 0.82);
+				max-width: 56rem;
+			}
+
 			@media (max-width: 1040px) {
 				.hero,
 					.posts-grid,
@@ -590,6 +699,24 @@ const homepageStructuredData = {
 								</a>
 							);
 						})}
+					</div>
+				</section>
+
+				<section id="faq" aria-labelledby="faq-title">
+					<div class="section-head">
+						<div>
+							<p class="eyebrow">FAQ</p>
+							<h2 id="faq-title">AI SEO, AEO, and GEO: the questions people ask first</h2>
+						</div>
+						<p>Direct answers to the most common questions about the AI SEO Shift.</p>
+					</div>
+					<div class="faq-shell">
+						{faqs.map((item, i) => (
+							<details class="faq-item" open={i === 0}>
+								<summary>{item.q}</summary>
+								<p class="faq-answer">{item.a}</p>
+							</details>
+						))}
 					</div>
 				</section>
 
