@@ -1,27 +1,51 @@
 :root {
-	--paper: 250, 249, 246;
-	--paper-strong: 244, 243, 239;
-	--ink: 23, 28, 46;
-	--ink-muted: 86, 91, 109;
-	--signal: #d96a3a;
-	--signal-deep: #995035;
-	--panel: rgba(255, 255, 255, 0.58);
-	--line: rgba(23, 28, 46, 0.1);
-	--shadow-soft: 0 12px 30px rgba(23, 28, 46, 0.06);
-	--shadow-tight: 0 6px 18px rgba(23, 28, 46, 0.05);
+	/* Editorial palette — cool off-white paper, near-black ink, single restrained accent */
+	--paper: 250, 250, 247;
+	--paper-strong: 246, 245, 240;
+	--ink: 14, 17, 22;
+	--ink-muted: 92, 99, 110;
+	--signal: #b8552e;
+	--signal-deep: #8a3f23;
+	--panel: rgba(255, 255, 255, 0.6);
+	--line: rgba(14, 17, 22, 0.09);
+	--line-strong: rgba(14, 17, 22, 0.18);
+	--shadow-soft: none;
+	--shadow-tight: none;
+
+	/* Spacing scale (4px base) */
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-5: 1.5rem;
+	--space-6: 2rem;
+	--space-7: 3rem;
+	--space-8: 4.5rem;
+	--space-9: 6.5rem;
+
+	/* Reading measures */
+	--measure-narrow: 36rem;
+	--measure: 42rem;
+	--measure-wide: 58rem;
+
+	/* Radii — editorial uses small or no radius */
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 14px;
 }
 
 [data-theme="dark"] {
-	--paper: 18, 22, 36;
-	--paper-strong: 26, 30, 46;
-	--ink: 228, 226, 220;
-	--ink-muted: 155, 160, 174;
-	--signal: #e8834f;
-	--signal-deep: #d98a68;
-	--panel: rgba(28, 32, 50, 0.58);
-	--line: rgba(228, 226, 220, 0.1);
-	--shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.3);
-	--shadow-tight: 0 6px 18px rgba(0, 0, 0, 0.25);
+	--paper: 14, 17, 22;
+	--paper-strong: 20, 24, 32;
+	--ink: 232, 230, 224;
+	--ink-muted: 155, 162, 175;
+	--signal: #d97a52;
+	--signal-deep: #e89572;
+	--panel: rgba(20, 24, 32, 0.6);
+	--line: rgba(232, 230, 224, 0.1);
+	--line-strong: rgba(232, 230, 224, 0.2);
+	--shadow-soft: none;
+	--shadow-tight: none;
 }
 
 @font-face {
@@ -58,24 +82,19 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-	background:
-		radial-gradient(circle at top left, rgba(217, 106, 58, 0.12), transparent 24%),
-		radial-gradient(circle at top right, rgba(23, 28, 46, 0.08), transparent 28%),
-		linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(23, 28, 46, 0.03)),
-		rgb(var(--paper));
+	background: rgb(var(--paper));
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--ink));
-	font-size: 16px;
-	line-height: 1.7;
+	font-size: 17px;
+	line-height: 1.65;
 	transition: background-color 200ms ease, color 200ms ease;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 [data-theme="dark"] body {
-	background:
-		radial-gradient(circle at top left, rgba(232, 131, 79, 0.06), transparent 24%),
-		radial-gradient(circle at top right, rgba(228, 226, 220, 0.03), transparent 28%),
-		rgb(var(--paper));
+	background: rgb(var(--paper));
 }
 
 [data-theme="dark"] pre {
@@ -104,29 +123,33 @@ h5,
 h6 {
 	margin: 0 0 0.5rem 0;
 	color: rgb(var(--ink));
-	line-height: 1.05;
-	font-weight: 700;
+	line-height: 1.08;
+	font-weight: 600;
 	font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
+	letter-spacing: -0.022em;
 }
 
 h1 {
-	font-size: clamp(2.3rem, 5vw, 4.6rem);
+	font-size: clamp(2.6rem, 6vw, 5.4rem);
+	letter-spacing: -0.034em;
+	line-height: 0.98;
 }
 
 h2 {
-	font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+	font-size: clamp(1.85rem, 3vw, 2.75rem);
+	letter-spacing: -0.025em;
 }
 
 h3 {
-	font-size: 1.4rem;
+	font-size: 1.5rem;
 }
 
 h4 {
-	font-size: 1.15rem;
+	font-size: 1.2rem;
 }
 
 h5 {
-	font-size: 1.25em;
+	font-size: 1.05rem;
 }
 
 strong,
@@ -135,13 +158,17 @@ b {
 }
 
 a {
-	color: var(--signal-deep);
-	text-underline-offset: 0.15em;
+	color: rgb(var(--ink));
+	text-decoration: underline;
+	text-decoration-color: var(--line-strong);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.22em;
 }
 
 a:hover,
 a:focus-visible {
-	color: var(--signal);
+	color: var(--signal-deep);
+	text-decoration-color: var(--signal);
 }
 
 a,
@@ -178,7 +205,7 @@ table {
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 10px;
+	border-radius: var(--radius-md);
 }
 
 code {
