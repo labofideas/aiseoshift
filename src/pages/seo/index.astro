@@ -3,7 +3,8 @@ import { getCollection, render } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
-import { SITE_TITLE, SITE_URL } from '../../consts';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_URL, SITE_AUTHOR } from '../../consts';
 
 const allChapters = await getCollection('guide', ({ data }) => !data.draft);
 const sorted = allChapters.filter((c) => c.data.chapter > 0).sort((a, b) => a.data.chapter - b.data.chapter);
@@ -12,6 +13,11 @@ const overview = allChapters.find((c) => c.data.chapter === 0);
 const overviewContent = overview ? await render(overview) : null;
 
 const canonical = new URL('/seo/', SITE_URL).toString();
+
+const publishedAt = overview?.data.pubDate ?? new Date();
+const updatedAt = overview?.data.updatedDate ?? publishedAt;
+const isoPublished = publishedAt.toISOString();
+const isoUpdated = updatedAt.toISOString();
 
 const itemListSchema = {
 	'@context': 'https://schema.org',
@@ -32,8 +38,26 @@ const breadcrumbSchema = {
 	'@type': 'BreadcrumbList',
 	itemListElement: [
 		{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-		{ '@type': 'ListItem', position: 2, name: 'SEO Guide' },
+		{ '@type': 'ListItem', position: 2, name: 'SEO Guide', item: canonical },
 	],
+};
+
+const articleSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	'@id': `${canonical}#article`,
+	headline: 'The Complete SEO Guide for 2026',
+	description:
+		'12-chapter guide to SEO in 2026 covering fundamentals, technical SEO, schema, E-E-A-T, AEO, GEO, AI Overviews, content strategy, and measurement.',
+	url: canonical,
+	mainEntityOfPage: canonical,
+	datePublished: isoPublished,
+	dateModified: isoUpdated,
+	inLanguage: 'en-US',
+	author: { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: SITE_AUTHOR },
+	publisher: { '@id': `${SITE_URL}/#organization` },
+	isPartOf: { '@id': `${SITE_URL}/#website` },
+	image: { '@id': `${SITE_URL}/#logo` },
 };
 ---
 
@@ -42,9 +66,12 @@ const breadcrumbSchema = {
 	<head>
 		<BaseHead
 			title={`The Complete SEO Guide for 2026 | ${SITE_TITLE}`}
-			description="The definitive 12-chapter guide to SEO in 2026. Covers fundamentals, technical optimization, schema markup, E-E-A-T, AI search (AEO, GEO), content strategy, and measurement."
+			description="12 chapters covering SEO fundamentals, technical optimization, schema, E-E-A-T, AEO, GEO, AI Overviews, and measurement. Updated for 2026."
 			canonical={canonical}
-			structuredData={[itemListSchema, breadcrumbSchema]}
+			ogType="article"
+			publishedTime={isoPublished}
+			modifiedTime={isoUpdated}
+			structuredData={[itemListSchema, breadcrumbSchema, articleSchema]}
 		/>
 		<style>
 			.guide-page {
@@ -83,6 +110,21 @@ const breadcrumbSchema = {
 				line-height: 1.72;
 				color: rgba(var(--ink), 0.72);
 				max-width: 44rem;
+			}
+
+			.guide-updated {
+				display: inline-flex;
+				gap: 0.4rem;
+				margin-top: 1.1rem;
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
+				color: rgba(var(--ink), 0.6);
+			}
+
+			.guide-updated span {
+				color: var(--signal-deep);
 			}
 
 			.guide-overview {
@@ -171,6 +213,10 @@ const breadcrumbSchema = {
 				<p class="kicker">12-Chapter Guide</p>
 				<h1>The Complete SEO Guide for 2026</h1>
 				<p>Everything you need to know about SEO in the AI era. From fundamentals to AI search optimization, structured data to measurement. Written for practitioners who need to rank in Google, get cited by AI, and build visibility across every search surface.</p>
+				<p class="guide-updated">
+					<span>Last updated</span>
+					<time datetime={isoUpdated}><FormattedDate date={updatedAt} /></time>
+				</p>
 			</header>
 
 			{overviewContent && (
