@@ -915,5 +915,41 @@
 	"code-with-claude-may-2026": {
 		"hero": { "src": "/images/posts/code-with-claude-may-2026-hero.webp", "alt": "Code with Claude 2026 developer conference announcements and new features", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/code-with-claude-may-2026", "width": 1200, "height": 675, "bytes": 187976 },
 		"inline": [{ "src": "/images/posts/code-with-claude-may-2026-inline-1.webp", "alt": "Claude Managed Agents with Dreaming multi-agent orchestration and Outcomes", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/code-with-claude-may-2026", "width": 1200, "height": 675, "bytes": 27286 }]
+	},
+	"guide-what-is-seo": {
+		"hero": { "src": "/images/posts/guide-what-is-seo-hero.webp", "alt": "What is SEO in 2026 - search engine optimization definition and guide", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/what-is-seo", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-how-search-engines-work": {
+		"hero": { "src": "/images/posts/guide-how-search-engines-work-hero.webp", "alt": "How search engines and AI systems work - crawling indexing ranking in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/how-search-engines-work", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-keyword-research": {
+		"hero": { "src": "/images/posts/guide-keyword-research-hero.webp", "alt": "Keyword research and search intent optimization strategy for SEO 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/keyword-research", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-on-page-seo": {
+		"hero": { "src": "/images/posts/guide-on-page-seo-hero.webp", "alt": "On-page SEO and content optimization - title tags meta descriptions headings", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/on-page-seo", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-technical-seo": {
+		"hero": { "src": "/images/posts/guide-technical-seo-hero.webp", "alt": "Technical SEO and site architecture - Core Web Vitals crawling indexing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/technical-seo", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-schema-markup": {
+		"hero": { "src": "/images/posts/guide-schema-markup-hero.webp", "alt": "Schema markup and structured data - JSON-LD implementation for SEO and AI visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/schema-markup", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-eeat": {
+		"hero": { "src": "/images/posts/guide-eeat-hero.webp", "alt": "E-E-A-T SEO guide - Experience Expertise Authoritativeness Trustworthiness", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/eeat", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-ai-citation-building": {
+		"hero": { "src": "/images/posts/guide-ai-citation-building-hero.webp", "alt": "AI citation building - how to get cited by ChatGPT Perplexity and AI search engines", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/ai-citation-building", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-ai-search-optimization": {
+		"hero": { "src": "/images/posts/guide-ai-search-optimization-hero.webp", "alt": "AEO GEO and AI Overviews - answer engine optimization and generative engine optimization", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/ai-search-optimization", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-content-strategy": {
+		"hero": { "src": "/images/posts/guide-content-strategy-hero.webp", "alt": "Content strategy and topic clusters for SEO - pillar pages semantic SEO", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/content-strategy", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-search-everywhere": {
+		"hero": { "src": "/images/posts/guide-search-everywhere-hero.webp", "alt": "Search everywhere optimization - YouTube LinkedIn Reddit SEO multi-platform visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/search-everywhere", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-measuring-seo": {
+		"hero": { "src": "/images/posts/guide-measuring-seo-hero.webp", "alt": "Measuring SEO and AI visibility - metrics analytics Google Search Console", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/measuring-seo", "width": 1200, "height": 675, "bytes": 85204 }
 	}
 }

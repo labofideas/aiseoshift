@@ -1,0 +1,167 @@
+---
+title: "How Search Engines and AI Systems Work"
+description: "Learn how Google, ChatGPT, Perplexity, and AI systems crawl, index, rank, and synthesize content. Essential mechanics for modern SEO practitioners."
+deck: "Before you can optimize for search engines and AI systems, you need to understand how they find, process, and present your content."
+chapter: 2
+pubDate: 2026-05-23
+---
+
+Every SEO decision you make is ultimately an attempt to influence a system you do not control. The better you understand how that system works, the better your decisions will be. In 2026, "that system" is no longer singular. You are optimizing for Google's traditional ranking algorithm, Google's AI layer, and a growing number of independent AI platforms that retrieve and synthesize web content. This chapter explains how all of them work.
+
+## How Traditional Search Engines Work
+
+Google, Bing, and other conventional search engines operate through a three-stage process that has been refined over two decades but remains structurally consistent: crawling, indexing, and ranking. Google's own [How Search Works](https://www.google.com/search/howsearchworks/) resource provides an official overview of this pipeline.
+
+### Crawling
+
+Crawling is discovery. Search engines deploy automated programs called crawlers or spiders that follow links across the web, downloading pages and tracking the connections between them. Google's primary crawler is [Googlebot](https://developers.google.com/search/docs/crawling-indexing/googlebot). Bing uses Bingbot. Each crawler identifies itself through its user-agent string, which allows site owners to serve different responses or block specific crawlers through robots.txt directives.
+
+Googlebot does not crawl every page equally. It allocates a crawl budget to each site based on the site's perceived importance, server health, and content freshness. Large, authoritative sites get crawled more frequently. New or small sites may wait days or weeks between crawl visits. Understanding crawl budget matters because pages that are not crawled cannot be indexed, and pages that are not indexed cannot rank.
+
+Several factors affect how efficiently Googlebot crawls your site. Clean internal linking structures help the crawler discover pages. XML sitemaps provide a roadmap of all pages you want indexed. Fast server response times allow the crawler to process more pages per visit. Excessive redirect chains, broken links, and orphan pages all waste crawl budget. We cover these crawlability fundamentals in detail in our [technical SEO](/seo/technical-seo/) chapter.
+
+### Indexing
+
+After crawling a page, the search engine processes its content and stores it in a massive index, essentially a structured database of the web. During indexing, Google extracts the page's text, identifies its topic, evaluates its content quality, notes its structured data, records its metadata, and catalogs its relationships to other pages.
+
+Not every crawled page gets indexed. Google may skip pages that appear to be duplicates, that contain thin content, that are blocked by meta robots tags, or that the algorithm deems low quality. The "Indexed, though blocked by robots.txt" status in Google Search Console is one of many indexing states that can confuse site owners.
+
+Indexing is also where Google processes structured data markup. Schema.org markup in JSON-LD format tells Google explicitly what type of content a page contains, who authored it, when it was published, and how it relates to other entities. This structured understanding directly influences how the page appears in search results and whether it qualifies for rich results.
+
+### Ranking
+
+When a user enters a query, Google's ranking system sifts through its index to find and order the most relevant results. This is where the algorithm's complexity concentrates. Google uses hundreds of ranking signals, and while the exact weights are proprietary, the major categories are well understood.
+
+**Relevance** measures how well a page's content matches the query's intent. This goes far beyond keyword matching. Google's natural language processing can identify synonyms, related concepts, and topical coverage. A page does not need to contain the exact query phrase to rank for it, but it does need to address the underlying intent comprehensively.
+
+**Authority** is largely a function of backlinks. Pages with more high-quality referring domains tend to rank higher, all else being equal. Google evaluates link quality based on the linking site's own authority, topical relevance, and the naturalness of the link profile.
+
+**User experience signals** include page load speed, mobile usability, visual stability (Core Web Vitals), and behavioral signals like click-through rate and pogo-sticking. Google has explicitly confirmed that Core Web Vitals are ranking factors, and sites that fail these thresholds face a measurable ranking disadvantage.
+
+**Content quality** is evaluated through Google's E-E-A-T framework: Experience, Expertise, Authoritativeness, and Trustworthiness. While E-E-A-T is not a direct ranking factor in the algorithmic sense, it informs the guidelines that Google's quality raters use, and the algorithm is tuned to approximate those guidelines.
+
+**Freshness** matters for queries where recency is important. News queries, trending topics, and queries about rapidly changing subjects all trigger freshness signals that favor recently published or updated content.
+
+## The AI Crawlers
+
+AI crawlers are automated bots deployed by companies like OpenAI, Anthropic, and Google to retrieve web content for AI training and real-time search features. The traditional crawler ecosystem expanded significantly between 2023 and 2026. Alongside Googlebot, site owners now see traffic from a growing list of AI-specific crawlers, each serving a different purpose. Understanding these crawlers is critical to [managing LLM crawler access](/blog/llm-crawler-optimization/) effectively.
+
+### GPTBot (OpenAI)
+
+OpenAI's crawler retrieves web content for two purposes: training data collection and real-time retrieval for ChatGPT's search features. [GPTBot](https://platform.openai.com/docs/bots/overview) identifies itself with the user-agent string "GPTBot" and respects robots.txt directives. Blocking GPTBot prevents your content from being used in future training and from being retrieved during live ChatGPT searches.
+
+### ClaudeBot (Anthropic)
+
+Anthropic's crawler serves similar functions for Claude. It retrieves content for training and for Claude's [web access capabilities](https://docs.anthropic.com/en/docs/build-with-claude/web-search). ClaudeBot also respects robots.txt.
+
+### PerplexityBot
+
+Perplexity's crawler retrieves content specifically for real-time search queries on the Perplexity platform. Because Perplexity always cites its sources with direct links, allowing PerplexityBot generally provides a net traffic benefit.
+
+### Google-Extended and Google AI Crawlers
+
+Google uses separate crawler identifiers for its AI-related activities. Google-Extended was introduced to let publishers control whether their content is used for Gemini and AI training. The main Googlebot crawl, however, feeds both traditional search and AI Overviews, meaning you cannot block AI Overviews without blocking traditional search.
+
+### Managing Crawler Access
+
+The question of which AI crawlers to allow is a strategic one, not a binary decision. Each crawler represents a different trade-off between content usage and visibility benefit. A growing number of sites use ai.txt and llms.txt files alongside robots.txt to communicate granular preferences to AI systems. We cover this in detail in [our guide to LLM crawler optimization](/blog/llm-crawler-optimization/).
+
+## The AI Layer: How LLMs Process Information
+
+Large language models process information by retrieving relevant web documents, evaluating their credibility, and synthesizing responses that may cite specific sources. Understanding how LLMs find and use your content is the single biggest knowledge gap in SEO today, and it is central to the broader [AI SEO shift](/ai-seo-shift/) reshaping the industry. Most practitioners understand Google's traditional pipeline. Far fewer understand the retrieval and synthesis pipeline that powers AI-generated responses.
+
+### Retrieval-Augmented Generation (RAG)
+
+Most AI search systems do not answer queries purely from their training data. They use a process called retrieval-augmented generation, or RAG. When a user asks a question, the system first retrieves relevant documents from the web (or from a pre-built index of the web), then uses an LLM to synthesize a response based on those documents.
+
+The retrieval step is where SEO meets AI. The system needs to find your content, assess its relevance to the query, and evaluate its credibility. The synthesis step is where your content either gets cited or gets absorbed into a generic answer without attribution.
+
+### How LLMs Evaluate Sources
+
+LLMs do not rank sources the way Google does. They do not use PageRank or backlink profiles directly. Instead, they evaluate content along several dimensions during the synthesis process.
+
+**Factual consistency** matters enormously. If your content makes claims that contradict the consensus across other retrieved sources, the LLM is less likely to cite you. Conversely, if your content provides specific, verifiable data points that other sources lack, you become a high-value citation.
+
+**Clarity and structure** affect whether an LLM can extract useful information from your content. Well-organized pages with clear headings, concise statements, and logical flow are easier for LLMs to parse than dense, unstructured text.
+
+**Authoritativeness signals** still play a role, though they manifest differently. LLMs may consider the domain's reputation, the author's known expertise, the presence of citations and references within the content, and the consistency of the information with established knowledge.
+
+**Recency** is weighted for time-sensitive queries. LLMs with web access typically prefer recent sources for queries about current events, prices, statistics, or rapidly evolving topics.
+
+### The Synthesis Process
+
+After retrieving and evaluating sources, the LLM generates a response. This is fundamentally different from how Google presents results. Google shows you a list of pages and lets you click through. An LLM reads the sources, extracts the relevant information, and writes an original response that may combine insights from multiple sources.
+
+This creates both a challenge and an opportunity for content creators. The challenge is that users may get their answer without ever visiting your site. The opportunity is that if your content is cited, you gain visibility and credibility in a context where the AI system has effectively endorsed your expertise.
+
+## Google's Dual System
+
+Google runs two systems simultaneously for many queries: the traditional organic ranking system and the AI Overview system, which generates summarized answers using Gemini. Understanding how these interact is essential. Understanding how these interact is essential because [Google's AI Mode is reshaping how SEOs need to think](/blog/google-ai-mode-what-seos-need-to-know/) about optimization.
+
+### How AI Overviews Work
+
+When Google determines that a query would benefit from an AI-generated summary, it triggers the AI Overview system. This system retrieves information from Google's index (the same index that feeds organic results), uses a version of Gemini to synthesize a response, and displays it prominently above the organic results.
+
+AI Overviews do not always pull from the top-ranking organic results. Google has confirmed that the AI system evaluates sources independently, meaning a page that ranks fifth organically might be cited in the AI Overview while the top-ranking page is not. The AI system appears to weight factual specificity, clear structure, and direct answers more heavily than the traditional ranking system weights these factors.
+
+### The Click-Through Impact
+
+AI Overviews significantly affect click-through rates for the queries where they appear. Studies from [Search Engine Journal](https://www.searchenginejournal.com/) and other industry sources consistently show that pages below the AI Overview receive fewer clicks, while pages cited within the AI Overview can actually see increased traffic. The net effect varies by query type. Informational queries see the largest click reduction. Commercial and transactional queries, where users need to take action on a specific site, retain most of their click-through traffic.
+
+### AI Mode
+
+Google's AI Mode, introduced in 2025, takes this further by offering a fully conversational search experience within Google Search. Users can ask follow-up questions, get responses synthesized from multiple sources, and explore topics through dialogue rather than query-and-results cycles. AI Mode citations function differently from AI Overview citations, often linking to more sources and providing more context about why each source was selected.
+
+## Beyond Google: Other AI Search Surfaces
+
+AI search surfaces include ChatGPT, Perplexity, Claude, and Gemini, each of which retrieves and synthesizes web content differently from traditional search engines. Google remains the dominant search engine, but the [way AI is changing how people search, learn, and make decisions](/blog/how-ai-changes-search-learn-decide/) extends far beyond Google.
+
+### ChatGPT Search
+
+OpenAI's ChatGPT processes hundreds of millions of queries weekly, and its search feature retrieves real-time information from the web. ChatGPT search works differently from Google in several important ways. It does not maintain a persistent index in the traditional sense; instead, it performs real-time web searches for each query that requires current information. It presents results conversationally rather than as a list. And it cites sources inline, providing direct links within the generated text.
+
+For SEO practitioners, ChatGPT search optimization is largely about being findable by GPTBot, having content that is clearly structured and factually precise, and having enough authority signals that the system treats your content as a reliable source.
+
+### Perplexity
+
+Perplexity functions as a dedicated AI search engine with a strong emphasis on source attribution. Every response includes numbered citations with direct links to sources. Perplexity's approach tends to favor primary sources, data-rich content, and pages that provide specific, verifiable information. It has become a particularly important channel for B2B content, research topics, and technical queries.
+
+### Claude
+
+Anthropic's Claude accesses web content through its search capabilities and tends to weight content quality, nuance, and depth. Claude's responses are often more detailed than ChatGPT's for complex topics, and it frequently cites multiple perspectives on contested questions. Content that demonstrates expertise through depth rather than just breadth performs well in Claude's citations.
+
+### Gemini
+
+Google's Gemini operates both as a standalone AI assistant and as the engine behind AI Overviews. It has access to Google's full index, which gives it the broadest content base of any AI system. Optimization for Gemini overlaps significantly with traditional Google SEO, but with additional emphasis on structured data and factual precision.
+
+## What This Means for Your SEO Strategy
+
+Modern SEO requires a multi-surface approach that ensures your content is accessible, structured, and authoritative enough to perform across traditional search, AI Overviews, and independent AI platforms. Your content needs to be technically accessible to multiple crawlers, structured for both human readers and machine extraction, factually precise enough to survive LLM evaluation, authoritative enough to be selected over competing sources, and formatted in ways that make citation easy and natural. Our chapter on [AI search optimization](/seo/ai-search-optimization/) explains how to put these principles into practice for LLM-driven search surfaces.
+
+The remaining chapters in this guide will show you how to achieve each of these requirements, starting with how to identify the right topics and queries to target.
+
+## Frequently asked questions
+
+### How does Google rank websites?
+
+Google ranks websites by evaluating hundreds of signals across four main categories: relevance to the query, authority measured primarily through backlinks, user experience factors like page speed and mobile usability, and content quality assessed through the E-E-A-T framework. The algorithm weighs these signals differently depending on the query type and intent.
+
+### What is the difference between crawling and indexing?
+
+Crawling is the discovery phase where search engine bots follow links across the web to find and download pages, while indexing is the processing phase where the search engine analyzes that content and stores it in a structured database. A page must be crawled before it can be indexed, and it must be indexed before it can appear in search results.
+
+### Do AI search engines use Google's index?
+
+Most independent AI search platforms like ChatGPT and Perplexity maintain their own retrieval systems rather than relying on Google's index directly. Google's AI Overviews and Gemini, however, do draw from Google's existing index. This means optimizing for Google's index benefits AI Overviews, but reaching other AI platforms requires ensuring your content is accessible to their specific crawlers.
+
+### What is an AI Overview?
+
+An AI Overview is an AI-generated summary that Google displays at the top of search results for queries that benefit from a synthesized answer. It is powered by Gemini, pulls information from Google's index, and cites specific sources, though it does not always cite the top-ranking organic results.
+
+## Go Deeper
+
+These blog posts explore the topics covered in this chapter in more detail:
+
+- [How AI Changes the Way We Search, Learn, and Decide](/blog/how-ai-changes-search-learn-decide/) — An exploration of how AI systems are reshaping information-seeking behavior across platforms.
+- [Google AI Mode: What SEOs Need to Know](/blog/google-ai-mode-what-seos-need-to-know/) — A practical guide to understanding and optimizing for Google's AI-powered search features.
+- [LLM Crawler Optimization](/blog/llm-crawler-optimization/) — How to manage access for GPTBot, ClaudeBot, PerplexityBot, and other AI crawlers.
