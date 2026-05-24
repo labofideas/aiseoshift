@@ -1,6 +1,6 @@
 ---
 title: "Technical SEO and Site Architecture"
-description: "Technical SEO ensures search engines and AI systems can crawl, index, and understand your site. This chapter covers Core Web Vitals, crawlability, indexing controls, and site architecture."
+description: "Technical SEO ensures crawlers and AI systems can access your site. Covers Core Web Vitals, crawlability, indexing controls, and site architecture."
 deck: "Technical SEO is the foundation everything else builds on. If search engines and AI crawlers cannot access, render, and understand your site, no amount of content quality or link building will save you."
 chapter: 5
 pubDate: 2026-05-23
@@ -12,7 +12,7 @@ A technically sound site creates the conditions for everything else to work. You
 
 ## Core Web Vitals and Page Performance
 
-Core Web Vitals are a set of specific metrics that Google uses to evaluate user experience on your pages. They became an official ranking factor in 2021, and their influence has only increased since then. In 2026, pages that fail Core Web Vitals thresholds face a measurable ranking disadvantage, especially on mobile.
+[Core Web Vitals](https://web.dev/vitals/) are a set of specific metrics that Google uses to evaluate user experience on your pages. They became an official ranking factor in 2021, and their influence has only increased since then. In 2026, pages that fail Core Web Vitals thresholds face a measurable ranking disadvantage, especially on mobile.
 
 ### Largest Contentful Paint (LCP)
 
@@ -58,7 +58,7 @@ If search engines and AI systems cannot reach your pages, nothing else matters. 
 
 ### Robots.txt
 
-The robots.txt file is your primary tool for controlling crawler access. It lives at the root of your domain (example.com/robots.txt) and uses simple directives to allow or disallow specific crawlers from accessing specific paths.
+The [robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro) file is your primary tool for controlling crawler access. It lives at the root of your domain (example.com/robots.txt) and uses simple directives to allow or disallow specific crawlers from accessing specific paths.
 
 In 2026, robots.txt management has become more complex because you may want different access rules for different crawlers. You might allow Googlebot full access while restricting GPTBot to certain directories, or allow PerplexityBot to crawl your blog while blocking it from your documentation. Each crawler is identified by its user-agent string, and you can specify separate rules for each.
 
@@ -182,7 +182,7 @@ Technical SEO is not a one-time project. It requires ongoing monitoring and peri
 
 ### Essential Monitoring Tools
 
-Google Search Console is the primary monitoring tool. Its Coverage report shows indexing issues, its Core Web Vitals report tracks performance, its Mobile Usability report flags responsive design problems, and its crawl stats show how Googlebot interacts with your site.
+[Google Search Console](https://search.google.com/search-console) is the primary monitoring tool. Its Coverage report shows indexing issues, its Core Web Vitals report tracks performance, its Mobile Usability report flags responsive design problems, and its crawl stats show how Googlebot interacts with your site.
 
 Server logs reveal how all crawlers interact with your site, including AI crawlers that Search Console does not report on. Analyzing server logs can identify crawl waste, blocked crawlers, and unexpected access patterns.
 
