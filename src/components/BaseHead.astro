@@ -1,7 +1,13 @@
 ---
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
-import { SITE_TITLE } from '../consts';
+import {
+	SITE_TITLE,
+	SITE_URL,
+	SITE_DESCRIPTION,
+	SITE_LOGO,
+	SITE_SAME_AS,
+} from '../consts';
 
 interface Props {
 	title: string;
@@ -34,6 +40,37 @@ const imageUrl =
 	typeof image === 'string' ? new URL(image, Astro.site).toString() : new URL(image.src, Astro.site).toString();
 const imageWidth = typeof image === 'string' ? 1200 : image.width;
 const imageHeight = typeof image === 'string' ? 630 : image.height;
+
+const globalGraph = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Organization',
+			'@id': `${SITE_URL}/#organization`,
+			name: SITE_TITLE,
+			alternateName: 'AI SEO Shift',
+			url: SITE_URL,
+			logo: {
+				'@type': 'ImageObject',
+				'@id': `${SITE_URL}/#logo`,
+				url: SITE_LOGO,
+				contentUrl: SITE_LOGO,
+				caption: SITE_TITLE,
+			},
+			description: SITE_DESCRIPTION,
+			sameAs: SITE_SAME_AS,
+		},
+		{
+			'@type': 'WebSite',
+			'@id': `${SITE_URL}/#website`,
+			url: SITE_URL,
+			name: SITE_TITLE,
+			description: SITE_DESCRIPTION,
+			publisher: { '@id': `${SITE_URL}/#organization` },
+			inLanguage: 'en-US',
+		},
+	],
+};
 ---
 
 <script is:inline>
@@ -75,6 +112,7 @@ const imageHeight = typeof image === 'string' ? 630 : image.height;
 <meta property="twitter:image" content={imageUrl} />
 <meta property="twitter:image:alt" content={imageAlt} />
 
+<script type="application/ld+json" set:html={JSON.stringify(globalGraph)} />
 {
 	structuredData && (
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

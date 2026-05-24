@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import imageManifest from '../data/image-manifest.json';
-import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../consts';
+import { SITE_URL } from '../consts';
 import { sortPostsByDate } from '../utils/blog';
 
 const guide = await getEntry('blog', 'ai-seo-shift');
@@ -48,29 +48,17 @@ const homepageSections = [
 ];
 const guideImage = imageManifest[guide.id as keyof typeof imageManifest]?.hero;
 
-const homepageStructuredData = [
-	{
-		'@context': 'https://schema.org',
-		'@type': 'WebSite',
-		name: SITE_TITLE,
-		url: SITE_URL,
-		description: SITE_DESCRIPTION,
-		inLanguage: 'en',
-	},
-	{
-		'@context': 'https://schema.org',
-		'@type': 'WebPage',
-		name: 'AI SEO Shift',
-		url: SITE_URL,
-		description: guide.data.description,
-		isPartOf: {
-			'@type': 'WebSite',
-			name: SITE_TITLE,
-			url: SITE_URL,
-		},
-		about: ['AI SEO', 'Answer Engine Optimization', 'Generative Engine Optimization', 'AI visibility'],
-	},
-];
+const homepageStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	'@id': `${SITE_URL}/#webpage`,
+	name: 'AI SEO Shift',
+	url: SITE_URL,
+	description: guide.data.description,
+	isPartOf: { '@id': `${SITE_URL}/#website` },
+	about: ['AI SEO', 'Answer Engine Optimization', 'Generative Engine Optimization', 'AI visibility'],
+	primaryImageOfPage: { '@id': `${SITE_URL}/#logo` },
+};
 ---
 
 <!doctype html>

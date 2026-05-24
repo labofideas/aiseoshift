@@ -13,3 +13,10 @@ export const SITE_KEYWORDS = [
 	'topic clusters',
 	'SEO strategy',
 ];
+
+export const SITE_LOGO = `${SITE_URL}/favicon.svg`;
+
+export const SITE_SAME_AS = [
+	'https://bsky.app/profile/aiseoshift.bsky.social',
+	'https://aiseoshift.tumblr.com',
+];
