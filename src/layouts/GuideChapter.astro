@@ -72,10 +72,12 @@ const structuredData = [articleSchema, breadcrumbSchema];
 			title={`${title} | SEO Guide | ${SITE_TITLE}`}
 			description={description}
 			canonical={canonical}
+			image={heroImage?.src ? new URL(heroImage.src, SITE_URL).toString() : undefined}
 			ogType="article"
 			publishedTime={pubDate.toISOString()}
 			modifiedTime={(updatedDate ?? pubDate).toISOString()}
 			structuredData={structuredData}
+			preloadHero={heroImage?.src}
 		/>
 		<style>
 			.article-shell {

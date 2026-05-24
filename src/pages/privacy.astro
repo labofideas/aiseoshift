@@ -1,0 +1,98 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_URL } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Privacy Policy | ${SITE_TITLE}`}
+			description="Privacy policy for AISEOShift. How we collect, use, and protect your data."
+		/>
+		<style>
+			.legal-page {
+				width: min(760px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2.5rem 0 4rem;
+			}
+			.legal-page h1 {
+				font-size: clamp(2rem, 3.5vw, 2.8rem);
+				line-height: 1.1;
+				letter-spacing: -0.025em;
+				margin: 0 0 0.5rem;
+			}
+			.legal-page .updated {
+				font-size: 0.85rem;
+				color: rgba(var(--ink), 0.6);
+				margin: 0 0 2rem;
+			}
+			.legal-page h2 {
+				font-size: 1.3rem;
+				margin: 2.5rem 0 0.8rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid var(--line);
+			}
+			.legal-page p, .legal-page li {
+				font-size: 1rem;
+				line-height: 1.75;
+				color: rgba(var(--ink), 0.85);
+			}
+			.legal-page ul { padding-left: 1.2rem; }
+			.legal-page li { margin-top: 0.4rem; }
+			.legal-page a { color: var(--signal-deep); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="legal-page">
+			<h1>Privacy Policy</h1>
+			<p class="updated">Last updated: May 24, 2026</p>
+
+			<p>AISEOShift ("we," "us," or "our") operates the website at aiseoshift.com. This page explains how we collect, use, and protect information when you visit our site.</p>
+
+			<h2>Information we collect</h2>
+			<p>We collect minimal data to operate the site and improve your experience:</p>
+			<ul>
+				<li><strong>Usage data.</strong> Pages visited, time on site, referral source, and device type. Collected via server logs and analytics.</li>
+				<li><strong>Email address.</strong> Only if you voluntarily subscribe to our newsletter via the Mailchimp form.</li>
+				<li><strong>Upvote data.</strong> An anonymous visitor identifier stored in your browser's localStorage to track upvotes on articles. No personal information is collected.</li>
+				<li><strong>Contact form data.</strong> Name, email, and message content if you submit a form on our services page.</li>
+			</ul>
+
+			<h2>How we use your information</h2>
+			<ul>
+				<li>To deliver and improve the website content and tools</li>
+				<li>To send newsletter updates if you subscribed</li>
+				<li>To respond to service inquiries</li>
+				<li>To understand site usage patterns and improve content</li>
+			</ul>
+
+			<h2>Third-party services</h2>
+			<p>We use the following third-party services that may process your data:</p>
+			<ul>
+				<li><strong>Cloudflare.</strong> Hosting and CDN. Subject to <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's Privacy Policy</a>.</li>
+				<li><strong>Supabase.</strong> Database for upvote tracking (anonymous IDs only). Subject to <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase's Privacy Policy</a>.</li>
+				<li><strong>Mailchimp.</strong> Newsletter delivery. Subject to <a href="https://mailchimp.com/legal/privacy/" target="_blank" rel="noopener">Mailchimp's Privacy Policy</a>.</li>
+			</ul>
+
+			<h2>Cookies and local storage</h2>
+			<p>We use browser localStorage (not cookies) to store your theme preference (light/dark mode) and anonymous upvote tracking. No third-party tracking cookies are set by our site directly.</p>
+
+			<h2>Data retention</h2>
+			<p>Newsletter subscriptions are retained until you unsubscribe. Contact form submissions are retained for the duration needed to respond. Anonymous upvote data has no expiration.</p>
+
+			<h2>Your rights</h2>
+			<p>You can unsubscribe from our newsletter at any time using the link in any email. You can clear your localStorage to reset upvote data. For data deletion requests, contact us at <a href="mailto:hello@aiseoshift.com">hello@aiseoshift.com</a>.</p>
+
+			<h2>Changes to this policy</h2>
+			<p>We may update this policy from time to time. The "last updated" date at the top reflects the most recent revision.</p>
+
+			<h2>Contact</h2>
+			<p>For privacy-related questions, email <a href="mailto:hello@aiseoshift.com">hello@aiseoshift.com</a>.</p>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -13,6 +13,10 @@ const today = new Date();
 			<a href="/about">About the publication</a>
 			<a href="mailto:hello@aiseoshift.com">hello@aiseoshift.com</a>
 		</div>
+		<div class="footer-legal">
+			<a href="/privacy">Privacy Policy</a>
+			<a href="/terms">Terms of Service</a>
+		</div>
 		<p class="footer-meta">&copy; {today.getFullYear()} AISEOShift. All rights reserved.</p>
 	</div>
 </footer>
@@ -69,6 +73,20 @@ const today = new Date();
 	.footer-links a:focus-visible {
 		color: var(--signal);
 	}
+
+	.footer-legal {
+		display: flex;
+		gap: 1.25rem;
+		margin-top: 0.5rem;
+	}
+
+	.footer-legal a {
+		text-decoration: none;
+		color: rgba(var(--ink), 0.5);
+		font-size: 0.8rem;
+	}
+
+	.footer-legal a:hover { color: var(--signal); }
 
 	@media (max-width: 800px) {
 		.site-footer {
