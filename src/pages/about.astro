@@ -11,108 +11,111 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<BaseHead title={`About | ${SITE_TITLE}`} description="AISEOShift covers AI visibility, answer engine optimization, and the editorial systems SEO teams need in the AI search era." />
 		<style>
 			.about-page {
-				width: min(1000px, calc(100% - 2rem));
+				width: min(1080px, calc(100% - 2rem));
 				margin: 0 auto;
-				padding: 2.5rem 0 4rem;
+				padding: var(--space-7) 0 var(--space-9);
 			}
 
 			.about-hero {
-				margin-bottom: 2.5rem;
-				padding-bottom: 2rem;
+				padding: var(--space-7) 0 var(--space-8);
 				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+				gap: var(--space-7);
+				align-items: end;
 			}
 
 			.about-hero h1 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(2rem, 3.5vw, 2.8rem);
-				line-height: 1.1;
-				letter-spacing: -0.025em;
-				margin: 0.5rem 0 1rem;
-				max-width: 20ch;
+				font-size: clamp(2.4rem, 4.6vw, 4rem);
+				line-height: 1;
+				letter-spacing: -0.03em;
+				font-weight: 600;
+				margin: var(--space-4) 0 0;
+				max-width: 16ch;
 			}
 
-			.about-hero p {
-				font-size: 1.05rem;
-				line-height: 1.72;
-				color: rgba(var(--ink), 0.8);
-				max-width: 38rem;
+			.about-hero-lede p {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.78);
+				max-width: var(--measure);
+				margin: 0;
 			}
 
 			.about-grid {
 				display: grid;
-				grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-				gap: 1.5rem;
-				margin-bottom: 2.5rem;
+				grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+				gap: var(--space-7);
+				padding: var(--space-8) 0;
+				border-bottom: 1px solid var(--line);
 			}
 
-			.about-card {
-				padding: 1.75rem;
-				border-radius: 1.5rem;
-				border: 1px solid var(--line);
-				background: rgba(var(--paper-strong), 0.55);
+			.about-grid h2 {
+				font-size: clamp(1.5rem, 2.2vw, 2rem);
+				margin: 0 0 var(--space-4);
+				letter-spacing: -0.022em;
+				font-weight: 600;
 			}
 
-			.about-card h2 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: 1.25rem;
-				margin: 0 0 0.8rem;
-				letter-spacing: -0.01em;
-			}
-
-			.about-card p {
-				font-size: 0.94rem;
+			.about-grid p {
+				font-size: 1rem;
 				line-height: 1.7;
-				color: rgba(var(--ink), 0.78);
+				color: rgba(var(--ink), 0.82);
+				margin: 0 0 var(--space-4);
+				max-width: 38rem;
 			}
 
-			.about-card ul {
-				padding-left: 1.1rem;
-				margin: 0.5rem 0 0;
+			.about-grid aside ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
 			}
 
-			.about-card li {
-				font-size: 0.92rem;
-				line-height: 1.6;
-				color: rgba(var(--ink), 0.78);
-				padding: 0.3rem 0;
+			.about-grid aside li {
+				font-size: 0.95rem;
+				line-height: 1.4;
+				color: rgba(var(--ink), 0.82);
+				padding: var(--space-3) 0;
+				border-bottom: 1px solid var(--line);
 			}
 
-			.about-card li + li {
+			.about-grid aside li:first-child {
 				border-top: 1px solid var(--line);
 			}
 
 			.about-values {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
-				gap: 1.25rem;
+				gap: var(--space-7);
+				padding: var(--space-8) 0 0;
 			}
 
-			.value-card {
-				padding: 1.5rem;
-				border-radius: 1.25rem;
-				border: 1px solid var(--line);
-				background: rgba(var(--paper-strong), 0.55);
+			.about-values .value-block {
+				padding-top: var(--space-4);
+				border-top: 1px solid var(--line-strong);
 			}
 
-			.value-card h3 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: 1.05rem;
-				margin: 0 0 0.5rem;
+			.about-values h3 {
+				font-size: 1.15rem;
+				margin: 0 0 var(--space-3);
+				letter-spacing: -0.012em;
+				font-weight: 600;
 			}
 
-			.value-card p {
-				font-size: 0.86rem;
+			.about-values p {
+				font-size: 0.95rem;
 				line-height: 1.6;
-				color: rgba(var(--ink), 0.7);
+				color: var(--ink-muted);
 				margin: 0;
+				max-width: 28rem;
 			}
 
 			@media (max-width: 860px) {
-				.about-grid {
-					grid-template-columns: 1fr;
-				}
+				.about-hero,
+				.about-grid,
 				.about-values {
 					grid-template-columns: 1fr;
+					gap: var(--space-5);
 				}
 			}
 		</style>
@@ -121,18 +124,22 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 		<Header />
 		<main id="main-content" class="about-page">
 			<section class="about-hero">
-				<p class="section-kicker">About AISEOShift</p>
-				<h1>Covering the shift from rankings to AI visibility.</h1>
-				<p>
-					AISEOShift is an editorial publication focused on how search is changing. We cover AI visibility,
-					answer engine optimization, generative engine optimization, citation mechanics, and the practical
-					strategies teams need as AI systems increasingly mediate how people discover information.
-				</p>
+				<div>
+					<p class="section-kicker">About</p>
+					<h1>Covering the shift from rankings to AI visibility.</h1>
+				</div>
+				<div class="about-hero-lede">
+					<p>
+						AISEOShift is an editorial publication focused on how search is changing. We cover AI visibility,
+						answer engine optimization, generative engine optimization, citation mechanics, and the practical
+						strategies teams need as AI systems increasingly mediate how people discover information.
+					</p>
+				</div>
 			</section>
 
-			<div class="about-grid">
-				<section class="about-card">
-					<h2>What We Cover</h2>
+			<section class="about-grid">
+				<div>
+					<h2>What we cover</h2>
 					<p>
 						Our coverage spans the full AI search landscape: from how Google AI Overviews select sources
 						to how ChatGPT and Perplexity cite content differently. We publish strategy frameworks,
@@ -143,9 +150,9 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						for general audiences trying to understand how search is evolving. We avoid hype, focus on
 						evidence, and publish only what we can back with data or direct analysis.
 					</p>
-				</section>
-				<aside class="about-card">
-					<h2>Coverage Areas</h2>
+				</div>
+				<aside>
+					<h2>Coverage areas</h2>
 					<ul>
 						<li>AI visibility and citation mechanics</li>
 						<li>Answer Engine Optimization (AEO)</li>
@@ -156,22 +163,22 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 						<li>AI search trends and data</li>
 					</ul>
 				</aside>
-			</div>
+			</section>
 
-			<div class="about-values">
-				<div class="value-card">
-					<h3>Evidence First</h3>
+			<section class="about-values">
+				<div class="value-block">
+					<h3>Evidence first</h3>
 					<p>Every claim is backed by data, research, or direct analysis. We cite our sources and show our reasoning.</p>
 				</div>
-				<div class="value-card">
-					<h3>Practical Focus</h3>
+				<div class="value-block">
+					<h3>Practical focus</h3>
 					<p>Strategy without action is theory. Every article includes actionable steps teams can implement immediately.</p>
 				</div>
-				<div class="value-card">
-					<h3>No Hype</h3>
+				<div class="value-block">
+					<h3>No hype</h3>
 					<p>We report what is actually changing in search, not what generates the most clicks. Direct language, honest analysis.</p>
 				</div>
-			</div>
+			</section>
 		</main>
 		<Footer />
 	</body>

@@ -24,10 +24,18 @@ interface Props {
 
 const canonicalURL = Astro.props.canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 
+// Compute a per-page OG card slug from the request path.
+// '/' -> 'index'; '/seo/' -> 'seo'; '/blog/foo/' -> 'blog/foo'.
+const ogSlug = (() => {
+	const trimmed = Astro.url.pathname.replace(/^\/+|\/+$/g, '');
+	return trimmed === '' ? 'index' : trimmed;
+})();
+const defaultOgImage = `/og/${ogSlug}.svg`;
+
 const {
 	title,
 	description,
-	image = '/social-card.svg',
+	image = defaultOgImage,
 	imageAlt = `${SITE_TITLE} social preview`,
 	ogType = 'website',
 	publishedTime,
