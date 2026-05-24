@@ -1,7 +1,6 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
-import ComparisonTable from '../components/ComparisonTable.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
@@ -13,39 +12,24 @@ const guide = await getEntry('blog', 'ai-seo-shift');
 if (!guide) throw new Error('Missing required guide: ai-seo-shift');
 
 const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft));
-const latestPosts = posts.filter((post) => post.id !== guide.id).slice(0, 6);
+const latestPosts = posts.filter((post) => post.id !== guide.id).slice(0, 4);
 // Keep imageManifest import for post-card thumbnails below (blog feature images stay as photos per site image policy).
-const featuredTopics = [
-	{ href: '/blog/what-is-answer-engine-optimization/', label: 'What is Answer Engine Optimization?', kicker: 'AEO' },
-	{ href: '/blog/geo-vs-aeo-vs-seo/', label: 'GEO vs AEO vs SEO: What Actually Changed?', kicker: 'Framework' },
-	{ href: '/blog/how-to-measure-ai-visibility/', label: 'How to Measure AI Visibility', kicker: 'Measurement' },
-];
-const commercialLinks = [
+
+const manifesto = [
 	{
-		href: '/ai-seo-services/',
-		kicker: 'AI SEO Services',
-		title: 'Get help with AI SEO strategy, audits, and ongoing growth',
-		copy: 'For businesses that need stronger visibility in Google, AI Overviews, ChatGPT, Perplexity, and other AI search surfaces.',
+		num: '01',
+		title: 'AI SEO',
+		body: 'How classical SEO now overlaps with AI visibility, citations, and answer engines.',
 	},
 	{
-		href: '/ai-seo-tools/',
-		kicker: 'AI SEO Tools',
-		title: 'Use free AI SEO tools to review pages, metadata, and structure',
-		copy: 'Browser-based tools to check on-page SEO, content structure, heading hierarchy, keyword usage, and image optimization.',
-	},
-];
-const homepageSections = [
-	{
-		title: 'What the AI SEO Shift means',
-		body: 'The AI SEO Shift is the move from chasing rankings alone to building visibility inside AI-generated answers, citations, and recommendation systems. SEO still matters, but it now works alongside answer engine optimization and generative engine optimization.',
+		num: '02',
+		title: 'AEO + GEO',
+		body: 'Structuring content so ChatGPT, Claude, Perplexity, and AI Overviews can trust and extract it.',
 	},
 	{
-		title: 'Why this matters now',
-		body: 'Users increasingly discover brands through Google AI Overviews, ChatGPT, Claude, and Perplexity before they ever click a website. That means authority, structure, attribution, and topical depth now shape how your brand appears in search.',
-	},
-	{
-		title: 'How to adapt',
-		body: 'Winning this shift requires strong technical SEO, direct answer-first content, clear entity signals, and supporting topic clusters that help AI systems understand what your site covers and why it should be trusted.',
+		num: '03',
+		title: 'Ongoing research',
+		body: 'Weekly reporting from the front of the shift, with primary sources cited.',
 	},
 ];
 const faqs = [
@@ -60,18 +44,6 @@ const faqs = [
 	{
 		q: 'How do I get cited by ChatGPT, Claude, and Perplexity?',
 		a: 'AI engines cite content that is structured, authoritative, and unambiguous. Five high-leverage moves: (1) add direct one-paragraph answers under every H2; (2) implement FAQ, HowTo, and Organization schema; (3) include cited statistics and named entities; (4) maintain consistent author bylines and E-E-A-T signals; (5) ensure your robots.txt and llms.txt explicitly allow assistant crawlers.',
-	},
-	{
-		q: 'Does ChatGPT use Google?',
-		a: 'ChatGPT does not use Google. ChatGPT Search uses Microsoft Bing and OpenAI’s own crawler (OAI-SearchBot) to retrieve sources. Perplexity uses its own crawler (PerplexityBot) plus partnerships. Google AI Overviews uses Google’s own index. Optimizing for one does not automatically optimize for the others: each has its own crawler, ranking signals, and citation behavior.',
-	},
-	{
-		q: 'Is SEO dead in 2026?',
-		a: 'SEO is not dead: it has expanded. Classical Google rankings still drive significant traffic, but they now compete with AI Overviews, ChatGPT Search, and direct AI assistant answers. The discipline has grown from "rank in Google" to "be discoverable, retrievable, and citable across every surface where your audience searches." Brands abandoning SEO are losing ground; brands extending SEO into AEO and GEO are gaining.',
-	},
-	{
-		q: 'How do I optimize for Google AI Overviews?',
-		a: 'AI Overviews extract concise, factual answers from pages that already rank well in classical Google. To be the source: (1) put a direct 1-3 sentence answer immediately under the H1 or relevant H2; (2) use clear, scannable structure (lists, tables, definitions); (3) implement FAQPage and HowTo schema; (4) build topical authority through clusters rather than isolated posts; (5) cite primary sources to demonstrate the trust signals AI Overviews look for.',
 	},
 ];
 
@@ -206,35 +178,6 @@ const homepageStructuredData = [
 
 			.hero-actions .secondary-action:hover {
 				border-color: rgb(var(--ink));
-			}
-
-			.hero-stats {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				gap: var(--space-6);
-				margin: var(--space-7) 0 0;
-				padding-top: var(--space-6);
-				border-top: 1px solid var(--line);
-			}
-
-			.hero-stats > div {
-				margin: 0;
-			}
-
-			.hero-stats dt {
-				font-size: 0.72rem;
-				font-weight: 700;
-				letter-spacing: 0.16em;
-				text-transform: uppercase;
-				color: rgb(var(--ink));
-				margin-bottom: var(--space-2);
-			}
-
-			.hero-stats dd {
-				margin: 0;
-				font-size: 0.9rem;
-				line-height: 1.55;
-				color: var(--ink-muted);
 			}
 
 			.hero-visual {
@@ -611,12 +554,223 @@ const homepageStructuredData = [
 				max-width: 56rem;
 			}
 
+			/* ===== Manifesto ===== */
+			.manifesto {
+				padding: var(--space-8) 0;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.manifesto h2 {
+				font-size: clamp(1.8rem, 3vw, 2.8rem);
+				line-height: 1.15;
+				letter-spacing: -0.024em;
+				font-weight: 500;
+				max-width: 36ch;
+				margin: var(--space-3) 0 var(--space-7);
+				color: rgb(var(--ink));
+			}
+
+			.manifesto-list {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: var(--space-6);
+				margin: 0;
+			}
+
+			.manifesto-list > div {
+				margin: 0;
+				padding-top: var(--space-4);
+				border-top: 1px solid var(--line-strong);
+			}
+
+			.manifesto-list dt {
+				font-size: 0.85rem;
+				font-weight: 700;
+				letter-spacing: 0.04em;
+				color: rgb(var(--ink));
+				margin: 0 0 var(--space-2);
+			}
+
+			.manifesto-list dt span {
+				display: inline-block;
+				margin-right: 0.5rem;
+				font-family: 'Iowan Old Style', Georgia, serif;
+				font-style: italic;
+				font-weight: 400;
+				color: var(--signal-deep);
+			}
+
+			.manifesto-list dd {
+				margin: 0;
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: var(--ink-muted);
+			}
+
+			/* ===== Guide anchor ===== */
+			.guide-anchor {
+				padding: var(--space-8) 0;
+				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+				gap: var(--space-7);
+				align-items: end;
+			}
+
+			.guide-anchor-head h2 {
+				font-size: clamp(2rem, 3.4vw, 3rem);
+				letter-spacing: -0.028em;
+				margin: var(--space-2) 0 0;
+				max-width: 14ch;
+			}
+
+			.guide-anchor-body {
+				display: grid;
+				gap: var(--space-5);
+				justify-items: start;
+				max-width: 36rem;
+			}
+
+			.guide-anchor-body p {
+				margin: 0;
+				font-size: 1.05rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.82);
+			}
+
+			.guide-anchor-body .primary-action {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.85rem 1.4rem;
+				border-radius: var(--radius-sm);
+				text-decoration: none;
+				font-size: 0.95rem;
+				font-weight: 600;
+				background: rgb(var(--ink));
+				color: rgb(var(--paper));
+			}
+
+			.guide-anchor-body .primary-action:hover {
+				background: var(--signal-deep);
+			}
+
+			/* ===== Latest ===== */
+			.latest {
+				padding: var(--space-8) 0;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.latest-head h2 {
+				font-size: clamp(1.8rem, 3vw, 2.6rem);
+				letter-spacing: -0.024em;
+				margin: var(--space-2) 0 var(--space-7);
+			}
+
+			.latest-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: var(--space-7) var(--space-6);
+			}
+
+			.latest-list li {
+				margin: 0;
+			}
+
+			.latest-list a {
+				display: grid;
+				gap: var(--space-3);
+				text-decoration: none;
+				color: rgb(var(--ink));
+				border-top: 1px solid var(--line-strong);
+				padding-top: var(--space-4);
+			}
+
+			.latest-list a:hover h3 {
+				color: var(--signal-deep);
+			}
+
+			.latest-meta {
+				display: flex;
+				justify-content: space-between;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+			}
+
+			.latest-meta .latest-cat {
+				color: rgb(var(--ink));
+			}
+
+			.latest-list h3 {
+				font-size: 1.35rem;
+				line-height: 1.2;
+				margin: 0;
+				font-weight: 600;
+				letter-spacing: -0.015em;
+			}
+
+			.latest-list p {
+				margin: 0;
+				font-size: 0.95rem;
+				line-height: 1.55;
+				color: var(--ink-muted);
+			}
+
+			.latest-more {
+				display: inline-flex;
+				margin-top: var(--space-7);
+				font-size: 0.9rem;
+				font-weight: 600;
+				text-decoration: none;
+				color: rgb(var(--ink));
+				border-bottom: 1px solid var(--line-strong);
+				padding-bottom: 2px;
+			}
+
+			.latest-more:hover {
+				color: var(--signal-deep);
+				border-color: var(--signal);
+			}
+
+			/* ===== FAQ ===== */
+			.faq {
+				padding: var(--space-8) 0;
+			}
+
+			.faq-head h2 {
+				font-size: clamp(1.8rem, 3vw, 2.6rem);
+				letter-spacing: -0.024em;
+				margin: var(--space-2) 0 var(--space-7);
+			}
+
+			.faq-shell {
+				padding: 0;
+				border: none;
+				background: transparent;
+				border-radius: 0;
+				border-top: 1px solid var(--line-strong);
+			}
+
+			.faq-item {
+				border-top: none;
+				border-bottom: 1px solid var(--line);
+				padding: var(--space-5) 0;
+			}
+
 			@media (max-width: 1040px) {
 				.hero,
 				.posts-grid,
 				.topic-grid,
 				.summary-grid,
-				.hero-stats {
+				.manifesto-list,
+				.guide-anchor,
+				.latest-list {
 					grid-template-columns: 1fr;
 				}
 
@@ -624,7 +778,9 @@ const homepageStructuredData = [
 					gap: var(--space-7);
 				}
 
-				.hero-stats {
+				.manifesto-list,
+				.guide-anchor,
+				.latest-list {
 					gap: var(--space-5);
 				}
 			}
@@ -667,20 +823,6 @@ const homepageStructuredData = [
 							<a class="primary-action" href="/seo/">Read the guide</a>
 							<a class="secondary-action" href="#latest">Latest research</a>
 						</div>
-						<dl class="hero-stats" aria-label="What the AI SEO Shift covers">
-							<div>
-								<dt>01 &middot; AI SEO</dt>
-								<dd>How classical SEO now overlaps with AI visibility and citations.</dd>
-							</div>
-							<div>
-								<dt>02 &middot; AEO + GEO</dt>
-								<dd>Structuring content so AI engines can trust and extract it.</dd>
-							</div>
-							<div>
-								<dt>03 &middot; Ongoing research</dt>
-								<dd>Weekly reporting from the front of the shift.</dd>
-							</div>
-						</dl>
 					</div>
 
 					<figure class="hero-visual" aria-label="Diagram: many search results synthesized into one AI answer">
@@ -732,139 +874,63 @@ const homepageStructuredData = [
 					</figure>
 				</section>
 
-				<section aria-labelledby="core-topics">
-					<div class="section-head">
-						<div>
-							<p class="eyebrow">Core Topics</p>
-							<h2 id="core-topics">Core guides that define the AI SEO Shift</h2>
-						</div>
-						<p>These pages support the homepage with definitions, frameworks, and measurement.</p>
-					</div>
-					<div class="topic-grid">
-						{featuredTopics.map((topic) => (
-							<a class="topic-card" href={topic.href}>
-								<span>{topic.kicker}</span>
-								<strong>{topic.label}</strong>
-							</a>
-						))}
-					</div>
-				</section>
-
-				<section id="compare" aria-labelledby="compare-title">
-					<div class="section-head">
-						<div>
-							<p class="eyebrow">Frameworks</p>
-							<h2 id="compare-title">SEO vs AEO vs GEO at a glance</h2>
-						</div>
-						<p>Side-by-side comparison of the three disciplines that now make up modern search.</p>
-					</div>
-					<ComparisonTable />
-					<nav class="entity-strip" aria-label="Explore the SEO Guide by topic">
-						<p class="entity-strip-label">Explore by topic</p>
-						<ul>
-							<li><a href="/seo/ai-search-optimization/">AEO &amp; GEO</a></li>
-							<li><a href="/seo/ai-citation-building/">AI Citation Building</a></li>
-							<li><a href="/seo/schema-markup/">Schema</a></li>
-							<li><a href="/seo/eeat/">E-E-A-T</a></li>
-							<li><a href="/seo/technical-seo/">Technical SEO</a></li>
-							<li><a href="/seo/keyword-research/">Keyword Research</a></li>
-							<li><a href="/seo/content-strategy/">Content Strategy</a></li>
-							<li><a href="/seo/measuring-seo/">Measurement</a></li>
-						</ul>
-					</nav>
-				</section>
-
-				<section aria-labelledby="services-tools">
-					<div class="section-head">
-						<div>
-							<p class="eyebrow">Explore More</p>
-							<h2 id="services-tools">AI SEO services and AI SEO tools</h2>
-						</div>
-						<p>Two clear paths for visitors who want expert help or want to self-audit.</p>
-					</div>
-					<div class="topic-grid">
-						{commercialLinks.map((item) => (
-							<a class="topic-card" href={item.href}>
-								<span>{item.kicker}</span>
-								<strong>{item.title}</strong>
-								<p>{item.copy}</p>
-							</a>
-						))}
-					</div>
-				</section>
-
-				<section id="guide" aria-labelledby="guide-title">
-					<div class="section-head">
-						<div>
-							<p class="eyebrow">Start Here</p>
-							<h2 id="guide-title">Understand the AI SEO Shift quickly</h2>
-						</div>
-						<a href="/ai-seo-shift/">Read the full guide</a>
-					</div>
-					<div class="guide-shell">
-						<div class="guide-meta">
-							<p class="eyebrow">Guide Snapshot</p>
-							<h3>{guide.data.title}</h3>
-							<p>{guide.data.description}</p>
-							<ul>
-								<li>Published: <FormattedDate date={guide.data.pubDate} /></li>
-								<li>Category: {guide.data.category}</li>
-								<li>Author: {guide.data.author}</li>
-							</ul>
-						</div>
-						<div class="summary-shell">
-							<div class="summary-grid">
-								{homepageSections.map((section) => (
-									<article class="summary-card">
-										<h3>{section.title}</h3>
-										<p>{section.body}</p>
-									</article>
-								))}
+				<section class="manifesto" aria-labelledby="manifesto-title">
+					<p class="eyebrow">What this site covers</p>
+					<h2 id="manifesto-title">
+						Search results gave way to answers. Rankings gave way to citations.
+						The playbook had to be rewritten.
+					</h2>
+					<dl class="manifesto-list">
+						{manifesto.map((item) => (
+							<div>
+								<dt><span>{item.num}</span> {item.title}</dt>
+								<dd>{item.body}</dd>
 							</div>
-							<div class="summary-actions">
-								<a class="primary-action" href="/ai-seo-shift/">Read the full guide</a>
-								<a class="secondary-action" href="#core-topics">Explore related topics</a>
-							</div>
-						</div>
+						))}
+					</dl>
+				</section>
+
+				<section class="guide-anchor" aria-labelledby="guide-anchor-title">
+					<div class="guide-anchor-head">
+						<p class="eyebrow">The Guide</p>
+						<h2 id="guide-anchor-title">The Complete SEO Guide for 2026</h2>
+					</div>
+					<div class="guide-anchor-body">
+						<p>
+							12 chapters covering fundamentals, technical SEO, schema, E-E-A-T,
+							AEO, GEO, AI Overviews, content strategy, and measurement. Updated {' '}
+							<FormattedDate date={guide.data.pubDate} />.
+						</p>
+						<a class="primary-action" href="/seo/">Open the guide &rarr;</a>
 					</div>
 				</section>
 
-				<section id="latest" aria-labelledby="latest-title">
-					<div class="section-head">
-						<div>
-							<p class="eyebrow">Latest Posts</p>
-							<h2 id="latest-title">Latest AI visibility and search strategy posts</h2>
-						</div>
-						<a href="/blog/">View all posts</a>
+				<section id="latest" class="latest" aria-labelledby="latest-title">
+					<div class="latest-head">
+						<p class="eyebrow">Latest</p>
+						<h2 id="latest-title">Recent research and reporting</h2>
 					</div>
-					<div class="posts-grid">
-						{latestPosts.map((post) => {
-							const cardImage = imageManifest[post.id as keyof typeof imageManifest]?.hero;
-							return (
-								<a class="post-card" href={`/blog/${post.id}/`}>
-									{cardImage && <img src={cardImage.src} alt={cardImage.alt} loading="lazy" />}
-									<div class="post-copy">
-										<span class="post-kicker">{post.data.category}</span>
-										<h3>{post.data.title}</h3>
-										<p>{post.data.description}</p>
-										<div class="post-meta">
-											<span><FormattedDate date={post.data.pubDate} /></span>
-											<span>{post.data.author}</span>
-										</div>
+					<ul class="latest-list">
+						{latestPosts.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									<div class="latest-meta">
+										<span class="latest-cat">{post.data.category}</span>
+										<span class="latest-date"><FormattedDate date={post.data.pubDate} /></span>
 									</div>
+									<h3>{post.data.title}</h3>
+									<p>{post.data.description}</p>
 								</a>
-							);
-						})}
-					</div>
+							</li>
+						))}
+					</ul>
+					<a class="latest-more" href="/blog/">View all posts &rarr;</a>
 				</section>
 
-				<section id="faq" aria-labelledby="faq-title">
-					<div class="section-head">
-						<div>
-							<p class="eyebrow">FAQ</p>
-							<h2 id="faq-title">AI SEO, AEO, and GEO: the questions people ask first</h2>
-						</div>
-						<p>Direct answers to the most common questions about the AI SEO Shift.</p>
+				<section id="faq" class="faq" aria-labelledby="faq-title">
+					<div class="faq-head">
+						<p class="eyebrow">FAQ</p>
+						<h2 id="faq-title">Three questions people ask first</h2>
 					</div>
 					<div class="faq-shell">
 						{faqs.map((item, i) => (
@@ -873,31 +939,6 @@ const homepageStructuredData = [
 								<p class="faq-answer">{item.a}</p>
 							</details>
 						))}
-					</div>
-				</section>
-
-				<section aria-labelledby="about-brand">
-					<div class="section-head">
-						<div>
-							<p class="eyebrow">About AISEOShift</p>
-							<h2 id="about-brand">A site focused on AI visibility, citations, and answer engine search</h2>
-						</div>
-					</div>
-					<div class="summary-shell">
-						<div class="summary-grid">
-							<article class="summary-card">
-								<h3>Focused topical coverage</h3>
-								<p>AISEOShift publishes around AI search, AI visibility, AEO, GEO, citations, content structure, and modern SEO strategy.</p>
-							</article>
-							<article class="summary-card">
-								<h3>Built to support the main topic</h3>
-								<p>The homepage targets AI SEO Shift directly, while supporting guides and recent posts reinforce the topic cluster around it.</p>
-							</article>
-							<article class="summary-card">
-								<h3>Designed for readers and search systems</h3>
-								<p>Clear definitions, structured pages, and internal linking help both human visitors and AI systems understand what the site is about.</p>
-							</article>
-						</div>
 					</div>
 				</section>
 			</div>
