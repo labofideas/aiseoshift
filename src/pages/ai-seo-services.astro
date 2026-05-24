@@ -229,7 +229,7 @@ const structuredData = {
 					const accessKey = form.querySelector('input[name="access_key"]').value;
 					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
 						status.className = 'form-status error';
-						status.textContent = 'Form not configured yet. Email shashank@wbcomdesigns.com directly.';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
 						return;
 					}
 					const formData = new FormData(form);
@@ -242,11 +242,11 @@ const structuredData = {
 							form.reset();
 						} else {
 							status.className = 'form-status error';
-							status.textContent = 'Something went wrong. Please email shashank@wbcomdesigns.com directly.';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
 						}
 					} catch {
 						status.className = 'form-status error';
-						status.textContent = 'Network error. Please try again or email shashank@wbcomdesigns.com directly.';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
 					}
 				});
 			})();

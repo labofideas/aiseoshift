@@ -110,6 +110,35 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 				max-width: 28rem;
 			}
 
+			.about-contact {
+				padding: var(--space-8) 0 0;
+			}
+
+			.about-contact h2 {
+				font-size: clamp(1.85rem, 3vw, 2.5rem);
+				letter-spacing: -0.024em;
+				font-weight: 600;
+				margin: var(--space-3) 0 var(--space-4);
+			}
+
+			.about-contact p {
+				font-size: 1.05rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.82);
+				margin: 0;
+				max-width: var(--measure);
+			}
+
+			.about-contact a {
+				color: rgb(var(--ink));
+				text-decoration-color: var(--signal);
+				font-weight: 600;
+			}
+
+			.about-contact a:hover {
+				color: var(--signal-deep);
+			}
+
 			@media (max-width: 860px) {
 				.about-hero,
 				.about-grid,
@@ -178,6 +207,15 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 					<h3>No hype</h3>
 					<p>We report what is actually changing in search, not what generates the most clicks. Direct language, honest analysis.</p>
 				</div>
+			</section>
+
+			<section class="about-contact">
+				<p class="section-kicker">Contact</p>
+				<h2>Get in touch</h2>
+				<p>
+					Questions, story tips, corrections, or speaking requests:
+					<a href="mailto:hello@aiseoshift.com">hello@aiseoshift.com</a>.
+				</p>
 			</section>
 		</main>
 		<Footer />
