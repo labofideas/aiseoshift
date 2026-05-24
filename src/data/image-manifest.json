@@ -954,6 +954,11 @@
 	},
 	"seo-authority-not-rankings": {
 		"hero": { "src": "/images/posts/seo-authority-not-rankings-hero.webp", "alt": "SEO is not about rankings anymore - building authority for AI search visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
-		"og": { "src": "/images/posts/seo-authority-not-rankings-og.webp", "width": 1200, "height": 630 }
+		"og": { "src": "/images/posts/seo-authority-not-rankings-og.webp", "width": 1200, "height": 630 },
+		"inline": [
+			{ "src": "/images/posts/seo-authority-not-rankings-inline-1.webp", "alt": "The full SEO authority stack - citations backlinks PR entity signals for AI search visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
+			{ "src": "/images/posts/seo-authority-not-rankings-inline-2.webp", "alt": "Digital PR earns authority through coverage backlinks and brand trust signals", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
+			{ "src": "/images/posts/seo-authority-not-rankings-inline-3.webp", "alt": "Authority compounds over time while rankings fluctuate - build what lasts", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 }
+		]
 	}
 }
