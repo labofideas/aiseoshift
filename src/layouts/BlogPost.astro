@@ -13,11 +13,12 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	headings?: Array<{ depth: number; slug: string; text: string }>;
 	relatedPosts?: CollectionEntry<'blog'>[];
 	imageManifest?: Record<string, any>;
+	ogImage?: { src: string; width?: number; height?: number };
 };
 
 const {
 	title, description, deck, pubDate, updatedDate, category, tags, author,
-	slug, heroImage, headings = [], relatedPosts = [], imageManifest = {},
+	slug, heroImage, ogImage, headings = [], relatedPosts = [], imageManifest = {},
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
@@ -25,6 +26,7 @@ const readTime = Math.max(3, Math.round((description.length + deck.length + titl
 const tocHeadings = headings.filter((h) => h.depth <= 3 && h.text !== 'Related reading' && h.text !== 'References');
 
 const heroImageAbs = heroImage?.src ? new URL(heroImage.src, SITE_URL).toString() : undefined;
+const ogImageAbs = ogImage?.src ? new URL(ogImage.src, SITE_URL).toString() : heroImageAbs;
 
 const articleSchema: Record<string, unknown> = {
 	'@context': 'https://schema.org',
@@ -63,7 +65,7 @@ const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articl
 			title={`${title} | ${SITE_TITLE}`}
 			description={description}
 			canonical={canonical}
-			image={heroImageAbs}
+			image={ogImageAbs}
 			ogType="article"
 			publishedTime={pubDate.toISOString()}
 			modifiedTime={(updatedDate ?? pubDate).toISOString()}
