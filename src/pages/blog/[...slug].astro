@@ -15,7 +15,9 @@ export async function getStaticPaths() {
 
 const { post, allPosts } = Astro.props;
 const { Content, headings } = await render(post);
-const heroImage = imageManifest[post.id as keyof typeof imageManifest]?.hero;
+const postImages = imageManifest[post.id as keyof typeof imageManifest] as any;
+const heroImage = postImages?.hero;
+const ogImage = postImages?.og;
 
 // Compute related posts: +3 for same category, +1 per shared tag
 const relatedPosts = allPosts
@@ -38,6 +40,7 @@ const relatedPosts = allPosts
 	{...post.data}
 	slug={post.id}
 	heroImage={heroImage}
+	ogImage={ogImage}
 	headings={headings}
 	relatedPosts={relatedPosts}
 	imageManifest={imageManifest}

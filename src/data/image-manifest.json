@@ -951,5 +951,9 @@
 	},
 	"guide-measuring-seo": {
 		"hero": { "src": "/images/posts/guide-measuring-seo-hero.webp", "alt": "Measuring SEO and AI visibility - metrics analytics Google Search Console", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/measuring-seo", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"seo-authority-not-rankings": {
+		"hero": { "src": "/images/posts/seo-authority-not-rankings-hero.webp", "alt": "SEO is not about rankings anymore - building authority for AI search visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
+		"og": { "src": "/images/posts/seo-authority-not-rankings-og.webp", "width": 1200, "height": 630 }
 	}
 }
