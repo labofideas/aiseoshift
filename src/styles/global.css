@@ -208,6 +208,30 @@ img {
 	border-radius: var(--radius-md);
 }
 
+.post-figure {
+	margin: 2.4rem 0;
+	padding: 0;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-md);
+	background: rgb(var(--paper-strong));
+	overflow: hidden;
+}
+
+.post-figure svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.post-figure figcaption {
+	padding: 0.75rem 1rem;
+	border-top: 1px solid var(--line);
+	font-size: 0.85rem;
+	line-height: 1.55;
+	font-style: italic;
+	color: var(--ink-muted);
+}
+
 code {
 	padding: 2px 5px;
 	background-color: rgba(var(--ink), 0.08);
