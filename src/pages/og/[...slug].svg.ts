@@ -99,6 +99,11 @@ const STATIC_CARDS: Card[] = [
 		kicker: 'AISEOSHIFT · Author',
 	},
 	{
+		slug: 'glossary',
+		title: 'AI SEO Glossary: 15 terms that matter in 2026',
+		kicker: 'AISEOSHIFT · Reference',
+	},
+	{
 		slug: 'blog',
 		title: 'Latest research and reporting',
 		kicker: 'AISEOSHIFT · Blog',
