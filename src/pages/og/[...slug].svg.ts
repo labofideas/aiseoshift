@@ -100,8 +100,13 @@ const STATIC_CARDS: Card[] = [
 	},
 	{
 		slug: 'glossary',
-		title: 'AI SEO Glossary: 15 terms that matter in 2026',
+		title: 'AI SEO Glossary: 16 terms that matter in 2026',
 		kicker: 'AISEOSHIFT · Reference',
+	},
+	{
+		slug: 'newsletter',
+		title: 'The AI SEO Shift, in your inbox.',
+		kicker: 'AISEOSHIFT · Newsletter',
 	},
 	{
 		slug: 'blog',

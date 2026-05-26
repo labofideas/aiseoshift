@@ -1,0 +1,247 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import EmailSubscribe from '../components/EmailSubscribe.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import {
+	SITE_TITLE,
+	SITE_URL,
+	AUTHOR_NAME,
+	AUTHOR_IMAGE,
+	AUTHOR_ROLE,
+	AUTHOR_PROFILE_URL,
+} from '../consts';
+
+const canonical = new URL('/newsletter/', SITE_URL).toString();
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Newsletter | ${SITE_TITLE}`}
+			description="Weekly research on AEO, GEO, AI Overviews, and the practical SEO playbook for the AI search era. Written by Shashank Dubey."
+			canonical={canonical}
+		/>
+		<style>
+			.news-page {
+				width: min(1080px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: var(--space-7) 0 var(--space-9);
+			}
+
+			.news-hero {
+				padding: var(--space-7) 0 var(--space-8);
+				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+				gap: var(--space-7);
+				align-items: end;
+			}
+
+			.news-hero .kicker {
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+				margin: 0;
+			}
+
+			.news-hero h1 {
+				font-size: clamp(2.4rem, 5vw, 4.4rem);
+				line-height: 0.98;
+				letter-spacing: -0.032em;
+				font-weight: 600;
+				margin: var(--space-4) 0 0;
+				max-width: 16ch;
+			}
+
+			.news-hero h1 em {
+				font-style: italic;
+				font-weight: 400;
+				color: var(--signal-deep);
+			}
+
+			.news-hero-lede p {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.78);
+				max-width: var(--measure);
+				margin: 0;
+			}
+
+			.news-what {
+				padding: var(--space-8) 0;
+				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: var(--space-7);
+			}
+
+			.news-what > div {
+				padding-top: var(--space-4);
+				border-top: 1px solid var(--line-strong);
+			}
+
+			.news-what h2 {
+				font-size: 1.15rem;
+				margin: 0 0 var(--space-3);
+				font-weight: 600;
+				letter-spacing: -0.012em;
+			}
+
+			.news-what p {
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: var(--ink-muted);
+				margin: 0;
+				max-width: 32rem;
+			}
+
+			.news-author {
+				padding: var(--space-7) 0;
+				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: 80px minmax(0, 1fr);
+				gap: var(--space-5);
+				align-items: center;
+			}
+
+			.news-author img {
+				width: 80px;
+				height: 80px;
+				border-radius: 50%;
+				border: 1px solid var(--line-strong);
+			}
+
+			.news-author p {
+				margin: 0;
+				font-size: 1rem;
+				line-height: 1.6;
+				color: var(--ink-muted);
+				max-width: 56ch;
+			}
+
+			.news-author strong {
+				display: block;
+				color: rgb(var(--ink));
+				font-weight: 700;
+				margin-bottom: var(--space-2);
+				font-size: 1.05rem;
+			}
+
+			.news-author a {
+				color: rgb(var(--ink));
+				font-weight: 600;
+				text-decoration-color: var(--signal);
+			}
+
+			.news-form {
+				padding: var(--space-8) 0 0;
+			}
+
+			.news-faq {
+				padding: var(--space-7) 0 0;
+				margin-top: var(--space-7);
+				border-top: 1px solid var(--line);
+			}
+
+			.news-faq h2 {
+				font-size: clamp(1.5rem, 2.4vw, 2rem);
+				font-weight: 600;
+				letter-spacing: -0.022em;
+				margin: 0 0 var(--space-5);
+			}
+
+			.news-faq dt {
+				font-size: 1.05rem;
+				font-weight: 700;
+				margin: var(--space-4) 0 var(--space-2);
+				letter-spacing: -0.012em;
+			}
+
+			.news-faq dd {
+				margin: 0 0 var(--space-3);
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: var(--ink-muted);
+				max-width: 56ch;
+			}
+
+			@media (max-width: 860px) {
+				.news-hero, .news-what, .news-author {
+					grid-template-columns: 1fr;
+					gap: var(--space-5);
+					align-items: start;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="news-page">
+			<section class="news-hero">
+				<div>
+					<p class="kicker">AISEOShift · Newsletter</p>
+					<h1>The AI SEO Shift, <em>in your inbox.</em></h1>
+				</div>
+				<div class="news-hero-lede">
+					<p>
+						One short email a week. Research and explainers on AEO, GEO, AI Overviews,
+						citation mechanics, and the practical SEO playbook for the AI search era. Written for
+						practitioners who need to ship, not generic tips.
+					</p>
+				</div>
+			</section>
+
+			<section class="news-what" aria-label="What you'll get">
+				<div>
+					<h2>One email a week</h2>
+					<p>Published Tuesday morning. Long enough to be useful, short enough to read with coffee.</p>
+				</div>
+				<div>
+					<h2>Primary-source research</h2>
+					<p>Every claim sourced, every stat attributed. No generic SEO advice you can find in a hundred other newsletters.</p>
+				</div>
+				<div>
+					<h2>Practical, not hype</h2>
+					<p>What actually changed this week in AI search, what it means for your work, and what to do about it.</p>
+				</div>
+			</section>
+
+			<section class="news-author">
+				<img src={AUTHOR_IMAGE} alt={AUTHOR_NAME} width="80" height="80" loading="eager" />
+				<p>
+					<strong>By {AUTHOR_NAME}</strong>
+					{AUTHOR_ROLE}. 10 years building WordPress products and content systems for businesses adapting to changing search. <a href={AUTHOR_PROFILE_URL}>Read the full bio &rarr;</a>
+				</p>
+			</section>
+
+			<section class="news-form" aria-labelledby="news-form-headline">
+				<EmailSubscribe
+					eyebrow="Subscribe"
+					headline="Get the weekly newsletter"
+					lede="Drop your email below. No spam. Unsubscribe anytime with one click."
+					cta="Subscribe by Email"
+					variant="panel"
+				/>
+			</section>
+
+			<section class="news-faq" aria-label="Newsletter FAQ">
+				<h2>Common questions</h2>
+				<dl>
+					<dt>How often will I get the newsletter?</dt>
+					<dd>Once a week, on Tuesday mornings (US Eastern). Occasional bonus issues for breaking AI search news.</dd>
+					<dt>Is it free?</dt>
+					<dd>Yes. Always.</dd>
+					<dt>Will my email be shared?</dt>
+					<dd>No. The list is hosted on Mailchimp; we use it only to send you the newsletter. Unsubscribe links are in every email.</dd>
+					<dt>What if I'm not technical?</dt>
+					<dd>The newsletter is written for practitioners, but every issue has a TL;DR and concrete action items. You don't need to know JSON-LD to get value out of it.</dd>
+				</dl>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
