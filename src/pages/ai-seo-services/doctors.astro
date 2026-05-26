@@ -1,0 +1,320 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	provider: { '@type': 'Organization', name: SITE_TITLE },
+	areaServed: 'Worldwide',
+	serviceType: 'AI SEO for Healthcare Practices',
+	description:
+		'AI SEO services for doctors and healthcare practices that need visibility in Google, AI Overviews, ChatGPT, and other AI search environments.',
+};
+
+const faqStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: [
+		{
+			'@type': 'Question',
+			name: 'How much does healthcare SEO cost?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Healthcare SEO typically ranges from $2,000 to $8,000 per month depending on practice size, number of locations, and competitive landscape. One-time audits start lower. The investment reflects the complexity of medical content, YMYL compliance requirements, and the high patient lifetime value that makes healthcare SEO one of the strongest ROI channels for practices.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'Is medical SEO different from regular SEO?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Yes. Medical SEO falls under Google\'s strictest YMYL (Your Money or Your Life) category. This means Google and AI systems apply much higher trust and accuracy standards to health content. Medical SEO requires proper author attribution to licensed professionals, accurate clinical information, schema markup for medical credentials, and compliance with healthcare advertising regulations that do not apply to other industries.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'Do doctors need AI SEO?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Absolutely. Patients now ask ChatGPT about symptoms, use Google AI Overviews to compare treatments, and research doctors through AI-powered search before booking appointments. If your practice is not visible in these AI answers, patients find your competitors instead. AI SEO ensures your expertise is cited and recommended when patients ask health-related questions.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'How important is E-E-A-T for medical websites?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is the single most important ranking factor for medical websites. Google explicitly states that health content must demonstrate clear medical expertise and authorship. Pages without proper E-E-A-T signals are suppressed in search results and excluded from AI-generated health answers. Every piece of medical content needs attribution to qualified healthcare professionals.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'Can AI-generated medical content rank?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'AI-generated medical content can rank only when it is thoroughly reviewed, edited, and validated by licensed healthcare professionals. Google does not penalize AI-assisted content, but it does penalize low-quality health content that lacks expert oversight. The key is using AI as a drafting tool while ensuring every medical claim is verified by a qualified doctor and properly attributed to them.',
+			},
+		},
+	],
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for Doctors and Healthcare Practices | ${SITE_TITLE}`}
+			description="Doctor SEO and healthcare SEO powered by AI. Get your practice visible in Google, AI Overviews, and ChatGPT where patients search."
+			structuredData={structuredData}
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for Healthcare</span>
+					<h1>AI SEO for Doctors and Healthcare Practices</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Patients now ask Google, ChatGPT, and Perplexity about symptoms, treatments, and doctors before they ever call a practice. Healthcare sits in the strictest
+						<a href="/seo/eeat/">YMYL category</a>, meaning search engines and AI systems hold medical content to the highest accuracy and trust standards. When Google AI Overviews answer health questions directly, only practices with strong authority and properly structured content get cited. We help doctors and healthcare practices build that visibility.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>The challenge: AI search is changing healthcare</h2>
+				<p>
+					Patients no longer start with a phone call to their doctor. They search. And increasingly, they get answers from AI before they ever see a list of links. This shift has serious implications for every healthcare practice.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>AI answers symptoms directly</strong><span>Google AI Overviews now provide medical information for symptom queries, often pulling from a handful of trusted sources. If your practice is not one of them, patients never see your name.</span></div>
+					<div class="outcome"><strong>Patients self-research via AI</strong><span>ChatGPT and Perplexity are used daily for health questions. Patients compare conditions, treatments, and providers through AI conversations before booking an appointment.</span></div>
+					<div class="outcome"><strong>Trust and accuracy are critical</strong><span>Medical misinformation can cause real harm. AI systems prioritize content from credentialed, authoritative sources. Practices that lack proper <a href="/seo/eeat/">E-E-A-T signals</a> get filtered out entirely.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do</h2>
+				<p>Three services designed specifically for doctors and healthcare practices, covering audits, authority building, and ongoing AI search growth.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Healthcare Visibility Audit</h3>
+								<p>A comprehensive audit of how your practice appears across Google Search, AI Overviews, ChatGPT, and Perplexity for the conditions and procedures you treat, with a prioritized action plan built around <a href="/seo/eeat/">YMYL compliance</a>.</p>
+								<ul><li>AI citation analysis for conditions and procedures</li><li>YMYL compliance and trust signal review</li><li>Patient review sentiment analysis</li><li><a href="/seo/schema-markup/">Medical schema</a> and structured data audit</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Physician Authority Building</h3>
+								<p>Implementation work to establish each doctor as a recognized expert in their specialty, with proper credentials markup, individual physician pages, and content structures that AI systems can verify and cite.</p>
+								<ul><li>Individual doctor <a href="/seo/eeat/">E-E-A-T profiles</a></li><li>Medical credentials <a href="/seo/schema-markup/">schema markup</a></li><li>Specialty and procedure landing pages</li><li>Author attribution and byline implementation</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing Healthcare AI SEO</h3>
+								<p>Monthly support combining condition and procedure content, patient education resources, <a href="/blog/local-seo-checklist-2026/">local SEO</a> for practice locations, and AI visibility monitoring into one operating rhythm.</p>
+								<ul><li>Condition and procedure content production</li><li>Patient education and FAQ content</li><li><a href="/blog/local-seo-checklist-2026/">Local SEO</a> for multi-location practices</li><li>AI citation monitoring and monthly reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why healthcare needs specialized AI SEO</h2>
+				<p>
+					Healthcare is not like other industries when it comes to search. The stakes are higher, the standards are stricter, and the opportunity is enormous for practices that get it right.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Strictest YMYL evaluation</strong><span>Google classifies health content under its most rigorous quality standards. Medical pages face the toughest scrutiny from both human quality raters and <a href="/ai-seo-shift/">AI systems</a>.</span></div>
+					<div class="outcome"><strong>Highest trust requirements</strong><span>Every medical claim needs attribution to a licensed professional. AI systems cross-reference credentials, affiliations, and published expertise before citing a source.</span></div>
+					<div class="outcome"><strong>Patients research before booking</strong><span>Over 70% of patients research symptoms, conditions, and doctors online before scheduling. If your practice is invisible in these searches, you lose patients to competitors who show up.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your practice's current visibility, your patient acquisition goals, and where healthcare AI SEO can have the biggest impact.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your practice and goals, and we will reply with a tailored plan and next steps.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="Healthcare AI SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Healthcare Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Practice / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service...</option>
+								<option value="Healthcare Visibility Audit">Healthcare Visibility Audit</option>
+								<option value="Physician Authority Building">Physician Authority Building</option>
+								<option value="Ongoing Healthcare AI SEO">Ongoing Healthcare AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your practice and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="What specialties do you practice? How many locations? What are your patient acquisition goals?"></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does healthcare SEO cost?</h3>
+						<p>Healthcare SEO typically ranges from $2,000 to $8,000 per month depending on practice size, number of locations, and competitive landscape. One-time audits start lower. The investment reflects the complexity of medical content, YMYL compliance, and the high patient lifetime value that makes healthcare SEO one of the strongest ROI channels for practices.</p>
+					</li>
+					<li>
+						<h3>Is medical SEO different from regular SEO?</h3>
+						<p>Yes. Medical SEO falls under Google's strictest <a href="/seo/eeat/">YMYL category</a>. Google and AI systems apply much higher trust and accuracy standards to health content. Medical SEO requires proper author attribution to licensed professionals, accurate clinical information, <a href="/seo/schema-markup/">schema markup</a> for medical credentials, and compliance with healthcare advertising regulations.</p>
+					</li>
+					<li>
+						<h3>Do doctors need AI SEO?</h3>
+						<p>Absolutely. Patients now ask ChatGPT about symptoms, use Google AI Overviews to compare treatments, and research doctors through <a href="/ai-seo-shift/">AI-powered search</a> before booking appointments. If your practice is not visible in these AI answers, patients find your competitors instead.</p>
+					</li>
+					<li>
+						<h3>How important is E-E-A-T for medical websites?</h3>
+						<p><a href="/seo/eeat/">E-E-A-T</a> is the single most important ranking factor for medical websites. Google explicitly states that health content must demonstrate clear medical expertise and authorship. Pages without proper E-E-A-T signals are suppressed in search results and excluded from AI-generated health answers.</p>
+					</li>
+					<li>
+						<h3>Can AI-generated medical content rank?</h3>
+						<p>AI-generated medical content can rank only when it is thoroughly reviewed, edited, and validated by licensed healthcare professionals. Google does not penalize AI-assisted content, but it does penalize low-quality health content that lacks expert oversight. The key is using AI as a drafting tool while ensuring every medical claim is verified and properly attributed.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
