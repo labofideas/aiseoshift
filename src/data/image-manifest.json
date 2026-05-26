@@ -960,5 +960,14 @@
 			{ "src": "/images/posts/seo-authority-not-rankings-inline-2.webp", "alt": "Digital PR earns authority through coverage backlinks and brand trust signals", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
 			{ "src": "/images/posts/seo-authority-not-rankings-inline-3.webp", "alt": "Authority compounds over time while rankings fluctuate - build what lasts", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 }
 		]
+	},
+	"seo-shift-ai-seo-businesses": {
+		"hero": { "src": "/images/posts/seo-shift-ai-seo-businesses-hero.webp", "alt": "The SEO shift to AI SEO - what businesses must do now to adapt to AI search", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-shift-ai-seo-businesses", "width": 1200, "height": 675, "bytes": 24306 },
+		"og": { "src": "/images/posts/seo-shift-ai-seo-businesses-og.webp", "width": 1200, "height": 630 },
+		"inline": [
+			{ "src": "/images/posts/seo-shift-ai-seo-businesses-inline-1.webp", "alt": "Old SEO vs AI SEO comparison - rankings versus citations versus authority", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-shift-ai-seo-businesses", "width": 1200, "height": 675, "bytes": 24306 },
+			{ "src": "/images/posts/seo-shift-ai-seo-businesses-inline-2.webp", "alt": "90-day AI SEO playbook for businesses - audit build and scale timeline", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-shift-ai-seo-businesses", "width": 1200, "height": 675, "bytes": 24306 },
+			{ "src": "/images/posts/seo-shift-ai-seo-businesses-inline-3.webp", "alt": "AI visibility checklist - schema markup E-E-A-T AI crawlers omnichannel presence", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-shift-ai-seo-businesses", "width": 1200, "height": 675, "bytes": 24306 }
+		]
 	}
 }
