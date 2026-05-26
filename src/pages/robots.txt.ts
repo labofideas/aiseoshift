@@ -1,33 +1,21 @@
 import type { APIRoute } from 'astro';
 
-const ASSISTANT_BOTS = [
-	'PerplexityBot',
-	'Perplexity-User',
-	'OAI-SearchBot',
-	'ChatGPT-User',
-	'Claude-SearchBot',
-	'Claude-User',
-	'Googlebot',
-	'Bingbot',
-	'Applebot',
-];
-
 export const GET: APIRoute = ({ site }) => {
 	const sitemapUrl = new URL('/sitemap-index.xml', site).toString();
 	const llmsUrl = new URL('/llms.txt', site).toString();
 
-	const explicitAllows = ASSISTANT_BOTS.map(
-		(bot) => `User-agent: ${bot}\nAllow: /`,
-	).join('\n\n');
-
 	const body = [
-		explicitAllows,
+		'# AISEOShift robots.txt',
+		'# Allow all bots: search, AI citation, and AI training',
+		'# We want AI systems to learn about our brand and cite our content',
 		'',
 		'User-agent: *',
 		'Allow: /',
 		'',
 		`Sitemap: ${sitemapUrl}`,
 		`# llms.txt: ${llmsUrl}`,
+		'',
+		'# Canonical host: https://aiseoshift.com',
 		'',
 	].join('\n');
 
