@@ -1,0 +1,261 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import {
+	SITE_TITLE,
+	SITE_URL,
+	AUTHOR_PROFILE_URL,
+	AUTHOR_NAME,
+	AUTHOR_IMAGE,
+	AUTHOR_ROLE,
+} from '../../consts';
+
+const canonical = new URL('/chatgpt-seo/', SITE_URL).toString();
+const pubDate = new Date('2026-05-26');
+
+const definedTermSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'DefinedTerm',
+	'@id': `${canonical}#defined`,
+	name: 'ChatGPT SEO',
+	description:
+		'ChatGPT SEO is the practice of optimizing web content so that ChatGPT Search cites it inside generated answers. ChatGPT Search retrieves through Microsoft Bing and OpenAI’s own OAI-SearchBot, then synthesizes responses with explicit source attribution.',
+	inDefinedTermSet: { '@type': 'DefinedTermSet', name: 'AI SEO Glossary', url: `${SITE_URL}/glossary/` },
+};
+
+const faqs = [
+	{
+		q: 'What is ChatGPT SEO?',
+		a: 'ChatGPT SEO is the practice of optimizing web content so ChatGPT Search retrieves and cites it inside generated answers. The discipline overlaps heavily with classical SEO and AEO but specifically targets ChatGPT’s retrieval stack: Bing as the primary web index, OAI-SearchBot as OpenAI’s own crawler, and ChatGPT-User for per-query page fetches.',
+	},
+	{
+		q: 'Does ChatGPT use Google for search?',
+		a: 'No. ChatGPT Search uses Microsoft Bing as its primary web index, plus OpenAI’s own crawler (OAI-SearchBot) and per-query fetches via ChatGPT-User. If you want to be cited by ChatGPT, optimizing for Google Search is not enough — you also need to be discoverable to Bing and to OpenAI’s own bots.',
+	},
+	{
+		q: 'Which OpenAI bots do I need to allow in robots.txt?',
+		a: 'For citation visibility, allow OAI-SearchBot (powers ChatGPT Search retrieval) and ChatGPT-User (used when ChatGPT fetches a page in response to a user request). GPTBot is the training-only crawler and is a separate decision: blocking it does not affect citation visibility, only whether OpenAI trains on your content.',
+	},
+	{
+		q: 'How does ChatGPT pick which sources to cite?',
+		a: 'ChatGPT Search runs a Bing-style retrieval, ranks candidate passages by semantic match and authority, applies trust filters (Person/Organization schema, E-E-A-T signals, named author bylines), then synthesizes the answer with explicit source links. Direct-answer formatting under H2s and structured FAQ schema increase citation probability.',
+	},
+	{
+		q: 'How do I measure ChatGPT SEO performance?',
+		a: 'Track citation frequency for your target queries via manual sampling or tools like Profound, Otterly, and Peec. Measure brand share-of-voice inside ChatGPT answers (how often your brand is mentioned vs. competitors), and track referral traffic from chatgpt.com to your site as a downstream signal.',
+	},
+];
+
+const articleSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	'@id': `${canonical}#article`,
+	headline: 'ChatGPT SEO: How to Get Cited by ChatGPT Search',
+	description:
+		'Complete guide to ChatGPT SEO in 2026: how ChatGPT Search retrieves content, which bots to allow, how citations get selected, and the optimization playbook.',
+	url: canonical,
+	mainEntityOfPage: canonical,
+	datePublished: pubDate.toISOString(),
+	dateModified: pubDate.toISOString(),
+	inLanguage: 'en-US',
+	author: { '@id': `${SITE_URL}/#person` },
+	publisher: { '@id': `${SITE_URL}/#organization` },
+	isPartOf: { '@id': `${SITE_URL}/#website` },
+	about: { '@id': `${canonical}#defined` },
+};
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	'@id': `${canonical}#faq`,
+	isPartOf: { '@id': `${canonical}#article` },
+	mainEntity: faqs.map((f) => ({
+		'@type': 'Question',
+		name: f.q,
+		acceptedAnswer: { '@type': 'Answer', text: f.a },
+	})),
+};
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+		{ '@type': 'ListItem', position: 2, name: 'ChatGPT SEO', item: canonical },
+	],
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`ChatGPT SEO: How to Get Cited by ChatGPT Search (2026) | ${SITE_TITLE}`}
+			description="ChatGPT SEO is how you get cited by ChatGPT Search. Full guide: Bing + OAI-SearchBot retrieval, citation mechanics, robots.txt rules, and the 2026 optimization playbook."
+			canonical={canonical}
+			ogType="article"
+			publishedTime={pubDate.toISOString()}
+			modifiedTime={pubDate.toISOString()}
+			structuredData={[articleSchema, definedTermSchema, faqSchema, breadcrumbSchema]}
+		/>
+		<style>
+			.engine-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+			.engine-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.engine-hero .kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin: 0; }
+			.engine-hero h1 { font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: 0.98; letter-spacing: -0.032em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 14ch; }
+			.engine-hero h1 em { font-style: italic; font-weight: 400; color: var(--signal-deep); }
+			.engine-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0 0 var(--space-4); }
+			.engine-svg { margin: var(--space-7) 0 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); overflow: hidden; }
+			.engine-svg svg { display: block; width: 100%; height: auto; }
+			.engine-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.engine-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 22ch; }
+			.engine-section p { font-size: 1.05rem; line-height: 1.7; color: rgba(var(--ink), 0.85); margin: 0 0 var(--space-4); max-width: var(--measure); }
+			.engine-callout { margin: var(--space-6) 0; padding: var(--space-5) var(--space-6); background: rgb(var(--paper-strong)); border: 1px solid var(--line); border-left: 3px solid var(--signal); border-radius: var(--radius-md); }
+			.engine-callout p { margin: 0; font-size: 1rem; line-height: 1.65; }
+			.engine-callout strong { font-weight: 700; }
+			.chapters-strip { margin: var(--space-5) 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem 0.6rem; padding: 0; list-style: none; }
+			.chapters-strip li { margin: 0; }
+			.chapters-strip a { display: inline-flex; padding: 0.4rem 0.85rem; border-radius: 999px; border: 1px solid var(--line-strong); background: rgb(var(--paper)); color: rgb(var(--ink)); text-decoration: none; font-size: 0.82rem; font-weight: 600; line-height: 1; }
+			.chapters-strip a:hover { color: var(--signal-deep); border-color: var(--signal); }
+			.faq-shell { border-top: 1px solid var(--line-strong); margin-top: var(--space-4); }
+			.faq-item { border-bottom: 1px solid var(--line); padding: var(--space-5) 0; }
+			.faq-item summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; font-size: 1.15rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.012em; color: rgb(var(--ink)); }
+			.faq-item summary::-webkit-details-marker { display: none; }
+			.faq-item summary::after { content: '+'; font-size: 1.4rem; color: var(--signal-deep); }
+			.faq-item[open] summary::after { content: '−'; }
+			.faq-answer { margin: var(--space-3) 0 0; font-size: 1rem; line-height: 1.7; color: rgba(var(--ink), 0.85); max-width: 60ch; }
+			.engine-author { display: inline-flex; align-items: center; gap: 0.75rem; margin: var(--space-4) 0 0; text-decoration: none; color: rgb(var(--ink)); }
+			.engine-author img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-strong); }
+			.engine-author-text { display: inline-flex; flex-direction: column; line-height: 1.25; font-size: 0.85rem; }
+			.engine-author-name { font-weight: 700; }
+			.engine-author-role { color: var(--ink-muted); font-size: 0.75rem; }
+			@media (max-width: 860px) { .engine-hero { grid-template-columns: 1fr; gap: var(--space-5); } }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="engine-page">
+			<section class="engine-hero">
+				<div>
+					<p class="kicker">AISEOShift · Engine Hub</p>
+					<h1>ChatGPT SEO. How to get <em>cited.</em></h1>
+				</div>
+				<div class="engine-hero-lede">
+					<p>
+						ChatGPT Search retrieves through Microsoft Bing and OpenAI&rsquo;s own OAI-SearchBot,
+						then synthesizes answers with explicit source links. ChatGPT SEO is the practice
+						of being the page it cites.
+					</p>
+					<a class="engine-author" href={AUTHOR_PROFILE_URL} rel="author">
+						<img src={AUTHOR_IMAGE} alt={AUTHOR_NAME} width="40" height="40" />
+						<span class="engine-author-text">
+							<span class="engine-author-name">By {AUTHOR_NAME}</span>
+							<span class="engine-author-role">{AUTHOR_ROLE}</span>
+						</span>
+					</a>
+				</div>
+			</section>
+
+			<div class="engine-svg" aria-hidden="true">
+				<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg">
+					<rect width="800" height="220" fill="rgb(246,245,240)" />
+					<g font-family="system-ui, sans-serif" font-size="10" letter-spacing="2.4" fill="rgb(14,17,22)" fill-opacity="0.6">
+						<text x="60" y="36">USER PROMPT</text>
+						<text x="320" y="36">CHATGPT SEARCH</text>
+						<text x="600" y="36">CITED SOURCES</text>
+					</g>
+					<g transform="translate(40 60)">
+						<rect width="200" height="80" rx="3" fill="none" stroke="rgb(14,17,22)" stroke-opacity="0.45" />
+						<text x="20" y="34" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)">"explain AEO and</text>
+						<text x="20" y="54" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)">how to start"</text>
+					</g>
+					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+						<path d="M 250 100 C 280 100, 290 100, 320 100" />
+						<polyline points="310,94 320,100 310,106" />
+					</g>
+					<g transform="translate(320 60)">
+						<rect width="220" height="80" rx="3" fill="rgb(14,17,22)" />
+						<text x="110" y="34" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="rgb(250,250,247)">BING + OAI-SEARCHBOT</text>
+						<text x="110" y="56" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="rgb(250,250,247)">SYNTHESIS · CITATION</text>
+					</g>
+					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+						<path d="M 550 100 C 580 100, 590 100, 620 100" />
+						<polyline points="610,94 620,100 610,106" />
+					</g>
+					<g transform="translate(620 60)" fill="rgb(184,85,46)">
+						<rect width="140" height="22" rx="2" />
+						<rect y="28" width="140" height="22" rx="2" />
+						<rect y="56" width="120" height="22" rx="2" />
+					</g>
+					<text x="400" y="190" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">ChatGPT cites 3-8 sources per answer. Your job is to be one of them.</text>
+				</svg>
+			</div>
+
+			<section class="engine-section">
+				<h2>Definition: what ChatGPT SEO means</h2>
+				<p>
+					<strong>ChatGPT SEO</strong> is the practice of optimizing web content so it gets cited inside answers generated by ChatGPT Search. Unlike classical SEO (which optimizes for a Google ranking) or general AEO (which targets all answer engines), ChatGPT SEO is specifically tuned for OpenAI&rsquo;s retrieval stack: Microsoft Bing as the primary web index, OpenAI&rsquo;s own OAI-SearchBot for supplemental crawling, and ChatGPT-User for per-query page fetches.
+				</p>
+				<p>
+					ChatGPT Search emits 3 to 8 inline source citations per response. The work is to be one of those sources. Pages with strong Bing visibility, clear schema, named-author bylines, and direct-answer formatting under H2s win the most citations.
+				</p>
+				<div class="engine-callout">
+					<p><strong>The shortest version.</strong> Optimize for Bing. Allow OpenAI&rsquo;s bots. Format answers as quotable paragraphs. ChatGPT Search will do the rest.</p>
+				</div>
+			</section>
+
+			<section class="engine-section">
+				<h2>How ChatGPT Search retrieves and cites</h2>
+				<p>The pipeline, simplified:</p>
+				<ol style="font-size: 1.05rem; line-height: 1.7; padding-left: 1.5rem; max-width: var(--measure);">
+					<li><strong>Parse intent.</strong> ChatGPT extracts the entity, the question type, and any constraints from the prompt.</li>
+					<li><strong>Retrieve.</strong> Run parallel queries against Bing&rsquo;s web index. Where freshness matters, ChatGPT-User may fetch specific pages live.</li>
+					<li><strong>Rank candidates.</strong> Score retrieved passages on semantic match, source authority, and structured-content signals.</li>
+					<li><strong>Apply trust filters.</strong> Down-weight pages with weak attribution, missing author, or low E-E-A-T. Person and Organization schema with sameAs links increase the trust score.</li>
+					<li><strong>Synthesize.</strong> Generate the answer from top-ranked passages and emit inline citation links for the sources used.</li>
+				</ol>
+			</section>
+
+			<section class="engine-section">
+				<h2>The 2026 ChatGPT SEO playbook</h2>
+				<p>Five concrete moves doing the most work in 2026:</p>
+				<ol style="font-size: 1.05rem; line-height: 1.7; padding-left: 1.5rem; max-width: var(--measure);">
+					<li><strong>Rank in Bing.</strong> Bing Webmaster Tools, IndexNow for fast indexing, structured data, and quality backlinks all flow into ChatGPT&rsquo;s retrieval layer. Bing visibility is the prerequisite.</li>
+					<li><strong>Allow the right bots.</strong> Explicitly <code>Allow: /</code> for OAI-SearchBot and ChatGPT-User in robots.txt. Decide separately on GPTBot (training-only).</li>
+					<li><strong>Direct-answer openers under every H2.</strong> The first 1-3 sentences after an H2 should be a self-contained answer that ChatGPT can quote without modification.</li>
+					<li><strong>Person + Organization schema with sameAs links.</strong> Linked-data attribution is the trust signal ChatGPT weighs most heavily. See <a href="/seo/schema-markup/">schema markup</a>.</li>
+					<li><strong>Ship an llms.txt file.</strong> Lists your most important URLs in machine-readable form. <a href="/llms.txt">Example</a>.</li>
+				</ol>
+			</section>
+
+			<section class="engine-section">
+				<h2>Related entity hubs and chapters</h2>
+				<ul class="chapters-strip">
+					<li><a href="/aeo/">AEO entity hub</a></li>
+					<li><a href="/geo/">GEO entity hub</a></li>
+					<li><a href="/perplexity-seo/">Perplexity SEO</a></li>
+					<li><a href="/claude-seo/">Claude SEO</a></li>
+					<li><a href="/gemini-seo/">Gemini SEO</a></li>
+					<li><a href="/seo/ai-citation-building/">AI Citation Building</a></li>
+					<li><a href="/seo/schema-markup/">Schema Markup</a></li>
+					<li><a href="/seo/eeat/">E-E-A-T</a></li>
+					<li><a href="/glossary/">AI SEO Glossary</a></li>
+				</ul>
+			</section>
+
+			<section class="engine-section" id="faq">
+				<h2>Frequently asked questions</h2>
+				<div class="faq-shell">
+					{faqs.map((f, i) => (
+						<details class="faq-item" open={i === 0}>
+							<summary>{f.q}</summary>
+							<p class="faq-answer">{f.a}</p>
+						</details>
+					))}
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

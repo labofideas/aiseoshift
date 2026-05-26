@@ -109,6 +109,26 @@ const STATIC_CARDS: Card[] = [
 		kicker: 'AISEOSHIFT · Newsletter',
 	},
 	{
+		slug: 'chatgpt-seo',
+		title: 'ChatGPT SEO: How to get cited by ChatGPT Search',
+		kicker: 'AISEOSHIFT · Engine Hub',
+	},
+	{
+		slug: 'perplexity-seo',
+		title: 'Perplexity SEO: Win the footnotes',
+		kicker: 'AISEOSHIFT · Engine Hub',
+	},
+	{
+		slug: 'claude-seo',
+		title: 'Claude SEO: The selective citation',
+		kicker: 'AISEOSHIFT · Engine Hub',
+	},
+	{
+		slug: 'gemini-seo',
+		title: 'Gemini SEO: SEO meets the synthesis layer',
+		kicker: 'AISEOSHIFT · Engine Hub',
+	},
+	{
 		slug: 'blog',
 		title: 'Latest research and reporting',
 		kicker: 'AISEOSHIFT · Blog',
