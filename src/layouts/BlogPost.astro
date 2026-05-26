@@ -6,7 +6,15 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import PostEngagement from '../components/PostEngagement.astro';
-import { SITE_AUTHOR, SITE_TITLE, SITE_URL } from '../consts';
+import {
+	SITE_AUTHOR,
+	SITE_TITLE,
+	SITE_URL,
+	AUTHOR_NAME,
+	AUTHOR_ROLE,
+	AUTHOR_IMAGE,
+	AUTHOR_PROFILE_URL,
+} from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	slug: string;
@@ -33,8 +41,8 @@ const articleSchema: Record<string, unknown> = {
 	'@type': 'Article',
 	headline: title,
 	description,
-	author: { '@type': 'Organization', name: author ?? SITE_AUTHOR },
-	publisher: { '@type': 'Organization', name: SITE_TITLE },
+	author: { '@id': `${SITE_URL}/#person` },
+	publisher: { '@id': `${SITE_URL}/#organization` },
 	datePublished: pubDate.toISOString(),
 	dateModified: (updatedDate ?? pubDate).toISOString(),
 	mainEntityOfPage: canonical,
@@ -219,6 +227,46 @@ const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articl
 				color: rgba(var(--ink), 0.78);
 				max-width: 46rem;
 				margin: 0 0 1.2rem;
+			}
+
+			.story-byline {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.75rem;
+				margin: 0.5rem 0 1.2rem;
+				padding: 0.4rem 0;
+				text-decoration: none;
+				color: rgb(var(--ink));
+			}
+
+			.story-byline img {
+				width: 44px;
+				height: 44px;
+				border-radius: 50%;
+				border: 1px solid var(--line-strong);
+				object-fit: cover;
+			}
+
+			.story-byline-text {
+				display: inline-flex;
+				flex-direction: column;
+				gap: 0.1rem;
+				line-height: 1.25;
+			}
+
+			.story-byline-name {
+				font-size: 0.92rem;
+				font-weight: 700;
+				letter-spacing: -0.005em;
+			}
+
+			.story-byline-role {
+				font-size: 0.78rem;
+				color: var(--ink-muted);
+			}
+
+			.story-byline:hover .story-byline-name {
+				color: var(--signal-deep);
 			}
 
 			.story-dates {
@@ -507,6 +555,13 @@ const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articl
 						<p class="kicker">{category}</p>
 						<h1>{title}</h1>
 						<p class="deck">{deck}</p>
+						<a class="story-byline" href={AUTHOR_PROFILE_URL} rel="author">
+							<img src={AUTHOR_IMAGE} alt={AUTHOR_NAME} width="44" height="44" loading="eager" />
+							<span class="story-byline-text">
+								<span class="story-byline-name">By {AUTHOR_NAME}</span>
+								<span class="story-byline-role">{AUTHOR_ROLE}</span>
+							</span>
+						</a>
 						<div class="story-dates">
 							<span>Published <FormattedDate date={pubDate} /></span>
 							{updatedDate && <span>Updated <FormattedDate date={updatedDate} /></span>}

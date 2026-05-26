@@ -84,6 +84,21 @@ const STATIC_CARDS: Card[] = [
 		kicker: 'AISEOSHIFT · Pillar · 12 chapters',
 	},
 	{
+		slug: 'aeo',
+		title: 'AEO: Answer Engine Optimization explained',
+		kicker: 'AISEOSHIFT · Entity Hub',
+	},
+	{
+		slug: 'geo',
+		title: 'GEO: Generative Engine Optimization explained',
+		kicker: 'AISEOSHIFT · Entity Hub',
+	},
+	{
+		slug: 'authors/shashank-dubey',
+		title: 'Shashank Dubey · Founder, Wbcom Designs',
+		kicker: 'AISEOSHIFT · Author',
+	},
+	{
 		slug: 'blog',
 		title: 'Latest research and reporting',
 		kicker: 'AISEOSHIFT · Blog',
