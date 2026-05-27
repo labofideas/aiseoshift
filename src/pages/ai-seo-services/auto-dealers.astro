@@ -1,0 +1,323 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO for Auto Dealers',
+		description:
+			'AI SEO services for new and used car dealerships and dealer groups that need visibility in Google, AI Overviews, ChatGPT, Perplexity, and other AI search environments.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				name: 'How much does SEO cost for auto dealerships?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Auto dealer SEO typically ranges from $2,500 to $10,000 per month depending on franchise size, number of rooftops, and brand competition. Single-rooftop independents need less than multi-brand dealer groups. The investment reflects the high vehicle gross margins and lifetime service revenue that make dealer SEO one of the strongest ROI channels.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'How long does dealer SEO take to work?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Most dealerships see measurable improvements in three to six months. Inventory pages, model-specific landing pages, and Google Business Profile work tend to show fastest results. Generic "car dealer near me" terms can take longer in major metros, but model-and-trim long-tail queries often rank within weeks.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Do auto dealers need AI SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. Shoppers now ask ChatGPT to compare models, ask Perplexity for reliability data, and use Google AI Overviews to summarize "best mid-size SUV under 40k." Dealers that get cited in those AI answers and that have inventory-rich, schema-marked sites win the lead. Dealers that rely on OEM-supplied templates with thin content do not.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'What is inventory schema for dealerships?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Vehicle and Product schema on inventory pages tells Google and AI systems exactly what is on your lot — make, model, year, trim, mileage, VIN, price. Properly marked-up inventory pages get pulled into rich results, Google Vehicle Listings, and AI-generated recommendations. Without it, your inventory is invisible to the algorithms that decide which dealer to recommend.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'How important are reviews for car dealer SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Reviews are critical. They drive local pack rankings, Google Business Profile prominence, and are weighted heavily by AI systems when recommending a dealer. The CarGurus, DealerRater, and Google review profiles all feed into AI answer engines — a thin review footprint on any one of them hurts you across the board.',
+				},
+			},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for Auto Dealers and Dealer Groups | ${SITE_TITLE}`}
+			description="Auto dealership SEO and AI visibility services. Get cited in Google AI Overviews, ChatGPT, and Perplexity for model, trim, and local dealer queries."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for Auto Dealers</span>
+					<h1>AI SEO for Auto Dealers and Dealer Groups</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Car shoppers no longer compare on dealer lots. They ask ChatGPT to compare the 2026 RAV4
+						against the CR-V, ask Perplexity which dealer near them has the best reviews, and let
+						Google AI Overviews summarize "best lease deals on midsize SUVs." The dealer with rich
+						inventory schema, deep model content, and strong reviews gets the click. Everyone else
+						gets walked past.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>The challenge: car shopping is now AI-mediated</h2>
+				<p>
+					Auto shopping has been moving online for two decades. AI search is the final step:
+					a single conversation now compresses what used to be weeks of research, comparison
+					shopping, and dealer visits.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Model comparison happens in AI</strong><span>Shoppers ask ChatGPT to compare reliability, cost of ownership, and trim packages before they ever look at a dealer. The OEM and the dealer with the deepest model content get cited.</span></div>
+					<div class="outcome"><strong>Inventory schema decides visibility</strong><span>Google Vehicle Listings and AI answer engines pull from structured inventory data. Dealers without Vehicle schema are invisible in the surfaces that matter most.</span></div>
+					<div class="outcome"><strong>Reviews still close the loop</strong><span>Once a shopper picks a model, they ask AI which local dealer has the best reputation. Reviews on Google, DealerRater, and CarGurus feed those answers.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for auto dealers</h2>
+				<p>Three services built for inventory schema, model-specific authority, and the local pack the way AI systems now interpret it.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Dealer Visibility Audit</h3>
+								<p>A complete review of how your dealership appears across Google Search, the local pack, AI Overviews, ChatGPT, and Perplexity for your brand, models, and city. You walk away with a prioritized roadmap built around the searches that produce VDP views and showroom visits.</p>
+								<ul><li>Inventory and VDP schema audit</li><li>Google Business Profile audit</li><li>AI citation analysis by model</li><li>Review profile and sentiment review</li><li>Competitor positioning</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Inventory and Model Authority</h3>
+								<p>Implementation work that turns your dealer site into the most complete resource for the brands and models you sell. The schema, content, and review systems that AI engines reward when recommending dealers.</p>
+								<ul><li>Vehicle and Product <a href="/seo/schema-markup/">schema</a> on VDPs</li><li>Model and trim landing pages</li><li>AutoDealer and LocalBusiness schema</li><li>Review generation across platforms</li><li>Service department and parts pages</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing Dealer AI SEO</h3>
+								<p>Monthly support combining model content, new vehicle launches, technical SEO, Google Business Profile management, review systems, and AI citation monitoring so you stay the cited dealer for your brand and city.</p>
+								<ul><li>Monthly model and trim content</li><li>Google Business Profile management</li><li>Review velocity across all platforms</li><li>AI citation monitoring and monthly reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why auto dealers need AI SEO now</h2>
+				<p>Per-vehicle gross plus lifetime service revenue makes auto one of the highest-LTV verticals in SEO. AI search visibility is now the cheapest, most durable way to capture that demand.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>OEM templates leave gaps</strong><span>Most dealer sites run on OEM-supplied templates with thin original content. AI systems reward depth and original writing, leaving an opening for dealers willing to invest beyond the template.</span></div>
+					<div class="outcome"><strong>Inventory is your moat</strong><span>Properly schema-marked inventory pages get pulled into Google Vehicle Listings, rich results, and AI-generated recommendations. Most competitors leave this on the table.</span></div>
+					<div class="outcome"><strong>Reviews drive AI recommendations</strong><span>Dealers with strong review velocity across Google, DealerRater, and CarGurus dominate AI-generated "best dealer near me" answers. Velocity matters as much as volume.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote for dealer SEO</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your dealership's current visibility, your brand and inventory mix, and where AI SEO can have the biggest impact on VDP views and showroom visits.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your dealership, brand, and goals, and we will reply with a tailored plan.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="Auto dealer SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Auto Dealer SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Dealership / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+								<option value="Dealer Visibility Audit">Dealer Visibility Audit</option>
+								<option value="Inventory and Model Authority">Inventory and Model Authority</option>
+								<option value="Ongoing Dealer AI SEO">Ongoing Dealer AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your dealership and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Brands sold, number of rooftops, market, and what you are trying to achieve."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Dealer SEO FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does SEO cost for auto dealerships?</h3>
+						<p>Auto dealer SEO typically ranges from $2,500 to $10,000 per month depending on franchise size, number of rooftops, and brand competition. Single-rooftop independents need less than multi-brand dealer groups. The investment reflects the high vehicle gross margins and lifetime service revenue that make dealer SEO one of the strongest ROI channels.</p>
+					</li>
+					<li>
+						<h3>How long does dealer SEO take to work?</h3>
+						<p>Most dealerships see measurable improvements in three to six months. Inventory pages, model-specific landing pages, and Google Business Profile work tend to show fastest results. Generic "car dealer near me" terms can take longer in major metros, but model-and-trim long-tail queries often rank within weeks.</p>
+					</li>
+					<li>
+						<h3>Do auto dealers need AI SEO?</h3>
+						<p>Yes. Shoppers now ask ChatGPT to compare models, ask Perplexity for reliability data, and use Google AI Overviews to summarize "best mid-size SUV under 40k." Dealers that get cited in those <a href="/ai-seo-shift/">AI answers</a> and that have inventory-rich, schema-marked sites win the lead. Dealers that rely on OEM-supplied templates with thin content do not.</p>
+					</li>
+					<li>
+						<h3>What is inventory schema for dealerships?</h3>
+						<p>Vehicle and Product <a href="/seo/schema-markup/">schema</a> on inventory pages tells Google and AI systems exactly what is on your lot — make, model, year, trim, mileage, VIN, price. Properly marked-up inventory pages get pulled into rich results, Google Vehicle Listings, and AI-generated recommendations. Without it, your inventory is invisible to the algorithms that decide which dealer to recommend.</p>
+					</li>
+					<li>
+						<h3>How important are reviews for car dealer SEO?</h3>
+						<p>Reviews are critical. They drive local pack rankings, Google Business Profile prominence, and are weighted heavily by AI systems when recommending a dealer. The CarGurus, DealerRater, and Google review profiles all feed into AI answer engines — a thin review footprint on any one of them hurts you across the board.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

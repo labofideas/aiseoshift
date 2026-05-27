@@ -1,0 +1,323 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO for Real Estate Agents and Brokerages',
+		description:
+			'AI SEO services for real estate agents, teams, and brokerages that need visibility in Google, AI Overviews, ChatGPT, Perplexity, and other AI search environments.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				name: 'How much does real estate SEO cost?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Real estate SEO typically ranges from $1,500 to $7,500 per month depending on market size, number of neighborhoods targeted, and whether you are an individual agent, team, or brokerage. One-time audits start lower. Hyperlocal markets are cheaper to dominate than major metros like New York, Los Angeles, or Miami.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'How long does real estate SEO take to work?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Most agents see measurable traffic gains in three to six months. Neighborhood and hyperlocal pages can rank faster, often within weeks, because they target lower-competition long-tail queries. Major metro keywords like "Realtor in Austin" can take a year or more in saturated markets.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Do real estate agents need AI SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. Buyers and sellers now ask ChatGPT and Perplexity for neighborhood comparisons, school district information, and agent recommendations. Google AI Overviews summarize home buying questions directly in search results. If your hyperlocal content is not structured for AI extraction, you are losing leads to the agents who are.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'What is hyperlocal SEO for real estate?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Hyperlocal SEO for real estate is the practice of building neighborhood-level pages, school zone guides, and city-specific content that ranks for searches like "homes for sale in River Oaks" or "best neighborhoods for families in Plano." AI systems use these pages as primary sources when recommending areas to buyers, so depth and accuracy matter more than ever.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Should real estate agents use schema markup?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. RealEstateAgent, RealEstateListing, and Place schema help Google and AI systems understand who you are, where you serve, and what you offer. Properly marked-up agent pages and neighborhood guides get cited more often in AI answers and earn richer search result treatment.',
+				},
+			},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for Real Estate Agents and Brokerages | ${SITE_TITLE}`}
+			description="Real estate SEO services built for AI search. Get cited in Google AI Overviews, ChatGPT, and Perplexity for hyperlocal and neighborhood queries."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for Real Estate</span>
+					<h1>AI SEO for Real Estate Agents and Brokerages</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Buyers no longer start on Zillow. They ask ChatGPT which neighborhoods fit their budget,
+						use Google AI Overviews to compare school districts, and ask Perplexity which agent
+						closes the most deals in their zip code. If your hyperlocal pages and agent profile are
+						not structured for <a href="/ai-seo-shift/">AI extraction</a>, your competitors get the
+						lead before you even know the search happened.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>The challenge: AI is the new neighborhood guide</h2>
+				<p>
+					Real estate has always been the most hyperlocal industry on the web. AI search amplifies that,
+					because answer engines reward depth at the neighborhood, school, and street level rather than
+					generic city pages.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Neighborhood queries get summarized</strong><span>Google AI Overviews now answer "what is the best neighborhood in Austin for young families" with synthesized summaries pulled from a handful of trusted local sources. If your guide is not one of them, you are invisible.</span></div>
+					<div class="outcome"><strong>Buyers research before calling</strong><span>Most buyers spend weeks researching neighborhoods, schools, and agents through AI tools before they ever reach out. The agent cited in those AI answers gets the call.</span></div>
+					<div class="outcome"><strong>Listing sites dominate, but answer engines tilt back to experts</strong><span>Zillow and Realtor.com still win generic terms, but AI answer engines increasingly cite the local agent or brokerage with the deepest neighborhood content, not the syndicated listing site.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for real estate agents and teams</h2>
+				<p>Three services built for the way AI search evaluates and surfaces real estate content.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Real Estate Visibility Audit</h3>
+								<p>A full audit of how you and your brokerage appear across Google Search, the local pack, AI Overviews, ChatGPT, and Perplexity for your neighborhoods, price points, and specialties. You get a prioritized roadmap built around the queries that actually convert into leads.</p>
+								<ul><li>AI citation audit by neighborhood</li><li>Google Business Profile review</li><li>Competitor and brokerage citation analysis</li><li>Review sentiment and volume assessment</li><li><a href="/seo/schema-markup/">Schema</a> and structured data review</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Hyperlocal Authority Building</h3>
+								<p>Implementation work that turns your site into the most useful resource for the neighborhoods you serve. We build the long-tail content, agent authority pages, and structured data that get cited in AI-generated neighborhood recommendations.</p>
+								<ul><li>Neighborhood and zip-code landing pages</li><li>School zone and community guides</li><li>Agent and team author pages with credentials</li><li>RealEstateAgent and Place <a href="/seo/schema-markup/">schema</a></li><li><a href="/blog/local-seo-checklist-2026/">Local SEO</a> and citation cleanup</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing Real Estate AI SEO</h3>
+								<p>Monthly support combining market reports, neighborhood content, review generation strategy, technical SEO, and AI citation monitoring so you stay the cited authority as buyers and sellers move through AI-first research journeys.</p>
+								<ul><li>Monthly market reports and neighborhood content</li><li>Review generation and response strategy</li><li>Technical SEO and listing schema maintenance</li><li>AI citation monitoring and monthly reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why real estate needs AI SEO now</h2>
+				<p>The cost of being invisible in an AI answer is the entire lead. There is no second-page traffic in an AI summary.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Generic city terms are saturated</strong><span>Zillow, Realtor.com, and Redfin will keep ranking for "homes for sale in Dallas." The opening is in neighborhood, school, and lifestyle queries where individual agents can out-research the portals.</span></div>
+					<div class="outcome"><strong>Reviews drive AI recommendations</strong><span>AI systems weigh review volume, recency, and sentiment heavily when recommending agents. Agents with thin or stale review profiles are filtered out of AI answers entirely.</span></div>
+					<div class="outcome"><strong>Hyperlocal content compounds</strong><span>A well-structured neighborhood guide written this year keeps generating leads for years. Most agents publish almost no evergreen hyperlocal content, leaving a wide-open opportunity.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote for real estate SEO</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your current visibility, your target neighborhoods, and where AI SEO can have the biggest impact on your business.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your market, target neighborhoods, and goals, and we will reply with a tailored plan.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="Real estate SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Real Estate SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Brokerage / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+								<option value="Real Estate Visibility Audit">Real Estate Visibility Audit</option>
+								<option value="Hyperlocal Authority Building">Hyperlocal Authority Building</option>
+								<option value="Ongoing Real Estate AI SEO">Ongoing Real Estate AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your market and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="What city and neighborhoods do you serve? Solo agent, team, or brokerage? What are your lead goals?"></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Real estate SEO FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does real estate SEO cost?</h3>
+						<p>Real estate SEO typically ranges from $1,500 to $7,500 per month depending on market size, number of neighborhoods targeted, and whether you are an individual agent, team, or brokerage. One-time audits start lower. Hyperlocal markets are cheaper to dominate than major metros like New York, Los Angeles, or Miami.</p>
+					</li>
+					<li>
+						<h3>How long does real estate SEO take to work?</h3>
+						<p>Most agents see measurable traffic gains in three to six months. Neighborhood and hyperlocal pages can rank faster, often within weeks, because they target lower-competition long-tail queries. Major metro keywords like "Realtor in Austin" can take a year or more in saturated markets.</p>
+					</li>
+					<li>
+						<h3>Do real estate agents need AI SEO?</h3>
+						<p>Yes. Buyers and sellers now ask ChatGPT and Perplexity for neighborhood comparisons, school district information, and agent recommendations. Google AI Overviews summarize home buying questions directly in search results. If your hyperlocal content is not structured for <a href="/ai-seo-shift/">AI extraction</a>, you are losing leads to the agents who are.</p>
+					</li>
+					<li>
+						<h3>What is hyperlocal SEO for real estate?</h3>
+						<p>Hyperlocal SEO for real estate is the practice of building neighborhood-level pages, school zone guides, and city-specific content that ranks for searches like "homes for sale in River Oaks" or "best neighborhoods for families in Plano." AI systems use these pages as primary sources when recommending areas to buyers, so depth and accuracy matter more than ever.</p>
+					</li>
+					<li>
+						<h3>Should real estate agents use schema markup?</h3>
+						<p>Yes. RealEstateAgent, RealEstateListing, and Place <a href="/seo/schema-markup/">schema</a> help Google and AI systems understand who you are, where you serve, and what you offer. Properly marked-up agent pages and neighborhood guides get cited more often in AI answers and earn richer search result treatment.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,321 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO for Home Services Businesses',
+		description:
+			'AI SEO services for plumbers, electricians, HVAC, roofing, and home services businesses that need visibility in Google, AI Overviews, ChatGPT, and other AI search environments.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				name: 'How much does SEO cost for home services businesses?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Home services SEO typically ranges from $1,500 to $6,000 per month depending on service area size, number of trades, and competition. Emergency-service categories like plumbing, HVAC, and water restoration tend to require larger budgets because the cost-per-lead in paid search is so high that ranking organically saves significant money.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'How long does SEO take for plumbers, electricians, and HVAC?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Most home services businesses see measurable improvements in three to six months. Service-area pages, neighborhood landing pages, and Google Business Profile optimization often produce quicker wins. Highly competitive metros for emergency services can take six to twelve months for full local pack dominance.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Do home services businesses need AI SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. Homeowners now ask Google AI Overviews "how much does a new HVAC system cost" or "who is the best plumber in Phoenix" and get summarized answers without clicking. If your business is not the source AI cites, you lose the call. Reviews, location coverage, and structured content are now the primary inputs to AI-recommended providers.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'What is local pack optimization for home services?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Local pack optimization is the work of getting your business into the three-result map block at the top of Google for searches like "emergency plumber near me." It combines Google Business Profile completeness, NAP consistency, review velocity, service-area coverage, citation building, and on-page signals. The local pack remains the single most valuable surface in home services SEO.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'How important are reviews for home services SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Reviews are critical. They drive local pack rankings, influence Google Business Profile prominence, and are weighted heavily by AI systems when recommending a service provider. A home services business with five hundred reviews at 4.8 stars beats a competitor with fifty reviews at 4.9 stars in nearly every AI-generated recommendation.',
+				},
+			},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for Home Services: Plumbers, Electricians, HVAC, Roofing | ${SITE_TITLE}`}
+			description="Home services SEO for plumbers, electricians, HVAC, and roofers. Win the local pack and get cited in Google AI Overviews and ChatGPT."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for Home Services</span>
+					<h1>AI SEO for Plumbers, Electricians, HVAC, and Roofers</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Home services is a "now" business. A homeowner with a flooded basement does not scroll past
+						the local pack. They tap the first result that looks trustworthy, and increasingly they ask
+						Google AI Overviews or ChatGPT "who do I call." The local pack and the AI-cited list are the
+						only places that matter. We help home services businesses win both.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>The challenge: emergency intent, zero patience</h2>
+				<p>
+					Home services queries are some of the highest-intent searches on the internet. They are also
+					increasingly answered by AI without ever sending the user to a website.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Local pack still wins, but it is shrinking</strong><span>The three-pack at the top of Google still drives most home services leads, but AI Overviews now appear above it for informational queries. Coverage in both surfaces is required to compete.</span></div>
+					<div class="outcome"><strong>AI recommends providers directly</strong><span>ChatGPT and Perplexity now answer "who is the best HVAC company in Tampa." The answer pulls from reviews, structured business data, and authoritative content, not generic directory listings.</span></div>
+					<div class="outcome"><strong>Service-area complexity</strong><span>Most home services businesses cover dozens of suburbs. AI systems reward businesses that explicitly demonstrate coverage with structured location pages instead of vague "we serve all of metro Atlanta" claims.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for home services businesses</h2>
+				<p>Three services built for the local pack, the answer engine, and the long phone-list of suburbs you actually serve.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Home Services Visibility Audit</h3>
+								<p>A full review of your local pack rankings, Google Business Profile, AI citation footprint, and competitor positioning across every city and zip code you serve. You walk away with a prioritized action plan tied to the keywords that actually convert into booked jobs.</p>
+								<ul><li>Local pack and map rank tracking</li><li>Google Business Profile audit</li><li>AI citation analysis by trade</li><li>Review velocity and sentiment review</li><li>Service-area coverage gap analysis</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Service-Area Domination</h3>
+								<p>Implementation work that turns your site into the most complete resource for every trade, service, and city you cover. The pages, schema, and review systems that AI engines reward when recommending providers.</p>
+								<ul><li>City and neighborhood service pages</li><li>Trade-specific landing pages</li><li>LocalBusiness and Service <a href="/seo/schema-markup/">schema</a></li><li>Review generation and response systems</li><li>NAP and citation cleanup</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing Home Services AI SEO</h3>
+								<p>Monthly support combining content, technical SEO, Google Business Profile management, review strategy, and AI citation monitoring so you stay the cited authority as competitors scramble to catch up.</p>
+								<ul><li>Monthly content production by trade</li><li>Google Business Profile management</li><li>Technical SEO and schema maintenance</li><li>AI citation monitoring and monthly reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why home services needs AI SEO now</h2>
+				<p>Paid CPC for emergency home services is brutal. Organic and AI visibility is the only sustainable acquisition channel above a certain scale.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Per-click costs are punishing</strong><span>Emergency plumbing, HVAC, water restoration, and roofing all carry CPCs of $30 to $150+ in major metros. Organic and AI traffic is not a nice-to-have. It is the only way to keep cost-per-lead sustainable at volume.</span></div>
+					<div class="outcome"><strong>Local pack still wins, but the rules changed</strong><span>The three-pack still drives most leads, but the criteria for entering it now include review velocity, schema completeness, and content depth on each service-area page.</span></div>
+					<div class="outcome"><strong>Reviews compound</strong><span>Every new five-star review increases your standing in both the local pack and AI-generated recommendations. Businesses that systemize review collection pull ahead of larger but slower competitors.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote for home services SEO</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your current local pack rankings, your service area coverage, and where AI SEO can have the biggest impact on cost-per-lead.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your trades, service area, and goals, and we will reply with next steps.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="Home services SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Home Services SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Business name / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+								<option value="Home Services Visibility Audit">Home Services Visibility Audit</option>
+								<option value="Service-Area Domination">Service-Area Domination</option>
+								<option value="Ongoing Home Services AI SEO">Ongoing Home Services AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your business and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="What trades do you offer? Which cities and zip codes do you serve? What are your lead goals?"></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Home services SEO FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does SEO cost for home services businesses?</h3>
+						<p>Home services SEO typically ranges from $1,500 to $6,000 per month depending on service area size, number of trades, and competition. Emergency-service categories like plumbing, HVAC, and water restoration tend to require larger budgets because the cost-per-lead in paid search is so high that ranking organically saves significant money.</p>
+					</li>
+					<li>
+						<h3>How long does SEO take for plumbers, electricians, and HVAC?</h3>
+						<p>Most home services businesses see measurable improvements in three to six months. Service-area pages, neighborhood landing pages, and Google Business Profile optimization often produce quicker wins. Highly competitive metros for emergency services can take six to twelve months for full local pack dominance.</p>
+					</li>
+					<li>
+						<h3>Do home services businesses need AI SEO?</h3>
+						<p>Yes. Homeowners now ask Google AI Overviews "how much does a new HVAC system cost" or "who is the best plumber in Phoenix" and get summarized answers without clicking. If your business is not the source AI cites, you lose the call. Reviews, location coverage, and structured content are now the primary inputs to <a href="/ai-seo-shift/">AI-recommended providers</a>.</p>
+					</li>
+					<li>
+						<h3>What is local pack optimization for home services?</h3>
+						<p>Local pack optimization is the work of getting your business into the three-result map block at the top of Google for searches like "emergency plumber near me." It combines Google Business Profile completeness, NAP consistency, review velocity, service-area coverage, citation building, and on-page signals. The <a href="/blog/local-seo-checklist-2026/">local pack</a> remains the single most valuable surface in home services SEO.</p>
+					</li>
+					<li>
+						<h3>How important are reviews for home services SEO?</h3>
+						<p>Reviews are critical. They drive local pack rankings, influence Google Business Profile prominence, and are weighted heavily by AI systems when recommending a service provider. A home services business with five hundred reviews at 4.8 stars beats a competitor with fifty reviews at 4.9 stars in nearly every AI-generated recommendation.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
