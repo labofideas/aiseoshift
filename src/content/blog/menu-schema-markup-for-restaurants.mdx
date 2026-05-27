@@ -1,0 +1,391 @@
+---
+title: "Menu Schema Markup for Restaurants: The 2026 Implementation Guide"
+description: Mark up restaurant menus with Menu, MenuSection, and MenuItem schema for Google rich results and AI visibility. Copy-paste examples and dietary tags.
+deck: Restaurants without menu schema are invisible to AI engines answering "where can I get gluten-free X near me." Here is the implementation that gets you cited.
+pubDate: 2026-05-27
+category: Playbooks
+tags:
+  - schema markup
+  - restaurant SEO
+  - structured data
+  - AI visibility
+author: Shashank Dubey
+featured: false
+---
+
+A restaurant menu is the most structured content most restaurants ever produce. Categories, items, descriptions, prices, allergens. Yet 80 percent of restaurant menus on the web are images, PDFs, or unstructured HTML. AI engines that need to answer "where can I get gluten-free pasta in the West Loop" cannot read images. They can read schema.
+
+This is the implementation guide. Menu, MenuSection, and MenuItem schema with copy-paste JSON-LD, dietary tagging conventions, and the deployment patterns that work.
+
+For the strategic context, see the pillar on [AI SEO for restaurants in 2026](/blog/ai-seo-for-restaurants-2026/) and our [broader schema markup guide](/seo/schema-markup/). For a structured engagement, see our [AI SEO services for restaurants](/ai-seo-services/restaurants/).
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Menu schema nesting flow: Restaurant contains Menu, which contains MenuSection, which contains MenuItem with dietary tags that feed AI dietary-restriction queries">
+	<rect width="800" height="280" fill="rgb(246,245,240)" />
+	<g stroke="rgb(14,17,22)" stroke-opacity="0.06">
+		<line x1="0" y1="40" x2="800" y2="40" />
+		<line x1="0" y1="240" x2="800" y2="240" />
+	</g>
+	<text x="40" y="28" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">MENU SCHEMA NESTING · WHAT AI EXTRACTS</text>
+	<g fill="none" stroke="rgb(184,85,46)" stroke-width="1.4">
+		<path d="M 170 140 L 210 140" marker-end="url(#arr1)" />
+		<path d="M 360 140 L 400 140" marker-end="url(#arr1)" />
+		<path d="M 550 140 L 590 140" marker-end="url(#arr1)" />
+	</g>
+	<defs>
+		<marker id="arr1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+			<path d="M0,0 L6,3 L0,6 z" fill="rgb(184,85,46)" />
+		</marker>
+	</defs>
+	<g font-family="system-ui, sans-serif" fill="rgb(14,17,22)">
+		<g transform="translate(50 90)">
+			<rect width="120" height="100" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" />
+			<text x="12" y="22" font-size="10" letter-spacing="2" fill="rgb(184,85,46)" font-weight="700">@TYPE</text>
+			<text x="12" y="46" font-size="14" font-weight="600">Restaurant</text>
+			<text x="12" y="68" font-size="10" fill-opacity="0.6">name, address,</text>
+			<text x="12" y="82" font-size="10" fill-opacity="0.6">servesCuisine</text>
+		</g>
+		<g transform="translate(240 90)">
+			<rect width="120" height="100" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" />
+			<text x="12" y="22" font-size="10" letter-spacing="2" fill="rgb(184,85,46)" font-weight="700">@TYPE</text>
+			<text x="12" y="46" font-size="14" font-weight="600">Menu</text>
+			<text x="12" y="68" font-size="10" fill-opacity="0.6">name,</text>
+			<text x="12" y="82" font-size="10" fill-opacity="0.6">inLanguage</text>
+		</g>
+		<g transform="translate(430 90)">
+			<rect width="120" height="100" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" />
+			<text x="12" y="22" font-size="10" letter-spacing="2" fill="rgb(184,85,46)" font-weight="700">@TYPE</text>
+			<text x="12" y="46" font-size="14" font-weight="600">MenuSection</text>
+			<text x="12" y="68" font-size="10" fill-opacity="0.6">Pasta, Pizza,</text>
+			<text x="12" y="82" font-size="10" fill-opacity="0.6">Desserts</text>
+		</g>
+		<g transform="translate(620 90)">
+			<rect width="130" height="100" fill="rgb(184,85,46)" rx="4" />
+			<text x="12" y="22" font-size="10" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.8" font-weight="700">@TYPE</text>
+			<text x="12" y="46" font-size="14" fill="rgb(250,250,247)" font-weight="600">MenuItem</text>
+			<text x="12" y="68" font-size="10" fill="rgb(250,250,247)" fill-opacity="0.85">price, allergens,</text>
+			<text x="12" y="82" font-size="10" fill="rgb(250,250,247)" fill-opacity="0.85">suitableForDiet</text>
+		</g>
+	</g>
+	<text x="400" y="215" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.6">SUITABLEFORDIET IS WHAT WINS "GLUTEN-FREE NEAR ME"</text>
+	<text x="400" y="266" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Image menus are invisible. Structured menus are how AI finds you.</text>
+</svg>
+</figure>
+
+## Why menu schema matters more in 2026
+
+Three changes:
+
+1. **AI engines now answer dietary-restriction queries.** "Vegan restaurants near me," "gluten-free pizza in the East Village," "kosher restaurants in Westlake." Each of these queries is answered by extracting structured menu data. Without schema, you are invisible.
+2. **Google rich results expanded to restaurant menus.** Properly marked-up menus appear directly in search results with prices, dish names, and ratings.
+3. **Voice search amplifies dish-level queries.** "Hey Google, find me a restaurant that serves cacio e pepe nearby" only works when menus are structured.
+
+## The schema types you need
+
+Three schema types compose a complete restaurant menu markup:
+
+- `Restaurant` — the entity that has the menu
+- `Menu` — the menu itself
+- `MenuSection` — sections within the menu (Appetizers, Mains, Desserts)
+- `MenuItem` — individual dishes
+
+Plus supporting types: `Offer` for prices, `NutritionInformation` for dietary detail, `RestrictedDiet` for diet tags.
+
+## Restaurant schema as the parent
+
+Every restaurant website needs `Restaurant` schema on the homepage and location pages.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Bella Trattoria",
+  "image": "https://example.com/bella-trattoria.jpg",
+  "url": "https://example.com",
+  "telephone": "+1-212-555-0100",
+  "priceRange": "$$",
+  "servesCuisine": ["Italian", "Northern Italian"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main St",
+    "addressLocality": "Brooklyn",
+    "addressRegion": "NY",
+    "postalCode": "11201",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6926,
+    "longitude": -73.9904
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"],
+      "opens": "17:00",
+      "closes": "22:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday"],
+      "opens": "17:00",
+      "closes": "23:00"
+    }
+  ],
+  "acceptsReservations": "True",
+  "hasMenu": "https://example.com/menu"
+}
+```
+
+The `hasMenu` field can point to a URL or contain the full Menu object inline.
+
+## Menu and MenuSection schema
+
+Group menu items by section. Each section needs a name and ideally a description.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Dinner Menu",
+  "hasMenuSection": [
+    {
+      "@type": "MenuSection",
+      "name": "Appetizers",
+      "description": "Small plates and starters",
+      "hasMenuItem": []
+    },
+    {
+      "@type": "MenuSection",
+      "name": "Pasta",
+      "description": "Hand-made pasta dishes",
+      "hasMenuItem": []
+    }
+  ]
+}
+```
+
+Each `hasMenuItem` array gets filled with `MenuItem` objects.
+
+## MenuItem with full dietary tagging
+
+This is the meat of menu schema. Every dish gets a `MenuItem` entry.
+
+```json
+{
+  "@type": "MenuItem",
+  "name": "Cacio e Pepe",
+  "description": "House-made tonnarelli with Pecorino Romano and freshly cracked black pepper",
+  "image": "https://example.com/cacio-e-pepe.jpg",
+  "offers": {
+    "@type": "Offer",
+    "price": "24.00",
+    "priceCurrency": "USD"
+  },
+  "suitableForDiet": [
+    "https://schema.org/VegetarianDiet"
+  ],
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "680 calories"
+  }
+}
+```
+
+The `suitableForDiet` field is critical. Schema.org defines these enumerated values:
+
+- `https://schema.org/DiabeticDiet`
+- `https://schema.org/GlutenFreeDiet`
+- `https://schema.org/HalalDiet`
+- `https://schema.org/HinduDiet`
+- `https://schema.org/KosherDiet`
+- `https://schema.org/LowCalorieDiet`
+- `https://schema.org/LowFatDiet`
+- `https://schema.org/LowLactoseDiet`
+- `https://schema.org/LowSaltDiet`
+- `https://schema.org/VeganDiet`
+- `https://schema.org/VegetarianDiet`
+
+Use the full URLs as values. AI engines parse these directly.
+
+## A complete worked example
+
+Pulling it together for a small Italian restaurant menu:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Bella Trattoria",
+  "hasMenu": {
+    "@type": "Menu",
+    "name": "Dinner Menu",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "Appetizers",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Burrata Caprese",
+            "description": "Burrata with heirloom tomatoes, basil, and aged balsamic",
+            "offers": { "@type": "Offer", "price": "16.00", "priceCurrency": "USD" },
+            "suitableForDiet": [
+              "https://schema.org/VegetarianDiet",
+              "https://schema.org/GlutenFreeDiet"
+            ]
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Carpaccio di Manzo",
+            "description": "Thin-sliced raw beef, arugula, parmigiano, lemon",
+            "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "USD" },
+            "suitableForDiet": ["https://schema.org/GlutenFreeDiet"]
+          }
+        ]
+      },
+      {
+        "@type": "MenuSection",
+        "name": "Pasta",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Cacio e Pepe",
+            "description": "House-made tonnarelli with Pecorino Romano and black pepper",
+            "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" },
+            "suitableForDiet": ["https://schema.org/VegetarianDiet"]
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Gluten-Free Penne Arrabbiata",
+            "description": "Gluten-free penne with tomato, garlic, and chili",
+            "offers": { "@type": "Offer", "price": "22.00", "priceCurrency": "USD" },
+            "suitableForDiet": [
+              "https://schema.org/VeganDiet",
+              "https://schema.org/GlutenFreeDiet"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+This block, deployed in the page `<head>`, makes the menu fully machine-readable. AI engines can answer "vegan options at Bella Trattoria" or "gluten-free pasta near Cobble Hill" by extracting directly from this structure.
+
+## Implementation rules
+
+### Match schema to visible content
+
+Every menu item in schema must appear visibly on the page. Schema items that do not match visible content are treated as deceptive and get the page demoted.
+
+### Keep schema in sync with menu changes
+
+Menus change. Schema must change with them. Pages with stale schema (items that no longer exist on the menu) lose trust signals.
+
+### Use JSON-LD, not Microdata
+
+JSON-LD in the `<head>` is the preferred format for Google and AI engines. Microdata embedded in HTML is harder to maintain and less reliably parsed.
+
+### Validate every change
+
+[https://validator.schema.org/](https://validator.schema.org/) and [Google's Rich Results Test](https://search.google.com/test/rich-results) catch syntax errors. Run both after every menu update.
+
+### Avoid schema bloat
+
+Multiple `Restaurant` markups on the same page, contradictory `Menu` definitions, or excessive nested schema gets filtered out entirely. One `Restaurant` block per location, one `Menu` block per menu.
+
+## Deployment patterns
+
+### Hard-coded JSON-LD
+
+Best for single-location independents with stable menus. Drop the JSON-LD block in the website template, update when menus change.
+
+### Generated from CMS
+
+For multi-location operators or restaurants with frequent menu changes, generate JSON-LD from your CMS or menu management platform. WordPress, Squarespace, and most restaurant-specific platforms support this through plugins or custom field setups.
+
+### Third-party menu platforms
+
+If you use BentoBox, ChowNow, Toast, or Square for online menus, check whether they auto-generate schema. Many do, with varying completeness. Audit what they produce.
+
+## FAQs
+
+### Do I need to mark up every menu item?
+
+For a small menu (15 to 30 items), yes. For a large menu, prioritize the items most likely to drive search traffic: signature dishes, common dietary-restriction queries (gluten-free, vegan options), and any items that have appeared in press coverage.
+
+### Will menu schema show prices in Google search?
+
+Sometimes. Google's rich results for restaurants show prices when the schema is complete and the data is recent. Outdated or inconsistent pricing schema does not get displayed.
+
+### What if my menu has seasonal changes?
+
+Update the schema with the menu. Some restaurants use Schema's `validFrom` and `validThrough` fields on offers to indicate seasonal availability. Useful but not required.
+
+### Can I have multiple menus (dinner, brunch, drinks)?
+
+Yes. Use multiple `Menu` objects within `hasMenu` array, or separate menu pages each with their own schema.
+
+### What about allergen information beyond dietary tags?
+
+Schema.org does not have first-class allergen markup beyond the diet enumerations. For specific allergens (peanuts, tree nuts, shellfish), include in the menu item description.
+
+## Where to go next
+
+The companion posts in this cluster:
+
+- [AI SEO for restaurants: the 2026 playbook](/blog/ai-seo-for-restaurants-2026/)
+- [Google Business Profile optimization for restaurants in 2026](/blog/google-business-profile-for-restaurants-2026/)
+- [Restaurant review velocity and AI discovery](/blog/restaurant-review-velocity-ai-discovery/)
+
+For a structured engagement, our [AI SEO services for restaurants](/ai-seo-services/restaurants/) page covers menu schema implementation as part of the discovery optimization work.
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to mark up every menu item?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a small menu (15 to 30 items), yes. For a large menu, prioritize the items most likely to drive search traffic: signature dishes, common dietary-restriction queries (gluten-free, vegan options), and any items that have appeared in press coverage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will menu schema show prices in Google search?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sometimes. Googles rich results for restaurants show prices when the schema is complete and the data is recent. Outdated or inconsistent pricing schema does not get displayed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my menu has seasonal changes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Update the schema with the menu. Some restaurants use Schemas validFrom and validThrough fields on offers to indicate seasonal availability. Useful but not required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I have multiple menus (dinner, brunch, drinks)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use multiple Menu objects within hasMenu array, or separate menu pages each with their own schema."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about allergen information beyond dietary tags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Schema.org does not have first-class allergen markup beyond the diet enumerations. For specific allergens (peanuts, tree nuts, shellfish), include in the menu item description."
+      }
+    }
+  ]
+}
+`}</script>

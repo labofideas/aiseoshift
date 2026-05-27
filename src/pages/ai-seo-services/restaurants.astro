@@ -7,73 +7,73 @@ import { SITE_TITLE } from '../../consts';
 const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
 const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
 
-const structuredData = {
-	'@context': 'https://schema.org',
-	'@type': 'Service',
-	provider: { '@type': 'Organization', name: SITE_TITLE },
-	areaServed: 'Worldwide',
-	serviceType: 'AI SEO for Healthcare Practices',
-	description:
-		'AI SEO services for doctors and healthcare practices that need visibility in Google, AI Overviews, ChatGPT, and other AI search environments.',
-};
-
-const faqStructuredData = {
-	'@context': 'https://schema.org',
-	'@type': 'FAQPage',
-	mainEntity: [
-		{
-			'@type': 'Question',
-			name: 'How much does healthcare SEO cost?',
-			acceptedAnswer: {
-				'@type': 'Answer',
-				text: 'Healthcare SEO typically ranges from $2,000 to $8,000 per month depending on practice size, number of locations, and competitive landscape. One-time audits start lower. The investment reflects the complexity of medical content, YMYL compliance requirements, and the high patient lifetime value that makes healthcare SEO one of the strongest ROI channels for practices.',
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO for Restaurants',
+		description:
+			'AI SEO services for independent restaurants, restaurant groups, and hospitality brands that need visibility in Google, AI Overviews, ChatGPT, Perplexity, and other AI search environments.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				name: 'How much does SEO cost for restaurants?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Restaurant SEO typically ranges from $1,000 to $5,000 per month depending on the number of locations, market size, and goals. Single-location independents need less than multi-location groups. Many restaurants get significant lift from Google Business Profile optimization and review systems alone, before any content work.',
+				},
 			},
-		},
-		{
-			'@type': 'Question',
-			name: 'Is medical SEO different from regular SEO?',
-			acceptedAnswer: {
-				'@type': 'Answer',
-				text: 'Yes. Medical SEO falls under Google\'s strictest YMYL (Your Money or Your Life) category. This means Google and AI systems apply much higher trust and accuracy standards to health content. Medical SEO requires proper author attribution to licensed professionals, accurate clinical information, schema markup for medical credentials, and compliance with healthcare advertising regulations that do not apply to other industries.',
+			{
+				'@type': 'Question',
+				name: 'How long does restaurant SEO take to work?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Restaurants often see results faster than most local businesses, sometimes within four to eight weeks. The reason is that Google Business Profile fixes, menu schema, and review velocity push results quickly. Brand and category searches like "best Italian restaurant in Brooklyn" take longer in competitive metros.',
+				},
 			},
-		},
-		{
-			'@type': 'Question',
-			name: 'Do doctors need AI SEO?',
-			acceptedAnswer: {
-				'@type': 'Answer',
-				text: 'Absolutely. Patients now ask ChatGPT about symptoms, use Google AI Overviews to compare treatments, and research doctors through AI-powered search before booking appointments. If your practice is not visible in these AI answers, patients find your competitors instead. AI SEO ensures your expertise is cited and recommended when patients ask health-related questions.',
+			{
+				'@type': 'Question',
+				name: 'Do restaurants need AI SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. Diners now ask ChatGPT and Perplexity for restaurant recommendations, dietary-restriction-friendly spots, and birthday-worthy patios. Google AI Overviews summarize "best brunch in Austin" instantly. If your restaurant is not surfaced in those AI answers, you lose covers to restaurants that are.',
+				},
 			},
-		},
-		{
-			'@type': 'Question',
-			name: 'How important is E-E-A-T for medical websites?',
-			acceptedAnswer: {
-				'@type': 'Answer',
-				text: 'E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness) is the single most important ranking factor for medical websites. Google explicitly states that health content must demonstrate clear medical expertise and authorship. Pages without proper E-E-A-T signals are suppressed in search results and excluded from AI-generated health answers. Every piece of medical content needs attribution to qualified healthcare professionals.',
+			{
+				'@type': 'Question',
+				name: 'What is menu schema and does it matter?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Menu schema (Schema.org Menu) is structured data that tells search engines exactly what dishes you serve, with prices, allergen information, and dietary tags. Properly marked-up menus appear in rich results, get pulled into AI-generated recommendations, and are favored by both Google and AI systems when answering food queries.',
+				},
 			},
-		},
-		{
-			'@type': 'Question',
-			name: 'Can AI-generated medical content rank?',
-			acceptedAnswer: {
-				'@type': 'Answer',
-				text: 'AI-generated medical content can rank only when it is thoroughly reviewed, edited, and validated by licensed healthcare professionals. Google does not penalize AI-assisted content, but it does penalize low-quality health content that lacks expert oversight. The key is using AI as a drafting tool while ensuring every medical claim is verified by a qualified doctor and properly attributed to them.',
+			{
+				'@type': 'Question',
+				name: 'How important are reviews for restaurant SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Reviews are arguably more important for restaurants than any other vertical. They drive Google Business Profile prominence, feed AI recommendation engines, influence map pack rankings, and shape brand trust. Recent positive reviews matter more than older ones, so review velocity and freshness are now ranking factors in their own right.',
+				},
 			},
-		},
-	],
-};
+		],
+	},
+];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead
-			title={`AI SEO for Doctors and Healthcare Practices | ${SITE_TITLE}`}
-			description="Doctor SEO and healthcare SEO powered by AI. Get your practice visible in Google, AI Overviews, and ChatGPT where patients search."
+			title={`AI SEO for Restaurants and Restaurant Groups | ${SITE_TITLE}`}
+			description="Restaurant SEO and AI search visibility. Win Google AI Overviews, ChatGPT recommendations, and the local map pack for dining queries."
 			structuredData={structuredData}
 		/>
-		<script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
 		<style>
 			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
 
@@ -143,13 +143,15 @@ const faqStructuredData = {
 		<main id="main-content" class="svc-page">
 			<section class="svc-hero">
 				<div>
-					<span class="svc-kicker">AI SEO for Healthcare</span>
-					<h1>AI SEO for Doctors and Healthcare Practices</h1>
+					<span class="svc-kicker">AI SEO for Restaurants</span>
+					<h1>AI SEO for Restaurants and Restaurant Groups</h1>
 				</div>
 				<div class="svc-hero-lede">
 					<p>
-						Patients now ask Google, ChatGPT, and Perplexity about symptoms, treatments, and doctors before they ever call a practice. Healthcare sits in the strictest
-						<a href="/seo/eeat/">YMYL category</a>, meaning search engines and AI systems hold medical content to the highest accuracy and trust standards. When Google AI Overviews answer health questions directly, only practices with strong authority and properly structured content get cited. We help doctors and healthcare practices build that visibility.
+						Diners no longer browse Yelp lists. They ask ChatGPT for a "romantic spot for an anniversary
+						in Brooklyn." They ask Perplexity which spots are open late with vegan options. Google AI
+						Overviews summarize "best brunch near me" without sending a single click to your site. The
+						restaurants cited in those answers fill tables. The ones that are not, do not.
 					</p>
 					<div class="svc-cta-row">
 						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
@@ -159,16 +161,16 @@ const faqStructuredData = {
 			</section>
 
 			<figure class="svc-figure" aria-labelledby="svc-figure-caption">
-				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How medical practices get cited by AI: physician credentials, condition pages, MedicalBusiness schema, and reviews flow into a cited practice recommendation">
+				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How restaurants get cited by AI: Google Business Profile, Menu schema with dietary tags, atmosphere content, and recent reviews flow into a cited restaurant recommendation">
 					<rect width="1080" height="360" fill="rgb(246,245,240)" />
 					<g stroke="rgb(14,17,22)" stroke-opacity="0.06"><line x1="0" y1="48" x2="1080" y2="48" /><line x1="0" y1="312" x2="1080" y2="312" /></g>
 					<text x="48" y="32" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">INPUT SIGNALS</text>
-					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">YMYL FILTER</text>
+					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">AI SYNTHESIS</text>
 					<text x="1032" y="32" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(184,85,46)">CITED OUTCOME</text>
 					<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
-						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Physician credentialed bylines</text></g>
-						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Condition-specific pages</text></g>
-						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">MedicalBusiness schema</text></g>
+						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Google Business Profile</text></g>
+						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Menu schema + diet tags</text></g>
+						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Vibe and occasion content</text></g>
 						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Recent review velocity</text></g>
 					</g>
 					<g stroke="rgb(14,17,22)" stroke-opacity="0.2" fill="none">
@@ -176,9 +178,9 @@ const faqStructuredData = {
 					</g>
 					<g transform="translate(440 130)">
 						<rect width="200" height="100" fill="rgb(14,17,22)" rx="6" />
-						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES · YMYL</text>
+						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES</text>
 						<text x="100" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">ChatGPT · Perplexity</text>
-						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">AI Overviews · ZocDoc</text>
+						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">AI Overviews · Maps</text>
 					</g>
 					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
 						<path d="M 640 180 C 700 180, 760 180, 820 180" />
@@ -188,40 +190,42 @@ const faqStructuredData = {
 						<rect width="212" height="140" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="6" />
 						<circle cx="32" cy="38" r="18" fill="rgb(184,85,46)" />
 						<text x="32" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="rgb(250,250,247)">01</text>
-						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Cited physician</text>
-						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">for AFib treatment</text>
+						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Best brunch</text>
+						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">cited in Brooklyn</text>
 						<rect x="20" y="76" width="172" height="6" rx="1" fill="rgb(14,17,22)" fill-opacity="0.75" />
 						<rect x="20" y="88" width="140" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
 						<rect x="20" y="98" width="156" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
 						<rect x="20" y="108" width="120" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
 					</g>
-					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Medical content is the strictest YMYL class. AI engines verify credentials before citing.</text>
+					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Diners describe restaurants in vibes. AI matches vibes to restaurants that describe themselves that way.</text>
 				</svg>
 			</figure>
 
 			<section class="svc-section">
-				<h2>The challenge: AI search is changing healthcare</h2>
+				<h2>The challenge: AI is the new dining concierge</h2>
 				<p>
-					Patients no longer start with a phone call to their doctor. They search. And increasingly, they get answers from AI before they ever see a list of links. This shift has serious implications for every healthcare practice.
+					Restaurant search behavior has fully moved into conversational, AI-mediated queries. The
+					businesses that get cited are the ones with rich structured menus, well-managed reviews, and
+					content that maps to how people actually describe a craving.
 				</p>
 				<div class="outcomes">
-					<div class="outcome"><strong>AI answers symptoms directly</strong><span>Google AI Overviews now provide medical information for symptom queries, often pulling from a handful of trusted sources. If your practice is not one of them, patients never see your name.</span></div>
-					<div class="outcome"><strong>Patients self-research via AI</strong><span>ChatGPT and Perplexity are used daily for health questions. Patients compare conditions, treatments, and providers through AI conversations before booking an appointment.</span></div>
-					<div class="outcome"><strong>Trust and accuracy are critical</strong><span>Medical misinformation can cause real harm. AI systems prioritize content from credentialed, authoritative sources. Practices that lack proper <a href="/seo/eeat/">E-E-A-T signals</a> get filtered out entirely.</span></div>
+					<div class="outcome"><strong>"Best of" queries get summarized</strong><span>Google AI Overviews now answer "best tacos in Austin" or "best date-night restaurant in Chicago" with a short list. Restaurants outside that list get no consideration set, no matter how good they are.</span></div>
+					<div class="outcome"><strong>Diners ask AI for vibes</strong><span>People describe restaurants in feelings now: "cozy," "good for a first date," "loud but fun." AI systems match those queries to restaurant content, not just categories. If your site does not describe your vibe, you are not in the answer.</span></div>
+					<div class="outcome"><strong>Menu schema is now table stakes</strong><span>Restaurants without structured menu data are invisible to AI systems looking for "where can I get gluten-free pizza in the West Loop." Schema is no longer optional.</span></div>
 				</div>
 			</section>
 
 			<section class="svc-section">
-				<h2>What we do</h2>
-				<p>Three services designed specifically for doctors and healthcare practices, covering audits, authority building, and ongoing AI search growth.</p>
+				<h2>What we do for restaurants</h2>
+				<p>Three services built for the way AI search evaluates and surfaces dining content.</p>
 				<ol class="svc-list">
 					<li>
 						<div class="svc-row">
 							<span class="svc-row-num">01</span>
 							<div>
-								<h3>Healthcare Visibility Audit</h3>
-								<p>A comprehensive audit of how your practice appears across Google Search, AI Overviews, ChatGPT, and Perplexity for the conditions and procedures you treat, with a prioritized action plan built around <a href="/seo/eeat/">YMYL compliance</a>.</p>
-								<ul><li>AI citation analysis for conditions and procedures</li><li>YMYL compliance and trust signal review</li><li>Patient review sentiment analysis</li><li><a href="/seo/schema-markup/">Medical schema</a> and structured data audit</li></ul>
+								<h3>Restaurant Visibility Audit</h3>
+								<p>A complete review of how your restaurant appears across Google, the map pack, AI Overviews, ChatGPT, and Perplexity for the searches that actually drive reservations and walk-ins. You get a prioritized roadmap, with the quickest wins called out.</p>
+								<ul><li>Google Business Profile audit</li><li>AI citation analysis for cuisine and category</li><li>Menu and dietary tag <a href="/seo/schema-markup/">schema</a> review</li><li>Review velocity and sentiment review</li><li>Competitor positioning</li></ul>
 							</div>
 						</div>
 					</li>
@@ -229,9 +233,9 @@ const faqStructuredData = {
 						<div class="svc-row">
 							<span class="svc-row-num">02</span>
 							<div>
-								<h3>Physician Authority Building</h3>
-								<p>Implementation work to establish each doctor as a recognized expert in their specialty, with proper credentials markup, individual physician pages, and content structures that AI systems can verify and cite.</p>
-								<ul><li>Individual doctor <a href="/seo/eeat/">E-E-A-T profiles</a></li><li>Medical credentials <a href="/seo/schema-markup/">schema markup</a></li><li>Specialty and procedure landing pages</li><li>Author attribution and byline implementation</li></ul>
+								<h3>Menu and Discovery Optimization</h3>
+								<p>Implementation work that turns your restaurant into a richly structured, AI-friendly resource. The schema, content, and review systems that get you surfaced when people ask AI for a recommendation.</p>
+								<ul><li>Menu <a href="/seo/schema-markup/">schema</a> with dietary tags and prices</li><li>Restaurant and LocalBusiness schema</li><li>Cuisine, occasion, and vibe content</li><li>Review generation and response systems</li><li>Multi-location consistency for groups</li></ul>
 							</div>
 						</div>
 					</li>
@@ -239,9 +243,9 @@ const faqStructuredData = {
 						<div class="svc-row">
 							<span class="svc-row-num">03</span>
 							<div>
-								<h3>Ongoing Healthcare AI SEO</h3>
-								<p>Monthly support combining condition and procedure content, patient education resources, <a href="/blog/local-seo-checklist-2026/">local SEO</a> for practice locations, and AI visibility monitoring into one operating rhythm.</p>
-								<ul><li>Condition and procedure content production</li><li>Patient education and FAQ content</li><li><a href="/blog/local-seo-checklist-2026/">Local SEO</a> for multi-location practices</li><li>AI citation monitoring and monthly reporting</li></ul>
+								<h3>Ongoing Restaurant AI SEO</h3>
+								<p>Monthly support combining seasonal menu updates, event content, technical SEO, Google Business Profile management, and AI citation monitoring so you stay the cited restaurant for your cuisine and city.</p>
+								<ul><li>Seasonal menu and event content</li><li>Google Business Profile management</li><li>Review velocity and response systems</li><li>AI citation monitoring and monthly reporting</li></ul>
 							</div>
 						</div>
 					</li>
@@ -249,50 +253,48 @@ const faqStructuredData = {
 			</section>
 
 			<section class="svc-section">
-				<h2>Why healthcare needs specialized AI SEO</h2>
-				<p>
-					Healthcare is not like other industries when it comes to search. The stakes are higher, the standards are stricter, and the opportunity is enormous for practices that get it right.
-				</p>
+				<h2>Why restaurants need AI SEO now</h2>
+				<p>Hospitality margins are tight. Filling tables on a Tuesday is the difference between a great month and a bad one. AI search visibility is the cheapest, most durable lever you have.</p>
 				<div class="outcomes">
-					<div class="outcome"><strong>Strictest YMYL evaluation</strong><span>Google classifies health content under its most rigorous quality standards. Medical pages face the toughest scrutiny from both human quality raters and <a href="/ai-seo-shift/">AI systems</a>.</span></div>
-					<div class="outcome"><strong>Highest trust requirements</strong><span>Every medical claim needs attribution to a licensed professional. AI systems cross-reference credentials, affiliations, and published expertise before citing a source.</span></div>
-					<div class="outcome"><strong>Patients research before booking</strong><span>Over 70% of patients research symptoms, conditions, and doctors online before scheduling. If your practice is invisible in these searches, you lose patients to competitors who show up.</span></div>
+					<div class="outcome"><strong>Walk-ins are now AI-mediated</strong><span>"Where should we eat?" is now an AI conversation, not a Google search. The restaurant cited gets the cover.</span></div>
+					<div class="outcome"><strong>Reviews drive everything</strong><span>Recent five-star reviews now influence local pack rankings, Google Business Profile prominence, and AI recommendations. The compounding effect is real.</span></div>
+					<div class="outcome"><strong>Structured menus get rewarded</strong><span>Restaurants with proper menu schema and dietary tags get pulled into AI answers for niche queries that competitors miss entirely.</span></div>
 				</div>
 			</section>
 
 			<section class="svc-section" id="quote">
-				<h2>Get a quote</h2>
+				<h2>Get a quote for restaurant SEO</h2>
 				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
 				<div class="contact-block">
 					<div class="contact-card">
 						<h3>Book a strategy call</h3>
-						<p>We will review your practice's current visibility, your patient acquisition goals, and where healthcare AI SEO can have the biggest impact.</p>
+						<p>We will review your restaurant's current visibility, your cuisine and category, and where AI SEO can have the biggest impact on covers and revenue.</p>
 						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
 					</div>
 					<div class="contact-card">
 						<h3 id="quote-form-heading">Request a quote by form</h3>
-						<p>Tell us about your practice and goals, and we will reply with a tailored plan and next steps.</p>
+						<p>Tell us about your restaurant, cuisine, and goals, and we will reply with a tailored plan.</p>
 						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
 							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-							<input type="hidden" name="subject" value="Healthcare AI SEO quote request from aiseoshift.com" />
-							<input type="hidden" name="from_name" value="AISEOShift Healthcare Quote Form" />
+							<input type="hidden" name="subject" value="Restaurant SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Restaurant SEO Quote Form" />
 							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
 							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
 							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
 							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
-							<label for="q-company">Practice / website</label>
+							<label for="q-company">Restaurant / website</label>
 							<input id="q-company" type="text" name="company" autocomplete="organization" />
 							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
 							<select id="q-service" name="service" required aria-required="true">
-								<option value="">Select a service...</option>
-								<option value="Healthcare Visibility Audit">Healthcare Visibility Audit</option>
-								<option value="Physician Authority Building">Physician Authority Building</option>
-								<option value="Ongoing Healthcare AI SEO">Ongoing Healthcare AI SEO</option>
+								<option value="">Select a service…</option>
+								<option value="Restaurant Visibility Audit">Restaurant Visibility Audit</option>
+								<option value="Menu and Discovery Optimization">Menu and Discovery Optimization</option>
+								<option value="Ongoing Restaurant AI SEO">Ongoing Restaurant AI SEO</option>
 								<option value="Not sure yet">Not sure yet</option>
 							</select>
-							<label for="q-message">Tell us about your practice and goals <span class="req" aria-hidden="true">*</span></label>
-							<textarea id="q-message" name="message" required aria-required="true" placeholder="What specialties do you practice? How many locations? What are your patient acquisition goals?"></textarea>
+							<label for="q-message">Tell us about your restaurant and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Cuisine type, number of locations, city, and what you are trying to achieve."></textarea>
 							<button type="submit">Send quote request</button>
 							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
 						</form>
@@ -301,27 +303,27 @@ const faqStructuredData = {
 			</section>
 
 			<section class="svc-section">
-				<h2>FAQs</h2>
+				<h2>Restaurant SEO FAQs</h2>
 				<ul class="faq-list">
 					<li>
-						<h3>How much does healthcare SEO cost?</h3>
-						<p>Healthcare SEO typically ranges from $2,000 to $8,000 per month depending on practice size, number of locations, and competitive landscape. One-time audits start lower. The investment reflects the complexity of medical content, YMYL compliance, and the high patient lifetime value that makes healthcare SEO one of the strongest ROI channels for practices.</p>
+						<h3>How much does SEO cost for restaurants?</h3>
+						<p>Restaurant SEO typically ranges from $1,000 to $5,000 per month depending on the number of locations, market size, and goals. Single-location independents need less than multi-location groups. Many restaurants get significant lift from Google Business Profile optimization and review systems alone, before any content work.</p>
 					</li>
 					<li>
-						<h3>Is medical SEO different from regular SEO?</h3>
-						<p>Yes. Medical SEO falls under Google's strictest <a href="/seo/eeat/">YMYL category</a>. Google and AI systems apply much higher trust and accuracy standards to health content. Medical SEO requires proper author attribution to licensed professionals, accurate clinical information, <a href="/seo/schema-markup/">schema markup</a> for medical credentials, and compliance with healthcare advertising regulations.</p>
+						<h3>How long does restaurant SEO take to work?</h3>
+						<p>Restaurants often see results faster than most local businesses, sometimes within four to eight weeks. The reason is that Google Business Profile fixes, menu schema, and review velocity push results quickly. Brand and category searches like "best Italian restaurant in Brooklyn" take longer in competitive metros.</p>
 					</li>
 					<li>
-						<h3>Do doctors need AI SEO?</h3>
-						<p>Absolutely. Patients now ask ChatGPT about symptoms, use Google AI Overviews to compare treatments, and research doctors through <a href="/ai-seo-shift/">AI-powered search</a> before booking appointments. If your practice is not visible in these AI answers, patients find your competitors instead.</p>
+						<h3>Do restaurants need AI SEO?</h3>
+						<p>Yes. Diners now ask ChatGPT and Perplexity for restaurant recommendations, dietary-restriction-friendly spots, and birthday-worthy patios. Google AI Overviews summarize "best brunch in Austin" instantly. If your restaurant is not surfaced in those <a href="/ai-seo-shift/">AI answers</a>, you lose covers to restaurants that are.</p>
 					</li>
 					<li>
-						<h3>How important is E-E-A-T for medical websites?</h3>
-						<p><a href="/seo/eeat/">E-E-A-T</a> is the single most important ranking factor for medical websites. Google explicitly states that health content must demonstrate clear medical expertise and authorship. Pages without proper E-E-A-T signals are suppressed in search results and excluded from AI-generated health answers.</p>
+						<h3>What is menu schema and does it matter?</h3>
+						<p>Menu <a href="/seo/schema-markup/">schema</a> (Schema.org Menu) is structured data that tells search engines exactly what dishes you serve, with prices, allergen information, and dietary tags. Properly marked-up menus appear in rich results, get pulled into AI-generated recommendations, and are favored by both Google and AI systems when answering food queries.</p>
 					</li>
 					<li>
-						<h3>Can AI-generated medical content rank?</h3>
-						<p>AI-generated medical content can rank only when it is thoroughly reviewed, edited, and validated by licensed healthcare professionals. Google does not penalize AI-assisted content, but it does penalize low-quality health content that lacks expert oversight. The key is using AI as a drafting tool while ensuring every medical claim is verified and properly attributed.</p>
+						<h3>How important are reviews for restaurant SEO?</h3>
+						<p>Reviews are arguably more important for restaurants than any other vertical. They drive Google Business Profile prominence, feed AI recommendation engines, influence map pack rankings, and shape brand trust. Recent positive reviews matter more than older ones, so review velocity and freshness are now ranking factors in their own right.</p>
 					</li>
 				</ul>
 			</section>

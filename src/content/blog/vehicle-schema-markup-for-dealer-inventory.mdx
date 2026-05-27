@@ -1,0 +1,387 @@
+---
+title: "Vehicle Schema Markup for Dealer Inventory: A 2026 Implementation Guide"
+description: How to mark up dealership VDPs with Vehicle and Product schema for Google Vehicle Listings, rich results, and AI visibility. Copy-paste JSON-LD examples.
+deck: Dealers without Vehicle schema are invisible to Google Vehicle Listings and AI shopping queries. Here is the implementation that gets inventory cited.
+pubDate: 2026-05-27
+category: Playbooks
+tags:
+  - schema markup
+  - auto dealer SEO
+  - structured data
+  - AI visibility
+author: Shashank Dubey
+featured: false
+---
+
+The single biggest schema-related opportunity in auto dealer SEO is Vehicle schema on VDPs (Vehicle Detail Pages). Google Vehicle Listings, the rich results that show specific vehicles in search, pulls directly from `Vehicle` schema. AI engines answering "best used Toyota RAV4 under $30K" extract from the same data.
+
+Most dealer inventory feeds produce HTML pages that look fine to humans but contain no machine-readable structure. The cleanup is straightforward. The results compound.
+
+This is the implementation guide.
+
+For the strategic context, see the pillar on [AI SEO for auto dealers](/blog/ai-seo-for-auto-dealers-2026/) and the broader [schema markup guide](/seo/schema-markup/). For a structured engagement, see our [AI SEO services for auto dealers](/ai-seo-services/auto-dealers/).
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A single VDP feeds 12 structured fields into Google Vehicle Listings, from VIN and mileage to fuel type and price, that AI shopping queries extract">
+	<rect width="800" height="280" fill="rgb(246,245,240)" />
+	<g stroke="rgb(14,17,22)" stroke-opacity="0.06">
+		<line x1="0" y1="40" x2="800" y2="40" />
+		<line x1="0" y1="240" x2="800" y2="240" />
+	</g>
+	<text x="40" y="28" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">VEHICLE SCHEMA · ONE VDP, TWELVE EXTRACTED FIELDS</text>
+	<g transform="translate(60 80)">
+		<text font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.6" font-weight="700">PER VDP</text>
+		<text y="80" font-family="system-ui, sans-serif" font-size="84" font-weight="700" fill="rgb(184,85,46)">12</text>
+		<text y="106" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">structured fields feed</text>
+		<text y="124" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">Google Vehicle Listings</text>
+		<text y="142" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">and AI shopping answers</text>
+	</g>
+	<g font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" transform="translate(320 70)">
+		<g>
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">vehicleIdentificationNumber</text>
+		</g>
+		<g transform="translate(140 0)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">brand · model</text>
+		</g>
+		<g transform="translate(280 0)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">vehicleModelDate</text>
+		</g>
+		<g transform="translate(0 38)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">mileageFromOdometer</text>
+		</g>
+		<g transform="translate(140 38)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">fuelType</text>
+		</g>
+		<g transform="translate(280 38)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">vehicleTransmission</text>
+		</g>
+		<g transform="translate(0 76)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">bodyType</text>
+		</g>
+		<g transform="translate(140 76)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">color · interiorColor</text>
+		</g>
+		<g transform="translate(280 76)">
+			<rect width="130" height="28" fill="rgb(184,85,46)" rx="3" />
+			<text x="10" y="19" fill="rgb(250,250,247)" font-weight="600">offers.price</text>
+		</g>
+		<g transform="translate(0 114)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">offers.availability</text>
+		</g>
+		<g transform="translate(140 114)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">itemCondition</text>
+		</g>
+		<g transform="translate(280 114)">
+			<rect width="130" height="28" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+			<text x="10" y="19">image (multiple)</text>
+		</g>
+	</g>
+	<text x="400" y="266" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Without these fields, AI shopping queries route around your inventory.</text>
+</svg>
+</figure>
+
+## Why vehicle schema matters in 2026
+
+Three reasons:
+
+1. **Google Vehicle Listings expanded.** Rich results showing make, model, year, mileage, price, and dealer location now appear above traditional search results for vehicle queries. They pull from `Vehicle` schema.
+2. **AI shopping queries are growing fast.** "Best used Honda CR-V under 40K miles in Phoenix" is now a common AI query. The dealers with structured inventory data feed the answers.
+3. **Inventory turns over fast.** Vehicle schema lets Google reprocess listing changes quickly. Without it, stale listings linger in search results, damaging trust.
+
+## Vehicle schema vs. Product schema
+
+Both work for car inventory. The differences:
+
+- `Vehicle` schema has fields specific to cars (mileage, VIN, fuel type, transmission)
+- `Product` schema is more generic but more universally supported
+
+Best practice: use `Vehicle` schema as the primary type, with `Product`-style `offers` for pricing.
+
+## A complete VDP schema example
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Vehicle",
+  "name": "2024 Toyota RAV4 XLE Hybrid AWD",
+  "vehicleIdentificationNumber": "1A2B3C4D5E6F7G8H9",
+  "url": "https://example.com/inventory/2024-toyota-rav4-xle-hybrid-1A2B3C4D5E6F7G8H9",
+  "image": [
+    "https://example.com/images/rav4-front.jpg",
+    "https://example.com/images/rav4-side.jpg",
+    "https://example.com/images/rav4-interior.jpg"
+  ],
+  "modelDate": "2024",
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "Toyota"
+  },
+  "model": "RAV4",
+  "vehicleConfiguration": "XLE Hybrid AWD",
+  "bodyType": "SUV",
+  "numberOfDoors": "4",
+  "vehicleSeatingCapacity": "5",
+  "fuelType": "Hybrid",
+  "vehicleTransmission": "Automatic CVT",
+  "driveWheelConfiguration": "AllWheelDriveConfiguration",
+  "mileageFromOdometer": {
+    "@type": "QuantitativeValue",
+    "value": "18500",
+    "unitCode": "SMI"
+  },
+  "color": "Silver Sky Metallic",
+  "vehicleInteriorColor": "Black",
+  "itemCondition": "https://schema.org/UsedCondition",
+  "offers": {
+    "@type": "Offer",
+    "price": "31995",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "AutoDealer",
+      "name": "Phoenix Toyota",
+      "url": "https://example.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Phoenix",
+        "addressRegion": "AZ",
+        "postalCode": "85016"
+      }
+    }
+  }
+}
+```
+
+This block, deployed in the page `<head>` of every VDP, makes the inventory fully machine-readable.
+
+## Required vs. recommended fields
+
+### Required (won't appear in rich results without these)
+
+- `name` (year + make + model + trim)
+- `url`
+- `image` (at least one)
+- `offers.price` and `offers.priceCurrency`
+- `vehicleIdentificationNumber` (VIN)
+- `mileageFromOdometer`
+- `itemCondition`
+
+### Recommended (improve eligibility and richness)
+
+- `model` and `manufacturer` (separate from `name`)
+- `modelDate` (year)
+- `vehicleConfiguration` (trim)
+- `bodyType`
+- `fuelType`
+- `vehicleTransmission`
+- `driveWheelConfiguration`
+- `color` and `vehicleInteriorColor`
+- Multiple `image` URLs
+
+### Useful for AI engines specifically
+
+- `vehicleSeatingCapacity` (matters for family vehicle queries)
+- `numberOfDoors` (matters for cargo and accessibility queries)
+- `bodyType` (matters for category matching)
+- `fuelType` (matters for electric and hybrid queries)
+- `driveWheelConfiguration` (matters for weather and terrain queries)
+
+## AutoDealer schema for the dealer itself
+
+The seller in the offer block above should be a fully-defined `AutoDealer` entity. Add this on the homepage and reference it from VDPs:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "AutoDealer",
+  "name": "Phoenix Toyota",
+  "image": "https://example.com/logo.png",
+  "url": "https://example.com",
+  "telephone": "+1-602-555-0100",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1500 E Camelback Rd",
+    "addressLocality": "Phoenix",
+    "addressRegion": "AZ",
+    "postalCode": "85016",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.5099,
+    "longitude": -112.0739
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "Toyota"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "reviewCount": "412"
+  }
+}
+```
+
+## New vs. used vs. certified pre-owned
+
+Use `itemCondition` to distinguish:
+
+- `https://schema.org/NewCondition` for new vehicles
+- `https://schema.org/UsedCondition` for used
+- `https://schema.org/RefurbishedCondition` for certified pre-owned (CPO is the closest schema match)
+
+For CPO, also include `productionDate` and `manufactureWarranty` references if applicable.
+
+## Pricing schema considerations
+
+### Single offer pricing
+
+Most common pattern. One offer with one price per VDP.
+
+### Multiple pricing scenarios (lease, finance, cash)
+
+For lease offers, use:
+
+```json
+"offers": [
+  {
+    "@type": "Offer",
+    "price": "31995",
+    "priceCurrency": "USD",
+    "name": "Cash price"
+  },
+  {
+    "@type": "Offer",
+    "name": "Lease offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": "289",
+      "priceCurrency": "USD",
+      "billingDuration": "P36M"
+    }
+  }
+]
+```
+
+### Sold or pending listings
+
+Update `availability` to `https://schema.org/SoldOut` or remove the offer when inventory turns. Stale "InStock" claims on sold vehicles damage trust.
+
+## Implementation patterns
+
+### Inventory management system (IMS) integration
+
+The cleanest approach. Most dealer inventory feeds (Dealer.com, DealerInspire, DealerOn, AutoTrader) can be configured to output Vehicle schema. Verify yours does, and audit the output for completeness.
+
+### Custom deployment
+
+If your IMS does not output Vehicle schema or outputs incomplete schema, deploy custom JSON-LD in your VDP template. Most platforms allow custom code injection.
+
+### Validation cadence
+
+Validate every change with [https://validator.schema.org/](https://validator.schema.org/) and Google's [Rich Results Test](https://search.google.com/test/rich-results). Validation errors break the entire schema block.
+
+Run a quarterly audit on 30 random VDPs to confirm schema is rendering as expected and matches the visible page content.
+
+## Common mistakes that kill VDP schema
+
+- **Mismatch between visible content and schema.** If the schema says $31,995 and the page shows $29,995, Google flags the page.
+- **Stale "InStock" on sold vehicles.** Update availability when inventory turns.
+- **VIN mismatch between schema and page.** Both must match exactly.
+- **Missing required fields.** Vehicle Listings rich results require specific fields. Missing any one disqualifies the listing.
+- **Schema bloat.** Multiple `Vehicle` blocks on the same page, or contradictory pricing, gets filtered.
+
+## What about model and trim pages (not specific VDPs)?
+
+Model and trim pages (the "2024 Toyota RAV4" page that covers the model generally, not a specific VIN) should use `Vehicle` schema with `Vehicle` as a type, but without a VIN, mileage, or specific offer. These pages aggregate the model's general information and link to specific VDPs.
+
+## FAQs
+
+### How long until Vehicle schema produces visible results?
+
+Google reprocesses schema within days of a re-crawl. Vehicle Listings rich results typically appear within 2 to 6 weeks of full deployment for properly schema-marked inventory.
+
+### Does Vehicle schema work for motorcycles, boats, RVs?
+
+Schema.org has specific types for these (`Motorcycle`, `BoatTrip`, `Vehicle` with subtypes). The general patterns are similar but use the more specific type when possible.
+
+### Do I need to update schema when prices change?
+
+Yes. Stale pricing in schema gets the page flagged. Real-time or near-real-time schema updates produce the strongest results.
+
+### What about test drive and lease specials offers?
+
+Use the `Offer` block with descriptive `name` field. Time-bound offers should include `validThrough` dates.
+
+### Does schema affect ranking directly?
+
+Not as a direct ranking factor, but schema affects eligibility for rich results, AI engine extraction, and entity disambiguation. The downstream effect on visibility is significant.
+
+## Where to go next
+
+The companion posts in this cluster:
+
+- [AI SEO for auto dealers: the 2026 playbook](/blog/ai-seo-for-auto-dealers-2026/)
+- [Auto dealer Google Business Profile optimization](/blog/auto-dealer-google-business-profile-2026/)
+- [Auto dealer review strategy across DealerRater, CarGurus, and Google](/blog/auto-dealer-review-strategy-dealerrater-cargurus-google/)
+
+For a structured engagement, our [AI SEO services for auto dealers](/ai-seo-services/auto-dealers/) page covers schema implementation as part of the inventory and model authority work.
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long until Vehicle schema produces visible results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google reprocesses schema within days of a re-crawl. Vehicle Listings rich results typically appear within 2 to 6 weeks of full deployment for properly schema-marked inventory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Vehicle schema work for motorcycles, boats, RVs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Schema.org has specific types for these (Motorcycle, BoatTrip, Vehicle with subtypes). The general patterns are similar but use the more specific type when possible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to update schema when prices change?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Stale pricing in schema gets the page flagged. Real-time or near-real-time schema updates produce the strongest results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about test drive and lease specials offers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the Offer block with descriptive name field. Time-bound offers should include validThrough dates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does schema affect ranking directly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not as a direct ranking factor, but schema affects eligibility for rich results, AI engine extraction, and entity disambiguation. The downstream effect on visibility is significant."
+      }
+    }
+  ]
+}
+`}</script>

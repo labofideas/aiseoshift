@@ -13,9 +13,9 @@ const structuredData = [
 		'@type': 'Service',
 		provider: { '@type': 'Organization', name: SITE_TITLE },
 		areaServed: 'Worldwide',
-		serviceType: 'AI SEO for Law Firms',
+		serviceType: 'AI SEO for Auto Dealers',
 		description:
-			'AI SEO services for lawyers and law firms that need visibility in Google, AI Overviews, ChatGPT, Perplexity, and other AI search environments.',
+			'AI SEO services for new and used car dealerships and dealer groups that need visibility in Google, AI Overviews, ChatGPT, Perplexity, and other AI search environments.',
 	},
 	{
 		'@context': 'https://schema.org',
@@ -23,42 +23,42 @@ const structuredData = [
 		mainEntity: [
 			{
 				'@type': 'Question',
-				name: 'How much does SEO cost for law firms?',
+				name: 'How much does SEO cost for auto dealerships?',
 				acceptedAnswer: {
 					'@type': 'Answer',
-					text: 'Law firm SEO typically ranges from $2,500 to $10,000 per month depending on the number of practice areas, office locations, and competition level. One-time audits start lower. AI SEO adds a layer of optimization for answer engines like ChatGPT and Google AI Overviews, which may affect pricing depending on scope.',
+					text: 'Auto dealer SEO typically ranges from $2,500 to $10,000 per month depending on franchise size, number of rooftops, and brand competition. Single-rooftop independents need less than multi-brand dealer groups. The investment reflects the high vehicle gross margins and lifetime service revenue that make dealer SEO one of the strongest ROI channels.',
 				},
 			},
 			{
 				'@type': 'Question',
-				name: 'How long does lawyer SEO take?',
+				name: 'How long does dealer SEO take to work?',
 				acceptedAnswer: {
 					'@type': 'Answer',
-					text: 'Most law firms see measurable improvements in 3 to 6 months. Competitive practice areas like personal injury or criminal defense can take longer. AI citation visibility can sometimes improve faster because answer engines re-index and re-evaluate sources on a different cadence than traditional rankings.',
+					text: 'Most dealerships see measurable improvements in three to six months. Inventory pages, model-specific landing pages, and Google Business Profile work tend to show fastest results. Generic "car dealer near me" terms can take longer in major metros, but model-and-trim long-tail queries often rank within weeks.',
 				},
 			},
 			{
 				'@type': 'Question',
-				name: 'Do law firms need AI SEO?',
+				name: 'Do auto dealers need AI SEO?',
 				acceptedAnswer: {
 					'@type': 'Answer',
-					text: 'Yes. Legal queries are among the most common questions asked in AI tools like ChatGPT and Google AI Overviews. If your firm is not structured to be cited in those answers, potential clients are finding your competitors instead. YMYL content like legal advice faces the strictest quality evaluation from both Google and AI systems.',
+					text: 'Yes. Shoppers now ask ChatGPT to compare models, ask Perplexity for reliability data, and use Google AI Overviews to summarize "best mid-size SUV under 40k." Dealers that get cited in those AI answers and that have inventory-rich, schema-marked sites win the lead. Dealers that rely on OEM-supplied templates with thin content do not.',
 				},
 			},
 			{
 				'@type': 'Question',
-				name: 'What is local SEO for lawyers?',
+				name: 'What is inventory schema for dealerships?',
 				acceptedAnswer: {
 					'@type': 'Answer',
-					text: 'Local SEO for lawyers is the practice of optimizing your firm to appear in location-based searches such as "personal injury lawyer near me" or "divorce attorney in Chicago." It includes Google Business Profile optimization, local citations, reviews, and geo-targeted content. AI search now incorporates local signals too, making local SEO critical for AI visibility.',
+					text: 'Vehicle and Product schema on inventory pages tells Google and AI systems exactly what is on your lot — make, model, year, trim, mileage, VIN, price. Properly marked-up inventory pages get pulled into rich results, Google Vehicle Listings, and AI-generated recommendations. Without it, your inventory is invisible to the algorithms that decide which dealer to recommend.',
 				},
 			},
 			{
 				'@type': 'Question',
-				name: 'Can AI replace legal content writers?',
+				name: 'How important are reviews for car dealer SEO?',
 				acceptedAnswer: {
 					'@type': 'Answer',
-					text: 'AI can assist with drafting and research, but legal content requires attorney review for accuracy, jurisdiction-specific nuance, and ethical compliance. Google treats legal content as YMYL and demands demonstrated expertise. The best approach is AI-assisted workflows with human attorney oversight to maintain E-E-A-T signals.',
+					text: 'Reviews are critical. They drive local pack rankings, Google Business Profile prominence, and are weighted heavily by AI systems when recommending a dealer. The CarGurus, DealerRater, and Google review profiles all feed into AI answer engines — a thin review footprint on any one of them hurts you across the board.',
 				},
 			},
 		],
@@ -70,8 +70,8 @@ const structuredData = [
 <html lang="en">
 	<head>
 		<BaseHead
-			title={`AI SEO for Lawyers and Law Firms | ${SITE_TITLE}`}
-			description="Lawyer SEO and law firm SEO services built for AI search. Get cited in Google AI Overviews, ChatGPT, and Perplexity."
+			title={`AI SEO for Auto Dealers and Dealer Groups | ${SITE_TITLE}`}
+			description="Auto dealership SEO and AI visibility services. Get cited in Google AI Overviews, ChatGPT, and Perplexity for model, trim, and local dealer queries."
 			structuredData={structuredData}
 		/>
 		<style>
@@ -143,12 +143,16 @@ const structuredData = [
 		<main id="main-content" class="svc-page">
 			<section class="svc-hero">
 				<div>
-					<span class="svc-kicker">AI SEO for Lawyers</span>
-					<h1>AI SEO for Lawyers and Law Firms</h1>
+					<span class="svc-kicker">AI SEO for Auto Dealers</span>
+					<h1>AI SEO for Auto Dealers and Dealer Groups</h1>
 				</div>
 				<div class="svc-hero-lede">
 					<p>
-						Legal queries are YMYL by default, and AI systems treat them with the strictest scrutiny. Google AI Overviews now answer questions like "do I need a lawyer for a car accident" directly in search results. ChatGPT fields thousands of legal questions every day. If your firm is not structured to be the cited source in these AI answers, you are losing clients before they ever reach your website. We help law firms build the <a href="/seo/eeat/">E-E-A-T signals</a> and technical foundation that AI systems need to trust and cite your content.
+						Car shoppers no longer compare on dealer lots. They ask ChatGPT to compare the 2026 RAV4
+						against the CR-V, ask Perplexity which dealer near them has the best reviews, and let
+						Google AI Overviews summarize "best lease deals on midsize SUVs." The dealer with rich
+						inventory schema, deep model content, and strong reviews gets the click. Everyone else
+						gets walked past.
 					</p>
 					<div class="svc-cta-row">
 						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
@@ -158,26 +162,26 @@ const structuredData = [
 			</section>
 
 			<figure class="svc-figure" aria-labelledby="svc-figure-caption">
-				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How law firms get cited by AI: attorney credentials, practice area pages, LegalService schema, and reviews flow into a cited firm recommendation">
+				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How auto dealers get cited by AI: Vehicle schema on inventory, model and trim content, GBP per rooftop, and multi-platform reviews flow into a cited dealer recommendation">
 					<rect width="1080" height="360" fill="rgb(246,245,240)" />
 					<g stroke="rgb(14,17,22)" stroke-opacity="0.06"><line x1="0" y1="48" x2="1080" y2="48" /><line x1="0" y1="312" x2="1080" y2="312" /></g>
 					<text x="48" y="32" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">INPUT SIGNALS</text>
-					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">YMYL FILTER</text>
+					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">AI SYNTHESIS</text>
 					<text x="1032" y="32" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(184,85,46)">CITED OUTCOME</text>
 					<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
-						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Attorney bar credentials</text></g>
-						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Practice area pages</text></g>
-						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Attorney + LegalService schema</text></g>
-						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Recent review velocity</text></g>
+						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Vehicle schema on VDPs</text></g>
+						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Model and trim content</text></g>
+						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">GBP per rooftop</text></g>
+						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Cross-platform reviews</text></g>
 					</g>
 					<g stroke="rgb(14,17,22)" stroke-opacity="0.2" fill="none">
 						<path d="M 288 100 C 360 100, 380 178, 440 178" /><path d="M 288 152 C 360 152, 380 178, 440 178" /><path d="M 288 204 C 360 204, 380 178, 440 178" /><path d="M 288 256 C 360 256, 380 178, 440 178" />
 					</g>
 					<g transform="translate(440 130)">
 						<rect width="200" height="100" fill="rgb(14,17,22)" rx="6" />
-						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES · YMYL</text>
+						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES</text>
 						<text x="100" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">ChatGPT · Perplexity</text>
-						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">AI Overviews · Claude</text>
+						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">AI Overviews · Vehicles</text>
 					</g>
 					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
 						<path d="M 640 180 C 700 180, 760 180, 820 180" />
@@ -187,38 +191,42 @@ const structuredData = [
 						<rect width="212" height="140" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="6" />
 						<circle cx="32" cy="38" r="18" fill="rgb(184,85,46)" />
 						<text x="32" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="rgb(250,250,247)">01</text>
-						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Cited law firm</text>
-						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">for car accident in Austin</text>
+						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Cited dealer</text>
+						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">for RAV4 in Phoenix</text>
 						<rect x="20" y="76" width="172" height="6" rx="1" fill="rgb(14,17,22)" fill-opacity="0.75" />
 						<rect x="20" y="88" width="140" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
 						<rect x="20" y="98" width="156" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
 						<rect x="20" y="108" width="120" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
 					</g>
-					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Legal CPCs are crushing. Organic and AI visibility is the only sustainable channel at scale.</text>
+					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">OEM templates lose. Dealers with structured inventory schema and original model content win the comparison.</text>
 				</svg>
 			</figure>
 
 			<section class="svc-section">
-				<h2>The challenge for law firms</h2>
-				<p>AI search is reshaping how potential clients find legal help, and law firms face unique risks that most industries do not.</p>
+				<h2>The challenge: car shopping is now AI-mediated</h2>
+				<p>
+					Auto shopping has been moving online for two decades. AI search is the final step:
+					a single conversation now compresses what used to be weeks of research, comparison
+					shopping, and dealer visits.
+				</p>
 				<div class="outcomes">
-					<div class="outcome"><strong>Zero-click legal answers</strong><span>Google AI Overviews now answer questions like "how to file for divorce" or "what to do after a car accident" without sending the user to any law firm website. If your content is not the source being cited, you get zero visibility.</span></div>
-					<div class="outcome"><strong>AI giving legal advice</strong><span>ChatGPT and Perplexity routinely answer "do I need a lawyer for X" questions. When they cite sources, those sources get the client. Firms without proper <a href="/seo/schema-markup/">schema markup</a> and authority signals are invisible in these responses.</span></div>
-					<div class="outcome"><strong>Strictest quality bar</strong><span>Legal content is classified as YMYL (Your Money or Your Life) by Google. It faces the highest E-E-A-T requirements of any content category. AI systems inherit these quality filters, making expertise signals non-negotiable for law firms.</span></div>
+					<div class="outcome"><strong>Model comparison happens in AI</strong><span>Shoppers ask ChatGPT to compare reliability, cost of ownership, and trim packages before they ever look at a dealer. The OEM and the dealer with the deepest model content get cited.</span></div>
+					<div class="outcome"><strong>Inventory schema decides visibility</strong><span>Google Vehicle Listings and AI answer engines pull from structured inventory data. Dealers without Vehicle schema are invisible in the surfaces that matter most.</span></div>
+					<div class="outcome"><strong>Reviews still close the loop</strong><span>Once a shopper picks a model, they ask AI which local dealer has the best reputation. Reviews on Google, DealerRater, and CarGurus feed those answers.</span></div>
 				</div>
 			</section>
 
 			<section class="svc-section">
-				<h2>What we do for law firms</h2>
-				<p>Three services designed specifically for the way AI search evaluates, cites, and surfaces legal content.</p>
+				<h2>What we do for auto dealers</h2>
+				<p>Three services built for inventory schema, model-specific authority, and the local pack the way AI systems now interpret it.</p>
 				<ol class="svc-list">
 					<li>
 						<div class="svc-row">
 							<span class="svc-row-num">01</span>
 							<div>
-								<h3>Legal Practice Visibility Audit</h3>
-								<p>We audit how your firm and practice areas appear across Google Search, AI Overviews, ChatGPT, and Perplexity. You get a clear map of where you are cited, where competitors are cited instead, and a prioritized action plan to close the gaps.</p>
-								<ul><li>AI citation audit by practice area</li><li>Competitor citation analysis</li><li>E-E-A-T gap assessment</li><li>Schema and structured data review</li><li>Prioritized action roadmap</li></ul>
+								<h3>Dealer Visibility Audit</h3>
+								<p>A complete review of how your dealership appears across Google Search, the local pack, AI Overviews, ChatGPT, and Perplexity for your brand, models, and city. You walk away with a prioritized roadmap built around the searches that produce VDP views and showroom visits.</p>
+								<ul><li>Inventory and VDP schema audit</li><li>Google Business Profile audit</li><li>AI citation analysis by model</li><li>Review profile and sentiment review</li><li>Competitor positioning</li></ul>
 							</div>
 						</div>
 					</li>
@@ -226,9 +234,9 @@ const structuredData = [
 						<div class="svc-row">
 							<span class="svc-row-num">02</span>
 							<div>
-								<h3>Attorney Authority Building</h3>
-								<p>We build the individual and firm-level <a href="/seo/eeat/">E-E-A-T signals</a> that AI systems use to decide which legal sources to trust. This includes attorney-level <a href="/seo/schema-markup/">schema markup</a>, author pages, credential surfacing, and content attribution that connects your lawyers to their expertise.</p>
-								<ul><li>Attorney Person schema implementation</li><li>Individual lawyer author pages</li><li>Credential and bar admission markup</li><li>Practice area topical authority mapping</li><li>Legal publication and citation building</li></ul>
+								<h3>Inventory and Model Authority</h3>
+								<p>Implementation work that turns your dealer site into the most complete resource for the brands and models you sell. The schema, content, and review systems that AI engines reward when recommending dealers.</p>
+								<ul><li>Vehicle and Product <a href="/seo/schema-markup/">schema</a> on VDPs</li><li>Model and trim landing pages</li><li>AutoDealer and LocalBusiness schema</li><li>Review generation across platforms</li><li>Service department and parts pages</li></ul>
 							</div>
 						</div>
 					</li>
@@ -236,9 +244,9 @@ const structuredData = [
 						<div class="svc-row">
 							<span class="svc-row-num">03</span>
 							<div>
-								<h3>Ongoing Legal AI SEO</h3>
-								<p>Monthly retainer combining content strategy for legal topics, <a href="/blog/local-seo-checklist-2026/">local SEO for office locations</a>, technical SEO maintenance, and AI citation monitoring. We keep your firm visible as AI search evolves and competitors adapt.</p>
-								<ul><li>Legal content production and optimization</li><li>Local SEO for each office location</li><li>AI citation monitoring and reporting</li><li>Technical SEO maintenance</li><li>Monthly strategy and performance reviews</li></ul>
+								<h3>Ongoing Dealer AI SEO</h3>
+								<p>Monthly support combining model content, new vehicle launches, technical SEO, Google Business Profile management, review systems, and AI citation monitoring so you stay the cited dealer for your brand and city.</p>
+								<ul><li>Monthly model and trim content</li><li>Google Business Profile management</li><li>Review velocity across all platforms</li><li>AI citation monitoring and monthly reporting</li></ul>
 							</div>
 						</div>
 					</li>
@@ -246,48 +254,48 @@ const structuredData = [
 			</section>
 
 			<section class="svc-section">
-				<h2>Why law firms specifically</h2>
-				<p>Legal SEO is not just another vertical. It operates under constraints that make <a href="/ai-seo-shift/">AI SEO</a> more urgent and more impactful than in most industries.</p>
+				<h2>Why auto dealers need AI SEO now</h2>
+				<p>Per-vehicle gross plus lifetime service revenue makes auto one of the highest-LTV verticals in SEO. AI search visibility is now the cheapest, most durable way to capture that demand.</p>
 				<div class="outcomes">
-					<div class="outcome"><strong>YMYL means strictest evaluation</strong><span>Google classifies legal content as Your Money or Your Life. Every quality signal, from author credentials to citation accuracy, is scrutinized more heavily than in non-YMYL verticals. AI systems apply the same filters.</span></div>
-					<div class="outcome"><strong>Highest CPC in all of SEO</strong><span>Legal keywords carry the highest cost-per-click in paid search, often $50 to $200+ per click. Organic and AI visibility is not optional for law firms, it is the only sustainable acquisition channel at scale.</span></div>
-					<div class="outcome"><strong>E-E-A-T matters most</strong><span>Experience, expertise, authoritativeness, and trustworthiness are not suggestions for legal content. They are requirements. Firms that invest in these signals get cited by AI. Firms that do not get replaced by AI-generated summaries.</span></div>
+					<div class="outcome"><strong>OEM templates leave gaps</strong><span>Most dealer sites run on OEM-supplied templates with thin original content. AI systems reward depth and original writing, leaving an opening for dealers willing to invest beyond the template.</span></div>
+					<div class="outcome"><strong>Inventory is your moat</strong><span>Properly schema-marked inventory pages get pulled into Google Vehicle Listings, rich results, and AI-generated recommendations. Most competitors leave this on the table.</span></div>
+					<div class="outcome"><strong>Reviews drive AI recommendations</strong><span>Dealers with strong review velocity across Google, DealerRater, and CarGurus dominate AI-generated "best dealer near me" answers. Velocity matters as much as volume.</span></div>
 				</div>
 			</section>
 
 			<section class="svc-section" id="quote">
-				<h2>Get a quote for your law firm</h2>
+				<h2>Get a quote for dealer SEO</h2>
 				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
 				<div class="contact-block">
 					<div class="contact-card">
 						<h3>Book a strategy call</h3>
-						<p>We will review your firm's current AI search visibility, identify the practice areas with the biggest gaps, and outline next steps.</p>
+						<p>We will review your dealership's current visibility, your brand and inventory mix, and where AI SEO can have the biggest impact on VDP views and showroom visits.</p>
 						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
 					</div>
 					<div class="contact-card">
 						<h3 id="quote-form-heading">Request a quote by form</h3>
-						<p>Tell us about your firm, practice areas, and goals. We will reply with a tailored proposal.</p>
+						<p>Tell us about your dealership, brand, and goals, and we will reply with a tailored plan.</p>
 						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
 							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-							<input type="hidden" name="subject" value="New lawyer SEO quote request from aiseoshift.com" />
-							<input type="hidden" name="from_name" value="AISEOShift Lawyer SEO Quote Form" />
+							<input type="hidden" name="subject" value="Auto dealer SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Auto Dealer SEO Quote Form" />
 							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
 							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
 							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
 							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
 							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
-							<label for="q-company">Firm name / website</label>
+							<label for="q-company">Dealership / website</label>
 							<input id="q-company" type="text" name="company" autocomplete="organization" />
 							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
 							<select id="q-service" name="service" required aria-required="true">
 								<option value="">Select a service…</option>
-								<option value="Legal Practice Visibility Audit">Legal Practice Visibility Audit</option>
-								<option value="Attorney Authority Building">Attorney Authority Building</option>
-								<option value="Ongoing Legal AI SEO">Ongoing Legal AI SEO</option>
+								<option value="Dealer Visibility Audit">Dealer Visibility Audit</option>
+								<option value="Inventory and Model Authority">Inventory and Model Authority</option>
+								<option value="Ongoing Dealer AI SEO">Ongoing Dealer AI SEO</option>
 								<option value="Not sure yet">Not sure yet</option>
 							</select>
-							<label for="q-message">Tell us about your firm and goals <span class="req" aria-hidden="true">*</span></label>
-							<textarea id="q-message" name="message" required aria-required="true" placeholder="Practice areas, number of attorneys, office locations, and what you are trying to achieve."></textarea>
+							<label for="q-message">Tell us about your dealership and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Brands sold, number of rooftops, market, and what you are trying to achieve."></textarea>
 							<button type="submit">Send quote request</button>
 							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
 						</form>
@@ -296,27 +304,27 @@ const structuredData = [
 			</section>
 
 			<section class="svc-section">
-				<h2>FAQs about lawyer SEO</h2>
+				<h2>Dealer SEO FAQs</h2>
 				<ul class="faq-list">
 					<li>
-						<h3>How much does SEO cost for law firms?</h3>
-						<p>Law firm SEO typically ranges from $2,500 to $10,000 per month depending on the number of practice areas, office locations, and competition level. One-time audits start lower. AI SEO adds a layer of optimization for answer engines like ChatGPT and Google AI Overviews, which may affect pricing depending on scope.</p>
+						<h3>How much does SEO cost for auto dealerships?</h3>
+						<p>Auto dealer SEO typically ranges from $2,500 to $10,000 per month depending on franchise size, number of rooftops, and brand competition. Single-rooftop independents need less than multi-brand dealer groups. The investment reflects the high vehicle gross margins and lifetime service revenue that make dealer SEO one of the strongest ROI channels.</p>
 					</li>
 					<li>
-						<h3>How long does lawyer SEO take?</h3>
-						<p>Most law firms see measurable improvements in 3 to 6 months. Competitive practice areas like personal injury or criminal defense can take longer. AI citation visibility can sometimes improve faster because answer engines re-index and re-evaluate sources on a different cadence than traditional rankings.</p>
+						<h3>How long does dealer SEO take to work?</h3>
+						<p>Most dealerships see measurable improvements in three to six months. Inventory pages, model-specific landing pages, and Google Business Profile work tend to show fastest results. Generic "car dealer near me" terms can take longer in major metros, but model-and-trim long-tail queries often rank within weeks.</p>
 					</li>
 					<li>
-						<h3>Do law firms need AI SEO?</h3>
-						<p>Yes. Legal queries are among the most common questions asked in AI tools like ChatGPT and Google AI Overviews. If your firm is not structured to be cited in those answers, potential clients are finding your competitors instead. YMYL content like legal advice faces the strictest quality evaluation from both Google and AI systems.</p>
+						<h3>Do auto dealers need AI SEO?</h3>
+						<p>Yes. Shoppers now ask ChatGPT to compare models, ask Perplexity for reliability data, and use Google AI Overviews to summarize "best mid-size SUV under 40k." Dealers that get cited in those <a href="/ai-seo-shift/">AI answers</a> and that have inventory-rich, schema-marked sites win the lead. Dealers that rely on OEM-supplied templates with thin content do not.</p>
 					</li>
 					<li>
-						<h3>What is local SEO for lawyers?</h3>
-						<p>Local SEO for lawyers is the practice of optimizing your firm to appear in location-based searches such as "personal injury lawyer near me" or "divorce attorney in Chicago." It includes Google Business Profile optimization, local citations, reviews, and geo-targeted content. AI search now incorporates local signals too, making <a href="/blog/local-seo-checklist-2026/">local SEO</a> critical for AI visibility.</p>
+						<h3>What is inventory schema for dealerships?</h3>
+						<p>Vehicle and Product <a href="/seo/schema-markup/">schema</a> on inventory pages tells Google and AI systems exactly what is on your lot — make, model, year, trim, mileage, VIN, price. Properly marked-up inventory pages get pulled into rich results, Google Vehicle Listings, and AI-generated recommendations. Without it, your inventory is invisible to the algorithms that decide which dealer to recommend.</p>
 					</li>
 					<li>
-						<h3>Can AI replace legal content writers?</h3>
-						<p>AI can assist with drafting and research, but legal content requires attorney review for accuracy, jurisdiction-specific nuance, and ethical compliance. Google treats legal content as YMYL and demands demonstrated expertise. The best approach is AI-assisted workflows with human attorney oversight to maintain <a href="/seo/eeat/">E-E-A-T signals</a>.</p>
+						<h3>How important are reviews for car dealer SEO?</h3>
+						<p>Reviews are critical. They drive local pack rankings, Google Business Profile prominence, and are weighted heavily by AI systems when recommending a dealer. The CarGurus, DealerRater, and Google review profiles all feed into AI answer engines — a thin review footprint on any one of them hurts you across the board.</p>
 					</li>
 				</ul>
 			</section>

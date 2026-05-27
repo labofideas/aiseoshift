@@ -15,6 +15,22 @@ const structuredData = {
 	serviceType: 'AI SEO Services',
 	description:
 		'AI SEO services for businesses that need visibility in Google, ChatGPT, Perplexity, Claude, and other AI search environments.',
+	hasOfferCatalog: {
+		'@type': 'OfferCatalog',
+		name: 'AI SEO services by industry',
+		itemListElement: [
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Dentists', url: 'https://aiseoshift.com/ai-seo-services/dentists/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Doctors and Medical Practices', url: 'https://aiseoshift.com/ai-seo-services/doctors/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Chiropractors', url: 'https://aiseoshift.com/ai-seo-services/chiropractors/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Real Estate Agents', url: 'https://aiseoshift.com/ai-seo-services/real-estate-agents/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Home Services', url: 'https://aiseoshift.com/ai-seo-services/home-services/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Restaurants', url: 'https://aiseoshift.com/ai-seo-services/restaurants/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Auto Dealers', url: 'https://aiseoshift.com/ai-seo-services/auto-dealers/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Lawyers and Law Firms', url: 'https://aiseoshift.com/ai-seo-services/lawyers/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for Accountants and CPA Firms', url: 'https://aiseoshift.com/ai-seo-services/accountants/' } },
+			{ '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'AI SEO for SaaS Companies', url: 'https://aiseoshift.com/ai-seo-services/saas/' } },
+		],
+	},
 };
 ---
 
@@ -84,6 +100,17 @@ const structuredData = {
 			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
 			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
 			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+
+			.industries { margin: var(--space-5) 0 0; display: flex; flex-direction: column; gap: var(--space-7); }
+			.industry-group h3 { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: var(--ink-muted); margin: 0 0 var(--space-3); letter-spacing: 0; }
+			.industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+			.industry-card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4) var(--space-5) var(--space-4) 0; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); text-decoration: none; color: inherit; transition: background 120ms ease; }
+			.industry-card:hover { background: rgb(var(--paper-strong)); }
+			.industry-card:hover .industry-name { color: var(--signal-deep); }
+			.industry-card .industry-name { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.012em; padding-left: var(--space-5); }
+			.industry-card .industry-name::after { content: ' →'; color: var(--ink-muted); font-weight: 400; }
+			.industry-card .industry-desc { font-size: 0.88rem; line-height: 1.5; color: var(--ink-muted); padding-left: var(--space-5); max-width: 36ch; }
+			@media (max-width: 540px) { .industry-card { border-right: none; } }
 		</style>
 	</head>
 	<body>
@@ -102,7 +129,7 @@ const structuredData = {
 					</p>
 					<div class="svc-cta-row">
 						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
-						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+						<a class="svc-btn svc-btn-secondary" href="#industries">See by industry</a>
 					</div>
 				</div>
 			</section>
@@ -151,6 +178,68 @@ const structuredData = {
 					<div class="outcome"><strong>Both surfaces</strong><span>Optimization for Google rankings and AI answer visibility together.</span></div>
 					<div class="outcome"><strong>Authority first</strong><span>Content and structure built around expertise, trust, and topical depth.</span></div>
 					<div class="outcome"><strong>Measured</strong><span>Reporting that looks beyond rankings into citations, branded demand, and qualified traffic.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="industries">
+				<h2>By industry</h2>
+				<p>Dedicated AI SEO playbooks for the verticals we work in most often. Each industry page covers the audit, implementation, and ongoing retainer offers tailored to that business model — pricing ranges, schema patterns, and competitive realities included.</p>
+				<div class="industries">
+					<div class="industry-group">
+						<h3>Healthcare</h3>
+						<div class="industry-grid">
+							<a class="industry-card" href="/ai-seo-services/dentists/">
+								<span class="industry-name">AI SEO for Dentists</span>
+								<span class="industry-desc">Patient discovery for dental practices. Local pack, review velocity, procedure pages, Dentist schema.</span>
+							</a>
+							<a class="industry-card" href="/ai-seo-services/doctors/">
+								<span class="industry-name">AI SEO for Doctors</span>
+								<span class="industry-desc">YMYL-grade visibility for medical practices. Physician E-E-A-T, condition pages, Physician schema.</span>
+							</a>
+							<a class="industry-card" href="/ai-seo-services/chiropractors/">
+								<span class="industry-name">AI SEO for Chiropractors</span>
+								<span class="industry-desc">Sciatica, herniated disc, sports injuries. Condition pages, GBP, and HIPAA-safe review systems.</span>
+							</a>
+						</div>
+					</div>
+					<div class="industry-group">
+						<h3>Local services</h3>
+						<div class="industry-grid">
+							<a class="industry-card" href="/ai-seo-services/real-estate-agents/">
+								<span class="industry-name">AI SEO for Real Estate</span>
+								<span class="industry-desc">Hyperlocal authority for agents and brokerages. Neighborhood pages, RealEstateAgent schema, reviews.</span>
+							</a>
+							<a class="industry-card" href="/ai-seo-services/home-services/">
+								<span class="industry-name">AI SEO for Home Services</span>
+								<span class="industry-desc">Plumbers, electricians, HVAC, roofing. Local pack domination, service-area pages, review velocity.</span>
+							</a>
+							<a class="industry-card" href="/ai-seo-services/restaurants/">
+								<span class="industry-name">AI SEO for Restaurants</span>
+								<span class="industry-desc">Independents and restaurant groups. Menu schema with dietary tags, GBP, atmosphere content.</span>
+							</a>
+							<a class="industry-card" href="/ai-seo-services/auto-dealers/">
+								<span class="industry-name">AI SEO for Auto Dealers</span>
+								<span class="industry-desc">New and used dealerships. Vehicle schema on VDPs, model and trim content, multi-platform reviews.</span>
+							</a>
+						</div>
+					</div>
+					<div class="industry-group">
+						<h3>Professional services and B2B</h3>
+						<div class="industry-grid">
+							<a class="industry-card" href="/ai-seo-services/lawyers/">
+								<span class="industry-name">AI SEO for Lawyers</span>
+								<span class="industry-desc">Practice area pages, attorney E-E-A-T, LegalService schema. Built for YMYL legal queries.</span>
+							</a>
+							<a class="industry-card" href="/ai-seo-services/accountants/">
+								<span class="industry-name">AI SEO for Accountants</span>
+								<span class="industry-desc">CPA firms and bookkeepers. Specialty depth, seasonal content cadence, AccountingService schema.</span>
+							</a>
+							<a class="industry-card" href="/ai-seo-services/saas/">
+								<span class="industry-name">AI SEO for SaaS</span>
+								<span class="industry-desc">B2B platforms and software. Comparison pages, programmatic SEO, SoftwareApplication schema.</span>
+							</a>
+						</div>
+					</div>
 				</div>
 			</section>
 
