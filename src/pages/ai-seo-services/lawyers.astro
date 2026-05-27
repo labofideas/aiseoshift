@@ -1,0 +1,315 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO for Law Firms',
+		description:
+			'AI SEO services for lawyers and law firms that need visibility in Google, AI Overviews, ChatGPT, Perplexity, and other AI search environments.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				name: 'How much does SEO cost for law firms?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Law firm SEO typically ranges from $2,500 to $10,000 per month depending on the number of practice areas, office locations, and competition level. One-time audits start lower. AI SEO adds a layer of optimization for answer engines like ChatGPT and Google AI Overviews, which may affect pricing depending on scope.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'How long does lawyer SEO take?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Most law firms see measurable improvements in 3 to 6 months. Competitive practice areas like personal injury or criminal defense can take longer. AI citation visibility can sometimes improve faster because answer engines re-index and re-evaluate sources on a different cadence than traditional rankings.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Do law firms need AI SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. Legal queries are among the most common questions asked in AI tools like ChatGPT and Google AI Overviews. If your firm is not structured to be cited in those answers, potential clients are finding your competitors instead. YMYL content like legal advice faces the strictest quality evaluation from both Google and AI systems.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'What is local SEO for lawyers?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Local SEO for lawyers is the practice of optimizing your firm to appear in location-based searches such as "personal injury lawyer near me" or "divorce attorney in Chicago." It includes Google Business Profile optimization, local citations, reviews, and geo-targeted content. AI search now incorporates local signals too, making local SEO critical for AI visibility.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Can AI replace legal content writers?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'AI can assist with drafting and research, but legal content requires attorney review for accuracy, jurisdiction-specific nuance, and ethical compliance. Google treats legal content as YMYL and demands demonstrated expertise. The best approach is AI-assisted workflows with human attorney oversight to maintain E-E-A-T signals.',
+				},
+			},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for Lawyers and Law Firms | ${SITE_TITLE}`}
+			description="Lawyer SEO and law firm SEO services built for AI search. Get cited in Google AI Overviews, ChatGPT, and Perplexity."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for Lawyers</span>
+					<h1>AI SEO for Lawyers and Law Firms</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Legal queries are YMYL by default, and AI systems treat them with the strictest scrutiny. Google AI Overviews now answer questions like "do I need a lawyer for a car accident" directly in search results. ChatGPT fields thousands of legal questions every day. If your firm is not structured to be the cited source in these AI answers, you are losing clients before they ever reach your website. We help law firms build the <a href="/seo/eeat/">E-E-A-T signals</a> and technical foundation that AI systems need to trust and cite your content.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>The challenge for law firms</h2>
+				<p>AI search is reshaping how potential clients find legal help, and law firms face unique risks that most industries do not.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Zero-click legal answers</strong><span>Google AI Overviews now answer questions like "how to file for divorce" or "what to do after a car accident" without sending the user to any law firm website. If your content is not the source being cited, you get zero visibility.</span></div>
+					<div class="outcome"><strong>AI giving legal advice</strong><span>ChatGPT and Perplexity routinely answer "do I need a lawyer for X" questions. When they cite sources, those sources get the client. Firms without proper <a href="/seo/schema-markup/">schema markup</a> and authority signals are invisible in these responses.</span></div>
+					<div class="outcome"><strong>Strictest quality bar</strong><span>Legal content is classified as YMYL (Your Money or Your Life) by Google. It faces the highest E-E-A-T requirements of any content category. AI systems inherit these quality filters, making expertise signals non-negotiable for law firms.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for law firms</h2>
+				<p>Three services designed specifically for the way AI search evaluates, cites, and surfaces legal content.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Legal Practice Visibility Audit</h3>
+								<p>We audit how your firm and practice areas appear across Google Search, AI Overviews, ChatGPT, and Perplexity. You get a clear map of where you are cited, where competitors are cited instead, and a prioritized action plan to close the gaps.</p>
+								<ul><li>AI citation audit by practice area</li><li>Competitor citation analysis</li><li>E-E-A-T gap assessment</li><li>Schema and structured data review</li><li>Prioritized action roadmap</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Attorney Authority Building</h3>
+								<p>We build the individual and firm-level <a href="/seo/eeat/">E-E-A-T signals</a> that AI systems use to decide which legal sources to trust. This includes attorney-level <a href="/seo/schema-markup/">schema markup</a>, author pages, credential surfacing, and content attribution that connects your lawyers to their expertise.</p>
+								<ul><li>Attorney Person schema implementation</li><li>Individual lawyer author pages</li><li>Credential and bar admission markup</li><li>Practice area topical authority mapping</li><li>Legal publication and citation building</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing Legal AI SEO</h3>
+								<p>Monthly retainer combining content strategy for legal topics, <a href="/blog/local-seo-checklist-2026/">local SEO for office locations</a>, technical SEO maintenance, and AI citation monitoring. We keep your firm visible as AI search evolves and competitors adapt.</p>
+								<ul><li>Legal content production and optimization</li><li>Local SEO for each office location</li><li>AI citation monitoring and reporting</li><li>Technical SEO maintenance</li><li>Monthly strategy and performance reviews</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why law firms specifically</h2>
+				<p>Legal SEO is not just another vertical. It operates under constraints that make <a href="/ai-seo-shift/">AI SEO</a> more urgent and more impactful than in most industries.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>YMYL means strictest evaluation</strong><span>Google classifies legal content as Your Money or Your Life. Every quality signal, from author credentials to citation accuracy, is scrutinized more heavily than in non-YMYL verticals. AI systems apply the same filters.</span></div>
+					<div class="outcome"><strong>Highest CPC in all of SEO</strong><span>Legal keywords carry the highest cost-per-click in paid search, often $50 to $200+ per click. Organic and AI visibility is not optional for law firms, it is the only sustainable acquisition channel at scale.</span></div>
+					<div class="outcome"><strong>E-E-A-T matters most</strong><span>Experience, expertise, authoritativeness, and trustworthiness are not suggestions for legal content. They are requirements. Firms that invest in these signals get cited by AI. Firms that do not get replaced by AI-generated summaries.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote for your law firm</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your firm's current AI search visibility, identify the practice areas with the biggest gaps, and outline next steps.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your firm, practice areas, and goals. We will reply with a tailored proposal.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="New lawyer SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Lawyer SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Firm name / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+								<option value="Legal Practice Visibility Audit">Legal Practice Visibility Audit</option>
+								<option value="Attorney Authority Building">Attorney Authority Building</option>
+								<option value="Ongoing Legal AI SEO">Ongoing Legal AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your firm and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Practice areas, number of attorneys, office locations, and what you are trying to achieve."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>FAQs about lawyer SEO</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does SEO cost for law firms?</h3>
+						<p>Law firm SEO typically ranges from $2,500 to $10,000 per month depending on the number of practice areas, office locations, and competition level. One-time audits start lower. AI SEO adds a layer of optimization for answer engines like ChatGPT and Google AI Overviews, which may affect pricing depending on scope.</p>
+					</li>
+					<li>
+						<h3>How long does lawyer SEO take?</h3>
+						<p>Most law firms see measurable improvements in 3 to 6 months. Competitive practice areas like personal injury or criminal defense can take longer. AI citation visibility can sometimes improve faster because answer engines re-index and re-evaluate sources on a different cadence than traditional rankings.</p>
+					</li>
+					<li>
+						<h3>Do law firms need AI SEO?</h3>
+						<p>Yes. Legal queries are among the most common questions asked in AI tools like ChatGPT and Google AI Overviews. If your firm is not structured to be cited in those answers, potential clients are finding your competitors instead. YMYL content like legal advice faces the strictest quality evaluation from both Google and AI systems.</p>
+					</li>
+					<li>
+						<h3>What is local SEO for lawyers?</h3>
+						<p>Local SEO for lawyers is the practice of optimizing your firm to appear in location-based searches such as "personal injury lawyer near me" or "divorce attorney in Chicago." It includes Google Business Profile optimization, local citations, reviews, and geo-targeted content. AI search now incorporates local signals too, making <a href="/blog/local-seo-checklist-2026/">local SEO</a> critical for AI visibility.</p>
+					</li>
+					<li>
+						<h3>Can AI replace legal content writers?</h3>
+						<p>AI can assist with drafting and research, but legal content requires attorney review for accuracy, jurisdiction-specific nuance, and ethical compliance. Google treats legal content as YMYL and demands demonstrated expertise. The best approach is AI-assisted workflows with human attorney oversight to maintain <a href="/seo/eeat/">E-E-A-T signals</a>.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

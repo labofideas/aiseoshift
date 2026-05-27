@@ -1,0 +1,323 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	provider: { '@type': 'Organization', name: SITE_TITLE },
+	areaServed: 'Worldwide',
+	serviceType: 'AI SEO for Dental Practices',
+	description:
+		'AI SEO services for dentists and dental practices that need visibility in Google, AI Overviews, ChatGPT, and other AI search environments.',
+};
+
+const faqStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: [
+		{
+			'@type': 'Question',
+			name: 'How much does dental SEO cost?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Dental SEO costs vary based on your market, competition, and goals. A one-time AI visibility audit for a dental practice typically starts at a fixed project fee, while ongoing dental SEO retainers are priced monthly based on scope. Book a free strategy call to get a quote tailored to your practice.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'How long does dental SEO take to work?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Most dental practices see measurable improvements in local rankings and AI citations within three to six months. Competitive metro areas may take longer. Quick wins like Google Business Profile optimization and schema markup can improve visibility within weeks.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'Do dentists need AI SEO?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Yes. Patients increasingly use AI tools like Google AI Overviews and ChatGPT to research dentists, compare procedures, and find recommendations. If your practice is not structured for AI discovery, you are invisible in a growing share of patient searches.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'What is Google Business Profile optimization for dentists?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Google Business Profile optimization for dentists involves completing every field in your profile, choosing accurate dental service categories, adding photos, responding to reviews, posting updates, and ensuring your NAP information is consistent across directories. A well-optimized profile improves your chances of appearing in the local pack and in AI-generated recommendations.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'How important are reviews for dental SEO?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Reviews are critical for dental SEO. They directly influence local pack rankings, build E-E-A-T signals, and are used by AI systems when generating recommendations. Google AI Overviews and ChatGPT both reference review sentiment and volume when suggesting dental practices to users.',
+			},
+		},
+	],
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for Dentists and Dental Practices | ${SITE_TITLE}`}
+			description="Dental SEO services powered by AI. Help patients find your dentist practice in Google, AI Overviews, and ChatGPT search results."
+			structuredData={structuredData}
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for Dentists</span>
+					<h1>AI SEO for Dentists and Dental Practices</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Patients now ask Google AI Overviews and ChatGPT for dentist recommendations instead of scrolling through ten blue links.
+						Reviews, local authority, and structured content power these AI answers. If your dental practice is not optimized
+						for <a href="/ai-seo-shift/">AI search</a>, you are losing new patients to competitors who are.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>The challenge: AI search is changing how patients find dentists</h2>
+				<p>
+					Traditional dental SEO focused on ranking in the local pack and map results. That still matters, but the landscape has shifted.
+					AI systems now answer patient questions directly, and many searches never result in a click to your website.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>AI Overviews answer dental queries</strong><span>Google AI Overviews now summarize answers to questions like "best dentist near me" and "does teeth whitening damage enamel" directly in search results, reducing clicks to practice websites.</span></div>
+					<div class="outcome"><strong>ChatGPT recommends practices</strong><span>Patients ask ChatGPT and Perplexity for dentist recommendations. These tools pull from reviews, structured data, and authoritative content to generate their answers.</span></div>
+					<div class="outcome"><strong>Zero-click searches grow</strong><span>Queries like "dentist near me," "emergency dentist open now," and "Invisalign cost" increasingly get answered without a click. Your practice needs to be the source AI cites, not just a search result.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for dental practices</h2>
+				<p>Three services built specifically for dentists covering audits, patient discovery, and ongoing AI visibility across Google and AI answer engines.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Dental Practice Visibility Audit</h3>
+								<p>A comprehensive review of how your dental practice appears across Google Search, the local pack, AI Overviews, and ChatGPT, with a prioritized action plan tailored to your market.</p>
+								<ul><li>Google Business Profile audit</li><li>AI citation and mention analysis</li><li>Review sentiment and volume assessment</li><li><a href="/seo/eeat/">E-E-A-T</a> and trust signal review</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Patient Discovery Optimization</h3>
+								<p>Implementation work that makes your dental practice easier for both search engines and AI systems to understand, trust, and recommend to patients.</p>
+								<ul><li>Local SEO and <a href="/blog/local-seo-checklist-2026/">local pack optimization</a></li><li><a href="/seo/schema-markup/">Schema markup</a> for dental services and providers</li><li>Procedure and treatment pages</li><li>Internal linking and site structure</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing Dental AI SEO</h3>
+								<p>Monthly support combining content production, review generation strategy, technical SEO, and AI citation monitoring to keep your practice visible as search evolves.</p>
+								<ul><li>Content for dental conditions and procedures</li><li>Review generation and response strategy</li><li>Local presence and citation management</li><li>Monthly AI visibility reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why dental practices need AI SEO now</h2>
+				<p>
+					Dentistry is one of the most searched local service categories, and AI is reshaping how patients make decisions.
+					Practices that adapt early will capture the patients that competitors miss.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Patients research first</strong><span>Most patients search online before booking a dental appointment. They read reviews, compare procedures, and check credentials, increasingly through AI-powered tools.</span></div>
+					<div class="outcome"><strong>Reviews drive AI answers</strong><span>AI systems weigh review volume, recency, and sentiment heavily when recommending local businesses. Your reviews directly affect whether AI tools suggest your practice.</span></div>
+					<div class="outcome"><strong>YMYL and local pack</strong><span>Dental services fall under Google's "Your Money or Your Life" category, meaning <a href="/seo/eeat/">E-E-A-T signals</a> matter more. Local pack dominance requires structured data, consistent citations, and strong authority.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote for dental SEO</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your current visibility, your patient acquisition goals, and where AI SEO can have the biggest impact for your dental practice.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your dental practice, your goals, and we will reply with next steps.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="Dental SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Dental SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Practice name / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+								<option value="Dental Practice Visibility Audit">Dental Practice Visibility Audit</option>
+								<option value="Patient Discovery Optimization">Patient Discovery Optimization</option>
+								<option value="Ongoing Dental AI SEO">Ongoing Dental AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">What are you trying to achieve? <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Tell us about your dental practice, location, and goals."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Dental SEO FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does dental SEO cost?</h3>
+						<p>Dental SEO costs vary based on your market, competition, and goals. A one-time AI visibility audit for a dental practice typically starts at a fixed project fee, while ongoing dental SEO retainers are priced monthly based on scope. Book a <a href={CALENDLY_URL}>free strategy call</a> to get a quote tailored to your practice.</p>
+					</li>
+					<li>
+						<h3>How long does dental SEO take to work?</h3>
+						<p>Most dental practices see measurable improvements in local rankings and AI citations within three to six months. Competitive metro areas may take longer. Quick wins like Google Business Profile optimization and <a href="/seo/schema-markup/">schema markup</a> can improve visibility within weeks.</p>
+					</li>
+					<li>
+						<h3>Do dentists need AI SEO?</h3>
+						<p>Yes. Patients increasingly use AI tools like Google AI Overviews and ChatGPT to research dentists, compare procedures, and find recommendations. If your practice is not structured for <a href="/ai-seo-shift/">AI discovery</a>, you are invisible in a growing share of patient searches.</p>
+					</li>
+					<li>
+						<h3>What is Google Business Profile optimization for dentists?</h3>
+						<p>Google Business Profile optimization for dentists involves completing every field in your profile, choosing accurate dental service categories, adding photos, responding to reviews, posting updates, and ensuring your NAP information is consistent across directories. A well-optimized profile improves your chances of appearing in the local pack and in AI-generated recommendations.</p>
+					</li>
+					<li>
+						<h3>How important are reviews for dental SEO?</h3>
+						<p>Reviews are critical for dental SEO. They directly influence local pack rankings, build <a href="/seo/eeat/">E-E-A-T signals</a>, and are used by AI systems when generating recommendations. Google AI Overviews and ChatGPT both reference review sentiment and volume when suggesting dental practices to users.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
