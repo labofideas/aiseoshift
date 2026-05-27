@@ -1,0 +1,280 @@
+---
+title: "Legal Schema Markup for Law Firms: Attorney, LegalService, and FAQPage in 2026"
+description: Complete legal schema markup guide for law firms. Attorney, LegalService, Person with credentials, and FAQPage schema with copy-paste JSON-LD examples.
+deck: Schema is how AI engines verify bar admissions and classify legal content. Most firm sites have none. Here is the implementation that gets cited in YMYL legal queries.
+pubDate: 2026-05-27
+category: Playbooks
+tags:
+  - schema markup
+  - lawyer SEO
+  - structured data
+  - YMYL SEO
+author: Shashank Dubey
+featured: false
+---
+
+When ChatGPT recommends a personal injury lawyer in Austin, it verifies that the firm is an actual law firm with attorneys admitted to the Texas bar and that they handle personal injury cases. Schema markup is the primary mechanism. Firms with structured `Attorney` and `LegalService` schema get verified and cited. Firms without it have to be inferred — and AI engines often skip inference for YMYL content.
+
+This is the implementation guide.
+
+For the strategic context, see the pillar on [AI SEO for law firms](/blog/ai-seo-for-law-firms-2026/), the [attorney authority post](/blog/attorney-authority-eeat-law-firms/), and the broader [schema markup guide](/seo/schema-markup/). For a structured engagement, see our [AI SEO services for lawyers](/ai-seo-services/lawyers/).
+
+## The schema types every law firm needs
+
+### 1. LegalService schema on the firm homepage
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Smith & Associates Law Firm",
+  "image": "https://example.com/logo.png",
+  "url": "https://example.com",
+  "telephone": "+1-512-555-0100",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1500 W 5th St",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78703"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.2672,
+    "longitude": -97.7431
+  },
+  "areaServed": [
+    { "@type": "State", "name": "Texas" }
+  ],
+  "knowsAbout": [
+    "Personal injury",
+    "Car accidents",
+    "Wrongful death",
+    "Premises liability",
+    "Medical malpractice"
+  ],
+  "priceRange": "Contingency fee",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "127"
+  }
+}
+```
+
+The `knowsAbout` array is critical — it tells AI engines exactly which practice areas your firm handles.
+
+### 2. Attorney schema for each lawyer
+
+Every attorney's bio page needs `Person` schema typed as `Attorney` with full credential markup.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Attorney",
+  "name": "John Smith",
+  "honorificSuffix": "Esq.",
+  "image": "https://example.com/attorneys/john-smith.jpg",
+  "url": "https://example.com/attorneys/john-smith",
+  "jobTitle": "Managing Partner",
+  "telephone": "+1-512-555-0101",
+  "email": "john@example.com",
+  "worksFor": {
+    "@type": "LegalService",
+    "name": "Smith & Associates Law Firm",
+    "url": "https://example.com"
+  },
+  "knowsAbout": [
+    "Personal injury",
+    "Car accidents",
+    "Wrongful death"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "license",
+      "name": "Texas State Bar Admission",
+      "identifier": "24012345",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "State Bar of Texas"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "license",
+      "name": "California State Bar Admission",
+      "identifier": "298765",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "State Bar of California"
+      }
+    }
+  ],
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Texas School of Law"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Rice University"
+    }
+  ],
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "Texas Trial Lawyers Association"
+    },
+    {
+      "@type": "Organization",
+      "name": "American Association for Justice"
+    }
+  ]
+}
+```
+
+The `hasCredential` array with bar admissions and identifiers is what makes credentials verifiable. AI engines cross-reference against state bar databases.
+
+### 3. LegalService schema on practice area pages
+
+Each practice area page gets `LegalService` schema scoped to that area.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Car Accident Lawyer in Austin - Smith & Associates",
+  "description": "Texas car accident representation for victims of negligent drivers...",
+  "provider": {
+    "@type": "Attorney",
+    "name": "John Smith",
+    "url": "https://example.com/attorneys/john-smith"
+  },
+  "areaServed": [
+    { "@type": "State", "name": "Texas" },
+    { "@type": "City", "name": "Austin" }
+  ],
+  "serviceType": "Personal Injury Representation - Car Accidents",
+  "priceRange": "Contingency fee, no fee unless we win"
+}
+```
+
+### 4. Article schema with attorney author attribution
+
+For blog posts and legal articles:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Texas Car Accident Statute of Limitations: What You Need to Know",
+  "datePublished": "2026-03-15",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Attorney",
+    "name": "John Smith",
+    "honorificSuffix": "Esq.",
+    "url": "https://example.com/attorneys/john-smith"
+  },
+  "publisher": {
+    "@type": "LegalService",
+    "name": "Smith & Associates Law Firm"
+  }
+}
+```
+
+### 5. FAQPage schema for FAQ sections
+
+Most AI Overview citations from law firm sites come from FAQ sections.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long do I have to file a car accident claim in Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Texas, you generally have two years from the date of a car accident to file a personal injury claim under the statute of limitations. There are limited exceptions that can extend or shorten this deadline. Missing the statute of limitations almost always bars recovery, so consulting with an attorney promptly is critical."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a lawyer for a minor car accident?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always, but consulting with a personal injury attorney is usually free and can help you understand whether your case warrants representation. Even seemingly minor accidents can produce delayed injuries or significant property damage. Most personal injury attorneys offer free initial consultations."
+      }
+    }
+  ]
+}
+```
+
+Answers should be 50 to 120 words. Too short and they get filtered. Too long and they do not get cited.
+
+## Implementation rules
+
+### Use JSON-LD in the page head
+
+Best for Google parsing.
+
+### Match schema to visible content
+
+If schema lists bar admissions, the bio page should display them visibly. Mismatch is treated as deceptive.
+
+### Keep credentials current
+
+Active and in good standing. Suspended or inactive bar admissions must be reflected in schema. Stale credentials are worse than no credentials.
+
+### Use bar number identifiers where appropriate
+
+State bar numbers in the `identifier` field improve verification signals.
+
+### Validate every change
+
+[https://validator.schema.org/](https://validator.schema.org/) and Google's [Rich Results Test](https://search.google.com/test/rich-results). Errors break the entire schema block.
+
+## What this gets you
+
+Full legal schema implementation:
+
+- Verifiable bar admissions feeding AI engine extraction
+- Practice areas explicitly machine-readable
+- Author attribution chain from article to attorney to credentials
+- FAQ sections eligible for AI Overview citation
+- Entity disambiguation between similarly-named firms
+
+## FAQs
+
+### Will schema improve rankings directly?
+
+Not as a direct factor. Schema affects eligibility for rich results, AI engine extraction, and credential verification. Downstream effect on visibility is significant.
+
+### How long until schema starts working?
+
+Google reprocesses within days of re-crawl. AI engines on slower cadence, typically 2 to 8 weeks. Visible effect within 30 to 90 days.
+
+### What about non-attorney staff (paralegals, intake)?
+
+Use `Person` schema with accurate credential markup. Do not type them as `Attorney`.
+
+### Can I include hourly rates in pricing schema?
+
+For most firms, contingency fee for personal injury is the appropriate pricing representation. For hourly billing, the `priceRange` field can describe hourly ranges. Most firms use general fee structure descriptions rather than specific dollar figures.
+
+### What if my firm does not have an aggregateRating yet?
+
+Omit the field rather than inventing data. AI engines cross-reference review counts against third-party platforms.
+
+## Where to go next
+
+The companion posts in this cluster:
+
+- [AI SEO for law firms: the 2026 playbook](/blog/ai-seo-for-law-firms-2026/)
+- [Practice area pages that win AI citations](/blog/practice-area-pages-law-firm-seo/)
+- [Attorney authority and E-E-A-T for law firms](/blog/attorney-authority-eeat-law-firms/)
+
+For a structured engagement, our [AI SEO services for lawyers](/ai-seo-services/lawyers/) page covers schema implementation as part of the attorney authority work.

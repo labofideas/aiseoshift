@@ -1,0 +1,273 @@
+---
+title: "Dental Schema and Procedure Pages: A 2026 Implementation Guide"
+description: How to structure procedure pages for dental practices and mark them up with Dentist, MedicalProcedure, and Person schema. Copy-paste JSON-LD examples.
+deck: Patients search by procedure, not by practice. Procedure pages with proper schema get cited by AI. Most dental sites have neither. Here is the build.
+pubDate: 2026-05-27
+category: Playbooks
+tags:
+  - schema markup
+  - dental SEO
+  - structured data
+  - AI visibility
+author: Shashank Dubey
+featured: false
+---
+
+Patients researching dental implants do not search "dentist in [city]." They search "dental implants [city]," "how much do dental implants cost," or "are dental implants worth it." The practices that get cited in AI Overviews and rank for these queries are the ones with dedicated procedure pages authored by licensed dentists and marked up with proper schema.
+
+This is the implementation guide.
+
+For the strategic context, see the pillar on [AI SEO for dental practices](/blog/ai-seo-for-dental-practices-2026/). For a structured engagement, see our [AI SEO services for dentists](/ai-seo-services/dentists/).
+
+## The procedures that need their own pages
+
+A complete dental content cluster covers:
+
+### Preventive
+
+- Cleanings and exams
+- Fluoride treatments
+- Sealants
+- Oral cancer screening
+
+### Restorative
+
+- Fillings
+- Crowns and bridges
+- Inlays and onlays
+- Dental implants
+- Dentures
+
+### Endodontic
+
+- Root canals
+- Apicoectomy
+
+### Cosmetic
+
+- Teeth whitening
+- Veneers
+- Bonding
+- Smile makeovers
+
+### Orthodontic
+
+- Invisalign and clear aligners
+- Traditional braces
+- Retainers
+
+### Surgical
+
+- Wisdom teeth extraction
+- Bone grafting
+- Sinus lifts
+- Periodontal surgery
+
+### Specialty
+
+- Pediatric dentistry
+- Sedation dentistry
+- Emergency dental care
+- TMJ treatment
+
+Not every practice should cover every procedure. Build pages for procedures you actually perform. Clinical depth matters more than breadth.
+
+## The anatomy of a procedure page
+
+A great procedure page is 1,500 to 2,500 words. The template:
+
+### Section 1: Patient-language summary
+
+A 60 to 120 word summary AI engines can extract directly.
+
+Example: "A dental implant is a titanium post surgically placed in the jawbone to replace a missing tooth root, topped with a custom crown. The full process typically takes 4 to 6 months including healing time. Dental implants are the most permanent and natural-feeling tooth replacement option, with success rates above 95 percent when placed by an experienced provider."
+
+### Section 2: What is [procedure]?
+
+A 200 to 400 word explanation. Anatomy, mechanism, what makes a candidate.
+
+### Section 3: When you need [procedure]
+
+The clinical indications and patient scenarios. AI engines extract this for "when do I need" queries.
+
+### Section 4: What to expect
+
+Walk the patient through the process step by step. Consultation, imaging, treatment, recovery. Realistic timelines.
+
+### Section 5: Cost and insurance
+
+Honest cost ranges (typically a range, not a fixed number) and insurance coverage commentary. This section is among the highest-trafficked and most extracted by AI.
+
+### Section 6: Dentist's perspective
+
+A 200 to 400 word quoted section from the dentist who performs the procedure. Strongest possible E-E-A-T signal — credentialed expert weighing in.
+
+### Section 7: Alternatives
+
+Honest acknowledgment of alternative approaches. "Dental implants vs. bridges vs. partial dentures." AI engines reward content that acknowledges trade-offs.
+
+### Section 8: FAQs
+
+8 to 12 questions in `FAQPage` schema.
+
+### Section 9: Booking CTA
+
+Same-day appointment availability, phone number, online booking.
+
+## Schema for the dental practice
+
+`Dentist` schema on the homepage:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": "Bright Smile Dental",
+  "image": "https://example.com/logo.png",
+  "url": "https://example.com",
+  "telephone": "+1-512-555-0100",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1500 W 5th St",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78703"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.2672,
+    "longitude": -97.7431
+  },
+  "openingHours": "Mo,Tu,We,Th,Fr 08:00-17:00",
+  "priceRange": "$$",
+  "medicalSpecialty": [
+    "Dentistry",
+    "Cosmetic Dentistry",
+    "Endodontics"
+  ],
+  "availableService": [
+    {
+      "@type": "MedicalProcedure",
+      "name": "Dental Implants"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Root Canal Therapy"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Invisalign"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "287"
+  }
+}
+```
+
+## Schema for each dentist
+
+`Person` schema on every dentist's bio page:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dr. Sarah Johnson",
+  "honorificPrefix": "Dr.",
+  "honorificSuffix": "DDS",
+  "image": "https://example.com/team/sarah-johnson.jpg",
+  "url": "https://example.com/team/sarah-johnson",
+  "jobTitle": "Dentist",
+  "worksFor": {
+    "@type": "Dentist",
+    "name": "Bright Smile Dental"
+  },
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "license",
+      "name": "Texas Dental License",
+      "identifier": "DDS-12345"
+    }
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "University of Texas Dental School"
+  },
+  "knowsAbout": [
+    "Dental implants",
+    "Cosmetic dentistry",
+    "Smile makeovers"
+  ]
+}
+```
+
+## Schema for procedure pages
+
+`MedicalProcedure` schema:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Dental Implant Placement",
+  "procedureType": "Surgical",
+  "bodyLocation": "Jaw",
+  "preparation": "Initial consultation, CT imaging, treatment planning",
+  "followup": "Healing period of 3 to 6 months before crown placement",
+  "howPerformed": "Local anesthesia, surgical placement of titanium post into jawbone..."
+}
+```
+
+Plus `FAQPage` schema for the FAQ section. See the [broader schema markup guide](/seo/schema-markup/) for full implementation.
+
+## Production cadence
+
+A realistic cadence is one procedure page per week. At that rate, 15 to 20 procedure pages are live within 4 to 5 months.
+
+### Build a template once
+
+Document with placeholders for procedure name, indications, process, FAQs. Filling a template is much faster than starting from blank.
+
+### Batch the clinical content
+
+The dentist blocks 1 to 2 hours per week. In each session, they dictate or write the "Dentist's perspective" sections and review drafts.
+
+## Common mistakes that kill procedure pages
+
+- **No dentist byline.** YMYL extraction fails.
+- **Generic templates with only procedure name swapped.** Demoted as duplicate.
+- **Overpromising results.** "Perfect smile guaranteed" trips state dental board issues.
+- **No cost or insurance information.** Loses high-intent patients who need this data to decide.
+- **No FAQ section.** Where most AI Overview citations come from.
+
+## FAQs
+
+### How many procedure pages does a dental practice need?
+
+10 to 20 for general practices. Specialty practices (orthodontic, cosmetic, oral surgery) need 5 to 10 deep pages on their specialty.
+
+### Can I use AI to draft procedure pages?
+
+For initial structure and patient-language explanations, yes. For clinical accuracy and "Dentist's perspective" sections, the licensed dentist must contribute. AI-drafted health content without licensed review fails YMYL extraction.
+
+### Should before-and-after photos go on procedure pages?
+
+Yes, with explicit patient consent. Cosmetic procedure pages benefit dramatically from before-and-after imagery.
+
+### What about cost ranges — are they really required?
+
+Strongly recommended. Pages that address cost convert significantly better than pages that hide it. Use ranges with insurance commentary.
+
+## Where to go next
+
+The companion posts in this cluster:
+
+- [AI SEO for dental practices: the 2026 playbook](/blog/ai-seo-for-dental-practices-2026/)
+- [Google Business Profile optimization for dental practices](/blog/google-business-profile-for-dentists/)
+- [Patient reviews and dental SEO: a HIPAA-compliant velocity system](/blog/patient-reviews-dental-seo-velocity/)
+
+For a structured engagement, our [AI SEO services for dentists](/ai-seo-services/dentists/) page covers procedure page builds as part of the patient discovery work.

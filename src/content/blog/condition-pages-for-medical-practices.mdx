@@ -1,0 +1,215 @@
+---
+title: "Condition Pages for Medical Practices: A 2026 Implementation Guide"
+description: How medical practices build condition-specific landing pages that win in Google AI Overviews and rank for the symptom and condition queries patients actually use.
+deck: Patients search by condition and symptom, not by practice. The medical practices winning in 2026 have deep condition pages. Most have none. Here is the build.
+pubDate: 2026-05-27
+category: Playbooks
+tags:
+  - medical SEO
+  - condition pages
+  - healthcare SEO
+  - YMYL SEO
+author: Shashank Dubey
+featured: false
+---
+
+Patients with new symptoms search "symptoms of [condition]" or "when to see a doctor for [symptom]" before they ever Google "doctor in [city]." The medical practices getting cited in AI Overviews and ranking for these queries are the ones with dedicated condition pages, authored by physicians with the relevant specialty.
+
+Most medical practice sites have one "Services" page listing the conditions they treat. That is not enough. Each major condition needs its own page.
+
+This is the implementation guide.
+
+For the strategic context, see the pillar on [AI SEO for medical practices](/blog/ai-seo-for-medical-practices-2026/). For a structured engagement, see our [AI SEO services for doctors](/ai-seo-services/doctors/).
+
+## Why condition pages matter
+
+Three reasons:
+
+1. **Patients search by condition.** Search volume on condition queries is 5 to 10x higher than on generic "doctor" queries.
+2. **AI engines need depth.** When ChatGPT answers "best specialist for [condition]," it pulls from practice pages that go deep on that condition.
+3. **Conversion is higher.** A patient who lands on a condition page is 3 to 5x more likely to book than one who lands on a homepage.
+
+## The conditions to cover
+
+Depends on specialty. A few examples by specialty:
+
+### Primary care / Internal medicine
+
+- Hypertension
+- Type 2 diabetes
+- High cholesterol
+- Thyroid disorders
+- Annual physicals
+- Common infections
+- Mental health screening
+
+### Cardiology
+
+- Atrial fibrillation
+- Hypertension
+- Heart failure
+- Coronary artery disease
+- Valve disease
+- Arrhythmias
+
+### Endocrinology
+
+- Type 1 diabetes
+- Type 2 diabetes
+- Thyroid disorders
+- Adrenal disorders
+- PCOS
+- Osteoporosis
+
+### Dermatology
+
+- Acne
+- Psoriasis
+- Eczema
+- Skin cancer screening
+- Melanoma
+- Rosacea
+
+Build pages for conditions you regularly treat. Clinical depth matters more than breadth.
+
+## The anatomy of a condition page
+
+A great condition page is 1,500 to 2,500 words. The template:
+
+### Section 1: Patient-language summary
+
+A 60 to 120 word summary AI engines can extract.
+
+Example: "Atrial fibrillation (AFib) is an irregular and often rapid heart rhythm that can increase the risk of stroke and heart failure. Symptoms include palpitations, shortness of breath, and fatigue, though some people have no symptoms at all. AFib is one of the most common arrhythmias, affecting more than 2.7 million Americans. Effective treatments include rate control, rhythm control, and stroke prevention strategies tailored to each patient's risk profile."
+
+### Section 2: What is [condition]?
+
+A 200 to 400 word explanation. Anatomy, mechanism, who it affects.
+
+### Section 3: Symptoms
+
+The symptoms that bring patients in. List clearly. AI engines extract symptom lists directly.
+
+### Section 4: When to see a doctor
+
+The clinical urgency framework. AI Overviews frequently extract this section for "when to see a doctor for X" queries.
+
+Include red flags that need emergency care vs. routine evaluation timing.
+
+### Section 5: How is [condition] diagnosed?
+
+Diagnostic approach. Tests, imaging, evaluations. What patients should expect during a workup.
+
+### Section 6: Treatment options
+
+Comprehensive treatment overview. Lifestyle, medication, procedures, surgery if applicable. Honest about trade-offs.
+
+### Section 7: What to expect at our practice
+
+How your practice specifically approaches this condition. Your team, your technology, your patient experience. This is what differentiates your page from generic medical content.
+
+### Section 8: Physician's perspective
+
+A 200 to 400 word quoted section from the physician who treats this condition. The strongest possible E-E-A-T signal.
+
+### Section 9: FAQs
+
+8 to 12 questions in `FAQPage` schema.
+
+### Section 10: When [condition] requires referral
+
+Honest acknowledgment of when patients should see a specialist instead. Demonstrates clinical integrity.
+
+## Schema for condition pages
+
+`MedicalCondition` schema as the primary type:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Atrial Fibrillation",
+  "alternateName": ["AFib", "AF"],
+  "code": {
+    "@type": "MedicalCode",
+    "code": "I48",
+    "codingSystem": "ICD-10"
+  },
+  "signOrSymptom": [
+    "Palpitations",
+    "Shortness of breath",
+    "Fatigue",
+    "Dizziness"
+  ],
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "Rate control medications"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Anticoagulation therapy"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Catheter ablation"
+    }
+  ]
+}
+```
+
+Plus `MedicalScholarlyArticle` schema for the article itself, with physician author attribution. Plus `FAQPage` schema for the FAQ section.
+
+The companion post on [medical schema markup](/blog/medical-schema-markup-physician-condition/) covers the full implementation.
+
+## Production at scale
+
+A realistic cadence is one condition page per week. At that rate, 20 to 30 condition pages live within 6 months.
+
+### Build a template
+
+Document with placeholders for condition name, symptoms, treatments, FAQs.
+
+### Batch the clinical content
+
+The physician blocks 1 to 2 hours per week. They dictate or write the "Physician's perspective" sections and review drafts.
+
+### Quarterly review cycle
+
+Medical guidelines change. Condition pages need quarterly review for currency.
+
+## Common mistakes that kill condition pages
+
+- **No physician byline.** YMYL extraction fails.
+- **Identical structure across conditions.** Each condition needs unique content.
+- **Overpromising treatment results.** Trips state medical board and FTC issues.
+- **No "when to see a doctor" guidance.** Misses the highest-volume AI Overview citation surface.
+- **No referral acknowledgment.** Pretending you treat everything in-house signals untrustworthy content.
+
+## FAQs
+
+### How many condition pages does a medical practice need?
+
+Cover every condition you treat regularly. 15 to 30 for most primary care and specialist practices. Sub-specialists may have 5 to 15 deep pages on their narrow specialty.
+
+### Can I use AI to draft condition pages?
+
+For initial structure and patient-language explanations, yes. Clinical accuracy, treatment approach, and "Physician's perspective" sections require licensed physician contribution.
+
+### Should I cover rare conditions?
+
+If you treat them, yes. Rare condition pages have very low competition and high patient intent (patients with rare diagnoses search aggressively for specialists).
+
+### How do I handle conditions that span multiple specialties?
+
+Each specialty's page covers the condition from that specialty's perspective. A cardiology page on AFib differs from an electrophysiology page on AFib. Both can coexist.
+
+## Where to go next
+
+The companion posts in this cluster:
+
+- [AI SEO for medical practices and doctors: the 2026 playbook](/blog/ai-seo-for-medical-practices-2026/)
+- [Physician E-E-A-T and credentials infrastructure](/blog/physician-eeat-credentials-infrastructure/)
+- [Medical schema markup: Physician, MedicalCondition, MedicalProcedure](/blog/medical-schema-markup-physician-condition/)
+
+For a structured engagement, our [AI SEO services for doctors](/ai-seo-services/doctors/) page covers condition page builds as part of the authority work.

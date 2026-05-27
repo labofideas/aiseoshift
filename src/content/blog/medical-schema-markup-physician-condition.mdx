@@ -1,0 +1,306 @@
+---
+title: "Medical Schema Markup: Physician, MedicalCondition, MedicalProcedure in 2026"
+description: Complete medical schema markup guide for healthcare practices. Physician, MedicalCondition, MedicalProcedure, and Person with credentials schema. Copy-paste JSON-LD.
+deck: Schema is how AI engines verify physician credentials and classify medical content. Most practice sites have none. Here is the implementation that gets cited.
+pubDate: 2026-05-27
+category: Playbooks
+tags:
+  - schema markup
+  - medical SEO
+  - structured data
+  - YMYL SEO
+author: Shashank Dubey
+featured: false
+---
+
+When ChatGPT recommends a cardiologist for atrial fibrillation, it verifies that the practice is actually a cardiology practice with board-certified cardiologists. Schema markup is the primary mechanism. Practices with structured `Physician` and `Person` markup with `hasCredential` get verified and cited. Practices without it have to be inferred — and AI engines often skip inference.
+
+This is the implementation guide.
+
+For the strategic context, see the pillar on [AI SEO for medical practices](/blog/ai-seo-for-medical-practices-2026/), the [physician E-E-A-T post](/blog/physician-eeat-credentials-infrastructure/), and the broader [schema markup guide](/seo/schema-markup/). For a structured engagement, see our [AI SEO services for doctors](/ai-seo-services/doctors/).
+
+## The schema types every medical practice needs
+
+### 1. MedicalBusiness or Physician schema on the homepage
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Heart Health Cardiology",
+  "image": "https://example.com/logo.png",
+  "url": "https://example.com",
+  "telephone": "+1-512-555-0100",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1500 Medical Plaza",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78703"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.2672,
+    "longitude": -97.7431
+  },
+  "medicalSpecialty": [
+    "Cardiovascular",
+    "Electrophysiology"
+  ],
+  "availableService": [
+    {
+      "@type": "MedicalProcedure",
+      "name": "Echocardiogram"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Cardiac catheterization"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Catheter ablation"
+    }
+  ],
+  "healthPlanNetworkTier": [
+    "Aetna",
+    "Blue Cross Blue Shield",
+    "United Healthcare",
+    "Medicare"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "234"
+  }
+}
+```
+
+The `medicalSpecialty` and `availableService` fields are critical. AI engines use them directly to match patient queries to practices.
+
+### 2. Person schema with credentials for every physician
+
+Every physician on staff needs `Person` schema with full credential markup on their bio page.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "Sarah Johnson",
+  "honorificPrefix": "Dr.",
+  "honorificSuffix": "MD",
+  "image": "https://example.com/team/sarah-johnson.jpg",
+  "url": "https://example.com/team/sarah-johnson",
+  "jobTitle": "Cardiologist",
+  "medicalSpecialty": [
+    "Cardiovascular",
+    "Electrophysiology"
+  ],
+  "worksFor": {
+    "@type": "MedicalBusiness",
+    "name": "Heart Health Cardiology"
+  },
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "license",
+      "name": "Texas Medical License",
+      "identifier": "12345",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Texas Medical Board"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "certification",
+      "name": "ABIM Board Certification in Cardiovascular Disease",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "American Board of Internal Medicine"
+      }
+    }
+  ],
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Johns Hopkins University School of Medicine"
+    }
+  ],
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "American College of Cardiology"
+    }
+  ],
+  "knowsAbout": [
+    "Atrial fibrillation",
+    "Heart failure",
+    "Coronary artery disease",
+    "Cardiac catheterization"
+  ]
+}
+```
+
+The `hasCredential` array with both medical licenses and board certifications is what makes credentials verifiable. AI engines cross-reference against state medical board and ABMS databases.
+
+### 3. MedicalCondition schema on condition pages
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Atrial Fibrillation",
+  "alternateName": ["AFib", "AF"],
+  "code": {
+    "@type": "MedicalCode",
+    "code": "I48",
+    "codingSystem": "ICD-10"
+  },
+  "signOrSymptom": [
+    "Palpitations",
+    "Shortness of breath",
+    "Fatigue",
+    "Dizziness",
+    "Chest pain"
+  ],
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "Rate control medications"
+    },
+    {
+      "@type": "MedicalProcedure",
+      "name": "Catheter ablation"
+    }
+  ],
+  "riskFactor": [
+    "Age over 65",
+    "Hypertension",
+    "Diabetes",
+    "Obesity"
+  ]
+}
+```
+
+ICD-10 codes in the `code` field help AI engines disambiguate conditions. Use them.
+
+### 4. MedicalProcedure schema on procedure pages
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Catheter Ablation for Atrial Fibrillation",
+  "procedureType": "Surgical",
+  "bodyLocation": "Heart",
+  "preparation": "Fasting required, cessation of certain medications, pre-procedure imaging",
+  "followup": "Overnight hospital stay, follow-up echocardiogram at 3 months",
+  "howPerformed": "Performed under general anesthesia. Catheters threaded through blood vessels to heart..."
+}
+```
+
+### 5. MedicalScholarlyArticle schema on clinical articles
+
+For articles authored by physicians:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalScholarlyArticle",
+  "headline": "Atrial Fibrillation: Symptoms, Diagnosis, and Treatment Options",
+  "datePublished": "2026-03-15",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Physician",
+    "name": "Dr. Sarah Johnson",
+    "honorificSuffix": "MD",
+    "url": "https://example.com/team/sarah-johnson"
+  }
+}
+```
+
+### 6. FAQPage schema for FAQ sections
+
+Most AI Overview citations from medical sites come from FAQ sections. Mark them up.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the symptoms of atrial fibrillation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common symptoms of atrial fibrillation include heart palpitations, shortness of breath..."
+      }
+    }
+  ]
+}
+```
+
+## Implementation rules
+
+### Use JSON-LD in the page head
+
+Best for Google parsing. Easier to maintain than embedded Microdata.
+
+### Match schema to visible content
+
+If schema lists board certification, the bio page should display it visibly. Mismatch is treated as deceptive.
+
+### Keep credentials current
+
+Expired licenses or lapsed board certifications must be removed from schema immediately. Stale schema with expired credentials is worse than no schema.
+
+### Use ICD-10 codes on condition pages
+
+The `code` field with ICD-10 helps AI engines disambiguate conditions. Especially important for conditions with multiple names.
+
+### Validate every change
+
+[https://validator.schema.org/](https://validator.schema.org/) and Google's [Rich Results Test](https://search.google.com/test/rich-results). Errors break the entire schema block.
+
+## What this gets you
+
+Full medical schema implementation gets:
+
+- Verifiable physician credentials feeding AI extraction
+- Medical specialty explicitly machine-readable
+- Conditions accurately classified via ICD-10
+- Procedures matched to patient query intent
+- Author attribution chain from article to physician to credentials
+- FAQ sections eligible for AI Overview citation
+
+## FAQs
+
+### Will schema directly improve rankings?
+
+Not as a direct factor. Schema affects eligibility for rich results, AI engine extraction, and credential verification. Downstream effect on visibility is significant.
+
+### How long until schema starts working?
+
+Google reprocesses schema within days of a re-crawl. AI engines on a slower cadence, typically 2 to 8 weeks. Visible effect within 30 to 90 days.
+
+### What about NP and PA bios?
+
+Use `Person` schema (not `Physician`) with accurate credential markup. NPs use `hasCredential` for "Nurse Practitioner Board Certification." PAs use "PA-C Certification."
+
+### Should I include hospital affiliations in schema?
+
+Yes. Hospital affiliations are verifiable trust signals. Use `memberOf` with the hospital as `Organization`.
+
+### What if my practice does not have aggregateRating data?
+
+Omit the field rather than inventing data. AI engines cross-reference review counts against third-party platforms.
+
+## Where to go next
+
+The companion posts in this cluster:
+
+- [AI SEO for medical practices and doctors: the 2026 playbook](/blog/ai-seo-for-medical-practices-2026/)
+- [Physician E-E-A-T and credentials infrastructure](/blog/physician-eeat-credentials-infrastructure/)
+- [Condition pages for medical practices](/blog/condition-pages-for-medical-practices/)
+
+For a structured engagement, our [AI SEO services for doctors](/ai-seo-services/doctors/) page covers schema implementation as part of the physician authority work.
