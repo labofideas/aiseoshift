@@ -1,109 +1,400 @@
 ---
+import {
+	AUTHOR_NAME,
+	AUTHOR_COMPANY,
+	AUTHOR_PROFILE_URL,
+	SITE_SAME_AS,
+	AUTHOR_SAME_AS,
+} from '../consts';
+
 const today = new Date();
+
+const columns: Array<{ heading: string; links: Array<{ href: string; label: string }> }> = [
+	{
+		heading: 'Coverage',
+		links: [
+			{ href: '/blog', label: 'Latest stories' },
+			{ href: '/newsletter', label: 'Newsletter' },
+			{ href: '/glossary', label: 'Glossary' },
+			{ href: '/rss.xml', label: 'RSS feed' },
+		],
+	},
+	{
+		heading: 'The shift',
+		links: [
+			{ href: '/seo', label: 'SEO guide' },
+			{ href: '/aeo', label: 'AEO playbook' },
+			{ href: '/geo', label: 'GEO playbook' },
+			{ href: '/ai-seo-tools', label: 'AI SEO tools' },
+		],
+	},
+	{
+		heading: 'AI engines',
+		links: [
+			{ href: '/chatgpt-seo', label: 'ChatGPT SEO' },
+			{ href: '/claude-seo', label: 'Claude SEO' },
+			{ href: '/gemini-seo', label: 'Gemini SEO' },
+			{ href: '/perplexity-seo', label: 'Perplexity SEO' },
+		],
+	},
+	{
+		heading: 'Company',
+		links: [
+			{ href: '/about', label: 'About' },
+			{ href: '/ai-seo-services', label: 'AI SEO services' },
+			{ href: '/ai-seo-shift', label: 'The shift, explained' },
+			{ href: 'mailto:hello@aiseoshift.com', label: 'hello@aiseoshift.com' },
+		],
+	},
+];
+
+type Social = { href: string; label: string; icon: 'bsky' | 'tumblr' | 'linkedin' | 'x' | 'rss' };
+
+const socialFor = (url: string): Social | null => {
+	if (url.includes('bsky.app')) return { href: url, label: 'Bluesky', icon: 'bsky' };
+	if (url.includes('tumblr.com')) return { href: url, label: 'Tumblr', icon: 'tumblr' };
+	if (url.includes('linkedin.com')) return { href: url, label: 'LinkedIn', icon: 'linkedin' };
+	if (url.includes('x.com') || url.includes('twitter.com')) return { href: url, label: 'X (Twitter)', icon: 'x' };
+	return null;
+};
+
+const socials: Social[] = [
+	...SITE_SAME_AS.map(socialFor),
+	...AUTHOR_SAME_AS.map(socialFor),
+]
+	.filter((s): s is Social => Boolean(s))
+	.filter((s, i, arr) => arr.findIndex((x) => x.icon === s.icon) === i);
+
+socials.push({ href: '/rss.xml', label: 'RSS', icon: 'rss' });
 ---
 
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
 	<div class="footer-wrap">
-		<p class="footer-mark">AISEOShift</p>
-		<p class="footer-copy">
-			Reporting on how search, AI answers, and authority systems are changing in real time.
-		</p>
-		<div class="footer-links">
-			<a href="/blog">Latest coverage</a>
-			<a href="/about">About the publication</a>
-			<a href="mailto:hello@aiseoshift.com">hello@aiseoshift.com</a>
+		<div class="footer-top">
+			<div class="footer-brand">
+				<a class="brand" href="/" aria-label="AISEOShift home">
+					<svg class="brand-logo" viewBox="0 0 220 50" width="180" height="42" aria-hidden="true">
+						<text x="0" y="13" class="logo-kicker">AI SEARCH &amp; VISIBILITY</text>
+						<text x="0" y="43" class="logo-title">AISEOShift</text>
+					</svg>
+				</a>
+				<p class="brand-copy">
+					Independent reporting on how search, AI answers, and authority systems are changing in real time —
+					AEO, GEO, citations, and the playbook for the post-blue-link era.
+				</p>
+				<a class="newsletter-cta" href="/newsletter">
+					<span class="newsletter-cta-label">Weekly briefing</span>
+					<span class="newsletter-cta-action">
+						Subscribe
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+						</svg>
+					</span>
+				</a>
+			</div>
+
+			<nav class="footer-nav" aria-label="Footer">
+				{columns.map((col) => (
+					<div class="footer-col">
+						<h2 class="footer-col-heading">{col.heading}</h2>
+						<ul class="footer-col-list">
+							{col.links.map((link) => (
+								<li><a href={link.href}>{link.label}</a></li>
+							))}
+						</ul>
+					</div>
+				))}
+			</nav>
 		</div>
-		<div class="footer-legal">
-			<a href="/privacy">Privacy Policy</a>
-			<a href="/terms">Terms of Service</a>
+
+		<div class="footer-bottom">
+			<p class="footer-meta">
+				&copy; {today.getFullYear()} AISEOShift.
+				Edited by <a href={AUTHOR_PROFILE_URL}>{AUTHOR_NAME}</a>
+				at <a href="https://wbcomdesigns.com" rel="noopener">{AUTHOR_COMPANY}</a>.
+			</p>
+
+			<ul class="footer-social" aria-label="Social profiles">
+				{socials.map((s) => (
+					<li>
+						<a href={s.href} aria-label={s.label} rel={s.href.startsWith('/') ? undefined : 'me noopener'} target={s.href.startsWith('/') ? undefined : '_blank'}>
+							{s.icon === 'bsky' && (
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+									<path d="M6.34 4.36c2.5 1.86 5.18 5.6 6.16 7.62 0.98-2.02 3.66-5.76 6.16-7.62 1.8-1.34 4.72-2.38 4.72 0.93 0 0.66-0.38 5.55-0.6 6.34-0.78 2.77-3.6 3.47-6.12 3.05 4.4 0.74 5.52 3.21 3.1 5.69-4.59 4.7-6.6-1.18-7.12-2.69-0.1-0.28-0.14-0.41-0.14-0.3 0-0.11-0.05 0.02-0.14 0.3-0.51 1.51-2.53 7.39-7.12 2.69-2.42-2.48-1.3-4.95 3.1-5.69-2.52 0.42-5.34-0.28-6.12-3.05-0.22-0.79-0.6-5.68-0.6-6.34 0-3.31 2.93-2.27 4.72-0.93z"/>
+								</svg>
+							)}
+							{s.icon === 'x' && (
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+									<path d="M18.244 2H21.5l-7.5 8.57L23 22h-6.812l-5.34-6.98L4.8 22H1.54l8.02-9.17L1 2h6.914l4.83 6.39L18.244 2zm-1.196 18h1.83L7.05 4H5.103l11.945 16z"/>
+								</svg>
+							)}
+							{s.icon === 'linkedin' && (
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+									<path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0.02 4.88 0.02 3.5 1.13 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.34 0H12v1.9h.06c.63-1.18 2.18-2.43 4.49-2.43 4.8 0 5.69 3.16 5.69 7.27V22h-4.56v-6.36c0-1.52-.03-3.47-2.11-3.47-2.12 0-2.44 1.66-2.44 3.36V22H7.56V8z"/>
+								</svg>
+							)}
+							{s.icon === 'tumblr' && (
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+									<path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469.014-.124.123-.179.182-.179h3.5v6.097h4.243v3.65h-4.243v7.343c.005 1.06.426 2.516 2.43 2.45.05-.002 2.5-.045 2.5-.045v3.66c-.4.058-2.71.845-3.875.845z"/>
+								</svg>
+							)}
+							{s.icon === 'rss' && (
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+									<path d="M5 3a1 1 0 0 0 0 2c8.837 0 16 7.163 16 16a1 1 0 1 0 2 0C23 11.06 14.94 3 5 3zm0 6a1 1 0 1 0 0 2c5.523 0 10 4.477 10 10a1 1 0 1 0 2 0c0-6.627-5.373-12-12-12zm1.5 8a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/>
+								</svg>
+							)}
+						</a>
+					</li>
+				))}
+			</ul>
+
+			<ul class="footer-legal" aria-label="Legal">
+				<li><a href="/privacy">Privacy</a></li>
+				<li><a href="/terms">Terms</a></li>
+			</ul>
 		</div>
-		<p class="footer-meta">&copy; {today.getFullYear()} AISEOShift. All rights reserved.</p>
 	</div>
 </footer>
 
 <style>
 	.site-footer {
-		padding: 3rem 0 4rem;
-		border-top: 1px solid rgba(var(--ink), 0.08);
+		margin-top: var(--space-9, 6.5rem);
+		padding: var(--space-8, 4.5rem) 0 var(--space-6, 2rem);
+		border-top: 1px solid var(--line);
 		background:
-			linear-gradient(180deg, rgba(var(--paper), 0), rgba(var(--ink), 0.04)),
+			linear-gradient(180deg, rgba(var(--paper), 0), rgba(var(--ink), 0.025)),
 			rgb(var(--paper));
 	}
 
 	.footer-wrap {
 		width: min(1200px, calc(100% - 2rem));
 		margin: 0 auto;
+	}
+
+	.footer-top {
 		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-		gap: 2rem;
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr);
+		gap: var(--space-8, 4.5rem);
+		padding-bottom: var(--space-7, 3rem);
 	}
 
-	.footer-mark {
-		margin: 0;
-		font-family: 'Georgia', 'Times New Roman', serif;
-		font-size: 1.75rem;
+	.footer-brand {
+		max-width: 32ch;
 	}
 
-	.footer-copy,
-	.footer-meta {
-		max-width: 42rem;
-		color: rgba(var(--ink), 0.72);
-	}
-
-	.footer-meta {
-		font-size: 0.85rem;
-		margin-top: 0.5rem;
-	}
-
-	.footer-links {
-		display: flex;
-		gap: 1.25rem;
-		margin: 1.5rem 0;
-		flex-wrap: wrap;
-	}
-
-	.footer-links a {
+	.brand {
+		display: inline-flex;
 		text-decoration: none;
 		color: rgb(var(--ink));
-		font-weight: 700;
-		font-size: 0.9rem;
 	}
 
-	.footer-links a:hover,
-	.footer-links a:focus-visible {
-		color: var(--signal);
+	.brand-logo {
+		display: block;
+	}
+
+	.logo-kicker {
+		font-size: 7.5px;
+		font-weight: 700;
+		letter-spacing: 0.18em;
+		fill: var(--signal-deep);
+		font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+	}
+
+	.logo-title {
+		font-size: 28px;
+		font-weight: 700;
+		fill: rgb(var(--ink));
+		font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
+		letter-spacing: 0.01em;
+	}
+
+	.brand-copy {
+		margin: var(--space-4, 1rem) 0 var(--space-5, 1.5rem);
+		font-size: 0.95rem;
+		line-height: 1.55;
+		color: var(--ink-muted);
+	}
+
+	.newsletter-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.55rem 0.85rem 0.55rem 1rem;
+		border: 1px solid var(--line-strong);
+		border-radius: var(--radius-sm);
+		background: rgb(var(--paper));
+		text-decoration: none;
+		color: rgb(var(--ink));
+		font-size: 0.85rem;
+		font-weight: 600;
+		transition: border-color 140ms ease, background 140ms ease;
+	}
+
+	.newsletter-cta:hover,
+	.newsletter-cta:focus-visible {
+		border-color: rgb(var(--ink));
+		background: rgb(var(--paper-strong));
+	}
+
+	.newsletter-cta-label {
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--signal-deep);
+	}
+
+	.newsletter-cta-action {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding-left: 0.85rem;
+		border-left: 1px solid var(--line);
+	}
+
+	.footer-nav {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: var(--space-5, 1.5rem);
+	}
+
+	.footer-col-heading {
+		margin: 0 0 var(--space-4, 1rem);
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+		border: 0;
+		padding: 0;
+	}
+
+	.footer-col-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+	}
+
+	.footer-col-list a {
+		display: inline-block;
+		font-size: 0.92rem;
+		color: rgb(var(--ink));
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: color 140ms ease, border-color 140ms ease;
+	}
+
+	.footer-col-list a:hover,
+	.footer-col-list a:focus-visible {
+		color: var(--signal-deep);
+		border-bottom-color: var(--signal);
+	}
+
+	.footer-bottom {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4, 1rem);
+		padding-top: var(--space-5, 1.5rem);
+		border-top: 1px solid var(--line);
+	}
+
+	.footer-meta {
+		margin: 0;
+		font-size: 0.82rem;
+		color: var(--ink-muted);
+	}
+
+	.footer-meta a {
+		color: rgb(var(--ink));
+		text-decoration: none;
+		border-bottom: 1px solid var(--line-strong);
+	}
+
+	.footer-meta a:hover,
+	.footer-meta a:focus-visible {
+		color: var(--signal-deep);
+		border-bottom-color: var(--signal);
+	}
+
+	.footer-social,
+	.footer-legal {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		align-items: center;
+	}
+
+	.footer-social {
+		gap: 0.35rem;
+	}
+
+	.footer-social a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		border: 1px solid var(--line);
+		border-radius: 50%;
+		color: var(--ink-muted);
+		transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+	}
+
+	.footer-social a:hover,
+	.footer-social a:focus-visible {
+		color: var(--signal-deep);
+		border-color: var(--signal);
+		background: rgba(var(--ink), 0.03);
 	}
 
 	.footer-legal {
-		display: flex;
-		gap: 1.25rem;
-		margin-top: 0.5rem;
+		gap: 1rem;
 	}
 
 	.footer-legal a {
-		text-decoration: none;
-		color: rgba(var(--ink), 0.5);
 		font-size: 0.8rem;
+		color: var(--ink-muted);
+		text-decoration: none;
 	}
 
-	.footer-legal a:hover { color: var(--signal); }
+	.footer-legal a:hover,
+	.footer-legal a:focus-visible {
+		color: var(--signal-deep);
+	}
 
-	@media (max-width: 800px) {
-		.site-footer {
-			padding: 2rem 0 3rem;
-		}
-
-		.footer-wrap {
+	@media (max-width: 960px) {
+		.footer-top {
 			grid-template-columns: 1fr;
-			gap: 1.25rem;
+			gap: var(--space-6, 2rem);
+			padding-bottom: var(--space-6, 2rem);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.site-footer {
+			margin-top: var(--space-7, 3rem);
+			padding: var(--space-7, 3rem) 0 var(--space-5, 1.5rem);
 		}
 
-		.footer-mark {
-			font-size: 1.5rem;
+		.footer-nav {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: var(--space-5, 1.5rem) var(--space-4, 1rem);
 		}
 
-		.footer-links {
-			margin: 1rem 0;
+		.footer-bottom {
+			justify-content: flex-start;
+		}
+
+		.footer-meta {
+			order: 3;
+			flex-basis: 100%;
 		}
 	}
 </style>
