@@ -278,3 +278,51 @@ The companion posts in this cluster:
 - [Attorney authority and E-E-A-T for law firms](/blog/attorney-authority-eeat-law-firms/)
 
 For a structured engagement, our [AI SEO services for lawyers](/ai-seo-services/lawyers/) page covers schema implementation as part of the attorney authority work.
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Will schema improve rankings directly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not as a direct factor. Schema affects eligibility for rich results, AI engine extraction, and credential verification. Downstream effect on visibility is significant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until schema starts working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google reprocesses within days of re-crawl. AI engines on slower cadence, typically 2 to 8 weeks. Visible effect within 30 to 90 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about non-attorney staff (paralegals, intake)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Person schema with accurate credential markup. Do not type them as Attorney."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I include hourly rates in pricing schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most firms, contingency fee for personal injury is the appropriate pricing representation. For hourly billing, the priceRange field can describe hourly ranges. Most firms use general fee structure descriptions rather than specific dollar figures."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my firm does not have an aggregateRating yet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Omit the field rather than inventing data. AI engines cross-reference review counts against third-party platforms."
+      }
+    }
+  ]
+}
+`}</script>

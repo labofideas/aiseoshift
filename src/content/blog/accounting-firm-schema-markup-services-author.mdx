@@ -1,6 +1,6 @@
 ---
 title: "Accounting Firm Schema Markup: AccountingService, Person, and Author Markup in 2026"
-description: The complete schema markup guide for accounting firms and CPAs. AccountingService, Person with credentials, Article, and FAQPage schema with copy-paste examples.
+description: Complete schema markup guide for CPAs. AccountingService, Person with credentials, Article, and FAQPage schema with copy-paste JSON-LD examples.
 deck: Schema is how AI engines verify accounting credentials. Most CPA firm sites have none. Here is the implementation that gets you cited in YMYL financial queries.
 pubDate: 2026-05-27
 category: Playbooks
@@ -311,3 +311,51 @@ The companion posts in this cluster:
 - [Seasonal tax content strategy for CPAs](/blog/seasonal-tax-content-strategy-for-cpas/)
 
 For a structured engagement, our [AI SEO services for accountants](/ai-seo-services/accountants/) page covers schema implementation as part of the CPA authority build.
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Will schema markup directly improve rankings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not by itself. Schema makes pages more eligible for rich results, easier for AI engines to verify, and clearer for entity disambiguation. The downstream effect on visibility is significant, but it is not a direct ranking factor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until schema starts working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google reprocesses schema within days of a re-crawl. AI engines re-evaluate sources on a slower cadence, typically 2 to 8 weeks. Plan for visible effect within 30 to 90 days of full deployment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about firms with multiple offices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each office can have its own AccountingService block with location-specific address and geo coordinates. Link them as branches of a parent organization if applicable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I include staff who are not CPAs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with accurate credentials. Tax preparers, EAs, bookkeepers, and admin staff can have Person schema without hasCredential for CPA, but should include any credentials they do hold (EA, CITP, MST)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I do not have any reviews to put in aggregateRating?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Omit the field entirely rather than including invented numbers. AI engines cross-reference review counts and inventing them gets the schema flagged."
+      }
+    }
+  ]
+}
+`}</script>

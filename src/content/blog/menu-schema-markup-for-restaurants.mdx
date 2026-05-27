@@ -1,6 +1,6 @@
 ---
 title: "Menu Schema Markup for Restaurants: The 2026 Implementation Guide"
-description: How to mark up restaurant menus with Menu, MenuSection, and MenuItem schema for Google rich results and AI visibility. Copy-paste examples and dietary tagging.
+description: Mark up restaurant menus with Menu, MenuSection, and MenuItem schema for Google rich results and AI visibility. Copy-paste examples and dietary tags.
 deck: Restaurants without menu schema are invisible to AI engines answering "where can I get gluten-free X near me." Here is the implementation that gets you cited.
 pubDate: 2026-05-27
 category: Playbooks
@@ -288,3 +288,51 @@ The companion posts in this cluster:
 - [Restaurant review velocity and AI discovery](/blog/restaurant-review-velocity-ai-discovery/)
 
 For a structured engagement, our [AI SEO services for restaurants](/ai-seo-services/restaurants/) page covers menu schema implementation as part of the discovery optimization work.
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need to mark up every menu item?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a small menu (15 to 30 items), yes. For a large menu, prioritize the items most likely to drive search traffic: signature dishes, common dietary-restriction queries (gluten-free, vegan options), and any items that have appeared in press coverage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will menu schema show prices in Google search?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sometimes. Googles rich results for restaurants show prices when the schema is complete and the data is recent. Outdated or inconsistent pricing schema does not get displayed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my menu has seasonal changes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Update the schema with the menu. Some restaurants use Schemas validFrom and validThrough fields on offers to indicate seasonal availability. Useful but not required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I have multiple menus (dinner, brunch, drinks)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use multiple Menu objects within hasMenu array, or separate menu pages each with their own schema."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about allergen information beyond dietary tags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Schema.org does not have first-class allergen markup beyond the diet enumerations. For specific allergens (peanuts, tree nuts, shellfish), include in the menu item description."
+      }
+    }
+  ]
+}
+`}</script>

@@ -1,6 +1,6 @@
 ---
 title: "Medical Schema Markup: Physician, MedicalCondition, MedicalProcedure in 2026"
-description: Complete medical schema markup guide for healthcare practices. Physician, MedicalCondition, MedicalProcedure, and Person with credentials schema. Copy-paste JSON-LD.
+description: Medical schema markup guide for practices. Physician, MedicalCondition, MedicalProcedure, and Person credentials schema with copy-paste JSON-LD.
 deck: Schema is how AI engines verify physician credentials and classify medical content. Most practice sites have none. Here is the implementation that gets cited.
 pubDate: 2026-05-27
 category: Playbooks
@@ -304,3 +304,51 @@ The companion posts in this cluster:
 - [Condition pages for medical practices](/blog/condition-pages-for-medical-practices/)
 
 For a structured engagement, our [AI SEO services for doctors](/ai-seo-services/doctors/) page covers schema implementation as part of the physician authority work.
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Will schema directly improve rankings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not as a direct factor. Schema affects eligibility for rich results, AI engine extraction, and credential verification. Downstream effect on visibility is significant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until schema starts working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google reprocesses schema within days of a re-crawl. AI engines on a slower cadence, typically 2 to 8 weeks. Visible effect within 30 to 90 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about NP and PA bios?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Person schema (not Physician) with accurate credential markup. NPs use hasCredential for \"Nurse Practitioner Board Certification.\" PAs use \"PA-C Certification.\""
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include hospital affiliations in schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Hospital affiliations are verifiable trust signals. Use memberOf with the hospital as Organization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my practice does not have aggregateRating data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Omit the field rather than inventing data. AI engines cross-reference review counts against third-party platforms."
+      }
+    }
+  ]
+}
+`}</script>
