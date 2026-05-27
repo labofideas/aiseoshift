@@ -32,3 +32,6 @@ pnpm-debug.log*
 # Playwright / audit screenshots
 scripts/.shots/
 scripts/.shots-audit/
+
+# Claude Code internals
+.claude/
