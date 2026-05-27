@@ -19,6 +19,59 @@ This is the implementation guide.
 
 For the strategic context, see the pillar on [AI SEO for law firms](/blog/ai-seo-for-law-firms-2026/), the [attorney authority post](/blog/attorney-authority-eeat-law-firms/), and the broader [schema markup guide](/seo/schema-markup/). For a structured engagement, see our [AI SEO services for lawyers](/ai-seo-services/lawyers/).
 
+<figure class="post-figure">
+<svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Legal schema chain that AI engines walk from LegalService at the firm root through Attorney Person nodes with hasCredential to practice-area Service nodes and FAQPage answers">
+	<rect width="800" height="280" fill="rgb(246,245,240)" />
+	<g stroke="rgb(14,17,22)" stroke-opacity="0.06">
+		<line x1="0" y1="40" x2="800" y2="40" />
+		<line x1="0" y1="240" x2="800" y2="240" />
+	</g>
+	<text x="40" y="28" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">LEGAL SCHEMA CHAIN · WHAT AI WALKS</text>
+	<defs>
+		<marker id="arrL" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+			<path d="M0,0 L6,3 L0,6 z" fill="rgb(184,85,46)" />
+		</marker>
+	</defs>
+	<g fill="none" stroke="rgb(184,85,46)" stroke-width="1.4">
+		<path d="M 200 140 L 240 140" marker-end="url(#arrL)" />
+		<path d="M 380 140 L 420 140" marker-end="url(#arrL)" />
+		<path d="M 560 140 L 600 140" marker-end="url(#arrL)" />
+	</g>
+	<g font-family="system-ui, sans-serif" fill="rgb(14,17,22)">
+		<g transform="translate(50 90)">
+			<rect width="150" height="100" fill="rgb(184,85,46)" rx="4" />
+			<text x="14" y="22" font-size="10" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.8" font-weight="700">ROOT</text>
+			<text x="14" y="46" font-size="14" fill="rgb(250,250,247)" font-weight="600">LegalService</text>
+			<text x="14" y="66" font-size="10" fill="rgb(250,250,247)" fill-opacity="0.85">firm homepage,</text>
+			<text x="14" y="80" font-size="10" fill="rgb(250,250,247)" fill-opacity="0.85">knowsAbout list</text>
+		</g>
+		<g transform="translate(240 90)">
+			<rect width="140" height="100" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" />
+			<text x="14" y="22" font-size="10" letter-spacing="2" fill="rgb(184,85,46)" font-weight="700">EMPLOYS</text>
+			<text x="14" y="46" font-size="14" font-weight="600">Person</text>
+			<text x="14" y="66" font-size="10" fill-opacity="0.6">attorney bio,</text>
+			<text x="14" y="80" font-size="10" fill-opacity="0.6">hasCredential</text>
+		</g>
+		<g transform="translate(420 90)">
+			<rect width="140" height="100" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" />
+			<text x="14" y="22" font-size="10" letter-spacing="2" fill="rgb(184,85,46)" font-weight="700">OFFERS</text>
+			<text x="14" y="46" font-size="14" font-weight="600">Service</text>
+			<text x="14" y="66" font-size="10" fill-opacity="0.6">practice area page,</text>
+			<text x="14" y="80" font-size="10" fill-opacity="0.6">areaServed</text>
+		</g>
+		<g transform="translate(600 90)">
+			<rect width="150" height="100" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" />
+			<text x="14" y="22" font-size="10" letter-spacing="2" fill="rgb(184,85,46)" font-weight="700">ANSWERS</text>
+			<text x="14" y="46" font-size="14" font-weight="600">FAQPage</text>
+			<text x="14" y="66" font-size="10" fill-opacity="0.6">jurisdiction-specific</text>
+			<text x="14" y="80" font-size="10" fill-opacity="0.6">questions</text>
+		</g>
+	</g>
+	<text x="400" y="215" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.6">EACH NODE IS YMYL-VERIFIED BEFORE THE NEXT IS TRUSTED</text>
+	<text x="400" y="266" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Break the chain and AI engines stop walking. Citations go elsewhere.</text>
+</svg>
+</figure>
+
 ## The schema types every law firm needs
 
 ### 1. LegalService schema on the firm homepage
