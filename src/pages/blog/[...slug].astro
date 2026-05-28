@@ -4,7 +4,8 @@ import imageManifest from '../../data/image-manifest.json';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog', ({ data }) => !data.draft);
+	const now = new Date();
+	const posts = await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now);
 	return posts
 		.filter((post) => post.id !== 'ai-seo-shift')
 		.map((post) => ({

@@ -18,7 +18,8 @@ import {
 } from '../../consts';
 import { sortPostsByDate } from '../../utils/blog';
 
-const allPosts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft));
+const now = new Date();
+const allPosts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now));
 const postsByAuthor = allPosts.filter((p) => (p.data.author ?? '').includes('Shashank Dubey'));
 
 const profileSchema = {
