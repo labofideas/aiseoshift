@@ -1,0 +1,328 @@
+---
+title: "Review Schema for AI Search: How AggregateRating and Review Markup Boosts AI Citations"
+description: How to implement Review and AggregateRating schema markup so AI engines use your ratings and reviews as trust signals. JSON-LD guide for products, services, and local businesses.
+deck: AI engines use review data as a trust signal when recommending businesses, products, and services. A business with AggregateRating schema is more likely to be cited as "highly rated" than one where reviews are only visible on a third-party platform.
+pubDate: 2026-06-18
+category: Strategy
+tags:
+  - Review schema
+  - AggregateRating schema
+  - schema markup
+  - trust signals
+  - AI SEO
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+When someone asks ChatGPT or Perplexity "what is the best-rated Italian restaurant near downtown?" or "which project management tool has the best reviews from small teams?", the AI engine answering that question needs trustworthy rating data. It does not scroll Yelp or read through thousands of review threads in real time. It draws on structured data that was present in the pages it indexed — and the clearest structured signal for ratings and reviews is AggregateRating and Review schema markup.
+
+The quick answer: businesses, product pages, and service sites that implement AggregateRating schema with accurate rating values, review counts, and correctly scoped entity types are significantly more likely to be cited as "highly rated" or "top-reviewed" in AI engine recommendations. Individual Review schema adds depth — it gives AI engines access to the text, the author, and the date of specific reviews, enabling citation-level attribution. Neither type of markup is difficult to implement, but both are commonly done incorrectly in ways that suppress rather than boost citation probability.
+
+This guide covers every property of [Schema.org's AggregateRating type](https://schema.org/AggregateRating) and [Review type](https://schema.org/Review), the entity types they can nest within, implementation patterns for products, services, and local businesses, Google's policies on what review markup is and is not allowed, and how AI engines specifically interpret aggregate rating data when constructing recommendations. If you are new to schema markup broadly, the foundation is covered in [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/).
+
+<figure class="post-figure">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" width="760" height="320" role="img" aria-label="Review trust signal chain: Individual Reviews feed into AggregateRating Schema, which feeds into AI Engine Trust Score, which increases Citation Probability">
+    <rect width="760" height="320" fill="rgb(246,245,240)" rx="8"/>
+    <text x="380" y="30" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="2">REVIEW TRUST SIGNAL CHAIN</text>
+    <rect x="30" y="54" width="148" height="180" fill="rgb(250,250,247)" rx="6" stroke="rgb(220,215,205)" stroke-width="1"/>
+    <text x="104" y="82" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Individual</text>
+    <text x="104" y="98" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Reviews</text>
+    <text x="104" y="122" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">reviewBody</text>
+    <text x="104" y="138" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">reviewRating</text>
+    <text x="104" y="154" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">author</text>
+    <text x="104" y="170" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">datePublished</text>
+    <text x="104" y="200" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">Verifiable source,</text>
+    <text x="104" y="214" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">named author,</text>
+    <text x="104" y="228" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">dated evidence</text>
+    <polygon points="186,144 202,134 202,154" fill="rgb(184,85,46)"/>
+    <rect x="208" y="54" width="148" height="180" fill="rgb(250,250,247)" rx="6" stroke="rgb(184,85,46)" stroke-width="2"/>
+    <text x="282" y="82" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">AggregateRating</text>
+    <text x="282" y="98" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Schema</text>
+    <text x="282" y="122" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">ratingValue</text>
+    <text x="282" y="138" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">reviewCount</text>
+    <text x="282" y="154" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">bestRating</text>
+    <text x="282" y="170" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">worstRating</text>
+    <text x="282" y="200" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">Machine-readable</text>
+    <text x="282" y="214" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">summary of all</text>
+    <text x="282" y="228" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">review sentiment</text>
+    <polygon points="364,144 380,134 380,154" fill="rgb(184,85,46)"/>
+    <rect x="386" y="54" width="148" height="180" fill="rgb(250,250,247)" rx="6" stroke="rgb(220,215,205)" stroke-width="1"/>
+    <text x="460" y="82" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">AI Engine</text>
+    <text x="460" y="98" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Trust Score</text>
+    <text x="460" y="122" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">rating verified</text>
+    <text x="460" y="138" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">volume confirmed</text>
+    <text x="460" y="154" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">entity matched</text>
+    <text x="460" y="170" font-family="Georgia, serif" font-size="10" fill="rgb(80,75,70)" text-anchor="middle">recency assessed</text>
+    <text x="460" y="200" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">AI cross-references</text>
+    <text x="460" y="214" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">schema against</text>
+    <text x="460" y="228" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">known sources</text>
+    <polygon points="542,144 558,134 558,154" fill="rgb(184,85,46)"/>
+    <rect x="564" y="54" width="148" height="180" fill="rgb(250,250,247)" rx="6" stroke="rgb(220,215,205)" stroke-width="1"/>
+    <text x="638" y="82" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Citation</text>
+    <text x="638" y="98" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Probability</text>
+    <text x="638" y="130" font-family="Georgia, serif" font-size="22" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">HIGH</text>
+    <text x="638" y="200" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">Cited as "highly</text>
+    <text x="638" y="214" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">rated" or "top-</text>
+    <text x="638" y="228" font-family="Georgia, serif" font-size="9" fill="rgb(120,115,108)" text-anchor="middle">reviewed"</text>
+    <text x="380" y="290" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">Complete Review and AggregateRating schema converts raw review data into structured trust signals AI engines can act on.</text>
+  </svg>
+</figure>
+
+## AggregateRating schema — the four core properties
+
+[Schema.org's AggregateRating type](https://schema.org/AggregateRating) is a subtype of Rating, designed to represent the collective assessment of an item based on multiple individual ratings or reviews. It is never used standalone — it always nests inside a parent entity type such as Product, LocalBusiness, or Service. Understanding its four key properties is essential before touching any implementation.
+
+**ratingValue** is the computed average rating, expressed as a number or a string. For a 5-star system where a product has an average of 4.3, this would be `"4.3"`. The value must fall between `worstRating` and `bestRating`. A common error is marking a 4.3-out-of-5 rating as `ratingValue: "4.3"` without specifying `bestRating: "5"` — which leaves the scale ambiguous for parsers and means the rating could be interpreted as 4.3 out of 10.
+
+**reviewCount** is the total number of reviews that contributed to the aggregate. This is the count of text reviews rather than just numeric ratings. The companion property `ratingCount` covers all ratings, including those without written reviews. For most implementations, `reviewCount` is the more meaningful property for AI trust purposes because it confirms the volume of substantive user feedback, not just star clicks. A `ratingValue` of 4.8 based on `reviewCount: "3"` carries far less trust weight than the same rating backed by `reviewCount: "847"`.
+
+**bestRating** is the highest possible rating value in the scale. For most star-rating systems this is `"5"`. For a 10-point scale it would be `"10"`. If omitted, Schema.org assumes a default of 5, but explicit declaration is strongly recommended to avoid ambiguity.
+
+**worstRating** is the lowest possible rating value. For a 5-star scale this is typically `"1"`. The default assumption when omitted is 1, but explicit declaration removes any parsing ambiguity.
+
+A minimal but complete AggregateRating block looks like this:
+
+```json
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.6",
+  "reviewCount": "312",
+  "bestRating": "5",
+  "worstRating": "1"
+}
+```
+
+## Individual Review schema — properties and purpose
+
+While AggregateRating provides the summary, the [Schema.org Review type](https://schema.org/Review) represents individual review instances. Both can appear on the same page, and both serve distinct citation purposes. AggregateRating answers "how good is this overall?" Review schema answers "what specifically did a real person say about this, and when?"
+
+The key properties for an individual Review are:
+
+**author** should use a `Person` type with at minimum a `name` property. A named, real reviewer carries significantly more trust weight than an anonymous one. If the reviewer has a public profile URL, include it in the `author` object's `url` property.
+
+**datePublished** should use ISO 8601 date format: `"2026-01-14"`. Recency matters — a page with reviews dated in the past 12 months signals an actively reviewed product or service. Reviews from 2019 with no newer entries may raise staleness flags in AI trust evaluation.
+
+**reviewBody** is the full text of the review. This is the most structurally important property for AI citation because it provides the verbatim language AI engines can draw on when summarizing or quoting review sentiment. Keep review bodies complete — truncating them in schema while showing the full text on page creates a discrepancy that can be detected.
+
+**reviewRating** nests a Rating object that records the specific rating for this individual review:
+
+```json
+"reviewRating": {
+  "@type": "Rating",
+  "ratingValue": "5",
+  "bestRating": "5",
+  "worstRating": "1"
+}
+```
+
+A well-formed individual Review block within a Product schema looks like this:
+
+```json
+{
+  "@type": "Review",
+  "author": {
+    "@type": "Person",
+    "name": "Sarah M.",
+    "url": "https://example.com/users/sarah-m"
+  },
+  "datePublished": "2026-02-28",
+  "reviewBody": "I have been using this project management tool for six months across a team of twelve people. The onboarding was seamless and the task dependency visualization is genuinely the best I have seen at this price point. The mobile app needs work, but the desktop experience is excellent.",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "4",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+```
+
+## Entity types that support Review and AggregateRating schema
+
+Review and AggregateRating are not limited to one entity type. Schema.org allows both types as valid properties of a wide range of parent entities. Understanding which entity type to use determines how the AI engine categorizes and cites your rating data.
+
+**Product** is the most common parent type for e-commerce and software review pages. A product with AggregateRating is eligible for Google's review snippet rich results and AI citation in product recommendation queries.
+
+**LocalBusiness** — and its subtypes Restaurant, Hotel, MedicalBusiness, LegalService, and others — supports AggregateRating for business ratings. A restaurant with AggregateRating schema on its own website gives AI engines first-party rating data that supplements what is available from third-party platforms.
+
+**Service** covers professional service offerings. A consulting firm, design agency, or SaaS product can use Service with AggregateRating to mark up client ratings. This is particularly valuable for [E-E-A-T in the AI era](/blog/eeat-in-the-ai-era/) because it establishes trust signals on the entity's own domain rather than relying entirely on external review platforms.
+
+**Book, Movie, MusicAlbum, Course, Event, Recipe** — all support Review schema, making it applicable across editorial, entertainment, education, and food content categories. A book publisher marking up reader reviews, an online course platform marking up student ratings, and a film review site marking up critic assessments can all use the same fundamental schema pattern.
+
+The critical rule: the `@type` of the parent entity must accurately reflect what is being reviewed. Using `Product` to mark up a restaurant, or `LocalBusiness` to mark up a software application, is a type mismatch that structured data validators will flag and that AI engines may penalize as a trust signal inaccuracy.
+
+## Combining AggregateRating with LocalBusiness schema
+
+Local businesses have a specific opportunity with AggregateRating schema because they operate in a query category — "best [business type] in [location]" — where AI engines frequently make recommendation-style citations that directly reflect rating quality. Implementing AggregateRating within a complete LocalBusiness schema block is the most impactful single schema action a local business can take for AI search visibility.
+
+A complete LocalBusiness schema block with AggregateRating:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Trattoria Napoli",
+  "url": "https://trattorianapoli.com",
+  "telephone": "+1-312-555-0182",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "847 N Wells Street",
+    "addressLocality": "Chicago",
+    "addressRegion": "IL",
+    "postalCode": "60610",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "41.9023",
+    "longitude": "-87.6347"
+  },
+  "servesCuisine": "Italian",
+  "priceRange": "$$",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "17:00",
+      "closes": "22:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday"],
+      "opens": "17:00",
+      "closes": "23:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "reviewCount": "594",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+```
+
+When an AI engine processes a query like "best Italian restaurants in Chicago's River North neighborhood," it can read this schema and confirm: this entity is a Restaurant, it is located in the relevant area, and it has a 4.7 average rating from 594 reviews. That is a concrete, verifiable data point the AI engine can cite with confidence. A competing restaurant without this schema can only be evaluated from third-party data sources, which may be incomplete or inaccessible to the AI engine at query time.
+
+## Google's review schema policies — what not to do
+
+Google publishes explicit guidelines for review markup, and the policies exist specifically to prevent manipulation. Violating them does not just suppress rich results — it can trigger site-level quality actions that affect all search visibility, including AI Overview inclusion. The most important prohibitions:
+
+**Self-serving reviews are not allowed.** You cannot mark up reviews written by yourself, your employees, or any party with a financial interest in the business being reviewed. This includes marking up testimonials that were solicited, curated, or written as part of a marketing arrangement without that disclosure. Google's [review snippet documentation](https://developers.google.com/search/docs/appearance/structured-data/review-snippet) is explicit: review markup must represent genuine consumer opinions.
+
+**Aggregate ratings that do not reflect actual reviews are not allowed.** AggregateRating values must be derived from real reviews that exist on the page or on a referenced third-party platform. You cannot hardcode a `ratingValue: "4.9"` with `reviewCount: "1200"` if the actual reviews accessible on your site number fewer or tell a different story. AI engines cross-reference schema values against visible page content, and the discrepancy is detectable.
+
+**Reviews for a different entity are not allowed.** The AggregateRating in your Product schema must be for that specific product — not a general company rating applied to every product page. This is a common error on e-commerce sites that apply a sitewide "we have 4.8 stars overall" rating to individual product schema blocks.
+
+**Misleading or fake reviews are a policy violation at every level.** This is covered thoroughly in [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) from the E-E-A-T angle: AI engines are being trained to detect fabricated social proof, and sites that rely on it are building on an unstable foundation.
+
+## Third-party review import — what is allowed and what triggers penalties
+
+Many businesses aggregate reviews from Google Business Profile, Yelp, Trustpilot, or other platforms and want to reflect those ratings in their own site's schema. The rules here are specific.
+
+You may include AggregateRating values that reflect ratings from a third-party platform **if you clearly indicate the source platform** and the rating is current and accurate. Some schema implementations include a `reviewAspect` or descriptive name property to attribute the source. The rating value must match what is actually on the third-party platform.
+
+You may not import individual review text from third-party platforms and mark it up as `Review` schema on your own domain without appropriate licensing from the platform. Most major review platforms — Google, Yelp, Trustpilot — have terms of service that govern whether and how review text can be reproduced. Using their review text in your schema without authorization violates both platform terms and Google's review markup policies.
+
+The safest approach for most businesses: use AggregateRating to reflect your own platform's natively collected reviews, and if you want to reference third-party rating data, do so in visible page text rather than in schema markup. For businesses using a first-party review collection system — forms, post-purchase surveys, app-native reviews — those reviews can be marked up in full Review schema, provided the collection process was not manipulative and the reviews are authentic.
+
+## How AI engines use aggregate ratings as trust signals
+
+Understanding the mechanics of how AI engines interpret AggregateRating schema helps clarify why implementation details matter. The behavior is not simply "AI reads rating, AI says 4.7 stars." It is a multi-step trust evaluation process.
+
+First, AI engines check whether the rating data is structurally coherent. Does `ratingValue` fall within the declared `worstRating` to `bestRating` range? Does `reviewCount` correspond to the number of reviews visible on the page? Is the entity type accurate? Schema that fails these coherence checks is discounted or ignored.
+
+Second, AI engines weight rating volume heavily. A `ratingValue` of 4.8 from 12 reviews is treated very differently from 4.8 from 1,200 reviews. Volume signals authenticity: it is statistically unlikely that 1,200 independent reviewers would converge on a fake rating in the same way that 12 curated testimonials might. This is why `reviewCount` is arguably more important than `ratingValue` from an AI trust perspective.
+
+Third, recency of the most recent reviews affects the trust signal. If the `review` objects on a page all have `datePublished` values from 2021 and nothing more recent, an AI engine evaluating a query in 2026 may deprioritize that content for recency-sensitive queries about "the best options right now." Including recent individual Review schema entries — even just two or three from the past six months — refreshes the trust signal.
+
+Fourth, AI engines integrate on-page review schema with their broader knowledge about the entity. A business with strong AggregateRating schema, a fully realized LocalBusiness entity, and matching presence on authoritative third-party platforms (consistent NAP data, claimed Google Business Profile, Trustpilot profile) presents a corroborated trust picture that a business with schema alone cannot match. This is the "corroboration across sources" principle that the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) evaluates as part of a comprehensive AI visibility review.
+
+The practical implication: AggregateRating schema is most powerful when it is one element in a coherent trust signal system, not a standalone tactic. The [AI SEO Shift framework](/ai-seo-shift/) covers how these signals — structured data accuracy, entity coherence, review volume and recency, and domain authority — interact to determine which entities get cited in AI-generated recommendations.
+
+For a complete view of how structured data strategy fits into a broader AI citation approach, [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) and the [HowTo schema guide](/blog/howto-schema-for-ai-search/) provide complementary implementation depth.
+
+## Frequently asked questions
+
+**Does AggregateRating schema directly affect Google star ratings in search results?**
+
+Yes — AggregateRating schema is one of the primary triggers for Google's review snippet rich results, which display star ratings visually in organic search listings. However, Google's policies require that the ratings reflect genuine consumer reviews and that the page contains the underlying review content. AggregateRating markup without accessible individual reviews on the page, or with ratings that do not match the reviews present, will be rejected for rich result display. AI Overviews use the same schema data and apply similar authenticity checks before surfacing rating information.
+
+**Can I add AggregateRating schema to a page that collects reviews via a third-party widget?**
+
+Yes, with conditions. If the widget renders reviews in the page's HTML source — so that the review text and ratings are present in the DOM that crawlers see — you can mark up AggregateRating based on those reviews. If the widget loads reviews dynamically via JavaScript after the initial page render, the reviews may not be crawled, and the schema would not be backed by crawlable review content. Server-side rendering or static rendering of review widgets is necessary for schema to be accurate and verifiable.
+
+**How many individual Review schema entries should I include on a product or business page?**
+
+There is no fixed requirement, but three to five representative Review entries, each with a named author, recent date, full `reviewBody`, and individual `reviewRating`, provide a strong structured data signal without creating schema bloat. The reviews included in schema markup should represent the range of review sentiment on the page — a mix of 4- and 5-star reviews is more credible than only top-rated ones. Do not include every review in schema if you have hundreds; instead, select recent, substantive, attributable reviews that best represent the genuine user experience.
+
+**What happens if my AggregateRating schema value is higher than my actual average reviews?**
+
+Google and AI engines cross-reference schema values against the visible review content on the page. A schema claiming 4.8 while the displayed reviews average 3.9 is a detectable discrepancy. At minimum, this causes the schema to be discounted for rich result eligibility. At worst, it is treated as a quality manipulation signal that can suppress the page or domain more broadly. The schema value should be calculated from and match the actual review data, and should be updated dynamically whenever new reviews are added.
+
+**Should service businesses like law firms and consultancies use Review schema?**
+
+Yes — Service and ProfessionalService entity types fully support AggregateRating and Review schema. For regulated professions, the reviews must still be genuine client opinions and cannot include paid endorsements or testimonials that were given in exchange for services. Many professional service firms are cautious about review schema because they lack a high volume of public reviews, but even a modest `reviewCount` with accurate data is more useful for AI citation than no schema at all. A law firm with 47 verified reviews at 4.9 stars is citable; the same firm with no schema is invisible to AI engines evaluating "best [specialty] attorneys" queries.
+
+**Is it safe to mark up reviews collected through email surveys or post-service feedback forms?**
+
+Reviews collected through direct feedback channels — post-service email surveys, in-app feedback prompts, post-purchase forms — can be marked up with Review schema provided: the feedback was genuinely voluntary (not incentivized in a way that inflates ratings), the reviewer is a real customer who received the product or service, the review content is authentic and unedited, and you retain the data showing the review's origin. Fabricated or heavily curated reviews from internal forms are a policy violation regardless of the collection mechanism. The test is authenticity, not the channel through which the feedback was gathered.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does AggregateRating schema directly affect Google star ratings in search results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — AggregateRating schema is one of the primary triggers for Google's review snippet rich results, which display star ratings visually in organic search listings. However, Google's policies require that the ratings reflect genuine consumer reviews and that the page contains the underlying review content. AggregateRating markup without accessible individual reviews on the page, or with ratings that do not match the reviews present, will be rejected for rich result display. AI Overviews use the same schema data and apply similar authenticity checks before surfacing rating information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add AggregateRating schema to a page that collects reviews via a third-party widget?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with conditions. If the widget renders reviews in the page's HTML source — so that the review text and ratings are present in the DOM that crawlers see — you can mark up AggregateRating based on those reviews. If the widget loads reviews dynamically via JavaScript after the initial page render, the reviews may not be crawled, and the schema would not be backed by crawlable review content. Server-side rendering or static rendering of review widgets is necessary for schema to be accurate and verifiable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many individual Review schema entries should I include on a product or business page?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no fixed requirement, but three to five representative Review entries, each with a named author, recent date, full reviewBody, and individual reviewRating, provide a strong structured data signal without creating schema bloat. The reviews included in schema markup should represent the range of review sentiment on the page — a mix of 4- and 5-star reviews is more credible than only top-rated ones. Do not include every review in schema if you have hundreds; instead, select recent, substantive, attributable reviews that best represent the genuine user experience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if my AggregateRating schema value is higher than my actual average reviews?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google and AI engines cross-reference schema values against the visible review content on the page. A schema claiming 4.8 while the displayed reviews average 3.9 is a detectable discrepancy. At minimum, this causes the schema to be discounted for rich result eligibility. At worst, it is treated as a quality manipulation signal that can suppress the page or domain more broadly. The schema value should be calculated from and match the actual review data, and should be updated dynamically whenever new reviews are added."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should service businesses like law firms and consultancies use Review schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Service and ProfessionalService entity types fully support AggregateRating and Review schema. For regulated professions, the reviews must still be genuine client opinions and cannot include paid endorsements or testimonials given in exchange for services. Many professional service firms are cautious about review schema because they lack a high volume of public reviews, but even a modest reviewCount with accurate data is more useful for AI citation than no schema at all. A law firm with 47 verified reviews at 4.9 stars is citable; the same firm with no schema is invisible to AI engines evaluating best-attorney queries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to mark up reviews collected through email surveys or post-service feedback forms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reviews collected through direct feedback channels — post-service email surveys, in-app feedback prompts, post-purchase forms — can be marked up with Review schema provided the feedback was genuinely voluntary, the reviewer is a real customer who received the product or service, the review content is authentic and unedited, and you retain the data showing the review's origin. Fabricated or heavily curated reviews from internal forms are a policy violation regardless of the collection mechanism. The test is authenticity, not the channel through which the feedback was gathered."
+      }
+    }
+  ]
+}
+</script>
