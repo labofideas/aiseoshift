@@ -1,0 +1,92 @@
+---
+interface Props {
+	variant?: 'audit' | 'consult';
+}
+const { variant = 'audit' } = Astro.props;
+
+const content = {
+	audit: {
+		eyebrow: 'AI SEO Services',
+		headline: 'Not sure where your AI visibility stands?',
+		lede: 'Get a free AI SEO audit from Shashank — we review your citations, schema, E-E-A-T signals, and content structure and tell you exactly what to fix.',
+		cta: 'Request a Free Audit',
+		href: '/ai-seo-services/',
+	},
+	consult: {
+		eyebrow: 'Work With Us',
+		headline: 'Want help executing your AI SEO strategy?',
+		lede: 'AISEOShift works with a small number of brands and agencies each quarter on AI visibility, AEO, and GEO strategy. Retainers start at one focused engagement.',
+		cta: 'See AI SEO Services',
+		href: '/ai-seo-services/',
+	},
+};
+
+const c = content[variant];
+---
+
+<aside class="service-cta">
+	<p class="service-cta__eyebrow">{c.eyebrow}</p>
+	<h3 class="service-cta__headline">{c.headline}</h3>
+	<p class="service-cta__lede">{c.lede}</p>
+	<a href={c.href} class="service-cta__btn">{c.cta}</a>
+</aside>
+
+<style>
+	.service-cta {
+		margin: 3rem 0;
+		padding: 2rem 2.25rem;
+		border-left: 3px solid var(--signal);
+		background: rgba(184, 85, 46, 0.04);
+		border-radius: 0 6px 6px 0;
+	}
+
+	.service-cta__eyebrow {
+		margin: 0 0 0.5rem;
+		font-family: system-ui, sans-serif;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--signal);
+	}
+
+	.service-cta__headline {
+		margin: 0 0 0.75rem;
+		font-family: 'Georgia', 'Iowan Old Style', serif;
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: rgb(var(--ink));
+		line-height: 1.3;
+	}
+
+	.service-cta__lede {
+		margin: 0 0 1.25rem;
+		font-size: 0.9rem;
+		line-height: 1.65;
+		color: rgba(var(--ink), 0.72);
+		max-width: 52ch;
+	}
+
+	.service-cta__btn {
+		display: inline-block;
+		padding: 0.6rem 1.25rem;
+		background: var(--signal);
+		color: #fff;
+		text-decoration: none;
+		font-size: 0.875rem;
+		font-weight: 700;
+		border-radius: 4px;
+		transition: background 0.15s ease;
+	}
+
+	.service-cta__btn:hover,
+	.service-cta__btn:focus-visible {
+		background: var(--signal-deep, #8a3f23);
+	}
+
+	@media (max-width: 600px) {
+		.service-cta {
+			padding: 1.5rem;
+		}
+	}
+</style>
