@@ -1,0 +1,403 @@
+---
+title: "Recipe Schema for AI Search: How to Get Your Recipes Cited by ChatGPT and Google AI Overviews"
+description: How to implement Recipe schema markup so your recipes appear in AI engine answers. Complete JSON-LD guide covering ingredients, instructions, nutrition, and AI-specific optimization.
+deck: Recipe queries are among the highest-volume "how to" questions on AI engines. Sites with complete Recipe schema — ingredients, step-by-step instructions, nutrition, images — get cited. Sites without it get skipped. Here is the complete implementation guide.
+pubDate: 2026-06-17
+category: Strategy
+tags:
+  - Recipe schema
+  - schema markup
+  - food SEO
+  - structured data
+  - AI SEO
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+Recipe queries are a dominant category of AI engine usage. "How do I make sourdough bread?" "What is a good chicken tikka masala recipe?" "Show me a low-carb pasta dish" — these are among the most common informational queries users route through ChatGPT, Google AI Overviews, Perplexity, and similar systems. The AI engines answering those questions need structured, reliable recipe data to generate accurate, citable responses. Recipe schema is how you give them that data.
+
+The quick answer: food bloggers and recipe sites that implement complete Recipe schema markup — covering all required and recommended properties, including structured step instructions, nutrition facts, author credentials, and high-quality images — are substantially more likely to be cited in AI engine recipe answers than sites with minimal or absent schema. AI engines can extract recipe content from plain text, but they prefer structured data because it removes ambiguity about what the ingredients are, what the steps are, and whether the information is trustworthy. Schema markup is a reliability signal, not just a formatting convenience.
+
+This post walks through every relevant property of the [Schema.org Recipe type](https://schema.org/Recipe), the correct JSON-LD implementation pattern, the AI-specific optimizations that go beyond Google's basic requirements, and the mistakes that cause otherwise strong recipe content to be overlooked.
+
+<figure class="post-figure">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480" width="760" height="480" role="img" aria-label="Recipe schema completeness spectrum comparing minimal schema with only basic properties to complete schema with all properties including nutrition, video, and author">
+    <rect width="760" height="480" fill="rgb(246,245,240)" rx="8"/>
+    <text x="380" y="34" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="2">RECIPE SCHEMA COMPLETENESS SPECTRUM</text>
+    <rect x="40" y="56" width="310" height="340" fill="rgb(250,250,247)" rx="6" stroke="rgb(220,215,205)" stroke-width="1"/>
+    <text x="195" y="84" font-family="Georgia, serif" font-size="13" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Minimal Schema</text>
+    <text x="195" y="102" font-family="Georgia, serif" font-size="10" fill="rgb(120,115,108)" text-anchor="middle">Citation probability: LOW</text>
+    <rect x="60" y="116" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="88" y="129" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">name</text>
+    <rect x="60" y="144" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="88" y="157" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">description</text>
+    <rect x="60" y="172" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="88" y="185" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">recipeIngredient (plain list)</text>
+    <rect x="60" y="200" width="18" height="18" fill="rgb(220,215,205)" rx="3"/>
+    <text x="88" y="213" font-family="Georgia, serif" font-size="11" fill="rgb(160,155,148)">recipeInstructions (plain text)</text>
+    <rect x="60" y="228" width="18" height="18" fill="rgb(220,215,205)" rx="3"/>
+    <text x="88" y="241" font-family="Georgia, serif" font-size="11" fill="rgb(160,155,148)">image — missing</text>
+    <rect x="60" y="256" width="18" height="18" fill="rgb(220,215,205)" rx="3"/>
+    <text x="88" y="269" font-family="Georgia, serif" font-size="11" fill="rgb(160,155,148)">nutrition — missing</text>
+    <rect x="60" y="284" width="18" height="18" fill="rgb(220,215,205)" rx="3"/>
+    <text x="88" y="297" font-family="Georgia, serif" font-size="11" fill="rgb(160,155,148)">author — missing</text>
+    <rect x="60" y="312" width="18" height="18" fill="rgb(220,215,205)" rx="3"/>
+    <text x="88" y="325" font-family="Georgia, serif" font-size="11" fill="rgb(160,155,148)">video — missing</text>
+    <rect x="60" y="340" width="18" height="18" fill="rgb(220,215,205)" rx="3"/>
+    <text x="88" y="353" font-family="Georgia, serif" font-size="11" fill="rgb(160,155,148)">prepTime / cookTime — missing</text>
+    <rect x="410" y="56" width="310" height="340" fill="rgb(250,250,247)" rx="6" stroke="rgb(184,85,46)" stroke-width="2"/>
+    <text x="565" y="84" font-family="Georgia, serif" font-size="13" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Complete Schema</text>
+    <text x="565" y="102" font-family="Georgia, serif" font-size="10" fill="rgb(184,85,46)" text-anchor="middle">Citation probability: HIGH</text>
+    <rect x="430" y="116" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="129" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">name</text>
+    <rect x="430" y="144" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="157" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">description</text>
+    <rect x="430" y="172" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="185" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">recipeIngredient (full list)</text>
+    <rect x="430" y="200" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="213" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">recipeInstructions (HowToStep)</text>
+    <rect x="430" y="228" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="241" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">image (multiple sizes)</text>
+    <rect x="430" y="256" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="269" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">nutrition (NutritionInformation)</text>
+    <rect x="430" y="284" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="297" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">author (Person with credentials)</text>
+    <rect x="430" y="312" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="325" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">video (VideoObject)</text>
+    <rect x="430" y="340" width="18" height="18" fill="rgb(184,85,46)" rx="3"/>
+    <text x="458" y="353" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)">prepTime / cookTime / totalTime</text>
+    <text x="380" y="422" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)" text-anchor="middle">Complete schema gives AI engines every signal they need to cite confidently.</text>
+    <text x="380" y="442" font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)" text-anchor="middle">Minimal schema leaves AI engines guessing — and they cite sources that don't make them guess.</text>
+    <line x1="353" y1="200" x2="407" y2="200" stroke="rgb(184,85,46)" stroke-width="1.5" stroke-dasharray="4,3"/>
+  </svg>
+</figure>
+
+## The Recipe schema property set — required, recommended, and AI-critical
+
+[Schema.org's Recipe type](https://schema.org/Recipe) extends HowTo, which itself extends CreativeWork. That inheritance matters: Recipe schema can carry a wide range of properties, and the ones that matter for AI citations go well beyond the minimum required for Google rich results.
+
+**Required for Google rich results:** `name`, `image`, `recipeIngredient`, and `recipeInstructions`. These four properties are the floor. A schema block missing any of them will not trigger a recipe rich result in Google Search, and will provide AI engines with an incomplete structured data signal.
+
+**Strongly recommended for AI citation:** `author`, `datePublished`, `description`, `prepTime`, `cookTime`, `totalTime`, `recipeCategory`, `recipeCuisine`, and `nutrition`. These properties transform a bare-bones schema block into a rich, queryable data object that AI engines can use to answer specific user questions — not just "what is this recipe?" but "how long does it take?", "is it Italian?", "how many calories?", "when was this published and who wrote it?"
+
+A complete Recipe schema block in JSON-LD looks like this:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Classic Chicken Tikka Masala",
+  "author": {
+    "@type": "Person",
+    "name": "Priya Sharma",
+    "url": "https://example.com/about/priya-sharma"
+  },
+  "datePublished": "2026-03-15",
+  "description": "A rich, creamy chicken tikka masala with tender marinated chicken in a spiced tomato-cream sauce. Ready in 45 minutes and better than restaurant quality.",
+  "image": [
+    "https://example.com/images/chicken-tikka-masala-1x1.jpg",
+    "https://example.com/images/chicken-tikka-masala-4x3.jpg",
+    "https://example.com/images/chicken-tikka-masala-16x9.jpg"
+  ],
+  "prepTime": "PT20M",
+  "cookTime": "PT25M",
+  "totalTime": "PT45M",
+  "recipeCategory": "Main Course",
+  "recipeCuisine": "Indian",
+  "recipeYield": "4 servings",
+  "recipeIngredient": [
+    "500g boneless chicken thighs, cut into 3cm pieces",
+    "200ml plain yogurt",
+    "2 tbsp tikka masala spice blend",
+    "400g canned crushed tomatoes",
+    "200ml heavy cream",
+    "1 large onion, finely diced",
+    "4 garlic cloves, minced",
+    "1 tbsp fresh ginger, grated",
+    "2 tbsp neutral oil",
+    "Salt and freshly ground black pepper to taste",
+    "Fresh cilantro for garnish"
+  ],
+  "recipeInstructions": [
+    {
+      "@type": "HowToStep",
+      "name": "Marinate the chicken",
+      "text": "Combine yogurt and tikka masala spice blend in a bowl. Add chicken pieces and coat thoroughly. Cover and refrigerate for at least 2 hours, or overnight for best results.",
+      "url": "https://example.com/chicken-tikka-masala#step-1",
+      "image": "https://example.com/images/step-1-marinate.jpg"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Cook the aromatics",
+      "text": "Heat oil in a large skillet over medium-high heat. Add diced onion and cook for 8 minutes until golden. Add garlic and ginger, cook for 2 minutes until fragrant.",
+      "url": "https://example.com/chicken-tikka-masala#step-2"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Build the sauce",
+      "text": "Add crushed tomatoes to the aromatics. Simmer for 10 minutes, stirring occasionally, until the sauce thickens and darkens slightly.",
+      "url": "https://example.com/chicken-tikka-masala#step-3"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Add chicken and cream",
+      "text": "Add marinated chicken to the pan. Cook for 12 minutes until cooked through. Reduce heat to low, stir in heavy cream, and simmer for 3 minutes. Season with salt and pepper.",
+      "url": "https://example.com/chicken-tikka-masala#step-4"
+    }
+  ],
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "420 calories",
+    "proteinContent": "34g",
+    "fatContent": "22g",
+    "carbohydrateContent": "18g",
+    "sodiumContent": "680mg",
+    "fiberContent": "3g",
+    "servingSize": "1 serving"
+  }
+}
+```
+
+The JSON-LD block goes inside a `<script type="application/ld+json">` tag, placed in the `<head>` or anywhere in the `<body>` of the recipe page. It does not need to be visible to users — it is read by crawlers and AI engines directly from the HTML source.
+
+## HowToStep within recipeInstructions — structured steps over plain text
+
+The single most impactful upgrade you can make to basic Recipe schema is changing `recipeInstructions` from a plain text string to an array of `HowToStep` objects. This one change transforms your instruction block from a blob of text into a machine-readable sequence of named, addressable steps.
+
+Plain text `recipeInstructions`:
+
+```json
+"recipeInstructions": "First marinate the chicken. Then cook the aromatics. Add tomatoes and simmer. Add chicken and cream."
+```
+
+This gives AI engines nothing to work with structurally. They know there are instructions, but cannot identify individual steps, their names, their sequence, or their estimated duration.
+
+HowToStep format:
+
+```json
+"recipeInstructions": [
+  {
+    "@type": "HowToStep",
+    "name": "Marinate the chicken",
+    "text": "Full step text here...",
+    "url": "https://example.com/recipe#step-1"
+  }
+]
+```
+
+Each `HowToStep` can carry `name` (a short title for the step), `text` (the full instruction), `url` (a direct link to the step on the page via anchor), `image` (a photo of the step), and `video` (a VideoObject for step-level video content). The `url` property is particularly valuable because it allows AI engines to link directly to a specific step rather than just the recipe page — an important factor in how AI systems construct "featured excerpt" citations.
+
+This mirrors the approach used in [HowTo schema for AI search](/blog/howto-schema-for-ai-search/), which covers the same HowToStep structure for instructional content more broadly. The principle is identical: structured steps are machine-readable in a way that prose instructions are not.
+
+## NutritionInformation schema — why it drives health-focused AI citations
+
+Nutrition data is one of the most searched categories of recipe information. "How many calories in chicken tikka masala?" "What is the protein content of this pasta dish?" "Is this recipe low in sodium?" These queries are not just recipe searches — they are health information queries that AI engines must answer accurately.
+
+A recipe page with a complete `NutritionInformation` schema block can be cited in response to these health-focused queries because the AI engine can read the nutrition data directly from the schema. A recipe page without nutrition schema cannot be cited in response to nutrition queries — the AI engine has no reliable structured data to surface, and will either cite a recipe that does have it, or pull nutrition data from a database like the USDA food composition database rather than your page.
+
+The full `NutritionInformation` type supports:
+
+- `calories` — the caloric content per serving
+- `proteinContent`, `fatContent`, `carbohydrateContent` — macronutrients
+- `saturatedFatContent`, `unsaturatedFatContent`, `transFatContent` — fat detail
+- `cholesterolContent`, `sodiumContent` — cardiovascular markers
+- `fiberContent`, `sugarContent` — carbohydrate detail
+- `servingSize` — the portion size the nutrition data applies to
+
+You do not need to include every property, but more is better for AI citation purposes. A `NutritionInformation` block with only calories is marginally useful; one with calories, macros, sodium, and serving size is a fully queryable nutrition data object that can answer a wide range of user queries about the recipe.
+
+All numeric values should be expressed as strings with units: `"420 calories"`, `"34g"`, `"680mg"`. The `servingSize` field should be expressed in the same format as the recipe's yield: if the recipe makes four servings, `servingSize` should be "1 serving (of 4)".
+
+## Author and E-E-A-T signals for recipe content
+
+Recipe content operates in a high-trust category. AI engines evaluating food content want to know: who wrote this recipe, do they have relevant expertise, and is the source authoritative? This is the same E-E-A-T framework discussed in [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/), applied specifically to food and recipe content.
+
+The `author` property in Recipe schema should use a `Person` type rather than a bare string:
+
+```json
+"author": {
+  "@type": "Person",
+  "name": "Maria Chen",
+  "url": "https://example.com/about/maria-chen",
+  "sameAs": [
+    "https://www.instagram.com/mariachencooks",
+    "https://www.linkedin.com/in/mariachen"
+  ]
+}
+```
+
+The `sameAs` property links the recipe author to their presence on other platforms, allowing AI engines to build a richer picture of who this person is. A recipe author with a LinkedIn profile showing a culinary degree, an Instagram with 50,000 followers, and a consistent byline across hundreds of recipes on the same domain carries significantly more E-E-A-T weight than an anonymous "Staff" attribution.
+
+For recipe sites specifically, credibility signals include:
+
+**Culinary credentials:** A trained chef, culinary school graduate, registered dietitian, or food scientist brings verifiable expertise to recipe content. If the author has credentials, they should be on the author bio page and linkable from the recipe page's author attribution.
+
+**Consistency of authorship:** A recipe site where the same author has published 200 recipes over three years looks different to an AI trust system than a site with 200 recipes each by a different "contributor." Consistent authorship accumulates topical authority in a way that distributed authorship does not.
+
+**Recipe testing and revision history:** Including a `datePublished` and `dateModified` in the schema signals that recipes are actively maintained. An AI engine evaluating a recipe from 2019 with a 2025 modification date reads that as a site that updates its content — a trust signal.
+
+## Image requirements for Recipe rich results and AI citations
+
+`image` is a required field for Google Recipe rich results, and it functions as a quality signal for AI citation as well. AI systems evaluating recipe content treat the presence of multiple high-quality, correctly sized images as an indicator of editorial investment — a proxy for content quality that is independent of the text content itself.
+
+[Google's Recipe structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/recipe) specifies image requirements clearly: images must be in JPG, PNG, or WebP format; should be at a minimum resolution that results in a clear, sharp image; and Google recommends providing multiple aspect ratios (1:1, 4:3, 16:9) as an array in the `image` property.
+
+```json
+"image": [
+  "https://example.com/recipe-1x1.jpg",
+  "https://example.com/recipe-4x3.jpg",
+  "https://example.com/recipe-16x9.jpg"
+]
+```
+
+The multi-image approach ensures the recipe can appear correctly in different Google surfaces (Search, Discover, Images) and gives AI engines the flexibility to select the most appropriate image for their answer format. A recipe with only a single 16:9 image may not display correctly in contexts where square images are expected.
+
+Beyond the schema itself, the images should:
+
+- Show the finished dish clearly and attractively
+- Be originally produced (not stock photos), which correlates with unique content signals
+- Carry descriptive, keyword-relevant `alt` text on the HTML `<img>` tag
+- Be hosted on the same domain as the recipe, not a CDN subdomain that could be interpreted as third-party
+
+Step images — individual photos for each `HowToStep` — are strongly recommended for complex recipes. They add visual instruction quality and increase the total structured data surface area of the page, giving AI engines more citable content anchors.
+
+## Recipe variations and VideoObject integration
+
+Two extensions to basic Recipe schema significantly increase citation surface area: recipe variations and video content.
+
+**Recipe variations** handle the common food blog pattern of offering substitutions, dietary modifications, or regional adaptations. Rather than burying variations in prose ("to make this vegan, substitute..."), schema can represent them structurally using the `suitableForDiet` property:
+
+```json
+"suitableForDiet": [
+  "https://schema.org/GlutenFreeDiet",
+  "https://schema.org/LowCalorieDiet"
+]
+```
+
+Schema.org supports a range of diet types: `GlutenFreeDiet`, `HalalDiet`, `KosherDiet`, `LowCalorieDiet`, `LowFatDiet`, `LowLactoseDiet`, `LowSaltDiet`, `VeganDiet`, `VegetarianDiet`. Marking a recipe with its applicable dietary categories makes it directly citable in response to diet-specific recipe queries — which are a substantial and growing query category as health-conscious users increasingly route food queries through AI engines.
+
+**VideoObject** integration adds video content to the recipe schema block. Recipe videos are among the highest-engagement content formats on food sites, and AI engines increasingly surface video-paired recipes in response to queries where users want visual instruction guidance.
+
+```json
+"video": {
+  "@type": "VideoObject",
+  "name": "How to Make Chicken Tikka Masala",
+  "description": "Step-by-step video showing how to make restaurant-quality chicken tikka masala at home.",
+  "thumbnailUrl": "https://example.com/video-thumbnail.jpg",
+  "contentUrl": "https://example.com/videos/chicken-tikka-masala.mp4",
+  "embedUrl": "https://www.youtube.com/embed/VIDEO_ID",
+  "uploadDate": "2026-03-15",
+  "duration": "PT8M30S"
+}
+```
+
+The combination of recipe schema, step-level images, video content, and nutrition data creates a multi-format data object that AI engines can draw on for a wide variety of query types — not just "how to cook chicken tikka masala" but also "quick Indian recipes under 500 calories" and "chicken recipes with video tutorials."
+
+## Common mistakes that prevent recipe schema from working
+
+Even well-intentioned schema implementations frequently contain errors that prevent rich results and reduce AI citation eligibility. The most consequential mistakes:
+
+**Missing required fields.** Omitting `name`, `image`, `recipeIngredient`, or `recipeInstructions` — any of the four required properties — disqualifies the schema block from triggering rich results entirely. AI engines can still read the partial schema but treat it as lower-confidence structured data. Every recipe page should pass [Google's Rich Results Test](https://search.google.com/test/rich-results) before publishing.
+
+**Plain text instead of HowToStep arrays.** Passing `recipeInstructions` as a single string rather than an array of `HowToStep` objects is the most common missed optimization. It produces technically valid schema but throws away all the structural information that makes recipe steps machine-readable.
+
+**Wrong date format.** `datePublished` and `dateModified` must use ISO 8601 format: `"2026-03-15"` or `"2026-03-15T14:30:00+05:30"`. Common wrong formats include `"March 15, 2026"`, `"03/15/2026"`, and `"15 Mar 2026"`. An incorrectly formatted date will be ignored by parsers and eliminates temporal trust signals from the schema block.
+
+**Duration encoding errors.** Time values (`prepTime`, `cookTime`, `totalTime`) must use ISO 8601 duration format: `PT20M` for 20 minutes, `PT1H30M` for 1 hour 30 minutes. A plain `"20 minutes"` string is invalid and will be rejected by structured data validators.
+
+**Nutrition values without units.** `NutritionInformation` property values must include units: `"420 calories"`, not `"420"`. Values without units are ambiguous and may be ignored.
+
+**Schema that does not match the page content.** AI engines and Google's quality systems cross-reference schema values against visible page content. A recipe schema claiming 20 minutes `totalTime` when the recipe page discusses a 12-hour marination process signals either an error or deliberate manipulation. Both are negatives for citation trust. The structured data accuracy principle is detailed in the broader [schema markup for AI visibility guide](/blog/schema-markup-for-ai-visibility/).
+
+**Schema injected after page render.** Schema blocks added via JavaScript after the initial HTML response may not be processed by all crawlers. Recipe schema should be in the HTML source that is returned on the initial HTTP request, not added dynamically by client-side scripts after page load.
+
+## Integrating recipe schema into your broader AI visibility strategy
+
+Recipe schema is a high-impact individual tactic, but it operates within a larger system. The food sites that consistently dominate AI recipe citations combine several elements:
+
+Complete, error-free Recipe schema with all recommended properties is the foundation. On top of that, the page structure matters: a well-organized recipe post with a clear title, an introduction that answers the "what makes this recipe good?" question quickly, the structured recipe card, and a notes section covering substitutions and storage follows the content format principles in [the perfect blog post structure for AI citation](/blog/perfect-blog-post-structure-ai-citation/).
+
+Technical health matters too — a fast-loading recipe page that passes Core Web Vitals is more likely to be indexed at high quality than a slow one, and indexation quality determines citation pool eligibility. The full picture of what AI engines evaluate is mapped in the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/).
+
+Domain-level authority for food content builds over time as the site accumulates more well-structured recipes, earns links from food media and other culinary sites, and establishes consistent authorship from credentialed contributors. Individual recipe schema is a page-level signal; domain topical authority is the signal that determines which food site's recipe gets cited when ten different sites have all implemented schema correctly.
+
+The [AI SEO Shift framework](/ai-seo-shift/) covers how these signals — structured data, content quality, authority, and technical health — interact to determine citation probability across content categories including recipe and food content.
+
+## Frequently asked questions
+
+**Does Recipe schema guarantee my recipes will appear in AI engine answers?**
+No — Recipe schema is a necessary condition for reliable AI citation, not a sufficient one. Schema tells AI engines what your recipe contains and makes it machine-readable, but citation decisions also depend on content quality, domain authority, topical relevance, and the specific query being answered. Complete, correct schema significantly increases your citation probability by ensuring AI engines can read and trust your data. Incomplete or erroneous schema actively suppresses citation probability. Schema is the floor; quality content and authority are what get you cited consistently.
+
+**Which Recipe schema properties are required versus optional?**
+Google's Rich Results documentation classifies `name`, `image`, `recipeIngredient`, and `recipeInstructions` as required for recipe rich results. All other properties — `author`, `datePublished`, `nutrition`, `prepTime`, `cookTime`, `totalTime`, `recipeCategory`, `recipeCuisine`, `recipeYield`, `video`, `suitableForDiet` — are recommended or optional. For AI citation specifically, `author`, `datePublished`, `nutrition`, structured `HowToStep` instructions, and multiple images are effectively required for competitive citation probability even if Google's rich results test does not mark them as required.
+
+**Should Recipe schema use JSON-LD or microdata?**
+JSON-LD is the strongly preferred format for Recipe schema in 2026. It keeps the structured data separated from the HTML content, making it easier to maintain, validate, and update without touching the page layout. Google explicitly recommends JSON-LD for all structured data. Microdata — schema markup embedded inline in the HTML using `itemscope` and `itemprop` attributes — is technically valid but creates maintenance complexity and is not recommended for new implementations. If your site uses a CMS with a recipe plugin (Tasty Recipes, WP Recipe Maker, Mediavine Create), those plugins generate JSON-LD automatically.
+
+**How do I add Recipe schema to a WordPress food blog?**
+WordPress food bloggers have several options. Dedicated recipe plugins — Tasty Recipes, WP Recipe Maker, Mediavine Create — automatically generate complete Recipe schema JSON-LD from the recipe data entered in the plugin interface. These are the most practical approach because they also handle the recipe card display, ingredient scaling, and print functionality. For custom implementations, adding a `<script type="application/ld+json">` block with the Recipe schema to the post template in the theme is the manual alternative. After implementing, validate using Google's Rich Results Test and check the Search Console Enhancements report for any schema errors.
+
+**How often should Recipe schema be updated when a recipe is changed?**
+Every time the recipe content changes — ingredient quantities, instructions, cook times, or nutrition data — the schema block should be updated to match. Discrepancies between schema values and visible page content are flagged by Google's quality systems as potential accuracy issues. Additionally, update `dateModified` to the current date whenever the recipe is changed. Regular updates signal to AI engines that the content is actively maintained, which is a trust positive. For sites managing hundreds of recipes, building the schema update into the recipe editing workflow — rather than treating it as a separate task — is the most reliable approach.
+
+**Can I use Recipe schema for recipe roundup posts and recipe collections?**
+Recipe schema is intended for pages that contain a single, complete recipe. For roundup posts ("25 Best Pasta Recipes") and collection pages ("All Our Chicken Dishes"), the appropriate schema types are `ItemList` or `CollectionPage`, not `Recipe`. Using Recipe schema on a page that does not contain a complete, self-contained recipe is a misuse of the type and may trigger schema quality flags in Search Console. Recipe pages linked from a roundup should each have their own Recipe schema. The roundup page itself can use `ItemList` schema to mark up the list of recipes it links to, creating a structured relationship between the collection page and the individual recipe pages.
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Recipe schema guarantee my recipes will appear in AI engine answers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — Recipe schema is a necessary condition for reliable AI citation, not a sufficient one. Schema tells AI engines what your recipe contains and makes it machine-readable, but citation decisions also depend on content quality, domain authority, topical relevance, and the specific query being answered. Complete, correct schema significantly increases your citation probability by ensuring AI engines can read and trust your data. Incomplete or erroneous schema actively suppresses citation probability. Schema is the floor; quality content and authority are what get you cited consistently."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Recipe schema properties are required versus optional?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google's Rich Results documentation classifies name, image, recipeIngredient, and recipeInstructions as required for recipe rich results. All other properties — author, datePublished, nutrition, prepTime, cookTime, totalTime, recipeCategory, recipeCuisine, recipeYield, video, suitableForDiet — are recommended or optional. For AI citation specifically, author, datePublished, nutrition, structured HowToStep instructions, and multiple images are effectively required for competitive citation probability even if Google's rich results test does not mark them as required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should Recipe schema use JSON-LD or microdata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JSON-LD is the strongly preferred format for Recipe schema in 2026. It keeps the structured data separated from the HTML content, making it easier to maintain, validate, and update without touching the page layout. Google explicitly recommends JSON-LD for all structured data. Microdata — schema markup embedded inline in the HTML using itemscope and itemprop attributes — is technically valid but creates maintenance complexity and is not recommended for new implementations. If your site uses a CMS with a recipe plugin (Tasty Recipes, WP Recipe Maker, Mediavine Create), those plugins generate JSON-LD automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add Recipe schema to a WordPress food blog?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WordPress food bloggers have several options. Dedicated recipe plugins — Tasty Recipes, WP Recipe Maker, Mediavine Create — automatically generate complete Recipe schema JSON-LD from the recipe data entered in the plugin interface. These are the most practical approach because they also handle the recipe card display, ingredient scaling, and print functionality. For custom implementations, adding a script tag with type application/ld+json containing the Recipe schema to the post template is the manual alternative. After implementing, validate using Google's Rich Results Test and check the Search Console Enhancements report for any schema errors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should Recipe schema be updated when a recipe is changed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every time the recipe content changes — ingredient quantities, instructions, cook times, or nutrition data — the schema block should be updated to match. Discrepancies between schema values and visible page content are flagged by Google's quality systems as potential accuracy issues. Additionally, update dateModified to the current date whenever the recipe is changed. Regular updates signal to AI engines that the content is actively maintained, which is a trust positive. For sites managing hundreds of recipes, building the schema update into the recipe editing workflow rather than treating it as a separate task is the most reliable approach."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Recipe schema for recipe roundup posts and recipe collections?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Recipe schema is intended for pages that contain a single, complete recipe. For roundup posts and collection pages, the appropriate schema types are ItemList or CollectionPage, not Recipe. Using Recipe schema on a page that does not contain a complete, self-contained recipe is a misuse of the type and may trigger schema quality flags in Search Console. Recipe pages linked from a roundup should each have their own Recipe schema. The roundup page itself can use ItemList schema to mark up the list of recipes it links to, creating a structured relationship between the collection page and the individual recipe pages."
+      }
+    }
+  ]
+}
+</script>
