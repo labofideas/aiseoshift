@@ -1,0 +1,414 @@
+---
+title: "JobPosting Schema for AI Search: Get Your Job Listings Found by AI Engines in 2026"
+description: How to implement JobPosting schema markup so AI engines surface your open roles when candidates ask about job opportunities. Complete JSON-LD guide for employers and job boards.
+deck: Candidates increasingly ask ChatGPT and Perplexity about job openings in specific cities or fields. Job listings with JobPosting schema are structured data AI engines can extract and recommend. Listings without it are invisible.
+pubDate: 2026-06-18
+category: Strategy
+tags:
+  - JobPosting schema
+  - schema markup
+  - recruitment SEO
+  - structured data
+  - AI SEO
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+A regional healthcare network posted forty-two open nursing positions across six facilities. The listings were detailed, well-written, and updated weekly. The careers page ranked for branded searches, and the jobs appeared in Google for Jobs. But something was shifting. Nursing candidates were bypassing traditional job search flows and asking ChatGPT things like "registered nurse jobs in Austin that offer relocation assistance" or asking Perplexity "which hospitals in Phoenix are hiring travel nurses right now." The healthcare network's listings never appeared in those answers. Competitors whose job boards implemented complete JobPosting schema — including salary ranges, employment type, and remote eligibility — were being cited consistently. The content gap was not in the job descriptions. It was in the structured data layer that AI engines rely on to identify, parse, and recommend open positions.
+
+JobPosting schema is the machine-readable vocabulary that tells AI search systems precisely what a position is, who is hiring, what it pays, where it is located, and how long the listing is valid. Without it, AI engines must reverse-engineer this information from natural language — an unreliable process that produces inconsistent results and frequently surfaces incomplete or outdated listings. With it, you give AI systems a structured data contract they can process confidently and recommend specifically.
+
+## Quick answer
+
+Implementing JobPosting schema with complete required and recommended properties gives AI engines the structured signals they need to surface your open roles in response to job-search queries. The minimum viable implementation requires `@type: JobPosting` with `title`, `description`, `datePosted`, `validThrough`, `hiringOrganization`, and `jobLocation`. Listings that add salary range, employment type, and remote-work indicators are significantly more likely to appear as specific recommendations in AI-generated answers because those properties directly match the filters candidates express in natural language queries. Listings with expired `validThrough` dates or missing required fields are excluded from AI recommendations regardless of content quality.
+
+## Why JobPosting schema drives AI job discovery
+
+Every day, AI engines field thousands of employment-intent queries: "marketing manager jobs remote," "entry-level software engineering positions in Seattle," "healthcare jobs with signing bonus," "part-time accounting roles near me." These queries require the AI to surface specific, actionable job listings — not just career advice articles or general hiring trend pieces.
+
+The problem for unstructured job pages is fundamental. An AI engine cannot reliably distinguish a current job listing from a filled position that was never taken down, a salary guide that mentions the same job title, or a company overview that references open headcount. All three might contain identical keywords. JobPosting schema eliminates that ambiguity entirely. A page with `@type: JobPosting` is unambiguously an active job listing. A page with a `validThrough` date in the future is unambiguously open. That disambiguation is what makes the listing citable in a context where the AI is recommending specific positions rather than general employment information.
+
+As covered in the [schema markup for AI visibility guide](/blog/schema-markup-for-ai-visibility/), structured data is not primarily about rich results in 2026 — it is about giving AI systems the pre-processed data structures they need to include your content in generated responses with confidence.
+
+## Required JobPosting properties
+
+The [Schema.org JobPosting specification](https://schema.org/JobPosting) defines the type as a subtype of Intangible. Every implementation begins with six required properties that AI engines depend on to classify and serve a listing.
+
+**title** is the official job title as it would appear in a search result or application confirmation. Use the actual job title, not a keyword-stuffed variant. "Senior Software Engineer" is correct. "Senior Software Engineer — Remote, $150k, Hiring Now" is not. AI systems cross-reference the title against visible page content, and mismatches reduce trust scores. Job title normalization is also how AI engines match queries that use different but equivalent terms — "software developer" and "software engineer" — so specificity is more valuable than creative titling.
+
+**description** should be a complete natural-language explanation of the role, responsibilities, required qualifications, and preferred experience. This is the property AI engines extract when generating conversational summaries of a position. A strong description is four to eight sentences covering what the person will do, what background is required, and what kind of candidate will thrive. Avoid HTML in the description field — plain text is processed more reliably across AI systems.
+
+**datePosted** is the ISO 8601 date the listing was published. Format: `YYYY-MM-DD`. This value tells AI systems how recent the listing is. Stale listings with old `datePosted` values rank lower in AI job recommendations even when the position is still open. If you re-post a role that did not fill, update `datePosted` to the re-post date rather than leaving the original date.
+
+**validThrough** is the date and time the listing expires. Format: `YYYY-MM-DDTHH:MM:SS`. This is the single most important property for AI engines deciding whether to recommend a listing. Listings without `validThrough` are treated as potentially stale. Listings whose `validThrough` date has passed are excluded from AI recommendations entirely. Set `validThrough` to a real expiration date — typically 30 to 60 days from posting — and update it when you extend the posting period.
+
+**hiringOrganization** identifies the employer. This should be an `Organization` object with `name`, `sameAs` (linking to a LinkedIn company page, Crunchbase profile, or other authoritative external reference), and `logo`. Organization identity is a trust signal. AI systems that recommend positions from named, verifiable employers carry higher confidence than those recommending positions from anonymous or unverifiable sources.
+
+**jobLocation** specifies where the work happens. For in-person roles, this is a `Place` object with a full `PostalAddress` including `streetAddress`, `addressLocality` (city), `addressRegion` (state), `postalCode`, and `addressCountry`. Location specificity directly determines whether AI engines surface a listing for geographic queries — "nursing jobs in Austin" requires `addressLocality: Austin` in the schema to match reliably.
+
+A minimal but well-formed JobPosting block:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "Registered Nurse — ICU",
+  "description": "St. Catherine Medical Center is hiring experienced ICU nurses for full-time positions at our North Austin facility. Candidates must hold a current Texas RN license, have a minimum of two years critical care experience, and be BLS and ACLS certified. Responsibilities include patient assessment, care planning, medication administration, and family communication in a 24-bed intensive care unit. New hires receive a $10,000 signing bonus and relocation assistance up to $5,000.",
+  "datePosted": "2026-06-01",
+  "validThrough": "2026-07-31T23:59:59",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "St. Catherine Medical Center",
+    "sameAs": "https://www.linkedin.com/company/st-catherine-medical/",
+    "logo": "https://stcatherinemedical.com/logo.png"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "4200 Medical Parkway",
+      "addressLocality": "Austin",
+      "addressRegion": "TX",
+      "postalCode": "78756",
+      "addressCountry": "US"
+    }
+  }
+}
+```
+
+## Recommended properties: salary, employment type, and applicant location
+
+The required properties establish what, who, where, and when. Recommended properties are what make a listing competitive in AI recommendations — they match the specific filters candidates express in natural language queries.
+
+**baseSalary** is one of the highest-leverage additions to any job listing schema. Candidates routinely include compensation in their AI queries: "software engineer jobs in Denver paying over $120k," "remote marketing roles with salary above $80,000." Without `baseSalary` markup, your listing cannot match those queries regardless of what the job description says in prose. Structure baseSalary as a `MonetaryAmountDistribution` for ranges or a `MonetaryAmount` for fixed compensation.
+
+```json
+"baseSalary": {
+  "@type": "MonetaryAmountDistribution",
+  "name": "base salary",
+  "currency": "USD",
+  "duration": "P1Y",
+  "minValue": "115000",
+  "maxValue": "140000"
+}
+```
+
+The `duration` property uses ISO 8601 duration format: `P1Y` for annual, `P1M` for monthly, `PT1H` for hourly.
+
+**employmentType** specifies the work arrangement. Schema.org accepts the following values: `FULL_TIME`, `PART_TIME`, `CONTRACTOR`, `TEMPORARY`, `INTERN`, `VOLUNTEER`, `PER_DIEM`, and `OTHER`. This is a critical filter field — candidates searching for part-time or contract work specify this in queries, and the AI can only match listings that explicitly declare their employment type.
+
+**applicantLocationRequirements** defines the geographic area from which applicants are eligible to apply. For fully remote positions, use a `Country` object. For roles with state-specific eligibility — common in US healthcare, legal, and financial services — list each eligible state as a separate `State` object. This property is especially important for distributed teams with legal restrictions on where employees can be based.
+
+```json
+"applicantLocationRequirements": {
+  "@type": "Country",
+  "name": "US"
+}
+```
+
+**jobLocationType** enables the remote work matching described in the next section.
+
+**workHours** describes the expected schedule in plain text — "Monday through Friday, 9 AM to 5 PM EST" or "Three 12-hour shifts per week, rotating days and nights." Schedule-specific queries from candidates looking for flexibility or specific shift patterns depend on this property.
+
+**skills** is a text field listing the specific competencies required for the role. Be specific and searchable: "Python, pandas, SQL, Tableau" outperforms "data analysis skills." AI systems match skills queries against this field directly.
+
+**experienceRequirements** and **educationRequirements** round out candidate qualification matching. Use plain text descriptions for both. Candidates asking "entry level accounting jobs" or "marketing jobs that don't require a degree" depend on these properties being present and accurate.
+
+<figure class="post-figure">
+<svg viewBox="0 0 820 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JobPosting schema required vs recommended properties checklist showing two columns: required properties on the left with rust-colored checkmarks and recommended properties on the right with lighter checkmarks">
+  <rect width="820" height="560" fill="rgb(246,245,240)" />
+  <text x="40" y="28" font-family="system-ui, sans-serif" font-size="11" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.5">JOBPOSTING SCHEMA — PROPERTY TIERS</text>
+  <line x1="40" y1="44" x2="780" y2="44" stroke="rgb(14,17,22)" stroke-opacity="0.07" />
+  <rect x="40" y="60" width="350" height="44" rx="6" fill="rgb(184,85,46)" />
+  <text x="215" y="87" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="rgb(250,250,247)">Required Properties</text>
+  <rect x="430" y="60" width="350" height="44" rx="6" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" />
+  <text x="605" y="87" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="rgb(14,17,22)">Recommended Properties</text>
+  <rect x="40" y="120" width="350" height="370" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.08" />
+  <rect x="430" y="120" width="350" height="370" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.08" />
+  <text x="64" y="158" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" font-weight="700">✓</text>
+  <text x="84" y="158" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">title</text>
+  <text x="84" y="173" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Matches job-title queries exactly</text>
+  <text x="64" y="205" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" font-weight="700">✓</text>
+  <text x="84" y="205" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">description</text>
+  <text x="84" y="220" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">AI extracts this for conversational summaries</text>
+  <text x="64" y="252" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" font-weight="700">✓</text>
+  <text x="84" y="252" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">datePosted</text>
+  <text x="84" y="267" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Signals recency — stale dates lower ranking</text>
+  <text x="64" y="299" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" font-weight="700">✓</text>
+  <text x="84" y="299" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">validThrough</text>
+  <text x="84" y="314" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Expired = excluded from AI recommendations</text>
+  <text x="64" y="346" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" font-weight="700">✓</text>
+  <text x="84" y="346" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">hiringOrganization</text>
+  <text x="84" y="361" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Employer identity and trust signal</text>
+  <text x="64" y="393" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" font-weight="700">✓</text>
+  <text x="84" y="393" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">jobLocation</text>
+  <text x="84" y="408" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Required for city/region geographic matching</text>
+  <text x="454" y="158" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" fill-opacity="0.55" font-weight="700">✓</text>
+  <text x="474" y="158" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">baseSalary</text>
+  <text x="474" y="173" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Enables salary-filter queries ("paying over $120k")</text>
+  <text x="454" y="205" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" fill-opacity="0.55" font-weight="700">✓</text>
+  <text x="474" y="205" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">employmentType</text>
+  <text x="474" y="220" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Full-time / part-time / contract matching</text>
+  <text x="454" y="252" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" fill-opacity="0.55" font-weight="700">✓</text>
+  <text x="474" y="252" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">jobLocationType</text>
+  <text x="474" y="267" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">TELECOMMUTE enables remote job discovery</text>
+  <text x="454" y="299" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" fill-opacity="0.55" font-weight="700">✓</text>
+  <text x="474" y="299" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">applicantLocationRequirements</text>
+  <text x="474" y="314" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Defines eligible applicant geography</text>
+  <text x="454" y="346" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" fill-opacity="0.55" font-weight="700">✓</text>
+  <text x="474" y="346" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">skills</text>
+  <text x="474" y="361" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Matches skills-specific candidate queries</text>
+  <text x="454" y="393" font-family="system-ui, sans-serif" font-size="13" fill="rgb(184,85,46)" fill-opacity="0.55" font-weight="700">✓</text>
+  <text x="474" y="393" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">workHours / educationRequirements</text>
+  <text x="474" y="408" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.55">Schedule and qualification filter matching</text>
+  <line x1="40" y1="503" x2="780" y2="503" stroke="rgb(14,17,22)" stroke-opacity="0.07" />
+  <text x="40" y="520" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.45">Required properties: listing is invisible to AI without them — Recommended: each adds a filter dimension AI engines can match</text>
+  <text x="780" y="520" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.35">aiseoshift.com</text>
+  <text x="40" y="538" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.35">Rust checkmarks = required tier — faded checkmarks = recommended tier</text>
+</svg>
+</figure>
+
+## Remote and hybrid job markup
+
+Remote work queries represent a significant and growing share of job-search traffic directed at AI engines. "Remote software engineering jobs," "fully remote marketing roles," "hybrid positions in Chicago" — these queries depend entirely on structured data signals to distinguish listings. Prose descriptions that say "this role is fully remote" are not reliably machine-parseable. The `jobLocationType` property is.
+
+For fully remote positions, set `jobLocationType` to `TELECOMMUTE`. This is the single value Schema.org recognizes as the remote-work indicator. Pairing it with `applicantLocationRequirements` defines who is eligible:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "Senior Product Designer",
+  "jobLocationType": "TELECOMMUTE",
+  "applicantLocationRequirements": {
+    "@type": "Country",
+    "name": "US"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "US"
+    }
+  }
+}
+```
+
+Note that even for remote positions, `jobLocation` is still expected. Use the company's headquarters address or a country-level address when no physical work location exists.
+
+For hybrid positions — those requiring some in-office presence — include both the physical `jobLocation` with a full `PostalAddress` and `jobLocationType: TELECOMMUTE`. This combination signals hybrid eligibility to AI systems processing queries like "hybrid product design jobs in Boston."
+
+If you restrict a remote role to specific US states due to tax, legal, or benefits administration reasons, list each eligible state individually:
+
+```json
+"applicantLocationRequirements": [
+  { "@type": "State", "name": "California" },
+  { "@type": "State", "name": "New York" },
+  { "@type": "State", "name": "Texas" },
+  { "@type": "State", "name": "Washington" }
+]
+```
+
+This level of specificity matters for AI engines surfacing listings to candidates who specify their location. A candidate in Ohio asking about remote roles that allow Ohio residents will not be served an out-of-state-only listing — but only if the `applicantLocationRequirements` is properly specified. Without it, the AI has no way to filter by applicant eligibility.
+
+## HiringOrganization and Organization schema nesting
+
+The `hiringOrganization` property connects your job listing to the employer entity and is one of the primary trust signals AI engines use when deciding whether to recommend a position. A bare `name` string is the minimum — but it is far less powerful than a fully nested `Organization` object.
+
+**name** should match the legal or trading name of the company exactly as it appears on LinkedIn and other authoritative profiles. Avoid abbreviations unless the abbreviated name is the primary brand name.
+
+**sameAs** should link to the most authoritative external profile for the organization. LinkedIn company pages, Crunchbase profiles, a verified Wikipedia page, or an entry in an industry-specific directory all work. The `sameAs` link allows AI engines to resolve the organization to a known entity in their knowledge graph, which substantially increases recommendation confidence for company-specific queries: "jobs at Stripe" or "engineering positions at any company in the Y Combinator portfolio."
+
+**logo** should be an absolute URL to the company logo image. Include `width`, `height`, and use a hosted image that will remain stable. Logo presence signals a complete, maintained employer profile.
+
+**url** is the company's homepage. This provides the canonical domain association that AI systems use to verify the employer's web presence.
+
+A complete `hiringOrganization` block:
+
+```json
+"hiringOrganization": {
+  "@type": "Organization",
+  "name": "Meridian Analytics",
+  "url": "https://meridiananalytics.io",
+  "logo": "https://meridiananalytics.io/assets/logo-square.png",
+  "sameAs": [
+    "https://www.linkedin.com/company/meridian-analytics/",
+    "https://www.crunchbase.com/organization/meridian-analytics"
+  ]
+}
+```
+
+For staffing agencies and recruitment firms posting positions on behalf of a client employer, nest the client as the `hiringOrganization` and identify the agency separately. Posting dozens of listings under the agency name with no client organization specified reduces the trust signal for each individual listing. Where client confidentiality prevents naming the employer, at minimum include the industry and company size in the description.
+
+## Expiration dates and keeping listings fresh
+
+The `validThrough` property is the mechanism AI engines use to determine whether a job listing is currently open. It is also one of the most commonly neglected properties in job board implementations — and its absence or staleness is one of the primary reasons well-written listings fail to surface in AI job recommendations.
+
+The standard approach is to set `validThrough` thirty to sixty days from posting, matching the typical active recruitment window. For roles that take longer to fill, extend the date before it expires rather than after. An expired listing that gets updated looks like an error to AI engines that cached the original expiration date.
+
+If your applicant tracking system (ATS) or job management platform does not automatically manage `validThrough` dates, build a workflow to review and refresh active listings weekly. A listing that closes on the backend but continues serving an expired `validThrough` date is worse than no listing — it erodes the trust signal for your entire domain's job schema.
+
+When a position is filled, remove the job posting page from the sitemap, return a 410 Gone response, or update the `validThrough` to a past date and add `jobPostingExpiry` to explicitly signal closure. AI engines that have indexed the listing will clear it from their active recommendations on the next crawl cycle.
+
+For seasonal hiring cycles — retail during the holiday season, hospitality in summer, tax firms during filing season — consider automating `validThrough` extension for bulk listings. If fifty listings all expire on the same date because they were posted in the same batch, they will all drop from AI recommendations simultaneously, creating a visibility gap during active recruitment. Stagger expiration dates or implement automated extension for listings with ongoing open requisitions.
+
+## ATS integration challenges
+
+Most enterprise employers and many mid-sized companies manage job listings through an applicant tracking system. ATS platforms — Greenhouse, Lever, Workday, iCIMS, Taleo — control how job data is rendered on careers pages and job board feeds. This creates a structured data implementation challenge that is distinct from the technical question of how to write valid JobPosting schema.
+
+The core problem is that ATS-rendered job pages often generate minimal or no structured data by default. The platform handles job listing logic, pagination, and application flows, but the JSON-LD layer is either absent, incomplete, or generated from a template that omits recommended properties like `baseSalary`, `jobLocationType`, and `applicantLocationRequirements`. Even when the ATS generates schema, the output may not reflect the actual job data accurately — salary ranges shown in the visible listing but absent from the schema, employment type in the UI but missing from the structured data block.
+
+The first step is auditing what your ATS currently outputs. Use Google's [Rich Results Test](https://search.google.com/test/rich-results) on a sample of job listing pages from your careers site. Check whether the schema that renders matches the visible page content. Identify which properties are missing. This audit is part of the broader structured data health check described in the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/).
+
+For ATS platforms that support schema customization — Greenhouse and Lever both offer template-level control over structured data output — work with your engineering or platform team to extend the default schema template with the recommended properties. The JSON-LD block should be dynamically populated from the same data fields that power the visible listing, so salary, employment type, and location data stay in sync automatically.
+
+For platforms that do not expose schema customization, the fallback approach is to maintain a separate layer of job landing pages on your own domain — either a lightweight jobs hub or individual role-specific pages — that contain full JobPosting schema and link to the ATS for application. This approach separates AI discoverability (your schema-rich pages) from application processing (the ATS). It requires a data pipeline from the ATS to your pages, but it gives you complete control over the structured data layer.
+
+The [how to get cited by AI search systems guide](/blog/how-to-get-cited-by-ai-search-systems/) covers the entity architecture approach for employment sites that need to maintain discoverability independently of platform constraints.
+
+## Testing with Rich Results Test and Index Coverage
+
+Before deploying JobPosting schema to production, validate every implementation variant using Google's Rich Results Test. Paste the URL of a published job listing or paste the raw JSON-LD directly into the tool. The test checks for required properties, flags missing recommended properties, and shows a preview of how Google parses the structured data.
+
+Common validation errors in JobPosting schema: `validThrough` formatted incorrectly (must be full ISO 8601 datetime, not just a date), `baseSalary` missing `currency` or `duration`, `hiringOrganization` missing `name`, `jobLocation` address missing `addressLocality` or `addressCountry`, and `employmentType` using non-standard values like "Full Time" instead of `FULL_TIME`.
+
+The [Schema.org validator at validator.schema.org](https://validator.schema.org/) checks against the specification independent of Google's implementation. Running both tools catches errors that one alone might miss — the Rich Results Test is stricter on Google-specific requirements, while the Schema.org validator catches semantic issues the Rich Results Test ignores.
+
+After deployment, monitor the Enhancements section of Google Search Console. Job listing schema errors and warnings appear under "Job Postings." Recurring errors — often caused by ATS template changes that break the schema output — should be caught through weekly monitoring during active recruitment periods.
+
+For AI engines beyond Google, the same JSON-LD standard applies. A schema block that passes the Rich Results Test is correctly formed for Perplexity, ChatGPT with web browsing, and other AI systems that process structured data. As discussed in the [HowTo schema for AI search guide](/blog/howto-schema-for-ai-search/), the content properties — how completely `description`, `skills`, and `baseSalary` capture the actual position — determine AI recommendation frequency beyond the baseline of technical schema validity.
+
+For employers and job boards looking for the complete strategic framework, the [what is answer engine optimization guide](/blog/what-is-answer-engine-optimization/) explains how structured data fits within the broader shift from keyword search to AI-generated answer recommendations.
+
+## The complete JobPosting schema template
+
+A production-ready template combining all required and recommended properties for an in-person full-time role:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "title": "Senior Data Engineer",
+  "description": "Meridian Analytics is seeking a Senior Data Engineer to design and maintain our cloud data infrastructure on AWS. You will build and optimize ETL pipelines, implement data quality frameworks, and partner with analytics and product teams to deliver reliable data products. Requirements: 5+ years data engineering experience, proficiency in Python and SQL, hands-on experience with Spark and Airflow, and familiarity with dbt and Redshift. We offer comprehensive health benefits, a 401k with 4% match, and a flexible PTO policy.",
+  "datePosted": "2026-06-01",
+  "validThrough": "2026-07-31T23:59:59",
+  "employmentType": "FULL_TIME",
+  "hiringOrganization": {
+    "@type": "Organization",
+    "name": "Meridian Analytics",
+    "url": "https://meridiananalytics.io",
+    "logo": "https://meridiananalytics.io/assets/logo-square.png",
+    "sameAs": "https://www.linkedin.com/company/meridian-analytics/"
+  },
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "350 Fifth Avenue",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10118",
+      "addressCountry": "US"
+    }
+  },
+  "baseSalary": {
+    "@type": "MonetaryAmountDistribution",
+    "name": "base salary",
+    "currency": "USD",
+    "duration": "P1Y",
+    "minValue": "145000",
+    "maxValue": "175000"
+  },
+  "skills": "Python, SQL, Apache Spark, Apache Airflow, dbt, AWS Redshift, ETL pipeline design, data quality engineering",
+  "experienceRequirements": "Minimum 5 years of data engineering experience in a production environment",
+  "educationRequirements": "Bachelor's degree in Computer Science, Engineering, or related field, or equivalent practical experience",
+  "workHours": "Monday through Friday, standard business hours with flexibility"
+}
+```
+
+For a fully remote version of the same role, replace `jobLocation` with a country-level address and add `jobLocationType` and `applicantLocationRequirements` as shown in the remote markup section above.
+
+The [AI SEO Shift resource library](/ai-seo-shift/) provides the full strategic context for employers and job boards building AI-ready recruitment content architectures.
+
+## Frequently asked questions
+
+### Does JobPosting schema guarantee my listings will appear in ChatGPT or Perplexity results?
+
+No. JobPosting schema is a necessary condition for reliable AI discoverability, not a sufficient one. Structured data tells AI systems that your page is an active job listing and provides the properties needed to match it to candidate queries. Content quality — how completely the description captures role requirements, how accurately the salary and employment type reflect the actual position — determines whether the listing is recommended for specific queries. A listing with complete schema and a vague two-sentence description will underperform a listing with partial schema and a detailed, specific role description in many query contexts. The strongest implementations combine complete JobPosting schema with well-written descriptions, accurate salary data, and timely `validThrough` management.
+
+### What happens when a validThrough date expires on an open listing?
+
+Once `validThrough` passes, AI engines treat the listing as closed and stop including it in job recommendations. Google's job search experience also removes expired listings from rich results. If a position remains open beyond the original expiration date, update `validThrough` before it expires — not after. Updating an already-expired date requires a re-crawl before the listing re-enters AI recommendations, creating a gap in visibility that can last days or weeks depending on how frequently AI engines re-index your site.
+
+### How should job boards implement JobPosting schema across thousands of listings?
+
+Job boards should generate JobPosting schema dynamically from the same data fields that power the visible listing: title, description, posted date, salary, location, and employment type should all come from the same database fields that render the listing UI. This ensures schema and visible content stay in sync automatically. Set `validThrough` programmatically — thirty to sixty days from `datePosted` for most roles, with an automatic extension mechanism for roles flagged as still open past the initial window. Use `sitemaps` to help AI engines discover and re-crawl updated listings efficiently, and implement `lastmod` on job listing pages to signal when schema properties have been updated.
+
+### Can I use JobPosting schema for listings aggregated from employer feeds?
+
+Yes, with an important caveat: the schema should reflect the actual employer as `hiringOrganization`, not the job board. Listing all positions under the job board's organization name reduces the employer-specific trust signals AI engines use for company queries. If your feed does not include employer name, logo, and website, work with feed providers to include those fields. Job boards that accurately represent employer entities in their JobPosting schema build stronger domain-level trust for job search queries than those that aggregate without employer attribution.
+
+### Should I add JobPosting schema to listings hosted on LinkedIn or Indeed?
+
+You cannot add or modify structured data on third-party platforms. LinkedIn and Indeed control the structured data generated for their listings. Your leverage on these platforms is in the content inputs that feed their schema generation: job title, description, salary (if the platform offers it), employment type, and location fields. Write these inputs as if they are going directly into a schema block — complete, specific, and accurately reflecting the role — because that content determines how the platform's schema represents your listing to AI engines and search systems.
+
+### How does JobPosting schema interact with the broader AI SEO strategy for employers?
+
+JobPosting schema is one layer of a complete AI recruitment visibility strategy. The employer's `Organization` schema on the company homepage establishes entity authority — AI systems that recognize the employer as a real, credible organization weight its job listings higher. FAQ content on careers pages that addresses common candidate questions about culture, benefits, and growth builds the topical authority that complements structured listing data. Review schema on employer brand pages — aggregate ratings from employee review platforms cited via `sameAs` references — provides the trust signals that differentiate employers in competitive talent markets. The [schema markup for AI visibility guide](/blog/schema-markup-for-ai-visibility/) covers how these schema layers work together.
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does JobPosting schema guarantee my listings will appear in ChatGPT or Perplexity results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. JobPosting schema is a necessary condition for reliable AI discoverability, not a sufficient one. Structured data tells AI systems that your page is an active job listing and provides the properties needed to match it to candidate queries. Content quality — how completely the description captures role requirements, how accurately the salary and employment type reflect the actual position — determines whether the listing is recommended for specific queries. The strongest implementations combine complete JobPosting schema with well-written descriptions, accurate salary data, and timely validThrough management."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when a validThrough date expires on an open listing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once validThrough passes, AI engines treat the listing as closed and stop including it in job recommendations. Google's job search experience also removes expired listings from rich results. If a position remains open beyond the original expiration date, update validThrough before it expires — not after. Updating an already-expired date requires a re-crawl before the listing re-enters AI recommendations, creating a gap in visibility that can last days or weeks depending on how frequently AI engines re-index your site."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How should job boards implement JobPosting schema across thousands of listings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Job boards should generate JobPosting schema dynamically from the same data fields that power the visible listing: title, description, posted date, salary, location, and employment type should all come from the same database fields that render the listing UI. This ensures schema and visible content stay in sync automatically. Set validThrough programmatically — thirty to sixty days from datePosted for most roles, with an automatic extension mechanism for roles flagged as still open past the initial window."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use JobPosting schema for listings aggregated from employer feeds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with an important caveat: the schema should reflect the actual employer as hiringOrganization, not the job board. Listing all positions under the job board's organization name reduces the employer-specific trust signals AI engines use for company queries. If your feed does not include employer name, logo, and website, work with feed providers to include those fields. Job boards that accurately represent employer entities in their JobPosting schema build stronger domain-level trust for job search queries than those that aggregate without employer attribution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I add JobPosting schema to listings hosted on LinkedIn or Indeed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You cannot add or modify structured data on third-party platforms. LinkedIn and Indeed control the structured data generated for their listings. Your leverage on these platforms is in the content inputs that feed their schema generation: job title, description, salary, employment type, and location fields. Write these inputs as if they are going directly into a schema block — complete, specific, and accurately reflecting the role — because that content determines how the platform's schema represents your listing to AI engines and search systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does JobPosting schema interact with the broader AI SEO strategy for employers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JobPosting schema is one layer of a complete AI recruitment visibility strategy. The employer's Organization schema on the company homepage establishes entity authority. FAQ content on careers pages that addresses common candidate questions builds topical authority. Review schema on employer brand pages provides the trust signals that differentiate employers in competitive talent markets. These schema layers work together to give AI engines a complete, credible picture of the employer and the opportunity."
+      }
+    }
+  ]
+}</script>
