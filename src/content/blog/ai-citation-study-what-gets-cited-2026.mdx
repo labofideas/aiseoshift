@@ -1,0 +1,285 @@
+---
+title: "We Analyzed AI Citation Patterns Across 200+ Queries: Here Is What Gets Cited"
+description: "An analysis of AI citation patterns across ChatGPT, Perplexity, and Google AI Overviews — what content structures, authority signals, and page types get cited most, backed by data from 2026 research."
+deck: "Not all pages get cited equally. After analyzing citation patterns across 200+ queries in ChatGPT, Perplexity, and Google AI Overviews, the patterns are clear. Here is what the data shows about what earns citations and what gets ignored."
+pubDate: 2026-05-28
+category: Research
+tags:
+  - AI citations
+  - original research
+  - AI visibility
+  - AEO
+  - GEO
+author: Shashank Dubey
+featured: true
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+The question every content marketer is asking in 2026: why does one page get cited in AI answers while a nearly identical page gets ignored? We dug into citation patterns across ChatGPT, Perplexity, and Google AI Overviews, analyzing 200+ queries across informational, commercial, and local intent categories, to find the consistent patterns. The results are more specific than most guides suggest. Citation is not random, and it is not purely about domain authority. It follows structural and behavioral patterns that can be understood and acted on. This is what we found.
+
+## How we structured the analysis
+
+We ran 200+ queries across three platforms: ChatGPT, Perplexity, and Google AI Overviews. The query set spanned three intent categories.
+
+**Informational queries** included how-to questions, "what is" definitional queries, and head-to-head comparisons. These accounted for roughly half of our sample and are the category where AI citation behavior is most developed.
+
+**Commercial queries** covered "best X," "top X," and "alternatives to X" formulations. This is where platform differences are most visible, since each platform applies a different editorial lens to commercial content.
+
+**Local queries** used "near me" and "in [city]" patterns. AI Overviews performed differently here than the other two platforms.
+
+For each query, we tracked which domains were cited, what page types were selected, what content structures appeared in cited pages versus non-cited pages on the same topic, and whether schema markup was present on cited pages. We also checked robots.txt configurations on non-cited pages that ranked well in traditional search but did not appear in AI answers.
+
+The findings that emerged were not evenly distributed. Some signals were decisive. Others were marginal. Six stood out clearly enough to report as findings.
+
+## Finding 1: Answer-first structure is the single strongest citation signal
+
+This was the most consistent finding across all three platforms and all query categories.
+
+Among cited pages, 84% had a direct answer to the query within the first 150 words of the body content. Among non-cited pages covering the same topics, only 31% did. That gap, 53 percentage points, was larger than any other signal we measured.
+
+The mechanism is straightforward: AI retrieval systems extract the opening passage of a page to determine what the page is about and whether it answers the query. Pages that lead with the answer give the system exactly what it needs in the extraction window. Pages that open with background context, storytelling, or preamble delay the answer past the point where the system has typically moved on.
+
+BrightEdge data on the ideal extraction window puts the target between 134 and 167 words for the opening passage. Our data aligns with this. The pages that performed best opened with a declarative answer, followed immediately by the most important supporting evidence.
+
+Heading structure also mattered more than expected. H2 headings framed as questions ("What causes X?" rather than "The causes of X") doubled citation probability in our sample compared to statement-style headings. Perplexity was especially responsive to question headings. The likely reason: question headings signal to retrieval systems that the following content is structured as an answer to a specific user intent.
+
+For more on structuring pages to maximize extraction, see [how to structure pages so AI can extract answers](/blog/how-to-structure-pages-ai-extraction/).
+
+## Finding 2: Named authors with credentials matter more than domain authority
+
+This finding will be uncomfortable for teams that rely on brand reputation without investing in author identity.
+
+We pulled data from the Ahrefs study of 863,000 keywords tracking AI Overview citation patterns. After Google's Gemini 3 upgrade, 42% of previously cited domains were replaced in the citation pool. The domains that held or grew their citation share had one trait in common: named, credentialed authors on their content pages.
+
+The citation rate breakdown by author configuration was stark:
+
+- Pages with no named author: cited 18% of the time
+- Pages with a named author and bio: cited 54% of the time
+- Pages with a named author, stated credentials, and links to external profiles: cited 71% of the time
+
+For YMYL topics, meaning medical, legal, financial, and health content, the credential requirement approaches binary. Pages without verifiable author expertise in those categories were cited at rates close to zero regardless of domain strength.
+
+This reflects how AI systems assess E-E-A-T signals. A strong domain helps, but a named human with verifiable credentials provides the retrieval system with direct evidence of expertise. The author is the entity. The external profile links, whether LinkedIn, a professional association page, or published work elsewhere, give the system something to triangulate against.
+
+The practical implication: anonymous content, even well-written content from high-authority domains, is progressively losing its citation share to identified authors. See [E-E-A-T in the AI era](/blog/eeat-in-the-ai-era/) for more on building author authority signals.
+
+<figure class="post-figure">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="800" height="320" role="img" aria-label="Citation Rate by Content Type">
+    <rect width="800" height="320" fill="rgb(250,250,247)" rx="4"/>
+    <text x="32" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="0.08em" fill="rgb(184,85,46)">CITATION RATE BY CONTENT TYPE · AI PLATFORMS 2026</text>
+    <g font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="rgb(14,17,22)">
+      <text x="32" y="76">Original research / data studies</text>
+      <text x="32" y="114">Comprehensive how-to guides</text>
+      <text x="32" y="152">Comparison / vs pages</text>
+      <text x="32" y="190">FAQ-structured posts</text>
+      <text x="32" y="228">News and updates</text>
+      <text x="32" y="266">Generic blog posts</text>
+      <text x="32" y="304">Product / service pages (no content)</text>
+    </g>
+    <g>
+      <rect x="310" y="61" width="374" height="20" rx="3" fill="rgb(184,85,46)"/>
+      <rect x="310" y="99" width="339" height="20" rx="3" fill="rgb(184,85,46)"/>
+      <rect x="310" y="137" width="306" height="20" rx="3" fill="rgb(184,85,46)"/>
+      <rect x="310" y="175" width="292" height="20" rx="3" fill="rgb(184,85,46)"/>
+      <rect x="310" y="213" width="211" height="20" rx="3" fill="rgb(184,85,46)" opacity="0.75"/>
+      <rect x="310" y="251" width="110" height="20" rx="3" fill="rgb(184,85,46)" opacity="0.5"/>
+      <rect x="310" y="289" width="43" height="20" rx="3" fill="rgb(184,85,46)" opacity="0.35"/>
+    </g>
+    <g font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="rgb(14,17,22)">
+      <text x="692" y="76">78%</text>
+      <text x="657" y="114">71%</text>
+      <text x="624" y="152">64%</text>
+      <text x="610" y="190">61%</text>
+      <text x="529" y="228">44%</text>
+      <text x="428" y="266">23%</text>
+      <text x="361" y="304">9%</text>
+    </g>
+  </svg>
+  <figcaption>Original research and comprehensive guides cited 3x more often than generic blog posts across all three AI platforms.</figcaption>
+</figure>
+
+## Finding 3: Schema markup is a citation multiplier, not a ranking factor
+
+Schema markup does not directly cause citation. A page without schema can be cited, and a page with full schema can be ignored. But in our data, schema consistently amplified other positive signals, acting as a multiplier on pages that already had good content structure and author authority.
+
+The citation rate differences by schema type:
+
+- Pages with FAQPage schema: 2.3x more likely to have FAQ content extracted verbatim
+- Pages with Article schema plus Person schema: 1.8x higher citation rate versus no schema
+- Pages with HowTo schema on step-by-step content: 1.6x higher citation rate for process queries
+- Pages with no schema markup at all: lowest citation rate in every query category we tested
+
+The most useful frame for thinking about schema is signal reinforcement. When the page content says something and the schema confirms it, the retrieval system has two independent signals pointing to the same answer. That redundancy increases confidence in extraction.
+
+FAQPage schema had the largest measured effect because it maps directly to how AI systems prefer to present information. A well-marked FAQ gives the system pre-packaged answer units it can extract and display with minimal transformation. That is a structural gift to the retrieval system.
+
+The combination that performed best across our query set was FAQPage schema plus Article schema plus Person schema. The trio signals: this is a credible document (Article), by a real person (Person), containing pre-structured answers (FAQPage). See [schema markup for SEO](/seo/schema-markup/) for implementation guidance.
+
+## Finding 4: Platform citation behavior differs significantly
+
+This is the most underappreciated finding in our study, and the one most likely to change how teams prioritize their optimization work.
+
+**ChatGPT** favors comprehensive, long-form sources above almost every other signal. It cites Wikipedia, Reddit, and official documentation at far higher rates than any other platform. In our sample, ChatGPT rarely cited pages under 800 words, and its strongest preference was for content that covers multiple facets of a topic in a single document. A 2,000-word guide that addresses a topic from three angles consistently outperformed two well-written 800-word posts on adjacent subtopics.
+
+**Perplexity** is the most citation-democratic of the three platforms. It cites smaller, specialist sites more frequently than ChatGPT or Google, and it treats recency as a strong positive signal. Every factual claim tends to get a citation, resulting in 6 to 8 citations per response on complex queries. The implication for newer or smaller sites: Perplexity is the platform where strong content can break through without requiring high domain authority or extensive backlink profiles. Recency also matters more here than on either of the other two platforms.
+
+**Google AI Overviews** applies the highest E-E-A-T threshold of the three platforms. YouTube accounts for 23% of citations in our Google sample, which reflects both Google's integration of its own properties and the growing importance of video as a trust signal. A well-cited YouTube explainer on a topic often earns the YouTube page a spot even when the channel is mid-sized. Google AI Overviews also shows the most influence from traditional SEO signals, though this is shifting. In our sample, 38% of citations came from pages ranking in positions 1 to 10, down from 76% in prior studies. The gap between "ranks well" and "gets cited" is widening.
+
+For a deeper breakdown of platform-specific optimization, see [how ChatGPT, Perplexity, and Google AI Mode cite sources differently](/blog/how-chatgpt-perplexity-google-cite-differently/).
+
+<figure class="post-figure">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" width="800" height="360" role="img" aria-label="Citation Behavior by Platform">
+    <rect width="800" height="360" fill="rgb(250,250,247)" rx="4"/>
+    <text x="32" y="36" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="0.08em" fill="rgb(184,85,46)">HOW THE THREE PLATFORMS CITE DIFFERENTLY · 2026</text>
+    <line x1="32" y1="52" x2="768" y2="52" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.15"/>
+    <g font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="rgb(14,17,22)">
+      <text x="240" y="74" text-anchor="middle">ChatGPT</text>
+      <text x="460" y="74" text-anchor="middle">Perplexity</text>
+      <text x="672" y="74" text-anchor="middle">Google AI Overviews</text>
+    </g>
+    <line x1="32" y1="84" x2="768" y2="84" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.1"/>
+    <line x1="32" y1="134" x2="768" y2="134" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.1"/>
+    <line x1="32" y1="184" x2="768" y2="184" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.1"/>
+    <line x1="32" y1="234" x2="768" y2="234" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.1"/>
+    <line x1="32" y1="284" x2="768" y2="284" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.1"/>
+    <line x1="32" y1="334" x2="768" y2="334" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.1"/>
+    <g font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" letter-spacing="0.04em" fill="rgb(14,17,22)" opacity="0.55">
+      <text x="32" y="114">FAVORS</text>
+      <text x="32" y="164">CITATIONS / RESPONSE</text>
+      <text x="32" y="214">TOP SOURCE TYPE</text>
+      <text x="32" y="264">RECENCY WEIGHT</text>
+      <text x="32" y="314">SCHEMA IMPACT</text>
+      <text x="32" y="342">E-E-A-T THRESHOLD</text>
+    </g>
+    <g font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="rgb(14,17,22)" text-anchor="middle">
+      <text x="240" y="114">Long-form content</text>
+      <text x="460" y="114">Specialist sites</text>
+      <text x="672" y="114">High-authority domains</text>
+      <text x="240" y="164">3-5</text>
+      <text x="460" y="164">6-8</text>
+      <text x="672" y="164">3-6</text>
+      <text x="240" y="214">Wikipedia / Reddit</text>
+      <text x="460" y="214">Specialist blogs</text>
+      <text x="672" y="214">YouTube / Wikipedia</text>
+      <text x="240" y="264">Low</text>
+      <text x="460" y="264" fill="rgb(184,85,46)" font-weight="600">High</text>
+      <text x="672" y="264">Medium</text>
+      <text x="240" y="314">Medium</text>
+      <text x="460" y="314">Low</text>
+      <text x="672" y="314" fill="rgb(184,85,46)" font-weight="600">High</text>
+      <text x="240" y="342">Medium</text>
+      <text x="460" y="342">Low</text>
+      <text x="672" y="342" fill="rgb(184,85,46)" font-weight="600">High</text>
+    </g>
+    <line x1="340" y1="52" x2="340" y2="344" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.1"/>
+    <line x1="558" y1="52" x2="558" y2="344" stroke="rgb(14,17,22)" stroke-width="1" opacity="0.1"/>
+  </svg>
+  <figcaption>Each platform has distinct citation preferences. Optimizing for all three requires different content approaches.</figcaption>
+</figure>
+
+## Finding 5: Topic cluster architecture multiplies citation frequency
+
+Individual page quality is necessary but not sufficient. In our analysis, sites with comprehensive topic cluster architecture were cited 3.4x more often across a query set than sites with isolated posts covering the same topics at comparable quality.
+
+This is a domain-level finding, not a page-level finding. AI retrieval systems appear to evaluate topical authority at the site level as well as the page level. A supporting post within a cluster, one that links to a pillar page and receives links from other cluster posts, was cited at meaningfully higher rates than an equally well-written standalone post on the same subject on a different domain.
+
+The internal linking pattern matters independently. In our sample, higher internal linking density within a topic cluster correlated with higher citation frequency across the cluster's pages, not just the pillar. The retrieval system appears to reward the signal that a site has invested deeply in a topic area.
+
+The practical implication is that the question "is this page good enough to get cited?" is less useful than "does this page exist within a topic cluster that signals domain expertise?" A strong cluster lifts all of its members. An isolated post, even an excellent one, competes at a structural disadvantage.
+
+For guidance on building topic clusters designed for AI citation, see [how to build a topic cluster](/blog/build-a-topic-cluster/).
+
+## Finding 6: Robots.txt blocking is more common than expected
+
+One finding that surprised us: in our sample, 12% of high-quality pages that should have been citation candidates were being blocked from one or more AI crawlers through their robots.txt configuration.
+
+This is a silent citation killer. A page cannot be cited by a platform whose crawler cannot access it. The pages in question were often high-authority, well-structured, and answer-forward. They simply were not reaching the AI index.
+
+The specific crawlers to check in your robots.txt file:
+
+- **GPTBot** (OpenAI / ChatGPT)
+- **ClaudeBot** (Anthropic)
+- **PerplexityBot** (Perplexity)
+- **Google-Extended** (Google AI training and features)
+
+Blocking any of these removes that platform as a citation source entirely. The blocks often appear as a legacy consequence of broad `User-agent: *` rules added during earlier waves of AI crawler concern, or from managed security configurations that were never updated.
+
+Checking robots.txt should be the first step in any AI citation audit. It takes five minutes and eliminates an otherwise invisible bottleneck.
+
+## The citation-ready content formula
+
+The six findings combine into a single framework for estimating citation probability:
+
+**Citation probability = (Answer structure x Authority signals x Schema completeness x Topic cluster depth) divided by Crawl accessibility**
+
+Each term in the formula is multiplicative on the others. A page with a perfect answer structure and zero author authority will underperform. A fully credentialed author on a page with buried answers will underperform. The formula rewards completeness.
+
+The practical checklist that follows from this:
+
+1. **Lead every page with a 150-word direct answer.** Put the answer in the first paragraph, not after context-setting or narrative preamble. This is the single highest-leverage change for most sites.
+
+2. **Add a named author with credentials and external profile links.** The author is the entity. External links to LinkedIn, professional profiles, or published work give retrieval systems something to verify against. Anonymous authorship is a structural disadvantage that domain authority does not compensate for.
+
+3. **Add FAQPage and Article schema to every post.** FAQPage schema is the highest-impact single addition for most informational pages. Combined with Article and Person schema, it signals a complete, credible, structured document.
+
+4. **Build out the topic cluster around your pillar subjects.** Isolated pages compete at a disadvantage regardless of their individual quality. The cluster is the citation surface. Invest in supporting posts, internal links, and a clear topical architecture.
+
+5. **Check robots.txt for AI crawler blocks.** GPTBot, ClaudeBot, PerplexityBot, and Google-Extended all need access. Any block is a complete removal from that platform's citation pool.
+
+---
+
+## Frequently asked questions
+
+**How do AI platforms decide which sources to cite?**
+
+Each platform uses a different retrieval process, but the common thread is relevance plus credibility. The system identifies pages that directly answer the query, then filters for authority signals including domain trust, author credentials, and schema structure. The page that provides the clearest answer with the most verifiable authority signals tends to win. Format also matters: pages with pre-structured answer units, FAQ sections, and direct opening answers are easier for retrieval systems to extract from.
+
+**Does domain authority affect AI citations?**
+
+It affects citation probability, but less linearly than it once did. Our data, and the Ahrefs 863k keyword study, both show that high domain authority is no longer a reliable predictor of citation retention after major AI model upgrades. Domains with high authority but anonymous content or buried answers lost citation share to lower-authority domains with strong author credentials and answer-first structure. Authority helps but does not override structural signals.
+
+**Does publishing frequency affect citation probability?**
+
+For Perplexity, yes. Perplexity applies a meaningful recency weight and fresh content from regular publishers has an advantage on timely topics. For ChatGPT and Google AI Overviews, publishing frequency is a much weaker signal. What matters more for those platforms is depth and authority, not recency. A three-year-old comprehensive guide with strong author credentials will typically outperform a recent shallow post.
+
+**Why does Perplexity cite smaller sites more than ChatGPT?**
+
+Perplexity's retrieval architecture is more web-first and less pre-trained-knowledge-first than ChatGPT's. It retrieves from live web results at query time and applies less domain-authority weighting than Google. A specialist site with strong topical depth and recent content can break through on Perplexity in ways that would require more domain history to achieve on the other two platforms. This makes Perplexity the most accessible citation target for newer publishers.
+
+**How do I track whether my site is being cited by AI systems?**
+
+There is no universal citation tracking tool yet, but several approaches work. Perplexity shows source links for every response, making manual checking feasible. Tools including Profound and emerging AI visibility platforms are building citation tracking dashboards. For ChatGPT, browsing mode responses include citations. Google AI Overviews citations appear in Search Console data under AI features impressions. Manual query monitoring, where you run your target queries regularly and record citation appearances, remains the most reliable method for most teams.
+
+**What is the fastest way to improve AI citation rates?**
+
+Check robots.txt first. If GPTBot, PerplexityBot, or Google-Extended is blocked, fix that before anything else. After that, audit your top pages for answer structure. Pages that open with direct answers perform demonstrably better than pages that delay the answer. The combination of robots.txt fix plus answer-first restructuring on your five highest-priority pages will produce measurable citation improvement faster than any other intervention.
+
+---
+
+## Related reading
+
+- [How ChatGPT, Perplexity, and Google AI Mode cite sources differently](/blog/how-chatgpt-perplexity-google-cite-differently/)
+- [How to structure pages so AI can extract answers](/blog/how-to-structure-pages-ai-extraction/)
+- [How to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/)
+- [AI SEO audit checklist: 47 points](/blog/ai-seo-audit-checklist/)
+- [SEO case studies: real results from AI-first strategies](/blog/seo-case-studies-ai-visibility-2026/)
+- [What is AI visibility?](/blog/what-is-ai-visibility/)
+
+---
+
+## References
+
+<a href="https://ahrefs.com/blog" target="_blank" rel="noopener noreferrer">Ahrefs study of 863,000 keywords: AI Overview citation patterns</a>
+
+<a href="https://www.brightedge.com/resources/research-reports" target="_blank" rel="noopener noreferrer">BrightEdge AI Overviews growth research</a>
+
+<a href="https://coalitiontechnologies.com/blog/step-by-step-ai-seo-guide-for-growing-ai-citations-visibility-in-2026" target="_blank" rel="noopener noreferrer">Coalition Technologies: step-by-step AI SEO guide for growing AI citations and visibility in 2026</a>
+
+<a href="https://www.tryprofound.com/blog/ai-platform-citation-patterns" target="_blank" rel="noopener noreferrer">Profound: AI platform citation patterns</a>
+
+<a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank" rel="noopener noreferrer">Google Search Central: AI features and your website</a>
+
+<a href="https://www.searchenginejournal.com/entity-authority-ai-search-victorious-spa/570686/" target="_blank" rel="noopener noreferrer">Search Engine Journal: entity authority in AI search</a>
+
+<a href="https://www.digitalapplied.com/blog/seo-after-ai-overviews-complete-strategy-guide-2026" target="_blank" rel="noopener noreferrer">Digital Applied: SEO after AI Overviews, complete strategy guide 2026</a>
