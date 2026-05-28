@@ -8,7 +8,8 @@ import imageManifest from '../../data/image-manifest.json';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 import { sortPostsByDate } from '../../utils/blog';
 
-const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft));
+const now = new Date();
+const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now));
 ---
 
 <!doctype html>

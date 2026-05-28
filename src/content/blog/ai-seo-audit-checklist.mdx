@@ -1,0 +1,328 @@
+---
+title: "The AI SEO Audit Checklist: 47 Points to Maximize AI Visibility"
+description: "A complete 47-point AI SEO audit checklist covering schema markup, E-E-A-T signals, content structure, AI citation optimization, and technical health. Use it to find exactly what's holding your site back."
+deck: "Most SEO audits miss the AI layer entirely. This 47-point checklist covers every signal that determines whether your content gets cited in ChatGPT, Perplexity, and Google AI Overviews — with a scoring system to prioritize fixes."
+pubDate: 2026-05-29
+category: Strategy
+tags:
+  - AI SEO audit
+  - SEO checklist
+  - AI visibility
+  - E-E-A-T
+  - schema markup
+author: Shashank Dubey
+featured: true
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+A traditional SEO audit checks rankings, backlinks, and technical health. An AI SEO audit adds a second layer: checking whether your content is structured, credible, and authoritative enough to be cited by AI answer systems like ChatGPT, Perplexity, and Google AI Overviews.
+
+This checklist covers both layers across 47 checkpoints organized into 6 categories. Work through each section in order. Earlier categories have higher impact on AI citation probability because they function as binary gates: if you fail E-E-A-T or block AI crawlers, no amount of content optimization will compensate.
+
+I built this checklist after auditing dozens of sites that ranked well in traditional search but were invisible in AI-generated answers. The pattern was consistent: strong backlink profiles, weak author signals, no schema, and robots.txt files accidentally blocking AI crawlers. This checklist is designed to surface all of those gaps in a single pass.
+
+## How to use this checklist
+
+Score each item as one of three states:
+
+- **Done** — fully implemented
+- **Partial** — implemented but incomplete or inconsistent
+- **Missing** — not yet done
+
+Count only "Done" items toward your total. Score "Partial" as 0 for prioritization purposes.
+
+**Score interpretation:**
+
+- **0–29 out of 47:** High priority. Multiple citation barriers are active. Start with Sections 1 and 4 before touching content.
+- **30–39 out of 47:** Solid foundation. Core barriers are cleared. Focus on schema and content structure to move citations.
+- **40–47 out of 47:** Citation-ready. Off-site signals and publishing cadence become the main levers.
+
+<figure class="post-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" width="800" height="260" role="img" aria-label="AI SEO Audit Score Ranges: three tier cards showing score interpretation">
+  <rect width="800" height="260" fill="rgb(250,250,247)" rx="8"/>
+  <text x="400" y="32" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="2">AI SEO AUDIT · SCORE INTERPRETATION</text>
+  <rect x="24" y="52" width="232" height="172" rx="10" fill="rgb(184,85,46)"/>
+  <text x="140" y="92" font-family="Georgia, serif" font-size="36" font-weight="700" fill="rgb(250,250,247)" text-anchor="middle">0–29</text>
+  <text x="140" y="122" font-family="Georgia, serif" font-size="15" font-weight="700" fill="rgb(250,250,247)" text-anchor="middle">High Priority</text>
+  <text x="140" y="148" font-family="Georgia, serif" font-size="12" fill="rgb(250,250,247)" text-anchor="middle">Multiple citation barriers</text>
+  <text x="140" y="168" font-family="Georgia, serif" font-size="12" fill="rgb(250,250,247)" text-anchor="middle">identified. Fix gates first.</text>
+  <rect x="284" y="52" width="232" height="172" rx="10" fill="rgb(210,180,155)"/>
+  <text x="400" y="92" font-family="Georgia, serif" font-size="36" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">30–39</text>
+  <text x="400" y="122" font-family="Georgia, serif" font-size="15" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Solid Foundation</text>
+  <text x="400" y="148" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="middle">Optimize schema and content</text>
+  <text x="400" y="168" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="middle">structure for competitive queries.</text>
+  <rect x="544" y="52" width="232" height="172" rx="10" fill="rgb(240,236,230)" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <text x="660" y="92" font-family="Georgia, serif" font-size="36" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">40–47</text>
+  <text x="660" y="122" font-family="Georgia, serif" font-size="15" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">Citation Ready</text>
+  <text x="660" y="148" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="middle">Focus on distribution,</text>
+  <text x="660" y="168" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="middle">backlinks, and off-site signals.</text>
+</svg>
+<figcaption>Score your site across all 47 checkpoints before prioritizing fixes.</figcaption>
+</figure>
+
+## 1. E-E-A-T and Author Signals (9 points)
+
+AI systems apply an E-E-A-T filter before selecting citation sources. Pages that fail this check are excluded regardless of content quality. This is the single highest-leverage section in the audit because it functions as a binary gate: either your content clears the threshold or it does not get considered.
+
+For more on how AI engines evaluate author signals, see [E-E-A-T in the AI era](/blog/eeat-in-the-ai-era/).
+
+**1. Named author on every page (not "Editorial Staff" or "Admin")**
+AI systems weight content from identifiable humans far above anonymous sources. A real name creates an accountability signal that machines can evaluate.
+
+**2. Author bio page with verifiable credentials linked from posts**
+The bio page is where AI engines look for corroboration. Include specific credentials, institutions, or publications — not generic copy like "passionate writer."
+
+**3. `Person` schema with `hasCredential`, `jobTitle`, and `affiliation` on the author page**
+Schema markup lets you make explicit claims about expertise that AI systems can parse directly. Without it, the engine has to infer credentials from text, which is unreliable.
+
+**4. Author LinkedIn or social profiles linked from the bio**
+External profile links provide independent corroboration of the author's identity. A profile with a work history matching the bio significantly strengthens the authorship signal.
+
+**5. `Organization` schema on the site**
+The publishing organization needs its own machine-readable identity. This schema anchors the author's affiliation claim and establishes site-level credibility.
+
+**6. Date of publication and date of last review visible on posts**
+AI systems use freshness signals heavily. Pages with no visible date, or dates that are years old without a "last reviewed" note, are deprioritized for time-sensitive queries.
+
+**7. Primary sources cited inline (not just end-of-post references)**
+Inline citations signal research depth. They also give AI engines a chain-of-evidence to follow when verifying factual claims.
+
+**8. Bylined content on at least two external publications**
+External bylines demonstrate that other editorial gatekeepers have validated the author's expertise. Even a single well-known publication boosts the authorship signal substantially.
+
+**9. No anonymous YMYL content (health, finance, legal)**
+YMYL (Your Money or Your Life) content is held to the strictest E-E-A-T standard. Anonymous YMYL pages are excluded from AI citation consideration. If your site covers any of these topics, every post needs a credentialed named author.
+
+## 2. Content Structure for AI Extraction (10 points)
+
+AI systems extract passages of roughly 134 to 167 words that directly answer a specific question. They do not quote entire pages. They pull the most extractable passage that satisfies the query. Structure your content to match this extraction pattern.
+
+For a complete breakdown of how to format pages for AI extraction, see [how to structure pages so AI can extract answers](/blog/how-to-structure-pages-ai-extraction/).
+
+**10. Direct answer in first 150 words (answer-first structure)**
+If a reader has to scroll past introductory context before reaching the answer, an AI engine will often skip the page entirely. The answer needs to be in the opening paragraph.
+
+**11. H2 and H3 headings framed as questions or direct statement answers**
+Headings are the first thing AI systems use to evaluate whether a section is relevant to a query. "What is schema markup?" or "Schema markup improves citation probability" both outperform "Background" or "Overview."
+
+**12. Semantic completeness — covers related terms, not just the target keyword**
+AI systems evaluate topical completeness, not keyword density. A page about AI SEO audits should naturally include terms like E-E-A-T, schema validation, citation probability, and robots.txt. If major related concepts are absent, the page loses completeness scoring.
+
+**13. FAQ section at the bottom of every informational post**
+FAQ sections are highly extractable. Each question-and-answer pair is a discrete unit that an AI engine can cite for a specific query. Pages with FAQ sections consistently outperform those without them.
+
+**14. No fluff intro paragraphs that delay the answer**
+Phrases like "In today's digital landscape..." or "Many businesses wonder..." push the answer down. AI engines penalize this structure because it reduces extraction efficiency.
+
+**15. Tables used for comparison data**
+AI systems extract tables cleanly because the column-row structure makes the relationships between data points unambiguous. Any time you are presenting a comparison, a table is the correct format.
+
+**16. Numbered and bulleted lists for multi-step processes**
+Lists are extracted as discrete items rather than as a block of prose. For processes, instructions, and ranked items, lists significantly increase citation probability over paragraph format.
+
+**17. Definition blocks for key terms**
+When a post defines a term clearly in a dedicated block (even just a bolded term followed by a colon and a two-sentence explanation), AI systems can cite that definition directly. This creates DefinedTerm extraction opportunities.
+
+**18. "Quick answer" or "TL;DR" box at the top for complex posts**
+On posts over 1,500 words covering a nuanced topic, a short summary box at the top provides an immediately extractable high-confidence passage. In my experience, these boxes are cited disproportionately to their word count.
+
+**19. Each H2 section is self-contained and can be extracted without surrounding context**
+If a section makes sense only when read after the previous section, it will rarely be cited in isolation. Write each major section so that the first paragraph establishes full context for a reader (or AI) arriving there directly.
+
+## 3. Schema Markup (8 points)
+
+Schema markup is the most technically direct signal you can send to AI systems about what your content means and who produced it. Text alone requires inference; schema is an explicit declaration. For a full breakdown of schema types for AI visibility, see [schema markup for AI visibility](/seo/schema-markup/).
+
+**20. `Article` or `BlogPosting` schema on every post**
+This is the baseline. It identifies the page as editorial content, connects it to an author, and declares publication and modification dates in a machine-readable format.
+
+**21. `FAQPage` schema on posts with FAQ sections**
+`FAQPage` schema directly feeds AI Overviews and Perplexity's answer extraction. It is one of the highest-ROI schema types for AI visibility because it mirrors the exact format AI systems prefer.
+
+**22. `HowTo` schema on step-by-step guides**
+`HowTo` schema structures steps, tools, and estimated time in a way that AI systems can extract directly. Any post with numbered steps is a candidate.
+
+**23. `BreadcrumbList` schema on all pages**
+Breadcrumb schema helps AI systems understand where a page sits within your site hierarchy, which contributes to topical authority scoring.
+
+**24. `Organization` schema in the site-wide head**
+Site-level identity schema anchors all author and article schema downstream. It should include the organization name, URL, logo, and `sameAs` links to social profiles.
+
+**25. `Person` schema on author pages**
+As covered in Section 1, `Person` schema with `hasCredential`, `jobTitle`, and `affiliation` is the machine-readable proof of expertise that AI systems evaluate.
+
+**26. `Service` schema on service pages**
+Service pages without schema are invisible to AI systems trying to match service queries to providers. Schema makes the service type, area served, and provider explicit.
+
+**27. Schema validated via Google Rich Results Test with zero errors**
+Invalid schema is ignored by both Google and AI engines. Run every schema type through the Rich Results Test after implementation. Errors and warnings both need to be resolved.
+
+## 4. Technical Health (8 points)
+
+Technical issues block AI citation regardless of content quality. A crawler that cannot access your page cannot cite it. A page that loads in five seconds will be skipped in favor of faster alternatives.
+
+**28. All pages return 200 status (no soft 404s)**
+Soft 404s are pages that return a 200 status code but display a "page not found" message or thin content. They are particularly damaging because crawlers index them as valid pages but engines penalize the site for their quality.
+
+**29. Core Web Vitals passing — LCP under 2.5s, CLS under 0.1**
+Core Web Vitals are a direct ranking signal and indirectly affect AI citation by determining whether pages are crawled and indexed at sufficient depth.
+
+**30. Mobile-friendly verified via Google Search Console**
+Google's indexing is mobile-first. Pages that fail mobile-friendliness are crawled less frequently, which reduces citation recency.
+
+**31. HTTPS throughout with no mixed content warnings**
+Mixed content triggers browser security warnings and can prevent pages from loading correctly. This is a basic trust signal that AI systems evaluate.
+
+**32. XML sitemap submitted to Google Search Console**
+A current sitemap accelerates crawl of new and updated content. This is especially important for freshness-sensitive queries where recency affects citation selection.
+
+**33. Robots.txt not blocking AI crawlers**
+This is the most commonly overlooked technical issue in the audit. Check your robots.txt for `User-agent: GPTBot`, `User-agent: ClaudeBot`, and `User-agent: PerplexityBot`. If any of these appear with a `Disallow: /` directive, that AI system cannot crawl or cite any page on your site. This is a complete citation block and takes five minutes to fix.
+
+**34. Canonical tags correct with no duplicate content issues**
+Duplicate content splits authority signals across multiple URLs. Canonicalization consolidates those signals to the preferred URL, which strengthens that page's citation probability.
+
+**35. Internal linking — no orphan pages, every post linked from at least two others**
+Orphan pages receive no internal link equity and are crawled infrequently. For AI citation purposes, a page that crawlers rarely visit is a page that rarely gets considered for citation.
+
+## 5. Topical Authority Signals (7 points)
+
+AI systems favor sources with demonstrated topical depth. A single excellent post is not enough. The surrounding cluster of related content signals that the site has genuine domain expertise rather than isolated coverage. For a guide to building this structure, see [how to build a topic cluster](/blog/build-a-topic-cluster/).
+
+**36. Pillar page exists for each core topic**
+Pillar pages are the authoritative overview of a subject. They establish the site's claim to topical authority and act as the hub that cluster posts link back to.
+
+**37. Supporting cluster posts link back to the pillar**
+The internal link from cluster post to pillar passes authority upward and signals to AI systems that the pillar is the definitive resource on the topic.
+
+**38. Internal link depth — every post links to at least three related posts**
+Dense internal linking creates a web of connected content that AI systems interpret as evidence of comprehensive coverage. Isolated posts, even excellent ones, lack this context signal.
+
+**39. Topic coverage breadth — no major subtopic gaps in core subjects**
+Run a content gap analysis on your primary topic areas. If AI systems see your site covering nine of ten major subtopics but missing one, the gap reduces confidence in the site's overall authority.
+
+**40. Content freshness — key pages updated within the last six months**
+AI systems weight freshness heavily for dynamic topics. A guide published in 2023 with no update signal will be deprioritized against a 2025 post on the same subject, even if the 2023 content is substantively better.
+
+**41. No thin pages (under 500 words) targeting competitive queries**
+Thin pages in a topic cluster dilute the cluster's authority. They signal to AI systems that the site is padding coverage rather than providing depth.
+
+**42. Consistent publishing cadence visible in post archive**
+A visible publishing history signals an active, maintained source. Sites that published heavily two years ago and have been quiet since lose freshness authority even if their existing content is excellent.
+
+## 6. Brand and Off-Site Signals (5 points)
+
+AI engines apply multi-source corroboration when evaluating citation confidence. Brands mentioned across multiple independent domains earn higher citation confidence than brands with strong on-site signals but minimal external presence. For a strategy on building this signal, see [how to become a preferred source for AI search](/blog/google-preferred-sources-seo-strategy/).
+
+**43. Brand name searchable with branded search volume growing in Search Console**
+Growing branded search volume signals to AI systems that real users are seeking the brand specifically. This is a trust proxy that is difficult to manipulate, which makes it a high-confidence signal.
+
+**44. Brand mentioned on at least five external domains**
+Check Ahrefs or Semrush for referring domains that mention your brand name even without a link. These unlinked mentions are citations in the knowledge-graph sense and contribute to brand entity recognition.
+
+**45. Listed on industry-relevant directories and knowledge bases**
+Directories like Crunchbase, G2, Clutch, and industry-specific databases provide structured, independent records of your brand's existence and category. AI systems draw on these when building knowledge-graph associations.
+
+**46. Social profiles active and linking back to the site**
+Active profiles on LinkedIn, Bluesky, and Twitter/X serve two purposes: they provide additional corroborating mentions of the brand, and they create `sameAs` associations that strengthen the brand's entity profile.
+
+**47. Google Knowledge Panel exists or is in progress**
+A Knowledge Panel is the clearest signal that Google has recognized the brand as a distinct entity. If one does not yet exist, the path to earning one runs through the other checkpoints in this section.
+
+<figure class="post-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="800" height="320" role="img" aria-label="AI SEO Audit: 6 Categories at a Glance showing point values per category">
+  <rect width="800" height="320" fill="rgb(250,250,247)" rx="8"/>
+  <text x="400" y="30" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="2">AI SEO AUDIT · 47 POINTS ACROSS 6 CATEGORIES</text>
+  <text x="200" y="62" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="end">E-E-A-T &amp; Author Signals</text>
+  <rect x="210" y="48" width="342" height="22" rx="4" fill="rgb(184,85,46)"/>
+  <text x="560" y="63" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="start" dx="8">9 pts</text>
+  <text x="200" y="106" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="end">Content Structure</text>
+  <rect x="210" y="92" width="380" height="22" rx="4" fill="rgb(184,85,46)"/>
+  <text x="598" y="107" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="start" dx="8">10 pts</text>
+  <text x="200" y="150" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="end">Schema Markup</text>
+  <rect x="210" y="136" width="304" height="22" rx="4" fill="rgb(184,85,46)"/>
+  <text x="522" y="151" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="start" dx="8">8 pts</text>
+  <text x="200" y="194" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="end">Technical Health</text>
+  <rect x="210" y="180" width="304" height="22" rx="4" fill="rgb(184,85,46)"/>
+  <text x="522" y="195" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="start" dx="8">8 pts</text>
+  <text x="200" y="238" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="end">Topical Authority</text>
+  <rect x="210" y="224" width="266" height="22" rx="4" fill="rgb(184,85,46)"/>
+  <text x="484" y="239" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="start" dx="8">7 pts</text>
+  <text x="200" y="282" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" text-anchor="end">Brand &amp; Off-Site</text>
+  <rect x="210" y="268" width="190" height="22" rx="4" fill="rgb(184,85,46)"/>
+  <text x="408" y="283" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)" text-anchor="start" dx="8">5 pts</text>
+  <text x="400" y="312" font-family="Georgia, serif" font-size="10" fill="rgb(100,100,100)" text-anchor="middle">0 pts                                                  5 pts                                                  10 pts</text>
+</svg>
+<figcaption>Content structure and E-E-A-T together account for 40% of total audit score.</figcaption>
+</figure>
+
+## Your priority fix order
+
+The section order above is not arbitrary. It reflects the order in which AI systems apply filters when evaluating citation candidates. Use your score to find where to focus.
+
+**Score under 30 — start with E-E-A-T (Section 1) and robots.txt (checkpoint 33)**
+
+These are binary gates. If your robots.txt blocks GPTBot, ClaudeBot, or PerplexityBot, every other improvement is invisible to those systems. If your content lacks named authors with verifiable credentials, it fails the E-E-A-T filter before any content evaluation occurs. Fix these two areas before touching anything else.
+
+**Score 30–39 — focus on schema markup (Section 3) and content structure (Section 2)**
+
+At this score range, the gates are open but you are not yet competitive. Schema markup is the fastest technical improvement with direct citation impact. Content structure changes (answer-first, FAQ sections, self-contained H2s) have slightly longer feedback loops but compound over time as your existing content inventory becomes more extractable.
+
+**Score 40 and above — focus on off-site signals (Section 6) and publishing cadence**
+
+At this level, on-site signals are largely optimized. The limiting factor shifts to multi-source corroboration: are independent domains mentioning the brand, and is the publishing cadence active enough to maintain freshness authority? These take more time than technical fixes but are the correct focus at this stage.
+
+## Frequently asked questions
+
+**What is an AI SEO audit?**
+
+An AI SEO audit is a systematic evaluation of whether your website's content, technical setup, and authority signals are configured to be cited by AI answer systems like ChatGPT, Perplexity, and Google AI Overviews. It extends a traditional SEO audit by adding checks specific to how AI engines select citation sources, including E-E-A-T validation, schema markup, content extractability, and robots.txt configuration for AI crawlers.
+
+**How is an AI SEO audit different from a traditional SEO audit?**
+
+A traditional SEO audit focuses on ranking signals: keyword targeting, backlink profile, technical health, and on-page optimization. An AI SEO audit includes all of those and adds a second layer of evaluation specific to AI citation probability. The additional checks cover author credibility signals, schema markup types that AI engines parse directly, content structure patterns that maximize extractability, robots.txt directives that control AI crawler access, and off-site brand entity signals that influence AI confidence scoring.
+
+**How often should I run an AI SEO audit?**
+
+Run a full 47-point audit once per quarter. Between audits, spot-check the highest-leverage items monthly: author schema on new posts, robots.txt configuration after any server changes, and freshness dates on key pages. The AI search landscape is changing quickly enough that a quarterly review catches meaningful shifts without consuming excessive time.
+
+**Which AI SEO audit checkpoint has the biggest impact?**
+
+Checkpoint 33, the robots.txt AI crawler check, has the highest single-point impact because it is an on/off gate. If `User-agent: GPTBot`, `User-agent: ClaudeBot`, or `User-agent: PerplexityBot` appears with `Disallow: /`, that AI engine cannot cite any page on your site regardless of quality. After that, the E-E-A-T author signal cluster (checkpoints 1 through 5) has the highest collective impact because it determines whether content clears the first filter AI systems apply.
+
+**Can I do an AI SEO audit myself or do I need a professional?**
+
+Most of this audit is self-service. Technical checks (robots.txt, schema validation, Core Web Vitals) use free tools. Content structure evaluation requires careful reading of your own pages against the checklist criteria. The areas where professional help adds most value are schema implementation at scale, E-E-A-T gap analysis across a large content library, and link-building strategies for off-site signals. If your site has under 50 posts, you can complete a thorough audit in a day without outside help.
+
+**What tools do I need to complete this audit?**
+
+- Google Search Console: Core Web Vitals, mobile usability, sitemap status, branded search volume
+- Google Rich Results Test: Schema validation
+- Ahrefs or Semrush: External mentions, referring domains, content gap analysis
+- Screaming Frog or Sitebulb: Status codes, canonical tags, orphan pages, internal link analysis
+- robots.txt file (direct access): AI crawler directives
+- A text editor and this checklist: Content structure evaluation
+
+## Related reading
+
+- [How to structure pages so AI can extract answers](/blog/how-to-structure-pages-ai-extraction/)
+- [E-E-A-T in the AI era](/blog/eeat-in-the-ai-era/)
+- [Schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/)
+- [How to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/)
+- [Best AI visibility tools 2026](/blog/best-ai-visibility-tools-2026/)
+- [AI SEO services](/ai-seo-services/)
+
+## References
+
+<a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener noreferrer">Google Search Central — Creating helpful, reliable, people-first content</a>
+
+<a href="https://developers.google.com/search/docs/appearance/ai-features" target="_blank" rel="noopener noreferrer">Google Search Central — AI features in Google Search</a>
+
+<a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener noreferrer">Google Rich Results Test</a>
+
+<a href="https://ahrefs.com/blog/eat-seo/" target="_blank" rel="noopener noreferrer">Ahrefs Blog — E-E-A-T: What It Is and How to Demonstrate It for SEO</a>
+
+<a href="https://www.searchenginejournal.com/" target="_blank" rel="noopener noreferrer">Search Engine Journal — AI citation research and SEO analysis</a>
+
+<a href="https://www.brightedge.com/resources/research-reports" target="_blank" rel="noopener noreferrer">BrightEdge Research Reports 2026</a>

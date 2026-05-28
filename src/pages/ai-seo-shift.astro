@@ -6,7 +6,8 @@ import BlogPost from '../layouts/BlogPost.astro';
 const post = await getEntry('blog', 'ai-seo-shift');
 if (!post) return Astro.redirect('/blog/');
 
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const now = new Date();
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now);
 const { Content, headings } = await render(post);
 const heroImage = imageManifest[post.id as keyof typeof imageManifest]?.hero;
 

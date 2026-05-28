@@ -12,7 +12,8 @@ import { sortPostsByDate } from '../utils/blog';
 const guide = await getEntry('blog', 'ai-seo-shift');
 if (!guide) throw new Error('Missing required guide: ai-seo-shift');
 
-const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft));
+const now = new Date();
+const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now));
 const latestPosts = posts.filter((post) => post.id !== guide.id).slice(0, 4);
 // Keep imageManifest import for post-card thumbnails below (blog feature images stay as photos per site image policy).
 
