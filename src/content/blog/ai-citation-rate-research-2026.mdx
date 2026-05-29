@@ -16,9 +16,9 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-Researchers did not plan to build a new discipline around AI citation rates. It emerged because the question kept surfacing and nobody had a clean answer: why does one page get cited in AI-generated answers while a nearly identical page does not? The early data on citation rates — from Ahrefs, BrightEdge, Profound, and independent research — is now clear enough to report. The top predictors are not what most SEO teams assumed, and the gaps between cited and uncited content are larger than most optimization guides suggest.
+The early data on AI citation rates — from Ahrefs, BrightEdge, Profound, and independent research — is now clear enough to report. The top predictors are not what most SEO teams assumed, and the gaps between cited and uncited content are larger than most guides suggest.
 
-This post pulls together the best available citation rate research as of mid-2026 and reports what the numbers actually show by content type, schema usage, author credentials, content depth, and domain authority. For a detailed look at how we define and measure citation rates, see [AEO KPIs and metrics for AI visibility](/blog/aeo-kpis-metrics-ai-visibility/).
+This post pulls together the best available citation rate research as of mid-2026 and reports what the numbers show by content type, schema usage, author credentials, content depth, and domain authority. For a detailed look at how we define and measure citation rates, see [AEO KPIs and metrics for AI visibility](/blog/aeo-kpis-metrics-ai-visibility/).
 
 ## The top 3 citation rate predictors from available research
 
@@ -34,7 +34,7 @@ Everything else — domain authority, backlinks, word count, recency — is a se
 
 ## Citation rates by content type
 
-The content type breakdown is where the data is most developed, because researchers have been able to analyze large query sets and categorize cited pages by format. Across the studies available, the citation rate hierarchy by content type looks like this.
+Across the studies available, the citation rate hierarchy by content type is consistent.
 
 **Original research and data studies** lead every category. Pages that present proprietary data, survey results, or original analysis are cited at rates between 65% and 80% of tracked queries where they appear, depending on the platform and query type. The reason is straightforward: AI systems cannot generate original data. When a page contains numbers and findings that cannot be found elsewhere, it becomes a necessary citation.
 
@@ -42,11 +42,11 @@ The content type breakdown is where the data is most developed, because research
 
 **FAQ pages** and FAQ-structured posts are cited at rates between 50% and 65% for question-form queries. The structure advantage is real: AI systems can extract individual question-answer pairs and present them as answer units. A well-structured FAQ is effectively a pre-formatted citation source.
 
-**Comparison pages** ("X vs. Y," "best X for Y") are cited at 45% to 60% for commercial and research queries. These pages answer a specific evaluative question, which makes them valuable for AI systems responding to comparison queries.
+**Comparison pages** ("X vs. Y," "best X for Y") are cited at 45% to 60% for commercial and research queries. These pages answer a specific evaluative question, which AI systems need when responding to comparison intent.
 
-**News and update content** shows high short-term citation rates on Perplexity (which weights recency heavily) but lower sustained citation rates over time. A news post may be cited at 70% in its first two weeks, then drop to near zero as it ages and newer content covers the same topic.
+**News and update content** shows high short-term citation rates on Perplexity (which weights recency heavily) but lower sustained rates. A news post may be cited at 70% in its first two weeks, then drop toward zero as newer content covers the same topic.
 
-**Generic blog posts** — meaning posts without a clear structural format, that cover a topic generally without a specific answer target — are cited at rates between 15% and 25%. This is where the gap between traditional SEO content and AI-optimized content is largest. Pages written to rank for a keyword, without being structured to answer a specific query, consistently underperform in AI citation data.
+**Generic blog posts** — posts without a clear structural format, covering a topic generally without targeting a specific query — are cited at 15% to 25%. Pages written to rank for a keyword, without being structured to answer a specific question, consistently underperform in AI citation data.
 
 For more on the structural differences between cited and uncited pages, see the [AI citation study: what gets cited in 2026](/blog/ai-citation-study-what-gets-cited-2026/).
 
@@ -76,7 +76,7 @@ For more on the structural differences between cited and uncited pages, see the 
     <text x="40" y="436" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" font-weight="600">Question-framed H2 headings</text>
     <rect x="40" y="444" width="154" height="22" rx="4" fill="rgb(184,85,46)" opacity="0.5"/>
     <text x="206" y="460" font-family="Georgia, serif" font-size="12" font-weight="700" fill="rgb(14,17,22)">1.3x lift</text>
-    <text x="380" y="478" font-family="Georgia, serif" font-size="10" fill="rgb(80,80,80)" text-anchor="middle">Lift factors are relative multipliers versus baseline uncited pages. Source: aggregated 2026 citation rate research.</text>
+    <text x="380" y="478" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.5" text-anchor="middle">Lift factors are relative multipliers versus baseline uncited pages. Source: aggregated 2026 citation rate research.</text>
   </svg>
 </figure>
 
@@ -84,15 +84,15 @@ For more on the structural differences between cited and uncited pages, see the 
 
 Schema markup is one of the clearest interventions in citation rate data because it is binary: a page either has the markup or it does not. That makes comparison straightforward.
 
-The BrightEdge 2026 AI visibility research found that pages with structured data are surfaced in AI-generated answers at rates 40% to 60% higher than pages without structured data on equivalent topics. The effect varies by schema type.
+BrightEdge 2026 AI visibility research found that pages with structured data are surfaced in AI-generated answers at rates 40% to 60% higher than equivalent pages without it. The effect varies by schema type.
 
-FAQPage schema shows the largest citation rate lift of any individual schema type. Pages with valid FAQPage schema on question-format content are cited at 2.3x the rate of equivalent pages without the markup. The mechanism is direct: FAQPage schema pre-packages content into answer units that AI systems can extract and present without transformation. The system gets both the question text and the answer text as structured fields, reducing the extraction burden.
+FAQPage schema shows the largest citation rate lift. Pages with valid FAQPage schema on question-format content are cited at 2.3x the rate of equivalent pages without the markup. FAQPage pre-packages content into answer units that AI systems can extract and present without transformation — the system gets both the question and answer as structured fields, reducing the extraction burden.
 
-Article schema combined with Person schema produces a 1.8x lift versus no schema. This combination signals to AI retrieval systems that the page is a credible document (Article) authored by a real, identifiable person (Person). The Person schema entity — with links to the author's professional profiles — gives the system something to verify. That verifiability translates into citation confidence.
+Article schema combined with Person schema produces a 1.8x lift. This combination signals that the page is a credible document (Article) authored by a real, identifiable person (Person). External profile links in the Person schema give the system something to verify, and that verifiability increases citation confidence.
 
-HowTo schema on step-by-step content produces a 1.6x lift for process queries specifically. If your content is a procedural guide, HowTo schema is the direct implementation path. Steps, inputs, and tool requirements as structured fields give AI systems the process summary they need to cite the page as a source.
+HowTo schema on step-by-step content produces a 1.6x lift for process queries. Steps, inputs, and tool requirements as structured fields give AI systems the process summary they need to cite the page as a source.
 
-Pages with no schema at all are cited at the lowest rates in every category. More specifically: when two pages have equivalent content quality and structure but one has schema and the other does not, the schema page is cited more often in every dataset available. Schema does not replace content quality, but it amplifies it. See [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) for implementation specifics.
+Pages with no schema at all are cited at the lowest rates in every category. When two pages have equivalent content quality but one has schema and the other does not, the schema page is cited more often in every dataset available. Schema does not replace content quality — it amplifies it. See [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) for implementation specifics.
 
 ## Citation rates by author credentials
 
@@ -120,9 +120,9 @@ BrightEdge's AI citation analysis found that pages above 1,500 words are cited a
 
 The data interpretation: length matters as a proxy for completeness, but completeness is the actual driver. A 1,800-word page that thoroughly covers a topic — addresses common objections, explains edge cases, provides specific examples — outperforms a 2,500-word page that is padded with repetition and tangents.
 
-Perplexity's citation behavior shows the strongest depth preference of the three major AI platforms. Its retrieval system appears to favor pages that answer multiple facets of a query in a single document, which maps to depth rather than narrowness. ChatGPT shows a similar preference for comprehensive sources. Google AI Overviews weights depth less strongly than the other two platforms and appears more sensitive to E-E-A-T signals than to length specifically.
+Perplexity shows the strongest depth preference of the three major AI platforms, favoring pages that answer multiple facets of a query in a single document. ChatGPT shows a similar preference for comprehensive sources. Google AI Overviews weights depth less strongly and appears more sensitive to E-E-A-T signals than to length.
 
-The content structure angle on depth: pages that cover depth through explicit subheadings — an H2 for each major facet of the topic — are cited at higher rates than pages that cover the same word count in long, unbroken prose. The heading structure helps AI systems identify answer units within the page and extract them selectively for specific query variants.
+The heading structure angle on depth matters too: pages that cover depth through explicit H2 subheadings — one for each major facet — are cited at higher rates than pages with the same word count in long, unbroken prose. Heading structure helps AI systems identify and extract answer units for specific query variants.
 
 ## Citation rates by domain authority
 
@@ -142,15 +142,13 @@ Domain authority below 20 remains a significant barrier. In the Profound data, v
 
 Citation rate research has developed as a field because tools now exist to track it at scale. Three categories of tools are being used for citation rate measurement in 2026.
 
-**Dedicated AI monitoring platforms** — Profound, Otterly, and Semrush's AI Toolkit — can track which queries your content is cited for across multiple AI platforms, measure citation frequency over time, and identify which competitor domains are occupying citation slots you are not. Profound is the most research-grade of the three, with methodology documentation that allows for replication. These tools are how most of the citation rate data cited in this post was generated.
+**Dedicated AI monitoring platforms** — Profound, Otterly, and Semrush's AI Toolkit — track which queries your content is cited for across multiple AI platforms, measure citation frequency over time, and identify competitor domains occupying citation slots you are not. Profound is the most research-grade of the three, with methodology documentation that allows for replication.
 
-**Manual query sampling** is still the baseline methodology for smaller sites and for teams that want to verify tool results. The process: select 50 to 100 queries that represent your core topic areas, run them through ChatGPT, Perplexity, and Google AI Overviews, record every cited domain, and track the results in a spreadsheet. This is time-intensive but produces valid citation rate data. The [AI citation study methodology](/blog/ai-citation-study-what-gets-cited-2026/) describes how to structure a manual citation tracking study.
+**Manual query sampling** remains the baseline methodology for smaller sites and teams wanting to verify tool results. Select 50 to 100 representative queries, run them through ChatGPT, Perplexity, and Google AI Overviews, record every cited domain, and track results in a spreadsheet. Time-intensive but valid. The [AI citation study methodology](/blog/ai-citation-study-what-gets-cited-2026/) describes how to structure a manual citation tracking study.
 
-**Schema validation and coverage auditing** is a supporting methodology rather than a citation tracking tool. Google's Rich Results Test and Schema.org validators tell you whether your structured data is valid, but they do not tell you whether it is driving citations. The connection between schema coverage and citation rate has to be inferred by comparing citation rates before and after schema implementation across a query set.
+**Schema validation and coverage auditing** is a supporting methodology. Google's Rich Results Test tells you whether your structured data is valid, but not whether it is driving citations. That connection must be inferred by comparing citation rates before and after schema implementation across a query set.
 
-The methodological challenge across all of these tools: AI systems do not provide stable, auditable citation data. Which sources get cited for a given query can vary between sessions, between users, and over time as the model is updated. Citation rate research is probabilistic, not deterministic. Studies report averages across samples, not guarantees for individual queries. The [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) guide covers practical optimization steps informed by this research.
-
-For tracking your own content's citation performance, the [perfect blog post structure for AI citation](/blog/perfect-blog-post-structure-ai-citation/) gives the implementation checklist derived from current research data.
+The core methodological challenge: AI systems do not provide stable, auditable citation data. Which sources get cited for a given query varies between sessions and model updates. Citation rate research is probabilistic, not deterministic — studies report averages across samples. The [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) guide covers practical optimization steps. For a full implementation checklist, see [perfect blog post structure for AI citation](/blog/perfect-blog-post-structure-ai-citation/).
 
 ## Frequently asked questions
 
