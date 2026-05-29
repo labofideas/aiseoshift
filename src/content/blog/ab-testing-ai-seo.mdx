@@ -1,0 +1,313 @@
+---
+title: "A/B Testing for AI SEO: How to Experiment Your Way to More Citations"
+description: How to design and run A/B tests for AI SEO. Test content structure, schema markup, answer formatting, and page speed — then measure citation rate impact.
+deck: You cannot optimize what you do not test. AI SEO experimentation is messier than classic SEO split testing, but the signal is real and the wins compound.
+pubDate: 2026-06-22
+category: Strategy
+tags:
+  - A/B testing
+  - AI SEO
+  - experimentation
+  - optimization
+  - measurement
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+Most AI SEO advice is written as if the correct answer is already known. Add FAQ schema. Use answer-first structure. Write at a clear reading level. These recommendations are reasonable starting points — but they are not universal laws. Your site, your topic area, and your competitive landscape will respond differently to each intervention. The only way to know what actually moves your citation rate is to test.
+
+The problem is that AI SEO experimentation does not work like classic SEO A/B testing. You cannot run a traffic split at the server level and wait for Google Optimize to declare a winner. AI citations are not clicks. You cannot measure them with a pixel. The feedback loop is slower, noisier, and requires a different measurement approach entirely.
+
+This guide walks through what is worth testing, how to set up a defensible experiment, how to measure citation rate changes, and how to stack wins from repeated testing cycles into a compounding advantage.
+
+## What you can and cannot A/B test in AI SEO
+
+Before designing any experiment, it helps to be clear about what the testing environment actually allows.
+
+**What you can test reliably:**
+
+- Content structure — answer-first vs. context-first organization
+- Schema markup type — FAQ vs. HowTo vs. Article for the same content
+- Answer depth and specificity — short direct answers vs. elaborated ones
+- Page title format — question-form titles vs. declarative statement titles
+- Heading structure — single H1 with nested H2s vs. flat multiple H2s
+- Definition blocks — explicitly labeled definition sections vs. inline definitions
+
+**What is harder to test cleanly:**
+
+- Content freshness effects (confounded by re-crawl timing)
+- Domain authority changes (too slow and too many variables)
+- Inbound link effects (you cannot control link acquisition)
+- Platform-specific behavior (ChatGPT and Perplexity use different retrieval logic)
+
+The practical constraint is that AI citation signals take longer to propagate than traditional SEO ranking signals. A schema change on a page may take two to six weeks before you see measurable citation rate movement. That means your experiments need longer observation windows and cleaner controls than classic CRO tests.
+
+For background on the core citation mechanisms before you start testing, the guide on [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) covers the fundamentals of what makes a page citation-ready.
+
+## The 4 things most worth testing
+
+Not all AI SEO variables respond equally to testing. These four produce the clearest signal-to-noise ratio.
+
+**1. Answer structure: answer-first vs. context-first**
+
+The most common structural test in AI SEO is whether leading with a direct answer — before any setup, background, or context — improves citation rate compared to building toward the answer through explanation first.
+
+Answer-first structure puts the key claim, definition, or recommendation in the first two sentences of the page or section. Context-first structure provides framing, problem setup, or background before landing on the answer. AI systems often retrieve the section that best satisfies the query with the least extraneous text. That tends to favor answer-first. But in topic areas requiring trust signals — medical, legal, financial — context-first may perform better because the credentials and caveats surrounding the answer carry weight in the retrieval decision.
+
+**2. Schema markup type**
+
+The same page content can be marked up in several ways. A how-to guide can carry HowTo schema, FAQ schema, Article schema, or some combination. A definition page can use FAQPage or DefinedTerm. The schema type signals to AI systems how to interpret and use the content. Testing whether adding FAQ schema to a page that previously had only Article schema changes citation frequency is one of the cleanest tests available — the content is identical, only the structured data changes.
+
+**3. Content depth and specificity**
+
+Shallow, general content and deep, specific content are not equally useful to AI systems. But deeper is not always better — a 3,000-word page that buries the answer in the fifth section may underperform a 600-word page that answers the query precisely and stops. The test is not length vs. brevity. It is relevance density: how much of the content directly addresses the query vs. how much is peripheral. Variants that increase specificity — adding exact figures, named processes, defined terms — tend to perform better than variants that add word count through padding.
+
+**4. Page title format**
+
+Page titles influence how AI systems categorize and retrieve content. A question-form title ("How does FAQ schema affect AI citations?") signals intent match for conversational queries. A declarative title ("FAQ Schema and AI Citations: What the Research Shows") signals authority and informational density. Testing title format is low-risk because it does not require changing the body content. The same page under two different titles produces a clean test of how title framing affects citation selection.
+
+## Setting up an AI SEO experiment
+
+A well-structured AI SEO experiment has five components: a hypothesis, a control, a variant, a measurement protocol, and a decision criterion.
+
+**Hypothesis:** State what you expect the change to do and why. "Adding FAQ schema to five informational pages will increase their average AI citation rate by at least 10 percentage points because FAQ schema directly encodes question-answer pairs that AI systems can retrieve without parsing prose."
+
+**Control:** The unchanged version of the page, measured across your tracked query set before any changes are made. Establish at least three weeks of baseline citation rate data before introducing any variant.
+
+**Variant:** The modified page with exactly one change from the control. Changing multiple variables simultaneously makes it impossible to attribute any citation rate movement to a specific cause. In practice, this means resisting the temptation to also update the content when you are testing schema, or to also add schema when you are testing structure.
+
+**Measurement protocol:** Run your tracked query set on a fixed schedule — weekly is the practical minimum for most sites — and record citation presence for each query. Your query set should cover the full topical range of the pages being tested, not just high-volume queries.
+
+**Decision criterion:** Set the threshold before you start. A meaningful result in AI SEO testing typically requires a 15-percentage-point or greater shift in citation rate, held across at least two consecutive measurement periods. Smaller movements are within the noise floor of manual tracking. Larger movements that last only one measurement period may be retrieval variance rather than a genuine improvement.
+
+**Test duration:** Run each test for a minimum of six weeks after the variant goes live. Eight weeks is better for pages in competitive topic areas where AI systems have more alternatives to choose from.
+
+**Sample size:** You need a sufficient number of tracked queries against the tested pages. Thirty queries per page is a workable minimum. Fewer than twenty makes the results unreliable. If you are testing across five pages simultaneously, you have a potential query pool of 150 — enough to produce a meaningful aggregate.
+
+For context on the broader measurement framework that these tests feed into, the post on [AEO KPIs and metrics for AI visibility](/blog/aeo-kpis-metrics-ai-visibility/) covers how citation rate fits into a complete performance picture.
+
+## How to measure AI citation rate changes
+
+This is where AI SEO testing gets operationally demanding. There is no automated split-test framework that tracks AI citations the way Google Optimize tracked conversion rates. Measurement requires a combination of manual query monitoring and, optionally, dedicated tools.
+
+**Manual query monitoring:**
+
+Build a spreadsheet with your tracked queries in rows and weekly measurement dates in columns. For each query, run it on your target AI platforms — at minimum Google AI Overviews and Perplexity — and record whether your test page was cited (1) or not (0). At the end of each week, calculate citation rate as the percentage of queries where the page appeared.
+
+The discipline here is consistency: same queries, same platforms, same day of the week, same logged-in or logged-out state. AI answers vary by user context, so holding as many variables constant as possible reduces noise.
+
+**Dedicated monitoring tools:**
+
+Several tools now track AI citation presence without requiring manual query execution. Platforms like Semrush's AI Toolkit, Otterly.ai, and Profound monitor citation presence across platforms on a scheduled basis. These tools reduce the labor cost of weekly measurement and can track larger query sets than manual monitoring allows.
+
+The tradeoff is that automated tools use their own query sampling methodology, which may not exactly match your tracked query set. For testing purposes, manual monitoring of a controlled query set is more reliable for measuring the effect of a specific change. Automated tools are better for ongoing surveillance of your overall citation footprint.
+
+**Using Google Search Console as a supplementary signal:**
+
+As covered in [Google Search Console for AI visibility](/blog/google-search-console-ai-visibility/), GSC now provides AI Overview impression data filtered by search type. While this is incomplete — it captures only Google AI Overviews, not Perplexity or ChatGPT citations — it adds an objective, high-volume data stream alongside your manual tracking. An increase in AI Overview impressions for a page after a structural change is corroborating evidence, not definitive proof, but useful corroboration.
+
+## Schema markup A/B tests: what to test and what to expect
+
+Schema markup is the cleanest testing variable in AI SEO because you can change it without altering the content users see. Two schema experiments are worth running early.
+
+**Test 1: FAQ schema added vs. no FAQ schema**
+
+Take five informational pages that answer questions but currently have only Article or BlogPosting schema. Add FAQPage schema to them, encoding the three to five most prominent questions and answers from the existing content as structured Question and Answer entities. Leave five comparable pages in your content set unchanged as controls.
+
+Measure citation rate across both groups for eight weeks. FAQ schema directly surfaces discrete question-answer pairs to retrieval systems, and AI answer systems frequently retrieve structured Q&A content because it maps cleanly onto query-answer format. The hypothesis is that FAQ schema increases citation rate for informational and conversational queries.
+
+Be precise about what changed: if you also rewrote the content to make the answers crisper while adding schema, you will not be able to isolate the schema effect. Add the schema to the page as it exists, then measure.
+
+**Test 2: HowTo schema vs. Article schema for process content**
+
+For pages that explain a step-by-step process, compare HowTo schema against Article schema. HowTo schema encodes each step as a discrete, labeled action, which is how AI systems often structure procedural answers. If your process content is already well-structured with numbered steps, adding HowTo schema should give AI systems cleaner access to the structure they would otherwise have to infer from prose.
+
+The external resource [schema.org's HowTo specification](https://schema.org/HowTo) documents the full property set available, and Google's [structured data documentation for HowTo](https://developers.google.com/search/docs/appearance/structured-data/how-to) shows which properties are eligible for rich results. Use both to ensure your implementation is complete.
+
+## Content structure tests: answer-first vs. context-first
+
+The content structure experiment is more involved than a schema test because it requires actually changing the page's writing. Run this on pages where you have a defensible rationale for trying both approaches.
+
+**Setting up the test:**
+
+Choose five pages in the same topical cluster. For half of them, rewrite the opening section to lead with the direct answer in the first one to two sentences, followed by supporting evidence, context, and elaboration. For the remaining pages, leave the structure as-is or use them as the control group if their structure is already context-first.
+
+The variant is not the entire page — just the opening section and the opening of each major H2 subsection. The hypothesis is that answer-first structure at both the page level and section level improves citation rate by making the key claims immediately retrievable without parsing setup.
+
+**What to watch for:**
+
+Answer-first structure consistently outperforms context-first structure for definitional, how-to, and comparative queries. For queries that are primarily research-oriented or technical, context-first may perform equally well because the AI system is looking for depth and nuance rather than a quick answer.
+
+Track the results by query type, not just in aggregate. A structure that improves citation rate for simple queries but hurts it for complex ones is a mixed result, not a clear win. A detailed breakdown of what makes blog post and article structure work for AI citation is covered in [the complete guide to blog post structure for AI citation](/blog/perfect-blog-post-structure-ai-citation/).
+
+## The compounding benefit: how tested wins stack
+
+The most important reason to run systematic AI SEO experiments is not the individual lift from any single test. It is the accumulation of validated improvements across a content library over time.
+
+Each confirmed optimization is a replicable pattern. If answer-first structure demonstrates a 20-percentage-point citation rate improvement on your test pages, you now have evidence to apply that structure to every comparable page on your site. If FAQ schema shows a consistent lift for informational content, you have a schema deployment roadmap. If a specific title format outperforms alternatives, every future piece of content uses that format from the start.
+
+The sites that build AI citation dominance in their categories are not the ones that found the single best trick. They are the ones that ran experiments early, validated their findings carefully, and applied those findings systematically. Citation rate compounds in the same way that a growing knowledge graph compounds: each improvement makes the next improvement easier to achieve and sustain.
+
+Before attributing financial value to citation rate improvements, the post on [the ROI of AI SEO](/blog/roi-of-ai-seo/) provides the framework for translating citation rate movement into business impact — which is what you eventually need to justify the ongoing investment in experimentation infrastructure.
+
+A full attribution model for how AI citation activity connects to downstream revenue is also covered in [AI SEO attribution models](/blog/ai-seo-attribution-models/), particularly for cases where AI-assisted discovery does not produce a direct click.
+
+<figure class="post-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" width="820" height="480" role="img" aria-label="AI SEO experiment framework diagram showing the four-stage cycle: Hypothesis, Variant, Measure, Decide">
+  <rect width="820" height="480" fill="rgb(246,245,240)" rx="10"/>
+  <text x="410" y="34" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="2">AI SEO EXPERIMENT FRAMEWORK · FOUR-STAGE CYCLE</text>
+
+  <rect x="30" y="60" width="185" height="140" rx="10" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <text x="122" y="92" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="1.5">STAGE 1</text>
+  <text x="122" y="114" font-family="Georgia, serif" font-size="15" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Hypothesis</text>
+  <text x="122" y="136" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">State the expected change</text>
+  <text x="122" y="152" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">and the mechanism.</text>
+  <text x="122" y="172" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">e.g. FAQ schema will raise</text>
+  <text x="122" y="186" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">citation rate by 10+ pts</text>
+
+  <rect x="317" y="60" width="185" height="140" rx="10" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <text x="410" y="92" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="1.5">STAGE 2</text>
+  <text x="410" y="114" font-family="Georgia, serif" font-size="15" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Variant</text>
+  <text x="410" y="136" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">Apply exactly one change.</text>
+  <text x="410" y="152" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">Hold all else constant.</text>
+  <text x="410" y="172" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">Control pages unchanged;</text>
+  <text x="410" y="186" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">3-week baseline first</text>
+
+  <rect x="604" y="60" width="185" height="140" rx="10" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <text x="697" y="92" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="1.5">STAGE 3</text>
+  <text x="697" y="114" font-family="Georgia, serif" font-size="15" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Measure</text>
+  <text x="697" y="136" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">Track citation rate weekly</text>
+  <text x="697" y="152" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">for 6–8 weeks minimum.</text>
+  <text x="697" y="172" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">Manual query sampling</text>
+  <text x="697" y="186" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">+ GSC AI impressions</text>
+
+  <rect x="317" y="290" width="185" height="140" rx="10" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <text x="410" y="322" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="1.5">STAGE 4</text>
+  <text x="410" y="344" font-family="Georgia, serif" font-size="15" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Decide</text>
+  <text x="410" y="366" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">Roll out win or revert.</text>
+  <text x="410" y="382" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">Document the finding.</text>
+  <text x="410" y="402" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">Threshold: 15+ pt shift</text>
+  <text x="410" y="416" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">held 2 measurement periods</text>
+
+  <line x1="215" y1="130" x2="317" y2="130" stroke="rgb(184,85,46)" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="502" y1="130" x2="604" y2="130" stroke="rgb(184,85,46)" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="697" y1="200" x2="697" y2="270" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <line x1="697" y1="270" x2="410" y2="270" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <line x1="410" y1="270" x2="410" y2="290" stroke="rgb(184,85,46)" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="410" y1="430" x2="410" y2="460" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <line x1="410" y1="460" x2="122" y2="460" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <line x1="122" y1="460" x2="122" y2="210" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <line x1="122" y1="210" x2="122" y2="200" stroke="rgb(184,85,46)" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="rgb(184,85,46)"/>
+    </marker>
+  </defs>
+
+  <text x="122" y="245" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">Next cycle</text>
+
+  <text x="410" y="472" font-family="Georgia, serif" font-size="9" fill="rgb(80,80,80)" text-anchor="middle">Each validated win feeds the next hypothesis — wins compound across cycles</text>
+</svg>
+</figure>
+
+The experiment cycle is not a one-time exercise. Each completed cycle produces one of two outcomes: a validated win that becomes a site-wide standard, or a null result that rules out a variable and narrows the hypothesis space for the next test. Both outcomes move you forward.
+
+## Running your first experiment: a practical starting sequence
+
+For teams new to AI SEO testing, the sequence below minimizes setup time while producing meaningful data quickly.
+
+**Week 1–2:** Establish baseline. Run your tracked query set (minimum 30 queries per targeted page) across Google AI Overviews and Perplexity. Record citation presence in a spreadsheet. Do not change anything yet.
+
+**Week 3:** Introduce the variant. Choose one change — FAQ schema addition is the recommended starting point because it is reversible, isolated, and has the clearest connection to AI retrieval behavior. Apply it to three to five pages.
+
+**Weeks 4–10:** Measure weekly. Same queries, same platforms, same day, same logged-out state. Resist the urge to make additional changes to the test pages during this period.
+
+**Week 11:** Analyze results. Calculate the citation rate change between the baseline period and the post-variant period for both test pages and control pages. If test pages show 15+ percentage points of improvement and control pages are flat, you have a signal worth acting on.
+
+**Week 12:** Decide and document. If the result is positive, schedule FAQ schema deployment across your full content library. Document the test conditions, the query set used, the pages tested, the measurement dates, and the outcome. This record becomes your experiment library — the foundation for increasingly sophisticated tests over time.
+
+## Frequently asked questions
+
+**Can I run multiple AI SEO experiments at the same time?**
+
+Yes, but only if the experiments target different pages with no overlap. Running a schema test and a content structure test on the same page simultaneously makes it impossible to attribute any citation rate change to either variable specifically. Run parallel experiments on distinct page sets, with each set having its own control group and tracked query set.
+
+**How is AI SEO A/B testing different from traditional SEO split testing?**
+
+Traditional SEO split testing measures ranking position or organic traffic changes, both of which are available in near-real-time via Search Console or analytics. AI SEO testing measures citation rate, which requires manual query sampling or dedicated monitoring tools, has a longer propagation delay, and cannot be measured with a simple traffic split. The methodology is closer to brand tracking research than to conversion rate optimization.
+
+**What is a statistically meaningful result in an AI SEO test?**
+
+Given the noise floor of manual citation tracking, a 15-percentage-point shift in citation rate — sustained across at least two consecutive measurement periods — is the practical threshold for a meaningful result. For example, if baseline citation rate is 20% and the variant produces 36% or higher for two straight measurement weeks, that is a signal worth acting on. Smaller movements are indistinguishable from measurement variance.
+
+**How many pages do I need for a valid AI SEO experiment?**
+
+At minimum, three to five test pages and three to five control pages in the same topical cluster. Fewer than three test pages makes the result too dependent on individual page variance. More than ten pages per group is ideal for larger sites, but not required to start getting useful signal.
+
+**Which AI platforms should I use for citation tracking?**
+
+Track Google AI Overviews and Perplexity at minimum. These two platforms use different retrieval architectures — Perplexity live-crawls more aggressively, Google AI Overviews rely more heavily on existing index signals — so they provide somewhat independent reads on whether your optimization is working. ChatGPT is worth adding if your content targets research-oriented or professional queries.
+
+**Should I test one variable at a time or run a factorial design?**
+
+Test one variable at a time until you have at least three to four validated findings. Factorial designs — testing multiple variables simultaneously across page groups — are more efficient but require larger page sets and more sophisticated analysis to avoid false positives. The practical constraint is that most sites do not have enough comparable pages in a single topical cluster to run meaningful factorial experiments until they have a solid single-variable testing history.
+
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I run multiple AI SEO experiments at the same time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but only if the experiments target different pages with no overlap. Running a schema test and a content structure test on the same page simultaneously makes it impossible to attribute any citation rate change to either variable specifically. Run parallel experiments on distinct page sets, with each set having its own control group and tracked query set."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is AI SEO A/B testing different from traditional SEO split testing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Traditional SEO split testing measures ranking position or organic traffic changes, both of which are available in near-real-time via Search Console or analytics. AI SEO testing measures citation rate, which requires manual query sampling or dedicated monitoring tools, has a longer propagation delay, and cannot be measured with a simple traffic split. The methodology is closer to brand tracking research than to conversion rate optimization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a statistically meaningful result in an AI SEO test?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Given the noise floor of manual citation tracking, a 15-percentage-point shift in citation rate — sustained across at least two consecutive measurement periods — is the practical threshold for a meaningful result. For example, if baseline citation rate is 20% and the variant produces 36% or higher for two straight measurement weeks, that is a signal worth acting on. Smaller movements are indistinguishable from measurement variance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many pages do I need for a valid AI SEO experiment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At minimum, three to five test pages and three to five control pages in the same topical cluster. Fewer than three test pages makes the result too dependent on individual page variance. More than ten pages per group is ideal for larger sites, but not required to start getting useful signal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which AI platforms should I use for citation tracking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Track Google AI Overviews and Perplexity at minimum. These two platforms use different retrieval architectures — Perplexity live-crawls more aggressively, Google AI Overviews rely more heavily on existing index signals — so they provide somewhat independent reads on whether your optimization is working. ChatGPT is worth adding if your content targets research-oriented or professional queries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I test one variable at a time or run a factorial design?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Test one variable at a time until you have at least three to four validated findings. Factorial designs — testing multiple variables simultaneously across page groups — are more efficient but require larger page sets and more sophisticated analysis to avoid false positives. The practical constraint is that most sites do not have enough comparable pages in a single topical cluster to run meaningful factorial experiments until they have a solid single-variable testing history."
+      }
+    }
+  ]
+}
+`}</script>
