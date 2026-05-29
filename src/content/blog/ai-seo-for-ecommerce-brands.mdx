@@ -38,17 +38,17 @@ None of these moves is sufficient alone. The brands consistently appearing in AI
 
 The three dominant AI shopping surfaces each approach product queries differently, and understanding those differences matters for how you structure your content.
 
-**ChatGPT with browsing** handles shopping queries by retrieving information from product pages, editorial review sites, and retailer category pages in real time. It synthesizes recommendations based on what it can extract — specifications, use-case language, review summaries — combined with its training data about brand reputation and product category context. ChatGPT tends to weight editorial authority heavily: pages that explain *why* a product is the right choice for a specific buyer profile outperform pages that simply list product attributes.
+**ChatGPT with browsing** retrieves information from product pages, editorial review sites, and retailer category pages in real time. It synthesizes recommendations based on what it can extract — specifications, use-case language, review summaries — combined with training data about brand reputation. ChatGPT weights editorial authority heavily: pages that explain *why* a product suits a specific buyer outperform pages that simply list attributes.
 
-**Perplexity** operates similarly but with a stronger emphasis on source transparency. Its shopping answers typically cite two to five sources per recommendation, drawing on product pages, best-of editorial content, and retailer descriptions. Perplexity's product cards pull structured data when available and fall back to scraped page content when schema is absent. Complete, accurate Product schema dramatically increases the reliability and accuracy of the product card Perplexity assembles for your items.
+**Perplexity** operates similarly but with stronger source transparency. Its shopping answers typically cite two to five sources per recommendation. Perplexity's product cards pull structured data when available and fall back to scraped content when schema is absent — which makes complete Product schema a practical requirement, not a nice-to-have.
 
-**Google AI Overviews and Google Shopping AI** use a combination of the organic index, Merchant Center feed data, and structured data to generate shopping answers. Google has significant advantages here: its Shopping Graph contains product data for hundreds of millions of items, and its ability to match feed data with page content makes it the most sophisticated of the three. For Google specifically, Merchant Center feed quality is not just an ads concern — it directly influences whether your products appear in AI-generated shopping summaries.
+**Google AI Overviews and Google Shopping AI** use the organic index, Merchant Center feed data, and structured data in combination. For Google, Merchant Center feed quality is not just an ads concern — it directly influences whether your products appear in AI-generated shopping summaries.
 
-The strategic implication across all three: you need both structured data that machines can parse cleanly and editorial content that makes your products contextually relevant to specific buyer needs. Structured data without editorial context gets your products into the data layer but not into the recommendation layer. Editorial content without structured data makes your products hard to extract accurately.
+The strategic implication: you need both clean structured data and editorial content that makes products contextually relevant to specific buyer needs. Structured data without editorial context gets your products into the data layer but not into the recommendation layer. Editorial content without structured data makes your products hard to extract accurately.
 
 ## Product schema: the baseline for any AI shopping citation
 
-Product schema is the admission ticket to AI shopping surfaces. Without it, AI systems have to infer product attributes from unstructured page text — a process that introduces errors, omissions, and uncertainty. With it, you give AI systems a clean, reliable data structure they can extract with confidence. The confidence gap matters because AI systems strongly prefer sources that reduce uncertainty.
+Product schema is the admission ticket to AI shopping surfaces. Without it, AI systems must infer product attributes from unstructured page text — introducing errors, omissions, and uncertainty. With it, you give AI systems a clean, reliable data structure they can extract with confidence. AI systems strongly prefer sources that reduce uncertainty; schema is the primary mechanism.
 
 The full guide on [e-commerce product schema for AI search](/blog/ecommerce-product-schema-ai-search/) covers the complete implementation, but the critical properties for AI shopping citation are:
 
@@ -102,15 +102,15 @@ For a broader foundation in how structured data affects machine citability acros
 
 ## Buyer guide content: the highest-value AI SEO investment for e-commerce
 
-If product schema is the admission ticket, buyer guide content is the championship game. The queries that represent the most valuable AI shopping citations are not "buy Nike Air Max 90" — those transactional queries with an exact brand and model go to retailers with the best price and availability. The valuable queries are:
+If product schema is the admission ticket, buyer guide content is the championship game. Transactional queries with an exact brand and model go to retailers with the best price and availability. The valuable queries are:
 
 - "best running shoes for plantar fasciitis"
 - "best protein powder for beginners who find gym food disgusting"
 - "best ergonomic chair under $400 for a home office"
 
-These queries require an AI system to make a recommendation, not just retrieve a specific product. To make a recommendation, the system needs a source that has already evaluated options and explained which one fits which buyer. Buyer guide content is that source.
+These queries require an AI system to make a recommendation, not just retrieve a product. To make a recommendation, the system needs a source that has already evaluated options and explained which fits which buyer. Buyer guide content is that source.
 
-The [AI SEO shift framework](/ai-seo-shift/) is explicit about this: the brands winning AI shopping citations have invested in educational content that sits above the product level — content that positions them as advisors in a category, not just sellers of SKUs.
+The [AI SEO shift framework](/ai-seo-shift/) is explicit about this: the brands winning AI shopping citations have invested in educational content that positions them as category advisors, not just sellers of SKUs.
 
 An effective buyer guide for AI citation includes:
 
@@ -128,19 +128,19 @@ E-commerce brands that produce this content at scale — with one buyer guide fo
 
 When an AI system generates a product recommendation, it is implicitly making a quality judgment. A system that recommends a product with 2.8 stars and 47 reviews faces credibility risk. The practical result: AI shopping systems weight aggregate rating data heavily as a signal for which products are safe to recommend.
 
-Review schema does two things for AI citation. First, it makes your rating data machine-readable without scraping. When `aggregateRating` is implemented correctly — with `ratingValue`, `reviewCount`, and `bestRating` specified — AI systems can extract your rating in milliseconds. When it is absent, they either guess from visual elements or skip the quality signal entirely, both of which damage recommendation probability.
+Review schema does two things for AI citation. First, it makes your rating data machine-readable without scraping. When `aggregateRating` is implemented correctly — with `ratingValue`, `reviewCount`, and `bestRating` specified — AI systems can extract your rating reliably. When it is absent, they either guess from visual elements or skip the quality signal, both of which damage recommendation probability.
 
-Second, individual `Review` objects with structured content give AI systems quotable text. Perplexity in particular pulls review excerpts when assembling product summaries. A review that says "The arch support is exceptional — I have worn these for back-to-back marathon training weeks without foot pain" is extractable as evidence. A review that says "Love these shoes! 5 stars!" provides no extractable signal.
+Second, individual `Review` objects with structured content give AI systems quotable text. A review that says "The arch support is exceptional — I have worn these for back-to-back marathon training weeks without foot pain" is extractable as evidence. A review that says "Love these shoes! 5 stars!" provides no extractable signal.
 
-The full implementation guide for [review schema for AI search](/blog/review-schema-for-ai-search/) covers the exact schema structure, common implementation errors, and strategies for encouraging customers to leave the specific, attribute-focused reviews that AI systems cite most reliably.
+The full implementation guide for [review schema for AI search](/blog/review-schema-for-ai-search/) covers the exact schema structure, common errors, and strategies for encouraging the attribute-focused reviews AI systems cite most reliably.
 
-Aggregate rating quality matters as much as quantity. A product with a 4.7-star average from 340 reviews will be cited far more confidently than a product with a 4.9-star average from 11 reviews. The review count is a calibration signal — systems treat high ratings from small review pools as potentially unreliable. Getting to 50+ reviews with a strong average is the practical floor for reliable AI citation as a recommended product.
+Aggregate rating quality matters as much as quantity. A 4.7-star average from 340 reviews earns far more confident citations than a 4.9 from 11 reviews. Getting to 50+ reviews with a strong average is the practical floor for reliable AI citation.
 
 ## Feed optimization: Google Merchant Center data quality
 
-Google Merchant Center has always been the foundation of Google Shopping, but its role has expanded significantly as Google integrates product feed data into AI Overviews and AI-generated shopping summaries. Feed quality now affects not just paid shopping placements but organic AI-driven product discovery.
+Google Merchant Center's role has expanded as Google integrates feed data into AI Overviews and AI-generated shopping summaries. Feed quality now affects not just paid placements but organic AI-driven product discovery.
 
-According to Google's [Merchant Center documentation](https://support.google.com/merchants/answer/188494), product data quality directly influences whether products are approved for Shopping surfaces and how prominently they appear. The feed attributes that matter most for AI shopping citation parallel the Product schema properties: accurate title, complete description, current price, real-time availability, and a valid GTIN.
+According to Google's [Merchant Center documentation](https://support.google.com/merchants/answer/188494), product data quality directly influences whether products are approved for Shopping surfaces and how prominently they appear. The feed attributes that matter most parallel the Product schema properties: accurate title, complete description, current price, real-time availability, and a valid GTIN.
 
 The practical gaps that damage AI shopping performance in Merchant Center:
 
@@ -158,17 +158,15 @@ Beyond Merchant Center, the product description quality strategies covered in th
 
 The brands appearing most frequently in AI shopping answers have something in common beyond good schema and clean feeds: they have editorial content that establishes them as category authorities, not just product sellers.
 
-This is a counterintuitive investment for many e-commerce brands. The traditional product-first mentality says that marketing dollars should drive traffic directly to product and category pages. AI SEO inverts this logic. An AI system that has encountered your brand as an authoritative voice in buying guides, expert explainers, and comparison content treats your product pages differently than an AI system that has only seen your SKUs in a feed.
+The traditional product-first mentality says marketing dollars should drive traffic directly to product and category pages. AI SEO inverts this logic. An AI system that has encountered your brand as an authoritative voice in buying guides, expert explainers, and comparison content treats your product pages differently than one that has only seen your SKUs in a feed.
 
-The mechanism is something researchers studying retrieval-augmented generation have described as entity authority: when a model's training data and retrieval index consistently associate a brand with expert, trustworthy content in a category, that brand's product pages inherit some of that authority signal. [Research on how AI systems select citation sources](https://arxiv.org/abs/2402.04846) points to multi-signal authority — no single factor drives citation, but entity-level trust built through consistent, high-quality content across multiple content types is among the most durable signals.
+[Research on how AI systems select citation sources](https://arxiv.org/abs/2402.04846) points to multi-signal authority — entity-level trust built through consistent, high-quality content across multiple content types is among the most durable citation signals. Practically, this means e-commerce brands should invest in:
 
-Practically, this means e-commerce brands should invest in:
+**Expert-authored buying guides** — written by people with genuine category expertise. Depth and accuracy are increasingly detectable by AI systems trained to distinguish authoritative sources from generic content.
 
-**Expert-authored buying guides** — written by people with genuine expertise in the product category, not generic content writers. The depth and accuracy of expert content is increasingly detectable by AI systems trained to distinguish authoritative sources.
+**Problem-solution content** — articles that address specific buyer problems with product recommendations as the solution. "How to choose running shoes if you have wide feet and overpronate" is higher-value AI citation content than "our wide-fit running shoe collection."
 
-**Problem-solution content** — articles that address specific buyer problems, with product recommendations as the solution. "How to choose running shoes if you have wide feet and overpronate" is higher-value AI citation content than "our wide-fit running shoe collection."
-
-**Category explainer content** — foundational content that explains how a product category works, what to look for, and how to evaluate options. This content earns citations for awareness-stage queries that upper-funnel shoppers ask before they know what product they want.
+**Category explainer content** — foundational content explaining how a product category works, what to look for, and how to evaluate options. This earns citations for awareness-stage queries upper-funnel shoppers ask before they know what product they want.
 
 The combination of technical infrastructure (schema, feeds) and editorial authority (buyer guides, expert content) is what the [complete guide to getting cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) identifies as the citation-ready brand profile — the state where AI systems have enough signal to confidently recommend your products across multiple query types and buyer stages.
 
