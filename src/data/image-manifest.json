@@ -1,756 +1,964 @@
 {
-  "what-is-ai-visibility": {
-    "hero": {
-      "src": "/images/posts/what-is-ai-visibility-hero.webp",
-      "alt": "Abstract editorial visual representing AI visibility across digital interfaces",
-      "photographer": "Matheus Bertelli",
-      "photographerUrl": "https://www.pexels.com/@bertellifotografia",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/ai-chat-interface-on-computer-screen-30530407/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 7772
-    },
-    "inline": [
-      {
-        "src": "/images/posts/what-is-ai-visibility-inline-1.webp",
-        "alt": "Team reviewing performance data and search visibility metrics",
-        "photographer": "RDNE Stock project",
-        "photographerUrl": "https://www.pexels.com/@rdne",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/hands-holding-business-analysis-8068691/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 31596
-      }
-    ]
-  },
-  "what-is-answer-engine-optimization": {
-    "hero": {
-      "src": "/images/posts/what-is-answer-engine-optimization-hero.webp",
-      "alt": "Modern search and answer interface on a laptop at a desk",
-      "photographer": "cottonbro studio",
-      "photographerUrl": "https://www.pexels.com/@cottonbro",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/google-browser-on-laptop-6986455/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 38976
-    },
-    "inline": [
-      {
-        "src": "/images/posts/what-is-answer-engine-optimization-inline-1.webp",
-        "alt": "Person researching and typing on a laptop while reviewing answers",
-        "photographer": "Ron Lach",
-        "photographerUrl": "https://www.pexels.com/@ron-lach",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/man-in-green-dress-shirt-wearing-eyeglasses-8036332/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 45524
-      }
-    ]
-  },
-  "ai-citation-landscape-2026": {
-    "hero": {
-      "src": "/images/posts/ai-citation-landscape-2026-hero.webp",
-      "alt": "Research documents and notes representing source citations and analysis",
-      "photographer": "Ron Lach",
-      "photographerUrl": "https://www.pexels.com/@ron-lach",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/person-in-black-shirt-writing-on-white-paper-8085938/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 59858
-    },
-    "inline": [
-      {
-        "src": "/images/posts/ai-citation-landscape-2026-inline-1.webp",
-        "alt": "Analyst reviewing reports and source material for research work",
-        "photographer": "Tima Miroshnichenko",
-        "photographerUrl": "https://www.pexels.com/@tima-miroshnichenko",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/man-in-black-suit-jacket-analyzing-data-reports-7567485/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 33002
-      }
-    ]
-  },
-  "best-surfer-seo-alternatives-2026": {
-    "hero": {
-      "src": "/images/posts/best-surfer-seo-alternatives-2026-hero.webp",
-      "alt": "Marketing team reviewing SEO dashboards and software options",
-      "photographer": "Lukas Blazek",
-      "photographerUrl": "https://www.pexels.com/@goumbik",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/turned-on-laptop-computer-577195/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 89246
-    },
-    "inline": [
-      {
-        "src": "/images/posts/best-surfer-seo-alternatives-2026-inline-1.webp",
-        "alt": "SEO audit wooden blocks on a surface representing content optimization tools",
-        "photographer": "Pixabay",
-        "photographerUrl": "https://www.pexels.com/@pixabay",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/seo-audit-white-blocks-on-brown-wooden-surface-267415/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 55888
-      }
-    ]
-  },
-  "best-ai-visibility-tools-2026": {
-    "hero": {
-      "src": "/images/posts/best-ai-visibility-tools-2026-hero.webp",
-      "alt": "Analytics dashboards on multiple screens representing AI visibility tooling",
-      "photographer": "Egor Komarov",
-      "photographerUrl": "https://www.pexels.com/@egorkomarov",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/options-on-device-screen-27141316/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 85204
-    },
-    "inline": [
-      {
-        "src": "/images/posts/best-ai-visibility-tools-2026-inline-1.webp",
-        "alt": "Analytics dashboard on a laptop showing marketing and visibility metrics",
-        "photographer": "Negative Space",
-        "photographerUrl": "https://www.pexels.com/@negativespace",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/macbook-pro-on-brown-table-139387/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 28978
-      }
-    ]
-  },
-  "master-programmatic-seo": {
-    "hero": {
-      "src": "/images/posts/master-programmatic-seo-hero.webp",
-      "alt": "Developer workspace with structured data and code on screen",
-      "photographer": "Саша Алалыкин",
-      "photographerUrl": "https://www.pexels.com/@sash2s",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/software-source-code-program-code-code-on-a-computer-screen-the-developer-is-working-on-program-codes-in-the-office-photo-with-source-code-16592498/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 69752
-    },
-    "inline": [
-      {
-        "src": "/images/posts/master-programmatic-seo-inline-1.webp",
-        "alt": "Computer screen showing code and structured data patterns",
-        "photographer": "Bernd Dittrich",
-        "photographerUrl": "https://unsplash.com/@hdbernd",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/a-computer-screen-with-a-bunch-of-lines-on-it-aYosQyFcC8k",
-        "width": 1200,
-        "height": 675,
-        "bytes": 48086
-      }
-    ]
-  },
-  "what-is-generative-engine-optimization-geo": {
-    "hero": {
-      "src": "/images/posts/what-is-generative-engine-optimization-geo-hero.webp",
-      "alt": "Abstract network visual representing generative search systems",
-      "photographer": "Google DeepMind",
-      "photographerUrl": "https://www.pexels.com/@googledeepmind",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje-17483871/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 27608
-    },
-    "inline": [
-      {
-        "src": "/images/posts/what-is-generative-engine-optimization-geo-inline-1.webp",
-        "alt": "Abstract AI neural network illustration representing generative systems",
-        "photographer": "Google DeepMind",
-        "photographerUrl": "https://www.pexels.com/@googledeepmind",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje-17483870/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 35044
-      }
-    ]
-  },
-  "build-a-topic-cluster": {
-    "hero": {
-      "src": "/images/posts/build-a-topic-cluster-hero.webp",
-      "alt": "Strategy board with connected notes representing a topic cluster",
-      "photographer": "Walls.io",
-      "photographerUrl": "https://www.pexels.com/@walls-io-440716388",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/hand-placing-sticky-note-on-whiteboard-15505431/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 32986
-    },
-    "inline": [
-      {
-        "src": "/images/posts/build-a-topic-cluster-inline-1.webp",
-        "alt": "Person writing on a whiteboard while planning content strategy",
-        "photographer": "Campaign Creators",
-        "photographerUrl": "https://unsplash.com/@campaign_creators",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/man-writing-on-whiteboard-8F4EX4Nw1yY",
-        "width": 1200,
-        "height": 675,
-        "bytes": 37536
-      }
-    ]
-  },
-  "user-intent-for-better-seo": {
-    "hero": {
-      "src": "/images/posts/user-intent-for-better-seo-hero.webp",
-      "alt": "Search strategist reviewing intent and analytics on screen",
-      "photographer": "cottonbro studio",
-      "photographerUrl": "https://www.pexels.com/@cottonbro",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/man-wearing-a-gray-suit-8369518/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 28294
-    },
-    "inline": [
-      {
-        "src": "/images/posts/user-intent-for-better-seo-inline-1.webp",
-        "alt": "Person using Google search on a laptop to research information",
-        "photographer": "cottonbro studio",
-        "photographerUrl": "https://www.pexels.com/@cottonbro",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/google-browser-on-laptop-6986455/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 38976
-      }
-    ]
-  },
-  "how-to-get-cited-by-ai-search-systems": {
-    "hero": {
-      "src": "/images/posts/how-to-get-cited-by-ai-search-systems-hero.webp",
-      "alt": "People holding printed papers with research graphs and citation data",
-      "photographer": "Artem Podrez",
-      "photographerUrl": "https://www.pexels.com/@artempodrez",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/persons-holding-printer-papers-with-graphs-5716025/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 35692
-    },
-    "inline": [
-      {
-        "src": "/images/posts/how-to-get-cited-by-ai-search-systems-inline-1.webp",
-        "alt": "Person typing on a laptop keyboard while working on content strategy",
-        "photographer": "Tina Devidze",
-        "photographerUrl": "https://unsplash.com/@teenytina",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/person-typing-on-a-laptop-keyboard-AvIC3xvZCAI",
-        "width": 1200,
-        "height": 675,
-        "bytes": 53392
-      }
-    ]
-  },
-  "how-to-refresh-old-seo-content": {
-    "hero": {
-      "src": "/images/posts/how-to-refresh-old-seo-content-hero.webp",
-      "alt": "Person editing and updating content on a computer screen",
-      "photographer": "Jacob Mindak",
-      "photographerUrl": "https://unsplash.com/@aiaiandai",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/a-persons-feet-resting-on-a-computer-screen-ugkxpq87qOk",
-      "width": 1200,
-      "height": 675,
-      "bytes": 20420
-    },
-    "inline": [
-      {
-        "src": "/images/posts/how-to-refresh-old-seo-content-inline-1.webp",
-        "alt": "Analytics chart showing growth data representing content performance improvement",
-        "photographer": "Negative Space",
-        "photographerUrl": "https://www.pexels.com/@negativespace",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/blue-and-green-pie-chart-97080/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 14494
-      }
-    ]
-  },
-  "chatgpt-interactive-visuals-math-science": {
-    "hero": {
-      "src": "/images/posts/chatgpt-interactive-visuals-math-science-hero.webp",
-      "alt": "Virtual lesson displayed on a computer screen showing interactive educational content",
-      "photographer": "Duc Van",
-      "photographerUrl": "https://unsplash.com/@duke91",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/a-virtual-lesson-is-taking-place-on-a-computer-screen--lWBt4ctRfc",
-      "width": 1200,
-      "height": 675,
-      "bytes": 49934
-    },
-    "inline": [
-      {
-        "src": "/images/posts/chatgpt-interactive-visuals-math-science-inline-1.webp",
-        "alt": "Teacher demonstrating a science concept to students in a classroom",
-        "photographer": "kimmi jun",
-        "photographerUrl": "https://www.pexels.com/@kimmi-jun-201206578",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/young-woman-teaching-a-group-of-school-students-at-a-chemistry-class-18506741/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 88664
-      }
-    ]
-  },
-  "ai-overviews-seo-strategy": {
-    "hero": {
-      "src": "/images/posts/ai-overviews-seo-strategy-hero.webp",
-      "alt": "Google search engine results page on a screen representing AI Overviews and search visibility",
-      "photographer": "Sarah Blocksidge",
-      "photographerUrl": "https://www.pexels.com/@sarah-blocksidge-69426152",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/google-search-engine-on-screen-13628541/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 19376
-    },
-    "inline": [
-      {
-        "src": "/images/posts/ai-overviews-seo-strategy-inline-1.webp",
-        "alt": "Close-up of analytics data and survey spreadsheet representing SEO data analysis",
-        "photographer": "Lukas Blazek",
-        "photographerUrl": "https://www.pexels.com/@goumbik",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/close-up-photo-of-survey-spreadsheet-590022/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 28468
-      }
-    ]
-  },
-  "ai-reshaping-digital-marketing-2026": {
-    "hero": {
-      "src": "/images/posts/ai-reshaping-digital-marketing-2026-hero.webp",
-      "alt": "Laptop with AI workspace interface representing the intersection of AI and digital marketing",
-      "photographer": "Jo Lin",
-      "photographerUrl": "https://unsplash.com/@jolin974658",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/laptop-with-ai-workspace-logo-on-screen-MSg17QHWf5Y",
-      "width": 1200,
-      "height": 675,
-      "bytes": 25946
-    },
-    "inline": [
-      {
-        "src": "/images/posts/ai-reshaping-digital-marketing-2026-inline-1.webp",
-        "alt": "Marketing professional working on analytics and strategy at a laptop",
-        "photographer": "Negative Space",
-        "photographerUrl": "https://www.pexels.com/@negativespace",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/macbook-pro-on-brown-table-139387/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 30762
-      }
-    ]
-  },
-  "how-ai-changes-search-learn-decide": {
-    "hero": {
-      "src": "/images/posts/how-ai-changes-search-learn-decide-hero.webp",
-      "alt": "Person holding a smartphone showing an AI interface, representing how people now search with AI",
-      "photographer": "UMA media",
-      "photographerUrl": "https://www.pexels.com/@uma-media-2149408028",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/hand-holding-smartphone-with-grok-3-announcement-30875540/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 31006
-    },
-    "inline": [
-      {
-        "src": "/images/posts/how-ai-changes-search-learn-decide-inline-1.webp",
-        "alt": "Two people collaborating and learning together using laptop computers",
-        "photographer": "Code Ninja",
-        "photographerUrl": "https://unsplash.com/@ogelamar",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/two-men-using-laptop-computes-DThlV4dYlnE",
-        "width": 1200,
-        "height": 675,
-        "bytes": 49636
-      }
-    ]
-  },
-  "seo-in-2026-complete-guide": {
-    "hero": {
-      "src": "/images/posts/seo-in-2026-complete-guide-hero.webp",
-      "alt": "Magnifying glass next to a laptop representing search engine optimization and discovery",
-      "photographer": "MJ Duford",
-      "photographerUrl": "https://unsplash.com/@duforddigital",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/magnifying-glass-sits-near-a-laptop-on-a-table-P_5mirRrg0k",
-      "width": 1200,
-      "height": 675,
-      "bytes": 23700
-    },
-    "inline": [
-      {
-        "src": "/images/posts/seo-in-2026-complete-guide-inline-1.webp",
-        "alt": "Content creator writing and working on a laptop with notebook",
-        "photographer": "Karolina Grabowska",
-        "photographerUrl": "https://www.pexels.com/@karola-g2",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/women-typing-on-the-notebook-6168/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 66642
-      }
-    ]
-  },
-  "is-chatgpt-replacing-google": {
-    "hero": {
-      "src": "/images/posts/is-chatgpt-replacing-google-hero.webp",
-      "alt": "Google search engine displayed on a laptop screen representing the search landscape",
-      "photographer": "Pixabay",
-      "photographerUrl": "https://www.pexels.com/@pixabay",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/google-search-engine-on-macbook-pro-40185/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 64892
-    },
-    "inline": [
-      {
-        "src": "/images/posts/is-chatgpt-replacing-google-inline-1.webp",
-        "alt": "Person using a smartphone to search for information on the go",
-        "photographer": "Xuancong Meng",
-        "photographerUrl": "https://unsplash.com/@edgehua",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/a-woman-standing-on-a-street-corner-holding-a-cell-phone-F_U9BmBVs_w",
-        "width": 1200,
-        "height": 675,
-        "bytes": 123376
-      }
-    ]
-  },
-  "will-ai-replace-seo-jobs": {
-    "hero": {
-      "src": "/images/posts/will-ai-replace-seo-jobs-hero.webp",
-      "alt": "Person working alongside AI technology in a modern workspace",
-      "photographer": "Kyle Ryan",
-      "photographerUrl": "https://unsplash.com/@kylry",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/a-man-standing-in-front-of-a-coffee-maker-_FXH5DUsMuo",
-      "width": 1200,
-      "height": 675,
-      "bytes": 50684
-    },
-    "inline": [
-      {
-        "src": "/images/posts/will-ai-replace-seo-jobs-inline-1.webp",
-        "alt": "Marketing team collaborating in a strategy meeting at the office",
-        "photographer": "Alena Darmel",
-        "photographerUrl": "https://www.pexels.com/@a-darmel",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/a-group-of-people-having-a-meeting-in-the-office-7710139/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 65806
-      }
-    ]
-  },
-  "can-you-trust-ai-search-answers": {
-    "hero": {
-      "src": "/images/posts/can-you-trust-ai-search-answers-hero.webp",
-      "alt": "Wooden letter tiles on a table representing AI fact-checking and verification",
-      "photographer": "Markus Winkler",
-      "photographerUrl": "https://www.pexels.com/@markuswinkler",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/wooden-scrabble-tiles-spelling-deepseek-on-table-30839684/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 42678
-    },
-    "inline": [
-      {
-        "src": "/images/posts/can-you-trust-ai-search-answers-inline-1.webp",
-        "alt": "Person reading content on a laptop screen with a skeptical expression",
-        "photographer": "Siarhei Palishchuk",
-        "photographerUrl": "https://unsplash.com/@psiarhei",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/orange-and-white-cat-on-macbook-pro-qHHQXLUrKC0",
-        "width": 1200,
-        "height": 675,
-        "bytes": 70970
-      }
-    ]
-  },
-  "what-is-seo-does-it-still-work-2026": {
-    "hero": {
-      "src": "/images/posts/what-is-seo-does-it-still-work-2026-hero.webp",
-      "alt": "SEO letter blocks on a wooden surface representing search engine optimization basics",
-      "photographer": "Pixabay",
-      "photographerUrl": "https://www.pexels.com/@pixabay",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/seo-audit-white-blocks-on-brown-wooden-surface-267415/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 55888
-    },
-    "inline": [
-      {
-        "src": "/images/posts/what-is-seo-does-it-still-work-2026-inline-1.webp",
-        "alt": "Website analytics dashboard showing performance metrics and growth data",
-        "photographer": "Luke Chesser",
-        "photographerUrl": "https://unsplash.com/@lukechesser",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/graphs-of-performance-analytics-on-a-laptop-screen-JKUTrJ4vK00",
-        "width": 1200,
-        "height": 675,
-        "bytes": 49452
-      }
-    ]
-  },
-  "geo-vs-aeo-vs-seo": {
-    "hero": {
-      "src": "/images/posts/geo-vs-aeo-vs-seo-hero.webp",
-      "alt": "Data visualization on a computer screen representing framework comparison and analysis",
-      "photographer": "Sharad Bhat",
-      "photographerUrl": "https://www.pexels.com/@sharadbhat",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/computer-display-with-statistics-of-covid-19-cases-4007745/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 51194
-    },
-    "inline": [
-      {
-        "src": "/images/posts/geo-vs-aeo-vs-seo-inline-1.webp",
-        "alt": "Abstract visualization of overlapping AI systems and optimization layers",
-        "photographer": "Google DeepMind",
-        "photographerUrl": "https://unsplash.com/@googledeepmind",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/a-black-and-white-photo-of-an-egg-vyATC00PGAQ",
-        "width": 1200,
-        "height": 675,
-        "bytes": 54430
-      }
-    ]
-  },
-  "how-to-structure-pages-ai-extraction": {
-    "hero": {
-      "src": "/images/posts/how-to-structure-pages-ai-extraction-hero.webp",
-      "alt": "Structured workflow diagram and document organization representing content architecture",
-      "photographer": "Kelly Sikkema",
-      "photographerUrl": "https://unsplash.com/@kellysikkema",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/workflow-diagram-product-brief-and-user-goals-are-shown-wdnpaTNwOEQ",
-      "width": 1200,
-      "height": 675,
-      "bytes": 111886
-    },
-    "inline": [
-      {
-        "src": "/images/posts/how-to-structure-pages-ai-extraction-inline-1.webp",
-        "alt": "Programming code and structured data displayed on a computer screen",
-        "photographer": "Bibek ghosh",
-        "photographerUrl": "https://www.pexels.com/@bibek-ghosh",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/programming-data-on-a-computer-14553707/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 35324
-      }
-    ]
-  },
-  "how-chatgpt-perplexity-google-cite-differently": {
-    "hero": {
-      "src": "/images/posts/how-chatgpt-perplexity-google-cite-differently-hero.webp",
-      "alt": "Two smartphones displayed side by side representing AI platform comparison",
-      "photographer": "Andrey Matveev",
-      "photographerUrl": "https://www.pexels.com/@andrey-matveev",
-      "sourceName": "Pexels",
-      "sourceUrl": "https://www.pexels.com/photo/comparative-display-of-two-modern-smartphones-34190305/",
-      "width": 1200,
-      "height": 675,
-      "bytes": 187976
-    },
-    "inline": [
-      {
-        "src": "/images/posts/how-chatgpt-perplexity-google-cite-differently-inline-1.webp",
-        "alt": "Data-driven decision making dashboard showing search and citation analytics",
-        "photographer": "Team Nocoloco",
-        "photographerUrl": "https://unsplash.com/@nocoloco",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/a-screenshot-of-a-web-page-with-the-words-make-data-driven-decision-in-OsbWPpHtjrU",
-        "width": 1200,
-        "height": 675,
-        "bytes": 27286
-      }
-    ]
-  },
-  "eeat-in-the-ai-era": {
-    "hero": {
-      "src": "/images/posts/eeat-in-the-ai-era-hero.webp",
-      "alt": "Professional expert in their field representing expertise, experience, and trust",
-      "photographer": "Vitaly Gariev",
-      "photographerUrl": "https://unsplash.com/@vitalygariev",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/elderly-doctor-wearing-glasses-and-stethoscope-in-office-XSPFs82j_v0",
-      "width": 1200,
-      "height": 675,
-      "bytes": 35166
-    },
-    "inline": [
-      {
-        "src": "/images/posts/eeat-in-the-ai-era-inline-1.webp",
-        "alt": "Professional writing notes and documenting expertise in a notebook",
-        "photographer": "Pavel Danilyuk",
-        "photographerUrl": "https://www.pexels.com/@pavel-danilyuk",
-        "sourceName": "Pexels",
-        "sourceUrl": "https://www.pexels.com/photo/professional-lawyer-writing-on-a-notebook-8112113/",
-        "width": 1200,
-        "height": 675,
-        "bytes": 48660
-      }
-    ]
-  },
-  "zero-click-search-strategy": {
-    "hero": {
-      "src": "/images/posts/zero-click-search-strategy-hero.webp",
-      "alt": "Search interface showing AI-generated answers without requiring clicks",
-      "photographer": "Edho Pratama",
-      "photographerUrl": "https://unsplash.com/@edhoryhkm",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/person-using-laptop-T6fDN60bMWY",
-      "width": 1200,
-      "height": 675,
-      "bytes": 32000
-    },
-    "inline": [
-      {
-        "src": "/images/posts/zero-click-search-strategy-inline-1.webp",
-        "alt": "Analytics dashboard showing search visibility and brand impression metrics",
-        "photographer": "Stephen Dawson",
-        "photographerUrl": "https://unsplash.com/@dawson2406",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/turned-on-monitoring-screen-qwtCeJ5cLYs",
-        "width": 1200,
-        "height": 675,
-        "bytes": 28000
-      }
-    ]
-  },
-  "what-is-agentic-commerce-optimization": {
-    "hero": {
-      "src": "/images/posts/what-is-agentic-commerce-optimization-hero.webp",
-      "alt": "AI-powered shopping experience with automated product discovery",
-      "photographer": "Roberto Cortese",
-      "photographerUrl": "https://unsplash.com/@robertocortese",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/shopping-cart-beside-a-laptop-pGMuGSs3Cdo",
-      "width": 1200,
-      "height": 675,
-      "bytes": 34000
-    },
-    "inline": [
-      {
-        "src": "/images/posts/what-is-agentic-commerce-optimization-inline-1.webp",
-        "alt": "Digital commerce interface showing AI agent product recommendations",
-        "photographer": "CardMapr.nl",
-        "photographerUrl": "https://unsplash.com/@cardmapr",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/person-using-macbook-pro-on-brown-wooden-desk-s8F8yglbpjo",
-        "width": 1200,
-        "height": 675,
-        "bytes": 30000
-      }
-    ]
-  },
-  "google-ai-mode-what-seos-need-to-know": {
-    "hero": {
-      "src": "/images/posts/google-ai-mode-what-seos-need-to-know-hero.webp",
-      "alt": "Google search interface transitioning to AI-powered conversational mode",
-      "photographer": "Firmbee.com",
-      "photographerUrl": "https://unsplash.com/@firmbee",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/person-using-google-on-laptop-jrh5lAq-mIs",
-      "width": 1200,
-      "height": 675,
-      "bytes": 31000
-    },
-    "inline": [
-      {
-        "src": "/images/posts/google-ai-mode-what-seos-need-to-know-inline-1.webp",
-        "alt": "Data visualization showing search behavior changes with AI Mode adoption",
-        "photographer": "Luke Chesser",
-        "photographerUrl": "https://unsplash.com/@lukechesser",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/graphs-of-performance-analytics-on-a-laptop-screen-JKUTrJ4vK00",
-        "width": 1200,
-        "height": 675,
-        "bytes": 29000
-      }
-    ]
-  },
-  "schema-markup-for-ai-visibility": {
-    "hero": {
-      "src": "/images/posts/schema-markup-for-ai-visibility-hero.webp",
-      "alt": "Code editor showing structured data markup implementation",
-      "photographer": "Ilya Pavlov",
-      "photographerUrl": "https://unsplash.com/@ilyapavlov",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/monitor-showing-java-programming-OqtafYT5kTw",
-      "width": 1200,
-      "height": 675,
-      "bytes": 36000
-    },
-    "inline": [
-      {
-        "src": "/images/posts/schema-markup-for-ai-visibility-inline-1.webp",
-        "alt": "Developer implementing structured data on a website for AI search optimization",
-        "photographer": "Florian Olivo",
-        "photographerUrl": "https://unsplash.com/@florianolv",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/turned-on-gray-laptop-computer-4hbJ-eymZ1o",
-        "width": 1200,
-        "height": 675,
-        "bytes": 33000
-      }
-    ]
-  },
-  "how-to-measure-ai-visibility": {
-    "hero": {
-      "src": "/images/posts/how-to-measure-ai-visibility-hero.webp",
-      "alt": "Marketing analytics dashboard tracking brand visibility and citation metrics",
-      "photographer": "Carlos Muza",
-      "photographerUrl": "https://unsplash.com/@kmuza",
-      "sourceName": "Unsplash",
-      "sourceUrl": "https://unsplash.com/photos/person-using-macbook-pro-on-black-table-hpjSkU2UYSU",
-      "width": 1200,
-      "height": 675,
-      "bytes": 35000
-    },
-    "inline": [
-      {
-        "src": "/images/posts/how-to-measure-ai-visibility-inline-1.webp",
-        "alt": "Team reviewing AI visibility metrics and competitive analysis data",
-        "photographer": "Campaign Creators",
-        "photographerUrl": "https://unsplash.com/@campaign_creators",
-        "sourceName": "Unsplash",
-        "sourceUrl": "https://unsplash.com/photos/person-using-laptop-computer-pypeCEaJeZY",
-        "width": 1200,
-        "height": 675,
-        "bytes": 32000
-      }
-    ]
-  }
+	"what-is-ai-visibility": {
+		"hero": {
+			"src": "/images/posts/what-is-ai-visibility-hero.webp",
+			"alt": "Abstract editorial visual representing AI visibility across digital interfaces",
+			"photographer": "Matheus Bertelli",
+			"photographerUrl": "https://www.pexels.com/@bertellifotografia",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/ai-chat-interface-on-computer-screen-30530407/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 7772
+		},
+		"inline": [
+			{
+				"src": "/images/posts/what-is-ai-visibility-inline-1.webp",
+				"alt": "Team reviewing performance data and search visibility metrics",
+				"photographer": "RDNE Stock project",
+				"photographerUrl": "https://www.pexels.com/@rdne",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/hands-holding-business-analysis-8068691/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 31596
+			}
+		]
+	},
+	"what-is-answer-engine-optimization": {
+		"hero": {
+			"src": "/images/posts/what-is-answer-engine-optimization-hero.webp",
+			"alt": "Modern search and answer interface on a laptop at a desk",
+			"photographer": "cottonbro studio",
+			"photographerUrl": "https://www.pexels.com/@cottonbro",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/google-browser-on-laptop-6986455/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 38976
+		},
+		"inline": [
+			{
+				"src": "/images/posts/what-is-answer-engine-optimization-inline-1.webp",
+				"alt": "Person researching and typing on a laptop while reviewing answers",
+				"photographer": "Ron Lach",
+				"photographerUrl": "https://www.pexels.com/@ron-lach",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/man-in-green-dress-shirt-wearing-eyeglasses-8036332/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 45524
+			}
+		]
+	},
+	"ai-citation-landscape-2026": {
+		"hero": {
+			"src": "/images/posts/ai-citation-landscape-2026-hero.webp",
+			"alt": "Research documents and notes representing source citations and analysis",
+			"photographer": "Ron Lach",
+			"photographerUrl": "https://www.pexels.com/@ron-lach",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/person-in-black-shirt-writing-on-white-paper-8085938/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 59858
+		},
+		"inline": [
+			{
+				"src": "/images/posts/ai-citation-landscape-2026-inline-1.webp",
+				"alt": "Analyst reviewing reports and source material for research work",
+				"photographer": "Tima Miroshnichenko",
+				"photographerUrl": "https://www.pexels.com/@tima-miroshnichenko",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/man-in-black-suit-jacket-analyzing-data-reports-7567485/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 33002
+			}
+		]
+	},
+	"best-surfer-seo-alternatives-2026": {
+		"hero": {
+			"src": "/images/posts/best-surfer-seo-alternatives-2026-hero.webp",
+			"alt": "Marketing team reviewing SEO dashboards and software options",
+			"photographer": "Lukas Blazek",
+			"photographerUrl": "https://www.pexels.com/@goumbik",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/turned-on-laptop-computer-577195/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 89246
+		},
+		"inline": [
+			{
+				"src": "/images/posts/best-surfer-seo-alternatives-2026-inline-1.webp",
+				"alt": "SEO audit wooden blocks on a surface representing content optimization tools",
+				"photographer": "Pixabay",
+				"photographerUrl": "https://www.pexels.com/@pixabay",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/seo-audit-white-blocks-on-brown-wooden-surface-267415/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 55888
+			}
+		]
+	},
+	"best-ai-visibility-tools-2026": {
+		"hero": {
+			"src": "/images/posts/best-ai-visibility-tools-2026-hero.webp",
+			"alt": "Analytics dashboards on multiple screens representing AI visibility tooling",
+			"photographer": "Egor Komarov",
+			"photographerUrl": "https://www.pexels.com/@egorkomarov",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/options-on-device-screen-27141316/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		},
+		"inline": [
+			{
+				"src": "/images/posts/best-ai-visibility-tools-2026-inline-1.webp",
+				"alt": "Analytics dashboard on a laptop showing marketing and visibility metrics",
+				"photographer": "Negative Space",
+				"photographerUrl": "https://www.pexels.com/@negativespace",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/macbook-pro-on-brown-table-139387/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
+	},
+	"master-programmatic-seo": {
+		"hero": {
+			"src": "/images/posts/master-programmatic-seo-hero.webp",
+			"alt": "Developer workspace with structured data and code on screen",
+			"photographer": "Саша Алалыкин",
+			"photographerUrl": "https://www.pexels.com/@sash2s",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/software-source-code-program-code-code-on-a-computer-screen-the-developer-is-working-on-program-codes-in-the-office-photo-with-source-code-16592498/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 69752
+		},
+		"inline": [
+			{
+				"src": "/images/posts/master-programmatic-seo-inline-1.webp",
+				"alt": "Computer screen showing code and structured data patterns",
+				"photographer": "Bernd Dittrich",
+				"photographerUrl": "https://unsplash.com/@hdbernd",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/a-computer-screen-with-a-bunch-of-lines-on-it-aYosQyFcC8k",
+				"width": 1200,
+				"height": 675,
+				"bytes": 48086
+			}
+		]
+	},
+	"what-is-generative-engine-optimization-geo": {
+		"hero": {
+			"src": "/images/posts/what-is-generative-engine-optimization-geo-hero.webp",
+			"alt": "Abstract network visual representing generative search systems",
+			"photographer": "Google DeepMind",
+			"photographerUrl": "https://www.pexels.com/@googledeepmind",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje-17483871/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 27608
+		},
+		"inline": [
+			{
+				"src": "/images/posts/what-is-generative-engine-optimization-geo-inline-1.webp",
+				"alt": "Abstract AI neural network illustration representing generative systems",
+				"photographer": "Google DeepMind",
+				"photographerUrl": "https://www.pexels.com/@googledeepmind",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje-17483870/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 35044
+			}
+		]
+	},
+	"build-a-topic-cluster": {
+		"hero": {
+			"src": "/images/posts/build-a-topic-cluster-hero.webp",
+			"alt": "Strategy board with connected notes representing a topic cluster",
+			"photographer": "Walls.io",
+			"photographerUrl": "https://www.pexels.com/@walls-io-440716388",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/hand-placing-sticky-note-on-whiteboard-15505431/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 32986
+		},
+		"inline": [
+			{
+				"src": "/images/posts/build-a-topic-cluster-inline-1.webp",
+				"alt": "Person writing on a whiteboard while planning content strategy",
+				"photographer": "Campaign Creators",
+				"photographerUrl": "https://unsplash.com/@campaign_creators",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/man-writing-on-whiteboard-8F4EX4Nw1yY",
+				"width": 1200,
+				"height": 675,
+				"bytes": 37536
+			}
+		]
+	},
+	"user-intent-for-better-seo": {
+		"hero": {
+			"src": "/images/posts/user-intent-for-better-seo-hero.webp",
+			"alt": "Search strategist reviewing intent and analytics on screen",
+			"photographer": "cottonbro studio",
+			"photographerUrl": "https://www.pexels.com/@cottonbro",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/man-wearing-a-gray-suit-8369518/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 28294
+		},
+		"inline": [
+			{
+				"src": "/images/posts/user-intent-for-better-seo-inline-1.webp",
+				"alt": "Person using Google search on a laptop to research information",
+				"photographer": "cottonbro studio",
+				"photographerUrl": "https://www.pexels.com/@cottonbro",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/google-browser-on-laptop-6986455/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 38976
+			}
+		]
+	},
+	"how-to-get-cited-by-ai-search-systems": {
+		"hero": {
+			"src": "/images/posts/how-to-get-cited-by-ai-search-systems-hero.webp",
+			"alt": "People holding printed papers with research graphs and citation data",
+			"photographer": "Artem Podrez",
+			"photographerUrl": "https://www.pexels.com/@artempodrez",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/persons-holding-printer-papers-with-graphs-5716025/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 35692
+		},
+		"inline": [
+			{
+				"src": "/images/posts/how-to-get-cited-by-ai-search-systems-inline-1.webp",
+				"alt": "Person typing on a laptop keyboard while working on content strategy",
+				"photographer": "Tina Devidze",
+				"photographerUrl": "https://unsplash.com/@teenytina",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/person-typing-on-a-laptop-keyboard-AvIC3xvZCAI",
+				"width": 1200,
+				"height": 675,
+				"bytes": 53392
+			}
+		]
+	},
+	"how-to-refresh-old-seo-content": {
+		"hero": {
+			"src": "/images/posts/how-to-refresh-old-seo-content-hero.webp",
+			"alt": "Person editing and updating content on a computer screen",
+			"photographer": "Jacob Mindak",
+			"photographerUrl": "https://unsplash.com/@aiaiandai",
+			"sourceName": "Unsplash",
+			"sourceUrl": "https://unsplash.com/photos/a-persons-feet-resting-on-a-computer-screen-ugkxpq87qOk",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20420
+		},
+		"inline": [
+			{
+				"src": "/images/posts/how-to-refresh-old-seo-content-inline-1.webp",
+				"alt": "Analytics chart showing growth data representing content performance improvement",
+				"photographer": "Negative Space",
+				"photographerUrl": "https://www.pexels.com/@negativespace",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/blue-and-green-pie-chart-97080/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 14494
+			}
+		]
+	},
+	"chatgpt-interactive-visuals-math-science": {
+		"hero": {
+			"src": "/images/posts/chatgpt-interactive-visuals-math-science-hero.webp",
+			"alt": "Virtual lesson displayed on a computer screen showing interactive educational content",
+			"photographer": "Duc Van",
+			"photographerUrl": "https://unsplash.com/@duke91",
+			"sourceName": "Unsplash",
+			"sourceUrl": "https://unsplash.com/photos/a-virtual-lesson-is-taking-place-on-a-computer-screen--lWBt4ctRfc",
+			"width": 1200,
+			"height": 675,
+			"bytes": 49934
+		},
+		"inline": [
+			{
+				"src": "/images/posts/chatgpt-interactive-visuals-math-science-inline-1.webp",
+				"alt": "Teacher demonstrating a science concept to students in a classroom",
+				"photographer": "kimmi jun",
+				"photographerUrl": "https://www.pexels.com/@kimmi-jun-201206578",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/young-woman-teaching-a-group-of-school-students-at-a-chemistry-class-18506741/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 88664
+			}
+		]
+	},
+	"ai-overviews-seo-strategy": {
+		"hero": {
+			"src": "/images/posts/ai-overviews-seo-strategy-hero.webp",
+			"alt": "Google search engine results page on a screen representing AI Overviews and search visibility",
+			"photographer": "Sarah Blocksidge",
+			"photographerUrl": "https://www.pexels.com/@sarah-blocksidge-69426152",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/google-search-engine-on-screen-13628541/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 19376
+		},
+		"inline": [
+			{
+				"src": "/images/posts/ai-overviews-seo-strategy-inline-1.webp",
+				"alt": "Close-up of analytics data and survey spreadsheet representing SEO data analysis",
+				"photographer": "Lukas Blazek",
+				"photographerUrl": "https://www.pexels.com/@goumbik",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/close-up-photo-of-survey-spreadsheet-590022/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28468
+			}
+		]
+	},
+	"ai-reshaping-digital-marketing-2026": {
+		"hero": {
+			"src": "/images/posts/ai-reshaping-digital-marketing-2026-hero.webp",
+			"alt": "Laptop with AI workspace interface representing the intersection of AI and digital marketing",
+			"photographer": "Jo Lin",
+			"photographerUrl": "https://unsplash.com/@jolin974658",
+			"sourceName": "Unsplash",
+			"sourceUrl": "https://unsplash.com/photos/laptop-with-ai-workspace-logo-on-screen-MSg17QHWf5Y",
+			"width": 1200,
+			"height": 675,
+			"bytes": 25946
+		},
+		"inline": [
+			{
+				"src": "/images/posts/ai-reshaping-digital-marketing-2026-inline-1.webp",
+				"alt": "Marketing professional working on analytics and strategy at a laptop",
+				"photographer": "Negative Space",
+				"photographerUrl": "https://www.pexels.com/@negativespace",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/macbook-pro-on-brown-table-139387/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 30762
+			}
+		]
+	},
+	"how-ai-changes-search-learn-decide": {
+		"hero": {
+			"src": "/images/posts/how-ai-changes-search-learn-decide-hero.webp",
+			"alt": "Person holding a smartphone showing an AI interface, representing how people now search with AI",
+			"photographer": "UMA media",
+			"photographerUrl": "https://www.pexels.com/@uma-media-2149408028",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/hand-holding-smartphone-with-grok-3-announcement-30875540/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 31006
+		},
+		"inline": [
+			{
+				"src": "/images/posts/how-ai-changes-search-learn-decide-inline-1.webp",
+				"alt": "Two people collaborating and learning together using laptop computers",
+				"photographer": "Code Ninja",
+				"photographerUrl": "https://unsplash.com/@ogelamar",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/two-men-using-laptop-computes-DThlV4dYlnE",
+				"width": 1200,
+				"height": 675,
+				"bytes": 49636
+			}
+		]
+	},
+	"seo-in-2026-complete-guide": {
+		"hero": {
+			"src": "/images/posts/seo-in-2026-complete-guide-hero.webp",
+			"alt": "Magnifying glass next to a laptop representing search engine optimization and discovery",
+			"photographer": "MJ Duford",
+			"photographerUrl": "https://unsplash.com/@duforddigital",
+			"sourceName": "Unsplash",
+			"sourceUrl": "https://unsplash.com/photos/magnifying-glass-sits-near-a-laptop-on-a-table-P_5mirRrg0k",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23700
+		},
+		"inline": [
+			{
+				"src": "/images/posts/seo-in-2026-complete-guide-inline-1.webp",
+				"alt": "Content creator writing and working on a laptop with notebook",
+				"photographer": "Karolina Grabowska",
+				"photographerUrl": "https://www.pexels.com/@karola-g2",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/women-typing-on-the-notebook-6168/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 66642
+			}
+		]
+	},
+	"is-chatgpt-replacing-google": {
+		"hero": {
+			"src": "/images/posts/is-chatgpt-replacing-google-hero.webp",
+			"alt": "Google search engine displayed on a laptop screen representing the search landscape",
+			"photographer": "Pixabay",
+			"photographerUrl": "https://www.pexels.com/@pixabay",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/google-search-engine-on-macbook-pro-40185/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 64892
+		},
+		"inline": [
+			{
+				"src": "/images/posts/is-chatgpt-replacing-google-inline-1.webp",
+				"alt": "Person using a smartphone to search for information on the go",
+				"photographer": "Xuancong Meng",
+				"photographerUrl": "https://unsplash.com/@edgehua",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/a-woman-standing-on-a-street-corner-holding-a-cell-phone-F_U9BmBVs_w",
+				"width": 1200,
+				"height": 675,
+				"bytes": 123376
+			}
+		]
+	},
+	"will-ai-replace-seo-jobs": {
+		"hero": {
+			"src": "/images/posts/will-ai-replace-seo-jobs-hero.webp",
+			"alt": "Person working alongside AI technology in a modern workspace",
+			"photographer": "Kyle Ryan",
+			"photographerUrl": "https://unsplash.com/@kylry",
+			"sourceName": "Unsplash",
+			"sourceUrl": "https://unsplash.com/photos/a-man-standing-in-front-of-a-coffee-maker-_FXH5DUsMuo",
+			"width": 1200,
+			"height": 675,
+			"bytes": 50684
+		},
+		"inline": [
+			{
+				"src": "/images/posts/will-ai-replace-seo-jobs-inline-1.webp",
+				"alt": "Marketing team collaborating in a strategy meeting at the office",
+				"photographer": "Alena Darmel",
+				"photographerUrl": "https://www.pexels.com/@a-darmel",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/a-group-of-people-having-a-meeting-in-the-office-7710139/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 65806
+			}
+		]
+	},
+	"can-you-trust-ai-search-answers": {
+		"hero": {
+			"src": "/images/posts/can-you-trust-ai-search-answers-hero.webp",
+			"alt": "Wooden letter tiles on a table representing AI fact-checking and verification",
+			"photographer": "Markus Winkler",
+			"photographerUrl": "https://www.pexels.com/@markuswinkler",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/wooden-scrabble-tiles-spelling-deepseek-on-table-30839684/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 42678
+		},
+		"inline": [
+			{
+				"src": "/images/posts/can-you-trust-ai-search-answers-inline-1.webp",
+				"alt": "Person reading content on a laptop screen with a skeptical expression",
+				"photographer": "Siarhei Palishchuk",
+				"photographerUrl": "https://unsplash.com/@psiarhei",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/orange-and-white-cat-on-macbook-pro-qHHQXLUrKC0",
+				"width": 1200,
+				"height": 675,
+				"bytes": 70970
+			}
+		]
+	},
+	"what-is-seo-does-it-still-work-2026": {
+		"hero": {
+			"src": "/images/posts/what-is-seo-does-it-still-work-2026-hero.webp",
+			"alt": "SEO letter blocks on a wooden surface representing search engine optimization basics",
+			"photographer": "Pixabay",
+			"photographerUrl": "https://www.pexels.com/@pixabay",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/seo-audit-white-blocks-on-brown-wooden-surface-267415/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 55888
+		},
+		"inline": [
+			{
+				"src": "/images/posts/what-is-seo-does-it-still-work-2026-inline-1.webp",
+				"alt": "Website analytics dashboard showing performance metrics and growth data",
+				"photographer": "Luke Chesser",
+				"photographerUrl": "https://unsplash.com/@lukechesser",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/graphs-of-performance-analytics-on-a-laptop-screen-JKUTrJ4vK00",
+				"width": 1200,
+				"height": 675,
+				"bytes": 49452
+			}
+		]
+	},
+	"geo-vs-aeo-vs-seo": {
+		"hero": {
+			"src": "/images/posts/geo-vs-aeo-vs-seo-hero.webp",
+			"alt": "Data visualization on a computer screen representing framework comparison and analysis",
+			"photographer": "Sharad Bhat",
+			"photographerUrl": "https://www.pexels.com/@sharadbhat",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/computer-display-with-statistics-of-covid-19-cases-4007745/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 51194
+		},
+		"inline": [
+			{
+				"src": "/images/posts/geo-vs-aeo-vs-seo-inline-1.webp",
+				"alt": "Abstract visualization of overlapping AI systems and optimization layers",
+				"photographer": "Google DeepMind",
+				"photographerUrl": "https://unsplash.com/@googledeepmind",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/a-black-and-white-photo-of-an-egg-vyATC00PGAQ",
+				"width": 1200,
+				"height": 675,
+				"bytes": 54430
+			}
+		]
+	},
+	"how-to-structure-pages-ai-extraction": {
+		"hero": {
+			"src": "/images/posts/how-to-structure-pages-ai-extraction-hero.webp",
+			"alt": "Structured workflow diagram and document organization representing content architecture",
+			"photographer": "Kelly Sikkema",
+			"photographerUrl": "https://unsplash.com/@kellysikkema",
+			"sourceName": "Unsplash",
+			"sourceUrl": "https://unsplash.com/photos/workflow-diagram-product-brief-and-user-goals-are-shown-wdnpaTNwOEQ",
+			"width": 1200,
+			"height": 675,
+			"bytes": 111886
+		},
+		"inline": [
+			{
+				"src": "/images/posts/how-to-structure-pages-ai-extraction-inline-1.webp",
+				"alt": "Programming code and structured data displayed on a computer screen",
+				"photographer": "Bibek ghosh",
+				"photographerUrl": "https://www.pexels.com/@bibek-ghosh",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/programming-data-on-a-computer-14553707/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 35324
+			}
+		]
+	},
+	"how-chatgpt-perplexity-google-cite-differently": {
+		"hero": {
+			"src": "/images/posts/how-chatgpt-perplexity-google-cite-differently-hero.webp",
+			"alt": "Two smartphones displayed side by side representing AI platform comparison",
+			"photographer": "Andrey Matveev",
+			"photographerUrl": "https://www.pexels.com/@andrey-matveev",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/comparative-display-of-two-modern-smartphones-34190305/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 187976
+		},
+		"inline": [
+			{
+				"src": "/images/posts/how-chatgpt-perplexity-google-cite-differently-inline-1.webp",
+				"alt": "Data-driven decision making dashboard showing search and citation analytics",
+				"photographer": "Team Nocoloco",
+				"photographerUrl": "https://unsplash.com/@nocoloco",
+				"sourceName": "Unsplash",
+				"sourceUrl": "https://unsplash.com/photos/a-screenshot-of-a-web-page-with-the-words-make-data-driven-decision-in-OsbWPpHtjrU",
+				"width": 1200,
+				"height": 675,
+				"bytes": 27286
+			}
+		]
+	},
+	"eeat-in-the-ai-era": {
+		"hero": {
+			"src": "/images/posts/eeat-in-the-ai-era-hero.webp",
+			"alt": "Professional expert in their field representing expertise, experience, and trust",
+			"photographer": "Vitaly Gariev",
+			"photographerUrl": "https://unsplash.com/@vitalygariev",
+			"sourceName": "Unsplash",
+			"sourceUrl": "https://unsplash.com/photos/elderly-doctor-wearing-glasses-and-stethoscope-in-office-XSPFs82j_v0",
+			"width": 1200,
+			"height": 675,
+			"bytes": 35166
+		},
+		"inline": [
+			{
+				"src": "/images/posts/eeat-in-the-ai-era-inline-1.webp",
+				"alt": "Professional writing notes and documenting expertise in a notebook",
+				"photographer": "Pavel Danilyuk",
+				"photographerUrl": "https://www.pexels.com/@pavel-danilyuk",
+				"sourceName": "Pexels",
+				"sourceUrl": "https://www.pexels.com/photo/professional-lawyer-writing-on-a-notebook-8112113/",
+				"width": 1200,
+				"height": 675,
+				"bytes": 48660
+			}
+		]
+	},
+	"ai-paraphrasing-tools": {
+		"hero": {
+			"src": "/images/posts/ai-paraphrasing-tools-hero.webp",
+			"alt": "Writer working at a laptop refining text on screen",
+			"photographer": "Ron Lach",
+			"photographerUrl": "https://www.pexels.com/@ron-lach",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/person-typing-on-a-laptop-8036328/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 39256
+		}
+	},
+	"ai-content-humanizers": {
+		"hero": {
+			"src": "/images/posts/ai-content-humanizers-hero.webp",
+			"alt": "Editor reviewing and humanizing text on a laptop",
+			"photographer": "Vanessa Garcia",
+			"photographerUrl": "https://www.pexels.com/@vanessa-garcia",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/photo-of-person-using-laptop-on-wooden-table-6326031/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 55824
+		}
+	},
+	"ai-detection-tools-for-writers": {
+		"hero": {
+			"src": "/images/posts/ai-detection-tools-for-writers-hero.webp",
+			"alt": "Student writing and checking work on a laptop",
+			"photographer": "Tima Miroshnichenko",
+			"photographerUrl": "https://www.pexels.com/@tima-miroshnichenko",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/top-view-of-a-person-sitting-behind-a-desk-9572547/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 62832
+		}
+	},
+	"ai-grammar-checkers": {
+		"hero": {
+			"src": "/images/posts/ai-grammar-checkers-hero.webp",
+			"alt": "Close-up of fingers typing on a keyboard",
+			"photographer": "RDNE Stock project",
+			"photographerUrl": "https://www.pexels.com/@rdne",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/hands-on-white-computer-keyboard-7845469/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 47172
+		}
+	},
+	"plagiarism-checkers": {
+		"hero": {
+			"src": "/images/posts/plagiarism-checkers-hero.webp",
+			"alt": "Stack of books and research papers representing source verification",
+			"photographer": "Tima Miroshnichenko",
+			"photographerUrl": "https://www.pexels.com/@tima-miroshnichenko",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/a-woman-holding-a-stack-of-books-6549351/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 31662
+		}
+	},
+	"ai-summarizers": {
+		"hero": {
+			"src": "/images/posts/ai-summarizers-hero.webp",
+			"alt": "Researcher reading and summarizing documents at a desk",
+			"photographer": "Ron Lach",
+			"photographerUrl": "https://www.pexels.com/@ron-lach",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/person-reading-document-8085932/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 50190
+		}
+	},
+	"ai-citation-generators": {
+		"hero": {
+			"src": "/images/posts/ai-citation-generators-hero.webp",
+			"alt": "Library research desk with books and notes for citations",
+			"photographer": "Ron Lach",
+			"photographerUrl": "https://www.pexels.com/@ron-lach",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/woman-in-black-crew-neck-t-shirt-sitting-at-the-table-8085266/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 74696
+		}
+	},
+	"ai-translators": {
+		"hero": {
+			"src": "/images/posts/ai-translators-hero.webp",
+			"alt": "Multilingual dictionary representing translation across languages",
+			"photographer": "Stefan G",
+			"photographerUrl": "https://www.pexels.com/@stefan-g-44736111",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/page-of-a-dictionary-in-close-up-photography-7450476/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 65498
+		}
+	},
+	"ai-image-generators": {
+		"hero": {
+			"src": "/images/posts/ai-image-generators-hero.webp",
+			"alt": "Designer working on creative digital art with a tablet",
+			"photographer": "Kawê  Rodrigues",
+			"photographerUrl": "https://www.pexels.com/@kawerodriguess",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/man-putting-wacom-intuos-pro-m-into-box-16313664/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 46616
+		}
+	},
+	"ai-content-detection-tools": {
+		"hero": {
+			"src": "/images/posts/ai-content-detection-tools-hero.webp",
+			"alt": "Editor reviewing text analysis on a computer screen",
+			"photographer": "ThisIsEngineering",
+			"photographerUrl": "https://www.pexels.com/@thisisengineering",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/graph-on-laptop-screen-3912976/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 29688
+		}
+	},
+	"ai-presentation-tools": {
+		"hero": {
+			"src": "/images/posts/ai-presentation-tools-hero.webp",
+			"alt": "Presenter delivering a slide presentation to an audience",
+			"photographer": "RDNE Stock project",
+			"photographerUrl": "https://www.pexels.com/@rdne",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/man-presenting-in-a-meeting-9034728/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 25356
+		}
+	},
+	"ai-product-listing-tools": {
+		"hero": {
+			"src": "/images/posts/ai-product-listing-tools-hero.webp",
+			"alt": "Product photography setup for ecommerce listings",
+			"photographer": "PNW Production",
+			"photographerUrl": "https://www.pexels.com/@pnw-prod",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/woman-taking-photo-of-products-9218544/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 48198
+		}
+	},
+	"ai-tools-for-lawyers": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-lawyers-hero.webp",
+			"alt": "Lawyer working with legal documents at an office desk",
+			"photographer": "www.kaboompics.com",
+			"photographerUrl": "https://www.pexels.com/@karola-g",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/book-and-binder-on-a-desk-7876088/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 50072
+		}
+	},
+	"ai-tools-for-doctors": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-doctors-hero.webp",
+			"alt": "Doctor reviewing patient information on a laptop",
+			"photographer": "Tara Winstead",
+			"photographerUrl": "https://www.pexels.com/@tara-winstead",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/a-black-laptop-and-a-black-stethoscope-7723528/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 36760
+		}
+	},
+	"ai-tools-for-real-estate-agents": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-real-estate-agents-hero.webp",
+			"alt": "Real estate agent with house keys representing modern property sales",
+			"photographer": "Pavel Danilyuk",
+			"photographerUrl": "https://www.pexels.com/@pavel-danilyuk",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/close-up-shot-of-keychain-on-person-s-hand-7937684/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 29660
+		}
+	},
+	"ai-tools-for-accountants": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-accountants-hero.webp",
+			"alt": "Accountant reviewing financial reports with a calculator",
+			"photographer": "RDNE Stock project",
+			"photographerUrl": "https://www.pexels.com/@rdne",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/black-and-white-pen-on-white-printer-paper-7821914/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 147486
+		}
+	},
+	"ai-tools-for-sales-reps": {
+		"hero": {
+			"src": "/images/posts/ai-tools-for-sales-reps-hero.webp",
+			"alt": "Sales professional on a call with a laptop and business notes",
+			"photographer": "Anna Shvets",
+			"photographerUrl": "https://www.pexels.com/@shvetsa",
+			"sourceName": "Pexels",
+			"sourceUrl": "https://www.pexels.com/photo/woman-in-black-blazer-holding-smartphone-3727469/",
+			"width": 1200,
+			"height": 675,
+			"bytes": 46526
+		}
+	},
+	"best-ai-image-detectors-2026": {
+		"hero": { "src": "/images/posts/best-ai-image-detectors-2026-hero.webp", "alt": "AI image detection and content authenticity analysis", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-image-detectors-2026", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/best-ai-image-detectors-2026-inline-1.webp", "alt": "Comparison of AI image detector tools by accuracy", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-image-detectors-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"new-chatgpt-plans-2026": {
+		"hero": { "src": "/images/posts/new-chatgpt-plans-2026-hero.webp", "alt": "ChatGPT subscription plans and pricing tiers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/new-chatgpt-plans-2026", "width": 1200, "height": 675, "bytes": 64892 },
+		"inline": [{ "src": "/images/posts/new-chatgpt-plans-2026-inline-1.webp", "alt": "ChatGPT plan comparison table", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/new-chatgpt-plans-2026", "width": 1200, "height": 675, "bytes": 123376 }]
+	},
+	"claude-updates-march-april-2026": {
+		"hero": { "src": "/images/posts/claude-updates-march-april-2026-hero.webp", "alt": "Claude AI model updates and Anthropic news roundup", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026", "width": 1200, "height": 675, "bytes": 187976 },
+		"inline": [{ "src": "/images/posts/claude-updates-march-april-2026-inline-1.webp", "alt": "Timeline of Anthropic Claude releases", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026", "width": 1200, "height": 675, "bytes": 27286 }]
+	},
+	"semantic-seo-new-website-ranking": {
+		"hero": { "src": "/images/posts/semantic-seo-new-website-ranking-hero.webp", "alt": "Semantic SEO strategy for new websites without domain authority", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking", "width": 1200, "height": 675, "bytes": 32986 },
+		"inline": [{ "src": "/images/posts/semantic-seo-new-website-ranking-inline-1.webp", "alt": "Topic cluster diagram showing semantic SEO authority building", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking", "width": 1200, "height": 675, "bytes": 37536 }]
+	},
+	"ai-news-roundup-march-april-2026": {
+		"hero": { "src": "/images/posts/ai-news-roundup-march-april-2026-hero.webp", "alt": "AI industry news roundup covering model releases funding and regulation", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-news-roundup-march-april-2026", "width": 1200, "height": 675, "bytes": 52340 },
+		"inline": [{ "src": "/images/posts/ai-news-roundup-march-april-2026-inline-1.webp", "alt": "AI funding and model release timeline March April 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-news-roundup-march-april-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"ai-seo-shift": {
+		"hero": { "src": "/images/posts/ai-seo-shift-hero.webp", "alt": "The AI SEO shift from traditional rankings to AI citations and visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift", "width": 1200, "height": 675, "bytes": 7772 },
+		"inline": [{ "src": "/images/posts/ai-seo-shift-inline-1.webp", "alt": "Comparison of traditional SEO vs AI SEO strategy approaches", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift", "width": 1200, "height": 675, "bytes": 31596 }]
+	},
+	"ai-keyword-research-reddit-youtube-forums": {
+		"hero": { "src": "/images/posts/ai-keyword-research-reddit-youtube-forums-hero.webp", "alt": "Mining Reddit YouTube and forums for AI keyword research", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-keyword-research-reddit-youtube-forums", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/ai-keyword-research-reddit-youtube-forums-inline-1.webp", "alt": "Question-first content calendar for AI keyword research", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-keyword-research-reddit-youtube-forums", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"multimodal-seo-images-video-audio": {
+		"hero": { "src": "/images/posts/multimodal-seo-images-video-audio-hero.webp", "alt": "Multimodal SEO optimizing images video and audio for AI search", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/multimodal-seo-images-video-audio", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/multimodal-seo-images-video-audio-inline-1.webp", "alt": "Image alt text and video transcript optimization for AI", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/multimodal-seo-images-video-audio", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"llm-crawler-optimization": {
+		"hero": { "src": "/images/posts/llm-crawler-optimization-hero.webp", "alt": "LLM crawler optimization for GPTBot ClaudeBot and AI search bots", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/llm-crawler-optimization", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/llm-crawler-optimization-inline-1.webp", "alt": "Robots.txt and ai.txt configuration for AI crawlers", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/llm-crawler-optimization", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"omnichannel-ai-brand-presence": {
+		"hero": { "src": "/images/posts/omnichannel-ai-brand-presence-hero.webp", "alt": "Building omnichannel AI brand presence across LinkedIn YouTube Reddit", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/omnichannel-ai-brand-presence-inline-1.webp", "alt": "Platform strategy for AI visibility across multiple channels", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"best-ai-sales-tools-2026": {
+		"hero": { "src": "/images/posts/best-ai-sales-tools-2026-hero.webp", "alt": "Best AI sales tools for pipeline building and revenue growth in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/best-ai-sales-tools-2026-inline-1.webp", "alt": "Comparison of AI sales platforms by category and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"best-web-scraping-proxy-tools-2026": {
+		"hero": { "src": "/images/posts/best-web-scraping-proxy-tools-2026-hero.webp", "alt": "Web scraping and proxy tools for AI data collection and SEO monitoring", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026", "width": 1200, "height": 675, "bytes": 69752 },
+		"inline": [{ "src": "/images/posts/best-web-scraping-proxy-tools-2026-inline-1.webp", "alt": "Comparison of proxy and scraping platforms by type and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026", "width": 1200, "height": 675, "bytes": 48086 }]
+	},
+	"best-ai-coding-tools-2026": {
+		"hero": { "src": "/images/posts/best-ai-coding-tools-2026-hero.webp", "alt": "Best AI coding tools for developers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-coding-tools-2026", "width": 1200, "height": 675, "bytes": 69752 },
+		"inline": [{ "src": "/images/posts/best-ai-coding-tools-2026-inline-1.webp", "alt": "Comparison of AI code editors and app builders by features and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-coding-tools-2026", "width": 1200, "height": 675, "bytes": 48086 }]
+	},
+	"wordpress-7-ai-release": {
+		"hero": { "src": "/images/posts/wordpress-7-ai-release-hero.webp", "alt": "WordPress 7.0 Armstrong release with native AI integration", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/wordpress-7-ai-release", "width": 1200, "height": 675, "bytes": 42580 },
+		"inline": [{ "src": "/images/posts/wordpress-7-ai-release-inline-1.webp", "alt": "WordPress 7.0 AI features including Connectors API and WP AI Client", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/wordpress-7-ai-release", "width": 1200, "height": 675, "bytes": 31596 }]
+	},
+	"google-ai-search-taking-your-content": {
+		"hero": { "src": "/images/posts/google-ai-search-taking-your-content-hero.webp", "alt": "Google AI search extracting website content for AI Overviews", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/google-ai-search-taking-your-content", "width": 1200, "height": 675, "bytes": 64892 },
+		"inline": [{ "src": "/images/posts/google-ai-search-taking-your-content-inline-1.webp", "alt": "Zero click search statistics and publisher traffic decline from AI Overviews", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/google-ai-search-taking-your-content", "width": 1200, "height": 675, "bytes": 123376 }]
+	},
+	"best-seo-mcp-servers-github": {
+		"hero": { "src": "/images/posts/best-seo-mcp-servers-github-hero.webp", "alt": "Best SEO MCP servers on GitHub for AI-powered search optimization", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-seo-mcp-servers-github", "width": 1200, "height": 675, "bytes": 85204 },
+		"inline": [{ "src": "/images/posts/best-seo-mcp-servers-github-inline-1.webp", "alt": "Comparison of SEO MCP server features and ratings", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-seo-mcp-servers-github", "width": 1200, "height": 675, "bytes": 28978 }]
+	},
+	"perplexity-bumblebee-open-source-scanner": {
+		"hero": { "src": "/images/posts/perplexity-bumblebee-open-source-scanner-hero.webp", "alt": "Perplexity Bumblebee open source supply chain security scanner for developers", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/perplexity-bumblebee-open-source-scanner", "width": 1200, "height": 675, "bytes": 69752 },
+		"inline": [{ "src": "/images/posts/perplexity-bumblebee-open-source-scanner-inline-1.webp", "alt": "Bumblebee scanning developer packages extensions and AI tool configs", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/perplexity-bumblebee-open-source-scanner", "width": 1200, "height": 675, "bytes": 48086 }]
+	},
+	"code-with-claude-may-2026": {
+		"hero": { "src": "/images/posts/code-with-claude-may-2026-hero.webp", "alt": "Code with Claude 2026 developer conference announcements and new features", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/code-with-claude-may-2026", "width": 1200, "height": 675, "bytes": 187976 },
+		"inline": [{ "src": "/images/posts/code-with-claude-may-2026-inline-1.webp", "alt": "Claude Managed Agents with Dreaming multi-agent orchestration and Outcomes", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/code-with-claude-may-2026", "width": 1200, "height": 675, "bytes": 27286 }]
+	},
+	"guide-what-is-seo": {
+		"hero": { "src": "/images/posts/guide-what-is-seo-hero.webp", "alt": "What is SEO in 2026 - search engine optimization definition and guide", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/what-is-seo", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-how-search-engines-work": {
+		"hero": { "src": "/images/posts/guide-how-search-engines-work-hero.webp", "alt": "How search engines and AI systems work - crawling indexing ranking in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/how-search-engines-work", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-keyword-research": {
+		"hero": { "src": "/images/posts/guide-keyword-research-hero.webp", "alt": "Keyword research and search intent optimization strategy for SEO 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/keyword-research", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-on-page-seo": {
+		"hero": { "src": "/images/posts/guide-on-page-seo-hero.webp", "alt": "On-page SEO and content optimization - title tags meta descriptions headings", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/on-page-seo", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-technical-seo": {
+		"hero": { "src": "/images/posts/guide-technical-seo-hero.webp", "alt": "Technical SEO and site architecture - Core Web Vitals crawling indexing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/technical-seo", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-schema-markup": {
+		"hero": { "src": "/images/posts/guide-schema-markup-hero.webp", "alt": "Schema markup and structured data - JSON-LD implementation for SEO and AI visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/schema-markup", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-eeat": {
+		"hero": { "src": "/images/posts/guide-eeat-hero.webp", "alt": "E-E-A-T SEO guide - Experience Expertise Authoritativeness Trustworthiness", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/eeat", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-ai-citation-building": {
+		"hero": { "src": "/images/posts/guide-ai-citation-building-hero.webp", "alt": "AI citation building - how to get cited by ChatGPT Perplexity and AI search engines", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/ai-citation-building", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-ai-search-optimization": {
+		"hero": { "src": "/images/posts/guide-ai-search-optimization-hero.webp", "alt": "AEO GEO and AI Overviews - answer engine optimization and generative engine optimization", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/ai-search-optimization", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-content-strategy": {
+		"hero": { "src": "/images/posts/guide-content-strategy-hero.webp", "alt": "Content strategy and topic clusters for SEO - pillar pages semantic SEO", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/content-strategy", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-search-everywhere": {
+		"hero": { "src": "/images/posts/guide-search-everywhere-hero.webp", "alt": "Search everywhere optimization - YouTube LinkedIn Reddit SEO multi-platform visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/search-everywhere", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"guide-measuring-seo": {
+		"hero": { "src": "/images/posts/guide-measuring-seo-hero.webp", "alt": "Measuring SEO and AI visibility - metrics analytics Google Search Console", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/measuring-seo", "width": 1200, "height": 675, "bytes": 85204 }
+	},
+	"seo-authority-not-rankings": {
+		"hero": { "src": "/images/posts/seo-authority-not-rankings-hero.webp", "alt": "SEO is not about rankings anymore - building authority for AI search visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
+		"og": { "src": "/images/posts/seo-authority-not-rankings-og.webp", "width": 1200, "height": 630 },
+		"inline": [
+			{ "src": "/images/posts/seo-authority-not-rankings-inline-1.webp", "alt": "The full SEO authority stack - citations backlinks PR entity signals for AI search visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
+			{ "src": "/images/posts/seo-authority-not-rankings-inline-2.webp", "alt": "Digital PR earns authority through coverage backlinks and brand trust signals", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
+			{ "src": "/images/posts/seo-authority-not-rankings-inline-3.webp", "alt": "Authority compounds over time while rankings fluctuate - build what lasts", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 }
+		]
+	}
 }

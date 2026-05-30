@@ -1,0 +1,236 @@
+---
+title: "Site Speed Optimization for AI SEO: The Technical Checklist for Faster Crawling and More Citations"
+description: A technical checklist for improving site speed to maximize AI crawler efficiency and citation eligibility. Image optimization, caching, CDN, and server response time for AI SEO.
+deck: Fast sites get crawled more completely and cited more often. AI crawlers have strict time budgets — a site that loads slowly may never have key pages fully indexed by GPTBot or PerplexityBot.
+pubDate: 2026-06-16
+category: Strategy
+tags:
+  - site speed
+  - technical SEO
+  - page performance
+  - AI SEO
+  - crawl budget
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+A B2B software company published a detailed comparison of enterprise CRM platforms. The article was thorough: eight platforms, thirty evaluation criteria, pricing tables, integration matrices. It earned links from three industry analysts. Months later, when ChatGPT and Perplexity began surfacing CRM comparison queries, the article was absent from citations. A shallower competitor post appeared instead. The technical investigation found median TTFB of 2.1 seconds, uncompressed images adding 4.8 MB to the page weight, no CDN deployment, and Largest Contentful Paint averaging 8.3 seconds on mobile. GPTBot had crawled the domain — but had never successfully retrieved the full article content within its crawl time budget. The content was invisible to AI search not because of what it said, but because of how slowly it arrived.
+
+Speed is not a secondary consideration in AI SEO. It is a primary eligibility condition. AI crawlers — GPTBot, PerplexityBot, ClaudeBot, and Google's crawlers that feed AI Overviews — operate under strict time constraints. They allocate a fixed crawl budget to each domain and a limited response window to each URL request. Pages that respond slowly consume more of that budget, get processed less completely, and are less likely to have their full content parsed and indexed. Pages that respond quickly get crawled more deeply, more often, and with higher fidelity. The performance delta between a fast and a slow site translates directly into a citation frequency gap.
+
+## Quick answer
+
+The three highest-impact speed fixes for AI SEO are, in order: compress and convert images to WebP or AVIF while adding explicit dimensions to every image element; implement server-side caching and deploy your assets through a CDN to bring TTFB below 200 milliseconds; and audit and defer all non-critical JavaScript so that render-blocking scripts do not delay the first byte of visible content. These three changes address the root cause of slow load times on the overwhelming majority of content sites and have the highest probability of pushing a site from crawl-budget-expensive to crawl-budget-efficient within a single deployment cycle.
+
+## Why speed matters specifically for AI crawlers
+
+Traditional search crawlers like Googlebot operate with generous crawl budgets and sophisticated retry logic. They revisit slow pages, queue retries, and have invested years building a comprehensive index of the web. AI crawlers are newer, operating with different infrastructure assumptions, and are less forgiving of slow responses.
+
+GPTBot, OpenAI's crawler, enforces connection timeout thresholds that are stricter than Googlebot's defaults. PerplexityBot operates on a retrieval-on-demand model — it fetches pages in real time as users submit queries — which means a slow TTFB on your server directly affects how completely your content is read before Perplexity generates a response. ClaudeBot, operated by Anthropic, crawls for training and retrieval purposes with similar time constraints.
+
+The practical consequence is a concept that SEOs call crawl budget efficiency — the ratio of useful content successfully retrieved to total crawl requests made. A site with a 3-second TTFB and 6 MB of uncompressed images is crawl-budget-expensive. The crawler spends its per-domain time budget waiting for bytes to arrive. Deep pages — the long-form comparison articles, the detailed technical guides, the FAQ hubs that AI systems prefer to cite — may never be fully processed. The crawler moves on before the response completes.
+
+A site with 150ms TTFB and optimized assets is crawl-budget-efficient. The crawler retrieves the same number of pages in less wall-clock time, processes more content per crawl session, and builds a more complete picture of the site's topical coverage. This is why the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) includes server response time and asset optimization as Tier 1 audit items — not Tier 3 polish.
+
+Crawl frequency is the second mechanism. AI systems that retrieve content on-demand or refresh their indexes periodically will prioritize fast-responding sites for higher refresh rates. A site that consistently responds in under 200ms is marked as a reliable, low-cost source. A site that intermittently times out or responds in 4 seconds is marked as expensive to crawl and deprioritized. Over time this creates a compounding advantage for fast sites: they get indexed more completely, refreshed more often, and cited with higher confidence.
+
+<figure class="post-figure">
+<svg viewBox="0 0 820 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Speed optimization priority matrix showing 10 optimizations plotted across a 2x2 quadrant of Impact versus Effort">
+  <rect width="820" height="500" fill="rgb(246,245,240)" />
+  <text x="40" y="28" font-family="system-ui, sans-serif" font-size="11" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.5">SPEED OPTIMIZATION — IMPACT VS. EFFORT MATRIX</text>
+  <line x1="40" y1="44" x2="780" y2="44" stroke="rgb(14,17,22)" stroke-opacity="0.07" />
+  <rect x="40" y="56" width="364" height="200" rx="4" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" />
+  <rect x="416" y="56" width="364" height="200" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.12" />
+  <rect x="40" y="272" width="364" height="200" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.12" />
+  <rect x="416" y="272" width="364" height="200" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.08" />
+  <text x="222" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="rgb(184,85,46)">QUICK WINS</text>
+  <text x="222" y="93" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.5">High Impact · Low Effort</text>
+  <text x="598" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.65">MAJOR PROJECTS</text>
+  <text x="598" y="93" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.5">High Impact · High Effort</text>
+  <text x="222" y="294" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.65">FILL-INS</text>
+  <text x="222" y="309" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.5">Low Impact · Low Effort</text>
+  <text x="598" y="294" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.4">AVOID</text>
+  <text x="598" y="309" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.4">Low Impact · High Effort</text>
+  <rect x="56" y="104" width="330" height="26" rx="3" fill="rgb(184,85,46)" />
+  <text x="76" y="121" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="rgb(250,250,247)">Convert images to WebP / AVIF + compress</text>
+  <rect x="56" y="136" width="330" height="26" rx="3" fill="rgb(184,85,46)" />
+  <text x="76" y="153" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="rgb(250,250,247)">Add width &amp; height to all img elements</text>
+  <rect x="56" y="168" width="330" height="26" rx="3" fill="rgb(184,85,46)" />
+  <text x="76" y="185" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="rgb(250,250,247)">Defer non-critical JS (async / defer)</text>
+  <rect x="56" y="200" width="330" height="26" rx="3" fill="rgb(184,85,46)" />
+  <text x="76" y="217" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="rgb(250,250,247)">Enable browser caching headers</text>
+  <rect x="432" y="104" width="330" height="26" rx="3" fill="rgb(14,17,22)" fill-opacity="0.08" />
+  <text x="452" y="121" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.75">Deploy a global CDN</text>
+  <rect x="432" y="136" width="330" height="26" rx="3" fill="rgb(14,17,22)" fill-opacity="0.08" />
+  <text x="452" y="153" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.75">Migrate to faster hosting / upgrade server tier</text>
+  <rect x="432" y="168" width="330" height="26" rx="3" fill="rgb(14,17,22)" fill-opacity="0.08" />
+  <text x="452" y="185" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.75">Implement full-page server-side caching</text>
+  <rect x="56" y="320" width="330" height="26" rx="3" fill="rgb(14,17,22)" fill-opacity="0.07" />
+  <text x="76" y="337" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.65">Minify CSS and HTML</text>
+  <rect x="56" y="352" width="330" height="26" rx="3" fill="rgb(14,17,22)" fill-opacity="0.07" />
+  <text x="76" y="369" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.65">Enable Gzip / Brotli compression</text>
+  <rect x="432" y="320" width="330" height="26" rx="3" fill="rgb(14,17,22)" fill-opacity="0.04" />
+  <text x="452" y="337" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.4">Full front-end framework rewrite</text>
+  <text x="40" y="492" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.45">Rust-highlighted cells = Quick Wins: highest citation ROI per engineering hour</text>
+  <text x="780" y="492" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.35">aiseoshift.com</text>
+</svg>
+</figure>
+
+## Image optimization: the single largest crawl-weight reduction
+
+Images are responsible for the majority of page weight on most content sites. A blog post with three unoptimized JPEG screenshots and a hero image can easily exceed 6 MB. That same page with WebP conversion and appropriate compression typically lands below 400 KB — a 93% reduction in bytes transferred, which has direct consequences for both crawl speed and load time for real users.
+
+The format hierarchy for AI SEO purposes: AVIF first (best compression, 2026 browser support is excellent), WebP second (universal browser support, significant improvement over JPEG and PNG), JPEG as the fallback only for compatibility-constrained environments. For the conversion step, tools like Squoosh, Sharp (Node.js), or ImageMagick can batch-convert existing image libraries. New images should be converted as part of the content workflow, not retrofitted later.
+
+Lazy loading is the correct default for images below the fold. Add `loading="lazy"` to any `<img>` element that is not in the initial viewport. For the LCP element — typically the hero image or the first content image — use `loading="eager"` and add `fetchpriority="high"` to signal to the browser that this is the highest-priority resource on the page. Conflating lazy loading with the LCP image is a common mistake that degrades LCP scores significantly.
+
+Explicit dimensions on every image element prevent layout shift and help the browser allocate space before the image loads. Set `width` and `height` attributes in HTML that match the natural aspect ratio of the image. CSS can override the rendered dimensions, but the browser uses the HTML attribute ratio to compute the reserved space. Missing dimensions are one of the primary causes of Cumulative Layout Shift, and CLS is a [Core Web Vitals metric that directly affects AI citation eligibility](/blog/core-web-vitals-ai-search-2026/).
+
+Responsive images via `srcset` and `sizes` ensure that mobile devices download appropriately sized images rather than scaling down a desktop-sized file. A mobile crawler fetching a page that forces 1600-pixel-wide images onto a 390-pixel viewport is paying the full download cost for pixels it cannot use. This inflates crawl cost and LCP simultaneously.
+
+## Caching strategy: browser cache, CDN, and server-side caching
+
+Caching reduces the work your server performs per request and reduces the bytes transferred to returning visitors and crawlers that have previously retrieved your assets. A complete caching strategy has three layers that operate at different points in the request chain.
+
+**Browser caching** is controlled by the `Cache-Control` header in your server's HTTP response. For static assets — CSS files, JavaScript bundles, fonts, images — set `Cache-Control: max-age=31536000, immutable`. This instructs browsers to cache the asset for one year without revalidation. Pair this with content-addressed filenames (e.g., `main.abc123.css`) so that a new deployment generates a new URL, bypassing the old cache. For HTML documents, use `Cache-Control: max-age=0, must-revalidate` to ensure crawlers always retrieve the current page content.
+
+**Server-side caching** stores the rendered HTML of a page in memory or on disk so that subsequent requests for the same URL serve the cached response rather than regenerating the page from the database or application server. For a WordPress site, this means a full-page caching plugin like WP Rocket or W3 Total Cache. For a Node.js or Python application, it means caching rendered responses in Redis or Memcached with a TTL appropriate to your content update frequency. The impact on TTFB is substantial: a server generating a page from a CMS query in 800ms drops to serving a cached response in 8ms.
+
+**CDN caching** sits between the server-side cache and the browser, distributing your content across edge nodes globally. When a GPTBot crawler in a US data center requests a page from your CDN, it hits the nearest edge node rather than your origin server in a European hosting facility. This reduces TTFB from a potential 400ms round-trip to under 20ms. CDN setup and configuration are covered in more detail in the CDN section below.
+
+## Server response time (TTFB): the performance ceiling for everything else
+
+Time to First Byte — the interval between the browser sending an HTTP request and receiving the first byte of the response — sets the floor for every subsequent performance metric. LCP cannot be better than your TTFB. AI crawlers cannot start parsing your content before the first byte arrives. A high TTFB is a universal penalty that no amount of front-end optimization can fully offset.
+
+The [web.dev guide to optimizing TTFB](https://web.dev/articles/optimize-ttfb) identifies the primary causes: slow application server response time (database queries, template rendering, API calls), network latency from geographic distance between server and requester, and the absence of server-side caching. The diagnostic is straightforward: use the Network panel in Chrome DevTools and look at the TTFB (labeled "Waiting" in the waterfall) for your HTML document. Under 200ms is excellent. 200–600ms is acceptable. Above 600ms requires investigation.
+
+For hosted CMS platforms, TTFB improvements typically come from upgrading the hosting tier, enabling the platform's built-in page caching, and removing server-side plugins or scripts that execute on every page request. For custom applications, the investigation starts with slow query logs, APM tools, or request profiling to identify which operations are consuming server time.
+
+DNS lookup time is a frequently overlooked component of TTFB. A slow DNS resolver adds 100–300ms to the first connection for every new user or crawler. Ensure your DNS provider offers low TTL and has global anycast routing. Cloudflare's DNS (1.1.1.1) and similar services reduce DNS resolution time to single-digit milliseconds for most locations.
+
+HTTP/2 and HTTP/3 reduce connection overhead by multiplexing multiple requests over a single connection. If your server is still on HTTP/1.1, upgrading to HTTP/2 reduces the connection setup penalty for each additional resource the page references. Most modern hosting platforms and CDNs support HTTP/2 by default; confirm it is enabled rather than assuming.
+
+## CSS and JavaScript minification and deferral
+
+JavaScript is the primary source of render-blocking delays and main-thread congestion that inflates both LCP and interaction latency. The default browser behavior is to pause HTML parsing whenever it encounters a `<script>` tag without async or defer attributes, download and execute the script, and only then resume parsing. A page with six third-party scripts in the `<head>` element can accumulate 2–4 seconds of render-blocking delay before a single pixel of content is painted.
+
+The fix is mechanical: add `defer` to all scripts that do not need to execute before initial render. Add `async` to scripts that are fully independent and can execute at any point. Move scripts that require DOM access to the bottom of `<body>`. For [JavaScript-heavy sites using client-side rendering frameworks](/blog/javascript-seo-for-ai-crawlers/), the issue is deeper — the entire page content may depend on JavaScript execution, which means AI crawlers that do not execute JavaScript receive an empty shell. Server-side rendering or static site generation eliminates this class of crawlability problem at the architectural level.
+
+CSS minification removes whitespace, comments, and redundant declarations from stylesheets. A 200 KB stylesheet compressed to 60 KB reduces the bytes that must be downloaded before the first paint. Concatenating multiple CSS files into a single file reduces the number of HTTP requests, which still matters for HTTP/1.1 connections and for the connection setup overhead even on HTTP/2. Tools like PostCSS, cssnano, or the built-in optimization in Webpack and Vite handle this as part of the build pipeline.
+
+Critical CSS inlining is the technique of embedding the CSS rules required to render above-the-fold content directly in the `<head>` of the HTML document, then loading the full stylesheet asynchronously. This allows the browser to paint visible content without waiting for the full CSS file to download. The implementation requires identifying which CSS selectors apply to above-the-fold elements on each template — tools like Critical or Penthouse can automate this extraction.
+
+## CDN configuration for global AI crawler coverage
+
+A Content Delivery Network distributes your assets and, optionally, your full HTML responses across a network of edge servers located in data centers globally. Without a CDN, every request — from a user in Tokyo, a crawler in a US data center, or a Perplexity retrieval request from a European cluster — travels to your origin server and back. With a CDN, requests are served from the nearest edge node, typically within 10–30ms.
+
+For AI SEO purposes, CDN coverage is particularly important because AI crawler infrastructure is geographically distributed. OpenAI, Anthropic, Google, and Perplexity operate crawlers from multiple geographic regions. If your origin server is in Frankfurt and your CDN has no Asian edge nodes, crawlers operating from Singapore or Tokyo experience higher latency than your European audience. Pages that respond slowly to Asian crawlers are crawled less efficiently by those crawl clusters.
+
+CDN configuration for AI crawler optimization involves three specific settings. First, ensure HTML caching is enabled with an appropriate TTL — many CDN configurations cache only static assets and pass-through HTML requests to the origin, which eliminates the TTFB benefit for page content. Set a cache TTL of at least 1 hour for HTML responses unless your content updates more frequently. Second, configure Cache-Control headers to distinguish between cacheable content (most pages) and uncacheable content (personalized, session-specific responses). Third, enable Brotli compression at the CDN layer for all text-based responses — HTML, CSS, JavaScript, and JSON all compress significantly with Brotli versus Gzip.
+
+Cloudflare, Fastly, AWS CloudFront, and similar providers offer the global coverage required for comprehensive AI crawler efficiency. The [mobile-first considerations for AI SEO](/blog/mobile-first-indexing-ai-seo/) apply here as well — mobile network latency is disproportionately affected by geographic distance, and AI crawlers that simulate mobile conditions will benefit from CDN edge coverage.
+
+## Measuring speed: tools and metrics to track
+
+Measuring site speed for AI SEO requires both synthetic (lab) testing and real-user monitoring. Synthetic testing gives you a controlled, reproducible baseline. Real-user data tells you what actual users and crawlers experience.
+
+[Google PageSpeed Insights](https://pagespeed.web.dev/) is the primary tool for combined lab and field data. Enter any URL to receive a Lighthouse lab score alongside real-user CrUX field data showing LCP, CLS, and INP at the 75th percentile. The field data panel at the top of the report reflects Google's actual quality signal. For AI citation purposes, the mobile field data is what matters — Google's AI systems use mobile-first data.
+
+[web.dev/measure](https://web.dev/) provides supplemental Lighthouse analysis. Chrome DevTools' Performance panel offers granular waterfall analysis for diagnosing the specific resources and execution sequences causing delays. The Network panel shows individual resource sizes and TTFB values for each request.
+
+Google Search Console's Core Web Vitals report shows field data across your full URL set, grouped by template type and status. This is the right starting point for site-wide diagnosis: identify which templates are failing, which metric is causing failure, and how many URLs are affected. Fixing a failing template propagates the fix across all URLs built on it.
+
+WebPageTest at [webpagetest.org](https://webpagetest.org) provides detailed waterfall charts, filmstrip view of page loading, and the ability to test from specific geographic locations and connection speeds. It is useful for testing how your site responds from locations that map to known AI crawler data center regions.
+
+Metrics to track on an ongoing basis: TTFB for HTML documents (target under 200ms), LCP (target under 2.5 seconds on mobile), total page weight (target under 1 MB for text-heavy content pages), and JavaScript bundle size (target under 300 KB uncompressed for non-application pages). Track these metrics per template type, not just for your homepage. The [how to get cited by AI search systems guide](/blog/how-to-get-cited-by-ai-search-systems/) includes a complete citation eligibility checklist where these speed metrics appear as preconditions.
+
+## Bringing it together: the speed checklist for AI SEO
+
+Speed optimization for AI SEO is not a single intervention. It is a stack of improvements that compound. The priority order reflects both impact and implementation speed. Quick wins — image format conversion, deferred JavaScript, browser cache headers — can be deployed in days and produce immediate, measurable reductions in page weight and crawl cost. Infrastructure improvements — CDN deployment, server-side caching, hosting upgrades — take longer but eliminate TTFB bottlenecks that front-end optimization cannot address.
+
+Sites that have completed the full optimization stack consistently outperform unoptimized competitors in crawl completeness and citation frequency. The mechanism is not mysterious: faster pages get crawled more completely, more often, and with higher fidelity. AI systems that crawl your content more completely have a more accurate, detailed representation of your expertise. More detailed representation leads to more citation opportunities. The performance investment is an AI visibility investment.
+
+For a full audit of your site's AI citation readiness — covering speed, structured data, content structure, and entity authority — the [AI SEO Shift resource library](/ai-seo-shift/) provides the complete framework. The [technical SEO checklist for AI search](/blog/ai-seo-audit-checklist/) walks through the full diagnostic process step by step.
+
+## Frequently asked questions
+
+### Do AI crawlers like GPTBot actually time out on slow pages?
+
+Yes. AI crawlers enforce connection and response timeouts that determine whether a page is successfully retrieved and parsed. While OpenAI and Anthropic have not published specific timeout thresholds, network analysis of GPTBot and ClaudeBot behavior shows that pages with TTFB above 2 seconds are retrieved at significantly lower rates than fast-responding pages during the same crawl session. This is consistent with standard HTTP client behavior — crawlers allocate a fixed time budget per crawl session and abandon slow connections to process more URLs within that budget.
+
+### What is a good TTFB target for AI SEO?
+
+Target TTFB under 200 milliseconds for HTML document responses, measured from an edge location near the crawling infrastructure. This aligns with Google's "Good" threshold for TTFB in its [web.dev TTFB guidance](https://web.dev/articles/ttfb) and with the general expectation for CDN-served content. TTFB between 200ms and 600ms is acceptable but suboptimal. TTFB above 600ms is likely to reduce crawl completeness on content-heavy pages and should be treated as a priority fix.
+
+### Is image optimization really necessary if my page text loads quickly?
+
+Yes, for two reasons. First, AI crawlers retrieve the full page response, not just the text. A slow image download can extend the total response time for a page, which counts against the crawl time budget even if the HTML text itself was delivered promptly. Second, image dimensions — specifically the absence of explicit width and height attributes — directly cause Cumulative Layout Shift, which affects Google's CWV scoring and therefore AI Overview citation eligibility. Image optimization is a prerequisite for passing both crawl efficiency and Core Web Vitals standards.
+
+### Does JavaScript deferral affect AI crawlers that do not render JavaScript?
+
+Yes, positively. Many AI crawlers — including older versions of GPTBot and some Perplexity retrieval modes — do not execute JavaScript at all. They retrieve the raw HTML response and extract content from that. If your page depends on JavaScript to render body text (client-side rendering), those crawlers receive an empty page. Deferring JavaScript does not solve this problem for CSR pages — server-side rendering or static generation is required. For pages with server-rendered HTML, deferring non-critical JavaScript improves TTFB and LCP by removing render-blocking scripts from the critical path without affecting the content that non-rendering crawlers receive.
+
+### How do I check whether my site is being successfully crawled by AI bots?
+
+Check your server access logs for user-agent strings matching GPTBot, PerplexityBot, ClaudeBot, and Google-Extended. Filter the log records for HTTP status codes: 200 responses indicate successful retrieval, 408 (Request Timeout) or connection abort entries indicate timeout failures. High rates of incomplete or timed-out requests from AI crawler user agents are a direct signal that your server response time or page weight is causing crawl failures. Many hosting control panels and log analysis tools (like AWStats or GoAccess) can filter by user-agent string to isolate AI crawler activity.
+
+### Should I block AI crawlers if my site is slow, and fix speed first?
+
+No. Blocking AI crawlers via robots.txt while you fix performance stops the clock on AI visibility entirely. AI systems cannot begin building an index of your content — they cannot index, cite, or consider pages they are blocked from retrieving. The correct approach is to fix performance while leaving AI crawlers permitted, so that your improving performance translates directly into improving crawl completeness. Deploy quick wins first: image compression, JavaScript deferral, and browser caching can be implemented within days and will immediately improve the quality of crawl sessions that AI bots are already conducting on your site.
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do AI crawlers like GPTBot actually time out on slow pages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AI crawlers enforce connection and response timeouts that determine whether a page is successfully retrieved and parsed. While OpenAI and Anthropic have not published specific timeout thresholds, network analysis of GPTBot and ClaudeBot behavior shows that pages with TTFB above 2 seconds are retrieved at significantly lower rates than fast-responding pages during the same crawl session. Crawlers allocate a fixed time budget per crawl session and abandon slow connections to process more URLs within that budget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good TTFB target for AI SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Target TTFB under 200 milliseconds for HTML document responses, measured from an edge location near the crawling infrastructure. This aligns with Google's Good threshold for TTFB and with the general expectation for CDN-served content. TTFB between 200ms and 600ms is acceptable but suboptimal. TTFB above 600ms is likely to reduce crawl completeness on content-heavy pages and should be treated as a priority fix."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is image optimization really necessary if my page text loads quickly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for two reasons. First, AI crawlers retrieve the full page response — a slow image download extends total response time and counts against the crawl time budget even if the HTML text was delivered promptly. Second, missing explicit image dimensions directly cause Cumulative Layout Shift, which affects Google's Core Web Vitals scoring and therefore AI Overview citation eligibility. Image optimization is a prerequisite for passing both crawl efficiency and Core Web Vitals standards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does JavaScript deferral affect AI crawlers that do not render JavaScript?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, positively. Many AI crawlers — including older versions of GPTBot and some Perplexity retrieval modes — do not execute JavaScript at all. They retrieve the raw HTML response and extract content from that. If your page depends on JavaScript to render body text (client-side rendering), those crawlers receive an empty page. For pages with server-rendered HTML, deferring non-critical JavaScript improves TTFB and LCP by removing render-blocking scripts from the critical path without affecting the content that non-rendering crawlers receive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I check whether my site is being successfully crawled by AI bots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check your server access logs for user-agent strings matching GPTBot, PerplexityBot, ClaudeBot, and Google-Extended. Filter the log records for HTTP status codes: 200 responses indicate successful retrieval, while 408 (Request Timeout) or connection abort entries indicate timeout failures. High rates of incomplete or timed-out requests from AI crawler user agents are a direct signal that your server response time or page weight is causing crawl failures."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I block AI crawlers if my site is slow, and fix speed first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Blocking AI crawlers via robots.txt while you fix performance stops the clock on AI visibility entirely. AI systems cannot index, cite, or consider pages they are blocked from retrieving. The correct approach is to fix performance while leaving AI crawlers permitted, so that your improving performance translates directly into improving crawl completeness. Deploy quick wins first — image compression, JavaScript deferral, and browser caching can be implemented within days and will immediately improve the quality of crawl sessions AI bots are already conducting on your site."
+      }
+    }
+  ]
+}</script>

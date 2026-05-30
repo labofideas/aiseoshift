@@ -1,0 +1,313 @@
+---
+title: "12 Common AI SEO Mistakes (and How to Fix Each One)"
+description: The most common AI SEO mistakes that prevent sites from getting cited by ChatGPT, Perplexity, and Google AI Overviews — with specific fixes for each.
+deck: Most sites making AI SEO mistakes are not making exotic errors. They are blocking crawlers, hiding expertise, and writing for algorithms that no longer run the show.
+pubDate: 2026-06-29
+category: Playbooks
+tags:
+  - AI SEO mistakes
+  - common mistakes
+  - AI SEO fixes
+  - troubleshooting
+  - AI citations
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+AI search has changed the rules. ChatGPT, Perplexity, and Google AI Overviews are now answering questions that used to send users to ten blue links — and the sites getting cited are not necessarily the ones with the most backlinks or the highest domain authority. They are the ones that made it easy for AI systems to find, parse, trust, and quote their content.
+
+Most sites that are invisible to AI are not suffering from advanced, obscure problems. They are making a small set of predictable, fixable mistakes. This post covers all twelve of them — what each mistake costs you, and the exact fix to apply.
+
+<figure class="post-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 660" width="820" height="660" role="img" aria-label="12 AI SEO mistakes versus fixes checklist diagram in two columns">
+  <rect width="820" height="660" fill="rgb(246,245,240)" />
+  <text x="410" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">12 AI SEO MISTAKES vs. FIXES</text>
+  <rect x="20" y="48" width="380" height="28" fill="rgb(184,85,46)" rx="3" />
+  <text x="210" y="67" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(250,250,247)" letter-spacing="1">MISTAKE</text>
+  <rect x="420" y="48" width="380" height="28" fill="rgb(14,17,22)" rx="3" />
+  <text x="610" y="67" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(250,250,247)" letter-spacing="1">FIX</text>
+  <rect x="20" y="82" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="99" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">01</text>
+  <text x="52" y="99" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Blocking AI crawlers in robots.txt</text>
+  <text x="32" y="118" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">GPTBot, ClaudeBot, PerplexityBot disallowed</text>
+  <rect x="420" y="82" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="99" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Allow all AI crawlers explicitly</text>
+  <text x="432" y="118" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Add Allow: / rule per bot in robots.txt</text>
+  <rect x="20" y="132" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="149" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">02</text>
+  <text x="52" y="149" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">No FAQ schema on answerable pages</text>
+  <text x="32" y="168" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">AI cannot extract Q&amp;A pairs programmatically</text>
+  <rect x="420" y="132" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="149" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Add FAQPage JSON-LD to every service page</text>
+  <text x="432" y="168" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Match schema Q&amp;A to visible page content</text>
+  <rect x="20" y="182" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="199" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">03</text>
+  <text x="52" y="199" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Answer buried below lengthy intro</text>
+  <text x="32" y="218" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">AI skips pages where the answer is not near the top</text>
+  <rect x="420" y="182" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="199" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Lead with the direct answer in paragraph 1</text>
+  <text x="432" y="218" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Use the inverted-pyramid structure throughout</text>
+  <rect x="20" y="232" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="249" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">04</text>
+  <text x="52" y="249" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Anonymous authorship on YMYL content</text>
+  <text x="32" y="268" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">No author = no trust signal for AI engines</text>
+  <rect x="420" y="232" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="249" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Add named authors with credentials + Person schema</text>
+  <text x="432" y="268" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Link to author page with bio and external profiles</text>
+  <rect x="20" y="282" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="299" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">05</text>
+  <text x="52" y="299" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Missing LocalBusiness schema</text>
+  <text x="32" y="318" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Local AI answers omit unclaimed businesses</text>
+  <rect x="420" y="282" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="299" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Implement LocalBusiness JSON-LD on homepage</text>
+  <text x="432" y="318" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Include address, hours, geo, and service area</text>
+  <rect x="20" y="332" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="349" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">06</text>
+  <text x="52" y="349" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Writing for keywords, not questions</text>
+  <text x="32" y="368" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">AI engines look for question-and-answer structure</text>
+  <rect x="420" y="332" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="349" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Rewrite headings as natural-language questions</text>
+  <text x="432" y="368" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Use forums and "People Also Ask" for question research</text>
+  <rect x="20" y="382" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="399" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">07</text>
+  <text x="52" y="399" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">No E-E-A-T signals in bios or content</text>
+  <text x="32" y="418" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Generic bios fail AI trust evaluation</text>
+  <rect x="420" y="382" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="399" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Rewrite author bios with specific credentials</text>
+  <text x="432" y="418" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Cite sources; add first-hand observations to content</text>
+  <rect x="20" y="432" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="449" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">08</text>
+  <text x="52" y="449" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Thin service pages, no FAQ or procedure</text>
+  <text x="32" y="468" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Shallow pages lose to competitors with depth</text>
+  <rect x="420" y="432" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="449" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Add FAQ section + step-by-step process section</text>
+  <text x="432" y="468" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Use HowTo schema for any procedural content</text>
+  <rect x="20" y="482" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="499" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">09</text>
+  <text x="52" y="499" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Inconsistent NAP across citations</text>
+  <text x="32" y="518" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Conflicting addresses lower trust scores</text>
+  <rect x="420" y="482" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="499" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Audit and standardize NAP across all directories</text>
+  <text x="432" y="518" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Match schema address exactly to GBP and Yelp</text>
+  <rect x="20" y="532" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="549" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">10</text>
+  <text x="52" y="549" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">No structured data on any page type</text>
+  <text x="32" y="568" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">AI engines parse schema first; no schema = guesswork</text>
+  <rect x="420" y="532" width="380" height="44" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="549" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Implement Article + Organization schema sitewide</text>
+  <text x="432" y="568" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Layer page-specific types on top of base schema</text>
+  <rect x="20" y="582" width="380" height="34" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="599" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">11</text>
+  <text x="52" y="599" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Content describes instead of demonstrates</text>
+  <text x="32" y="613" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">No data, cases, or tested examples</text>
+  <rect x="420" y="582" width="380" height="34" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="599" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Replace claims with evidence: numbers, outcomes</text>
+  <text x="432" y="613" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">Add original data, case studies, and test results</text>
+  <rect x="20" y="622" width="380" height="30" fill="rgb(250,250,247)" rx="2" />
+  <text x="32" y="639" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="rgb(184,85,46)">12</text>
+  <text x="52" y="639" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Outdated content with stale dates</text>
+  <rect x="420" y="622" width="380" height="30" fill="rgb(250,250,247)" rx="2" />
+  <text x="432" y="639" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)">Add "Last reviewed" date; refresh substantively</text>
+  <text x="410" y="655" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.6">Fix all twelve and you eliminate most reasons AI engines ignore your site.</text>
+</svg>
+</figure>
+
+## Mistake 1: Blocking AI crawlers in robots.txt
+
+This is the single most disqualifying mistake, and it is alarmingly common. Many sites added broad `Disallow: /` rules years ago to block scrapers, and those rules now block GPTBot (OpenAI), ClaudeBot (Anthropic), PerplexityBot, and other AI crawlers that need to read your content before they can cite it.
+
+**The fix:** Open your `robots.txt` file and search for any `Disallow` rules that would apply to AI crawlers. The most common culprit is a wildcard rule that catches everything. Add explicit Allow rules for each AI crawler:
+
+```
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+```
+
+If you have content you genuinely need to protect (gated tools, member areas), disallow those specific paths — not the entire domain. Run a crawl verification using each bot's documented IP range to confirm access is open before moving on.
+
+## Mistake 2: No FAQ schema on answerable pages
+
+FAQ schema is the highest-leverage single schema type for AI visibility. AI engines extract question-and-answer pairs directly from `FAQPage` JSON-LD when constructing generated responses. Without it, the engine must infer your Q&A structure from prose — which is slower, less reliable, and less likely to result in a citation.
+
+Every service page, topic page, and guide that answers common questions should carry FAQPage schema. The questions in the schema must match questions that appear visibly on the page — mismatches get flagged.
+
+**The fix:** Identify the three to five questions your page already answers. Add them to a visible FAQ section on the page, then encode them in FAQPage JSON-LD. For the full implementation pattern, see the guide on [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/).
+
+## Mistake 3: Burying the answer below excessive intro content
+
+Traditional blog writing often opened with scene-setting paragraphs before arriving at the actual answer. AI engines do not have patience for that structure. They scan for the answer near the top of the page. When the answer is buried three or four scrolls deep behind methodology explanations and background context, AI engines may not extract it accurately — or may skip the page entirely in favor of a competitor that leads with the answer.
+
+**The fix:** Apply the inverted-pyramid structure to every page that targets an answerable query. State the direct answer in the first paragraph. Use subsequent sections to expand, qualify, and support. Test this by asking: "If an AI engine read only the first 200 words of this page, would it have what it needs to answer the query?" If the answer is no, restructure the opening.
+
+This principle is covered in depth in the post on [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/).
+
+## Mistake 4: Anonymous authorship on YMYL content
+
+YMYL — Your Money or Your Life — covers health, finance, legal, and safety topics. For these categories, Google's Search Quality Rater Guidelines require demonstrable expertise, and AI engines apply similar scrutiny. Anonymous content on YMYL topics gets deprioritized because there is no person to verify.
+
+An "Editorial Team" byline is not sufficient. AI systems look for a named person with verifiable credentials — a name that appears on LinkedIn, in publications, or in professional directories. Without that, the trust signal is absent.
+
+**The fix:** Every YMYL page needs a named author with a bio that states specific credentials relevant to the topic. The bio page should link out to the author's professional profiles, publications, or licensing records. Add `Person` schema with `hasCredential` to encode the credentials in a machine-readable format. For the full E-E-A-T framework, see [E-E-A-T in the AI era](/blog/eeat-in-the-ai-era/).
+
+## Mistake 5: Missing LocalBusiness schema for local businesses
+
+When someone asks ChatGPT or Perplexity to recommend a service provider in their city, the AI engine draws on structured signals to identify legitimate, verifiable local businesses. Sites without `LocalBusiness` JSON-LD — or the appropriate subtype like `Dentist`, `LegalService`, or `AutoRepair` — are harder for AI to classify and cross-reference against their geographic data.
+
+This is especially costly because local AI queries have high commercial intent. Being left out of a "best [service] in [city]" AI answer is a significant revenue leak.
+
+**The fix:** Implement `LocalBusiness` JSON-LD on your homepage and any location-specific pages. Include `name`, `address` (using `PostalAddress`), `telephone`, `openingHours`, `geo` (latitude and longitude), and `areaServed`. Use the most specific subtype available for your business category. Cross-reference [Google's structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/local-business) for current field requirements.
+
+## Mistake 6: Writing for keywords instead of questions
+
+Keyword-oriented content is optimized for a different era of search. Traditional SEO rewarded pages that used target keywords frequently and strategically. AI search rewards pages that answer questions directly and completely. The pivot is significant: instead of "best cloud accounting software" as a keyword target, the question-oriented frame asks "What is the best cloud accounting software for a five-person professional services firm?"
+
+Content written around keywords tends to be circular and repetitive. Content written around questions tends to be direct, structured, and easy for AI to extract.
+
+**The fix:** Audit your most important pages and identify the primary question each one should answer. Rewrite the page title and H1 as a natural-language question if the query type supports it. Use Reddit threads, "People Also Ask" boxes, and Q&A forums to find the exact phrasing your audience uses. This is the research method described in [AI keyword research using Reddit and forums](/blog/ai-keyword-research-reddit-youtube-forums/).
+
+## Mistake 7: No E-E-A-T signals in author bios or content
+
+Thin author bios — "Jane is a content writer with five years of experience" — contribute nothing to E-E-A-T. AI engines evaluate whether the named author has the kind of experience and expertise that makes their claims credible. A generic bio does not provide that signal.
+
+The same applies to content body: pages that assert expertise without demonstrating it ("We are industry leaders with decades of experience") give AI systems nothing to verify. E-E-A-T requires concrete signals: credentials, publications, testing, data, specific professional roles.
+
+**The fix:** Rewrite every author bio to include the specific credentials, job titles, years of experience in a named domain, and any publications or professional memberships relevant to the content. Within the content itself, shift from assertion to demonstration: instead of claiming expertise, show it through specific examples, original data, and first-hand observations. The [perfect blog post structure for AI citation](/blog/perfect-blog-post-structure-ai-citation/) covers the content-level signals in detail.
+
+## Mistake 8: Thin service pages with no FAQ or procedure depth
+
+A service page that describes what a business does in three paragraphs — with no FAQ, no process breakdown, no pricing context, and no outcome examples — is a thin page. Thin pages rarely earn AI citations because they do not contain the depth an AI engine needs to construct a useful answer.
+
+This problem is especially common on agency, consulting, and professional services sites where copywriters were told to keep pages short and punchy. Short and punchy may look clean in a browser, but it performs poorly in AI search.
+
+**The fix:** For each service page, add: a step-by-step process section explaining how the service is delivered, a FAQ section with at least five questions, a typical outcome or case example, and pricing context (even if only a range). Use `HowTo` schema on the process section and `FAQPage` schema on the FAQ section. You can use our [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) to evaluate each service page against these criteria systematically.
+
+## Mistake 9: Inconsistent NAP across citations (local businesses)
+
+NAP — Name, Address, Phone — consistency is a foundational local SEO signal, and it matters even more for AI visibility. AI engines cross-reference business information across multiple sources: your website, Google Business Profile, Yelp, industry directories, and data aggregators. When the address on your site says "Suite 100" but your GBP listing says "Ste. 100" and your Yelp listing omits the suite entirely, the entity matching algorithm flags the inconsistency.
+
+Inconsistent NAP lowers the AI engine's confidence that these are all the same business, which can suppress local AI citations even when your overall signal strength is high.
+
+**The fix:** Run a citation audit using a tool like [Moz Local](https://moz.com/products/local) or BrightLocal to surface every directory listing for your business. Standardize the exact formatting of your name, address, and phone number — down to punctuation and abbreviation conventions — and update every listing to match. Then update your `LocalBusiness` schema to reflect the canonical version.
+
+## Mistake 10: No structured data on any page type
+
+Some sites have adopted no schema at all. No `Article`, no `Organization`, no `BreadcrumbList`, no `FAQPage`. On these sites, AI engines must infer everything about the page's content type, author, publication date, and topic from natural language alone. This introduces uncertainty at every step of the citation process.
+
+Structured data is not optional for competitive AI SEO. It is the primary mechanism by which you communicate machine-readable signals to AI systems. Sites without it are asking AI engines to guess — and they often guess wrong or choose a competitor that made it easier.
+
+**The fix:** Implement a baseline schema stack on every page: `Organization` on the homepage, `Article` (or `BlogPosting`) on every editorial page, `BreadcrumbList` on every page with a navigational hierarchy. Layer page-specific types (`FAQPage`, `HowTo`, `Product`, `Service`) on top of the baseline. For the full implementation guide, see [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/).
+
+## Mistake 11: Content that describes instead of demonstrates expertise
+
+There is a meaningful difference between content that describes expertise and content that demonstrates it. "We have deep expertise in tax compliance for technology companies" is a description. "Here is a breakdown of how the R&D tax credit applies to software development costs under IRC Section 41, including the three qualification tests and a worked example from a SaaS company" is a demonstration.
+
+AI engines — trained on vast corpora of expert text — can distinguish between surface-level description and genuine domain knowledge. Descriptive content gets lower trust scores. Demonstrative content, with specifics, nuance, and original insight, earns citations because it is the kind of content AI engines want to cite.
+
+**The fix:** For each important page, identify the single claim you most want users to trust. Then ask: what is the evidence? Replace the assertion with the evidence. Add original data from your own work, a worked example, a case study with specific numbers, or a test you ran and the results you got. This is the shift from generic content to E-E-A-T content that the [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) guide addresses.
+
+## Mistake 12: Outdated content with stale dates on AI-critical pages
+
+AI engines weight recency for time-sensitive queries. A guide with a 2021 publication date and no update timestamp looks unreliable for questions about a fast-changing landscape. AI systems use publication and modification dates — available both in the page's visible text and in `Article` schema's `dateModified` field — to assess whether content reflects the current state of a topic.
+
+Stale dates do not just reduce citation probability. They actively signal that the content may be wrong.
+
+**The fix:** Add a visible "Last reviewed" or "Last updated" date to every page that targets time-sensitive queries. Perform a substantive review — not just a date change — and actually update any data, statistics, or recommendations that have changed. Update the `dateModified` field in your `Article` schema to match. Schedule annual reviews for evergreen content and quarterly reviews for content in fast-moving topic areas.
+
+## Putting the fixes together
+
+None of these twelve mistakes requires advanced technical resources to fix. Robots.txt adjustments take minutes. Schema implementation takes a focused sprint. Author bio rewrites take an afternoon. The reason most sites have not fixed them is not complexity — it is that the symptoms (no AI citations, no AI Overview appearances) are recent, and the diagnosis has been slow to arrive.
+
+If you want to work through all twelve systematically, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) provides a scoring framework that covers each of these areas. Running the audit first tells you which mistakes are costing you the most, so you can sequence the fixes by impact.
+
+According to [Google's Search Quality Rater Guidelines](https://static.googleusercontent.com/media/guidelines.raterhub.com/en//searchqualityevaluatorguidelines.pdf), the quality evaluation criteria AI systems apply are not arbitrary — they reflect what makes content genuinely useful to the people asking questions. Fixing these mistakes is not gaming the algorithm. It is aligning your site with what makes it worth citing.
+
+## Frequently asked questions
+
+**Will fixing robots.txt immediately get my site into AI answers?**
+
+Not immediately. AI crawlers re-index on their own schedules, which can range from a few days to several weeks. Once your content is crawled, it enters the model's retrieval pool, but citation depends on content quality and relevance. Opening robots.txt is a prerequisite, not a guarantee.
+
+**Do I need FAQ schema if I already have a FAQ section on the page?**
+
+Yes. A visible FAQ section helps human readers and gives AI systems natural language to parse, but FAQPage JSON-LD gives AI engines a directly machine-readable, structured version of those same Q&A pairs. Both together outperform either alone.
+
+**How many FAQ questions should I include in the schema?**
+
+Three to eight questions is the practical range. Fewer than three provides minimal signal; more than ten risks dilution and may slow page load if the schema block is very large. Focus on the questions with the highest query volume for your topic.
+
+**Does anonymous authorship hurt all content, or just YMYL topics?**
+
+It is most damaging for YMYL topics, but named authorship with clear credentials improves trust signals for all content types. For informational content outside YMYL, anonymous authorship is a missed opportunity rather than an active penalty.
+
+**How often should I update evergreen content to keep dates current?**
+
+Review and update meaningfully at least once per year for evergreen content, and every quarter for content in fast-moving areas like AI, tax law, or medical guidelines. A date change without substantive content changes is not sufficient — AI engines evaluate whether the content itself reflects current information.
+
+**Can structured data alone get my site cited by AI if the content is weak?**
+
+No. Structured data improves parsability and trust, but AI engines ultimately cite content that answers the question well. Schema is a necessary condition for reliable AI visibility, not a sufficient one. The content must be accurate, specific, well-structured, and genuinely useful.
+
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Will fixing robots.txt immediately get my site into AI answers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not immediately. AI crawlers re-index on their own schedules, which can range from a few days to several weeks. Once your content is crawled, it enters the model's retrieval pool, but citation depends on content quality and relevance. Opening robots.txt is a prerequisite, not a guarantee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need FAQ schema if I already have a FAQ section on the page?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A visible FAQ section helps human readers and gives AI systems natural language to parse, but FAQPage JSON-LD gives AI engines a directly machine-readable, structured version of those same Q&A pairs. Both together outperform either alone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many FAQ questions should I include in the schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three to eight questions is the practical range. Fewer than three provides minimal signal; more than ten risks dilution and may slow page load if the schema block is very large. Focus on the questions with the highest query volume for your topic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does anonymous authorship hurt all content, or just YMYL topics?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is most damaging for YMYL topics, but named authorship with clear credentials improves trust signals for all content types. For informational content outside YMYL, anonymous authorship is a missed opportunity rather than an active penalty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I update evergreen content to keep dates current?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Review and update meaningfully at least once per year for evergreen content, and every quarter for content in fast-moving areas like AI, tax law, or medical guidelines. A date change without substantive content changes is not sufficient — AI engines evaluate whether the content itself reflects current information."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can structured data alone get my site cited by AI if the content is weak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Structured data improves parsability and trust, but AI engines ultimately cite content that answers the question well. Schema is a necessary condition for reliable AI visibility, not a sufficient one. The content must be accurate, specific, well-structured, and genuinely useful."
+      }
+    }
+  ]
+}
+`}</script>

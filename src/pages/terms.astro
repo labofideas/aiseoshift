@@ -1,0 +1,88 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Terms of Service | ${SITE_TITLE}`}
+			description="Terms of service for AISEOShift. Rules for using our website, tools, and content."
+		/>
+		<style>
+			.legal-page {
+				width: min(760px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2.5rem 0 4rem;
+			}
+			.legal-page h1 {
+				font-size: clamp(2rem, 3.5vw, 2.8rem);
+				line-height: 1.1;
+				letter-spacing: -0.025em;
+				margin: 0 0 0.5rem;
+			}
+			.legal-page .updated {
+				font-size: 0.85rem;
+				color: rgba(var(--ink), 0.6);
+				margin: 0 0 2rem;
+			}
+			.legal-page h2 {
+				font-size: 1.3rem;
+				margin: 2.5rem 0 0.8rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid var(--line);
+			}
+			.legal-page p, .legal-page li {
+				font-size: 1rem;
+				line-height: 1.75;
+				color: rgba(var(--ink), 0.85);
+			}
+			.legal-page ul { padding-left: 1.2rem; }
+			.legal-page li { margin-top: 0.4rem; }
+			.legal-page a { color: var(--signal-deep); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="legal-page">
+			<h1>Terms of Service</h1>
+			<p class="updated">Last updated: May 24, 2026</p>
+
+			<p>By accessing and using aiseoshift.com ("the Site"), you agree to the following terms. If you do not agree, please do not use the Site.</p>
+
+			<h2>Use of content</h2>
+			<p>All articles, guides, tools, and other content on the Site are published for informational and educational purposes. You may read, share, and link to our content freely. You may not republish, scrape, or redistribute substantial portions of our content without written permission.</p>
+
+			<h2>Free SEO tools</h2>
+			<p>The free SEO tools on the Site are provided as-is with no warranty of accuracy or completeness. They are intended for informational use and should not be relied upon as the sole basis for business decisions. We may modify, limit, or discontinue any tool at any time.</p>
+
+			<h2>SEO services</h2>
+			<p>Professional SEO services offered through the Site are subject to separate agreements. Service terms, deliverables, and pricing are defined in individual client contracts. Submitting a contact form does not create a service agreement.</p>
+
+			<h2>Affiliate links</h2>
+			<p>Some links on the Site are affiliate links. When you click an affiliate link and make a purchase, we may earn a commission at no additional cost to you. Affiliate relationships do not influence our editorial rankings or recommendations. All tool rankings are based on our independent evaluation.</p>
+
+			<h2>Accuracy and updates</h2>
+			<p>We strive to keep all content accurate and current. However, the AI and SEO landscape changes rapidly. Information may become outdated between updates. We recommend verifying critical information with primary sources before making business decisions.</p>
+
+			<h2>Intellectual property</h2>
+			<p>All content, design, and code on the Site are owned by AISEOShift unless otherwise attributed. The AISEOShift name and logo are our trademarks. You may not use our trademarks without written permission.</p>
+
+			<h2>User conduct</h2>
+			<p>You agree not to misuse the Site, including but not limited to: attempting to gain unauthorized access, interfering with site functionality, submitting false information through forms, or using automated tools to scrape content at a rate that impacts site performance.</p>
+
+			<h2>Limitation of liability</h2>
+			<p>The Site and its content are provided "as is" without warranties of any kind. AISEOShift is not liable for any damages arising from your use of the Site, its content, or its tools. This includes but is not limited to direct, indirect, incidental, or consequential damages.</p>
+
+			<h2>Changes to terms</h2>
+			<p>We may update these terms at any time. Continued use of the Site after changes constitutes acceptance of the updated terms. The "last updated" date at the top reflects the most recent revision.</p>
+
+			<h2>Contact</h2>
+			<p>For questions about these terms, email <a href="mailto:hello@aiseoshift.com">hello@aiseoshift.com</a>.</p>
+		</main>
+		<Footer />
+	</body>
+</html>

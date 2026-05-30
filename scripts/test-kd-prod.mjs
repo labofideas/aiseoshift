@@ -1,0 +1,24 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+const errors = [];
+page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
+page.on('pageerror', e => errors.push('pageerror: ' + e.message));
+await page.goto('https://aiseoshift.com/tools/keyword-density/', { waitUntil: 'networkidle' });
+await page.locator('#url-input').fill('https://aiseoshift.com/blog/ai-tools-for-lawyers/');
+await page.locator('#keyword-input').fill('AI tools for lawyers');
+await page.locator('#analyze-btn').click();
+await page.waitForSelector('.kd-report.visible', { timeout: 30000 });
+await page.waitForTimeout(1500);
+// Inspect what got rendered
+const tiles = await page.locator('.kd-meta-tile').allInnerTexts();
+const cloudWords = await page.locator('.kd-cloud-word').count();
+const singleRows = await page.locator('#single tbody tr').count();
+const top5 = await page.locator('#single tbody tr').first().innerText().catch(() => '');
+console.log('tiles:', JSON.stringify(tiles));
+console.log('cloud words:', cloudWords);
+console.log('single rows:', singleRows);
+console.log('first single row:', top5.replace(/\n/g, ' | '));
+console.log('errors:', errors.slice(0, 5));
+await page.screenshot({ path: '/tmp/kd-prod.png', fullPage: true });
+await browser.close();

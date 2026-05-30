@@ -27,6 +27,8 @@ const { image, className = '', loading = 'lazy' } = Astro.props;
 				src={image.src}
 				alt={image.alt}
 				loading={loading}
+				decoding="async"
+				fetchpriority={loading === 'eager' ? 'high' : 'auto'}
 				width={image.width}
 				height={image.height}
 			/>

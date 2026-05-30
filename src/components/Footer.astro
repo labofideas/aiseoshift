@@ -3,69 +3,287 @@ const today = new Date();
 ---
 
 <footer class="site-footer">
-	<div class="footer-wrap">
-		<p class="footer-mark">AISEOShift</p>
-		<p class="footer-copy">
-			Reporting on how search, AI answers, and authority systems are changing in real time.
-		</p>
-		<div class="footer-links">
-			<a href="/blog">Latest coverage</a>
-			<a href="/about">About the publication</a>
+	<div class="footer-inner">
+
+		<!-- Brand column -->
+		<div class="footer-brand">
+			<p class="footer-mark">AISEOShift</p>
+			<p class="footer-tagline">
+				Reporting on how search, AI answers, and authority systems are changing in real time.
+			</p>
+			<ul class="footer-social">
+				<li>
+					<a href="https://bsky.app/profile/aiseoshift.bsky.social" target="_blank" rel="noopener noreferrer">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+							<path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"/>
+						</svg>
+						Bluesky
+					</a>
+				</li>
+				<li>
+					<a href="https://x.com/shashankwave" target="_blank" rel="noopener noreferrer">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+							<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+						</svg>
+						Twitter / X
+					</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/in/shashank-dubey-949160148/" target="_blank" rel="noopener noreferrer">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+							<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+						</svg>
+						LinkedIn
+					</a>
+				</li>
+				<li>
+					<a href="mailto:hello@aiseoshift.com">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<rect width="20" height="16" x="2" y="4" rx="2"/>
+							<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+						</svg>
+						hello@aiseoshift.com
+					</a>
+				</li>
+			</ul>
 		</div>
-		<p class="footer-meta">&copy; {today.getFullYear()} AISEOShift. All rights reserved.</p>
+
+		<!-- Explore column -->
+		<nav class="footer-col" aria-label="Explore">
+			<h3 class="footer-heading">Explore</h3>
+			<ul>
+				<li><a href="/blog">Latest Coverage</a></li>
+				<li><a href="/seo">SEO Guide</a></li>
+				<li><a href="/ai-seo-services">AI SEO Services</a></li>
+				<li><a href="/glossary">Glossary</a></li>
+				<li><a href="/newsletter">Newsletter</a></li>
+				<li><a href="/about">About</a></li>
+			</ul>
+		</nav>
+
+		<!-- Topics column -->
+		<nav class="footer-col" aria-label="Topics">
+			<h3 class="footer-heading">Topics</h3>
+			<ul>
+				<li><a href="/aeo">Answer Engine Optimization</a></li>
+				<li><a href="/geo">Generative Engine Optimization</a></li>
+				<li><a href="/ai-seo-shift">AI SEO Shift</a></li>
+				<li><a href="/chatgpt-seo">ChatGPT SEO</a></li>
+				<li><a href="/perplexity-seo">Perplexity SEO</a></li>
+				<li><a href="/claude-seo">Claude SEO</a></li>
+				<li><a href="/gemini-seo">Gemini SEO</a></li>
+			</ul>
+		</nav>
+
+		<!-- Tools column -->
+		<nav class="footer-col" aria-label="Tools">
+			<h3 class="footer-heading">Free Tools</h3>
+			<ul>
+				<li><a href="/tools">All Tools</a></li>
+				<li><a href="/tools/seo-checker">SEO Checker</a></li>
+				<li><a href="/tools/meta-checker">Meta Checker</a></li>
+				<li><a href="/tools/heading-checker">Heading Checker</a></li>
+				<li><a href="/tools/image-checker">Image Checker</a></li>
+				<li><a href="/tools/keyword-density">Keyword Density</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+	<!-- Bottom bar -->
+	<div class="footer-bottom">
+		<p class="footer-copy">&copy; {today.getFullYear()} AISEOShift. All rights reserved.</p>
+		<ul class="footer-legal">
+			<li><a href="/privacy">Privacy Policy</a></li>
+			<li><a href="/terms">Terms of Service</a></li>
+		</ul>
 	</div>
 </footer>
 
 <style>
 	.site-footer {
-		padding: 4rem 0 5rem;
-		border-top: 1px solid rgba(var(--ink), 0.08);
+		padding: 4rem 0 0;
+		border-top: 1px solid rgba(var(--ink), 0.1);
 		background:
-			linear-gradient(180deg, rgba(var(--paper), 0), rgba(var(--ink), 0.04)),
+			linear-gradient(180deg, rgba(var(--ink), 0.02), rgba(var(--ink), 0.05)),
 			rgb(var(--paper));
 	}
 
-	.footer-wrap {
+	.footer-inner {
 		width: min(1200px, calc(100% - 2rem));
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
-		gap: 2rem;
+		grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+		gap: 3rem;
+		padding-bottom: 3rem;
+	}
+
+	/* Brand column */
+	.footer-brand {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 	}
 
 	.footer-mark {
 		margin: 0;
-		font-family: 'Georgia', 'Times New Roman', serif;
-		font-size: 1.75rem;
-	}
-
-	.footer-copy,
-	.footer-meta {
-		max-width: 42rem;
-		color: rgba(var(--ink), 0.72);
-	}
-
-	.footer-links {
-		display: flex;
-		gap: 1.25rem;
-		margin: 1.5rem 0;
-		flex-wrap: wrap;
-	}
-
-	.footer-links a {
-		text-decoration: none;
-		color: rgb(var(--ink));
+		font-family: 'Georgia', 'Iowan Old Style', serif;
+		font-size: 1.6rem;
 		font-weight: 700;
+		letter-spacing: -0.01em;
+		color: rgb(var(--ink));
 	}
 
-	.footer-links a:hover,
-	.footer-links a:focus-visible {
+	.footer-tagline {
+		margin: 0;
+		font-size: 0.875rem;
+		line-height: 1.6;
+		color: rgba(var(--ink), 0.65);
+		max-width: 26ch;
+	}
+
+	/* Social links */
+	.footer-social {
+		list-style: none;
+		margin: 0.5rem 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	.footer-social a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-decoration: none;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: rgba(var(--ink), 0.7);
+		transition: color 0.15s ease;
+	}
+
+	.footer-social a:hover,
+	.footer-social a:focus-visible {
 		color: var(--signal);
 	}
 
-	@media (max-width: 800px) {
-		.footer-wrap {
+	.footer-social svg {
+		flex-shrink: 0;
+		opacity: 0.8;
+	}
+
+	/* Nav columns */
+	.footer-col h3.footer-heading {
+		margin: 0 0 1rem;
+		font-family: 'Georgia', serif;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: rgba(var(--ink), 0.4);
+	}
+
+	.footer-col ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+	}
+
+	.footer-col a {
+		text-decoration: none;
+		font-size: 0.875rem;
+		color: rgba(var(--ink), 0.72);
+		transition: color 0.15s ease;
+	}
+
+	.footer-col a:hover,
+	.footer-col a:focus-visible {
+		color: var(--signal);
+	}
+
+	/* Bottom bar */
+	.footer-bottom {
+		width: min(1200px, calc(100% - 2rem));
+		margin: 0 auto;
+		padding: 1.25rem 0 1.5rem;
+		border-top: 1px solid rgba(var(--ink), 0.08);
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.footer-copy {
+		margin: 0;
+		font-size: 0.8rem;
+		color: rgba(var(--ink), 0.45);
+	}
+
+	.footer-legal {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	.footer-legal a {
+		text-decoration: none;
+		font-size: 0.8rem;
+		color: rgba(var(--ink), 0.45);
+		transition: color 0.15s ease;
+	}
+
+	.footer-legal a:hover,
+	.footer-legal a:focus-visible {
+		color: var(--signal);
+	}
+
+	/* Responsive */
+	@media (max-width: 900px) {
+		.footer-inner {
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+		}
+
+		.footer-brand {
+			grid-column: 1 / -1;
+		}
+
+		.footer-tagline {
+			max-width: 40ch;
+		}
+
+		.footer-social {
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 0.75rem 1.5rem;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.site-footer {
+			padding-top: 3rem;
+		}
+
+		.footer-inner {
 			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.footer-brand {
+			grid-column: auto;
+		}
+
+		.footer-bottom {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.75rem;
 		}
 	}
 </style>

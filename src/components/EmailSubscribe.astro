@@ -1,0 +1,167 @@
+---
+/**
+ * Mailchimp email subscribe form (editorial layout).
+ *
+ * Set PUBLIC_MAILCHIMP_FORM_ACTION env var to the embedded-form action URL.
+ *
+ * Props:
+ *  - eyebrow:  small uppercase label above the headline (default "Newsletter")
+ *  - headline: serif heading (default "The AI SEO Shift, in your inbox.")
+ *  - lede:     supporting paragraph
+ *  - cta:      submit button label (default "Subscribe")
+ *  - variant:  'panel' (boxed, for in-content placements) or 'plain' (no chrome)
+ */
+
+interface Props {
+	eyebrow?: string;
+	headline?: string;
+	lede?: string;
+	cta?: string;
+	variant?: 'panel' | 'plain';
+}
+
+const {
+	eyebrow = 'Newsletter',
+	headline = 'The AI SEO Shift, in your inbox.',
+	lede = 'Weekly research on AEO, GEO, AI Overviews, and the practical playbook for the AI search era. No fluff. Unsubscribe anytime.',
+	cta = 'Subscribe',
+	variant = 'panel',
+} = Astro.props;
+
+const formAction = import.meta.env.PUBLIC_MAILCHIMP_FORM_ACTION || '#';
+---
+
+<aside class:list={['subscribe', variant === 'panel' && 'subscribe-panel']} aria-labelledby="subscribe-headline">
+	<p class="subscribe-eyebrow">{eyebrow}</p>
+	<h2 id="subscribe-headline" class="subscribe-headline">{headline}</h2>
+	<p class="subscribe-lede">{lede}</p>
+	<form
+		action={formAction}
+		method="post"
+		class="subscribe-form"
+		target="_blank"
+		novalidate
+		aria-label="Email subscribe form"
+	>
+		<input
+			type="email"
+			name="EMAIL"
+			class="subscribe-input"
+			placeholder="hello@aiseoshift.com"
+			aria-label="Email address"
+			required
+		/>
+		<div style="position: absolute; left: -5000px;" aria-hidden="true">
+			<input type="text" name="b_mailchimp_honeypot" tabindex="-1" value="" />
+		</div>
+		<button type="submit" class="subscribe-btn">{cta}</button>
+	</form>
+</aside>
+
+<style>
+	.subscribe {
+		margin: var(--space-7) 0;
+		padding: 0;
+	}
+
+	.subscribe-panel {
+		padding: var(--space-6);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		background: rgb(var(--paper-strong));
+	}
+
+	.subscribe-eyebrow {
+		margin: 0 0 var(--space-2);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+	}
+
+	.subscribe-headline {
+		margin: 0 0 var(--space-3);
+		font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+		line-height: 1.15;
+		letter-spacing: -0.022em;
+		font-weight: 600;
+		max-width: 22ch;
+		color: rgb(var(--ink));
+		border: 0;
+		padding: 0;
+	}
+
+	.subscribe-lede {
+		margin: 0 0 var(--space-5);
+		font-size: 0.98rem;
+		line-height: 1.55;
+		color: var(--ink-muted);
+		max-width: 52ch;
+	}
+
+	.subscribe-form {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0;
+	}
+
+	.subscribe-input {
+		flex: 1 1 240px;
+		padding: 0.85rem 1rem;
+		font-size: 0.95rem;
+		font-family: inherit;
+		border: 1px solid var(--line-strong);
+		border-right: none;
+		border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+		background: rgb(var(--paper));
+		color: rgb(var(--ink));
+		outline: none;
+	}
+
+	.subscribe-input:focus {
+		border-color: rgb(var(--ink));
+		outline: 2px solid var(--signal);
+		outline-offset: -2px;
+	}
+
+	.subscribe-input::placeholder {
+		color: rgba(var(--ink), 0.55);
+	}
+
+	.subscribe-btn {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.85rem 1.4rem;
+		background: rgb(var(--ink));
+		color: rgb(var(--paper));
+		border: none;
+		border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+		font-size: 0.95rem;
+		font-weight: 600;
+		font-family: inherit;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+
+	.subscribe-btn:hover,
+	.subscribe-btn:focus-visible {
+		background: var(--signal-deep);
+	}
+
+	@media (max-width: 520px) {
+		.subscribe-form {
+			flex-direction: column;
+		}
+
+		.subscribe-input {
+			border-right: 1px solid var(--line-strong);
+			border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+			min-width: 100%;
+		}
+
+		.subscribe-btn {
+			border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+		}
+	}
+</style>

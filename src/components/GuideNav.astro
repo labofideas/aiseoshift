@@ -1,0 +1,80 @@
+---
+interface Props {
+	chapters: Array<{ id: string; data: { title: string; chapter: number } }>;
+	currentSlug: string;
+}
+
+const { chapters, currentSlug } = Astro.props;
+const sorted = chapters.filter((c) => c.data.chapter > 0).sort((a, b) => a.data.chapter - b.data.chapter);
+---
+
+<nav class="guide-nav" aria-label="SEO Guide chapters">
+	<a href="/seo/" class="guide-nav-title">SEO Guide</a>
+	<ol class="guide-nav-list">
+		{sorted.map((ch) => (
+			<li class="guide-nav-item">
+				<a
+					href={`/seo/${ch.id}/`}
+					class:list={['guide-nav-link', { active: ch.id === currentSlug }]}
+				>
+					<span class="guide-nav-num">{ch.data.chapter}</span>
+					{ch.data.title.replace(/^(Chapter \d+:\s*)/i, '')}
+				</a>
+			</li>
+		))}
+	</ol>
+</nav>
+
+<style>
+	.guide-nav-title {
+		display: block;
+		font-size: 0.68rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		color: var(--signal-deep);
+		text-decoration: none;
+		margin: 0 0 0.8rem;
+		font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+	}
+
+	.guide-nav-title:hover { opacity: 0.8; }
+
+	.guide-nav-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.guide-nav-item { margin: 0; }
+
+	.guide-nav-link {
+		display: flex;
+		align-items: baseline;
+		gap: 0.5rem;
+		padding: 0.3rem 0 0.3rem 0.6rem;
+		font-size: 0.78rem;
+		line-height: 1.35;
+		color: rgba(var(--ink), 0.52);
+		text-decoration: none;
+		border-left: 2px solid transparent;
+		transition: color 140ms ease, border-color 140ms ease;
+	}
+
+	.guide-nav-link:hover { color: rgb(var(--ink)); }
+
+	.guide-nav-link.active {
+		color: var(--signal-deep);
+		border-left-color: var(--signal);
+		font-weight: 700;
+	}
+
+	.guide-nav-num {
+		font-size: 0.7rem;
+		font-weight: 700;
+		opacity: 0.5;
+		min-width: 1.2em;
+	}
+
+	.guide-nav-link.active .guide-nav-num { opacity: 1; }
+</style>

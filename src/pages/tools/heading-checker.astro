@@ -3,6 +3,7 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
+import '../../styles/tools-polish.css';
 ---
 
 <!doctype html>
@@ -10,183 +11,1360 @@ import { SITE_TITLE } from '../../consts';
 	<head>
 		<BaseHead
 			title={`Free Heading Structure Checker | ${SITE_TITLE}`}
-			description="Validate your H1-H6 heading hierarchy for proper nesting, duplicate headings, and SEO best practices. Free tool."
+			description="Visualize the complete heading hierarchy of any page. Detect missing H1s, skipped levels, duplicates, empty tags, and over-long text — with a live outline tree and keyword heatmap."
 		/>
-		<style>
-			.tool-page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
-			.tool-header { margin-bottom: 1.5rem; }
-			.tool-header h1 { font-family: 'Atkinson', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0.4rem 0 0.6rem; }
-			.tool-header p { color: rgba(var(--ink), 0.72); max-width: 36rem; }
-			.tool-input { margin-bottom: 1.5rem; }
-			.tool-input label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: rgba(var(--ink), 0.6); }
-			.tool-input textarea { width: 100%; min-height: 180px; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-family: monospace; font-size: 0.82rem; line-height: 1.5; resize: vertical; }
-			.tool-input textarea:focus { outline: 2px solid var(--signal); outline-offset: 1px; }
-			.tool-actions { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
-			.btn-primary { padding: 0.75rem 1.5rem; border: none; border-radius: 999px; background: var(--signal); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
-			.btn-primary:hover { background: var(--signal-deep); }
-			.btn-secondary { padding: 0.75rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: rgb(var(--ink)); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
-			.results { display: none; }
-			.results.visible { display: block; }
-			.check-group { margin-bottom: 1.25rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
-			.check-group h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
-			.check-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; font-size: 0.86rem; line-height: 1.5; border-top: 1px solid var(--line); }
-			.check-item:first-of-type { border-top: none; }
-			.check-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 0.1rem; }
-			.pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
-			.warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
-			.fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-			.check-detail { color: rgba(var(--ink), 0.6); font-size: 0.8rem; }
-			.heading-tree { list-style: none; padding: 0; margin: 0; }
-			.heading-tree li { padding: 0.4rem 0; font-size: 0.86rem; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 0.5rem; }
-			.heading-tree li:first-child { border-top: none; }
-			.h-tag { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 22px; border-radius: 4px; background: rgba(var(--ink), 0.08); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; flex-shrink: 0; }
-			.h-text { color: rgba(var(--ink), 0.8); }
-			.h-error { color: #dc2626; font-size: 0.72rem; font-weight: 700; }
-			.back-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-			.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
-			.stat-card { padding: 0.8rem; border-radius: 0.75rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.55); text-align: center; }
-			.stat-num { font-size: 1.4rem; font-weight: 700; color: var(--signal-deep); }
-			.stat-label { font-size: 0.66rem; color: rgba(var(--ink), 0.6); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.15rem; }
-			@media (max-width: 600px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+		<style is:global>
+			:root {
+				--hc-cream: rgba(var(--paper-strong), 0.6);
+				--hc-cream-2: rgba(var(--paper-strong), 0.9);
+				--hc-cream-3: rgba(var(--ink), 0.06);
+				--hc-white: rgb(var(--paper));
+				--hc-paper: rgb(var(--paper));
+				--hc-ink: rgb(var(--ink));
+				--hc-ink-2: rgba(var(--ink), 0.85);
+				--hc-ink-3: rgba(var(--ink), 0.62);
+				--hc-ink-4: rgba(var(--ink), 0.45);
+				--hc-border: var(--line);
+				--hc-border-2: rgba(var(--ink), 0.18);
+				--hc-rust: var(--signal-deep);
+				--hc-rust-2: var(--signal);
+				--hc-rust-bg: color-mix(in srgb, var(--signal-deep) 10%, transparent);
+				--hc-green: #1A7A4F;
+				--hc-green-bg: rgba(26,122,79,0.12);
+				--hc-amber: #B07A00;
+				--hc-amber-bg: rgba(176,122,0,0.12);
+				--hc-red: #B82828;
+				--hc-red-bg: rgba(184,40,40,0.10);
+				--hc-blue: #2A5B96;
+				--hc-blue-bg: rgba(42,91,150,0.10);
+				--hc-purple: #5A2796;
+				--hc-purple-bg: rgba(90,39,150,0.10);
+				--hc-teal: #0F4A52;
+				--hc-teal-bg: rgba(15,74,82,0.10);
+				--hc-dark-card: rgb(var(--ink));
+
+				--hc-h1: #9C4B25; --hc-h1-bg: rgba(156,75,37,0.12); --hc-h1-border: rgba(156,75,37,0.30);
+				--hc-h2: #2A5B96; --hc-h2-bg: rgba(42,91,150,0.12); --hc-h2-border: rgba(42,91,150,0.28);
+				--hc-h3: #1A7A4F; --hc-h3-bg: rgba(26,122,79,0.12); --hc-h3-border: rgba(26,122,79,0.25);
+				--hc-h4: #5A2796; --hc-h4-bg: rgba(90,39,150,0.12); --hc-h4-border: rgba(90,39,150,0.22);
+				--hc-h5: #0F4A52; --hc-h5-bg: rgba(15,74,82,0.12); --hc-h5-border: rgba(15,74,82,0.20);
+				--hc-h6: #B07A00; --hc-h6-bg: rgba(176,122,0,0.12); --hc-h6-border: rgba(176,122,0,0.20);
+			}
+			[data-theme="dark"] {
+				--hc-green: #4ade80;
+				--hc-amber: #fbbf24;
+				--hc-red: #f87171;
+				--hc-blue: #93c5fd;
+				--hc-purple: #c4b5fd;
+				--hc-teal: #5eead4;
+				--hc-h1: #ff9966; --hc-h2: #93c5fd; --hc-h3: #4ade80; --hc-h4: #c4b5fd; --hc-h5: #5eead4; --hc-h6: #fbbf24;
+			}
+
+			.hc-page { font-family: 'Atkinson', 'Trebuchet MS', sans-serif; }
+
+			.hc-header {
+				background: var(--hc-cream-2);
+				border-bottom: 1px solid var(--hc-border);
+				padding: 2.5rem 2rem 2rem;
+			}
+			.hc-header-inner { width: min(1100px, 100%); margin: 0 auto; }
+			.hc-breadcrumb {
+				font-size: 0.7rem;
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				color: var(--hc-rust);
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+			.hc-header h1 {
+				font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+				font-size: clamp(2rem, 4vw, 2.6rem);
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				line-height: 1.08;
+				margin: 0 0 0.55rem;
+			}
+			.hc-header p {
+				font-size: 0.97rem;
+				color: var(--hc-ink-3);
+				max-width: 600px;
+				line-height: 1.65;
+				margin: 0;
+			}
+
+			.hc-input-wrap {
+				background: var(--hc-cream-2);
+				border-bottom: 1px solid var(--hc-border);
+				padding: 1.25rem 2rem 1.75rem;
+			}
+			.hc-input-card {
+				width: min(720px, 100%);
+				margin: 0 auto;
+				background: var(--hc-cream);
+				border: 1px solid var(--hc-border-2);
+				border-radius: 14px;
+				padding: 1.25rem;
+			}
+			.hc-input-tabs { display: flex; gap: 0.25rem; margin-bottom: 0.85rem; }
+			.hc-tab-btn {
+				background: transparent;
+				border: 1px solid var(--hc-border);
+				color: var(--hc-ink-3);
+				font-size: 0.78rem;
+				font-weight: 700;
+				padding: 0.4rem 0.85rem;
+				border-radius: 8px;
+				cursor: pointer;
+				font-family: inherit;
+			}
+			.hc-tab-btn[aria-selected="true"] {
+				background: var(--hc-ink);
+				color: var(--hc-paper);
+				border-color: var(--hc-ink);
+			}
+			.hc-tab-panel { display: none; }
+			.hc-tab-panel.active { display: block; }
+			.hc-input-row {
+				display: grid;
+				grid-template-columns: 1fr auto auto;
+				gap: 0.5rem;
+				margin-bottom: 0.9rem;
+			}
+			@media (max-width: 720px) {
+				.hc-input-row { grid-template-columns: 1fr; }
+			}
+			.hc-url-input {
+				background: var(--hc-paper);
+				border: 1.5px solid var(--hc-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 0.95rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.84rem;
+				color: var(--hc-ink);
+				outline: none;
+			}
+			.hc-html-input {
+				width: 100%;
+				background: var(--hc-paper);
+				border: 1.5px solid var(--hc-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 0.95rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.8rem;
+				color: var(--hc-ink);
+				resize: vertical;
+				min-height: 120px;
+				box-sizing: border-box;
+				margin-bottom: 0.7rem;
+			}
+			.hc-url-input:focus, .hc-html-input:focus { border-color: var(--hc-rust); outline: 2px solid color-mix(in srgb, var(--hc-rust) 35%, transparent); outline-offset: 1px; }
+			.hc-btn-run {
+				background: var(--hc-rust);
+				color: #fff;
+				border: none;
+				border-radius: 9px;
+				padding: 0.65rem 1.3rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				font-weight: 700;
+				cursor: pointer;
+				white-space: nowrap;
+			}
+			.hc-btn-run:hover { opacity: 0.92; }
+			.hc-btn-run:disabled { opacity: 0.55; cursor: default; }
+			.hc-btn-clear {
+				background: transparent;
+				border: 1.5px solid var(--hc-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 1rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				color: var(--hc-ink-3);
+				font-weight: 600;
+				cursor: pointer;
+				white-space: nowrap;
+			}
+			.hc-opts {
+				display: flex;
+				gap: 1rem;
+				align-items: center;
+				flex-wrap: wrap;
+				font-size: 0.78rem;
+				color: var(--hc-ink-3);
+			}
+			.hc-opts label { display: flex; align-items: center; gap: 0.35rem; cursor: pointer; }
+			.hc-opts input { accent-color: var(--hc-rust); }
+			.hc-opt-field { display: flex; align-items: center; gap: 0.4rem; }
+			.hc-opt-input {
+				background: var(--hc-paper);
+				border: 1.5px solid var(--hc-border-2);
+				border-radius: 7px;
+				padding: 0.25rem 0.55rem;
+				font-family: inherit;
+				font-size: 0.78rem;
+				color: var(--hc-ink);
+				width: 130px;
+			}
+			.hc-status {
+				margin-top: 0.7rem;
+				font-size: 0.85rem;
+				color: var(--hc-ink-3);
+				min-height: 1.1em;
+			}
+			.hc-status.error { color: var(--hc-red); }
+			.hc-status.loading::after {
+				content: '';
+				display: inline-block;
+				width: 0.5rem; height: 0.5rem;
+				margin-left: 0.4rem;
+				border-radius: 50%;
+				background: var(--hc-rust);
+				animation: hc-pulse 1.1s ease-in-out infinite;
+			}
+			@keyframes hc-pulse { 50% { opacity: 0.35; } }
+
+			.hc-report { display: none; }
+			.hc-report.visible { display: block; }
+
+			.hc-stat-bar {
+				background: var(--hc-white);
+				border-bottom: 1px solid var(--hc-border);
+				border-top: 1px solid var(--hc-border);
+			}
+			.hc-stat-inner {
+				width: min(1100px, calc(100% - 2rem));
+				margin: 0 auto;
+				display: grid;
+				grid-template-columns: repeat(6, 1fr) 12px repeat(3, 1fr);
+				gap: 0;
+			}
+			.hc-stat-tile {
+				padding: 1rem 0.9rem;
+				border-right: 1px solid var(--hc-border);
+			}
+			.hc-stat-tile:nth-child(6) { border-right: 0; }
+			.hc-stat-tile:last-child { border-right: 0; }
+			.hc-stat-divider { background: var(--hc-border); margin: 0.75rem 0; }
+			.hc-stat-val {
+				font-family: 'Iowan Old Style', Georgia, serif;
+				font-size: 1.55rem;
+				font-weight: 800;
+				line-height: 1;
+				letter-spacing: -0.02em;
+				margin-bottom: 0.15rem;
+			}
+			.hc-stat-lbl { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--hc-ink-3); font-weight: 700; }
+			.hc-stat-val.h1 { color: var(--hc-h1); }
+			.hc-stat-val.h2 { color: var(--hc-h2); }
+			.hc-stat-val.h3 { color: var(--hc-h3); }
+			.hc-stat-val.h4 { color: var(--hc-h4); }
+			.hc-stat-val.h5 { color: var(--hc-h5); }
+			.hc-stat-val.h6 { color: var(--hc-h6); }
+			.hc-stat-val.ok { color: var(--hc-green); }
+			.hc-stat-val.warn { color: var(--hc-amber); }
+			.hc-stat-val.bad { color: var(--hc-red); }
+			.hc-stat-val.ink { color: var(--hc-ink); }
+
+			@media (max-width: 880px) {
+				.hc-stat-inner { grid-template-columns: repeat(3, 1fr); }
+				.hc-stat-tile { border-bottom: 1px solid var(--hc-border); }
+				.hc-stat-tile:nth-child(3n) { border-right: 0; }
+				.hc-stat-divider { display: none; }
+			}
+
+			.hc-layout {
+				width: min(1100px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 1.75rem 0 4rem;
+				display: grid;
+				grid-template-columns: 230px minmax(0, 1fr);
+				gap: 1.25rem;
+				align-items: start;
+			}
+			.hc-sidebar { position: sticky; top: 5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+
+			.hc-side-card {
+				background: var(--hc-white);
+				border: 1px solid var(--hc-border);
+				border-radius: 14px;
+				overflow: hidden;
+			}
+			.hc-side-head {
+				padding: 0.7rem 1rem;
+				font-size: 0.66rem;
+				text-transform: uppercase;
+				letter-spacing: 0.13em;
+				font-weight: 700;
+				color: var(--hc-ink-4);
+				background: var(--hc-cream);
+				border-bottom: 1px solid var(--hc-border);
+			}
+			.hc-level-list { padding: 0.4rem 0; }
+			.hc-level-item {
+				display: flex; align-items: center; justify-content: space-between;
+				padding: 0.5rem 1rem;
+				border-bottom: 1px solid var(--hc-border);
+			}
+			.hc-level-item:last-child { border-bottom: 0; }
+			.hc-level-left { display: flex; align-items: center; gap: 0.6rem; }
+			.hc-level-tag {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.7rem;
+				font-weight: 600;
+				padding: 0.1rem 0.5rem;
+				border-radius: 5px;
+				border: 1px solid;
+				min-width: 28px;
+				text-align: center;
+			}
+			.hc-level-tag.h1 { color: var(--hc-h1); background: var(--hc-h1-bg); border-color: var(--hc-h1-border); }
+			.hc-level-tag.h2 { color: var(--hc-h2); background: var(--hc-h2-bg); border-color: var(--hc-h2-border); }
+			.hc-level-tag.h3 { color: var(--hc-h3); background: var(--hc-h3-bg); border-color: var(--hc-h3-border); }
+			.hc-level-tag.h4 { color: var(--hc-h4); background: var(--hc-h4-bg); border-color: var(--hc-h4-border); }
+			.hc-level-tag.h5 { color: var(--hc-h5); background: var(--hc-h5-bg); border-color: var(--hc-h5-border); }
+			.hc-level-tag.h6 { color: var(--hc-h6); background: var(--hc-h6-bg); border-color: var(--hc-h6-border); }
+			.hc-level-name { font-size: 0.78rem; color: var(--hc-ink-3); }
+			.hc-level-count { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 0.78rem; color: var(--hc-ink-2); font-weight: 600; }
+			.hc-level-count.miss { color: var(--hc-red); }
+			.hc-level-count.zero { color: var(--hc-ink-4); }
+
+			.hc-jumplink {
+				display: flex; align-items: center; justify-content: space-between;
+				padding: 0.55rem 1rem;
+				border-bottom: 1px solid var(--hc-border);
+				font-size: 0.82rem;
+				color: var(--hc-ink-3);
+				text-decoration: none;
+				cursor: pointer;
+			}
+			.hc-jumplink:last-child { border-bottom: 0; }
+			.hc-jumplink:hover { background: var(--hc-cream); color: var(--hc-ink); }
+			.hc-jumplink-left { display: flex; align-items: center; gap: 0.5rem; }
+			.hc-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+			.hc-dot.ok { background: var(--hc-green); }
+			.hc-dot.warn { background: var(--hc-amber); }
+			.hc-dot.bad { background: var(--hc-red); }
+			.hc-badge {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.68rem;
+				padding: 0.12rem 0.5rem;
+				border-radius: 8px;
+				background: var(--hc-cream-3);
+				color: var(--hc-ink-3);
+			}
+			.hc-badge.bad { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-badge.warn { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-badge.ok { background: var(--hc-green-bg); color: var(--hc-green); }
+
+			.hc-main { display: flex; flex-direction: column; gap: 0.85rem; min-width: 0; }
+
+			.hc-card {
+				background: var(--hc-white);
+				border: 1px solid var(--hc-border);
+				border-radius: 14px;
+				overflow: hidden;
+			}
+			.hc-card-head {
+				display: flex; align-items: center; justify-content: space-between;
+				padding: 0.85rem 1.25rem;
+				background: var(--hc-cream);
+				border-bottom: 1px solid var(--hc-border);
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+			.hc-card-title { font-size: 0.88rem; font-weight: 700; color: var(--hc-ink); display: flex; align-items: center; gap: 0.55rem; }
+			.hc-icon-tile {
+				width: 24px; height: 24px;
+				border-radius: 6px;
+				display: flex; align-items: center; justify-content: center;
+				font-size: 0.78rem;
+				font-weight: 700;
+				flex-shrink: 0;
+			}
+			.hc-icon-tile.rust { background: var(--hc-rust-bg); color: var(--hc-rust); }
+			.hc-icon-tile.blue { background: var(--hc-blue-bg); color: var(--hc-blue); }
+			.hc-icon-tile.green { background: var(--hc-green-bg); color: var(--hc-green); }
+			.hc-icon-tile.amber { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-icon-tile.purple { background: var(--hc-purple-bg); color: var(--hc-purple); }
+			.hc-icon-tile.red { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-card-badge {
+				font-size: 0.72rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				padding: 0.15rem 0.55rem;
+				border-radius: 8px;
+				background: var(--hc-cream-3);
+				color: var(--hc-ink-3);
+			}
+			.hc-card-badge.pass { background: var(--hc-green-bg); color: var(--hc-green); }
+			.hc-card-badge.fail { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-card-badge.warn { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-card-badge.info { background: var(--hc-blue-bg); color: var(--hc-blue); }
+
+			/* Issues strip */
+			.hc-issues-strip {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+			}
+			.hc-issue-tile {
+				padding: 1rem 1.1rem;
+				display: flex;
+				gap: 0.7rem;
+				align-items: flex-start;
+				border-bottom: 1px solid var(--hc-border);
+				border-right: 1px solid var(--hc-border);
+			}
+			.hc-issue-tile:nth-child(2n) { border-right: 0; }
+			.hc-issue-icon {
+				width: 28px; height: 28px;
+				border-radius: 7px;
+				display: flex; align-items: center; justify-content: center;
+				font-size: 0.85rem; font-weight: 700;
+				flex-shrink: 0;
+			}
+			.hc-issue-icon.fail { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-issue-icon.warn { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-issue-icon.pass { background: var(--hc-green-bg); color: var(--hc-green); }
+			.hc-issue-body strong { display: block; font-size: 0.88rem; font-weight: 700; color: var(--hc-ink); margin-bottom: 0.15rem; }
+			.hc-issue-body span { font-size: 0.78rem; color: var(--hc-ink-3); line-height: 1.5; display: block; }
+			.hc-issue-pill {
+				display: inline-block;
+				margin-top: 0.4rem;
+				padding: 0.15rem 0.55rem;
+				border-radius: 5px;
+				font-size: 0.7rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+			}
+			.hc-issue-pill.fail { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-issue-pill.warn { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-issue-pill.pass { background: var(--hc-green-bg); color: var(--hc-green); }
+
+			@media (max-width: 720px) {
+				.hc-issues-strip { grid-template-columns: 1fr; }
+				.hc-issue-tile { border-right: 0; }
+			}
+
+			/* Tree */
+			.hc-tree-wrap { padding: 1.25rem 1.25rem 1.25rem; }
+			.hc-tree-url {
+				display: flex; align-items: center; gap: 0.6rem;
+				background: var(--hc-cream);
+				border: 1px solid var(--hc-border);
+				border-radius: 9px;
+				padding: 0.55rem 0.85rem;
+				margin-bottom: 1.1rem;
+			}
+			.hc-tree-url-text {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.78rem;
+				color: var(--hc-blue);
+				flex: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.hc-site-dot {
+				width: 18px; height: 18px;
+				border-radius: 4px;
+				background: var(--hc-rust);
+				color: #fff;
+				font-size: 0.6rem;
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: 'Iowan Old Style', serif;
+				flex-shrink: 0;
+			}
+			.hc-tree-counter {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.72rem;
+				color: var(--hc-ink-4);
+				flex-shrink: 0;
+			}
+
+			.hc-missing {
+				display: flex; align-items: center; gap: 0.6rem;
+				padding: 0.65rem 0.9rem;
+				background: var(--hc-red-bg);
+				border: 1.5px dashed color-mix(in srgb, var(--hc-red) 35%, transparent);
+				border-radius: 9px;
+				margin-bottom: 0.85rem;
+			}
+			.hc-missing .miss-tag {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.78rem;
+				font-weight: 700;
+				color: var(--hc-red);
+				padding: 0.1rem 0.45rem;
+				border-radius: 4px;
+				background: color-mix(in srgb, var(--hc-red) 15%, transparent);
+			}
+			.hc-missing .miss-text { font-size: 0.85rem; color: var(--hc-red); font-style: italic; flex: 1; }
+			.hc-missing .miss-badge {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.72rem;
+				background: var(--hc-red-bg);
+				color: var(--hc-red);
+				padding: 0.15rem 0.55rem;
+				border-radius: 5px;
+				border: 1px solid color-mix(in srgb, var(--hc-red) 25%, transparent);
+				flex-shrink: 0;
+			}
+
+			.hc-tree-root { display: flex; flex-direction: column; gap: 0.2rem; }
+			.hc-tree-node {
+				display: flex;
+				align-items: stretch;
+				position: relative;
+			}
+			.hc-tree-connector {
+				width: 28px;
+				flex-shrink: 0;
+				position: relative;
+			}
+			.hc-tree-connector::before {
+				content: '';
+				position: absolute;
+				left: 13px;
+				top: -3px;
+				bottom: 50%;
+				border-left: 1.5px solid color-mix(in srgb, var(--hc-ink) 18%, transparent);
+			}
+			.hc-tree-connector::after {
+				content: '';
+				position: absolute;
+				left: 13px;
+				top: 50%;
+				width: 12px;
+				border-top: 1.5px solid color-mix(in srgb, var(--hc-ink) 18%, transparent);
+			}
+			.hc-tree-node.no-line .hc-tree-connector::before,
+			.hc-tree-node.no-line .hc-tree-connector::after { display: none; }
+			.hc-tree-node.no-line { margin-top: 0.3rem; }
+			.hc-tree-node.no-line:first-child { margin-top: 0; }
+
+			.hc-node-body {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				gap: 0.6rem;
+				padding: 0.45rem 0.7rem 0.45rem 0;
+				border-radius: 8px;
+				min-width: 0;
+			}
+			.hc-node-body:hover { background: var(--hc-cream); }
+			.hc-node-body.has-issue { background: color-mix(in srgb, var(--hc-red) 6%, transparent); }
+			.hc-node-body.has-warn { background: color-mix(in srgb, var(--hc-amber) 7%, transparent); }
+
+			.hc-hn-tag {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.7rem;
+				font-weight: 600;
+				padding: 0.1rem 0.45rem;
+				border-radius: 5px;
+				border: 1px solid;
+				flex-shrink: 0;
+				letter-spacing: 0.02em;
+			}
+			.hc-hn-tag.h1 { color: var(--hc-h1); background: var(--hc-h1-bg); border-color: var(--hc-h1-border); }
+			.hc-hn-tag.h2 { color: var(--hc-h2); background: var(--hc-h2-bg); border-color: var(--hc-h2-border); }
+			.hc-hn-tag.h3 { color: var(--hc-h3); background: var(--hc-h3-bg); border-color: var(--hc-h3-border); }
+			.hc-hn-tag.h4 { color: var(--hc-h4); background: var(--hc-h4-bg); border-color: var(--hc-h4-border); }
+			.hc-hn-tag.h5 { color: var(--hc-h5); background: var(--hc-h5-bg); border-color: var(--hc-h5-border); }
+			.hc-hn-tag.h6 { color: var(--hc-h6); background: var(--hc-h6-bg); border-color: var(--hc-h6-border); }
+			.hc-hn-text {
+				font-size: 0.84rem;
+				color: var(--hc-ink-2);
+				line-height: 1.4;
+				flex: 1;
+				min-width: 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.hc-hn-text.h1-text { font-weight: 700; font-size: 0.9rem; color: var(--hc-ink); }
+			.hc-hn-flag {
+				flex-shrink: 0;
+				font-size: 0.7rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				padding: 0.08rem 0.45rem;
+				border-radius: 4px;
+				white-space: nowrap;
+			}
+			.hc-hn-flag.skip { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-hn-flag.long { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-hn-flag.empty { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-hn-flag.dup { background: var(--hc-purple-bg); color: var(--hc-purple); }
+			.hc-hn-flag.kw { background: var(--hc-green-bg); color: var(--hc-green); }
+			.hc-hn-flag.nokw { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-hn-chars {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.7rem;
+				color: var(--hc-ink-4);
+				flex-shrink: 0;
+			}
+			.hc-tree-more {
+				margin-top: 0.6rem;
+				padding: 0.7rem 0.85rem;
+				background: var(--hc-cream);
+				border-radius: 8px;
+				font-size: 0.78rem;
+				color: var(--hc-ink-3);
+				text-align: center;
+			}
+
+			/* Table */
+			.hc-table { width: 100%; border-collapse: collapse; }
+			.hc-table th {
+				text-align: left;
+				padding: 0.65rem 1.25rem;
+				font-size: 0.66rem;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				font-weight: 700;
+				color: var(--hc-ink-4);
+				background: var(--hc-cream);
+				border-bottom: 1px solid var(--hc-border);
+			}
+			.hc-table td {
+				padding: 0.7rem 1.25rem;
+				border-bottom: 1px solid var(--hc-border);
+				font-size: 0.84rem;
+				vertical-align: middle;
+			}
+			.hc-table tr:last-child td { border-bottom: 0; }
+			.hc-table tr:hover td { background: var(--hc-cream); }
+			.hc-table tr.row-issue td { background: color-mix(in srgb, var(--hc-red) 4%, transparent); }
+			.hc-table tr.row-warn td { background: color-mix(in srgb, var(--hc-amber) 5%, transparent); }
+			.hc-seq { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 0.78rem; color: var(--hc-ink-4); text-align: center; width: 36px; }
+			.hc-tbl-text { color: var(--hc-ink-2); line-height: 1.4; max-width: 380px; word-break: break-word; }
+			.hc-tbl-text strong { color: var(--hc-ink); }
+			.hc-tbl-chars { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 0.78rem; color: var(--hc-ink-4); text-align: right; white-space: nowrap; width: 64px; }
+			.hc-pill {
+				display: inline-flex; align-items: center;
+				padding: 0.15rem 0.55rem;
+				border-radius: 5px;
+				font-size: 0.7rem; font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				white-space: nowrap;
+			}
+			.hc-pill.pass { background: var(--hc-green-bg); color: var(--hc-green); }
+			.hc-pill.fail { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-pill.warn { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-pill.dup { background: var(--hc-purple-bg); color: var(--hc-purple); }
+			.hc-pill.skip { background: var(--hc-red-bg); color: var(--hc-red); }
+			.hc-pill.long { background: var(--hc-amber-bg); color: var(--hc-amber); }
+			.hc-pill.empty { background: var(--hc-red-bg); color: var(--hc-red); }
+
+			/* Heatmap */
+			.hc-heat-wrap { padding: 1rem 1.25rem 1.25rem; }
+			.hc-heat-intro { font-size: 0.85rem; color: var(--hc-ink-3); margin-bottom: 0.9rem; line-height: 1.55; }
+			.hc-heat-grid {
+				display: grid;
+				grid-template-columns: 130px repeat(6, 1fr);
+				border: 1px solid var(--hc-border);
+				border-radius: 10px;
+				overflow: hidden;
+			}
+			.hc-heat-head {
+				padding: 0.5rem 0.65rem;
+				background: var(--hc-cream);
+				border-bottom: 1px solid var(--hc-border);
+				border-right: 1px solid var(--hc-border);
+				font-size: 0.62rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--hc-ink-4);
+				font-weight: 700;
+				text-align: center;
+			}
+			.hc-heat-head.first { text-align: left; }
+			.hc-heat-head:nth-child(7) { border-right: 0; }
+			.hc-heat-row-label {
+				padding: 0.6rem 0.7rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.78rem;
+				color: var(--hc-rust);
+				border-right: 1px solid var(--hc-border);
+				border-bottom: 1px solid var(--hc-border);
+				background: var(--hc-cream);
+				font-weight: 500;
+			}
+			.hc-heat-cell {
+				padding: 0.5rem 0.4rem;
+				border-right: 1px solid var(--hc-border);
+				border-bottom: 1px solid var(--hc-border);
+				text-align: center;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.78rem;
+			}
+			.hc-heat-cell:nth-child(7n+1) { border-right: 0; }
+			.hc-heat-cell.hc-0 { color: var(--hc-ink-4); }
+			.hc-heat-cell.hc-1 { color: var(--hc-green); background: color-mix(in srgb, var(--hc-green) 12%, transparent); }
+			.hc-heat-cell.hc-2 { color: var(--hc-green); background: color-mix(in srgb, var(--hc-green) 22%, transparent); font-weight: 700; }
+			.hc-heat-cell.hc-3 { color: var(--hc-green); background: color-mix(in srgb, var(--hc-green) 34%, transparent); font-weight: 700; }
+			.hc-heat-cell.hc-4 { color: #fff; background: color-mix(in srgb, var(--hc-green) 60%, transparent); font-weight: 700; }
+			.hc-heat-note {
+				font-size: 0.72rem;
+				color: var(--hc-ink-4);
+				margin-top: 0.7rem;
+			}
+
+			/* Charts */
+			.hc-charts-grid { display: grid; grid-template-columns: 1fr 1fr; }
+			.hc-chart-panel { padding: 1.2rem 1.25rem; }
+			.hc-chart-panel + .hc-chart-panel { border-left: 1px solid var(--hc-border); }
+			.hc-chart-panel h4 {
+				font-size: 0.7rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--hc-ink-3);
+				margin: 0 0 1rem;
+			}
+			.hc-bar-list { display: flex; flex-direction: column; gap: 0.55rem; }
+			.hc-bar-row {
+				display: grid;
+				grid-template-columns: 44px 1fr 44px;
+				gap: 0.55rem;
+				align-items: center;
+				font-size: 0.78rem;
+			}
+			.hc-bar-row .label { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; color: var(--hc-ink-2); }
+			.hc-bar-row .track { height: 12px; background: var(--hc-cream-3); border-radius: 4px; overflow: hidden; }
+			.hc-bar-row .fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+			.hc-bar-row .fill.h1 { background: var(--hc-h1); }
+			.hc-bar-row .fill.h2 { background: var(--hc-h2); }
+			.hc-bar-row .fill.h3 { background: var(--hc-h3); }
+			.hc-bar-row .fill.h4 { background: var(--hc-h4); }
+			.hc-bar-row .fill.h5 { background: var(--hc-h5); }
+			.hc-bar-row .fill.h6 { background: var(--hc-h6); }
+			.hc-bar-row .fill.ok { background: var(--hc-green); }
+			.hc-bar-row .fill.warn { background: var(--hc-amber); }
+			.hc-bar-row .fill.over { background: var(--hc-red); }
+			.hc-bar-row .count { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; color: var(--hc-ink-2); text-align: right; }
+			.hc-chart-legend { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 0.85rem; font-size: 0.72rem; color: var(--hc-ink-3); }
+			.hc-chart-legend span { display: flex; align-items: center; gap: 0.3rem; }
+			.hc-chart-legend .sw { width: 10px; height: 10px; border-radius: 2px; }
+
+			/* Recommendations */
+			.hc-reco {
+				background: var(--hc-dark-card);
+				border-radius: 14px;
+				padding: 1.4rem 1.5rem;
+				color: #fff;
+			}
+			[data-theme="dark"] .hc-reco { background: rgba(var(--paper-strong), 0.2); color: var(--hc-ink); }
+			.hc-reco h3 {
+				font-family: 'Iowan Old Style', serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				margin: 0 0 0.2rem;
+			}
+			[data-theme="dark"] .hc-reco h3 { color: var(--hc-ink); }
+			.hc-reco-sub { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 1.1rem; }
+			[data-theme="dark"] .hc-reco-sub { color: var(--hc-ink-3); }
+			.hc-reco-item {
+				display: flex; gap: 0.85rem;
+				padding: 0.85rem 0;
+				border-bottom: 1px solid rgba(255,255,255,0.08);
+				align-items: flex-start;
+			}
+			[data-theme="dark"] .hc-reco-item { border-bottom-color: var(--hc-border); }
+			.hc-reco-item:last-child { border-bottom: 0; padding-bottom: 0; }
+			.hc-reco-num {
+				font-family: 'Iowan Old Style', serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: rgba(255,255,255,0.18);
+				min-width: 1.5rem;
+				line-height: 1.2;
+			}
+			[data-theme="dark"] .hc-reco-num { color: var(--hc-ink-4); }
+			.hc-reco-body { flex: 1; min-width: 0; }
+			.hc-reco-body strong { display: block; font-size: 0.92rem; color: #fff; margin-bottom: 0.15rem; }
+			[data-theme="dark"] .hc-reco-body strong { color: var(--hc-ink); }
+			.hc-reco-body span { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+			[data-theme="dark"] .hc-reco-body span { color: var(--hc-ink-3); }
+			.hc-reco-body code {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.78rem;
+				background: rgba(255,255,255,0.08);
+				padding: 0.05rem 0.4rem;
+				border-radius: 4px;
+				color: rgba(255,255,255,0.85);
+			}
+			[data-theme="dark"] .hc-reco-body code { background: var(--hc-cream-3); color: var(--hc-ink); }
+			.hc-reco-sev {
+				padding: 0.18rem 0.55rem;
+				border-radius: 6px;
+				font-size: 0.7rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				flex-shrink: 0;
+				white-space: nowrap;
+			}
+			.hc-reco-sev.fail { background: rgba(248,113,113,0.22); color: #ff8585; }
+			.hc-reco-sev.warn { background: rgba(251,191,36,0.22); color: #f5c651; }
+			.hc-reco-sev.info { background: rgba(147,197,253,0.22); color: #9dc7f5; }
+
+			@media (max-width: 880px) {
+				.hc-layout { grid-template-columns: 1fr; padding: 1.25rem 0 3rem; }
+				.hc-sidebar { position: static; }
+				.hc-charts-grid { grid-template-columns: 1fr; }
+				.hc-chart-panel + .hc-chart-panel { border-left: 0; border-top: 1px solid var(--hc-border); }
+				.hc-heat-grid { grid-template-columns: 110px repeat(6, 1fr); }
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main class="tool-page">
-			<a href="/tools" class="back-link">&larr; All Tools</a>
-			<div class="tool-header">
-				<p class="section-kicker">On-Page SEO</p>
-				<h1>Heading Structure Checker</h1>
-				<p>Paste your page's HTML to validate the H1-H6 heading hierarchy, check for duplicates, and ensure proper nesting.</p>
+		<main id="main-content" class="hc-page">
+			<div class="hc-header">
+				<div class="hc-header-inner">
+					<div class="hc-breadcrumb">Tools · On-Page SEO</div>
+					<h1>Heading Structure Checker</h1>
+					<p>Visualize the complete heading hierarchy of any page. Detect missing H1s, skipped levels, duplicate headings, empty tags, and over-long text — with a live outline tree and keyword presence heatmap.</p>
+				</div>
 			</div>
-			<div class="tool-input">
-				<label for="html-input">Paste HTML Source Code</label>
-				<textarea id="html-input" placeholder="Right-click your page → View Page Source → Copy All → Paste here"></textarea>
+
+			<div class="hc-input-wrap">
+				<div class="hc-input-card">
+					<div class="hc-input-tabs" role="tablist" aria-label="Input mode">
+						<button class="hc-tab-btn" role="tab" aria-selected="true" data-tab="url" type="button">URL</button>
+						<button class="hc-tab-btn" role="tab" aria-selected="false" data-tab="html" type="button">Paste HTML</button>
+					</div>
+					<div class="hc-tab-panel active" id="tab-url" role="tabpanel">
+						<div class="hc-input-row">
+							<input id="url-input" class="hc-url-input" type="url" placeholder="https://example.com/page" autocomplete="url" />
+							<button class="hc-btn-run" id="analyze-btn" type="button">Check headings</button>
+							<button class="hc-btn-clear" id="clear-btn" type="button">Clear</button>
+						</div>
+					</div>
+					<div class="hc-tab-panel" id="tab-html" role="tabpanel">
+						<textarea id="html-input" class="hc-html-input" placeholder="Paste the page's HTML source"></textarea>
+						<div class="hc-input-row">
+							<div></div>
+							<button class="hc-btn-run" id="analyze-btn-2" type="button">Check headings</button>
+							<button class="hc-btn-clear" id="clear-btn-2" type="button">Clear</button>
+						</div>
+					</div>
+					<div class="hc-opts">
+						<div class="hc-opt-field">
+							<span>Focus keyword</span>
+							<input id="keyword-input" class="hc-opt-input" type="text" placeholder="optional" />
+						</div>
+						<label><input type="checkbox" id="opt-flag-kw" checked /> Flag keyword gaps</label>
+						<label><input type="checkbox" id="opt-chars" checked /> Show character count</label>
+					</div>
+					<div class="hc-status" id="tool-status" role="status" aria-live="polite"></div>
+				</div>
 			</div>
-			<div class="tool-actions">
-				<button class="btn-primary" id="analyze-btn">Check Headings</button>
-				<button class="btn-secondary" id="clear-btn">Clear</button>
-			</div>
-			<div class="results" id="results"></div>
+
+			<section class="hc-report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
-			const analyzeBtn = document.getElementById('analyze-btn')!;
-			const clearBtn = document.getElementById('clear-btn')!;
-			const input = document.getElementById('html-input') as HTMLTextAreaElement;
-			const results = document.getElementById('results')!;
+			type Node = {
+				tag: string;
+				level: number;
+				text: string;
+				chars: number;
+				index: number;
+				flags: string[];
+				rowClass: '' | 'row-issue' | 'row-warn';
+			};
 
-			function analyze(html: string) {
+			const tabBtns = document.querySelectorAll<HTMLButtonElement>('.hc-tab-btn');
+			const tabPanels = document.querySelectorAll<HTMLElement>('.hc-tab-panel');
+			const urlInput = document.getElementById('url-input') as HTMLInputElement;
+			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
+			const keywordInput = document.getElementById('keyword-input') as HTMLInputElement;
+			const statusEl = document.getElementById('tool-status')!;
+			const reportEl = document.getElementById('report')!;
+			const optFlagKw = document.getElementById('opt-flag-kw') as HTMLInputElement;
+			const optChars = document.getElementById('opt-chars') as HTMLInputElement;
+			let activeTab: 'url' | 'html' = 'url';
+
+			tabBtns.forEach((b) => b.addEventListener('click', () => {
+				tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+				tabPanels.forEach((p) => p.classList.toggle('active', p.id === `tab-${b.dataset.tab}`));
+				activeTab = b.dataset.tab as 'url' | 'html';
+				setStatus('');
+			}));
+
+			const analyzeBtns = [document.getElementById('analyze-btn'), document.getElementById('analyze-btn-2')].filter(Boolean) as HTMLButtonElement[];
+			const clearBtns = [document.getElementById('clear-btn'), document.getElementById('clear-btn-2')].filter(Boolean) as HTMLButtonElement[];
+
+			function setStatus(t: string, error = false, loading = false) {
+				statusEl.textContent = t;
+				statusEl.classList.toggle('error', error);
+				statusEl.classList.toggle('loading', loading);
+			}
+			const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+			async function fetchPage(url: string) {
+				const res = await fetch(`/api/fetch-page?url=${encodeURIComponent(url)}`);
+				if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `Fetch failed (${res.status})`); }
+				return res.json();
+			}
+
+			const STOP_WORDS = new Set('the a an is are was were be been being have has had do does did will would shall should may might must can could to of in for on with at by from as into through during before after above below between and but or nor not so yet both either neither each every all any few more most other some such no only own same than too very just because if when while that this these those it its i me my we our you your he him his she her they them their what which who whom how where why also about up out then there here new one two like well back even us much get go make many way use over take'.split(' '));
+
+			function analyze(html: string, focusKw: string) {
 				const doc = new DOMParser().parseFromString(html, 'text/html');
 				const headings = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'));
-
 				const counts: Record<string, number> = { H1: 0, H2: 0, H3: 0, H4: 0, H5: 0, H6: 0 };
-				const tree: { tag: string; text: string; level: number; error?: string }[] = [];
-				const issues: { label: string; status: 'pass' | 'warn' | 'fail'; detail: string }[] = [];
-
+				const nodes: Node[] = [];
+				const textsLower: string[] = [];
 				let prevLevel = 0;
-				let skippedLevels = false;
+				let skipCount = 0;
 
-				headings.forEach((h) => {
+				headings.forEach((h, i) => {
 					const tag = h.tagName;
 					const level = parseInt(tag[1]);
-					const text = h.textContent?.trim().slice(0, 80) || '(empty)';
+					const raw = (h.textContent || '').trim();
+					const chars = raw.length;
 					counts[tag]++;
-
-					let error: string | undefined;
+					textsLower.push(raw.toLowerCase());
+					const flags: string[] = [];
+					let rowClass: Node['rowClass'] = '';
 					if (prevLevel > 0 && level > prevLevel + 1) {
-						error = `Skipped from H${prevLevel} to H${level}`;
-						skippedLevels = true;
+						flags.push('skip');
+						skipCount++;
+						rowClass = 'row-issue';
 					}
-					tree.push({ tag, text: text + ((h.textContent?.trim().length || 0) > 80 ? '...' : ''), level, error });
+					if (chars === 0) { flags.push('empty'); rowClass = 'row-issue'; }
+					if (chars > 70) { flags.push('long'); if (!rowClass) rowClass = 'row-warn'; }
+					if (focusKw && raw.toLowerCase().includes(focusKw.toLowerCase())) flags.push('kw');
+					else if (focusKw && level <= 2 && optFlagKw.checked) {
+						flags.push('nokw');
+						if (!rowClass) rowClass = 'row-warn';
+					}
+					nodes.push({ tag, level, text: raw || '(empty heading)', chars, index: i, flags, rowClass });
 					prevLevel = level;
 				});
 
-				// Checks
-				if (counts.H1 === 0) {
-					issues.push({ label: 'H1 heading', status: 'fail', detail: 'No H1 found. Every page needs exactly one H1.' });
-				} else if (counts.H1 === 1) {
-					issues.push({ label: 'H1 heading', status: 'pass', detail: 'Exactly one H1 found.' });
-				} else {
-					issues.push({ label: 'H1 heading', status: 'warn', detail: `Found ${counts.H1} H1 tags. Best practice is exactly one.` });
-				}
-
-				if (counts.H2 === 0 && headings.length > 1) {
-					issues.push({ label: 'H2 headings', status: 'warn', detail: 'No H2 headings. Use H2s to divide content into sections.' });
-				} else if (counts.H2 > 0) {
-					issues.push({ label: 'H2 headings', status: 'pass', detail: `${counts.H2} H2 headings found.` });
-				}
-
-				if (skippedLevels) {
-					issues.push({ label: 'Heading hierarchy', status: 'fail', detail: 'Heading levels are skipped. Use sequential levels (H1→H2→H3).' });
-				} else if (headings.length > 0) {
-					issues.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a logical sequential order.' });
-				}
-
-				// Duplicate headings
-				const texts = headings.map(h => h.textContent?.trim().toLowerCase() || '');
-				const dupes = texts.filter((t, i) => t && texts.indexOf(t) !== i);
-				const uniqueDupes = [...new Set(dupes)];
-				if (uniqueDupes.length > 0) {
-					issues.push({ label: 'Duplicate headings', status: 'warn', detail: `${uniqueDupes.length} duplicate heading text(s) found.` });
-				} else if (headings.length > 0) {
-					issues.push({ label: 'Duplicate headings', status: 'pass', detail: 'No duplicate heading text found.' });
-				}
-
-				// Empty headings
-				const empty = headings.filter(h => !h.textContent?.trim());
-				if (empty.length > 0) {
-					issues.push({ label: 'Empty headings', status: 'fail', detail: `${empty.length} heading(s) have no text content.` });
-				}
-
-				// Long headings
-				const longH = headings.filter(h => (h.textContent?.trim().length || 0) > 70);
-				if (longH.length > 0) {
-					issues.push({ label: 'Heading length', status: 'warn', detail: `${longH.length} heading(s) exceed 70 characters. Shorter headings are more scannable.` });
-				} else if (headings.length > 0) {
-					issues.push({ label: 'Heading length', status: 'pass', detail: 'All headings are 70 characters or fewer.' });
-				}
-
-				return { counts, tree, issues, total: headings.length };
-			}
-
-			function render(data: ReturnType<typeof analyze>) {
-				const iconMap: Record<string, string> = { pass: '\u2713', warn: '!', fail: '\u2717' };
-
-				let html = `<div class="stat-grid">
-					<div class="stat-card"><div class="stat-num">${data.total}</div><div class="stat-label">Total Headings</div></div>
-					<div class="stat-card"><div class="stat-num">${data.counts.H1}</div><div class="stat-label">H1 Tags</div></div>
-					<div class="stat-card"><div class="stat-num">${data.counts.H2}</div><div class="stat-label">H2 Tags</div></div>
-					<div class="stat-card"><div class="stat-num">${data.counts.H3 + data.counts.H4 + data.counts.H5 + data.counts.H6}</div><div class="stat-label">H3-H6 Tags</div></div>
-				</div>`;
-
-				html += `<div class="check-group"><h3>Validation Results</h3>`;
-				for (const item of data.issues) {
-					html += `<div class="check-item"><span class="check-icon ${item.status}">${iconMap[item.status]}</span><div><strong>${item.label}</strong><br><span class="check-detail">${item.detail}</span></div></div>`;
-				}
-				html += `</div>`;
-
-				if (data.tree.length > 0) {
-					html += `<div class="check-group"><h3>Heading Tree</h3><ul class="heading-tree">`;
-					for (const h of data.tree) {
-						const indent = (h.level - 1) * 1.2;
-						html += `<li style="padding-left:${indent}rem"><span class="h-tag">${h.tag}</span><span class="h-text">${h.text}</span>${h.error ? `<span class="h-error">${h.error}</span>` : ''}</li>`;
+				const dupeMap = new Map<string, number>();
+				textsLower.filter(Boolean).forEach((t) => dupeMap.set(t, (dupeMap.get(t) || 0) + 1));
+				const dupes = [...dupeMap.entries()].filter(([, c]) => c > 1).map(([t]) => t);
+				nodes.forEach((n) => {
+					if (n.text && dupes.includes(n.text.toLowerCase())) {
+						n.flags.push('dup');
+						if (!n.rowClass) n.rowClass = 'row-warn';
 					}
-					html += `</ul></div>`;
-				}
+				});
 
-				results.innerHTML = html;
-				results.classList.add('visible');
+				const total = headings.length;
+				const empty = nodes.filter((n) => n.flags.includes('empty')).length;
+				const longH = nodes.filter((n) => n.flags.includes('long')).length;
+				const noKw = nodes.filter((n) => n.flags.includes('nokw')).length;
+				const errors = (counts.H1 === 0 ? 1 : 0) + (counts.H1 > 1 ? 1 : 0) + (skipCount > 0 ? 1 : 0) + (empty > 0 ? 1 : 0);
+				const warnings = (longH > 0 ? 1 : 0) + (dupes.length > 0 ? 1 : 0) + (noKw > 0 ? 1 : 0);
+
+				const lengthBuckets = { b1: 0, b2: 0, b3: 0, b4: 0 };
+				nodes.forEach((n) => {
+					if (n.chars <= 40) lengthBuckets.b1++;
+					else if (n.chars <= 60) lengthBuckets.b2++;
+					else if (n.chars <= 70) lengthBuckets.b3++;
+					else lengthBuckets.b4++;
+				});
+
+				// Heatmap: top keywords across heading text
+				const wordCounts = new Map<string, number>();
+				nodes.forEach((n) => {
+					n.text.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean).forEach((w) => {
+						if (w.length < 4 || STOP_WORDS.has(w)) return;
+						wordCounts.set(w, (wordCounts.get(w) || 0) + 1);
+					});
+				});
+				const topKeywords = [...wordCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 7).map(([t]) => t);
+				if (focusKw && !topKeywords.includes(focusKw.toLowerCase())) topKeywords.unshift(focusKw.toLowerCase());
+				const heatmap = topKeywords.slice(0, 7).map((kw) => {
+					const row = { kw, levels: [0, 0, 0, 0, 0, 0] };
+					nodes.forEach((n) => {
+						if (n.text.toLowerCase().includes(kw)) row.levels[n.level - 1]++;
+					});
+					return row;
+				}).filter((r) => r.levels.reduce((a, b) => a + b, 0) > 0);
+
+				// Recommendations
+				const recos: { title: string; detail: string; sev: 'fail' | 'warn' | 'info' }[] = [];
+				if (counts.H1 === 0) recos.push({ title: 'Add exactly one H1 tag', detail: `Add an <code>&lt;h1&gt;</code> near the top of the page content${focusKw ? ` containing "${focusKw}"` : ''}. Every page must have one and only one H1.`, sev: 'fail' });
+				if (counts.H1 > 1) recos.push({ title: `Reduce to one H1 (${counts.H1} found)`, detail: 'Multiple H1s confuse crawlers about page hierarchy. Demote extras to H2 and keep a single H1.', sev: 'fail' });
+				if (skipCount > 0) recos.push({ title: `Fix ${skipCount} skipped heading level${skipCount === 1 ? '' : 's'}`, detail: 'Headings jump levels (e.g. H2 → H4 without an H3). Insert the missing level between them — screen readers and crawlers expect sequential order.', sev: 'fail' });
+				if (empty > 0) recos.push({ title: `Fill in ${empty} empty heading${empty === 1 ? '' : 's'}`, detail: 'Empty headings break accessibility and signal templating bugs. Add descriptive text or remove the tag.', sev: 'fail' });
+				if (longH > 0) recos.push({ title: `Shorten ${longH} over-long heading${longH === 1 ? '' : 's'}`, detail: 'Headings over 70 characters wrap awkwardly on mobile and dilute keyword focus. Aim for 6–10 words.', sev: 'warn' });
+				if (dupes.length > 0) recos.push({ title: `Resolve ${dupes.length} duplicate heading${dupes.length === 1 ? '' : 's'}`, detail: 'Duplicate heading text creates ambiguous anchor links and confuses navigation. Make each heading unique.', sev: 'warn' });
+				if (focusKw && noKw > 0 && optFlagKw.checked) recos.push({ title: `Add "${focusKw}" to ${noKw} bare H1/H2 heading${noKw === 1 ? '' : 's'}`, detail: 'H1 and H2 are the strongest relevance signals. Work the focus keyword in naturally.', sev: 'warn' });
+				if (counts.H2 === 0 && total > 1) recos.push({ title: 'Add H2 sub-headings', detail: 'No H2 headings detected. Break content into scannable sections with H2s — they are the most-crawled sub-structure.', sev: 'warn' });
+				if (recos.length === 0) recos.push({ title: 'Heading structure looks healthy', detail: 'Hierarchy is sequential, H1 is present and unique, no empty or over-long headings. Continue using H2s and H3s to break content into scannable sections.', sev: 'info' });
+
+				return { counts, nodes, total, errors, warnings, dupes, skipCount, empty, longH, noKw, lengthBuckets, heatmap, recos };
 			}
 
-			analyzeBtn.addEventListener('click', () => {
-				const html = input.value.trim();
-				if (!html) { alert('Please paste HTML source code first.'); return; }
-				render(analyze(html));
-				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-			});
-			clearBtn.addEventListener('click', () => { input.value = ''; results.innerHTML = ''; results.classList.remove('visible'); });
+			function ringHidden() { /* unused, just keeping structure */ }
+
+			function buildIssues(data: ReturnType<typeof analyze>, focusKw: string) {
+				const items: { icon: 'fail' | 'warn' | 'pass'; title: string; detail: string; pill: string; pillClass: 'fail' | 'warn' | 'pass' }[] = [];
+				if (data.counts.H1 === 0) items.push({ icon: 'fail', title: 'H1 tag is missing', detail: 'No H1 found on this page. Every page must have exactly one H1 containing the primary keyword. This is the most critical heading SEO issue.', pill: 'Critical · 0 found', pillClass: 'fail' });
+				else if (data.counts.H1 > 1) items.push({ icon: 'fail', title: `Multiple H1 tags (${data.counts.H1})`, detail: 'More than one H1 dilutes the page topic signal. Use exactly one H1 per page and demote others to H2.', pill: `${data.counts.H1} H1s`, pillClass: 'fail' });
+				else items.push({ icon: 'pass', title: 'Single H1 tag present', detail: 'Page has exactly one H1, the recommended structure for SEO and accessibility.', pill: '1 H1', pillClass: 'pass' });
+
+				if (data.skipCount > 0) items.push({ icon: 'fail', title: `Heading levels skipped (${data.skipCount}×)`, detail: `${data.skipCount} location${data.skipCount === 1 ? '' : 's'} jump${data.skipCount === 1 ? 's' : ''} a level. Screen readers and crawlers expect sequential H1→H2→H3 ordering.`, pill: `${data.skipCount} instance${data.skipCount === 1 ? '' : 's'}`, pillClass: 'fail' });
+				else items.push({ icon: 'pass', title: 'Sequential hierarchy', detail: 'All headings follow a logical order without skipping levels — good for accessibility and crawlers.', pill: 'No skips', pillClass: 'pass' });
+
+				if (data.longH > 0) items.push({ icon: 'warn', title: `Headings over 70 characters (${data.longH})`, detail: 'Long headings can dilute keyword focus and are harder for users to scan. Aim for 6–10 words per heading.', pill: `${data.longH} heading${data.longH === 1 ? '' : 's'}`, pillClass: 'warn' });
+
+				if (focusKw && data.noKw > 0) items.push({ icon: 'warn', title: `Focus keyword absent from ${data.noKw} H1/H2`, detail: `"${focusKw}" is missing from ${data.noKw} top-level heading${data.noKw === 1 ? '' : 's'}. H2s are the most-crawled sub-structure after H1.`, pill: `${data.noKw} bare`, pillClass: 'warn' });
+
+				if (data.dupes.length > 0) items.push({ icon: 'warn', title: `Duplicate headings (${data.dupes.length})`, detail: 'Multiple headings share identical text, creating ambiguous anchors and structure signals.', pill: `${data.dupes.length} dupe${data.dupes.length === 1 ? '' : 's'}`, pillClass: 'warn' });
+				else items.push({ icon: 'pass', title: 'No duplicate headings', detail: 'All headings have unique text. Duplicates confuse crawlers about page structure.', pill: 'All unique', pillClass: 'pass' });
+
+				if (data.empty > 0) items.push({ icon: 'fail', title: `Empty headings (${data.empty})`, detail: 'Headings with no text content break accessibility and indicate templating bugs.', pill: `${data.empty} empty`, pillClass: 'fail' });
+
+				return items;
+			}
+
+			function render(data: ReturnType<typeof analyze>, source: string) {
+				const focusKw = keywordInput.value.trim();
+				const showChars = optChars.checked;
+
+				let domain = '';
+				try { domain = new URL(source).hostname; } catch { domain = source; }
+				const siteLetter = (domain.replace(/^https?:\/\//, '').match(/^([a-z0-9])/i)?.[1] || 'W').toUpperCase();
+
+				const issuesItems = buildIssues(data, focusKw);
+				const issueErr = issuesItems.filter((i) => i.icon === 'fail').length;
+				const issueWarn = issuesItems.filter((i) => i.icon === 'warn').length;
+
+				const levelMeta = [
+					{ tag: 'h1', label: 'Page title', count: data.counts.H1 },
+					{ tag: 'h2', label: 'Sections', count: data.counts.H2 },
+					{ tag: 'h3', label: 'Sub-sections', count: data.counts.H3 },
+					{ tag: 'h4', label: 'Sub-topics', count: data.counts.H4 },
+					{ tag: 'h5', label: 'Detail', count: data.counts.H5 },
+					{ tag: 'h6', label: 'Fine detail', count: data.counts.H6 },
+				];
+
+				const summaryIssues = [
+					data.counts.H1 === 0 ? { dot: 'bad', label: 'Missing H1', badge: 'Critical', badgeClass: 'bad' } : data.counts.H1 > 1 ? { dot: 'bad', label: 'Multiple H1s', badge: 'Critical', badgeClass: 'bad' } : { dot: 'ok', label: 'H1 tag present', badge: 'Pass', badgeClass: 'ok' },
+					data.skipCount > 0 ? { dot: 'bad', label: 'Skipped levels', badge: `${data.skipCount} found`, badgeClass: 'bad' } : { dot: 'ok', label: 'Sequential order', badge: 'Pass', badgeClass: 'ok' },
+					data.longH > 0 ? { dot: 'warn', label: 'Over-long headings', badge: `${data.longH} found`, badgeClass: 'warn' } : { dot: 'ok', label: 'Heading lengths OK', badge: 'Pass', badgeClass: 'ok' },
+					data.dupes.length > 0 ? { dot: 'warn', label: 'Duplicate text', badge: `${data.dupes.length} found`, badgeClass: 'warn' } : { dot: 'ok', label: 'No duplicates', badge: 'Pass', badgeClass: 'ok' },
+				];
+
+				// Tree (limit to first 25 with their descendants)
+				const treeLimit = Math.min(data.nodes.length, 25);
+				const treeNodes = data.nodes.slice(0, treeLimit);
+
+				// Build tree HTML — top-level nodes have no connector
+				let treeHtml = '';
+				const minLevelInTree = Math.min(...treeNodes.map((n) => n.level));
+				treeNodes.forEach((n) => {
+					const isTop = n.level === minLevelInTree;
+					const indent = (n.level - minLevelInTree) * 20;
+					const flagHtml = n.flags.includes('skip') ? `<span class="hc-hn-flag skip">⚠ skipped</span>` :
+						n.flags.includes('empty') ? `<span class="hc-hn-flag empty">empty</span>` :
+						n.flags.includes('long') ? `<span class="hc-hn-flag long">⚠ ${n.chars} chars</span>` :
+						n.flags.includes('dup') ? `<span class="hc-hn-flag dup">dup</span>` :
+						n.flags.includes('kw') ? `<span class="hc-hn-flag kw">🔑 keyword</span>` :
+						n.flags.includes('nokw') ? `<span class="hc-hn-flag nokw">⚠ no keyword</span>` :
+						'';
+					const bodyClass = n.flags.some((f) => f === 'skip' || f === 'empty') ? 'has-issue' : n.flags.some((f) => f === 'long' || f === 'nokw' || f === 'dup') ? 'has-warn' : '';
+					treeHtml += `
+						<div class="hc-tree-node ${isTop ? 'no-line' : ''}" style="padding-left:${indent}px">
+							${isTop ? '' : '<div class="hc-tree-connector"></div>'}
+							<div class="hc-node-body ${bodyClass}">
+								<span class="hc-hn-tag ${n.tag.toLowerCase()}">${n.tag}</span>
+								<span class="hc-hn-text ${n.tag === 'H1' ? 'h1-text' : ''}">${esc(n.text)}</span>
+								${flagHtml}
+								${showChars ? `<span class="hc-hn-chars">${n.chars}ch</span>` : ''}
+							</div>
+						</div>
+					`;
+				});
+
+				// Full table
+				const tableHtml = `
+					<div class="hc-table-scroll">
+					<table class="hc-table">
+						<thead><tr>
+							<th class="hc-seq">#</th>
+							<th style="width:50px">Level</th>
+							<th>Heading text</th>
+							<th class="hc-tbl-chars">Chars</th>
+							<th style="width:120px">Status</th>
+						</tr></thead>
+						<tbody>
+							${data.counts.H1 === 0 ? `<tr class="row-issue">
+								<td class="hc-seq">—</td>
+								<td><span class="hc-level-tag h1">H1</span></td>
+								<td class="hc-tbl-text" style="color:var(--hc-red);font-style:italic">No H1 tag found</td>
+								<td class="hc-tbl-chars" style="color:var(--hc-red)">—</td>
+								<td><span class="hc-pill fail">✕ Missing</span></td>
+							</tr>` : ''}
+							${data.nodes.map((n, i) => {
+								const pill = n.flags.includes('skip') ? `<span class="hc-pill skip">⚠ H${n.level - 1} skipped</span>` :
+									n.flags.includes('empty') ? `<span class="hc-pill empty">✕ Empty</span>` :
+									n.flags.includes('long') ? `<span class="hc-pill long">⚠ Too long</span>` :
+									n.flags.includes('dup') ? `<span class="hc-pill dup">⚠ Duplicate</span>` :
+									n.flags.includes('nokw') ? `<span class="hc-pill warn">⚠ No keyword</span>` :
+									`<span class="hc-pill pass">✓ Good</span>`;
+								return `<tr class="${n.rowClass}">
+									<td class="hc-seq">${i + 1}</td>
+									<td><span class="hc-level-tag ${n.tag.toLowerCase()}">${n.tag}</span></td>
+									<td class="hc-tbl-text">${n.tag === 'H1' ? `<strong>${esc(n.text)}</strong>` : esc(n.text)}</td>
+									<td class="hc-tbl-chars" style="${n.chars > 70 ? 'color:var(--hc-amber);font-weight:700' : ''}">${n.chars}</td>
+									<td>${pill}</td>
+								</tr>`;
+							}).join('')}
+						</tbody>
+					</table>
+					</div>
+				`;
+
+				// Heatmap
+				const maxHeatVal = Math.max(0, ...data.heatmap.flatMap((r) => r.levels));
+				const heatClass = (v: number) => {
+					if (v === 0) return 'hc-0';
+					if (maxHeatVal === 0) return 'hc-0';
+					const ratio = v / maxHeatVal;
+					return ratio > 0.66 ? 'hc-4' : ratio > 0.4 ? 'hc-3' : ratio > 0.2 ? 'hc-2' : 'hc-1';
+				};
+
+				// Bar chart (levels)
+				const maxLevel = Math.max(1, ...Object.values(data.counts));
+				const lvlOrder = [['H1', 'h1'], ['H2', 'h2'], ['H3', 'h3'], ['H4', 'h4'], ['H5', 'h5'], ['H6', 'h6']] as const;
+				// Length distribution
+				const maxLen = Math.max(1, data.lengthBuckets.b1, data.lengthBuckets.b2, data.lengthBuckets.b3, data.lengthBuckets.b4);
+
+				let html = `
+					<div class="hc-stat-bar">
+						<div class="hc-stat-inner">
+							<div class="hc-stat-tile"><div class="hc-stat-val ${data.counts.H1 === 0 ? 'bad' : 'h1'}">${data.counts.H1}</div><div class="hc-stat-lbl">H1 tags</div></div>
+							<div class="hc-stat-tile"><div class="hc-stat-val h2">${data.counts.H2}</div><div class="hc-stat-lbl">H2 tags</div></div>
+							<div class="hc-stat-tile"><div class="hc-stat-val h3">${data.counts.H3}</div><div class="hc-stat-lbl">H3 tags</div></div>
+							<div class="hc-stat-tile"><div class="hc-stat-val h4">${data.counts.H4}</div><div class="hc-stat-lbl">H4 tags</div></div>
+							<div class="hc-stat-tile"><div class="hc-stat-val h5">${data.counts.H5}</div><div class="hc-stat-lbl">H5 tags</div></div>
+							<div class="hc-stat-tile"><div class="hc-stat-val ink">${data.counts.H6}</div><div class="hc-stat-lbl">H6 tags</div></div>
+							<div class="hc-stat-divider"></div>
+							<div class="hc-stat-tile"><div class="hc-stat-val ${data.errors > 0 ? 'bad' : 'ok'}">${data.errors}</div><div class="hc-stat-lbl">Errors</div></div>
+							<div class="hc-stat-tile"><div class="hc-stat-val ${data.warnings > 0 ? 'warn' : 'ok'}">${data.warnings}</div><div class="hc-stat-lbl">Warnings</div></div>
+							<div class="hc-stat-tile"><div class="hc-stat-val ink">${data.total}</div><div class="hc-stat-lbl">Total headings</div></div>
+						</div>
+					</div>
+
+					<div class="hc-layout">
+						<aside class="hc-sidebar">
+							<div class="hc-side-card">
+								<div class="hc-side-head">Heading levels</div>
+								<div class="hc-level-list">
+									${levelMeta.map((l) => `
+										<div class="hc-level-item">
+											<div class="hc-level-left">
+												<span class="hc-level-tag ${l.tag}">${l.tag.toUpperCase()}</span>
+												<span class="hc-level-name">${l.label}</span>
+											</div>
+											<span class="hc-level-count ${l.tag === 'h1' && l.count === 0 ? 'miss' : l.count === 0 ? 'zero' : ''}">${l.tag === 'h1' && l.count === 0 ? '0 ✕' : l.count === 0 ? '—' : l.count}</span>
+										</div>
+									`).join('')}
+								</div>
+							</div>
+
+							<div class="hc-side-card">
+								<div class="hc-side-head">Issues found</div>
+								<div class="hc-level-list">
+									${summaryIssues.map((s) => `
+										<div class="hc-level-item">
+											<div class="hc-level-left" style="gap:0.5rem">
+												<span class="hc-dot ${s.dot}"></span>
+												<span class="hc-level-name">${esc(s.label)}</span>
+											</div>
+											<span class="hc-badge ${s.badgeClass}">${esc(s.badge)}</span>
+										</div>
+									`).join('')}
+								</div>
+							</div>
+
+							<div class="hc-side-card">
+								<div class="hc-side-head">Jump to</div>
+								<a class="hc-jumplink" href="#issues"><span class="hc-jumplink-left"><span class="hc-dot ${issueErr > 0 ? 'bad' : issueWarn > 0 ? 'warn' : 'ok'}"></span>Issues overview</span><span class="hc-badge ${issueErr > 0 ? 'bad' : issueWarn > 0 ? 'warn' : 'ok'}">${issueErr + issueWarn}</span></a>
+								<a class="hc-jumplink" href="#tree"><span class="hc-jumplink-left"><span class="hc-dot ${data.counts.H1 === 0 ? 'bad' : 'ok'}"></span>Heading tree</span></a>
+								<a class="hc-jumplink" href="#table"><span class="hc-jumplink-left"><span class="hc-dot ${data.nodes.some((n) => n.rowClass === 'row-issue') ? 'bad' : 'warn'}"></span>All headings</span><span class="hc-badge">${data.total}</span></a>
+								${data.heatmap.length > 0 ? `<a class="hc-jumplink" href="#heatmap"><span class="hc-jumplink-left"><span class="hc-dot ok"></span>Keyword heatmap</span></a>` : ''}
+								<a class="hc-jumplink" href="#charts"><span class="hc-jumplink-left"><span class="hc-dot ok"></span>Distribution</span></a>
+								<a class="hc-jumplink" href="#reco"><span class="hc-jumplink-left"><span class="hc-dot ${data.recos.some((r) => r.sev === 'fail') ? 'bad' : 'warn'}"></span>Recommendations</span><span class="hc-badge ${data.recos.some((r) => r.sev === 'fail') ? 'bad' : ''}">${data.recos.length}</span></a>
+							</div>
+						</aside>
+
+						<main class="hc-main">
+							<div class="hc-card" id="issues">
+								<div class="hc-card-head">
+									<div class="hc-card-title"><span class="hc-icon-tile red">⚑</span>Issues Overview</div>
+									<span class="hc-card-badge ${issueErr > 0 ? 'fail' : issueWarn > 0 ? 'warn' : 'pass'}">${issueErr} errors · ${issueWarn} warnings</span>
+								</div>
+								<div class="hc-issues-strip">
+									${issuesItems.map((it) => `
+										<div class="hc-issue-tile">
+											<div class="hc-issue-icon ${it.icon}">${it.icon === 'pass' ? '✓' : it.icon === 'warn' ? '!' : '✕'}</div>
+											<div class="hc-issue-body">
+												<strong>${esc(it.title)}</strong>
+												<span>${esc(it.detail)}</span>
+												<div><span class="hc-issue-pill ${it.pillClass}">${esc(it.pill)}</span></div>
+											</div>
+										</div>
+									`).join('')}
+								</div>
+							</div>
+
+							<div class="hc-card" id="tree">
+								<div class="hc-card-head">
+									<div class="hc-card-title"><span class="hc-icon-tile rust">≡</span>Heading Outline Tree</div>
+									<span class="hc-card-badge ${data.counts.H1 === 0 ? 'fail' : data.skipCount > 0 ? 'warn' : 'pass'}">${data.counts.H1 === 0 ? 'H1 missing — hierarchy broken' : data.skipCount > 0 ? `${data.skipCount} skipped level${data.skipCount === 1 ? '' : 's'}` : 'Hierarchy OK'}</span>
+								</div>
+								<div class="hc-tree-wrap">
+									<div class="hc-tree-url">
+										<div class="hc-site-dot">${siteLetter}</div>
+										<span class="hc-tree-url-text">${esc(source)}</span>
+										<span class="hc-tree-counter">${data.total} heading${data.total === 1 ? '' : 's'}</span>
+									</div>
+									${data.counts.H1 === 0 ? `
+										<div class="hc-missing">
+											<span class="miss-tag">H1</span>
+											<span class="miss-text">No H1 tag found on this page</span>
+											<span class="miss-badge">✕ Missing</span>
+										</div>
+									` : ''}
+									<div class="hc-tree-root">${treeHtml}</div>
+									${data.nodes.length > treeLimit ? `<div class="hc-tree-more">Showing first ${treeLimit} of ${data.total} headings · scroll the full table below for the complete list</div>` : ''}
+								</div>
+							</div>
+
+							<div class="hc-card" id="table">
+								<div class="hc-card-head">
+									<div class="hc-card-title"><span class="hc-icon-tile blue">≣</span>All Headings</div>
+									<span class="hc-card-badge">${data.total} total</span>
+								</div>
+								${tableHtml}
+							</div>
+
+							${data.heatmap.length > 0 ? `
+								<div class="hc-card" id="heatmap">
+									<div class="hc-card-head">
+										<div class="hc-card-title"><span class="hc-icon-tile green">⊞</span>Keyword Presence Heatmap</div>
+										<span class="hc-card-badge info">Per heading level</span>
+									</div>
+									<div class="hc-heat-wrap">
+										<p class="hc-heat-intro">How often each keyword appears across headings at each level. Darker cell = higher occurrence. Empty (—) means the keyword does not appear in that level.</p>
+										<div class="hc-heat-grid">
+											<div class="hc-heat-head first">Keyword</div>
+											<div class="hc-heat-head">H1</div>
+											<div class="hc-heat-head">H2</div>
+											<div class="hc-heat-head">H3</div>
+											<div class="hc-heat-head">H4</div>
+											<div class="hc-heat-head">H5</div>
+											<div class="hc-heat-head">H6</div>
+											${data.heatmap.map((r) => `
+												<div class="hc-heat-row-label">${esc(r.kw)}</div>
+												${r.levels.map((v) => `<div class="hc-heat-cell ${heatClass(v)}">${v === 0 ? '—' : v}</div>`).join('')}
+											`).join('')}
+										</div>
+										${data.counts.H1 === 0 ? '<p class="hc-heat-note">H1 column is empty because no H1 tag was found on this page.</p>' : ''}
+									</div>
+								</div>
+							` : ''}
+
+							<div class="hc-card" id="charts">
+								<div class="hc-card-head">
+									<div class="hc-card-title"><span class="hc-icon-tile purple">◈</span>Heading Distribution</div>
+								</div>
+								<div class="hc-charts-grid">
+									<div class="hc-chart-panel">
+										<h4>Headings per level</h4>
+										<div class="hc-bar-list">
+											${lvlOrder.map(([label, cls]) => {
+												const v = data.counts[label as keyof typeof data.counts];
+												const w = Math.round((v / maxLevel) * 100);
+												return `
+													<div class="hc-bar-row">
+														<span class="label">${label}</span>
+														<div class="track"><div class="fill ${cls}" style="width:${w}%"></div></div>
+														<span class="count">${v}</span>
+													</div>
+												`;
+											}).join('')}
+										</div>
+									</div>
+									<div class="hc-chart-panel">
+										<h4>Character length distribution</h4>
+										<div class="hc-bar-list">
+											<div class="hc-bar-row"><span class="label">0–40</span><div class="track"><div class="fill ok" style="width:${Math.round((data.lengthBuckets.b1 / maxLen) * 100)}%"></div></div><span class="count">${data.lengthBuckets.b1}</span></div>
+											<div class="hc-bar-row"><span class="label">41–60</span><div class="track"><div class="fill ok" style="width:${Math.round((data.lengthBuckets.b2 / maxLen) * 100)}%"></div></div><span class="count">${data.lengthBuckets.b2}</span></div>
+											<div class="hc-bar-row"><span class="label">61–70</span><div class="track"><div class="fill warn" style="width:${Math.round((data.lengthBuckets.b3 / maxLen) * 100)}%"></div></div><span class="count">${data.lengthBuckets.b3}</span></div>
+											<div class="hc-bar-row"><span class="label">71+</span><div class="track"><div class="fill over" style="width:${Math.round((data.lengthBuckets.b4 / maxLen) * 100)}%"></div></div><span class="count">${data.lengthBuckets.b4}</span></div>
+										</div>
+										<div class="hc-chart-legend">
+											<span><span class="sw" style="background:var(--hc-green)"></span>0–60 ideal</span>
+											<span><span class="sw" style="background:var(--hc-amber)"></span>61–70 borderline</span>
+											<span><span class="sw" style="background:var(--hc-red)"></span>71+ too long</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="hc-reco" id="reco">
+								<h3>Recommendations</h3>
+								<div class="hc-reco-sub">Ordered by SEO impact. Fix the first two before anything else.</div>
+								${data.recos.map((r, i) => `
+									<div class="hc-reco-item">
+										<div class="hc-reco-num">${i + 1}</div>
+										<div class="hc-reco-body"><strong>${esc(r.title)}</strong><span>${r.detail}</span></div>
+										<span class="hc-reco-sev ${r.sev}">${r.sev === 'fail' ? 'Critical' : r.sev === 'warn' ? 'Medium' : 'Low'}</span>
+									</div>
+								`).join('')}
+							</div>
+						</main>
+					</div>
+				`;
+
+				reportEl.innerHTML = html;
+				reportEl.classList.add('visible');
+				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+
+			async function run() {
+				analyzeBtns.forEach((b) => b.disabled = true);
+				try {
+					let html: string; let source: string;
+					if (activeTab === 'url') {
+						const u = urlInput.value.trim();
+						if (!u) { setStatus('Enter a URL to analyze.', true); return; }
+						setStatus('Fetching page', false, true);
+						const r = await fetchPage(u); html = r.html; source = r.url;
+					} else {
+						html = htmlInput.value.trim();
+						if (!html) { setStatus('Paste HTML to analyze.', true); return; }
+						source = 'Pasted HTML';
+					}
+					setStatus('');
+					render(analyze(html, keywordInput.value.trim()), source);
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
+					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+				} finally { analyzeBtns.forEach((b) => b.disabled = false); }
+			}
+
+			analyzeBtns.forEach((b) => b.addEventListener('click', run));
+			urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); run(); } });
+			keywordInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); run(); } });
+			clearBtns.forEach((b) => b.addEventListener('click', () => {
+				urlInput.value = ''; htmlInput.value = ''; keywordInput.value = '';
+				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
+			}));
 		</script>
 	</body>
 </html>

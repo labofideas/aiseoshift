@@ -1,0 +1,192 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const tools = [
+	{
+		name: 'AI SEO Checker',
+		description: 'Review title tags, meta descriptions, headings, images, links, and content structure against modern SEO and AI visibility best practices.',
+		href: '/tools/seo-checker',
+		category: 'On-Page',
+	},
+	{
+		name: 'Meta and OG Tag Checker',
+		description: 'Validate canonical URLs, Open Graph tags, Twitter cards, favicon, viewport, and other metadata that affects discoverability.',
+		href: '/tools/meta-checker',
+		category: 'Technical',
+	},
+	{
+		name: 'Keyword Density Analyzer',
+		description: 'Measure keyword usage, prominence, and repetition so you can spot over-optimization, weak topical focus, and content gaps.',
+		href: '/tools/keyword-density',
+		category: 'Content',
+	},
+	{
+		name: 'Heading Structure Checker',
+		description: 'Check your H1 to H6 hierarchy for clean structure, missing sections, duplicate headings, and stronger answer extraction.',
+		href: '/tools/heading-checker',
+		category: 'On-Page',
+	},
+	{
+		name: 'Image SEO Checker',
+		description: 'Find missing alt text, oversized images, and weak image markup that can reduce accessibility, performance, and search visibility.',
+		href: '/tools/image-checker',
+		category: 'On-Page',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO Tools | ${SITE_TITLE}`}
+			description="Free AI SEO tools to analyze metadata, headings, keyword usage, image optimization, and on-page structure for AI visibility and traditional search."
+		/>
+		<style>
+			.tools-page {
+				width: min(1080px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: var(--space-7) 0 var(--space-9);
+			}
+
+			.tools-hero {
+				padding: var(--space-7) 0 var(--space-8);
+				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+				gap: var(--space-7);
+				align-items: end;
+			}
+
+			.tools-hero h1 {
+				font-size: clamp(2.4rem, 4.6vw, 4rem);
+				line-height: 1;
+				letter-spacing: -0.03em;
+				font-weight: 600;
+				margin: var(--space-4) 0 0;
+				max-width: 16ch;
+			}
+
+			.tools-hero-lede p {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.78);
+				max-width: var(--measure);
+				margin: 0;
+			}
+
+			.tools-list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.tools-list li { margin: 0; }
+
+			.tool-row {
+				display: grid;
+				grid-template-columns: 8rem minmax(0, 1fr) auto;
+				gap: var(--space-6);
+				align-items: baseline;
+				padding: var(--space-5) 0;
+				border-top: 1px solid var(--line);
+				text-decoration: none;
+				color: rgb(var(--ink));
+			}
+
+			.tools-list li:last-child .tool-row {
+				border-bottom: 1px solid var(--line);
+			}
+
+			.tool-row:hover h2,
+			.tool-row:hover .tool-cat,
+			.tool-row:hover .tool-arrow {
+				color: var(--signal-deep);
+			}
+
+			.tool-cat {
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+				transition: color 140ms ease;
+			}
+
+			.tool-row h2 {
+				font-size: 1.3rem;
+				line-height: 1.2;
+				margin: 0 0 var(--space-2);
+				letter-spacing: -0.018em;
+				font-weight: 600;
+				transition: color 140ms ease;
+			}
+
+			.tool-row p {
+				font-size: 0.95rem;
+				line-height: 1.55;
+				color: var(--ink-muted);
+				margin: 0;
+				max-width: 52ch;
+			}
+
+			.tool-arrow {
+				font-size: 1.2rem;
+				color: var(--ink-muted);
+				align-self: center;
+				transition: color 140ms ease;
+			}
+
+			@media (max-width: 720px) {
+				.tools-hero {
+					grid-template-columns: 1fr;
+					align-items: start;
+					padding: var(--space-6) 0 var(--space-7);
+				}
+
+				.tool-row {
+					grid-template-columns: minmax(0, 1fr);
+					gap: var(--space-2);
+				}
+
+				.tool-arrow { display: none; }
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="tools-page">
+			<section class="tools-hero">
+				<div>
+					<p class="section-kicker">AI SEO Tools</p>
+					<h1>Free, browser-based tools for on-page audits.</h1>
+				</div>
+				<div class="tools-hero-lede">
+					<p>
+						Review page structure, metadata, keyword usage, heading hierarchy, and image optimization.
+						Built to improve both traditional rankings and visibility across AI search surfaces.
+					</p>
+				</div>
+			</section>
+
+			<ul class="tools-list">
+				{tools.map((tool) => (
+					<li>
+						<a href={tool.href} class="tool-row">
+							<span class="tool-cat">{tool.category}</span>
+							<div>
+								<h2>{tool.name}</h2>
+								<p>{tool.description}</p>
+							</div>
+							<span class="tool-arrow" aria-hidden="true">&rarr;</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>

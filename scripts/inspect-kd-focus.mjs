@@ -1,0 +1,18 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const p = await (await b.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+await p.goto('http://localhost:8788/tools/keyword-density/', { waitUntil: 'networkidle' });
+await p.locator('#url-input').fill('https://aiseoshift.com/blog/ai-tools-for-lawyers/');
+await p.locator('#keyword-input').fill('AI tools for lawyers');
+await p.locator('#analyze-btn').click();
+await p.locator('.kd-focus-card').waitFor({ timeout: 30000 });
+await p.waitForTimeout(500);
+const vals = await p.locator('.kd-focus-stat-val').allInnerTexts();
+const lbls = await p.locator('.kd-focus-stat-lbl').allInnerTexts();
+console.log('stat vals:', vals);
+console.log('stat lbls:', lbls);
+const fps = await p.locator('.kd-fp').allInnerTexts();
+console.log('placement pills:', fps);
+const verdictTxt = await p.locator('.kd-focus-verdict-text').innerText();
+console.log('verdict text:', verdictTxt);
+await b.close();

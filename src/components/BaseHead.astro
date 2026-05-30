@@ -1,33 +1,106 @@
 ---
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
-import { SITE_TITLE } from '../consts';
+import {
+	SITE_TITLE,
+	SITE_URL,
+	SITE_DESCRIPTION,
+	SITE_LOGO,
+	SITE_SAME_AS,
+	AUTHOR_NAME,
+	AUTHOR_ROLE,
+	AUTHOR_BIO_SHORT,
+	AUTHOR_IMAGE,
+	AUTHOR_PROFILE_URL,
+	AUTHOR_SAME_AS,
+} from '../consts';
 
 interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata | string;
+	imageAlt?: string;
 	canonical?: string;
 	ogType?: 'website' | 'article';
 	publishedTime?: string;
 	modifiedTime?: string;
 	structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+	preloadHero?: string;
 }
 
 const canonicalURL = Astro.props.canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 
+// Compute a per-page OG card slug from the request path.
+// '/' -> 'index'; '/seo/' -> 'seo'; '/blog/foo/' -> 'blog/foo'.
+const ogSlug = (() => {
+	const trimmed = Astro.url.pathname.replace(/^\/+|\/+$/g, '');
+	return trimmed === '' ? 'index' : trimmed;
+})();
+const defaultOgImage = `/og/${ogSlug}.svg`;
+
 const {
 	title,
 	description,
-	image = '/social-card.svg',
+	image = defaultOgImage,
+	imageAlt = `${SITE_TITLE} social preview`,
 	ogType = 'website',
 	publishedTime,
 	modifiedTime,
 	structuredData,
+	preloadHero,
 } = Astro.props;
 
 const imageUrl =
 	typeof image === 'string' ? new URL(image, Astro.site).toString() : new URL(image.src, Astro.site).toString();
+const imageWidth = typeof image === 'string' ? 1200 : image.width;
+const imageHeight = typeof image === 'string' ? 630 : image.height;
+
+const globalGraph = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Person',
+			'@id': `${SITE_URL}/#person`,
+			name: AUTHOR_NAME,
+			url: AUTHOR_PROFILE_URL,
+			image: {
+				'@type': 'ImageObject',
+				url: AUTHOR_IMAGE,
+				caption: AUTHOR_NAME,
+			},
+			jobTitle: AUTHOR_ROLE,
+			description: AUTHOR_BIO_SHORT,
+			sameAs: AUTHOR_SAME_AS,
+			worksFor: { '@id': `${SITE_URL}/#organization` },
+		},
+		{
+			'@type': 'Organization',
+			'@id': `${SITE_URL}/#organization`,
+			name: SITE_TITLE,
+			alternateName: 'AI SEO Shift',
+			url: SITE_URL,
+			logo: {
+				'@type': 'ImageObject',
+				'@id': `${SITE_URL}/#logo`,
+				url: SITE_LOGO,
+				contentUrl: SITE_LOGO,
+				caption: SITE_TITLE,
+			},
+			description: SITE_DESCRIPTION,
+			founder: { '@id': `${SITE_URL}/#person` },
+			sameAs: SITE_SAME_AS,
+		},
+		{
+			'@type': 'WebSite',
+			'@id': `${SITE_URL}/#website`,
+			url: SITE_URL,
+			name: SITE_TITLE,
+			description: SITE_DESCRIPTION,
+			publisher: { '@id': `${SITE_URL}/#organization` },
+			inLanguage: 'en-US',
+		},
+	],
+};
 ---
 
 <script is:inline>
@@ -35,11 +108,20 @@ const imageUrl =
 </script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/x-icon" sizes="any" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('rss.xml', Astro.site)} />
 <meta name="generator" content={Astro.generator} />
+
+<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
+<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+{preloadHero && <link rel="preload" href={preloadHero} as="image" fetchpriority="high" />}
 
 <link rel="canonical" href={canonicalURL} />
 
@@ -52,6 +134,9 @@ const imageUrl =
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:image:width" content={String(imageWidth)} />
+<meta property="og:image:height" content={String(imageHeight)} />
 {publishedTime && <meta property="article:published_time" content={publishedTime} />}
 {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 
@@ -60,7 +145,9 @@ const imageUrl =
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={imageUrl} />
+<meta property="twitter:image:alt" content={imageAlt} />
 
+<script type="application/ld+json" set:html={JSON.stringify(globalGraph)} />
 {
 	structuredData && (
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

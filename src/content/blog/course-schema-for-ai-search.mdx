@@ -1,0 +1,378 @@
+---
+title: "Course Schema for AI Search: Get Your Online Courses Discovered by ChatGPT and AI Engines"
+description: How to implement Course schema markup so AI engines recommend your courses when users ask for learning resources. JSON-LD implementation guide for online educators and platforms.
+deck: When someone asks ChatGPT or Perplexity "how can I learn Python" or "what is the best course for digital marketing," the recommendations come from structured Course data. Here is how to implement it and get your programs cited.
+pubDate: 2026-06-17
+category: Strategy
+tags:
+  - Course schema
+  - schema markup
+  - education SEO
+  - structured data
+  - AI SEO
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+A digital marketing academy had published fourteen online courses covering SEO, paid media, analytics, and copywriting. Each course had a dedicated landing page with detailed syllabi, instructor bios, student testimonials, and pricing. The content was strong. Organic traffic was healthy. But when potential students began asking ChatGPT and Perplexity questions like "what is a good course for learning Google Ads" or "best digital marketing certification for beginners," the academy's courses were never mentioned. Competitors with thinner content but properly structured Course schema appeared consistently. The problem was not the course quality, the page content, or the backlink profile. It was the absence of machine-readable signals that AI systems rely on to identify, understand, and recommend educational offerings.
+
+Course schema is the structured data vocabulary that tells AI search engines precisely what your program is, who delivers it, when it runs, how students can enroll, and what credential they earn. Without it, AI engines must infer all of this from natural language — an unreliable process that produces inconsistent results. With it, you give AI systems a structured data contract: this is a Course, it covers these topics, this instructor delivers it, it runs on this schedule, and here is the enrollment URL.
+
+## Quick answer
+
+Implementing Course schema alongside CourseInstance markup gives AI engines the machine-readable signals they need to surface your programs in response to learning-intent queries. The minimum viable implementation requires `@type: Course` with `name`, `description`, and `provider` (as an `Organization`), combined with at least one `hasCourseInstance` block that specifies `courseMode`, `startDate`, and `offers`. Courses with complete schema — including instructor, duration, credentials, and aggregate ratings — are significantly more likely to appear as specific recommendations in AI-generated answers than courses with bare-minimum or no structured data.
+
+## Why Course schema drives AI discoverability
+
+AI engines like ChatGPT, Perplexity, and Google AI Overviews encounter thousands of learning-intent queries every day. "How do I learn data science," "best UX design course," "Python certification online," "free SEO training." These queries require the AI to surface specific, trustworthy educational resources — not just generic articles about the topic.
+
+The problem for unstructured course pages is that AI engines cannot reliably distinguish a course landing page from a blog post about a course from a directory listing of courses. All three might contain similar keywords. Course schema eliminates the ambiguity entirely. A page with `@type: Course` is unambiguously a course. A page with `hasCourseInstance` containing a `startDate` is unambiguously offering an enrollable session. That disambiguation is what makes the page citable in a context where the AI is recommending specific programs rather than general information.
+
+As covered in the [schema markup for AI visibility guide](/blog/schema-markup-for-ai-visibility/), structured data is not primarily about rich results in 2026 — it is about giving AI systems the pre-processed data structures they need to include your content in generated responses with confidence.
+
+## Core Course schema properties
+
+The [Schema.org Course specification](https://schema.org/Course) defines Course as a subtype of LearningResource. Every Course implementation should start with these essential properties.
+
+**name** is the official title of the course exactly as it is marketed. Do not truncate it or substitute a keyword-optimized variant — AI systems cross-reference this value against the visible page content, and mismatches reduce trust signals.
+
+**description** should be a complete, natural-language explanation of what the course covers, who it is for, and what students will be able to do after completing it. This is not a place for keyword stuffing. AI systems extract this text verbatim when generating summaries and recommendations. A strong description is two to four sentences covering subject matter, target audience, and learning outcomes.
+
+**provider** identifies the organization delivering the course. This should be an `Organization` object with `name`, `url`, and ideally `sameAs` references to authoritative profiles such as LinkedIn, Crunchbase, or a Wikipedia entry. Provider authority is a trust signal AI systems use when deciding whether to recommend a course.
+
+**url** should be the canonical URL of the course landing page — the page a student would use to learn more and enroll.
+
+**educationalLevel** signals who the course is designed for. Accepted values include `Beginner`, `Intermediate`, `Advanced`, or more specific vocabulary from educational frameworks.
+
+**teaches** is an underused property that accepts a text description or a `DefinedTerm` of the specific skills and competencies students gain. AI systems that match learning queries against course content use this property heavily. List specific, searchable skills: "Google Analytics 4 configuration," "multivariate testing design," "Python pandas library" rather than vague terms like "data skills."
+
+A minimal but well-formed Course block looks like this:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Digital Marketing Fundamentals Certificate",
+  "description": "A twelve-week online program covering SEO, paid search, social media advertising, and email marketing for professionals entering the digital marketing field. Graduates can apply for the Google Ads and Meta Blueprint certification exams.",
+  "provider": {
+    "@type": "Organization",
+    "name": "Apex Marketing Academy",
+    "url": "https://apexmarketingacademy.com",
+    "sameAs": "https://www.linkedin.com/school/apex-marketing-academy/"
+  },
+  "url": "https://apexmarketingacademy.com/courses/digital-marketing-fundamentals",
+  "educationalLevel": "Beginner",
+  "teaches": "SEO fundamentals, Google Ads campaign management, Meta advertising, email automation, Google Analytics 4"
+}
+```
+
+## CourseInstance properties: scheduling, delivery, and pricing
+
+Course schema describes what a course is. CourseInstance describes a specific offering of that course — a scheduled run with real enrollment dates and pricing. Adding `hasCourseInstance` to your Course markup is what transforms a static description into an actionable recommendation that AI engines can surface for immediate enrollment queries.
+
+**courseMode** specifies the delivery format. Schema.org accepts `online`, `onsite`, `blended`, or a URL to a more specific controlled vocabulary. For AI discoverability, `online` is the value that matches the broadest range of learning-intent queries. If you offer both live online sessions and on-demand access, create separate CourseInstance entries for each.
+
+**location** is required when courseMode is `onsite` or `blended`. It accepts a `Place` object with address properties. For fully online courses, omit location or use a virtual event specification.
+
+**instructor** identifies the person delivering the course. This should be a `Person` object with `name`, `url` (linking to the instructor's profile page), and optionally `sameAs` references to LinkedIn or professional profiles. Instructor identity is a trust signal — named, verifiable instructors increase the credibility score AI systems assign to course recommendations.
+
+**startDate** and **endDate** should be ISO 8601 formatted dates. For self-paced on-demand courses, startDate can reflect the date the course was last updated and endDate can be omitted or set to a distant future date. For cohort courses, use the actual start and end dates of the specific session.
+
+**offers** is where pricing information lives. Wrap it in an `Offer` object with `price` (numeric value), `priceCurrency` (ISO 4217 currency code like "USD"), `availability` (typically `https://schema.org/InStock` for an enrollable course), and `url` for the enrollment page.
+
+A complete `hasCourseInstance` block:
+
+```json
+"hasCourseInstance": {
+  "@type": "CourseInstance",
+  "courseMode": "online",
+  "instructor": {
+    "@type": "Person",
+    "name": "Sarah Chen",
+    "url": "https://apexmarketingacademy.com/instructors/sarah-chen",
+    "sameAs": "https://www.linkedin.com/in/sarahchenmarketing/"
+  },
+  "startDate": "2026-07-14",
+  "endDate": "2026-10-06",
+  "offers": {
+    "@type": "Offer",
+    "price": "497",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "url": "https://apexmarketingacademy.com/courses/digital-marketing-fundamentals/enroll"
+  }
+}
+```
+
+For self-paced courses with rolling enrollment, add `courseWorkload` to describe the expected time commitment — `"PT5H"` for five hours per week, for example — which helps AI systems match queries that specify time availability alongside learning goals.
+
+<figure class="post-figure">
+<svg viewBox="0 0 820 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Course schema entity hierarchy diagram showing Course at the top, branching to CourseInstance and Organization, with CourseInstance connecting to Person (Instructor) and Offer">
+  <rect width="820" height="520" fill="rgb(246,245,240)" />
+  <text x="40" y="28" font-family="system-ui, sans-serif" font-size="11" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.5">COURSE SCHEMA — ENTITY HIERARCHY</text>
+  <line x1="40" y1="44" x2="780" y2="44" stroke="rgb(14,17,22)" stroke-opacity="0.07" />
+  <rect x="290" y="60" width="240" height="72" rx="6" fill="rgb(184,85,46)" />
+  <text x="410" y="91" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="rgb(250,250,247)">Course</text>
+  <text x="410" y="109" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(250,250,247)" fill-opacity="0.85">name · description · provider</text>
+  <text x="410" y="123" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(250,250,247)" fill-opacity="0.85">educationalLevel · teaches · url</text>
+  <line x1="370" y1="132" x2="200" y2="200" stroke="rgb(14,17,22)" stroke-opacity="0.25" stroke-width="1.5" />
+  <line x1="450" y1="132" x2="620" y2="200" stroke="rgb(14,17,22)" stroke-opacity="0.25" stroke-width="1.5" />
+  <rect x="90" y="200" width="220" height="78" rx="6" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" />
+  <text x="200" y="228" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(14,17,22)">CourseInstance</text>
+  <text x="200" y="246" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.7">courseMode · startDate</text>
+  <text x="200" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.7">endDate · courseWorkload</text>
+  <text x="200" y="274" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.7">instructor · offers</text>
+  <rect x="510" y="200" width="220" height="78" rx="6" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" />
+  <text x="620" y="228" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(14,17,22)">Organization</text>
+  <text x="620" y="246" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.7">name · url · sameAs</text>
+  <text x="620" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.7">logo · contactPoint</text>
+  <text x="620" y="274" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.7">provider of Course</text>
+  <line x1="140" y1="278" x2="100" y2="348" stroke="rgb(14,17,22)" stroke-opacity="0.2" stroke-width="1.5" />
+  <line x1="200" y1="278" x2="260" y2="348" stroke="rgb(14,17,22)" stroke-opacity="0.2" stroke-width="1.5" />
+  <rect x="40" y="348" width="180" height="68" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" />
+  <text x="130" y="371" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(14,17,22)">Person</text>
+  <text x="130" y="388" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">(Instructor)</text>
+  <text x="130" y="404" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">name · url · sameAs</text>
+  <rect x="240" y="348" width="180" height="68" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" />
+  <text x="330" y="371" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(14,17,22)">Offer</text>
+  <text x="330" y="388" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">price · priceCurrency</text>
+  <text x="330" y="404" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">availability · url</text>
+  <rect x="510" y="348" width="220" height="68" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" />
+  <text x="620" y="371" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(14,17,22)">EducationalOccupational</text>
+  <text x="620" y="387" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(14,17,22)">Credential</text>
+  <text x="620" y="404" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.65">credentialCategory · competencyRequired</text>
+  <line x1="620" y1="278" x2="620" y2="348" stroke="rgb(14,17,22)" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="660" y="320" font-family="system-ui, sans-serif" font-size="9" fill="rgb(14,17,22)" fill-opacity="0.4">educationalCredential</text>
+  <text x="660" y="332" font-family="system-ui, sans-serif" font-size="9" fill="rgb(14,17,22)" fill-opacity="0.4">Awarded (optional)</text>
+  <text x="40" y="500" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.45">Solid borders = required or strongly recommended nodes — dashed = optional enhancement</text>
+  <text x="780" y="500" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.35">aiseoshift.com</text>
+</svg>
+</figure>
+
+## LearningResource vs. EducationalOccupationalProgram — choosing the right type
+
+Course schema is not the only structured data type available to educators, and choosing the wrong type is a common mistake that limits AI discoverability for certain program formats.
+
+**Course** (`@type: Course`) is the right choice for a defined unit of educational content — a video series, a live workshop, a self-paced online module, or a scheduled seminar. It describes a bounded learning experience with a beginning and end.
+
+**LearningResource** (`@type: LearningResource`) is the broader parent type. Use it for standalone educational assets that do not fit the "course" frame — individual tutorial videos, downloadable worksheets, interactive tools, or educational blog posts. Marking a forty-five-minute tutorial video as a Course is technically valid but semantically misleading. LearningResource is more precise and will be matched correctly to resource-seeking queries.
+
+**EducationalOccupationalProgram** (`@type: EducationalOccupationalProgram`) is designed for multi-course programs, degree programs, bootcamps, apprenticeships, and certification tracks that span multiple courses or an extended period of study. If you offer a "Data Science Bootcamp" consisting of eight separate courses over six months, the program level is EducationalOccupationalProgram, and the individual modules are Course entities linked back to the program via `hasPart` or `programPrerequisites`. AI systems use EducationalOccupationalProgram to answer queries about structured learning paths and career-oriented programs, where they need to understand scope, duration, and credential outcomes across a multi-stage curriculum.
+
+The practical decision rule: a single enrollable learning experience = Course; a collection of educational content = LearningResource; a structured program leading to a credential or career outcome = EducationalOccupationalProgram.
+
+## Credential and certification markup
+
+Credential markup is one of the highest-leverage additions to Course schema for AI discoverability. When someone asks an AI engine "what course will help me get PMP certified" or "online course that leads to a recognized credential," the AI must identify courses that explicitly specify the credential students earn. Without `educationalCredentialAwarded`, your credential-bearing course is indistinguishable from a course that awards nothing.
+
+The `educationalCredentialAwarded` property on Course accepts either a text string (simple, sufficient for most cases) or a full `EducationalOccupationalCredential` object (recommended for programs with recognized credentials).
+
+A full credential block:
+
+```json
+"educationalCredentialAwarded": {
+  "@type": "EducationalOccupationalCredential",
+  "name": "Certified Digital Marketing Professional",
+  "credentialCategory": "certificate",
+  "competencyRequired": "Google Ads, Meta Ads, SEO, Email Marketing, Analytics",
+  "recognizedBy": {
+    "@type": "Organization",
+    "name": "Digital Marketing Institute",
+    "url": "https://digitalmarketinginstitute.com"
+  }
+}
+```
+
+`credentialCategory` accepts values including `"certificate"`, `"degree"`, `"badge"`, `"license"`, and `"diploma"`. Using the correct category helps AI engines match queries that specify the type of credential students are seeking.
+
+`recognizedBy` is critical for professional certifications. Linking the credential to the recognizing organization — a professional body, accreditation agency, or industry association — signals to AI systems that the credential has external verification, which substantially increases recommendation confidence for career-oriented queries.
+
+## Review and AggregateRating as trust signals for AI
+
+AI engines prioritize recommending courses that have demonstrated learner satisfaction alongside structured content signals. `AggregateRating` and `Review` properties on your Course schema provide exactly the trust signals that differentiate credible recommendations from unverified listings.
+
+`AggregateRating` requires four properties: `ratingValue` (the average score), `reviewCount` (total number of ratings), `bestRating` (the maximum possible rating, typically 5), and `worstRating` (the minimum, typically 1).
+
+```json
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.7",
+  "reviewCount": "1284",
+  "bestRating": "5",
+  "worstRating": "1"
+}
+```
+
+Never fabricate or round up rating data. AI systems cross-reference structured data claims against visible page content, and inconsistencies between schema values and displayed ratings are detected and reduce trust scores. Only implement AggregateRating if you have a real review collection system and the values reflect actual learner feedback.
+
+Individual `Review` objects can be embedded to provide qualitative signals alongside aggregate data. Include reviewer name, rating value, and review body. AI systems that surface specific course recommendations in conversational contexts frequently draw on review content to generate the summaries they present alongside citations. A well-written review that mentions specific outcomes — "I got my first freelance client within two weeks of finishing" — gives AI engines the concrete testimonial language they use when recommending courses for practical outcomes queries.
+
+## Platform considerations: Udemy, Coursera, Teachable, and self-hosted
+
+Course schema implementation varies significantly depending on whether you host your course on a third-party platform or a self-hosted site. Understanding the distinction determines where your optimization effort should go.
+
+**Udemy and Coursera** implement Course schema at the platform level. The structured data on a Udemy course page is controlled by Udemy's engineering team, not individual instructors. This means your optimization leverage is in the content inputs that feed the platform's schema generation: course title, description, learning objectives (which feed `teaches`), curriculum structure, and the category/subcategory taxonomy. Write course descriptions as if they were going directly into a `description` field — complete, scannable, outcome-focused — because that content feeds the platform's schema output.
+
+The limitation of platform hosting is that you cannot control which schema properties the platform includes or excludes, and you cannot add credential markup, custom `sameAs` references for your instructor profile, or AggregateRating from external review sources. What you can control is the quality of content inputs.
+
+**Teachable, Thinkific, and Kajabi** offer varying levels of schema support. Teachable generates basic Course schema automatically but does not support full CourseInstance markup with pricing and scheduling by default. If you host on these platforms and want complete schema coverage, the workaround is to maintain a self-hosted landing page for each course that contains the full JSON-LD block, with enrollment links pointing to the platform. This approach separates AI discoverability (your site, full schema) from course delivery (the platform). The strategy is described in more detail in the [AI SEO for tutoring and learning centers guide](/blog/ai-seo-for-tutoring-learning-centers/).
+
+**Self-hosted courses** — WordPress with LMS plugins like LearnDash or LifterLMS, or custom-built platforms — give you complete control over schema output. Add the JSON-LD block to the `<head>` of each course landing page. If your LMS plugin generates schema automatically, audit what it produces. Most LMS plugins generate minimal Course schema without CourseInstance, instructor markup, credential data, or AggregateRating. Supplement or replace the plugin-generated schema with a complete manual implementation.
+
+For any platform, a self-hosted course hub page that aggregates your full catalog with `ItemList` schema pointing to individual course pages creates an additional AI-discoverable entry point. This is the approach that works regardless of where courses are delivered. The [how to get cited by AI search systems guide](/blog/how-to-get-cited-by-ai-search-systems/) covers the hub page strategy for educational sites in detail.
+
+## Testing Course schema with Rich Results Test
+
+Before deploying Course schema, validate the implementation using Google's [Rich Results Test](https://search.google.com/test/rich-results). Paste your course landing page URL or the raw JSON-LD block and run the test. The tool checks for required properties, flags warnings for recommended-but-missing properties, and shows how Google's systems interpret the structured data.
+
+Common errors to look for in Course schema validation: missing `hasCourseInstance` (required for Google's course rich results), missing `offers` inside CourseInstance, `startDate` formatted incorrectly (must be ISO 8601: `YYYY-MM-DD` or `YYYY-MM-DDTHH:MM:SSZ`), and `provider` missing its `url` property.
+
+The [Schema.org validator at validator.schema.org](https://validator.schema.org/) checks against the broader Schema.org specification independent of Google's specific requirements. Running both tools catches two different categories of errors: Google's implementation requirements (Rich Results Test) and Schema.org specification compliance (validator.schema.org).
+
+After deployment, monitor Google Search Console for structured data errors in the Enhancements section. Course schema that passes the Rich Results Test at implementation time can later develop errors if page content changes in ways that contradict schema values — a course that is retired but whose schema still shows an `InStock` availability, for example. Quarterly audits of structured data health are part of the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/).
+
+AI engines beyond Google — Perplexity, ChatGPT with web browsing, and others — do not expose a similar validation tool. But because they process the same JSON-LD standard that Google uses, a schema block that passes the Rich Results Test is correctly formed for all AI systems. The quality of the content properties — how well `description`, `teaches`, and `educationalCredentialAwarded` capture the course's actual value — determines AI recommendation frequency beyond the baseline of technical correctness.
+
+For a comprehensive framework covering all structured data types and their AI discoverability implications, the [AI SEO Shift resource library](/ai-seo-shift/) provides the full strategic context.
+
+## The complete Course schema template
+
+Combining all sections above into a single reference template for a self-hosted online course:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Advanced Python for Data Analysis",
+  "description": "A ten-week online course covering pandas, NumPy, Matplotlib, and scikit-learn for working data professionals. Students complete four real-world data analysis projects and graduate prepared for junior data analyst roles.",
+  "url": "https://example.com/courses/advanced-python-data-analysis",
+  "educationalLevel": "Intermediate",
+  "teaches": "Python, pandas, NumPy, data visualization, scikit-learn, machine learning fundamentals",
+  "provider": {
+    "@type": "Organization",
+    "name": "DataCraft Academy",
+    "url": "https://example.com",
+    "sameAs": "https://www.linkedin.com/school/datacraft-academy/"
+  },
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "courseMode": "online",
+    "courseWorkload": "PT8H",
+    "instructor": {
+      "@type": "Person",
+      "name": "Marcus Webb",
+      "url": "https://example.com/instructors/marcus-webb",
+      "sameAs": "https://www.linkedin.com/in/marcuswebbdata/"
+    },
+    "startDate": "2026-08-04",
+    "endDate": "2026-10-13",
+    "offers": {
+      "@type": "Offer",
+      "price": "699",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://example.com/courses/advanced-python-data-analysis/enroll"
+    }
+  },
+  "educationalCredentialAwarded": {
+    "@type": "EducationalOccupationalCredential",
+    "name": "Python for Data Analysis Certificate",
+    "credentialCategory": "certificate",
+    "competencyRequired": "Python data analysis, visualization, and machine learning fundamentals"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "342",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+```
+
+This template covers every layer of the entity hierarchy: the Course itself, its CourseInstance with scheduling and pricing, the delivering Organization and named Instructor, the awarded credential, and the aggregate social proof signal that tips AI recommendation confidence for competitive queries.
+
+For HowTo-style instructional content associated with your courses — free preview lessons, tutorial articles, step-by-step setup guides — the [HowTo schema guide for AI search](/blog/howto-schema-for-ai-search/) covers the complementary markup layer that builds topical authority around your course catalog.
+
+## Frequently asked questions
+
+### Does Course schema guarantee my courses will appear in ChatGPT or Perplexity results?
+
+No. Course schema is a necessary condition for reliable AI discoverability, not a sufficient one. Structured data tells AI systems what your page is; content quality, topical authority, and trust signals determine whether it gets recommended. A course with complete schema and thin, generic content will not outperform a course with partial schema and genuinely exceptional content in every query context. The strongest implementations combine complete Course schema with detailed course descriptions, named instructors with verifiable credentials, real aggregate ratings, and substantive free content that establishes topical authority in the subject matter.
+
+### What is the difference between Course and LearningResource schema?
+
+Course schema is for bounded, enrollable learning experiences with defined structure — a class, workshop, or program. LearningResource is the broader parent type used for standalone educational assets like individual tutorial videos, downloadable guides, and interactive tools. If your content is a complete enrollable course, use Course. If it is a single educational asset that is not itself a course, use LearningResource. For a program spanning multiple courses, EducationalOccupationalProgram is the appropriate type.
+
+### Do I need CourseInstance markup or is Course schema alone sufficient?
+
+For Google's Course rich results, `hasCourseInstance` with at least `courseMode` is required — Course schema alone without CourseInstance does not qualify for rich result eligibility. For AI engine discoverability more broadly, CourseInstance adds the scheduling, pricing, and delivery-mode signals that make your course actionable in enrollment queries. A bare Course block without CourseInstance is better than no schema, but it will not surface for queries that include scheduling or pricing intent.
+
+### How do I add Course schema if my courses are hosted on Udemy or Teachable?
+
+On Udemy and Coursera, the platform controls the structured data output. Your leverage is in writing complete, outcome-focused course titles, descriptions, and learning objectives — these feed the platform's schema generation. On Teachable and similar platforms, consider maintaining a self-hosted landing page with full JSON-LD Course schema that links to the platform for delivery. This gives you complete schema control on your own domain while using the platform for course delivery and payment processing.
+
+### Should I use AggregateRating on Course schema if I have fewer than ten reviews?
+
+A low review count is not disqualifying, but exercise caution. A course showing `"reviewCount": "3"` with a 5.0 average rating carries less trust weight with AI systems than one showing 200 reviews at 4.7. If you have fewer than ten reviews, consider whether the AggregateRating markup adds credibility or undermines it for your specific course. When you do add AggregateRating, ensure the schema values match what is displayed on the page exactly — discrepancies are detected and can reduce trust signals more than having no rating markup at all.
+
+### How often should I update Course schema?
+
+Update Course schema immediately whenever the following change: course title, price, enrollment availability, start or end dates, instructor, or credential awarded. These are the properties AI systems use to verify that their information about your course is current. A course whose schema shows a past `startDate` or a sold-out `availability` will be deprioritized or excluded from AI recommendations for time-sensitive enrollment queries. For ongoing courses, review schema at least quarterly as part of the structured data audit described in the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/).
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Course schema guarantee my courses will appear in ChatGPT or Perplexity results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Course schema is a necessary condition for reliable AI discoverability, not a sufficient one. Structured data tells AI systems what your page is; content quality, topical authority, and trust signals determine whether it gets recommended. The strongest implementations combine complete Course schema with detailed course descriptions, named instructors with verifiable credentials, real aggregate ratings, and substantive free content that establishes topical authority in the subject matter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Course and LearningResource schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Course schema is for bounded, enrollable learning experiences with defined structure — a class, workshop, or program. LearningResource is the broader parent type used for standalone educational assets like individual tutorial videos, downloadable guides, and interactive tools. If your content is a complete enrollable course, use Course. If it is a single educational asset that is not itself a course, use LearningResource. For a program spanning multiple courses, EducationalOccupationalProgram is the appropriate type."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need CourseInstance markup or is Course schema alone sufficient?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For Google's Course rich results, hasCourseInstance with at least courseMode is required — Course schema alone without CourseInstance does not qualify for rich result eligibility. For AI engine discoverability more broadly, CourseInstance adds the scheduling, pricing, and delivery-mode signals that make your course actionable in enrollment queries. A bare Course block without CourseInstance is better than no schema, but it will not surface for queries that include scheduling or pricing intent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add Course schema if my courses are hosted on Udemy or Teachable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On Udemy and Coursera, the platform controls the structured data output. Your leverage is in writing complete, outcome-focused course titles, descriptions, and learning objectives — these feed the platform's schema generation. On Teachable and similar platforms, consider maintaining a self-hosted landing page with full JSON-LD Course schema that links to the platform for delivery. This gives you complete schema control on your own domain while using the platform for course delivery and payment processing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use AggregateRating on Course schema if I have fewer than ten reviews?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A low review count is not disqualifying, but exercise caution. A course showing a reviewCount of 3 with a 5.0 average carries less trust weight with AI systems than one showing 200 reviews at 4.7. If you have fewer than ten reviews, consider whether the AggregateRating markup adds credibility or undermines it for your specific course. When you do add AggregateRating, ensure the schema values match what is displayed on the page exactly — discrepancies are detected and can reduce trust signals more than having no rating markup at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I update Course schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Update Course schema immediately whenever the following change: course title, price, enrollment availability, start or end dates, instructor, or credential awarded. These are the properties AI systems use to verify that their information about your course is current. A course whose schema shows a past startDate or a sold-out availability will be deprioritized or excluded from AI recommendations for time-sensitive enrollment queries. For ongoing courses, review schema at least quarterly as part of your structured data audit."
+      }
+    }
+  ]
+}</script>

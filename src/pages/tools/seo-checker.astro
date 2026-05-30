@@ -3,451 +3,408 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
+import '../../styles/tools.css';
+import '../../styles/tools-polish.css';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead
-			title={`Free On-Page SEO Checker | ${SITE_TITLE}`}
-			description="Free on-page SEO checker. Paste your HTML to analyze title tags, meta descriptions, headings, images, links, and word count against best practices."
+			title={`AI SEO Checker | ${SITE_TITLE}`}
+			description="Run an AI SEO and on-page SEO audit for any page: title, meta, headings, images, links, content, mobile, and technical signals."
 		/>
-		<style>
-			.tool-page {
-				width: min(1000px, calc(100% - 2rem));
-				margin: 0 auto;
-				padding: 2rem 0 4rem;
-			}
-
-			.tool-header { margin-bottom: 1.5rem; }
-
-			.tool-header h1 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: clamp(1.8rem, 3vw, 2.4rem);
-				line-height: 1.1;
-				margin: 0.4rem 0 0.6rem;
-			}
-
-			.tool-header p {
-				color: rgba(var(--ink), 0.72);
-				max-width: 36rem;
-			}
-
-			.tool-input {
-				margin-bottom: 1.5rem;
-			}
-
-			.tool-input label {
-				display: block;
-				font-size: 0.78rem;
-				font-weight: 700;
-				text-transform: uppercase;
-				letter-spacing: 0.1em;
-				margin-bottom: 0.5rem;
-				color: rgba(var(--ink), 0.6);
-			}
-
-			.tool-input textarea {
-				width: 100%;
-				min-height: 180px;
-				padding: 1rem;
-				border: 1px solid var(--line);
-				border-radius: 12px;
-				background: rgba(var(--paper-strong), 0.5);
-				color: rgb(var(--ink));
-				font-family: 'SFMono-Regular', Consolas, monospace;
-				font-size: 0.82rem;
-				line-height: 1.5;
-				resize: vertical;
-			}
-
-			.tool-input textarea:focus {
-				outline: 2px solid var(--signal);
-				outline-offset: 1px;
-			}
-
-			.tool-actions {
-				display: flex;
-				gap: 0.75rem;
-				margin-bottom: 2rem;
-			}
-
-			.btn-primary {
-				padding: 0.75rem 1.5rem;
-				border: none;
-				border-radius: 999px;
-				background: var(--signal);
-				color: #fff;
-				font-size: 0.82rem;
-				font-weight: 700;
-				letter-spacing: 0.08em;
-				text-transform: uppercase;
-				cursor: pointer;
-				transition: background 140ms ease;
-			}
-
-			.btn-primary:hover { background: var(--signal-deep); }
-
-			.btn-secondary {
-				padding: 0.75rem 1.5rem;
-				border: 1px solid var(--line);
-				border-radius: 999px;
-				background: transparent;
-				color: rgb(var(--ink));
-				font-size: 0.82rem;
-				font-weight: 700;
-				cursor: pointer;
-			}
-
-			.results { display: none; }
-			.results.visible { display: block; }
-
-			.score-bar {
-				display: flex;
-				align-items: center;
-				gap: 1rem;
-				padding: 1.25rem 1.5rem;
-				border-radius: 1rem;
-				border: 1px solid var(--line);
-				background: rgba(var(--paper-strong), 0.55);
-				margin-bottom: 1.5rem;
-			}
-
-			.score-circle {
-				width: 64px;
-				height: 64px;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 1.4rem;
-				font-weight: 700;
-				flex-shrink: 0;
-			}
-
-			.score-good { background: rgba(34, 197, 94, 0.15); color: #16a34a; border: 2px solid #16a34a; }
-			.score-ok { background: rgba(234, 179, 8, 0.15); color: #ca8a04; border: 2px solid #ca8a04; }
-			.score-bad { background: rgba(239, 68, 68, 0.15); color: #dc2626; border: 2px solid #dc2626; }
-
-			.score-label {
-				font-size: 0.86rem;
-				color: rgba(var(--ink), 0.7);
-			}
-
-			.score-label strong {
-				display: block;
-				font-size: 1.1rem;
-				color: rgb(var(--ink));
-			}
-
-			.check-group {
-				margin-bottom: 1.25rem;
-				padding: 1.25rem;
-				border-radius: 1rem;
-				border: 1px solid var(--line);
-				background: rgba(var(--paper-strong), 0.35);
-			}
-
-			.check-group h3 {
-				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
-				font-size: 0.95rem;
-				margin: 0 0 0.75rem;
-			}
-
-			.check-item {
-				display: flex;
-				align-items: flex-start;
-				gap: 0.6rem;
-				padding: 0.5rem 0;
-				font-size: 0.86rem;
-				line-height: 1.5;
-				border-top: 1px solid var(--line);
-			}
-
-			.check-item:first-of-type { border-top: none; }
-
-			.check-icon {
-				flex-shrink: 0;
-				width: 20px;
-				height: 20px;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 0.7rem;
-				font-weight: 700;
-				margin-top: 0.1rem;
-			}
-
-			.pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
-			.warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
-			.fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-
-			.check-detail {
-				color: rgba(var(--ink), 0.6);
-				font-size: 0.8rem;
-			}
-
-			.back-link {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.3rem;
-				font-size: 0.78rem;
-				font-weight: 700;
-				text-transform: uppercase;
-				letter-spacing: 0.1em;
-				margin-bottom: 1rem;
-			}
-		</style>
 	</head>
 	<body>
 		<Header />
-		<main class="tool-page">
-			<a href="/tools" class="back-link">&larr; All Tools</a>
-
+		<main id="main-content" class="tool-page">
+			<a href="/ai-seo-tools" class="tool-back">← All Tools</a>
 			<div class="tool-header">
-				<p class="section-kicker">On-Page SEO</p>
-				<h1>On-Page SEO Checker</h1>
-				<p>Paste your page's HTML source code to analyze title tags, meta descriptions, headings, images, links, and word count against SEO best practices.</p>
+				<p class="section-kicker">AI SEO Tool</p>
+				<h1>AI SEO Checker</h1>
+				<p>Run a complete AI SEO and on-page SEO audit on any URL. Scored out of 100 across title and meta, headings, images, links, content, and technical signals with prioritized fixes.</p>
 			</div>
 
-			<div class="tool-input">
-				<label for="html-input">Paste HTML Source Code</label>
-				<textarea id="html-input" placeholder="Right-click your page → View Page Source → Copy All → Paste here"></textarea>
+			<div class="tool-input-card">
+				<div class="input-tabs" role="tablist" aria-label="Input mode">
+					<button class="tab-btn" role="tab" aria-selected="true" data-tab="url" type="button">URL</button>
+					<button class="tab-btn" role="tab" aria-selected="false" data-tab="html" type="button">Paste HTML</button>
+				</div>
+				<div class="tab-panel active" id="tab-url" role="tabpanel">
+					<div class="tool-field">
+						<label for="url-input">Page URL</label>
+						<input id="url-input" type="url" placeholder="https://example.com/page" autocomplete="url" />
+					</div>
+				</div>
+				<div class="tab-panel" id="tab-html" role="tabpanel">
+					<div class="tool-field">
+						<label for="html-input">Raw HTML</label>
+						<textarea id="html-input" placeholder="Paste the page's HTML source"></textarea>
+					</div>
+				</div>
+				<div class="tool-actions">
+					<button class="btn-primary" id="analyze-btn" type="button">Run audit</button>
+					<button class="btn-secondary" id="clear-btn" type="button">Clear</button>
+				</div>
+				<div class="tool-status" id="tool-status" role="status" aria-live="polite"></div>
 			</div>
 
-			<div class="tool-actions">
-				<button class="btn-primary" id="analyze-btn">Analyze Page</button>
-				<button class="btn-secondary" id="clear-btn">Clear</button>
-			</div>
-
-			<div class="results" id="results"></div>
+			<section class="report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
-			const analyzeBtn = document.getElementById('analyze-btn')!;
-			const clearBtn = document.getElementById('clear-btn')!;
-			const input = document.getElementById('html-input') as HTMLTextAreaElement;
-			const results = document.getElementById('results')!;
+			type Tier = 'good' | 'fair' | 'poor';
+			type Issue = { label: string; status: 'pass' | 'warn' | 'fail'; detail: string; weight: number; category: string };
 
-			interface Check {
-				label: string;
-				status: 'pass' | 'warn' | 'fail';
-				detail: string;
+			const tabBtns = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
+			const tabPanels = document.querySelectorAll<HTMLElement>('.tab-panel');
+			const urlInput = document.getElementById('url-input') as HTMLInputElement;
+			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
+			const analyzeBtn = document.getElementById('analyze-btn') as HTMLButtonElement;
+			const clearBtn = document.getElementById('clear-btn') as HTMLButtonElement;
+			const statusEl = document.getElementById('tool-status')!;
+			const reportEl = document.getElementById('report')!;
+			let activeTab: 'url' | 'html' = 'url';
+
+			tabBtns.forEach((b) =>
+				b.addEventListener('click', () => {
+					tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+					tabPanels.forEach((p) => p.classList.toggle('active', p.id === `tab-${b.dataset.tab}`));
+					activeTab = b.dataset.tab as 'url' | 'html';
+					setStatus('');
+				}),
+			);
+
+			function setStatus(t: string, error = false, loading = false) {
+				statusEl.textContent = t;
+				statusEl.classList.toggle('error', error);
+				statusEl.classList.toggle('loading', loading);
+			}
+			function escapeHtml(s: string) {
+				return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+			}
+			function tierFor(score: number): Tier { return score >= 80 ? 'good' : score >= 55 ? 'fair' : 'poor'; }
+
+			async function fetchPage(url: string) {
+				const res = await fetch(`/api/fetch-page?url=${encodeURIComponent(url)}`);
+				if (!res.ok) {
+					const d = await res.json().catch(() => ({}));
+					throw new Error(d.error || `Fetch failed (${res.status})`);
+				}
+				return res.json();
 			}
 
 			function analyze(html: string) {
 				const doc = new DOMParser().parseFromString(html, 'text/html');
-				const checks: { group: string; items: Check[] }[] = [];
-				let score = 0;
-				let total = 0;
+				const issues: Issue[] = [];
 
-				// Title
-				const titleChecks: Check[] = [];
+				// --- Title & meta ---
 				const title = doc.querySelector('title')?.textContent?.trim() || '';
-				total += 2;
-				if (!title) {
-					titleChecks.push({ label: 'Title tag', status: 'fail', detail: 'No title tag found.' });
-				} else if (title.length < 30) {
-					titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Title is short (${title.length} chars). Aim for 50-60 characters.` });
-					score += 0.5;
-				} else if (title.length > 65) {
-					titleChecks.push({ label: 'Title tag', status: 'warn', detail: `Title is long (${title.length} chars). May be truncated in search results. Aim for 50-60.` });
-					score += 0.5;
-				} else {
-					titleChecks.push({ label: 'Title tag', status: 'pass', detail: `"${title}" (${title.length} chars)` });
-					score += 1;
-				}
+				if (!title) issues.push({ label: 'Title tag', status: 'fail', detail: 'No <title> found.', weight: 10, category: 'Title & meta' });
+				else if (title.length < 30) issues.push({ label: 'Title tag', status: 'warn', detail: `Short title (${title.length} chars). Aim for 50–60.`, weight: 6, category: 'Title & meta' });
+				else if (title.length > 65) issues.push({ label: 'Title tag', status: 'warn', detail: `Long title (${title.length} chars). May truncate in SERPs.`, weight: 5, category: 'Title & meta' });
+				else issues.push({ label: 'Title tag', status: 'pass', detail: `"${title}" — ${title.length} chars.`, weight: 0, category: 'Title & meta' });
 
-				const metaDesc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
-				if (!metaDesc) {
-					titleChecks.push({ label: 'Meta description', status: 'fail', detail: 'No meta description found.' });
-				} else if (metaDesc.length < 120) {
-					titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Description is short (${metaDesc.length} chars). Aim for 150-160.` });
-					score += 0.5;
-				} else if (metaDesc.length > 170) {
-					titleChecks.push({ label: 'Meta description', status: 'warn', detail: `Description may be truncated (${metaDesc.length} chars). Aim for 150-160.` });
-					score += 0.5;
-				} else {
-					titleChecks.push({ label: 'Meta description', status: 'pass', detail: `${metaDesc.length} characters` });
-					score += 1;
-				}
-				checks.push({ group: 'Title & Meta', items: titleChecks });
+				const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
+				if (!desc) issues.push({ label: 'Meta description', status: 'fail', detail: 'No meta description found.', weight: 9, category: 'Title & meta' });
+				else if (desc.length < 120) issues.push({ label: 'Meta description', status: 'warn', detail: `Short (${desc.length} chars). Aim for 140–160.`, weight: 4, category: 'Title & meta' });
+				else if (desc.length > 170) issues.push({ label: 'Meta description', status: 'warn', detail: `Long (${desc.length} chars). May truncate.`, weight: 4, category: 'Title & meta' });
+				else issues.push({ label: 'Meta description', status: 'pass', detail: `${desc.length} chars.`, weight: 0, category: 'Title & meta' });
 
-				// Headings
-				const headingChecks: Check[] = [];
+				// --- Headings ---
 				const h1s = doc.querySelectorAll('h1');
 				const h2s = doc.querySelectorAll('h2');
-				total += 3;
-				if (h1s.length === 0) {
-					headingChecks.push({ label: 'H1 tag', status: 'fail', detail: 'No H1 heading found. Every page should have exactly one H1.' });
-				} else if (h1s.length > 1) {
-					headingChecks.push({ label: 'H1 tag', status: 'warn', detail: `Found ${h1s.length} H1 tags. Best practice is exactly one H1 per page.` });
-					score += 0.5;
-				} else {
-					headingChecks.push({ label: 'H1 tag', status: 'pass', detail: `"${h1s[0].textContent?.trim().slice(0, 60)}${(h1s[0].textContent?.trim().length || 0) > 60 ? '...' : ''}"` });
-					score += 1;
+				if (h1s.length === 0) issues.push({ label: 'H1 tag', status: 'fail', detail: 'No H1 found. Every page needs exactly one H1.', weight: 10, category: 'Headings' });
+				else if (h1s.length > 1) issues.push({ label: 'H1 tag', status: 'warn', detail: `Found ${h1s.length} H1 tags. Use exactly one.`, weight: 5, category: 'Headings' });
+				else {
+					const txt = h1s[0].textContent?.trim() || '';
+					issues.push({ label: 'H1 tag', status: 'pass', detail: `"${txt.length > 60 ? txt.slice(0, 60) + '…' : txt}"`, weight: 0, category: 'Headings' });
+				}
+				if (h2s.length === 0) issues.push({ label: 'H2 sections', status: 'warn', detail: 'No H2 headings. Use H2s to break content into sections.', weight: 4, category: 'Headings' });
+				else issues.push({ label: 'H2 sections', status: 'pass', detail: `${h2s.length} H2 heading${h2s.length === 1 ? '' : 's'}.`, weight: 0, category: 'Headings' });
+
+				const allH = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+				let hierarchyOk = true; let prev = 0;
+				allH.forEach((h) => { const lvl = parseInt(h.tagName[1]); if (prev > 0 && lvl > prev + 1) hierarchyOk = false; prev = lvl; });
+				if (hierarchyOk && allH.length > 0) issues.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a sequential order.', weight: 0, category: 'Headings' });
+				else if (!hierarchyOk) issues.push({ label: 'Heading hierarchy', status: 'warn', detail: 'Heading levels skipped. Keep them sequential (H1→H2→H3).', weight: 5, category: 'Headings' });
+
+				// --- Images ---
+				const imgs = Array.from(doc.querySelectorAll('img'));
+				if (imgs.length === 0) issues.push({ label: 'Images', status: 'warn', detail: 'No images found. Images improve engagement.', weight: 3, category: 'Images' });
+				else {
+					const noAlt = imgs.filter((img) => !img.getAttribute('alt')?.trim()).length;
+					if (noAlt === 0) issues.push({ label: 'Alt text', status: 'pass', detail: `All ${imgs.length} images have alt text.`, weight: 0, category: 'Images' });
+					else issues.push({ label: 'Alt text', status: 'fail', detail: `${noAlt} of ${imgs.length} images missing alt text.`, weight: 8, category: 'Images' });
+
+					const noDim = imgs.filter((img) => !img.getAttribute('width') || !img.getAttribute('height')).length;
+					if (noDim === 0) issues.push({ label: 'Image dimensions', status: 'pass', detail: 'All images have width and height set.', weight: 0, category: 'Images' });
+					else issues.push({ label: 'Image dimensions', status: 'warn', detail: `${noDim} images missing dimensions. Causes layout shifts (CLS).`, weight: 5, category: 'Images' });
 				}
 
-				if (h2s.length === 0) {
-					headingChecks.push({ label: 'H2 tags', status: 'warn', detail: 'No H2 headings found. Use H2s to structure your content into sections.' });
-				} else {
-					headingChecks.push({ label: 'H2 tags', status: 'pass', detail: `Found ${h2s.length} H2 heading${h2s.length > 1 ? 's' : ''}.` });
-					score += 1;
-				}
+				// --- Links ---
+				const links = Array.from(doc.querySelectorAll('a[href]'));
+				const internal = links.filter((a) => { const h = a.getAttribute('href') || ''; return h.startsWith('/') || h.startsWith('#'); }).length;
+				const external = links.filter((a) => (a.getAttribute('href') || '').startsWith('http')).length;
+				if (links.length > 0) issues.push({ label: 'Link count', status: 'pass', detail: `${links.length} links — ${internal} internal, ${external} external.`, weight: 0, category: 'Links' });
+				if (internal < 2) issues.push({ label: 'Internal links', status: 'warn', detail: 'Fewer than 2 internal links. Add more to strengthen site structure.', weight: 4, category: 'Links' });
+				else issues.push({ label: 'Internal links', status: 'pass', detail: `${internal} internal links.`, weight: 0, category: 'Links' });
 
-				// Check heading hierarchy
-				const allHeadings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
-				let hierarchyOk = true;
-				let prevLevel = 0;
-				allHeadings.forEach((h) => {
-					const level = parseInt(h.tagName[1]);
-					if (prevLevel > 0 && level > prevLevel + 1) hierarchyOk = false;
-					prevLevel = level;
-				});
-				if (hierarchyOk) {
-					headingChecks.push({ label: 'Heading hierarchy', status: 'pass', detail: 'Headings follow a logical order without skipping levels.' });
-					score += 1;
-				} else {
-					headingChecks.push({ label: 'Heading hierarchy', status: 'warn', detail: 'Heading levels are skipped (e.g., H1 → H3). Use sequential levels.' });
-					score += 0.5;
-				}
-				checks.push({ group: 'Headings', items: headingChecks });
+				// --- Content & technical ---
+				// Strip code/markup/chrome so word count reflects visible text,
+				// not inline styles, scripts, or boilerplate nav/footer.
+				const bodyText = (() => {
+					if (!doc.body) return '';
+					const clone = doc.body.cloneNode(true) as HTMLElement;
+					clone.querySelectorAll(
+						'script, style, noscript, template, iframe, svg, code, pre, ' +
+						'nav, footer, aside, [role="navigation"], [role="banner"], ' +
+						'[role="contentinfo"], [aria-hidden="true"]'
+					).forEach((n) => n.remove());
+					const main = clone.querySelector('main, article, [role="main"]');
+					return ((main as HTMLElement | null) || clone).textContent?.trim() || '';
+				})();
+				const wc = bodyText.split(/\s+/).filter(Boolean).length;
+				if (wc < 300) issues.push({ label: 'Word count', status: 'fail', detail: `${wc} words. Below 300 underperforms in search.`, weight: 8, category: 'Content & technical' });
+				else if (wc < 1000) issues.push({ label: 'Word count', status: 'warn', detail: `${wc} words. Consider 1,000+ for competitive topics.`, weight: 3, category: 'Content & technical' });
+				else issues.push({ label: 'Word count', status: 'pass', detail: `${wc.toLocaleString()} words.`, weight: 0, category: 'Content & technical' });
 
-				// Images
-				const imgChecks: Check[] = [];
-				const imgs = doc.querySelectorAll('img');
-				total += 2;
-				if (imgs.length === 0) {
-					imgChecks.push({ label: 'Images', status: 'warn', detail: 'No images found on the page. Images can improve engagement and SEO.' });
-					score += 0.5;
-				} else {
-					const noAlt = Array.from(imgs).filter((img) => !img.getAttribute('alt')?.trim());
-					if (noAlt.length === 0) {
-						imgChecks.push({ label: 'Image alt tags', status: 'pass', detail: `All ${imgs.length} images have alt text.` });
-						score += 1;
-					} else {
-						imgChecks.push({ label: 'Image alt tags', status: 'fail', detail: `${noAlt.length} of ${imgs.length} images missing alt text.` });
-					}
-
-					const noDimensions = Array.from(imgs).filter((img) => !img.getAttribute('width') || !img.getAttribute('height'));
-					if (noDimensions.length === 0) {
-						imgChecks.push({ label: 'Image dimensions', status: 'pass', detail: 'All images have width and height attributes.' });
-						score += 1;
-					} else {
-						imgChecks.push({ label: 'Image dimensions', status: 'warn', detail: `${noDimensions.length} images missing width/height. This can cause layout shifts.` });
-						score += 0.5;
-					}
-				}
-				checks.push({ group: 'Images', items: imgChecks });
-
-				// Links
-				const linkChecks: Check[] = [];
-				const links = doc.querySelectorAll('a[href]');
-				const internalLinks = Array.from(links).filter((a) => {
-					const href = a.getAttribute('href') || '';
-					return href.startsWith('/') || href.startsWith('#');
-				});
-				const externalLinks = Array.from(links).filter((a) => {
-					const href = a.getAttribute('href') || '';
-					return href.startsWith('http');
-				});
-				total += 1;
-				linkChecks.push({ label: 'Total links', status: 'pass', detail: `${links.length} links found (${internalLinks.length} internal, ${externalLinks.length} external).` });
-				score += 1;
-
-				if (internalLinks.length < 2) {
-					linkChecks.push({ label: 'Internal links', status: 'warn', detail: 'Fewer than 2 internal links. Add more to strengthen site structure.' });
-				} else {
-					linkChecks.push({ label: 'Internal links', status: 'pass', detail: `${internalLinks.length} internal links found.` });
-				}
-				checks.push({ group: 'Links', items: linkChecks });
-
-				// Content
-				const contentChecks: Check[] = [];
-				const bodyText = doc.body?.textContent?.trim() || '';
-				const wordCount = bodyText.split(/\s+/).filter((w) => w.length > 0).length;
-				total += 2;
-				if (wordCount < 300) {
-					contentChecks.push({ label: 'Word count', status: 'fail', detail: `${wordCount} words. Pages with fewer than 300 words often underperform in search.` });
-				} else if (wordCount < 1000) {
-					contentChecks.push({ label: 'Word count', status: 'warn', detail: `${wordCount} words. Consider expanding to 1,000+ for competitive topics.` });
-					score += 0.5;
-				} else {
-					contentChecks.push({ label: 'Word count', status: 'pass', detail: `${wordCount} words.` });
-					score += 1;
-				}
-
-				const canonical = doc.querySelector('link[rel="canonical"]');
-				if (canonical) {
-					contentChecks.push({ label: 'Canonical URL', status: 'pass', detail: canonical.getAttribute('href') || 'Set' });
-					score += 1;
-				} else {
-					contentChecks.push({ label: 'Canonical URL', status: 'warn', detail: 'No canonical URL found. Add one to prevent duplicate content issues.' });
-					score += 0.5;
-				}
+				const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href');
+				if (canonical) issues.push({ label: 'Canonical URL', status: 'pass', detail: canonical.length > 80 ? canonical.slice(0, 80) + '…' : canonical, weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Canonical URL', status: 'warn', detail: 'No canonical URL. Add one to prevent duplicate-content issues.', weight: 5, category: 'Content & technical' });
 
 				const viewport = doc.querySelector('meta[name="viewport"]');
-				if (viewport) {
-					contentChecks.push({ label: 'Viewport meta', status: 'pass', detail: 'Mobile viewport configured.' });
-				} else {
-					contentChecks.push({ label: 'Viewport meta', status: 'fail', detail: 'No viewport meta tag. Page may not be mobile-friendly.' });
-				}
+				if (viewport) issues.push({ label: 'Viewport meta', status: 'pass', detail: 'Mobile viewport configured.', weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Viewport meta', status: 'fail', detail: 'No viewport meta. Page may not be mobile-friendly.', weight: 8, category: 'Content & technical' });
 
 				const lang = doc.documentElement.getAttribute('lang');
-				if (lang) {
-					contentChecks.push({ label: 'Language attribute', status: 'pass', detail: `lang="${lang}"` });
-				} else {
-					contentChecks.push({ label: 'Language attribute', status: 'warn', detail: 'No lang attribute on <html>. Add one for accessibility and SEO.' });
-				}
-				checks.push({ group: 'Content & Technical', items: contentChecks });
+				if (lang) issues.push({ label: 'Language', status: 'pass', detail: `lang="${lang}"`, weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Language', status: 'warn', detail: 'No lang attribute on <html>.', weight: 2, category: 'Content & technical' });
 
-				const finalScore = Math.round((score / total) * 100);
-				return { score: finalScore, checks };
+				const ogTitle = doc.querySelector('meta[property="og:title"]');
+				const ogImage = doc.querySelector('meta[property="og:image"]');
+				if (ogTitle && ogImage) issues.push({ label: 'Open Graph', status: 'pass', detail: 'og:title and og:image present.', weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Open Graph', status: 'warn', detail: 'Missing og:title or og:image. Social shares may look poor.', weight: 4, category: 'Content & technical' });
+
+				const schema = doc.querySelectorAll('script[type="application/ld+json"]');
+				if (schema.length > 0) issues.push({ label: 'Structured data', status: 'pass', detail: `${schema.length} JSON-LD block${schema.length === 1 ? '' : 's'} found.`, weight: 0, category: 'Content & technical' });
+				else issues.push({ label: 'Structured data', status: 'warn', detail: 'No JSON-LD schema found. Add Article/FAQPage for rich-result eligibility.', weight: 5, category: 'Content & technical' });
+
+				const cats = ['Title & meta', 'Headings', 'Images', 'Links', 'Content & technical'];
+				const catScores = cats.map((cat) => {
+					const items = issues.filter((i) => i.category === cat);
+					const denom = items.length || 1;
+					const passes = items.filter((i) => i.status === 'pass').length;
+					const halves = items.filter((i) => i.status === 'warn').length * 0.5;
+					return { name: cat, score: Math.round(((passes + halves) / denom) * 100), items };
+				});
+				const overall = Math.round(catScores.reduce((s, c) => s + c.score, 0) / catScores.length);
+
+				const fails = issues.filter((i) => i.status === 'fail').length;
+				const warns = issues.filter((i) => i.status === 'warn').length;
+				const passes = issues.filter((i) => i.status === 'pass').length;
+
+				return {
+					overall, catScores, issues,
+					counts: { fails, warns, passes },
+					summary: { wc, links: links.length, internal, external, imgs: imgs.length, h1: h1s.length, h2: h2s.length },
+				};
 			}
 
-			function renderResults(data: { score: number; checks: { group: string; items: Check[] }[] }) {
-				const scoreClass = data.score >= 80 ? 'score-good' : data.score >= 50 ? 'score-ok' : 'score-bad';
-				const scoreText = data.score >= 80 ? 'Good' : data.score >= 50 ? 'Needs Work' : 'Poor';
-				const iconMap = { pass: '\u2713', warn: '!', fail: '\u2717' };
+			function renderScoreRing(score: number, tier: Tier) {
+				const r = 64;
+				const c = 2 * Math.PI * r;
+				const offset = c - (score / 100) * c;
+				return `
+					<div class="score-ring">
+						<svg viewBox="0 0 140 140" aria-hidden="true">
+							<circle class="track" cx="70" cy="70" r="${r}"/>
+							<circle class="fill tier-${tier}" cx="70" cy="70" r="${r}" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"/>
+						</svg>
+						<div class="score-center">
+							<div class="score-num tier-${tier}">${score}</div>
+							<div class="score-label">Overall</div>
+						</div>
+					</div>
+				`;
+			}
+
+			function renderDonut(fails: number, warns: number, passes: number) {
+				const total = fails + warns + passes;
+				if (total === 0) return '';
+				const r = 56;
+				const c = 2 * Math.PI * r;
+				const pct = (n: number) => (n / total) * c;
+				const failLen = pct(fails);
+				const warnLen = pct(warns);
+				const passLen = pct(passes);
+				let off = 0;
+				const seg = (color: string, len: number) => {
+					const arc = `<circle cx="70" cy="70" r="${r}" fill="none" stroke="${color}" stroke-width="14" stroke-dasharray="${len.toFixed(1)} ${(c - len).toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}"/>`;
+					off += len;
+					return arc;
+				};
+				return `
+					<div class="donut-wrap">
+						<div class="donut">
+							<svg viewBox="0 0 140 140" aria-label="Issues by severity: ${fails} failing, ${warns} warnings, ${passes} passing">
+								<circle cx="70" cy="70" r="${r}" fill="none" stroke="var(--tool-surface-soft)" stroke-width="14"/>
+								${fails > 0 ? seg('var(--tool-bad)', failLen) : ''}
+								${warns > 0 ? seg('var(--tool-warn)', warnLen) : ''}
+								${passes > 0 ? seg('var(--tool-ok)', passLen) : ''}
+							</svg>
+							<div class="donut-center">
+								<div class="total">${total}</div>
+								<div class="label">Checks</div>
+							</div>
+						</div>
+						<ul class="donut-legend" role="list" style="list-style:none;padding:0;margin:0">
+							<li class="li"><span class="swatch" style="background:var(--tool-bad)"></span><span class="name">Failing</span><span class="count">${fails}</span></li>
+							<li class="li"><span class="swatch" style="background:var(--tool-warn)"></span><span class="name">Warnings</span><span class="count">${warns}</span></li>
+							<li class="li"><span class="swatch" style="background:var(--tool-ok)"></span><span class="name">Passing</span><span class="count">${passes}</span></li>
+						</ul>
+					</div>
+				`;
+			}
+
+			function render(data: ReturnType<typeof analyze>, source: string) {
+				const tier = tierFor(data.overall);
+				const tierLabel = { good: 'Good', fair: 'Needs work', poor: 'Poor' }[tier];
+				const { counts, summary, catScores, issues } = data;
+
+				const sortedIssues = [...issues].sort((a, b) => {
+					const r = { fail: 0, warn: 1, pass: 2 } as const;
+					return r[a.status] - r[b.status] || b.weight - a.weight;
+				}).filter((i) => i.status !== 'pass');
+
+				const chips = [];
+				if (counts.fails > 0) chips.push(`<span class="chip bad">${counts.fails} failing</span>`);
+				if (counts.warns > 0) chips.push(`<span class="chip warn">${counts.warns} warnings</span>`);
+				if (counts.passes > 0) chips.push(`<span class="chip ok">${counts.passes} passing</span>`);
+				chips.push(`<span class="chip">${summary.wc.toLocaleString()} words</span>`);
+				chips.push(`<span class="chip">${summary.imgs} image${summary.imgs === 1 ? '' : 's'}</span>`);
+				chips.push(`<span class="chip">${summary.links} link${summary.links === 1 ? '' : 's'}</span>`);
 
 				let html = `
-					<div class="score-bar">
-						<div class="score-circle ${scoreClass}">${data.score}</div>
-						<div class="score-label"><strong>${scoreText}</strong>Your page scored ${data.score} out of 100</div>
+					<header class="report-hero">
+						${renderScoreRing(data.overall, tier)}
+						<div class="hero-meta">
+							<h2 class="hero-title">On-page SEO report</h2>
+							<div class="hero-url" title="${escapeHtml(source)}">🔗 ${escapeHtml(source)}</div>
+							<p class="hero-summary">Scored <strong style="color:var(--tool-${tier === 'good' ? 'ok' : tier === 'fair' ? 'warn' : 'bad'})">${data.overall}/100 (${tierLabel})</strong>${counts.fails > 0 ? ` — <strong style="color:var(--tool-bad)">${counts.fails} critical fix${counts.fails === 1 ? '' : 'es'}</strong>` : ''}${counts.warns > 0 ? ` and ${counts.warns} warning${counts.warns === 1 ? '' : 's'}` : ''}.</p>
+							<div class="hero-chips">${chips.join('')}</div>
+						</div>
+					</header>
+
+					<div class="score-grid">
+						${catScores.map((c) => {
+							const t = tierFor(c.score);
+							return `
+								<div class="score-card tier-${t}">
+									<div class="sc-label">${escapeHtml(c.name)}</div>
+									<div class="sc-num tier-${t}">${c.score}</div>
+									<div class="sc-bar"><div class="sc-bar-fill" style="width:${c.score}%"></div></div>
+								</div>
+							`;
+						}).join('')}
+					</div>
+
+					<div class="panel">
+						<div class="panel-header">
+							<h3 class="panel-title">Issues overview</h3>
+							<span class="panel-badge">${counts.fails + counts.warns} to fix</span>
+						</div>
+						${renderDonut(counts.fails, counts.warns, counts.passes)}
 					</div>
 				`;
 
-				for (const group of data.checks) {
-					html += `<div class="check-group"><h3>${group.group}</h3>`;
-					for (const item of group.items) {
-						html += `
-							<div class="check-item">
-								<span class="check-icon ${item.status}">${iconMap[item.status]}</span>
-								<div><strong>${item.label}</strong><br><span class="check-detail">${item.detail}</span></div>
+				if (sortedIssues.length > 0) {
+					html += `
+						<div class="panel">
+							<div class="panel-header">
+								<h3 class="panel-title">Prioritized fixes</h3>
+								<span class="panel-badge ${counts.fails > 0 ? 'tier-poor' : 'tier-fair'}">Sorted by impact</span>
 							</div>
-						`;
-					}
-					html += `</div>`;
+							<div class="panel-body flush">
+								<div class="issues-table">
+									${sortedIssues.map((i) => `
+										<div class="row">
+											<div><div class="sev-dot ${i.status}" aria-hidden="true"></div></div>
+											<div>
+												<p class="row-title">${escapeHtml(i.label)}</p>
+												<p class="row-sub">${escapeHtml(i.detail)}</p>
+											</div>
+											<div><span class="row-cat">${escapeHtml(i.category)}</span></div>
+											<div><div class="impact-bar ${i.status}"><span style="width:${Math.min(100, i.weight * 10)}%"></span></div></div>
+										</div>
+									`).join('')}
+								</div>
+							</div>
+						</div>
+					`;
 				}
 
-				results.innerHTML = html;
-				results.classList.add('visible');
+				const checks = issues.filter((i) => i.status === 'pass');
+				if (checks.length > 0) {
+					html += `
+						<div class="panel">
+							<div class="panel-header">
+								<h3 class="panel-title">Passing checks</h3>
+								<span class="panel-badge tier-good">${checks.length} passed</span>
+							</div>
+							<div class="check-grid">
+								${checks.map((i) => `
+									<div class="check-card">
+										<div class="check-icon pass" aria-hidden="true">✓</div>
+										<div class="check-body">
+											<strong>${escapeHtml(i.label)}</strong>
+											<span>${escapeHtml(i.detail)}</span>
+										</div>
+									</div>
+								`).join('')}
+							</div>
+						</div>
+					`;
+				}
+
+				reportEl.innerHTML = html;
+				reportEl.classList.add('visible');
+				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
-			analyzeBtn.addEventListener('click', () => {
-				const html = input.value.trim();
-				if (!html) { alert('Please paste HTML source code first.'); return; }
-				const data = analyze(html);
-				renderResults(data);
-				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-			});
+			async function run() {
+				analyzeBtn.disabled = true;
+				try {
+					let html: string;
+					let source: string;
+					if (activeTab === 'url') {
+						const u = urlInput.value.trim();
+						if (!u) { setStatus('Enter a URL to audit.', true); return; }
+						setStatus('Fetching page', false, true);
+						const r = await fetchPage(u);
+						html = r.html;
+						source = r.url;
+					} else {
+						html = htmlInput.value.trim();
+						if (!html) { setStatus('Paste HTML to audit.', true); return; }
+						source = 'Pasted HTML';
+					}
+					setStatus('');
+					render(analyze(html), source);
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
+					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+				} finally {
+					analyzeBtn.disabled = false;
+				}
+			}
 
+			analyzeBtn.addEventListener('click', run);
+			urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); run(); } });
 			clearBtn.addEventListener('click', () => {
-				input.value = '';
-				results.innerHTML = '';
-				results.classList.remove('visible');
+				urlInput.value = ''; htmlInput.value = '';
+				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
 			});
 		</script>
 	</body>

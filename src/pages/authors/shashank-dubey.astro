@@ -1,0 +1,260 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import {
+	SITE_TITLE,
+	SITE_URL,
+	AUTHOR_NAME,
+	AUTHOR_ROLE,
+	AUTHOR_COMPANY,
+	AUTHOR_BIO_LONG,
+	AUTHOR_IMAGE,
+	AUTHOR_PROFILE_URL,
+	AUTHOR_EMAIL,
+	AUTHOR_SAME_AS,
+} from '../../consts';
+import { sortPostsByDate } from '../../utils/blog';
+
+const now = new Date();
+const allPosts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now));
+const postsByAuthor = allPosts.filter((p) => (p.data.author ?? '').includes('Shashank Dubey'));
+
+const profileSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfilePage',
+	'@id': `${AUTHOR_PROFILE_URL}#profilepage`,
+	mainEntity: { '@id': `${SITE_URL}/#person` },
+	url: AUTHOR_PROFILE_URL,
+	dateModified: new Date().toISOString(),
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`${AUTHOR_NAME} — ${AUTHOR_ROLE} | ${SITE_TITLE}`}
+			description={`${AUTHOR_NAME} writes AISEOShift on AI visibility, AEO, GEO, and the practical SEO playbook for the AI search era. ${postsByAuthor.length} posts.`}
+			canonical={AUTHOR_PROFILE_URL}
+			image={AUTHOR_IMAGE}
+			ogType="article"
+			structuredData={profileSchema}
+		/>
+		<style>
+			.author-page {
+				width: min(1080px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: var(--space-7) 0 var(--space-9);
+			}
+
+			.author-hero {
+				padding: var(--space-7) 0 var(--space-8);
+				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: 160px minmax(0, 1fr);
+				gap: var(--space-7);
+				align-items: end;
+			}
+
+			.author-photo {
+				width: 160px;
+				height: 160px;
+				border-radius: 50%;
+				border: 1px solid var(--line-strong);
+				display: block;
+				object-fit: cover;
+			}
+
+			.author-hero h1 {
+				font-size: clamp(2.4rem, 4.6vw, 4rem);
+				line-height: 1;
+				letter-spacing: -0.03em;
+				font-weight: 600;
+				margin: var(--space-4) 0 var(--space-3);
+			}
+
+			.author-role {
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: var(--ink-muted);
+				margin: 0 0 var(--space-4);
+				letter-spacing: 0.01em;
+			}
+
+			.author-role span {
+				color: rgb(var(--ink));
+			}
+
+			.author-bio {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.82);
+				max-width: var(--measure-wide);
+				margin: 0 0 var(--space-5);
+			}
+
+			.author-links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--space-2) var(--space-4);
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.author-links li { margin: 0; }
+
+			.author-links a {
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: rgb(var(--ink));
+				text-decoration: none;
+				border-bottom: 1px solid var(--line-strong);
+				padding-bottom: 2px;
+			}
+
+			.author-links a:hover {
+				color: var(--signal-deep);
+				border-color: var(--signal);
+			}
+
+			.author-posts {
+				padding: var(--space-8) 0;
+			}
+
+			.author-posts .eyebrow {
+				display: block;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+				margin: 0 0 var(--space-3);
+			}
+
+			.author-posts h2 {
+				font-size: clamp(1.85rem, 3vw, 2.5rem);
+				letter-spacing: -0.024em;
+				font-weight: 600;
+				margin: 0 0 var(--space-7);
+			}
+
+			.author-posts ol {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.author-posts li {
+				margin: 0;
+			}
+
+			.author-post-row {
+				display: grid;
+				grid-template-columns: 7rem minmax(0, 1fr) 6rem;
+				gap: var(--space-5);
+				align-items: baseline;
+				padding: var(--space-4) 0;
+				border-top: 1px solid var(--line);
+				text-decoration: none;
+				color: rgb(var(--ink));
+			}
+
+			.author-posts li:last-child .author-post-row {
+				border-bottom: 1px solid var(--line);
+			}
+
+			.author-post-row:hover .author-post-title {
+				color: var(--signal-deep);
+			}
+
+			.author-post-date {
+				font-family: 'Iowan Old Style', Georgia, serif;
+				font-style: italic;
+				color: var(--ink-muted);
+				font-size: 0.95rem;
+			}
+
+			.author-post-title {
+				font-size: 1.1rem;
+				line-height: 1.3;
+				font-weight: 600;
+				letter-spacing: -0.012em;
+				margin: 0;
+			}
+
+			.author-post-cat {
+				text-align: right;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+			}
+
+			@media (max-width: 860px) {
+				.author-hero {
+					grid-template-columns: 1fr;
+					gap: var(--space-5);
+					align-items: start;
+				}
+
+				.author-photo {
+					width: 120px;
+					height: 120px;
+				}
+
+				.author-post-row {
+					grid-template-columns: minmax(0, 1fr);
+					gap: var(--space-2);
+				}
+
+				.author-post-cat { display: none; }
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="author-page">
+			<section class="author-hero">
+				<img class="author-photo" src={AUTHOR_IMAGE} alt={`Portrait of ${AUTHOR_NAME}`} width="160" height="160" loading="eager" />
+				<div>
+					<h1>{AUTHOR_NAME}</h1>
+					<p class="author-role"><span>Founder, {AUTHOR_COMPANY}</span> · AI SEO consultant · 10 years</p>
+					<p class="author-bio">{AUTHOR_BIO_LONG}</p>
+					<ul class="author-links">
+						<li><a href={`mailto:${AUTHOR_EMAIL}`}>{AUTHOR_EMAIL}</a></li>
+						{AUTHOR_SAME_AS.map((url) => {
+							const label = url.includes('linkedin') ? 'LinkedIn'
+								: url.includes('x.com') ? 'X (Twitter)'
+								: url.includes('upwork') ? 'Upwork'
+								: url.includes('gravatar') ? 'Gravatar'
+								: 'Profile';
+							return <li><a href={url} target="_blank" rel="me noopener">{label}</a></li>;
+						})}
+					</ul>
+				</div>
+			</section>
+
+			<section class="author-posts">
+				<p class="eyebrow">Posts by {AUTHOR_NAME.split(' ')[0]}</p>
+				<h2>{postsByAuthor.length} published pieces</h2>
+				<ol>
+					{postsByAuthor.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`} class="author-post-row">
+								<span class="author-post-date"><FormattedDate date={post.data.pubDate} /></span>
+								<h3 class="author-post-title">{post.data.title}</h3>
+								<span class="author-post-cat">{post.data.category}</span>
+							</a>
+						</li>
+					))}
+				</ol>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

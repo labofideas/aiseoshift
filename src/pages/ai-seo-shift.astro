@@ -1,0 +1,39 @@
+---
+import { type CollectionEntry, getCollection, getEntry, render } from 'astro:content';
+import imageManifest from '../data/image-manifest.json';
+import BlogPost from '../layouts/BlogPost.astro';
+
+const post = await getEntry('blog', 'ai-seo-shift');
+if (!post) return Astro.redirect('/blog/');
+
+const now = new Date();
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now);
+const { Content, headings } = await render(post);
+const heroImage = imageManifest[post.id as keyof typeof imageManifest]?.hero;
+
+const relatedPosts = allPosts
+	.filter((p: CollectionEntry<'blog'>) => p.id !== post.id)
+	.map((p: CollectionEntry<'blog'>) => {
+		let score = 0;
+		if (p.data.category === post.data.category) score += 3;
+		const sharedTags = p.data.tags.filter((t: string) => post.data.tags.includes(t));
+		score += sharedTags.length;
+		return { post: p, score };
+	})
+	.sort((a: { score: number; post: CollectionEntry<'blog'> }, b: { score: number; post: CollectionEntry<'blog'> }) =>
+		b.score - a.score || b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf()
+	)
+	.slice(0, 3)
+	.map((s: { post: CollectionEntry<'blog'> }) => s.post);
+---
+
+<BlogPost
+	{...post.data}
+	slug={post.id}
+	heroImage={heroImage}
+	headings={headings}
+	relatedPosts={relatedPosts}
+	imageManifest={imageManifest}
+>
+	<Content />
+</BlogPost>

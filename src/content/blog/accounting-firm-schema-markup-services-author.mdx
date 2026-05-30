@@ -1,0 +1,400 @@
+---
+title: "Accounting Firm Schema Markup: AccountingService, Person, and Author Markup in 2026"
+description: Complete schema markup guide for CPAs. AccountingService, Person with credentials, Article, and FAQPage schema with copy-paste JSON-LD examples.
+deck: Schema is how AI engines verify accounting credentials. Most CPA firm sites have none. Here is the implementation that gets you cited in YMYL financial queries.
+pubDate: 2026-05-27
+category: Playbooks
+tags:
+  - schema markup
+  - accounting SEO
+  - structured data
+  - AI visibility
+author: Shashank Dubey
+featured: false
+---
+
+When ChatGPT answers "best CPA for short-term rental investors," it needs to verify that the firms it considers are actually accounting firms with credentialed CPAs. Schema markup is the primary mechanism. Firms with structured `AccountingService` and `Person` markup with `hasCredential` get verified and cited. Firms without it have to be inferred — and AI engines often choose not to bother inferring.
+
+This is the implementation guide. Five schema types, copy-paste JSON-LD, and the deployment patterns that work for accounting firm websites.
+
+For the strategic context, see the pillar on [AI SEO for CPA firms](/blog/ai-seo-for-cpa-firms-2026/), the [E-E-A-T post](/blog/eeat-for-accounting-firms-cpa-authority/), and the broader [schema markup guide](/seo/schema-markup/). For a structured engagement, see our [AI SEO services for accountants](/ai-seo-services/accountants/).
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five schema types for CPA firms ranked by AI verification impact: AccountingService, Person with hasCredential, Service, Article, and FAQPage">
+	<rect width="800" height="280" fill="rgb(246,245,240)" />
+	<g stroke="rgb(14,17,22)" stroke-opacity="0.06">
+		<line x1="0" y1="40" x2="800" y2="40" />
+		<line x1="0" y1="240" x2="800" y2="240" />
+	</g>
+	<text x="40" y="28" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">ACCOUNTING SCHEMA STACK · YMYL VERIFICATION ORDER</text>
+	<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
+		<g transform="translate(90 60)">
+			<rect width="620" height="34" fill="rgb(184,85,46)" rx="3" />
+			<text x="16" y="22" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" font-weight="700">01</text>
+			<text x="56" y="22" fill="rgb(250,250,247)" font-weight="600">AccountingService — homepage, the firm entity</text>
+		</g>
+		<g transform="translate(120 102)">
+			<rect width="560" height="30" fill="rgb(184,85,46)" fill-opacity="0.75" rx="3" />
+			<text x="16" y="20" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" font-weight="700">02</text>
+			<text x="56" y="20" fill="rgb(250,250,247)" font-weight="600">Person + hasCredential — CPA bios</text>
+		</g>
+		<g transform="translate(150 140)">
+			<rect width="500" height="28" fill="rgb(184,85,46)" fill-opacity="0.5" rx="3" />
+			<text x="16" y="19" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" font-weight="700">03</text>
+			<text x="56" y="19" font-size="12" fill="rgb(14,17,22)" font-weight="600">Service — each specialty area</text>
+		</g>
+		<g transform="translate(180 176)">
+			<rect width="440" height="26" fill="rgb(184,85,46)" fill-opacity="0.3" rx="3" />
+			<text x="16" y="18" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.7" font-weight="700">04</text>
+			<text x="56" y="18" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.85">Article + author — blog posts</text>
+		</g>
+		<g transform="translate(210 210)">
+			<rect width="380" height="22" fill="rgb(184,85,46)" fill-opacity="0.18" rx="3" />
+			<text x="16" y="16" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.6" font-weight="700">05</text>
+			<text x="56" y="16" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.7">FAQPage — service-page FAQs</text>
+		</g>
+	</g>
+	<text x="400" y="266" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">hasCredential is the field that lets AI engines trust your CPA claims.</text>
+</svg>
+</figure>
+
+## Why schema matters more for accounting in 2026
+
+Three reasons:
+
+1. **YMYL verification.** AI engines verify credentials before citing financial content. Schema is the first line of verification.
+2. **Entity disambiguation.** "Smith & Co CPAs" in Texas and "Smith & Company CPA" in Florida are different entities. Schema is how AI engines tell them apart.
+3. **Specialty extraction.** `knowsAbout` and `serviceType` fields let AI engines understand exactly what specialty areas your firm serves.
+
+## The five schema types every accounting firm needs
+
+### 1. AccountingService schema on the homepage
+
+The parent schema for the firm itself.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "name": "Smith & Co CPAs",
+  "image": "https://example.com/logo.png",
+  "url": "https://example.com",
+  "telephone": "+1-512-555-0100",
+  "email": "info@example.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1500 W 5th St",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78703",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.2672,
+    "longitude": -97.7431
+  },
+  "areaServed": [
+    { "@type": "State", "name": "Texas" },
+    { "@type": "Country", "name": "United States" }
+  ],
+  "knowsAbout": [
+    "Real estate tax",
+    "Cost segregation studies",
+    "1031 exchanges",
+    "Short-term rental taxation",
+    "S-Corp election",
+    "Multi-state tax compliance"
+  ],
+  "priceRange": "$$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "47"
+  }
+}
+```
+
+The `knowsAbout` array is critical. List your firm's actual specialty areas. AI engines use this directly when matching queries to firms.
+
+### 2. Person schema with credentials for every CPA
+
+Every CPA on staff needs a dedicated bio page with `Person` schema and `hasCredential` markup.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jane Smith",
+  "honorificSuffix": "CPA",
+  "image": "https://example.com/jane-smith.jpg",
+  "url": "https://example.com/team/jane-smith",
+  "jobTitle": "Managing Partner",
+  "telephone": "+1-512-555-0101",
+  "email": "jane@example.com",
+  "worksFor": {
+    "@type": "AccountingService",
+    "name": "Smith & Co CPAs",
+    "url": "https://example.com"
+  },
+  "knowsAbout": [
+    "Real estate tax",
+    "Cost segregation studies",
+    "Short-term rental taxation"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "license",
+      "name": "Texas CPA License",
+      "identifier": "12345",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "Texas State Board of Public Accountancy"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "license",
+      "name": "California CPA License",
+      "identifier": "67890",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "California Board of Accountancy"
+      }
+    }
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "University of Texas at Austin"
+  },
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "American Institute of CPAs"
+    },
+    {
+      "@type": "Organization",
+      "name": "Texas Society of CPAs"
+    }
+  ]
+}
+```
+
+The `hasCredential` array with `identifier` and `recognizedBy` is what makes the credential verifiable. AI engines use this for cross-reference against state board databases.
+
+### 3. Article schema with author attribution on every blog post
+
+Every accounting article needs `Article` schema with full author attribution.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cost Segregation for Short-Term Rentals: A 2026 Guide",
+  "image": "https://example.com/cost-seg-cover.jpg",
+  "datePublished": "2026-03-15",
+  "dateModified": "2026-05-20",
+  "author": {
+    "@type": "Person",
+    "name": "Jane Smith",
+    "honorificSuffix": "CPA",
+    "url": "https://example.com/team/jane-smith"
+  },
+  "publisher": {
+    "@type": "AccountingService",
+    "name": "Smith & Co CPAs",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/blog/cost-segregation-short-term-rentals"
+  }
+}
+```
+
+The `author.url` linking to the CPA's bio page is the critical attribution link. AI engines follow that link to verify credentials.
+
+### 4. FAQPage schema for FAQ sections
+
+Most accounting content has FAQ sections. Mark them up.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can short-term rental owners use cost segregation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, short-term rental owners can use cost segregation studies to accelerate depreciation on their rental properties. This is especially beneficial when combined with bonus depreciation, which remains at 60% for 2026 before scheduled phase-down."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does cost segregation work for properties under $500K?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but the cost-benefit analysis is tighter. For properties under $500K, expect to recover 5x to 10x the cost of the study in first-year tax savings rather than the 15x to 25x ratio typical of larger properties."
+      }
+    }
+  ]
+}
+```
+
+Answers should be 50 to 100 words. Too short and they get filtered. Too long and they do not get cited.
+
+### 5. Service schema for individual service pages
+
+Each service or specialty page should have `Service` schema.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Cost Segregation Studies",
+  "provider": {
+    "@type": "AccountingService",
+    "name": "Smith & Co CPAs"
+  },
+  "areaServed": [
+    { "@type": "State", "name": "Texas" },
+    { "@type": "Country", "name": "United States" }
+  ],
+  "serviceType": "Tax planning and depreciation analysis",
+  "description": "Engineering-based cost segregation studies for commercial and residential rental properties..."
+}
+```
+
+## Implementation rules
+
+### Use JSON-LD in the page head
+
+Best for Google parsing and easiest to maintain. Microdata embedded in HTML is harder to manage and less reliably extracted.
+
+### Match schema to visible content
+
+If schema says you serve five states, your website content should reflect that. Schema-content mismatch is treated as deceptive.
+
+### Keep credentials current
+
+License numbers expire. Credentials change. Schema should reflect current status. Stale schema with expired credentials is worse than no schema.
+
+### Validate every change
+
+Use [https://validator.schema.org/](https://validator.schema.org/) and Google's [Rich Results Test](https://search.google.com/test/rich-results). Errors break the entire schema block. Warnings are usually safe to ignore.
+
+### Avoid schema bloat
+
+One `AccountingService` block on the homepage. One `Person` block per CPA bio page. One `Article` block per blog post. Stacking redundant or contradictory schema gets filtered.
+
+## Deployment patterns
+
+### Manual JSON-LD in page templates
+
+Best control, requires a developer once. Most accounting firms can deploy core schema this way and have it run unchanged for years.
+
+### WordPress with Rank Math or Yoast Premium
+
+Both support custom schema templates. Most accounting firm WordPress sites can deploy via plugin.
+
+### Headless CMS or custom platform
+
+If your site runs on a headless CMS (Sanity, Contentful) or custom platform, schema can be generated dynamically from content metadata. Best long-term scalability.
+
+## What this gets you
+
+A firm with full schema implementation:
+
+- Verifiable credentials feed AI engine extraction
+- Specialty areas explicitly machine-readable
+- Author attribution chain connects content to credentialed CPAs
+- FAQ sections eligible for rich results and AI Overview citation
+- Entity disambiguation from similar-named firms
+
+The cumulative effect over 12 to 24 months is significantly higher AI citation rates and stronger ranking for specialty queries.
+
+## FAQs
+
+### Will schema markup directly improve rankings?
+
+Not by itself. Schema makes pages more eligible for rich results, easier for AI engines to verify, and clearer for entity disambiguation. The downstream effect on visibility is significant, but it is not a direct ranking factor.
+
+### How long until schema starts working?
+
+Google reprocesses schema within days of a re-crawl. AI engines re-evaluate sources on a slower cadence, typically 2 to 8 weeks. Plan for visible effect within 30 to 90 days of full deployment.
+
+### What about firms with multiple offices?
+
+Each office can have its own `AccountingService` block with location-specific address and geo coordinates. Link them as branches of a parent organization if applicable.
+
+### Can I include staff who are not CPAs?
+
+Yes, with accurate credentials. Tax preparers, EAs, bookkeepers, and admin staff can have `Person` schema without `hasCredential` for CPA, but should include any credentials they do hold (EA, CITP, MST).
+
+### What if I do not have any reviews to put in aggregateRating?
+
+Omit the field entirely rather than including invented numbers. AI engines cross-reference review counts and inventing them gets the schema flagged.
+
+## Where to go next
+
+The companion posts in this cluster:
+
+- [AI SEO for CPA firms and accountants: the 2026 playbook](/blog/ai-seo-for-cpa-firms-2026/)
+- [E-E-A-T for accounting firms: building CPA authority](/blog/eeat-for-accounting-firms-cpa-authority/)
+- [Seasonal tax content strategy for CPAs](/blog/seasonal-tax-content-strategy-for-cpas/)
+
+For a structured engagement, our [AI SEO services for accountants](/ai-seo-services/accountants/) page covers schema implementation as part of the CPA authority build.
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Will schema markup directly improve rankings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not by itself. Schema makes pages more eligible for rich results, easier for AI engines to verify, and clearer for entity disambiguation. The downstream effect on visibility is significant, but it is not a direct ranking factor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until schema starts working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google reprocesses schema within days of a re-crawl. AI engines re-evaluate sources on a slower cadence, typically 2 to 8 weeks. Plan for visible effect within 30 to 90 days of full deployment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about firms with multiple offices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each office can have its own AccountingService block with location-specific address and geo coordinates. Link them as branches of a parent organization if applicable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I include staff who are not CPAs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with accurate credentials. Tax preparers, EAs, bookkeepers, and admin staff can have Person schema without hasCredential for CPA, but should include any credentials they do hold (EA, CITP, MST)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I do not have any reviews to put in aggregateRating?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Omit the field entirely rather than including invented numbers. AI engines cross-reference review counts and inventing them gets the schema flagged."
+      }
+    }
+  ]
+}
+`}</script>

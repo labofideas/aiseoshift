@@ -1,0 +1,318 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_URL, SITE_AUTHOR } from '../../consts';
+
+const allChapters = await getCollection('guide', ({ data }) => !data.draft);
+const sorted = allChapters.filter((c) => c.data.chapter > 0).sort((a, b) => a.data.chapter - b.data.chapter);
+
+const overview = allChapters.find((c) => c.data.chapter === 0);
+const overviewContent = overview ? await render(overview) : null;
+
+const canonical = new URL('/seo/', SITE_URL).toString();
+
+const publishedAt = overview?.data.pubDate ?? new Date();
+const updatedAt = overview?.data.updatedDate ?? publishedAt;
+const isoPublished = publishedAt.toISOString();
+const isoUpdated = updatedAt.toISOString();
+
+const itemListSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: 'The Complete SEO Guide',
+	description: 'A 12-chapter guide to SEO in 2026 covering fundamentals, technical optimization, AI search, and measurement.',
+	numberOfItems: sorted.length,
+	itemListElement: sorted.map((ch) => ({
+		'@type': 'ListItem',
+		position: ch.data.chapter,
+		name: ch.data.title,
+		url: `${SITE_URL}/seo/${ch.id}/`,
+	})),
+};
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+		{ '@type': 'ListItem', position: 2, name: 'SEO Guide', item: canonical },
+	],
+};
+
+const articleSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	'@id': `${canonical}#article`,
+	headline: 'The Complete SEO Guide for 2026',
+	description:
+		'12-chapter guide to SEO in 2026 covering fundamentals, technical SEO, schema, E-E-A-T, AEO, GEO, AI Overviews, content strategy, and measurement.',
+	url: canonical,
+	mainEntityOfPage: canonical,
+	datePublished: isoPublished,
+	dateModified: isoUpdated,
+	inLanguage: 'en-US',
+	author: { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: SITE_AUTHOR },
+	publisher: { '@id': `${SITE_URL}/#organization` },
+	isPartOf: { '@id': `${SITE_URL}/#website` },
+	image: { '@id': `${SITE_URL}/#logo` },
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`The Complete SEO Guide for 2026 | ${SITE_TITLE}`}
+			description="12 chapters covering SEO fundamentals, technical optimization, schema, E-E-A-T, AEO, GEO, AI Overviews, and measurement. Updated for 2026."
+			canonical={canonical}
+			ogType="article"
+			publishedTime={isoPublished}
+			modifiedTime={isoUpdated}
+			structuredData={[itemListSchema, breadcrumbSchema, articleSchema]}
+		/>
+		<style>
+			.guide-page {
+				width: min(1080px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: var(--space-7) 0 var(--space-9);
+			}
+
+			.guide-hero {
+				padding: var(--space-7) 0 var(--space-8);
+				border-bottom: 1px solid var(--line);
+				display: grid;
+				grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+				gap: var(--space-7);
+				align-items: end;
+			}
+
+			.guide-hero .kicker {
+				display: inline-flex;
+				padding: 0;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+				margin: 0;
+			}
+
+			.guide-hero h1 {
+				font-size: clamp(2.4rem, 5vw, 4.4rem);
+				line-height: 0.98;
+				letter-spacing: -0.032em;
+				font-weight: 600;
+				margin: var(--space-4) 0 var(--space-5);
+				max-width: 16ch;
+			}
+
+			.guide-hero-lede p {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				color: rgba(var(--ink), 0.78);
+				max-width: var(--measure);
+				margin: 0 0 var(--space-4);
+			}
+
+			.guide-updated {
+				display: inline-flex;
+				gap: 0.5rem;
+				margin: 0;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+			}
+
+			.guide-updated span {
+				color: rgb(var(--ink));
+			}
+
+			.guide-overview {
+				max-width: 64ch;
+				margin: var(--space-8) 0;
+				font-size: 1.05rem;
+				line-height: 1.7;
+				color: rgba(var(--ink), 0.85);
+			}
+
+			.guide-overview :global(h2) {
+				font-size: clamp(1.5rem, 2vw, 1.9rem);
+				line-height: 1.18;
+				letter-spacing: -0.022em;
+				margin-top: var(--space-7);
+				margin-bottom: var(--space-3);
+				font-weight: 600;
+			}
+
+			.guide-overview :global(p) { margin-bottom: var(--space-4); }
+
+			.guide-compare {
+				margin: var(--space-8) 0;
+			}
+
+			.chapters-section {
+				padding-top: var(--space-7);
+				border-top: 1px solid var(--line);
+			}
+
+			.chapters-section .eyebrow {
+				display: block;
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+				margin: 0 0 var(--space-3);
+			}
+
+			.chapters-heading {
+				font-size: clamp(1.85rem, 3vw, 2.6rem);
+				letter-spacing: -0.025em;
+				font-weight: 600;
+				margin: 0 0 var(--space-7);
+			}
+
+			.chapters-list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.chapters-list li {
+				margin: 0;
+			}
+
+			.chapter-row {
+				display: grid;
+				grid-template-columns: 3rem minmax(0, 1fr) auto;
+				gap: var(--space-5);
+				align-items: baseline;
+				padding: var(--space-5) 0;
+				border-top: 1px solid var(--line);
+				text-decoration: none;
+				color: rgb(var(--ink));
+			}
+
+			.chapters-list li:last-child .chapter-row {
+				border-bottom: 1px solid var(--line);
+			}
+
+			.chapter-row:hover .chapter-title,
+			.chapter-row:hover .chapter-num {
+				color: var(--signal-deep);
+			}
+
+			.chapter-num {
+				font-family: 'Iowan Old Style', Georgia, serif;
+				font-style: italic;
+				font-weight: 400;
+				font-size: 1.4rem;
+				color: var(--ink-muted);
+				line-height: 1;
+				transition: color 140ms ease;
+			}
+
+			.chapter-info {
+				min-width: 0;
+			}
+
+			.chapter-title {
+				font-size: 1.25rem;
+				line-height: 1.25;
+				font-weight: 600;
+				letter-spacing: -0.015em;
+				margin: 0 0 var(--space-2);
+				transition: color 140ms ease;
+			}
+
+			.chapter-desc {
+				font-size: 0.95rem;
+				line-height: 1.55;
+				color: var(--ink-muted);
+				margin: 0;
+				max-width: 56ch;
+			}
+
+			.chapter-arrow {
+				font-size: 1.2rem;
+				color: var(--ink-muted);
+				line-height: 1;
+				align-self: center;
+			}
+
+			.chapter-row:hover .chapter-arrow {
+				color: var(--signal-deep);
+				transform: translateX(2px);
+			}
+
+			@media (max-width: 880px) {
+				.guide-hero {
+					grid-template-columns: 1fr;
+					align-items: start;
+					padding: var(--space-6) 0 var(--space-7);
+				}
+
+				.chapter-row {
+					grid-template-columns: 2.5rem minmax(0, 1fr);
+					gap: var(--space-4);
+				}
+
+				.chapter-arrow { display: none; }
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="guide-page">
+			<header class="guide-hero">
+				<div>
+					<p class="kicker">The Pillar &middot; 12 Chapters</p>
+					<h1>The Complete SEO Guide for 2026</h1>
+				</div>
+				<div class="guide-hero-lede">
+					<p>Everything you need to know about SEO in the AI era. From fundamentals to AI search optimization, structured data to measurement. Written for practitioners who need to rank in Google, get cited by AI, and build visibility across every search surface.</p>
+					<p class="guide-updated">
+						<span>Last updated</span>
+						<time datetime={isoUpdated}><FormattedDate date={updatedAt} /></time>
+					</p>
+				</div>
+			</header>
+
+			{overviewContent && (
+				<div class="guide-overview">
+					<overviewContent.Content />
+				</div>
+			)}
+
+			<div class="guide-compare">
+				<ComparisonTable />
+			</div>
+
+			<section class="chapters-section" aria-labelledby="chapters-heading">
+				<p class="eyebrow">Read in order</p>
+				<h2 id="chapters-heading" class="chapters-heading">Guide Chapters</h2>
+				<ol class="chapters-list">
+					{sorted.map((ch) => (
+						<li>
+							<a href={`/seo/${ch.id}/`} class="chapter-row">
+								<span class="chapter-num">{String(ch.data.chapter).padStart(2, '0')}</span>
+								<div class="chapter-info">
+									<h3 class="chapter-title">{ch.data.title}</h3>
+									<p class="chapter-desc">{ch.data.description}</p>
+								</div>
+								<span class="chapter-arrow" aria-hidden="true">&rarr;</span>
+							</a>
+						</li>
+					))}
+				</ol>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

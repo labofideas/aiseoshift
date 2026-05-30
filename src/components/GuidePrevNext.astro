@@ -1,0 +1,82 @@
+---
+interface ChapterLink {
+	slug: string;
+	title: string;
+	chapter: number;
+}
+
+interface Props {
+	prev?: ChapterLink;
+	next?: ChapterLink;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{(prev || next) && (
+	<nav class="guide-pn" aria-label="Chapter navigation">
+		{prev ? (
+			<a href={`/seo/${prev.slug}/`} class="guide-pn-card guide-pn-prev">
+				<span class="guide-pn-dir">Previous Chapter</span>
+				<span class="guide-pn-title">{prev.chapter}. {prev.title}</span>
+			</a>
+		) : <div />}
+		{next ? (
+			<a href={`/seo/${next.slug}/`} class="guide-pn-card guide-pn-next">
+				<span class="guide-pn-dir">Next Chapter</span>
+				<span class="guide-pn-title">{next.chapter}. {next.title}</span>
+			</a>
+		) : <div />}
+	</nav>
+)}
+
+<style>
+	.guide-pn {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-top: 2.5rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.guide-pn-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		padding: 1.2rem;
+		border: 1px solid var(--line);
+		border-radius: 1rem;
+		text-decoration: none;
+		color: inherit;
+		transition: transform 140ms ease, box-shadow 140ms ease;
+	}
+
+	.guide-pn-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(var(--ink), 0.08);
+	}
+
+	.guide-pn-next { text-align: right; }
+
+	.guide-pn-dir {
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--signal-deep);
+	}
+
+	.guide-pn-title {
+		font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1.3;
+		color: rgb(var(--ink));
+	}
+
+	@media (max-width: 520px) {
+		.guide-pn { grid-template-columns: 1fr; }
+		.guide-pn-next { text-align: left; }
+	}
+</style>

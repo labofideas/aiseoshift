@@ -1,0 +1,353 @@
+---
+title: "Real Estate Schema Markup: RealEstateAgent, Listings, and Reviews in 2026"
+description: Complete schema markup guide for real estate agents. RealEstateAgent, RealEstateListing, Place, FAQPage, and Review schema with copy-paste examples.
+deck: Schema is how AI engines understand who you are and what you sell. Most agent sites have none, or have it wrong. Here is the implementation that gets you cited.
+pubDate: 2026-05-27
+category: Playbooks
+tags:
+  - schema markup
+  - real estate SEO
+  - structured data
+  - AI visibility
+author: Shashank Dubey
+featured: false
+---
+
+Schema markup is the most underused lever in real estate SEO. Most agent sites have no schema at all, or have generic `LocalBusiness` schema copy-pasted from a template. AI engines that need to recommend an agent or summarize a neighborhood do not have to guess when the schema is right. They have to guess when it is missing. Guessing usually means citing someone else.
+
+This is the implementation guide. Five schema types every real estate site should ship, with copy-paste JSON-LD examples and the placement rules that make them actually work.
+
+For the broader strategic context, see the pillar on [AI SEO for real estate agents in 2026](/blog/ai-seo-for-real-estate-agents-2026/) and the [general schema markup guide](/seo/schema-markup/). For a structured engagement, our [real estate AI SEO services](/ai-seo-services/real-estate-agents/) page covers full schema implementation as part of the hyperlocal authority build.
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The five schema types every real estate site needs, orbiting RealEstateAgent at the center: Place, Residence, FAQPage, Review, and Organization">
+	<rect width="800" height="280" fill="rgb(246,245,240)" />
+	<g stroke="rgb(14,17,22)" stroke-opacity="0.06">
+		<line x1="0" y1="40" x2="800" y2="40" />
+		<line x1="0" y1="240" x2="800" y2="240" />
+	</g>
+	<text x="40" y="28" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">FIVE SCHEMA TYPES · REAL ESTATE ENTITY GRAPH</text>
+	<g stroke="rgb(14,17,22)" stroke-opacity="0.35" stroke-dasharray="3 4" fill="none">
+		<line x1="400" y1="140" x2="200" y2="90" />
+		<line x1="400" y1="140" x2="600" y2="90" />
+		<line x1="400" y1="140" x2="160" y2="170" />
+		<line x1="400" y1="140" x2="640" y2="170" />
+		<line x1="400" y1="140" x2="400" y2="220" />
+	</g>
+	<g font-family="system-ui, sans-serif" fill="rgb(14,17,22)">
+		<circle cx="400" cy="140" r="56" fill="rgb(184,85,46)" />
+		<text x="400" y="135" text-anchor="middle" font-size="12" letter-spacing="1" fill="rgb(250,250,247)" font-weight="700">RealEstate</text>
+		<text x="400" y="151" text-anchor="middle" font-size="12" letter-spacing="1" fill="rgb(250,250,247)" font-weight="700">Agent</text>
+		<g font-size="12">
+			<g transform="translate(140 70)">
+				<rect width="120" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+				<text x="12" y="17" font-weight="600">Place</text>
+				<text x="12" y="32" font-size="10" fill-opacity="0.6">neighborhood pages</text>
+			</g>
+			<g transform="translate(540 70)">
+				<rect width="120" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+				<text x="12" y="17" font-weight="600">Residence</text>
+				<text x="12" y="32" font-size="10" fill-opacity="0.6">listing pages</text>
+			</g>
+			<g transform="translate(40 150)">
+				<rect width="120" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+				<text x="12" y="17" font-weight="600">FAQPage</text>
+				<text x="12" y="32" font-size="10" fill-opacity="0.6">buyer/seller FAQs</text>
+			</g>
+			<g transform="translate(640 150)">
+				<rect width="120" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="3" />
+				<text x="12" y="17" font-weight="600">Review</text>
+				<text x="12" y="32" font-size="10" fill-opacity="0.6">aggregate ratings</text>
+			</g>
+			<g transform="translate(340 220)">
+				<rect width="120" height="0" />
+			</g>
+		</g>
+	</g>
+	<text x="400" y="266" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Agent is the hub. Place, Residence, FAQ, and Review are how AI engines verify you.</text>
+</svg>
+</figure>
+
+## Why schema matters more in 2026 than it did in 2022
+
+Two changes:
+
+1. **AI engines parse JSON-LD heavily.** ChatGPT, Perplexity, and Claude all reward structured data when classifying and citing sources. Pages without schema are harder to attribute and get cited less often.
+2. **Google's AI Overviews use entity disambiguation aggressively.** Schema is how Google knows "Sarah Chen, Realtor at Compass Austin" and "Sarah Chen, Realtor at Keller Williams Boston" are different entities. Without it, attribution gets muddled and Overview citations go elsewhere.
+
+For more on how AI engines select sources, see our post on [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/).
+
+## The five schema types every real estate site needs
+
+### 1. RealEstateAgent schema on agent bio pages
+
+The single most important piece of schema for any individual agent. Without it, AI engines cannot reliably attribute content to you. With it, your bio, credentials, and area served become machine-readable.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Sarah Chen",
+  "image": "https://yoursite.com/sarah-chen.jpg",
+  "url": "https://yoursite.com/agents/sarah-chen",
+  "jobTitle": "Realtor",
+  "telephone": "+1-512-555-0123",
+  "email": "sarah@yoursite.com",
+  "worksFor": {
+    "@type": "RealEstateOrganization",
+    "name": "Compass Austin",
+    "url": "https://compass.com"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Austin, TX" },
+    { "@type": "Place", "name": "Westlake" },
+    { "@type": "Place", "name": "Tarrytown" }
+  ],
+  "knowsAbout": [
+    "Luxury residential real estate",
+    "Investment property",
+    "First-time home buyers"
+  ],
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "license",
+    "name": "Texas Real Estate License",
+    "identifier": "0123456"
+  }
+}
+```
+
+Place this on every individual agent's bio page. The `knowsAbout`, `areaServed`, and `hasCredential` fields are the ones AI engines lean on most.
+
+### 2. RealEstateOrganization schema on the brokerage homepage
+
+For the brokerage or team, use `RealEstateOrganization`. Include full NAP (name, address, phone), service area, and a sample of agents.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateOrganization",
+  "name": "Austin Hills Real Estate",
+  "image": "https://yoursite.com/logo.png",
+  "url": "https://yoursite.com",
+  "telephone": "+1-512-555-0100",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1500 W 5th St",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78703",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.2672,
+    "longitude": -97.7431
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Austin" },
+    { "@type": "City", "name": "Round Rock" }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "127"
+  }
+}
+```
+
+The `aggregateRating` field is critical. Pull the rating and count from your Google Business Profile, not invented numbers. AI engines cross-reference these against third-party sources.
+
+### 3. Place schema on neighborhood pages
+
+For every neighborhood landing page, mark it up as a `Place`. This is what lets AI engines understand "Westlake, Austin, TX" as a distinct entity.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Westlake, Austin, TX",
+  "description": "Upscale residential neighborhood in west Austin known for top-tier schools and luxury single-family homes.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.2849,
+    "longitude": -97.8147
+  },
+  "containedInPlace": {
+    "@type": "City",
+    "name": "Austin, TX"
+  },
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "Median home price",
+      "value": "$1,850,000"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "School district",
+      "value": "Eanes ISD"
+    }
+  ]
+}
+```
+
+The `additionalProperty` array is where you embed structured facts AI engines can extract directly.
+
+### 4. FAQPage schema on every neighborhood and process page
+
+`FAQPage` schema is the single most cited schema type by AI Overviews. If a section of your page has a list of questions and answers, mark it up.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the median home price in Westlake?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The median home price in Westlake, Austin as of 2026 is $1.85M, up 4.2% year-over-year. The neighborhood ranges from $950K for older homes near the village to over $5M for luxury custom builds along Bee Creek."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What schools serve Westlake?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Westlake is served by Eanes ISD, with Eanes Elementary, Hill Country Middle, and Westlake High School in the primary feeder pattern. Eanes ISD is consistently rated one of the top public school districts in Texas."
+      }
+    }
+  ]
+}
+```
+
+Answers should be 40 to 80 words. Too short and they get filtered. Too long and they do not get cited.
+
+### 5. Review schema on agent and brokerage pages
+
+If you have Google reviews, surface them. `Review` and `AggregateRating` schema gives AI engines a verifiable trust signal.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "RealEstateAgent",
+    "name": "Sarah Chen"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Michael R."
+  },
+  "datePublished": "2026-04-15",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "5"
+  },
+  "reviewBody": "Sarah helped us buy our first home in Tarrytown..."
+}
+```
+
+Pull the actual review text from Google. Do not invent or paraphrase reviews — that violates Google's guidelines and gets flagged.
+
+## Implementation rules that matter
+
+### Use JSON-LD, not Microdata or RDFa
+
+Google and AI engines both prefer JSON-LD. It is also far easier to maintain.
+
+### Put schema in the `<head>` or just before `</body>`
+
+Either placement works. Schema in the `<head>` is parsed earlier; schema before `</body>` keeps page-load metrics cleaner. Pick one approach and apply consistently.
+
+### Do not stuff schema with content not on the page
+
+If you put a review in schema, the review must also appear visibly on the page. Schema content that does not match visible content is treated as deceptive and gets the page demoted.
+
+### Test with the Schema Markup Validator
+
+Validate every schema block at [https://validator.schema.org/](https://validator.schema.org/). Errors break the schema entirely. Warnings are usually safe to ignore.
+
+### Update schema when content updates
+
+If your aggregateRating changes from 4.8 to 4.9, update the schema. Stale schema signals lack of maintenance to crawlers and AI engines.
+
+## How to deploy without a developer
+
+Three options ordered by cost and control:
+
+1. **WordPress with Rank Math or Yoast Premium.** Both support custom schema templates. Works for most agent and brokerage sites.
+2. **Schema App or Schema Pro.** Dedicated schema management platforms that work across any CMS.
+3. **Manual JSON-LD in page templates.** Best control, requires a developer once.
+
+For non-technical agents, option 1 covers 90 percent of what you need.
+
+## FAQs
+
+### Does schema markup directly improve rankings?
+
+Not by itself. Schema makes pages more eligible for rich results, easier for AI engines to attribute, and clearer for entity disambiguation. The downstream effect on visibility is significant, but it is not a direct ranking factor.
+
+### How long until schema starts working?
+
+Google reprocesses schema within days of a re-crawl. AI engines re-evaluate sources on a slower cadence — typically two to eight weeks. Plan for visible effect within 30 to 90 days of full deployment.
+
+### Can I have too much schema?
+
+Yes. Schema bloat (multiple `LocalBusiness` markups on the same page, contradictory `Place` definitions, every paragraph wrapped in `HowTo`) gets filtered out entirely. Stick to the five schema types above and apply them where they actually fit.
+
+### What if my brokerage site does not let me add custom schema?
+
+Negotiate. Most brokerages will allow custom schema on agent pages if asked. If not, the option is your own domain — which is also strategically better for content portability.
+
+## Where to go next
+
+The other posts in this cluster:
+
+- [AI SEO for real estate agents: the 2026 playbook](/blog/ai-seo-for-real-estate-agents-2026/)
+- [Hyperlocal SEO for real estate: neighborhood pages that AI cites](/blog/hyperlocal-seo-for-real-estate-neighborhood-pages/)
+- [Google Business Profile optimization for real estate agents](/blog/google-business-profile-optimization-for-real-estate-agents/)
+
+For a structured engagement, our [AI SEO services for real estate](/ai-seo-services/real-estate-agents/) page covers schema implementation as part of the hyperlocal authority build.
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does schema markup directly improve rankings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not by itself. Schema makes pages more eligible for rich results, easier for AI engines to attribute, and clearer for entity disambiguation. The downstream effect on visibility is significant, but it is not a direct ranking factor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until schema starts working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google reprocesses schema within days of a re-crawl. AI engines re-evaluate sources on a slower cadence — typically two to eight weeks. Plan for visible effect within 30 to 90 days of full deployment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I have too much schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Schema bloat (multiple LocalBusiness markups on the same page, contradictory Place definitions, every paragraph wrapped in HowTo) gets filtered out entirely. Stick to the five schema types above and apply them where they actually fit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my brokerage site does not let me add custom schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Negotiate. Most brokerages will allow custom schema on agent pages if asked. If not, the option is your own domain — which is also strategically better for content portability."
+      }
+    }
+  ]
+}
+`}</script>

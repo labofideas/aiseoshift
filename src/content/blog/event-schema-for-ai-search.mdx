@@ -1,0 +1,516 @@
+---
+title: "Event Schema for AI Search: Get Your Events Surfaced by ChatGPT and Google AI Overviews"
+description: How to implement Event schema markup so AI engines recommend your events when users ask about things to do, upcoming conferences, or local events. Complete JSON-LD guide.
+deck: When someone asks ChatGPT or Perplexity "what events are happening in [city] this weekend," the answers come from structured Event data. Unstructured event pages are invisible. Here is how to mark up events correctly.
+pubDate: 2026-06-17
+category: Strategy
+tags:
+  - Event schema
+  - schema markup
+  - structured data
+  - local SEO
+  - AI SEO
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+When someone types "yoga workshops near me this month" into ChatGPT or asks Perplexity for "tech conferences in Austin in Q3," the answers that come back are sourced from pages with structured Event schema. Pages without it do not appear in those answers — regardless of how thorough the event descriptions are or how authoritative the site.
+
+This is not a new problem, but it has become significantly more costly in 2026. AI engines now handle a large share of discovery-intent queries, and event discovery is among the most AI-native query categories there is. Users ask AI for personalized recommendations rather than clicking through to a search results page. If your event is not represented in structured data, it cannot be recommended.
+
+This guide covers the full implementation: core Event schema properties, markup for in-person, virtual, and hybrid formats, recurring events, ticket and offers markup, integration with LocalBusiness schema, and how to validate everything before it goes live.
+
+For the foundational case for structured data in AI search, see the [schema markup for AI visibility guide](/blog/schema-markup-for-ai-visibility/) and the broader [AI SEO Shift framework](/ai-seo-shift/).
+
+## Why AI engines depend on Event schema
+
+AI engines face a structural problem with event pages. Event information — dates, venues, ticket prices, cancellation status — changes frequently and must be extracted with precision. Natural language parsing of HTML is error-prone for time-sensitive data. A model that misreads "June 17" as "July 17" or extracts an outdated ticket price causes a bad user experience that gets attributed to the AI system, not the source page.
+
+Event schema solves this by delivering the data in a machine-readable format that AI engines can parse without ambiguity. The `startDate`, `endDate`, `location`, and `offers` fields are explicit. There is no inference required. AI systems that use Event schema data can surface accurate, up-to-date event information with high confidence — which means they do use it, and do not consistently fall back on natural language extraction when structured data is available.
+
+Google's AI Overviews, ChatGPT Browse, Perplexity, and Bing Copilot all use Event schema signals. Google has official documentation on [Event structured data requirements](https://developers.google.com/search/docs/appearance/structured-data/event) that defines the fields required for rich result eligibility. The [Schema.org Event specification](https://schema.org/Event) documents the full property set. Both should be open in a separate tab while you implement.
+
+## Core Event schema properties
+
+The minimum viable Event schema block requires `name`, `startDate`, and `location`. Everything else is recommended or optional, but the closer you get to a complete implementation the better your AI visibility.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Downtown Austin Food and Wine Festival",
+  "startDate": "2026-09-12T11:00:00-05:00",
+  "endDate": "2026-09-14T21:00:00-05:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Zilker Park",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2100 Barton Springs Rd",
+      "addressLocality": "Austin",
+      "addressRegion": "TX",
+      "postalCode": "78746",
+      "addressCountry": "US"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Austin Events Collective",
+    "url": "https://austineventscollective.com"
+  },
+  "image": "https://example.com/food-wine-fest-2026.jpg",
+  "description": "Three days of curated food and wine experiences featuring 80 local and regional vendors across Zilker Park.",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://example.com/tickets/food-wine-fest-2026",
+    "price": "75",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2026-06-01T00:00:00-05:00"
+  }
+}
+```
+
+Here is what each property contributes to AI visibility:
+
+**`name`** — the literal event name used in AI-generated recommendations. Make it specific. "Austin Food and Wine Festival 2026" is more surfaceable than "Food Fest."
+
+**`startDate` and `endDate`** — ISO 8601 format with timezone offset is required for AI engines to handle "this weekend" and "next month" queries accurately. Always include time when available. Date-only values (`2026-09-12`) are accepted but reduce relevance for time-specific queries.
+
+**`eventStatus`** — critical for post-announcement updates. Use `EventScheduled`, `EventCancelled`, `EventPostponed`, or `EventRescheduled`. When an event is cancelled, updating this field ensures AI engines stop recommending it immediately rather than continuing to surface it.
+
+**`eventAttendanceMode`** — signals in-person, online, or mixed to AI engines so they can answer "virtual events I can attend from home" queries correctly.
+
+**`location`** — for in-person events, a full `Place` with `PostalAddress` is essential for local discovery queries. AI engines match against city, region, and neighborhood when answering "events near me" queries.
+
+**`organizer`** — provides the trust signal. AI engines are more likely to surface events from named, linkable organizations than anonymous event listings.
+
+**`offers`** — ticket data that lets AI engines answer "free events this weekend" or "concerts under $50." The `availability` field prevents surfacing sold-out events.
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Event schema property map showing required, recommended, and optional properties in three tiers">
+  <rect width="800" height="360" fill="rgb(246,245,240)" />
+  <g stroke="rgb(14,17,22)" stroke-opacity="0.06">
+    <line x1="0" y1="40" x2="800" y2="40" />
+    <line x1="0" y1="320" x2="800" y2="320" />
+  </g>
+  <text x="40" y="28" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">EVENT SCHEMA PROPERTY MAP · THREE-TIER IMPLEMENTATION</text>
+  <g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
+    <rect x="30" y="52" width="160" height="26" fill="rgb(184,85,46)" rx="3" />
+    <text x="110" y="69" text-anchor="middle" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" font-weight="700">REQUIRED</text>
+    <rect x="30" y="84" width="220" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="3" />
+    <text x="42" y="102" fill="rgb(14,17,22)" font-weight="600">name</text>
+    <rect x="260" y="84" width="220" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="3" />
+    <text x="272" y="102" fill="rgb(14,17,22)" font-weight="600">startDate</text>
+    <rect x="490" y="84" width="220" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="3" />
+    <text x="502" y="102" fill="rgb(14,17,22)" font-weight="600">location</text>
+    <rect x="30" y="138" width="160" height="26" fill="rgb(184,85,46)" fill-opacity="0.65" rx="3" />
+    <text x="110" y="155" text-anchor="middle" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" font-weight="700">RECOMMENDED</text>
+    <rect x="30" y="170" width="210" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.6" stroke-width="1.5" rx="3" />
+    <text x="42" y="188" fill="rgb(14,17,22)">endDate</text>
+    <rect x="250" y="170" width="210" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.6" stroke-width="1.5" rx="3" />
+    <text x="262" y="188" fill="rgb(14,17,22)">eventStatus</text>
+    <rect x="470" y="170" width="250" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.6" stroke-width="1.5" rx="3" />
+    <text x="482" y="188" fill="rgb(14,17,22)">eventAttendanceMode</text>
+    <rect x="30" y="204" width="210" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.6" stroke-width="1.5" rx="3" />
+    <text x="42" y="222" fill="rgb(14,17,22)">organizer</text>
+    <rect x="250" y="204" width="210" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.6" stroke-width="1.5" rx="3" />
+    <text x="262" y="222" fill="rgb(14,17,22)">offers</text>
+    <rect x="470" y="204" width="250" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.6" stroke-width="1.5" rx="3" />
+    <text x="482" y="222" fill="rgb(14,17,22)">image</text>
+    <rect x="30" y="252" width="160" height="26" fill="rgb(184,85,46)" fill-opacity="0.28" rx="3" />
+    <text x="110" y="269" text-anchor="middle" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.8" font-weight="700">OPTIONAL</text>
+    <rect x="30" y="284" width="210" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.3" stroke-width="1.5" rx="3" />
+    <text x="42" y="302" fill="rgb(14,17,22)" fill-opacity="0.75">description</text>
+    <rect x="250" y="284" width="210" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.3" stroke-width="1.5" rx="3" />
+    <text x="262" y="302" fill="rgb(14,17,22)" fill-opacity="0.75">performer</text>
+    <rect x="470" y="284" width="250" height="28" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.3" stroke-width="1.5" rx="3" />
+    <text x="482" y="302" fill="rgb(14,17,22)" fill-opacity="0.75">subEvent / superEvent</text>
+  </g>
+  <text x="400" y="342" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Required properties enable indexing. Recommended properties enable AI discovery. Optional properties enable precise query matching.</text>
+</svg>
+</figure>
+
+## In-person, virtual, and hybrid events
+
+The `eventAttendanceMode` property is how AI engines filter event recommendations by format. Get it wrong and your event appears in the wrong context — or not at all.
+
+**In-person events** use `OfflineEventAttendanceMode` and require a physical `Place` with a full address:
+
+```json
+{
+  "@type": "Event",
+  "name": "Brooklyn Craft Beer Fest",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Brooklyn Navy Yard",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "63 Flushing Ave",
+      "addressLocality": "Brooklyn",
+      "addressRegion": "NY",
+      "postalCode": "11205",
+      "addressCountry": "US"
+    }
+  }
+}
+```
+
+**Virtual events** use `OnlineEventAttendanceMode` and replace the physical `Place` with a `VirtualLocation` containing the event URL:
+
+```json
+{
+  "@type": "Event",
+  "name": "Global SaaS Founders Summit — Virtual",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "location": {
+    "@type": "VirtualLocation",
+    "url": "https://example.com/attend/saas-summit-2026"
+  }
+}
+```
+
+**Hybrid events** use `MixedEventAttendanceMode` and should include both a physical and virtual location in an array:
+
+```json
+{
+  "@type": "Event",
+  "name": "Content Marketing World 2026",
+  "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+  "location": [
+    {
+      "@type": "Place",
+      "name": "Huntington Convention Center",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "300 Lakeside Ave",
+        "addressLocality": "Cleveland",
+        "addressRegion": "OH",
+        "postalCode": "44113",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "VirtualLocation",
+      "url": "https://example.com/attend/cmworld-2026-virtual"
+    }
+  ]
+}
+```
+
+The location array approach for hybrid events ensures that both local "events near me" queries and "online events I can attend" queries can surface the same event appropriately.
+
+## Recurring events and EventSeries
+
+Recurring events — weekly workshops, monthly meetups, annual conferences — present a specific schema challenge. You have two options: mark up each individual instance, or use `EventSeries` to represent the recurring program.
+
+For a weekly class with a consistent schedule, marking up each instance individually creates the most precise data for AI engines. Each occurrence gets its own `startDate`, `endDate`, and `offers`, which means AI can accurately answer "yoga class this Tuesday at 6pm" queries.
+
+For a long-running program where individual instance pages do not exist, `EventSeries` communicates the recurring nature:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "EventSeries",
+  "name": "Austin Python Meetup",
+  "url": "https://example.com/meetups/austin-python",
+  "organizer": {
+    "@type": "Organization",
+    "name": "Austin Python Users Group",
+    "url": "https://austinpython.org"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "Capital Factory",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "701 Brazos St",
+      "addressLocality": "Austin",
+      "addressRegion": "TX",
+      "postalCode": "78701",
+      "addressCountry": "US"
+    }
+  },
+  "subEvent": [
+    {
+      "@type": "Event",
+      "name": "Austin Python Meetup — July 2026",
+      "startDate": "2026-07-08T18:30:00-05:00",
+      "endDate": "2026-07-08T20:30:00-05:00",
+      "eventStatus": "https://schema.org/EventScheduled"
+    }
+  ]
+}
+```
+
+The `subEvent` array within `EventSeries` connects individual instances to the series. AI engines can then surface the series for general "Python meetups in Austin" queries while using the individual instance data for specific date queries.
+
+Annual conferences should mark each year's instance as a standalone `Event` and link to the `superEvent` (the series) to establish continuity. This helps AI engines understand that "SaaStr Annual 2026" is part of a longer-running program, which contributes to authority signals.
+
+## Ticket and offers markup
+
+Offers markup does significant work for AI engines handling commercial event queries. A user asking "concerts in Nashville under $40 this month" can only be answered with confidence if ticket price data is structured. Without `offers` markup, AI systems either omit pricing or make unreliable inferences.
+
+For events with tiered pricing, use an array of `Offer` objects:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Nashville Jazz and Blues Weekend",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "General Admission",
+      "price": "35",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://example.com/tickets/jazz-blues-ga",
+      "validFrom": "2026-05-01T00:00:00-06:00"
+    },
+    {
+      "@type": "Offer",
+      "name": "VIP Weekend Pass",
+      "price": "120",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/SoldOut",
+      "url": "https://example.com/tickets/jazz-blues-vip",
+      "validFrom": "2026-05-01T00:00:00-06:00"
+    }
+  ]
+}
+```
+
+For free events, set `price` to `"0"` — do not omit the field or leave it blank. AI engines need explicit price data to answer "free events" queries:
+
+```json
+{
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "USD",
+  "availability": "https://schema.org/InStock"
+}
+```
+
+The `availability` field is particularly important in 2026. AI engines are building reputational signals around recommending sold-out or unavailable events. Mark sold-out tiers as `SoldOut` and cancelled events with `EventCancelled` in `eventStatus`. AI systems that surface inaccurate availability data face user trust penalties — which means they actively prefer sources with current, accurate structured data.
+
+For more on how structured markup drives AI citations, see the guide on [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/).
+
+## Integration with LocalBusiness schema for venue owners
+
+Venues that host multiple events occupy a special position. A convention center, music venue, or event space is both a `LocalBusiness` and a recurring host of `Event` schema. Combining both schema types unlocks two distinct AI visibility channels: the venue itself appears in "event venues near me" queries, and individual events appear in date-specific discovery queries.
+
+Stack the schemas using a `@graph` block on the venue homepage or a dedicated events page:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://example.com/#venue",
+      "name": "The Paramount Theatre",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "713 Congress Ave",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "postalCode": "78701",
+        "addressCountry": "US"
+      },
+      "url": "https://example.com",
+      "telephone": "+1-512-555-0200",
+      "openingHours": "Mo-Su 10:00-22:00"
+    },
+    {
+      "@type": "Event",
+      "name": "An Evening with Marcus Miller",
+      "startDate": "2026-08-22T20:00:00-05:00",
+      "location": {
+        "@id": "https://example.com/#venue"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "The Paramount Theatre"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "65",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://example.com/tickets/marcus-miller-2026"
+      }
+    }
+  ]
+}
+```
+
+The `@id` reference in the event's `location` field connects the event to the venue entity without duplicating address data. This entity relationship is exactly the kind of structured signal AI engines use to map local business recommendations. For a full local SEO strategy around AI discovery, the [answer engine optimization guide](/blog/what-is-answer-engine-optimization/) provides the strategic framework.
+
+## Event schema for conferences and B2B events
+
+Conference and B2B event pages have schema requirements beyond consumer events. AI engines answering "marketing conferences Q3 2026" or "best data science conferences for enterprise teams" look for several additional signals:
+
+**`performer` and `speaker`** — for conferences, the speaker lineup is often the primary draw. Include `performer` as an array of `Person` objects:
+
+```json
+{
+  "@type": "Event",
+  "name": "SearchLove London 2026",
+  "performer": [
+    {
+      "@type": "Person",
+      "name": "Wil Reynolds",
+      "url": "https://wilreynolds.com"
+    },
+    {
+      "@type": "Person",
+      "name": "Rand Fishkin",
+      "url": "https://sparktoro.com/rand"
+    }
+  ]
+}
+```
+
+**`about`** — the topic or subject matter of the conference, expressed as a `Thing` or plain text. Helps AI engines match conference recommendations to topical queries:
+
+```json
+{
+  "about": [
+    { "@type": "Thing", "name": "Search Engine Optimization" },
+    { "@type": "Thing", "name": "AI search" },
+    { "@type": "Thing", "name": "Content marketing" }
+  ]
+}
+```
+
+**`typicalAgeRange` and `audience`** — for B2B events, specifying the professional audience helps AI engines avoid recommending enterprise conferences to casual users and vice versa.
+
+**Multi-day programs with subEvents** — for conferences running multiple tracks or sessions, use `subEvent` to create a structured program. AI engines can then surface individual sessions in response to narrow queries like "panel on AI SEO at [conference name]."
+
+The [HowTo schema guide](/blog/howto-schema-for-ai-search/) covers the broader pattern of procedural and educational content markup that complements conference page schema.
+
+## Testing Event schema with Rich Results Test
+
+Before deploying Event schema, validate it through two tools:
+
+**Google's Rich Results Test** at [search.google.com/test/rich-results](https://search.google.com/test/rich-results) confirms that Google can parse your Event schema and that the page is eligible for event rich results. Paste the page URL or the raw JSON-LD and review for:
+
+- Missing required properties (name, startDate, location)
+- Invalid date formats — ISO 8601 is required; US date formats like "September 12, 2026" will fail
+- Incorrect enum values — `eventStatus` and `eventAttendanceMode` must use the full `https://schema.org/` URL, not shortened forms
+- Image aspect ratio issues — Google recommends images at 16:9, 4:3, or 1:1 ratios
+
+**Schema.org Validator** at [validator.schema.org](https://validator.schema.org) provides broader validation against the full Schema.org specification, including properties that Google's tool does not specifically check.
+
+Common errors to watch for:
+
+- `startDate` without a timezone offset — fine for all-day events but incorrect for time-specific events
+- `offers.price` as a number rather than a string — the Schema.org specification requires price as a string
+- Missing `priceCurrency` when `price` is present
+- `eventAttendanceMode` as a short form like `"OfflineEventAttendanceMode"` rather than the full URL
+
+After deployment, monitor Google Search Console for structured data errors under the "Enhancements" section. Google's crawlers reprocess schema within days of a re-crawl; set a reminder to check for validation errors one week after initial deployment.
+
+For a full audit of your structured data implementation alongside other AI visibility signals, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers the complete evaluation framework.
+
+## Keeping event schema current
+
+Stale Event schema creates trust problems that outlast the event itself. AI engines that surface cancelled events, past dates, or sold-out tickets erode user trust — and they address this by deprioritizing sources with a history of inaccurate event data.
+
+Build a maintenance workflow into your event management process:
+
+- Update `eventStatus` to `EventCancelled` or `EventPostponed` within hours of a status change, not days
+- Set `offers.availability` to `SoldOut` when each ticket tier sells out rather than waiting until after the event
+- Remove or archive past events from your main events page — pages with only past-dated events that still carry `EventScheduled` status create consistency failures
+- For recurring events, publish the next instance's schema before the current instance's `endDate` passes
+
+The [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) includes Event schema currency checks as part of the structured data audit section.
+
+## Frequently asked questions
+
+### Does Event schema guarantee that my event appears in AI-generated answers?
+
+No. Event schema makes your event eligible for AI discovery and increases the probability of surfacing significantly — but it is not a guarantee. AI engines also evaluate the authority of the source domain, the quality of the surrounding content, and how well your event matches the query intent. Schema is the necessary foundation; domain authority and content quality are the amplifiers. Without schema, the event is invisible to structured-data-dependent AI discovery regardless of content quality.
+
+### What is the minimum Event schema required for Google rich results?
+
+Google requires `name`, `startDate`, and `location` for basic Event rich results. For full eligibility including the event carousel in AI Overviews, Google additionally recommends `endDate`, `eventStatus`, `eventAttendanceMode`, and `offers`. The [Google Event structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/event) maintains the current requirements.
+
+### How should I handle events that get postponed or rescheduled?
+
+Update `eventStatus` to `EventPostponed` immediately when the postponement is announced. When the new date is confirmed, update `startDate` and `endDate` to the new dates and change `eventStatus` back to `EventScheduled`. Do not delete the schema block — maintaining the URL with updated schema allows AI engines to update their cached data rather than treating it as a new event. You can optionally include `previousStartDate` to document the original date.
+
+### Can I use Event schema for online courses or webinars?
+
+Yes. Webinars with a defined start time and registration should use Event schema with `OnlineEventAttendanceMode`. For on-demand courses without a fixed schedule, Event schema is not appropriate — consider `Course` or `LearningResource` schema instead. The distinction matters: AI engines answering "live webinars on [topic]" look for `Event` with `OnlineEventAttendanceMode` and upcoming `startDate` values.
+
+### Should each recurring event instance have its own page?
+
+For maximum AI visibility, yes. Individual instance pages with their own Event schema — each with a specific date, registration link, and available offers — are significantly more surfaceable for date-specific queries than a single series page. A single series page is acceptable for resources-constrained situations, but the tradeoff is reduced precision in AI discovery for specific occurrence queries.
+
+### How does Event schema interact with LocalBusiness schema on a venue page?
+
+They complement each other strongly. `LocalBusiness` schema on a venue page establishes the entity and earns venue-specific query appearances. Individual `Event` schema blocks on the same page or on dedicated event detail pages — linked via `@id` references — layer in event-specific discovery. Venues that implement both see AI citation in two distinct query categories: "event venues near [city]" and "[specific event type] events near [city]." The `@graph` pattern with `@id` references is the correct way to connect the two.
+
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Event schema guarantee that my event appears in AI-generated answers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Event schema makes your event eligible for AI discovery and increases the probability of surfacing significantly, but it is not a guarantee. AI engines also evaluate the authority of the source domain, the quality of the surrounding content, and how well your event matches the query intent. Schema is the necessary foundation; domain authority and content quality are the amplifiers. Without schema, the event is invisible to structured-data-dependent AI discovery regardless of content quality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum Event schema required for Google rich results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google requires name, startDate, and location for basic Event rich results. For full eligibility including the event carousel in AI Overviews, Google additionally recommends endDate, eventStatus, eventAttendanceMode, and offers. The Google Event structured data documentation maintains the current requirements."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How should I handle events that get postponed or rescheduled?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Update eventStatus to EventPostponed immediately when the postponement is announced. When the new date is confirmed, update startDate and endDate to the new dates and change eventStatus back to EventScheduled. Do not delete the schema block — maintaining the URL with updated schema allows AI engines to update their cached data rather than treating it as a new event. You can optionally include previousStartDate to document the original date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Event schema for online courses or webinars?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Webinars with a defined start time and registration should use Event schema with OnlineEventAttendanceMode. For on-demand courses without a fixed schedule, Event schema is not appropriate — consider Course or LearningResource schema instead. The distinction matters: AI engines answering live webinars on a topic look for Event schema with OnlineEventAttendanceMode and upcoming startDate values."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should each recurring event instance have its own page?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For maximum AI visibility, yes. Individual instance pages with their own Event schema — each with a specific date, registration link, and available offers — are significantly more surfaceable for date-specific queries than a single series page. A single series page is acceptable for resources-constrained situations, but the tradeoff is reduced precision in AI discovery for specific occurrence queries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Event schema interact with LocalBusiness schema on a venue page?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They complement each other strongly. LocalBusiness schema on a venue page establishes the entity and earns venue-specific query appearances. Individual Event schema blocks on the same page or on dedicated event detail pages — linked via @id references — layer in event-specific discovery. Venues that implement both see AI citation in two distinct query categories: event venues near a city and specific event type events near a city. The @graph pattern with @id references is the correct way to connect the two."
+      }
+    }
+  ]
+}
+`}</script>

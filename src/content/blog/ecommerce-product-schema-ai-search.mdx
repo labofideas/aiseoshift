@@ -1,0 +1,365 @@
+---
+title: "E-commerce Product Schema for AI Search: The Complete 2026 Guide"
+description: How to implement Product schema markup that gets e-commerce pages cited in AI Overviews and ChatGPT shopping answers. Properties, examples, and common mistakes.
+deck: Shopping queries are increasingly answered by AI before users click. The product pages that get cited have one thing the others do not — complete, accurate Product schema.
+pubDate: 2026-06-25
+category: Playbooks
+tags:
+  - product schema
+  - e-commerce SEO
+  - schema markup
+  - AI search
+  - structured data
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+When someone asks an AI system "what is the best standing desk under $500" or "does the Sony WH-1000XM5 have noise cancelling," the answer no longer always requires a click. AI Overviews, ChatGPT shopping responses, and Perplexity product summaries now synthesize product details directly from structured data they can read and trust. The pages that get cited in those answers are not always the biggest retailers. They are the ones whose Product schema is complete, accurate, and machine-readable without guesswork.
+
+This guide covers everything required to implement Product schema that performs in AI search: which properties matter most, a complete working JSON-LD example, the Offer and AggregateRating patterns that AI systems weight heavily, and the mistakes that silently disqualify product pages from citation.
+
+## The quick answer: which Product schema properties drive AI citations
+
+If you want a single principle: AI systems cite product pages when they can answer a shopping query without ambiguity. That means the schema must supply name, price, availability, and a description specific enough to distinguish this product from near-identical alternatives. Everything else — ratings, GTIN, brand, SKU — increases confidence and citation likelihood, but the floor is a non-ambiguous, in-stock product with a current price.
+
+For a broader introduction to how structured data affects machine citability across content types, the guide on [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) covers the underlying retrieval mechanics. The Product type is one of the most richly specified schemas on Schema.org, and using that richness correctly is what separates product pages that get cited from those that do not.
+
+## Required vs. recommended properties
+
+Schema.org defines `Product` with dozens of possible properties. For AI search specifically, they fall into three tiers.
+
+**Tier 1 — Required (missing these disqualifies the page):**
+
+- `name` — the full product title as it would appear in a buying decision
+- `description` — a substantive description, not a marketing tagline; AI systems extract answer text from this field
+- `image` — at least one high-resolution image URL; multiple images improve citation frequency in visual AI surfaces
+- `offers` — the nested `Offer` object containing price, currency, and availability; without this, the page cannot be cited in shopping contexts
+
+**Tier 2 — Strongly recommended (meaningfully raise citation probability):**
+
+- `aggregateRating` — the combined rating and review count; AI systems use this as a trust signal
+- `brand` — the `Brand` or `Organization` object; queries like "Nike running shoes" cannot resolve without it
+- `sku` — the retailer's internal identifier; helps deduplicate the same product across pages
+- `gtin` / `gtin13` / `gtin8` — the global trade item number; the most reliable cross-platform product identifier
+- `review` — individual review objects; not required, but their presence alongside `aggregateRating` significantly raises citation rates in comparison queries
+
+**Tier 3 — Optional but useful:**
+
+- `color`, `size`, `material` — important for variant pages
+- `category` — helps AI systems correctly classify the product in browsing and comparison answers
+- `url` — the canonical product page URL
+
+The [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) includes a structured data section that maps this property hierarchy to specific audit checks if you are evaluating an existing e-commerce site.
+
+## Complete JSON-LD example
+
+The following block covers all Tier 1 and Tier 2 properties for a typical electronics product. Place this inside a `<script type="application/ld+json">` tag in the `<head>` of the product page.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Sony WH-1000XM5 Wireless Noise-Cancelling Headphones",
+  "description": "Industry-leading noise cancellation with two processors and eight microphones. Up to 30 hours battery life, multipoint connection for two devices simultaneously, and a lightweight 250g design. Available in black and platinum silver.",
+  "image": [
+    "https://example.com/images/sony-wh1000xm5-front.jpg",
+    "https://example.com/images/sony-wh1000xm5-side.jpg"
+  ],
+  "brand": {
+    "@type": "Brand",
+    "name": "Sony"
+  },
+  "sku": "WH1000XM5B",
+  "gtin13": "4548736132252",
+  "color": "Black",
+  "material": "Plastic, synthetic leather",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://example.com/products/sony-wh1000xm5",
+    "priceCurrency": "USD",
+    "price": "349.99",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {
+      "@type": "Organization",
+      "name": "Example Electronics"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.7",
+    "reviewCount": "2841",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+}
+```
+
+Notice that `description` is a specific, factual summary — not "experience premium audio." AI systems extract verbatim sentences from `description` to construct product answers. Marketing language provides no signal; specifications do.
+
+You can validate any Product schema implementation using [Google's Rich Results Test](https://search.google.com/test/rich-results) and the [Schema.org validator](https://validator.schema.org/).
+
+## Offer schema deep dive
+
+The `Offer` object is the single highest-impact nested property in Product schema for AI search. Shopping queries are resolved against price and availability data — if either is missing or stale, the page is either omitted or cited with a caveat that reduces its usefulness.
+
+**`price` and `priceCurrency`**
+
+Always provide `price` as a plain decimal number without currency symbols: `"price": "349.99"` not `"price": "$349.99"`. The `priceCurrency` field uses ISO 4217 currency codes (`"USD"`, `"GBP"`, `"EUR"`). Mismatched or malformed values cause the Offer to fail validation silently.
+
+**`priceValidUntil`**
+
+This field is more important for AI search than it is for traditional rich results. AI systems cross-reference `priceValidUntil` to assess whether a price is likely still accurate. A price with no expiry date is treated as potentially stale. A price with a `priceValidUntil` date in the future signals that the retailer is actively maintaining the data. Use a date 6–12 months out and refresh it on each inventory sync.
+
+**`availability`**
+
+Use the full Schema.org URI values, not shorthand strings:
+
+- `"https://schema.org/InStock"` — available for purchase now
+- `"https://schema.org/OutOfStock"` — currently unavailable
+- `"https://schema.org/PreOrder"` — available to order before release
+- `"https://schema.org/Discontinued"` — no longer produced or sold
+
+Out-of-stock pages are almost never cited in AI shopping answers. If availability is `OutOfStock`, the page will generally not surface in AI responses to active buying queries, regardless of how complete the rest of the schema is. Keep availability accurate and update it in real time through your inventory system.
+
+**`seller`**
+
+The `seller` field identifies the entity making the offer. For multi-vendor marketplaces or reseller pages, this is particularly important. For direct retailers, a simple `Organization` with `name` is sufficient.
+
+## AggregateRating integration
+
+`aggregateRating` has a disproportionate effect on AI citation rates for product queries where the user is comparing options. When a user asks "what is a good pair of noise-cancelling headphones," AI systems are constructing a ranked comparison, not just retrieving a single page. Pages with complete `aggregateRating` data — specifically those with high `reviewCount` alongside a strong `ratingValue` — are weighted more heavily in that construction.
+
+For the [review schema for AI search](/blog/review-schema-for-ai-search/) topic specifically, the full implementation pattern is covered in depth. For Product schema purposes, the critical rules are:
+
+- Always include `reviewCount` alongside `ratingValue`. A rating with no count is treated as low-confidence data.
+- Include `bestRating` and `worstRating` explicitly. Without them, AI systems must infer the scale, which introduces uncertainty.
+- Keep `reviewCount` and `ratingValue` synchronized with your live review data. A schema claiming 4.8/5 from 2,841 reviews that does not match the visible on-page count is a trust signal failure.
+- The minimum threshold for meaningful AI citation influence is approximately 10 reviews. Below that, rating data is statistically insufficient and is often ignored.
+
+A product page with 4.6+ rating and 100+ reviews, combined with complete Tier 1 and Tier 2 properties, consistently outperforms pages with higher ratings but missing or incomplete schema fields.
+
+## Product variants and ItemList for category pages
+
+Individual product pages are not the only e-commerce surface that benefits from structured data. Category pages — those listing multiple products under a brand or type — should implement `ItemList` schema to signal their contents to AI systems.
+
+**Variant pages**
+
+When a product comes in multiple colors, sizes, or configurations, each variant should have its own `Product` schema with the shared `gtin` or `sku` that connects variants to the parent product. Do not put a single schema block on the base product page and leave variant pages unmarked — AI systems that receive a query specifying a variant (e.g., "Sony WH-1000XM5 platinum silver") need to find schema on the variant page itself.
+
+Use `isVariantOf` to link variants back to the parent:
+
+```json
+{
+  "@type": "Product",
+  "name": "Sony WH-1000XM5 Wireless Headphones — Platinum Silver",
+  "isVariantOf": {
+    "@type": "ProductGroup",
+    "name": "Sony WH-1000XM5 Wireless Headphones"
+  },
+  "color": "Platinum Silver",
+  "gtin13": "4548736132269"
+}
+```
+
+**ItemList for category pages**
+
+A category page listing ten headphones under $200 should carry an `ItemList` that names each product and links to its URL. This allows AI systems to cite the category page when a user asks a broad query ("best headphones under $200") and then surface individual product pages for specific-model queries.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Headphones Under $200",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://example.com/products/sony-wh-ch720n",
+      "name": "Sony WH-CH720N"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "https://example.com/products/jabra-evolve2-30",
+      "name": "Jabra Evolve2 30"
+    }
+  ]
+}
+```
+
+The HowTo schema pattern for instructional e-commerce content — assembly guides, setup walkthroughs — follows a related but distinct pattern covered in the [HowTo schema for AI search](/blog/howto-schema-for-ai-search/) playbook.
+
+<figure class="post-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 500" width="820" height="500" role="img" aria-label="Product schema property importance matrix showing three tiers: Required, Strongly Recommended, and Optional, ranked by AI citation impact">
+  <rect width="820" height="500" fill="rgb(246,245,240)" rx="10"/>
+  <text x="410" y="34" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="2">PRODUCT SCHEMA · PROPERTY IMPORTANCE MATRIX FOR AI CITATIONS</text>
+
+  <rect x="30" y="55" width="235" height="385" rx="8" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="2.5"/>
+  <rect x="30" y="55" width="235" height="38" rx="8" fill="rgb(184,85,46)"/>
+  <rect x="30" y="75" width="235" height="18" fill="rgb(184,85,46)"/>
+  <text x="147" y="80" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(250,250,247)" text-anchor="middle" letter-spacing="1.5">TIER 1 — REQUIRED</text>
+  <text x="147" y="116" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">name</text>
+  <text x="147" y="133" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Full product title · query match anchor</text>
+  <line x1="50" y1="143" x2="245" y2="143" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="147" y="162" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">description</text>
+  <text x="147" y="179" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Factual specs · AI extracts answer text</text>
+  <line x1="50" y1="189" x2="245" y2="189" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="147" y="208" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">image</text>
+  <text x="147" y="225" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">High-res URL · visual AI surfaces</text>
+  <line x1="50" y1="235" x2="245" y2="235" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="147" y="254" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">offers (price + availability)</text>
+  <text x="147" y="271" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Shopping query resolution · must be current</text>
+
+  <rect x="292" y="55" width="235" height="385" rx="8" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="2"/>
+  <rect x="292" y="55" width="235" height="38" rx="8" fill="rgb(184,85,46)"/>
+  <rect x="292" y="75" width="235" height="18" fill="rgb(184,85,46)"/>
+  <text x="409" y="80" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(250,250,247)" text-anchor="middle" letter-spacing="1.5">TIER 2 — RECOMMENDED</text>
+  <text x="409" y="116" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">aggregateRating</text>
+  <text x="409" y="133" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Trust signal · critical for comparisons</text>
+  <line x1="312" y1="143" x2="507" y2="143" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="409" y="162" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">brand</text>
+  <text x="409" y="179" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Brand queries require this to resolve</text>
+  <line x1="312" y1="189" x2="507" y2="189" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="409" y="208" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">gtin / gtin13</text>
+  <text x="409" y="225" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Cross-platform deduplication signal</text>
+  <line x1="312" y1="235" x2="507" y2="235" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="409" y="254" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">sku</text>
+  <text x="409" y="271" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Internal ID · variant disambiguation</text>
+  <line x1="312" y1="281" x2="507" y2="281" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="409" y="300" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">priceValidUntil</text>
+  <text x="409" y="317" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Freshness signal · AI staleness check</text>
+
+  <rect x="554" y="55" width="235" height="385" rx="8" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-width="2"/>
+  <rect x="554" y="55" width="235" height="38" rx="8" fill="rgb(14,17,22)"/>
+  <rect x="554" y="75" width="235" height="18" fill="rgb(14,17,22)"/>
+  <text x="671" y="80" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(250,250,247)" text-anchor="middle" letter-spacing="1.5">TIER 3 — OPTIONAL</text>
+  <text x="671" y="116" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">color / size / material</text>
+  <text x="671" y="133" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Variant filter queries</text>
+  <line x1="574" y1="143" x2="769" y2="143" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="671" y="162" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">category</text>
+  <text x="671" y="179" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Taxonomy classification</text>
+  <line x1="574" y1="189" x2="769" y2="189" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="671" y="208" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">url</text>
+  <text x="671" y="225" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Canonical page reference</text>
+  <line x1="574" y1="235" x2="769" y2="235" stroke="rgb(246,245,240)" stroke-width="1"/>
+  <text x="671" y="254" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">review (individual)</text>
+  <text x="671" y="271" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" text-anchor="middle">Supports aggregateRating credibility</text>
+
+  <text x="410" y="472" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" fill-opacity="0.5" text-anchor="middle">Tier 1 properties are required for any AI shopping citation. Tier 2 properties determine citation ranking among competing pages.</text>
+</svg>
+</figure>
+
+## Common implementation mistakes
+
+Audit data from e-commerce sites consistently reveals the same set of errors. These mistakes do not cause obvious failures — the page still renders, Google may still index it — but they silently reduce AI citation probability.
+
+**Missing GTIN**
+
+The GTIN is the most commonly omitted Tier 2 property, and also one of the highest-impact. AI systems use GTIN to resolve cross-retailer product identity. A product page without a GTIN is harder to match against queries that use a product model number or UPC. Manufacturers provide GTINs; if your catalog system does not store them, add a GTIN field and populate it from GS1 data or your product feed. For proprietary products without a manufacturer barcode, use `mpn` (Manufacturer Part Number) as an alternative identifier.
+
+**Stale price data**
+
+Schema price that does not match the visible on-page price is a validation failure in Google's Rich Results Test and a trust signal failure for AI systems. The most common cause is a disconnect between the structured data generation layer and the live pricing engine. Prices updated via JavaScript but with statically rendered schema will fall out of sync within days on any site with dynamic pricing. Ensure your schema generation pulls from the same data source as your displayed price, and set `priceValidUntil` to trigger a forced schema refresh when crossed.
+
+**No availability status**
+
+Omitting `availability` from the `Offer` object is treated differently by different systems. Google requires it for Shopping rich results. AI systems that cannot determine availability from schema will either omit the page from shopping citations or add uncertainty language to any citation they do produce. The fix is straightforward: add `"availability": "https://schema.org/InStock"` (or the correct status) to every Offer object, and wire it to your inventory feed.
+
+**Flat description text**
+
+`description` fields filled with marketing copy ("Elevate your audio experience") provide almost no signal to AI systems. AI systems extract factual claims from description text to populate product answer snippets. A description that states "30-hour battery life, Bluetooth 5.2, 250g weight, foldable design" is far more citable than one that says "immersive sound for music lovers." Rewrite product descriptions to front-load specifications.
+
+**Multiple conflicting schema blocks**
+
+Pages that include both a legacy microdata or RDFa Product markup in HTML and a separate JSON-LD block will have conflicting signals. AI systems and validators often read both and flag the conflict as an error. Migrate entirely to JSON-LD, which is the format Google explicitly recommends per their [structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data), and remove any residual microdata attributes from the HTML.
+
+For the broader strategic picture of how Product schema fits into a full AI visibility strategy, the guide on [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) covers the content and authority signals that work alongside structured data.
+
+The [product schema for AI search](/blog/product-schema-for-ai-search/) playbook also covers platform-specific behavior differences — how Google AI Overviews, Bing Copilot, and Perplexity each interpret Product schema differently — which matters for sites prioritizing specific platforms.
+
+## Frequently asked questions
+
+**Does Product schema directly guarantee AI Overview inclusion?**
+
+No schema type guarantees inclusion in any AI surface. What Product schema does is make a page's content machine-readable with high precision, which removes the barriers that prevent AI systems from citing a page they would otherwise consider relevant. Pages without complete schema are not excluded because AI systems dislike them — they are excluded because the systems cannot reliably extract the information they need to form a citation. Complete schema removes that barrier.
+
+**How often should I update my Product schema?**
+
+Price and availability should be updated in real time, or at minimum within the same cycle as your inventory system refreshes. Brand, GTIN, description, and image are stable fields that only need updating when the product itself changes. `priceValidUntil` should always be a future date — set it six to twelve months out and refresh it programmatically before it expires. A `priceValidUntil` date in the past is interpreted as a stale price signal.
+
+**Can I use microdata instead of JSON-LD for Product schema?**
+
+Technically yes — Schema.org properties are format-agnostic. In practice, JSON-LD is the only format Google explicitly recommends, the easiest to maintain without touching template HTML, and the least likely to conflict with other on-page markup. New implementations should always use JSON-LD. If you have legacy microdata, migrate it: do not run both formats in parallel on the same page.
+
+**What is the minimum Product schema for an AI shopping citation?**
+
+The practical minimum is `name`, `description`, `image`, and a complete `Offer` object with `price`, `priceCurrency`, and `availability`. A page with only these four properties implemented correctly will outperform a page with all twenty properties implemented incorrectly. Get the floor right before adding Tier 2 and Tier 3 properties.
+
+**Should out-of-stock product pages be removed or kept with schema?**
+
+Keep out-of-stock pages, but update `availability` to `"https://schema.org/OutOfStock"`. Do not remove the schema. Out-of-stock pages with accurate schema continue to accumulate link equity and indexing history. When stock is restored, the page resumes citation eligibility immediately rather than requiring re-crawl from scratch. Removing schema from out-of-stock pages — or deleting the pages entirely — loses that compounding asset.
+
+**Does aggregateRating affect AI citation priority over pages with no rating?**
+
+Yes, and the effect is significant for comparison queries. When an AI system is answering "what is the best X for Y," it is constructing a ranked answer from available product data. Pages with `aggregateRating` carrying both a high `ratingValue` and a substantial `reviewCount` are consistently weighted ahead of unrated pages in those constructions. The threshold for meaningful effect is approximately 4.0+ rating with 25+ reviews. Below those values, the rating signal is weak enough that other factors dominate.
+
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Product schema directly guarantee AI Overview inclusion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No schema type guarantees inclusion in any AI surface. What Product schema does is make a page's content machine-readable with high precision, which removes the barriers that prevent AI systems from citing a page they would otherwise consider relevant. Pages without complete schema are not excluded because AI systems dislike them — they are excluded because the systems cannot reliably extract the information they need to form a citation. Complete schema removes that barrier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I update my Product schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Price and availability should be updated in real time, or at minimum within the same cycle as your inventory system refreshes. Brand, GTIN, description, and image are stable fields that only need updating when the product itself changes. priceValidUntil should always be a future date — set it six to twelve months out and refresh it programmatically before it expires. A priceValidUntil date in the past is interpreted as a stale price signal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use microdata instead of JSON-LD for Product schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Technically yes — Schema.org properties are format-agnostic. In practice, JSON-LD is the only format Google explicitly recommends, the easiest to maintain without touching template HTML, and the least likely to conflict with other on-page markup. New implementations should always use JSON-LD. If you have legacy microdata, migrate it: do not run both formats in parallel on the same page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum Product schema for an AI shopping citation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The practical minimum is name, description, image, and a complete Offer object with price, priceCurrency, and availability. A page with only these four properties implemented correctly will outperform a page with all twenty properties implemented incorrectly. Get the floor right before adding Tier 2 and Tier 3 properties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should out-of-stock product pages be removed or kept with schema?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Keep out-of-stock pages, but update availability to https://schema.org/OutOfStock. Do not remove the schema. Out-of-stock pages with accurate schema continue to accumulate link equity and indexing history. When stock is restored, the page resumes citation eligibility immediately rather than requiring re-crawl from scratch. Removing schema from out-of-stock pages — or deleting the pages entirely — loses that compounding asset."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does aggregateRating affect AI citation priority over pages with no rating?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and the effect is significant for comparison queries. When an AI system is answering 'what is the best X for Y,' it is constructing a ranked answer from available product data. Pages with aggregateRating carrying both a high ratingValue and a substantial reviewCount are consistently weighted ahead of unrated pages in those constructions. The threshold for meaningful effect is approximately 4.0+ rating with 25+ reviews."
+      }
+    }
+  ]
+}
+`}</script>

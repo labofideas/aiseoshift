@@ -1,0 +1,297 @@
+---
+title: "E-commerce Category Pages for AI SEO: How to Rank and Get Cited"
+description: How to optimize e-commerce category pages for AI search citations and organic rankings in 2026. Content, schema, internal linking, and intent alignment strategies.
+deck: Category pages are the most under-optimized surface in e-commerce SEO. In the AI era, a well-built category page can become a citation source for "best X under $Y" queries.
+pubDate: 2026-06-25
+category: Playbooks
+tags:
+  - e-commerce SEO
+  - category pages
+  - AI SEO
+  - schema markup
+  - content strategy
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+Most e-commerce category pages are digital filing cabinets. They exist to hold products, not to earn citations. In 2026, that architecture is leaving enormous organic traffic — and AI citation share — on the table.
+
+AI engines answer "best running shoes under $150" and "top-rated espresso machines for beginners" by pulling from pages that provide editorial context, structured buying guidance, and machine-readable product lists. A well-optimized category page hits all three. A default Shopify or WooCommerce category page hits none of them.
+
+This playbook covers exactly what needs to change: the editorial layer, the schema implementation, the internal linking logic, and the comparison content layer that turns category pages into citation anchors for high-intent AI queries.
+
+For the underlying framework, see how [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) functions across different page types. For a full audit baseline, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) walks through every signal AI engines evaluate when deciding whether to cite a page.
+
+## What category pages need for AI citation in 2026: the quick answer
+
+An AI-citation-ready category page has five elements that most current implementations lack:
+
+1. **An editorial introduction** (200 to 400 words) that explains what the category is, who it is for, and what separates good options from bad ones
+2. **ItemList schema** that marks up the product listing as a machine-readable structured list
+3. **FAQPage schema** covering the five to eight questions buyers most commonly ask about the category
+4. **Proper canonical and parameter handling** that ensures crawl budget goes to canonical category URLs, not faceted filter variants
+5. **Internal links to subcategories, related categories, and best-seller product pages** that distribute authority and give AI engines a navigable content graph
+
+The absence of any one of these weakens AI citation probability. The absence of all five — the default state of most category pages — means AI engines simply cannot extract enough signal to cite the page with confidence.
+
+<figure class="post-figure">
+<svg viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anatomy of an AI-optimized category page showing sections from editorial introduction at top through product grid to FAQ section at bottom, with SEO and AI impact labels for each section">
+  <rect width="760" height="480" fill="rgb(246,245,240)" />
+  <text x="32" y="26" font-family="system-ui, sans-serif" font-size="11" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.55" font-weight="700">CATEGORY PAGE ANATOMY · AI SEO</text>
+  <rect x="32" y="44" width="420" height="82" rx="4" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="2" />
+  <text x="48" y="66" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(184,85,46)" font-weight="700">EDITORIAL INTRODUCTION</text>
+  <text x="48" y="84" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.8">200–400 words: what this category is,</text>
+  <text x="48" y="100" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.8">buying guidance, key differentiators</text>
+  <text x="48" y="116" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.5">Primary AI citation trigger for "best X" queries</text>
+  <rect x="32" y="140" width="420" height="72" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.18" stroke-width="1.5" />
+  <text x="48" y="162" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.7" font-weight="700">BREADCRUMB + H1</text>
+  <text x="48" y="180" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">BreadcrumbList schema · Entity disambiguation</text>
+  <text x="48" y="198" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.45">Tells AI engines where this page sits in the site hierarchy</text>
+  <rect x="32" y="226" width="420" height="82" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.18" stroke-width="1.5" />
+  <text x="48" y="248" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.7" font-weight="700">PRODUCT GRID</text>
+  <text x="48" y="266" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">ItemList schema · Product schema per item</text>
+  <text x="48" y="282" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">Price, rating, availability signals</text>
+  <text x="48" y="298" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.45">Machine-readable product inventory for AI extraction</text>
+  <rect x="32" y="322" width="420" height="72" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.18" stroke-width="1.5" />
+  <text x="48" y="344" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.7" font-weight="700">COMPARISON + USE-CASE CONTENT</text>
+  <text x="48" y="362" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">"Best [product] for [use case]" editorial blocks</text>
+  <text x="48" y="378" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.45">Captures long-tail AI queries with purchase intent</text>
+  <rect x="32" y="408" width="420" height="52" rx="4" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="2" />
+  <text x="48" y="430" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(184,85,46)" font-weight="700">FAQ SECTION + FAQPage SCHEMA</text>
+  <text x="48" y="448" font-family="system-ui, sans-serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.8">Direct Q&amp;A extraction source for AI-generated answers</text>
+  <line x1="452" y1="85" x2="540" y2="85" stroke="rgb(184,85,46)" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="548" y="71" font-family="system-ui, sans-serif" font-size="11" fill="rgb(184,85,46)" font-weight="700">HIGH AI IMPACT</text>
+  <text x="548" y="87" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">Citation source for</text>
+  <text x="548" y="101" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">"best X under $Y"</text>
+  <line x1="452" y1="181" x2="540" y2="181" stroke="rgb(14,17,22)" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="548" y="177" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">Entity graph signal</text>
+  <line x1="452" y1="267" x2="540" y2="267" stroke="rgb(14,17,22)" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="548" y="253" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">Structured product</text>
+  <text x="548" y="269" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">inventory signal</text>
+  <text x="548" y="285" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">for AI parsing</text>
+  <line x1="452" y1="362" x2="540" y2="362" stroke="rgb(14,17,22)" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="548" y="358" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">Long-tail query</text>
+  <text x="548" y="374" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">citation anchor</text>
+  <line x1="452" y1="429" x2="540" y2="429" stroke="rgb(184,85,46)" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="548" y="421" font-family="system-ui, sans-serif" font-size="11" fill="rgb(184,85,46)" font-weight="700">HIGH AI IMPACT</text>
+  <text x="548" y="437" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.65">Direct Q&amp;A extraction</text>
+  <text x="380" y="468" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.65">Most category pages implement zero of these five layers.</text>
+</svg>
+</figure>
+
+## The category page content problem
+
+Visit a hundred randomly selected e-commerce category pages and you will find the same pattern: a heading, possibly a filter bar, and then products. The heading says "Men's Running Shoes." The page says nothing else useful.
+
+This architecture was acceptable in the keyword-matching era. A page titled "Men's Running Shoes" with enough product names and brand mentions would rank for "men's running shoes" queries because the keyword density matched the query. AI search engines do not work this way.
+
+When an AI engine evaluates a category page as a potential citation source for "best men's running shoes for wide feet," it needs editorial content that addresses the query. It needs to find something that explains what makes a running shoe good for wide feet, what width designations mean, which price tiers offer genuine quality differences, and which brands have historically performed well in this category. If that content does not exist on the page, the AI engine cannot cite it — no matter how authoritative the domain or how many products are listed.
+
+The problem compounds because most e-commerce teams treat category pages as a navigation layer, not a content layer. Editorial resources go to blog posts and product descriptions. Category pages get template-generated metadata and nothing else. The result is a large surface area of pages with zero editorial value from an AI extraction perspective.
+
+This gap is actually an opportunity. Because the baseline is so low, a retailer that invests in genuine category page editorial content gains a structural advantage that competitors who treat category pages as filing cabinets cannot easily close.
+
+## The editorial introduction: what it needs to contain
+
+The editorial introduction sits above the product grid. It is not a product description, not a marketing headline, and not a keyword-stuffed paragraph. It is buying guidance.
+
+A well-constructed category introduction answers these questions in order of priority:
+
+**What is this category and who is it for?** Define the category with enough specificity that a first-time buyer understands what they are looking at. "Running shoes for wide feet are built with a wider toe box and forefoot, reducing the pinching and blistering that standard-width shoes cause for buyers with foot widths of D (men's) or D/E (women's) or wider."
+
+**What separates good options from bad options in this category?** This is the buying guidance layer. It is also the layer most likely to get cited by AI engines for "what should I look for in X" queries. Be specific: outsole durability, upper breathability, stack height trade-offs, brand-specific sizing quirks.
+
+**What price tier should different buyer profiles expect?** Budget guidance earns AI citations for "best X under $Y" queries. Do not bury this in individual product descriptions — put it in the introduction where it is easy to extract.
+
+**What are the key subcategories or use cases?** If your running shoe category spans road running, trail running, and track, say so. Link to those subcategories. This breadth signal tells AI engines that the page covers the category comprehensively.
+
+This introduction should run 200 to 400 words. Below 200 words, there is not enough signal for AI extraction. Above 400 words, you risk pushing products below the fold on mobile, which damages conversion rate. The constraint is useful: 200 to 400 words forces specificity over padding.
+
+For the mechanics of writing content that serves both human readers and AI extraction systems, the guide on [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/) covers sentence structure, claim specificity, and the citation-readiness signals that AI engines weigh.
+
+## ItemList schema for category pages
+
+The product grid on a category page is invisible to AI engines unless it is marked up with structured data. ItemList schema transforms a visual grid into a machine-readable product inventory that AI systems can parse and cite.
+
+The schema structure nests an ItemList at the category level with ListItem entries for each product. Each ListItem should reference a Product schema entity either inline or via URL.
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Men's Wide Running Shoes",
+  "description": "Wide-fit running shoes for men, available in D through 6E widths across road, trail, and track categories.",
+  "url": "https://example.com/mens-running-shoes/wide-fit/",
+  "numberOfItems": 24,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://example.com/products/new-balance-1080-v13-wide/",
+      "name": "New Balance Fresh Foam X 1080v13 Wide",
+      "item": {
+        "@type": "Product",
+        "name": "New Balance Fresh Foam X 1080v13 Wide",
+        "offers": {
+          "@type": "Offer",
+          "price": "164.99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    }
+  ]
+}
+```
+
+The `numberOfItems` property is often overlooked but carries meaningful signal — it tells AI engines the category has substantive inventory. A category with 3 products is treated differently from a category with 240.
+
+Include price range data at the ItemList level when possible. Some schema implementations add a `priceRange` property, though this is not a standard schema.org property. The more defensible approach is ensuring that individual Product schema entries carry accurate pricing, and that the editorial introduction states the category's price range in natural language for AI extraction.
+
+For a deeper treatment of how product-level schema signals affect AI extraction, [e-commerce product schema for AI search](/blog/ecommerce-product-schema-ai-search/) covers the full Product, Offer, and AggregateRating implementation stack.
+
+## Faceted navigation and crawl efficiency
+
+Faceted navigation is the largest technical SEO liability on most e-commerce sites, and category pages are where it surfaces most visibly. A single category page can generate hundreds or thousands of URL variants through filter combinations: color, size, price range, brand, rating. Each variant is potentially crawlable, which fragments crawl budget and creates duplicate content at scale.
+
+The standard approach — canonical tags pointing filtered URLs back to the root category URL — is correct but often implemented inconsistently. The rules:
+
+**Canonical tags must point to the indexable version.** A URL like `/mens-shoes/running/?color=blue&size=10` should have a canonical pointing to `/mens-shoes/running/` unless that specific filter combination warrants its own indexed page (for example, a high-volume query like "blue running shoes size 10" with genuine search demand).
+
+**Robots meta tags should block parameter-only pages from indexing.** Adding `noindex` to pages that are purely filter states — no editorial content, no unique value — prevents crawl waste and index dilution. Google's [URL parameter handling guidelines](https://developers.google.com/search/docs/crawling-indexing/url-parameters) provide the technical reference for parameter configuration in Search Console.
+
+**Use `rel="next"` and `rel="prev"` where pagination exists.** Paginated category pages — page 2, page 3 — should be self-canonicalized (each page is canonical to itself) and linked sequentially. Google has officially deprecated `rel="next"`/`rel="prev"` for pagination, but it still aids crawler comprehension for large category hierarchies.
+
+**XML sitemaps should include only canonical category URLs.** If your sitemap includes faceted filter URLs, you are sending AI crawlers into a duplicate content maze. Audit your sitemap against your canonical tag implementation and resolve conflicts.
+
+The [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers crawl efficiency as a scored component of AI visibility — faceted navigation problems are one of the most common findings in technical audits.
+
+## Internal linking from category pages
+
+Category pages are hubs in the site's internal link graph, and how they distribute link equity determines which pages earn authority from the category's position. Most category pages underperform here because internal links are treated as navigation rather than as deliberate authority signals.
+
+**Breadcrumbs are mandatory, not optional.** Every category page should render a breadcrumb trail (Home > Category > Subcategory) and have corresponding BreadcrumbList schema. Breadcrumbs tell AI engines where a page sits in the site hierarchy, which helps disambiguate the category's scope and authority. A page about "running shoes" that sits within "sports > footwear > running" is understood differently than a page with no hierarchical context.
+
+**Related category links build topical coverage signals.** A "Men's Running Shoes" category page should link to "Women's Running Shoes," "Running Accessories," and "Trail Running Shoes." These contextual links tell AI engines that the domain covers the broader running footwear topic comprehensively, not just a single segment. Google's [internal linking best practices](https://developers.google.com/search/docs/crawling-indexing/links-crawlable) note that contextual internal links carry stronger authority signals than navigation links.
+
+**Best-seller and editorial picks links serve dual purposes.** Linking to the two or three top-selling products from the editorial introduction — with anchor text that describes the product's use case, not just its name — distributes category authority to individual product pages and creates AI-extractable recommendations. "The [New Balance 1080v13 Wide](#)" is weaker than "The [New Balance 1080v13 Wide](#) is the most forgiving option for neutral high-arched runners needing a wide forefoot."
+
+**Filter-state deep links warrant separate evaluation.** High-volume filter combinations — "running shoes under $100," "trail running shoes for wide feet" — sometimes merit dedicated landing pages with their own editorial content rather than filterable views of the category. The threshold is demand: if the query has 500+ monthly searches and the filterable page cannot be indexed due to canonical tags, a dedicated subcategory page is worth building.
+
+For the relationship between internal linking and AI citation probability, [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) explains how AI engines use link graphs to evaluate topical authority.
+
+## The comparison content opportunity on category pages
+
+The most underused section on a category page is what could be called the use-case comparison block. It sits below the product grid and above the FAQ, and it exists to answer the question type that drives the most AI citations: "what is the best [product] for [specific use case]."
+
+For a running shoe category, this looks like:
+
+**Best for long-distance road running:** [Product name] with rationale tied to cushioning, heel-to-toe drop, and durability across high mileage.
+
+**Best for new runners:** [Product name] with rationale tied to support, versatility, and forgiving geometry.
+
+**Best under $100:** [Product name] with rationale tied to value-to-performance ratio in the specific context of wide-fit running shoes.
+
+Each entry is two to four sentences. The section as a whole runs 300 to 500 words. This structure maps directly to the "best X for Y" query pattern that AI engines answer most frequently from category pages.
+
+The comparison content also serves traditional SEO. It creates additional keyword surface area on the page without diluting the core category focus, and it keeps visitors engaged long enough to make a selection decision.
+
+This is the category page equivalent of the comparison approach described in the [AI product descriptions for e-commerce](/blog/ai-product-descriptions-ecommerce/) guide — editorial framing that gives AI engines extractable, citable claims rather than neutral product listings.
+
+The [AI SEO Shift framework](/ai-seo-shift/) categorizes this as topical depth: going beyond naming products in a category to actually explaining which products serve which needs. It is the difference between a page that lists options and a page that advises on them — and AI engines strongly prefer the latter as citation sources.
+
+## Implementation priority
+
+If you are auditing a large e-commerce site and cannot overhaul every category page at once, prioritize in this order:
+
+1. Top-revenue category pages — highest business impact
+2. Category pages that currently rank on page two or three for high-volume queries — editorial addition often moves these to page one
+3. Category pages targeted by high-intent AI queries ("best X for Y") where the current page has no editorial content
+4. Subcategory pages where the parent category already performs well — authority is flowing to these pages, and adding content accelerates citation probability
+
+Do not prioritize long-tail or low-volume categories in the first pass. The editorial investment is identical regardless of category size, so start where the traffic opportunity is largest.
+
+## Frequently asked questions
+
+**How long should the editorial introduction on a category page be?**
+
+200 to 400 words is the practical range. Below 200 words, AI engines cannot extract enough signal to confidently cite the page for editorial queries. Above 400 words, the introduction pushes the product grid below the fold on mobile, which tends to depress conversion rate. Within this range, prioritize specificity: buying criteria, price tier guidance, and use-case differentiation are higher value than general category background.
+
+**Does ItemList schema replace individual Product schema on category pages?**
+
+No. ItemList schema operates at the category level and provides the container structure. Individual Product schema — with offers, ratings, and availability — belongs on product detail pages and can be referenced from ItemList via URL. If you can implement inline Product schema within each ListItem, do so. If you are constrained to URL references, ensure every linked product page has complete Product schema implemented.
+
+**How do canonical tags affect category page AI visibility?**
+
+Canonical tags that consolidate crawl to a single authoritative URL concentrate all editorial signals on that page. Fragmented crawl across faceted filter variants dilutes those signals across dozens of thin pages. For AI citation purposes, a single well-optimized category URL outperforms the same content distributed across filter variants. Set canonicals aggressively for filter states and reserve indexed URLs for filter combinations with genuine, measurable search demand.
+
+**Should category pages have FAQ sections if the product pages already have FAQs?**
+
+Yes. Category-level FAQs answer different questions than product-level FAQs. Product FAQs address specific product attributes: "Does this shoe run narrow?" Category FAQs address the buying decision: "How do I know what width I need?" "What is the difference between road and trail running shoes?" These category-level questions are precisely what AI engines pull from when answering pre-purchase research queries. The two FAQ layers complement rather than duplicate each other.
+
+**How often should category page editorial content be updated?**
+
+At minimum, review it quarterly. Practical triggers for updates include: product assortment changes that affect buying guidance (a new brand entering the lineup, a price tier shift), algorithm changes that affect how AI engines are answering category queries, or performance data showing the page is losing citations for queries it previously owned. Set a calendar reminder rather than relying on performance data alone — by the time a decline is visible in analytics, the content has often been stale for months.
+
+**Do category page optimizations work differently for large catalogues versus boutique retailers?**
+
+The same principles apply, but scale changes implementation complexity. Large-catalogue retailers need templated editorial frameworks that can be applied systematically — a modular structure where category managers fill in category-specific buying criteria, price guidance, and use-case recommendations within a fixed template. Boutique retailers can write fully custom editorial introductions for each of their smaller number of categories. In both cases, the content signals AI engines need are the same: buying criteria, price tier context, and use-case differentiation.
+
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long should the editorial introduction on a category page be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "200 to 400 words is the practical range. Below 200 words, AI engines cannot extract enough signal to confidently cite the page for editorial queries. Above 400 words, the introduction pushes the product grid below the fold on mobile, which tends to depress conversion rate. Within this range, prioritize specificity: buying criteria, price tier guidance, and use-case differentiation are higher value than general category background."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does ItemList schema replace individual Product schema on category pages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. ItemList schema operates at the category level and provides the container structure. Individual Product schema belongs on product detail pages and can be referenced from ItemList via URL. If you can implement inline Product schema within each ListItem, do so. If you are constrained to URL references, ensure every linked product page has complete Product schema implemented."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do canonical tags affect category page AI visibility?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canonical tags that consolidate crawl to a single authoritative URL concentrate all editorial signals on that page. Fragmented crawl across faceted filter variants dilutes those signals across dozens of thin pages. For AI citation purposes, a single well-optimized category URL outperforms the same content distributed across filter variants. Set canonicals aggressively for filter states and reserve indexed URLs for filter combinations with genuine, measurable search demand."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should category pages have FAQ sections if the product pages already have FAQs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Category-level FAQs answer different questions than product-level FAQs. Product FAQs address specific product attributes. Category FAQs address the buying decision, such as how to determine the right product type or what distinguishes different subcategories. These category-level questions are precisely what AI engines pull from when answering pre-purchase research queries."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should category page editorial content be updated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At minimum, review it quarterly. Practical triggers for updates include product assortment changes that affect buying guidance, algorithm changes that affect how AI engines are answering category queries, or performance data showing the page is losing citations for queries it previously owned. Set a calendar reminder rather than relying on performance data alone — by the time a decline is visible in analytics, the content has often been stale for months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do category page optimizations work differently for large catalogues versus boutique retailers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The same principles apply, but scale changes implementation complexity. Large-catalogue retailers need templated editorial frameworks that can be applied systematically. Boutique retailers can write fully custom editorial introductions for each of their smaller number of categories. In both cases, the content signals AI engines need are the same: buying criteria, price tier context, and use-case differentiation."
+      }
+    }
+  ]
+}
+`}</script>

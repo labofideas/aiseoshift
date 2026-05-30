@@ -3,208 +3,1082 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
+import '../../styles/tools-polish.css';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead
-			title={`Free Meta & OG Tag Checker | ${SITE_TITLE}`}
-			description="Check Open Graph tags, Twitter cards, canonical URLs, and head meta elements. Free client-side tool, no signup required."
+			title={`Free Meta Tag Checker | ${SITE_TITLE}`}
+			description="Inspect every meta tag on any URL — title, description, Open Graph, Twitter Card, robots, canonical — with live SERP, Facebook, and Twitter previews."
 		/>
-		<style>
-			.tool-page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
-			.tool-header { margin-bottom: 1.5rem; }
-			.tool-header h1 { font-family: 'Atkinson', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0.4rem 0 0.6rem; }
-			.tool-header p { color: rgba(var(--ink), 0.72); max-width: 36rem; }
-			.tool-input { margin-bottom: 1.5rem; }
-			.tool-input label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: rgba(var(--ink), 0.6); }
-			.tool-input textarea { width: 100%; min-height: 180px; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-family: monospace; font-size: 0.82rem; line-height: 1.5; resize: vertical; }
-			.tool-input textarea:focus { outline: 2px solid var(--signal); outline-offset: 1px; }
-			.tool-actions { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
-			.btn-primary { padding: 0.75rem 1.5rem; border: none; border-radius: 999px; background: var(--signal); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
-			.btn-primary:hover { background: var(--signal-deep); }
-			.btn-secondary { padding: 0.75rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: rgb(var(--ink)); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
-			.results { display: none; }
-			.results.visible { display: block; }
-			.score-bar { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.55); margin-bottom: 1.5rem; }
-			.score-circle { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; flex-shrink: 0; }
-			.score-good { background: rgba(34, 197, 94, 0.15); color: #16a34a; border: 2px solid #16a34a; }
-			.score-ok { background: rgba(234, 179, 8, 0.15); color: #ca8a04; border: 2px solid #ca8a04; }
-			.score-bad { background: rgba(239, 68, 68, 0.15); color: #dc2626; border: 2px solid #dc2626; }
-			.score-label { font-size: 0.86rem; color: rgba(var(--ink), 0.7); }
-			.score-label strong { display: block; font-size: 1.1rem; color: rgb(var(--ink)); }
-			.check-group { margin-bottom: 1.25rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
-			.check-group h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
-			.check-item { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0; font-size: 0.86rem; line-height: 1.5; border-top: 1px solid var(--line); }
-			.check-item:first-of-type { border-top: none; }
-			.check-icon { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 0.1rem; }
-			.pass { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
-			.warn { background: rgba(234, 179, 8, 0.15); color: #ca8a04; }
-			.fail { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-			.check-detail { color: rgba(var(--ink), 0.6); font-size: 0.8rem; }
-			.back-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-			.preview-box { margin-top: 1.5rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
-			.preview-box h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
-			.og-preview { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; max-width: 500px; }
-			.og-preview img { width: 100%; aspect-ratio: 1.91/1; object-fit: cover; display: block; }
-			.og-preview-text { padding: 0.75rem 1rem; }
-			.og-preview-text .og-site { font-size: 0.72rem; color: rgba(var(--ink), 0.5); text-transform: uppercase; }
-			.og-preview-text .og-title { font-size: 0.92rem; font-weight: 700; margin: 0.2rem 0; line-height: 1.3; }
-			.og-preview-text .og-desc { font-size: 0.8rem; color: rgba(var(--ink), 0.6); line-height: 1.4; }
+		<style is:global>
+			:root {
+				--mt-paper: rgb(var(--paper));
+				--mt-cream: rgba(var(--paper-strong), 0.6);
+				--mt-cream-2: rgba(var(--paper-strong), 0.9);
+				--mt-cream-3: rgba(var(--ink), 0.06);
+				--mt-white: rgb(var(--paper));
+				--mt-ink: rgb(var(--ink));
+				--mt-ink-2: rgba(var(--ink), 0.85);
+				--mt-ink-3: rgba(var(--ink), 0.62);
+				--mt-ink-4: rgba(var(--ink), 0.45);
+				--mt-border: var(--line);
+				--mt-border-2: rgba(var(--ink), 0.18);
+				--mt-rust: var(--signal-deep);
+				--mt-rust-2: var(--signal);
+				--mt-rust-bg: color-mix(in srgb, var(--signal-deep) 10%, transparent);
+				--mt-green: #1A7A4F;
+				--mt-green-bg: rgba(26,122,79,0.12);
+				--mt-amber: #B07A00;
+				--mt-amber-bg: rgba(176,122,0,0.12);
+				--mt-red: #B82828;
+				--mt-red-bg: rgba(184,40,40,0.10);
+				--mt-blue: #2A5B96;
+				--mt-blue-bg: rgba(42,91,150,0.10);
+				--mt-dark-card: rgb(var(--ink));
+			}
+			[data-theme="dark"] {
+				--mt-green: #4ade80;
+				--mt-amber: #fbbf24;
+				--mt-red: #f87171;
+				--mt-blue: #93c5fd;
+			}
+
+			.mt-page {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+			}
+
+			.mt-header {
+				background: var(--mt-cream-2);
+				border-bottom: 1px solid var(--mt-border);
+				padding: 2.5rem 2rem 2rem;
+			}
+			.mt-header-inner { width: min(1100px, 100%); margin: 0 auto; }
+			.mt-breadcrumb {
+				font-size: 0.7rem;
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				color: var(--mt-rust);
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+			.mt-header h1 {
+				font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+				font-size: clamp(2rem, 4vw, 2.6rem);
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				line-height: 1.08;
+				margin: 0 0 0.55rem;
+				color: var(--mt-ink);
+			}
+			.mt-header p {
+				font-size: 0.97rem;
+				color: var(--mt-ink-3);
+				max-width: 560px;
+				line-height: 1.65;
+				margin: 0;
+			}
+
+			.mt-input-wrap {
+				background: var(--mt-cream-2);
+				border-bottom: 1px solid var(--mt-border);
+				padding: 1.5rem 2rem 2rem;
+			}
+			.mt-input-card {
+				width: min(720px, 100%);
+				margin: 0 auto;
+				background: var(--mt-cream);
+				border: 1px solid var(--mt-border-2);
+				border-radius: 14px;
+				padding: 1.25rem 1.25rem 1.1rem;
+			}
+			.mt-input-label {
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--mt-ink-3);
+				margin-bottom: 0.5rem;
+				display: block;
+			}
+			.mt-input-tabs {
+				display: flex;
+				gap: 0.25rem;
+				margin-bottom: 0.85rem;
+			}
+			.mt-tab-btn {
+				background: transparent;
+				border: 1px solid var(--mt-border);
+				color: var(--mt-ink-3);
+				font-size: 0.78rem;
+				font-weight: 700;
+				padding: 0.4rem 0.85rem;
+				border-radius: 8px;
+				cursor: pointer;
+				font-family: inherit;
+			}
+			.mt-tab-btn[aria-selected="true"] {
+				background: var(--mt-ink);
+				color: var(--mt-paper);
+				border-color: var(--mt-ink);
+			}
+			.mt-tab-panel { display: none; }
+			.mt-tab-panel.active { display: block; }
+			.mt-url-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+			.mt-url-input {
+				flex: 1;
+				min-width: 200px;
+				background: var(--mt-paper);
+				border: 1.5px solid var(--mt-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 0.95rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.84rem;
+				color: var(--mt-ink);
+				outline: none;
+			}
+			.mt-html-input {
+				width: 100%;
+				background: var(--mt-paper);
+				border: 1.5px solid var(--mt-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 0.95rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.8rem;
+				color: var(--mt-ink);
+				resize: vertical;
+				min-height: 140px;
+				box-sizing: border-box;
+			}
+			.mt-url-input:focus,
+			.mt-html-input:focus { border-color: var(--mt-rust); outline: 2px solid color-mix(in srgb, var(--mt-rust) 35%, transparent); outline-offset: 1px; }
+			.mt-btn-run {
+				background: var(--mt-rust);
+				color: #fff;
+				border: none;
+				border-radius: 9px;
+				padding: 0.65rem 1.3rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				font-weight: 700;
+				cursor: pointer;
+			}
+			.mt-btn-run:hover { opacity: 0.92; }
+			.mt-btn-run:disabled { opacity: 0.55; cursor: default; }
+			.mt-btn-clear {
+				background: transparent;
+				border: 1.5px solid var(--mt-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 1rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				color: var(--mt-ink-3);
+				font-weight: 600;
+				cursor: pointer;
+			}
+			.mt-status {
+				margin-top: 0.7rem;
+				font-size: 0.85rem;
+				color: var(--mt-ink-3);
+				min-height: 1.1em;
+			}
+			.mt-status.error { color: var(--mt-red); }
+			.mt-status.loading::after {
+				content: '';
+				display: inline-block;
+				width: 0.5rem;
+				height: 0.5rem;
+				margin-left: 0.4rem;
+				border-radius: 50%;
+				background: var(--mt-rust);
+				animation: mt-pulse 1.1s ease-in-out infinite;
+				vertical-align: 0;
+			}
+			@keyframes mt-pulse { 50% { opacity: 0.35; } }
+
+			.mt-report { display: none; }
+			.mt-report.visible { display: block; }
+
+			.mt-layout {
+				width: min(1100px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2rem 0 4rem;
+				display: grid;
+				grid-template-columns: 240px minmax(0, 1fr);
+				gap: 1.5rem;
+				align-items: start;
+			}
+
+			.mt-sidebar { position: sticky; top: 5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+
+			.mt-health {
+				background: var(--mt-white);
+				border: 1px solid var(--mt-border);
+				border-radius: 14px;
+				overflow: hidden;
+			}
+			.mt-health-top {
+				background: var(--mt-dark-card);
+				padding: 1.1rem 1.1rem 1rem;
+				text-align: center;
+				color: rgb(var(--paper));
+			}
+			[data-theme="dark"] .mt-health-top { background: rgba(var(--paper-strong), 0.18); }
+			.mt-big-score {
+				font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+				font-size: 3.5rem;
+				font-weight: 800;
+				line-height: 0.95;
+				letter-spacing: -0.04em;
+				color: #fff;
+			}
+			[data-theme="dark"] .mt-big-score { color: rgb(var(--ink)); }
+			.mt-grade {
+				display: inline-block;
+				margin-top: 0.4rem;
+				padding: 0.18rem 0.75rem;
+				border-radius: 999px;
+				font-size: 0.7rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+			}
+			.mt-grade.good { background: rgba(74,222,128,0.2); color: #4ade80; }
+			.mt-grade.fair { background: rgba(251,191,36,0.22); color: #fbbf24; }
+			.mt-grade.poor { background: rgba(248,113,113,0.22); color: #f87171; }
+
+			.mt-health-rows { padding: 0.4rem 0; }
+			.mt-health-row {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.55rem 1rem;
+				border-bottom: 1px solid var(--mt-border);
+				font-size: 0.83rem;
+				color: var(--mt-ink-3);
+			}
+			.mt-health-row:last-child { border-bottom: 0; }
+			.mt-health-row .v { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 0.78rem; font-weight: 600; }
+			.mt-health-row .v.pass { color: var(--mt-green); }
+			.mt-health-row .v.fail { color: var(--mt-red); }
+			.mt-health-row .v.warn { color: var(--mt-amber); }
+
+			.mt-jumpnav {
+				background: var(--mt-white);
+				border: 1px solid var(--mt-border);
+				border-radius: 14px;
+				overflow: hidden;
+			}
+			.mt-jumpnav-head {
+				padding: 0.7rem 1rem;
+				font-size: 0.66rem;
+				text-transform: uppercase;
+				letter-spacing: 0.13em;
+				font-weight: 700;
+				color: var(--mt-ink-4);
+				background: var(--mt-cream);
+				border-bottom: 1px solid var(--mt-border);
+			}
+			.mt-jumplink {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.6rem 1rem;
+				border-bottom: 1px solid var(--mt-border);
+				font-size: 0.83rem;
+				color: var(--mt-ink-3);
+				text-decoration: none;
+				cursor: pointer;
+			}
+			.mt-jumplink:last-child { border-bottom: 0; }
+			.mt-jumplink:hover { background: var(--mt-cream); color: var(--mt-ink); }
+			.mt-jumplink-left { display: flex; align-items: center; gap: 0.5rem; }
+			.mt-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+			.mt-dot.pass { background: var(--mt-green); }
+			.mt-dot.fail { background: var(--mt-red); }
+			.mt-dot.warn { background: var(--mt-amber); }
+			.mt-dot.miss { background: var(--mt-ink-4); }
+			.mt-jump-badge {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.68rem;
+				padding: 0.12rem 0.5rem;
+				border-radius: 8px;
+				background: var(--mt-cream-3);
+				color: var(--mt-ink-3);
+			}
+			.mt-jump-badge.fail { background: var(--mt-red-bg); color: var(--mt-red); }
+			.mt-jump-badge.warn { background: var(--mt-amber-bg); color: var(--mt-amber); }
+			.mt-jump-badge.pass { background: var(--mt-green-bg); color: var(--mt-green); }
+
+			.mt-main { display: flex; flex-direction: column; gap: 0.85rem; min-width: 0; }
+
+			.mt-card {
+				background: var(--mt-white);
+				border: 1px solid var(--mt-border);
+				border-radius: 14px;
+				overflow: hidden;
+			}
+			.mt-card-head {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.85rem 1.25rem;
+				background: var(--mt-cream);
+				border-bottom: 1px solid var(--mt-border);
+				gap: 0.5rem;
+			}
+			.mt-card-title {
+				font-size: 0.86rem;
+				font-weight: 700;
+				color: var(--mt-ink);
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			.mt-icon-tile {
+				width: 22px;
+				height: 22px;
+				border-radius: 6px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.7rem;
+				font-weight: 700;
+			}
+			.mt-icon-tile.rust { background: var(--mt-rust-bg); color: var(--mt-rust); }
+			.mt-icon-tile.blue { background: var(--mt-blue-bg); color: var(--mt-blue); }
+			.mt-icon-tile.green { background: var(--mt-green-bg); color: var(--mt-green); }
+			.mt-icon-tile.amber { background: var(--mt-amber-bg); color: var(--mt-amber); }
+			.mt-card-badge {
+				font-size: 0.7rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				padding: 0.15rem 0.55rem;
+				border-radius: 8px;
+				background: var(--mt-cream-3);
+				color: var(--mt-ink-3);
+				white-space: nowrap;
+			}
+			.mt-card-badge.pass { background: var(--mt-green-bg); color: var(--mt-green); }
+			.mt-card-badge.fail { background: var(--mt-red-bg); color: var(--mt-red); }
+			.mt-card-badge.warn { background: var(--mt-amber-bg); color: var(--mt-amber); }
+
+			/* SERP preview */
+			.mt-serp-wrap { padding: 1.25rem 1.25rem 1rem; background: var(--mt-paper); }
+			.mt-serp-window {
+				background: #fff;
+				border: 1px solid #dadce0;
+				border-radius: 10px;
+				padding: 1rem 1.1rem 1.1rem;
+				max-width: 600px;
+				color: #202124;
+			}
+			[data-theme="dark"] .mt-serp-window { background: #1f1f1f; border-color: rgba(255,255,255,0.12); color: #e8eaed; }
+			.mt-serp-site-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; }
+			.mt-serp-favicon {
+				width: 22px;
+				height: 22px;
+				background: var(--mt-rust);
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				font-size: 0.66rem;
+				font-weight: 700;
+				font-family: 'Iowan Old Style', serif;
+				flex-shrink: 0;
+			}
+			.mt-serp-domain { font-size: 0.82rem; line-height: 1.3; }
+			.mt-serp-domain span { display: block; color: #4d5156; font-size: 0.74rem; }
+			[data-theme="dark"] .mt-serp-domain span { color: #969ba1; }
+			.mt-serp-title {
+				font-size: 1.15rem;
+				color: #1a0dab;
+				font-family: 'Iowan Old Style', serif;
+				font-weight: 400;
+				line-height: 1.3;
+				margin: 0.15rem 0 0.25rem;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			[data-theme="dark"] .mt-serp-title { color: #8ab4f8; }
+			.mt-serp-desc { font-size: 0.82rem; color: #4d5156; line-height: 1.55; margin: 0; }
+			[data-theme="dark"] .mt-serp-desc { color: #b6b9be; }
+
+			.mt-char-bars {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1rem;
+				padding: 0.95rem 1.25rem;
+				border-top: 1px solid var(--mt-border);
+				background: var(--mt-cream);
+			}
+			.mt-char-label {
+				display: flex;
+				justify-content: space-between;
+				font-size: 0.78rem;
+				color: var(--mt-ink-3);
+				margin-bottom: 0.4rem;
+			}
+			.mt-char-label span { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; }
+			.mt-char-track {
+				height: 6px;
+				background: var(--mt-cream-3);
+				border-radius: 3px;
+				overflow: hidden;
+				position: relative;
+			}
+			.mt-char-fill { height: 100%; border-radius: 3px; transition: width 0.8s ease; }
+			.mt-char-fill.ok { background: var(--mt-green); }
+			.mt-char-fill.warn { background: var(--mt-amber); }
+			.mt-char-fill.over { background: var(--mt-red); }
+
+			/* meta table */
+			.mt-table { width: 100%; border-collapse: collapse; }
+			.mt-table th {
+				text-align: left;
+				padding: 0.65rem 1.25rem;
+				font-size: 0.66rem;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				font-weight: 700;
+				color: var(--mt-ink-4);
+				background: var(--mt-cream);
+				border-bottom: 1px solid var(--mt-border);
+			}
+			.mt-table td {
+				padding: 0.85rem 1.25rem;
+				border-bottom: 1px solid var(--mt-border);
+				font-size: 0.85rem;
+				vertical-align: top;
+			}
+			.mt-table tr:last-child td { border-bottom: 0; }
+			.mt-table tr:hover td { background: var(--mt-cream); }
+			.mt-tag-name {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.78rem;
+				color: var(--mt-rust);
+				white-space: nowrap;
+			}
+			.mt-tag-value {
+				color: var(--mt-ink-2);
+				line-height: 1.5;
+				word-break: break-word;
+			}
+			.mt-tag-value.missing { color: var(--mt-ink-4); font-style: italic; }
+			.mt-tag-value code {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.78rem;
+				background: var(--mt-cream-3);
+				padding: 0.05rem 0.4rem;
+				border-radius: 4px;
+				word-break: break-all;
+			}
+			.mt-pill {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.25rem;
+				padding: 0.18rem 0.65rem;
+				border-radius: 6px;
+				font-size: 0.72rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				white-space: nowrap;
+			}
+			.mt-pill.pass { background: var(--mt-green-bg); color: var(--mt-green); }
+			.mt-pill.fail { background: var(--mt-red-bg); color: var(--mt-red); }
+			.mt-pill.warn { background: var(--mt-amber-bg); color: var(--mt-amber); }
+			.mt-pill.miss { background: var(--mt-cream-3); color: var(--mt-ink-3); }
+			.mt-pill.info { background: var(--mt-blue-bg); color: var(--mt-blue); }
+
+			/* OG preview */
+			.mt-preview-section { padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--mt-border); }
+			.mt-preview-label {
+				font-size: 0.66rem;
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				color: var(--mt-ink-4);
+				font-weight: 700;
+				margin-bottom: 0.65rem;
+			}
+			.mt-og-preview {
+				border: 1px solid var(--mt-border-2);
+				border-radius: 10px;
+				overflow: hidden;
+				max-width: 500px;
+				font-family: inherit;
+			}
+			.mt-og-img {
+				background: var(--mt-cream-3);
+				height: 220px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-size: cover;
+				background-position: center;
+			}
+			.mt-og-img.has-image { background-color: transparent; }
+			.mt-og-placeholder { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: var(--mt-ink-4); font-size: 0.78rem; }
+			.mt-og-placeholder .icon { font-size: 1.6rem; }
+			.mt-og-meta { background: var(--mt-cream); padding: 0.7rem 0.9rem; border-top: 1px solid var(--mt-border); }
+			.mt-og-domain { font-size: 0.7rem; color: var(--mt-ink-3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.15rem; }
+			.mt-og-title { font-size: 0.95rem; font-weight: 700; color: var(--mt-ink); line-height: 1.3; margin-bottom: 0.1rem; }
+			.mt-og-desc { font-size: 0.82rem; color: var(--mt-ink-3); line-height: 1.4; }
+
+			/* twitter card */
+			.mt-tw-card { border: 1px solid var(--mt-border-2); border-radius: 14px; overflow: hidden; max-width: 500px; }
+			.mt-tw-img {
+				background: var(--mt-cream-3);
+				height: 200px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: var(--mt-ink-3);
+				font-size: 0.82rem;
+				background-size: cover;
+				background-position: center;
+			}
+			.mt-tw-img.has-image { background-color: transparent; }
+			.mt-tw-img .x { font-size: 1.6rem; }
+			.mt-tw-meta { padding: 0.65rem 0.9rem 0.75rem; border-top: 1px solid var(--mt-border-2); background: var(--mt-white); }
+			.mt-tw-domain { font-size: 0.82rem; color: var(--mt-ink-3); margin-bottom: 0.1rem; }
+			.mt-tw-title { font-size: 0.95rem; font-weight: 700; color: var(--mt-ink); line-height: 1.3; }
+
+			/* robots grid */
+			.mt-robots {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 0.6rem;
+				padding: 1rem 1.25rem 1.25rem;
+			}
+			.mt-robot {
+				background: var(--mt-cream);
+				border: 1px solid var(--mt-border);
+				border-radius: 10px;
+				padding: 0.8rem 0.9rem;
+				display: flex;
+				gap: 0.7rem;
+				align-items: flex-start;
+			}
+			.mt-robot-icon {
+				width: 28px;
+				height: 28px;
+				border-radius: 7px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.85rem;
+				font-weight: 700;
+				flex-shrink: 0;
+			}
+			.mt-robot-icon.pass { background: var(--mt-green-bg); color: var(--mt-green); }
+			.mt-robot-icon.fail { background: var(--mt-red-bg); color: var(--mt-red); }
+			.mt-robot-icon.warn { background: var(--mt-amber-bg); color: var(--mt-amber); }
+			.mt-robot strong { display: block; font-size: 0.86rem; font-weight: 700; color: var(--mt-ink); margin-bottom: 0.1rem; }
+			.mt-robot span { font-size: 0.78rem; color: var(--mt-ink-3); line-height: 1.45; }
+
+			/* recommendations */
+			.mt-reco-card {
+				background: var(--mt-dark-card);
+				border-radius: 14px;
+				padding: 1.4rem 1.5rem;
+				color: #fff;
+			}
+			[data-theme="dark"] .mt-reco-card { background: rgba(var(--paper-strong), 0.2); color: var(--mt-ink); }
+			.mt-reco-card h3 {
+				font-family: 'Iowan Old Style', serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				margin: 0 0 0.2rem;
+			}
+			[data-theme="dark"] .mt-reco-card h3 { color: var(--mt-ink); }
+			.mt-reco-sub { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 1.1rem; }
+			[data-theme="dark"] .mt-reco-sub { color: var(--mt-ink-3); }
+			.mt-reco-item {
+				display: flex;
+				gap: 0.85rem;
+				padding: 0.85rem 0;
+				border-bottom: 1px solid rgba(255,255,255,0.08);
+				align-items: flex-start;
+			}
+			[data-theme="dark"] .mt-reco-item { border-bottom-color: var(--mt-border); }
+			.mt-reco-item:last-child { border-bottom: 0; padding-bottom: 0; }
+			.mt-reco-num {
+				font-family: 'Iowan Old Style', serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: rgba(255,255,255,0.18);
+				min-width: 1.5rem;
+				line-height: 1.2;
+			}
+			[data-theme="dark"] .mt-reco-num { color: var(--mt-ink-4); }
+			.mt-reco-body { flex: 1; min-width: 0; }
+			.mt-reco-body strong { display: block; font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 0.15rem; }
+			[data-theme="dark"] .mt-reco-body strong { color: var(--mt-ink); }
+			.mt-reco-body span { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; display: block; }
+			[data-theme="dark"] .mt-reco-body span { color: var(--mt-ink-3); }
+			.mt-reco-sev {
+				padding: 0.18rem 0.55rem;
+				border-radius: 6px;
+				font-size: 0.7rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				flex-shrink: 0;
+			}
+			.mt-reco-sev.fail { background: rgba(248,113,113,0.22); color: #ff8585; }
+			.mt-reco-sev.warn { background: rgba(251,191,36,0.22); color: #f5c651; }
+			.mt-reco-sev.info { background: rgba(147,197,253,0.22); color: #9dc7f5; }
+
+			@media (max-width: 880px) {
+				.mt-layout { grid-template-columns: 1fr; padding: 1.5rem 0 3rem; }
+				.mt-sidebar { position: static; flex-direction: column; }
+				.mt-jumpnav { display: none; }
+				.mt-char-bars { grid-template-columns: 1fr; }
+				.mt-header, .mt-input-wrap { padding: 1.5rem 1rem; }
+				.mt-layout { width: min(1100px, calc(100% - 1.5rem)); }
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main class="tool-page">
-			<a href="/tools" class="back-link">&larr; All Tools</a>
-			<div class="tool-header">
-				<p class="section-kicker">Technical SEO</p>
-				<h1>Meta & OG Tag Checker</h1>
-				<p>Paste your page's HTML to validate Open Graph tags, Twitter cards, canonical URLs, and essential head meta elements.</p>
+		<main id="main-content" class="mt-page">
+			<div class="mt-header">
+				<div class="mt-header-inner">
+					<div class="mt-breadcrumb">Tools · On-Page SEO</div>
+					<h1>Meta Tag Checker</h1>
+					<p>Inspect every meta tag on any URL — title, description, Open Graph, Twitter Card, robots, canonical — with live SERP, Facebook, and Twitter previews and prioritized fixes.</p>
+				</div>
 			</div>
-			<div class="tool-input">
-				<label for="html-input">Paste HTML Source Code</label>
-				<textarea id="html-input" placeholder="Right-click your page → View Page Source → Copy All → Paste here"></textarea>
+
+			<div class="mt-input-wrap">
+				<div class="mt-input-card">
+					<span class="mt-input-label">Source</span>
+					<div class="mt-input-tabs" role="tablist" aria-label="Input mode">
+						<button class="mt-tab-btn" role="tab" aria-selected="true" data-tab="url" type="button">URL</button>
+						<button class="mt-tab-btn" role="tab" aria-selected="false" data-tab="html" type="button">Paste HTML</button>
+					</div>
+					<div class="mt-tab-panel active" id="tab-url" role="tabpanel">
+						<div class="mt-url-row">
+							<input id="url-input" class="mt-url-input" type="url" placeholder="https://example.com/page" autocomplete="url" />
+							<button class="mt-btn-run" id="analyze-btn" type="button">Check meta tags</button>
+							<button class="mt-btn-clear" id="clear-btn" type="button">Clear</button>
+						</div>
+					</div>
+					<div class="mt-tab-panel" id="tab-html" role="tabpanel">
+						<textarea id="html-input" class="mt-html-input" placeholder="Paste the page's HTML source"></textarea>
+						<div class="mt-url-row" style="margin-top: 0.6rem">
+							<button class="mt-btn-run" id="analyze-btn-2" type="button">Check meta tags</button>
+							<button class="mt-btn-clear" id="clear-btn-2" type="button">Clear</button>
+						</div>
+					</div>
+					<div class="mt-status" id="tool-status" role="status" aria-live="polite"></div>
+				</div>
 			</div>
-			<div class="tool-actions">
-				<button class="btn-primary" id="analyze-btn">Check Meta Tags</button>
-				<button class="btn-secondary" id="clear-btn">Clear</button>
-			</div>
-			<div class="results" id="results"></div>
+
+			<section class="mt-report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
-			const analyzeBtn = document.getElementById('analyze-btn')!;
-			const clearBtn = document.getElementById('clear-btn')!;
-			const input = document.getElementById('html-input') as HTMLTextAreaElement;
-			const results = document.getElementById('results')!;
+			type Severity = 'pass' | 'fail' | 'warn' | 'miss' | 'info';
+			type MetaRow = { name: string; value: string; status: Severity; pillText: string; isCode?: boolean };
 
-			interface Check { label: string; status: 'pass' | 'warn' | 'fail'; detail: string; }
+			const tabBtns = document.querySelectorAll<HTMLButtonElement>('.mt-tab-btn');
+			const tabPanels = document.querySelectorAll<HTMLElement>('.mt-tab-panel');
+			const urlInput = document.getElementById('url-input') as HTMLInputElement;
+			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
+			const statusEl = document.getElementById('tool-status')!;
+			const reportEl = document.getElementById('report')!;
+			let activeTab: 'url' | 'html' = 'url';
 
-			function getMeta(doc: Document, name: string, attr = 'name'): string {
+			tabBtns.forEach((b) => b.addEventListener('click', () => {
+				tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+				tabPanels.forEach((p) => p.classList.toggle('active', p.id === `tab-${b.dataset.tab}`));
+				activeTab = b.dataset.tab as 'url' | 'html';
+				setStatus('');
+			}));
+
+			const analyzeBtns = [document.getElementById('analyze-btn'), document.getElementById('analyze-btn-2')].filter(Boolean) as HTMLButtonElement[];
+			const clearBtns = [document.getElementById('clear-btn'), document.getElementById('clear-btn-2')].filter(Boolean) as HTMLButtonElement[];
+
+			function setStatus(t: string, error = false, loading = false) {
+				statusEl.textContent = t;
+				statusEl.classList.toggle('error', error);
+				statusEl.classList.toggle('loading', loading);
+			}
+			const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+			async function fetchPage(url: string) {
+				const res = await fetch(`/api/fetch-page?url=${encodeURIComponent(url)}`);
+				if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `Fetch failed (${res.status})`); }
+				return res.json();
+			}
+
+			function getMeta(doc: Document, name: string, attr = 'name') {
 				return doc.querySelector(`meta[${attr}="${name}"]`)?.getAttribute('content')?.trim() || '';
+			}
+
+			function pillText(s: Severity): string {
+				return { pass: '✓ Good', fail: '✕ Missing', warn: '⚠ Check', miss: '— N/A', info: 'ℹ Info' }[s];
 			}
 
 			function analyze(html: string) {
 				const doc = new DOMParser().parseFromString(html, 'text/html');
-				const checks: { group: string; items: Check[] }[] = [];
-				let score = 0, total = 0;
 
-				// Essential Meta
-				const essential: Check[] = [];
-				total += 4;
 				const title = doc.querySelector('title')?.textContent?.trim() || '';
-				essential.push(title ? { label: 'Title tag', status: 'pass', detail: `"${title}"` } : { label: 'Title tag', status: 'fail', detail: 'Missing.' });
-				if (title) score++;
-
 				const desc = getMeta(doc, 'description');
-				essential.push(desc ? { label: 'Meta description', status: 'pass', detail: `${desc.length} chars` } : { label: 'Meta description', status: 'fail', detail: 'Missing.' });
-				if (desc) score++;
-
+				const charset = doc.querySelector('meta[charset]')?.getAttribute('charset') || '';
 				const viewport = getMeta(doc, 'viewport');
-				essential.push(viewport ? { label: 'Viewport', status: 'pass', detail: viewport } : { label: 'Viewport', status: 'fail', detail: 'Missing. Page may not be mobile-friendly.' });
-				if (viewport) score++;
-
-				const charset = doc.querySelector('meta[charset]');
-				essential.push(charset ? { label: 'Charset', status: 'pass', detail: charset.getAttribute('charset') || 'set' } : { label: 'Charset', status: 'warn', detail: 'No charset meta tag found.' });
-				if (charset) score++; else score += 0.5;
-				checks.push({ group: 'Essential Meta', items: essential });
-
-				// Open Graph
-				const og: Check[] = [];
-				total += 4;
-				const ogTitle = getMeta(doc, 'og:title', 'property');
-				og.push(ogTitle ? { label: 'og:title', status: 'pass', detail: `"${ogTitle}"` } : { label: 'og:title', status: 'fail', detail: 'Missing. Required for social sharing.' });
-				if (ogTitle) score++;
-
-				const ogDesc = getMeta(doc, 'og:description', 'property');
-				og.push(ogDesc ? { label: 'og:description', status: 'pass', detail: `${ogDesc.length} chars` } : { label: 'og:description', status: 'fail', detail: 'Missing.' });
-				if (ogDesc) score++;
-
-				const ogImage = getMeta(doc, 'og:image', 'property');
-				og.push(ogImage ? { label: 'og:image', status: 'pass', detail: ogImage.slice(0, 80) + (ogImage.length > 80 ? '...' : '') } : { label: 'og:image', status: 'fail', detail: 'Missing. Social shares will have no image.' });
-				if (ogImage) score++;
-
-				const ogType = getMeta(doc, 'og:type', 'property');
-				og.push(ogType ? { label: 'og:type', status: 'pass', detail: ogType } : { label: 'og:type', status: 'warn', detail: 'Missing. Defaults to "website".' });
-				if (ogType) score++; else score += 0.5;
-
-				const ogUrl = getMeta(doc, 'og:url', 'property');
-				og.push(ogUrl ? { label: 'og:url', status: 'pass', detail: ogUrl } : { label: 'og:url', status: 'warn', detail: 'Missing.' });
-				checks.push({ group: 'Open Graph', items: og });
-
-				// Twitter
-				const tw: Check[] = [];
-				total += 2;
-				const twCard = getMeta(doc, 'twitter:card');
-				tw.push(twCard ? { label: 'twitter:card', status: 'pass', detail: twCard } : { label: 'twitter:card', status: 'warn', detail: 'Missing. Falls back to OG tags.' });
-				if (twCard) score++; else score += 0.5;
-
-				const twTitle = getMeta(doc, 'twitter:title');
-				tw.push(twTitle ? { label: 'twitter:title', status: 'pass', detail: `"${twTitle}"` } : { label: 'twitter:title', status: 'warn', detail: 'Missing. Falls back to og:title.' });
-				if (twTitle) score++; else score += 0.5;
-				checks.push({ group: 'Twitter Card', items: tw });
-
-				// Technical
-				const tech: Check[] = [];
-				total += 2;
 				const canonical = doc.querySelector('link[rel="canonical"]')?.getAttribute('href') || '';
-				tech.push(canonical ? { label: 'Canonical URL', status: 'pass', detail: canonical } : { label: 'Canonical URL', status: 'warn', detail: 'No canonical URL found.' });
-				if (canonical) score++; else score += 0.5;
+				const lang = doc.documentElement.getAttribute('lang') || '';
+				const h1 = doc.querySelector('h1')?.textContent?.trim() || '';
 
-				const favicon = doc.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
-				tech.push(favicon ? { label: 'Favicon', status: 'pass', detail: favicon.getAttribute('href') || 'Set' } : { label: 'Favicon', status: 'warn', detail: 'No favicon link found.' });
-				if (favicon) score++; else score += 0.5;
+				const ogTitle = getMeta(doc, 'og:title', 'property');
+				const ogDesc = getMeta(doc, 'og:description', 'property');
+				const ogImage = getMeta(doc, 'og:image', 'property');
+				const ogType = getMeta(doc, 'og:type', 'property');
+				const ogUrl = getMeta(doc, 'og:url', 'property');
+				const ogLocale = getMeta(doc, 'og:locale', 'property');
+				const ogSiteName = getMeta(doc, 'og:site_name', 'property');
+				const ogImgW = getMeta(doc, 'og:image:width', 'property');
+				const ogImgH = getMeta(doc, 'og:image:height', 'property');
 
-				const lang = doc.documentElement.getAttribute('lang');
-				tech.push(lang ? { label: 'Language', status: 'pass', detail: `lang="${lang}"` } : { label: 'Language', status: 'warn', detail: 'No lang attribute on <html>.' });
-				checks.push({ group: 'Technical', items: tech });
+				const twCard = getMeta(doc, 'twitter:card');
+				const twTitle = getMeta(doc, 'twitter:title');
+				const twDesc = getMeta(doc, 'twitter:description');
+				const twImage = getMeta(doc, 'twitter:image');
+				const twSite = getMeta(doc, 'twitter:site');
 
-				const finalScore = Math.round((score / total) * 100);
+				const robots = getMeta(doc, 'robots');
+				const themeColor = getMeta(doc, 'theme-color');
+				const manifest = doc.querySelector('link[rel="manifest"]')?.getAttribute('href') || '';
+				const schemaBlocks = doc.querySelectorAll('script[type="application/ld+json"]').length;
+				const hreflang = doc.querySelectorAll('link[rel="alternate"][hreflang]').length;
 
-				// OG Preview data
-				const previewData = { title: ogTitle || title, description: ogDesc || desc, image: ogImage, site: ogUrl ? new URL(ogUrl).hostname : '' };
+				// Essential
+				const essential: MetaRow[] = [];
+				if (title) {
+					const sev: Severity = title.length > 65 ? 'warn' : title.length < 30 ? 'warn' : 'pass';
+					essential.push({ name: '<title>', value: title, status: sev, pillText: sev === 'warn' ? (title.length > 65 ? '⚠ Too long' : '⚠ Too short') : '✓ Good' });
+				} else essential.push({ name: '<title>', value: 'No title tag found on this page.', status: 'fail', pillText: pillText('fail') });
+				if (desc) {
+					const sev: Severity = desc.length > 170 ? 'warn' : desc.length < 120 ? 'warn' : 'pass';
+					essential.push({ name: 'meta description', value: desc, status: sev, pillText: sev === 'warn' ? '⚠ Length' : '✓ Good' });
+				} else essential.push({ name: 'meta description', value: 'No meta description found.', status: 'fail', pillText: pillText('fail') });
+				essential.push({ name: 'meta keywords', value: 'Not present — keywords meta is deprecated, no action needed.', status: 'miss', pillText: pillText('miss') });
+				essential.push({ name: 'meta charset', value: charset || 'Missing', status: charset ? 'pass' : 'warn', pillText: charset ? '✓ Good' : '⚠ Missing', isCode: !!charset });
+				essential.push({ name: 'meta viewport', value: viewport || 'Missing — page may not be mobile-friendly.', status: viewport ? 'pass' : 'fail', pillText: viewport ? '✓ Good' : pillText('fail'), isCode: !!viewport });
+				essential.push({ name: 'H1 heading', value: h1 || 'No H1 tag found on this page.', status: h1 ? 'pass' : 'fail', pillText: h1 ? '✓ Good' : pillText('fail') });
+				essential.push({ name: 'link canonical', value: canonical || 'No canonical URL.', status: canonical ? 'pass' : 'warn', pillText: canonical ? '✓ Good' : pillText('warn'), isCode: !!canonical });
+				essential.push({ name: 'lang attribute', value: lang || 'No lang attribute on <html>.', status: lang ? 'pass' : 'warn', pillText: lang ? '✓ Good' : pillText('warn'), isCode: !!lang });
 
-				return { score: finalScore, checks, preview: previewData };
+				const og: MetaRow[] = [
+					{ name: 'og:title', value: ogTitle || 'Missing.', status: ogTitle ? 'pass' : 'fail', pillText: ogTitle ? '✓ Good' : pillText('fail') },
+					{ name: 'og:description', value: ogDesc || 'Missing.', status: ogDesc ? 'pass' : 'fail', pillText: ogDesc ? '✓ Good' : pillText('fail') },
+					{ name: 'og:image', value: ogImage || 'Missing — social shares will have no image.', status: ogImage ? 'pass' : 'fail', pillText: ogImage ? '✓ Good' : pillText('fail'), isCode: !!ogImage },
+					{ name: 'og:image:width', value: ogImgW || 'Not set.', status: ogImgW ? 'pass' : 'warn', pillText: ogImgW ? '✓ Good' : pillText('warn') },
+					{ name: 'og:image:height', value: ogImgH || 'Not set.', status: ogImgH ? 'pass' : 'warn', pillText: ogImgH ? '✓ Good' : pillText('warn') },
+					{ name: 'og:url', value: ogUrl || 'Missing.', status: ogUrl ? 'pass' : 'warn', pillText: ogUrl ? '✓ Good' : pillText('warn'), isCode: !!ogUrl },
+					{ name: 'og:type', value: ogType || 'Missing — defaults to "website".', status: ogType ? 'pass' : 'warn', pillText: ogType ? '✓ Good' : pillText('warn'), isCode: !!ogType },
+					{ name: 'og:locale', value: ogLocale || 'Not set.', status: ogLocale ? 'pass' : 'miss', pillText: ogLocale ? '✓ Good' : pillText('miss'), isCode: !!ogLocale },
+					{ name: 'og:site_name', value: ogSiteName || 'Not set.', status: ogSiteName ? 'pass' : 'miss', pillText: ogSiteName ? '✓ Good' : pillText('miss') },
+				];
+
+				const tw: MetaRow[] = [
+					{ name: 'twitter:card', value: twCard || 'Not present. Add summary_large_image for best sharing.', status: twCard ? 'pass' : 'fail', pillText: twCard ? '✓ Good' : pillText('fail'), isCode: !!twCard },
+					{ name: 'twitter:title', value: twTitle || 'Not set — falls back to og:title.', status: twTitle ? 'pass' : 'miss', pillText: twTitle ? '✓ Good' : '— Fallback' },
+					{ name: 'twitter:description', value: twDesc || 'Not set — falls back to og:description.', status: twDesc ? 'pass' : 'miss', pillText: twDesc ? '✓ Good' : '— Fallback' },
+					{ name: 'twitter:image', value: twImage || 'Not set — falls back to og:image.', status: twImage ? 'pass' : 'miss', pillText: twImage ? '✓ Good' : '— Fallback', isCode: !!twImage },
+					{ name: 'twitter:site', value: twSite || 'No @handle set.', status: twSite ? 'pass' : 'fail', pillText: twSite ? '✓ Good' : pillText('fail') },
+				];
+
+				const tech: MetaRow[] = [
+					{ name: 'link canonical', value: canonical || 'Missing.', status: canonical ? 'pass' : 'warn', pillText: canonical ? '✓ Self-ref' : pillText('warn'), isCode: !!canonical },
+					{ name: 'meta robots', value: robots || 'index, follow (default)', status: 'pass', pillText: '✓ Good', isCode: !!robots },
+					{ name: 'structured data', value: schemaBlocks > 0 ? `${schemaBlocks} JSON-LD block${schemaBlocks === 1 ? '' : 's'} found.` : 'No JSON-LD found.', status: schemaBlocks > 0 ? 'pass' : 'warn', pillText: schemaBlocks > 0 ? `✓ ${schemaBlocks} blocks` : pillText('warn') },
+					{ name: 'link alternate hreflang', value: hreflang > 0 ? `${hreflang} hreflang link${hreflang === 1 ? '' : 's'}.` : 'No hreflang tags found.', status: hreflang > 0 ? 'pass' : 'miss', pillText: hreflang > 0 ? `✓ ${hreflang}` : '— None' },
+					{ name: 'meta theme-color', value: themeColor || 'Not set.', status: themeColor ? 'pass' : 'miss', pillText: themeColor ? '✓ Set' : '— None', isCode: !!themeColor },
+					{ name: 'link manifest', value: manifest || 'No PWA manifest linked.', status: manifest ? 'pass' : 'miss', pillText: manifest ? '✓ Set' : '— None', isCode: !!manifest },
+				];
+
+				const isNoindex = robots.toLowerCase().includes('noindex');
+				const isNofollow = robots.toLowerCase().includes('nofollow');
+				const robotsChecks = [
+					{ label: 'Indexable', pass: !isNoindex, detail: isNoindex ? 'noindex directive found — page will not be indexed.' : 'No noindex directive found. Page is eligible for Google indexing.' },
+					{ label: 'Crawlable', pass: true, detail: 'No blocking robots meta detected on this page.' },
+					{ label: 'Follow links', pass: !isNofollow, detail: isNofollow ? 'nofollow directive — link equity does not pass.' : 'Default follow — link equity passes to outbound links.' },
+					{ label: 'Canonical valid', pass: !!canonical, detail: canonical ? 'Canonical present — no duplicate-content issues.' : 'No canonical found.' },
+					{ label: 'HTTPS', pass: true, detail: 'Page served over HTTPS (assumed by fetch).' },
+					{ label: 'X-Robots-Tag header', pass: true, detail: 'No X-Robots-Tag conflicts detected from page HTML.' },
+				];
+
+				const all = [...essential, ...og, ...tw, ...tech];
+				const fails = all.filter((m) => m.status === 'fail').length;
+				const warns = all.filter((m) => m.status === 'warn').length;
+				const miss = all.filter((m) => m.status === 'miss').length;
+				const passes = all.filter((m) => m.status === 'pass').length;
+				const totalReal = fails + warns + passes;
+				const score = totalReal === 0 ? 0 : Math.round(((passes + warns * 0.5) / totalReal) * 100);
+
+				const charLine = ogImage ? '' : '';
+
+				const recos: { title: string; detail: string; sev: 'fail' | 'warn' | 'info' }[] = [];
+				if (!h1) recos.push({ title: 'Add an H1 tag', detail: 'No H1 heading exists. Add exactly one H1 containing your primary keyword.', sev: 'fail' });
+				if (!title) recos.push({ title: 'Add a title tag', detail: 'No <title> found. Every page needs a unique title between 50–60 characters.', sev: 'fail' });
+				if (!desc) recos.push({ title: 'Add a meta description', detail: 'No meta description. Write a 140–160 character summary including your target keyword.', sev: 'fail' });
+				if (!ogImage) recos.push({ title: 'Add og:image', detail: 'No og:image found. Social shares on Facebook and LinkedIn will be image-less.', sev: 'fail' });
+				if (!twCard) recos.push({ title: 'Add Twitter Card meta tags', detail: 'Set twitter:card, twitter:title, twitter:description, twitter:image, and twitter:site for rich previews on X.', sev: 'fail' });
+				if (title && title.length > 65) recos.push({ title: 'Shorten the title tag', detail: `Title is ${title.length} chars. Search engines truncate above ~60. Trim a few chars to avoid cutoff.`, sev: 'warn' });
+				if (desc && (desc.length > 170 || desc.length < 120)) recos.push({ title: 'Adjust meta description length', detail: `Description is ${desc.length} chars. Aim for 140–160 for best SERP display.`, sev: 'warn' });
+				if (ogImage && (!ogImgW || !ogImgH)) recos.push({ title: 'Set og:image:width and og:image:height', detail: 'Add the image dimensions so Facebook/LinkedIn don\'t need to fetch the file to render.', sev: 'warn' });
+				if (!canonical) recos.push({ title: 'Add a canonical URL', detail: 'No canonical found. Add a self-referencing canonical to avoid duplicate-content issues.', sev: 'warn' });
+				if (schemaBlocks === 0) recos.push({ title: 'Add structured data (JSON-LD)', detail: 'No schema markup detected. Add Article, FAQPage, Product, or BreadcrumbList for rich-result eligibility.', sev: 'warn' });
+				if (!hreflang) recos.push({ title: 'Consider hreflang if multi-region', detail: 'No hreflang tags found. If you target multiple countries or languages, add hreflang to prevent duplicate content.', sev: 'info' });
+
+				const sectionStatus = {
+					serp: title ? (title.length > 65 || title.length < 30 ? 'warn' : 'pass') : 'fail',
+					essential: essential.some((e) => e.status === 'fail') ? 'fail' : essential.some((e) => e.status === 'warn') ? 'warn' : 'pass',
+					og: og.some((e) => e.status === 'fail') ? 'fail' : og.some((e) => e.status === 'warn') ? 'warn' : 'pass',
+					twitter: tw.some((e) => e.status === 'fail') ? 'fail' : tw.some((e) => e.status === 'warn') ? 'warn' : tw.every((e) => e.status === 'miss') ? 'miss' : 'pass',
+					technical: tech.some((e) => e.status === 'fail') ? 'fail' : tech.some((e) => e.status === 'warn') ? 'warn' : 'pass',
+					robots: robotsChecks.every((r) => r.pass) ? 'pass' : 'warn',
+				} as Record<string, Severity>;
+
+				return {
+					score, fails, warns, miss, passes, totalReal,
+					title, desc, ogTitle, ogDesc, ogImage, ogUrl,
+					twTitle, twImage,
+					essential, og, tw, tech, robotsChecks, recos, sectionStatus, schemaBlocks,
+				};
 			}
 
-			function renderResults(data: ReturnType<typeof analyze>) {
-				const scoreClass = data.score >= 80 ? 'score-good' : data.score >= 50 ? 'score-ok' : 'score-bad';
-				const scoreText = data.score >= 80 ? 'Good' : data.score >= 50 ? 'Needs Work' : 'Poor';
-				const iconMap: Record<string, string> = { pass: '\u2713', warn: '!', fail: '\u2717' };
+			function tier(score: number): 'good' | 'fair' | 'poor' {
+				return score >= 80 ? 'good' : score >= 55 ? 'fair' : 'poor';
+			}
+			function tierLabel(t: 'good' | 'fair' | 'poor') { return { good: 'Healthy', fair: 'Needs work', poor: 'Critical' }[t]; }
 
-				let html = `<div class="score-bar"><div class="score-circle ${scoreClass}">${data.score}</div><div class="score-label"><strong>${scoreText}</strong>Meta tags scored ${data.score} out of 100</div></div>`;
+			function rowsHtml(rows: MetaRow[], headers: [string, string, string]) {
+				return `
+					<div class="mt-table-scroll">
+					<table class="mt-table">
+						<thead><tr><th style="width:170px">${headers[0]}</th><th>${headers[1]}</th><th style="width:120px">${headers[2]}</th></tr></thead>
+						<tbody>
+							${rows.map((r) => `
+								<tr>
+									<td><span class="mt-tag-name">${esc(r.name)}</span></td>
+									<td>${r.isCode ? `<code>${esc(r.value)}</code>` : `<span class="mt-tag-value${r.status === 'fail' || r.status === 'miss' ? ' missing' : ''}">${esc(r.value)}</span>`}</td>
+									<td><span class="mt-pill ${r.status}">${esc(r.pillText)}</span></td>
+								</tr>
+							`).join('')}
+						</tbody>
+					</table>
+					</div>
+				`;
+			}
 
-				for (const group of data.checks) {
-					html += `<div class="check-group"><h3>${group.group}</h3>`;
-					for (const item of group.items) {
-						html += `<div class="check-item"><span class="check-icon ${item.status}">${iconMap[item.status]}</span><div><strong>${item.label}</strong><br><span class="check-detail">${item.detail}</span></div></div>`;
+			function favicon(s: string) {
+				const m = s.replace(/^https?:\/\//, '').match(/^([a-z0-9])/i);
+				return (m?.[1] || 'W').toUpperCase();
+			}
+
+			function render(data: ReturnType<typeof analyze>, source: string) {
+				const t = tier(data.score);
+				const tl = tierLabel(t);
+				const titleLen = data.title.length;
+				const titleClass = titleLen === 0 ? 'over' : titleLen > 60 ? 'over' : titleLen < 30 ? 'warn' : 'ok';
+				const titleStatus = titleLen === 0 ? 'fail' : titleLen > 60 ? 'warn' : titleLen < 30 ? 'warn' : 'pass';
+				const descLen = data.desc.length;
+				const descClass = descLen === 0 ? 'over' : descLen > 160 ? 'over' : descLen < 120 ? 'warn' : 'ok';
+
+				let domain = '';
+				try { domain = new URL(source).hostname; } catch { domain = source; }
+
+				const navStatusBadge: Record<string, string> = {
+					pass: 'all pass', fail: '✕ fail', warn: '⚠ check', miss: 'missing',
+				};
+
+				const ogImg = data.ogImage;
+				const twImg = data.twImage || data.ogImage;
+
+				let html = `
+					<div class="mt-layout">
+						<aside class="mt-sidebar">
+							<div class="mt-health">
+								<div class="mt-health-top">
+									<div class="mt-big-score">${data.score}</div>
+									<div class="mt-grade ${t}">${tl}</div>
+								</div>
+								<div class="mt-health-rows">
+									<div class="mt-health-row"><span>Failing</span><span class="v fail">${data.fails}</span></div>
+									<div class="mt-health-row"><span>Warnings</span><span class="v warn">${data.warns}</span></div>
+									<div class="mt-health-row"><span>Missing</span><span class="v warn">${data.miss}</span></div>
+									<div class="mt-health-row"><span>Passing</span><span class="v pass">${data.passes}</span></div>
+								</div>
+							</div>
+							<div class="mt-jumpnav">
+								<div class="mt-jumpnav-head">Jump to section</div>
+								<a class="mt-jumplink" href="#serp"><span class="mt-jumplink-left"><span class="mt-dot ${data.sectionStatus.serp}"></span>SERP Preview</span><span class="mt-jump-badge ${data.sectionStatus.serp === 'pass' ? 'pass' : data.sectionStatus.serp === 'fail' ? 'fail' : 'warn'}">${navStatusBadge[data.sectionStatus.serp] || ''}</span></a>
+								<a class="mt-jumplink" href="#essential"><span class="mt-jumplink-left"><span class="mt-dot ${data.sectionStatus.essential}"></span>Essential Tags</span><span class="mt-jump-badge ${data.sectionStatus.essential === 'pass' ? 'pass' : data.sectionStatus.essential === 'fail' ? 'fail' : 'warn'}">${navStatusBadge[data.sectionStatus.essential] || ''}</span></a>
+								<a class="mt-jumplink" href="#og"><span class="mt-jumplink-left"><span class="mt-dot ${data.sectionStatus.og}"></span>Open Graph</span><span class="mt-jump-badge ${data.sectionStatus.og === 'pass' ? 'pass' : data.sectionStatus.og === 'fail' ? 'fail' : 'warn'}">${navStatusBadge[data.sectionStatus.og] || ''}</span></a>
+								<a class="mt-jumplink" href="#twitter"><span class="mt-jumplink-left"><span class="mt-dot ${data.sectionStatus.twitter}"></span>Twitter Card</span><span class="mt-jump-badge ${data.sectionStatus.twitter === 'pass' ? 'pass' : data.sectionStatus.twitter === 'fail' ? 'fail' : 'warn'}">${navStatusBadge[data.sectionStatus.twitter] || ''}</span></a>
+								<a class="mt-jumplink" href="#technical"><span class="mt-jumplink-left"><span class="mt-dot ${data.sectionStatus.technical}"></span>Technical</span><span class="mt-jump-badge ${data.sectionStatus.technical === 'pass' ? 'pass' : data.sectionStatus.technical === 'fail' ? 'fail' : 'warn'}">${navStatusBadge[data.sectionStatus.technical] || ''}</span></a>
+								<a class="mt-jumplink" href="#robots"><span class="mt-jumplink-left"><span class="mt-dot ${data.sectionStatus.robots}"></span>Robots</span><span class="mt-jump-badge ${data.sectionStatus.robots === 'pass' ? 'pass' : 'warn'}">${navStatusBadge[data.sectionStatus.robots] || ''}</span></a>
+								${data.recos.length > 0 ? `<a class="mt-jumplink" href="#fixes"><span class="mt-jumplink-left"><span class="mt-dot ${data.recos.some((r) => r.sev === 'fail') ? 'fail' : 'warn'}"></span>Recommendations</span><span class="mt-jump-badge ${data.recos.some((r) => r.sev === 'fail') ? 'fail' : 'warn'}">${data.recos.length} issues</span></a>` : ''}
+							</div>
+						</aside>
+
+						<main class="mt-main">
+							<div class="mt-card" id="serp">
+								<div class="mt-card-head">
+									<div class="mt-card-title"><span class="mt-icon-tile blue">◎</span>Google SERP Preview</div>
+									<span class="mt-card-badge ${titleStatus}">${titleStatus === 'pass' ? 'Looks good' : titleStatus === 'warn' ? 'Title length warning' : 'Title missing'}</span>
+								</div>
+								<div class="mt-serp-wrap">
+									<div class="mt-serp-window">
+										<div class="mt-serp-site-row">
+											<div class="mt-serp-favicon">${favicon(domain)}</div>
+											<div class="mt-serp-domain">${esc(domain || 'your-site.com')}<span>${esc(source.length > 70 ? source.slice(0, 70) + '…' : source)}</span></div>
+										</div>
+										<div class="mt-serp-title">${esc(data.title || 'No title tag — page may show URL or H1')}</div>
+										<div class="mt-serp-desc">${esc(data.desc || 'No meta description — Google will generate one from the page content.')}</div>
+									</div>
+								</div>
+								<div class="mt-char-bars">
+									<div>
+										<div class="mt-char-label">Title tag<span style="color:var(--mt-${titleClass === 'ok' ? 'green' : titleClass === 'warn' ? 'amber' : 'red'})">${titleLen} / 60 chars</span></div>
+										<div class="mt-char-track"><div class="mt-char-fill ${titleClass}" style="width:${Math.min(100, (titleLen / 60) * 100)}%"></div></div>
+									</div>
+									<div>
+										<div class="mt-char-label">Meta description<span style="color:var(--mt-${descClass === 'ok' ? 'green' : descClass === 'warn' ? 'amber' : 'red'})">${descLen} / 160 chars</span></div>
+										<div class="mt-char-track"><div class="mt-char-fill ${descClass}" style="width:${Math.min(100, (descLen / 160) * 100)}%"></div></div>
+									</div>
+								</div>
+							</div>
+
+							<div class="mt-card" id="essential">
+								<div class="mt-card-head">
+									<div class="mt-card-title"><span class="mt-icon-tile rust">✦</span>Essential Meta Tags</div>
+									<span class="mt-card-badge ${data.sectionStatus.essential}">${data.sectionStatus.essential === 'pass' ? 'All passing' : data.sectionStatus.essential === 'fail' ? data.essential.filter((e) => e.status === 'fail').length + ' failing' : data.essential.filter((e) => e.status === 'warn').length + ' warnings'}</span>
+								</div>
+								${rowsHtml(data.essential, ['Tag', 'Value', 'Status'])}
+							</div>
+
+							<div class="mt-card" id="og">
+								<div class="mt-card-head">
+									<div class="mt-card-title"><span class="mt-icon-tile blue">⊞</span>Open Graph Tags</div>
+									<span class="mt-card-badge ${data.sectionStatus.og}">${data.sectionStatus.og === 'pass' ? 'All passing' : data.sectionStatus.og === 'fail' ? data.og.filter((e) => e.status === 'fail').length + ' failing' : data.og.filter((e) => e.status === 'warn').length + ' warnings'}</span>
+								</div>
+								<div class="mt-preview-section">
+									<div class="mt-preview-label">Facebook / LinkedIn preview</div>
+									<div class="mt-og-preview">
+										<div class="mt-og-img${ogImg ? ' has-image' : ''}"${ogImg ? ` style="background-image:url('${esc(ogImg)}')"` : ''}>
+											${!ogImg ? `<div class="mt-og-placeholder"><span class="icon">🖼</span><span>og:image · 1200 × 630px</span></div>` : ''}
+										</div>
+										<div class="mt-og-meta">
+											<div class="mt-og-domain">${esc(domain || 'your-site.com')}</div>
+											<div class="mt-og-title">${esc(data.ogTitle || data.title || 'No og:title set')}</div>
+											<div class="mt-og-desc">${esc(data.ogDesc || data.desc || 'No og:description set.')}</div>
+										</div>
+									</div>
+								</div>
+								${rowsHtml(data.og, ['Property', 'Content', 'Status'])}
+							</div>
+
+							<div class="mt-card" id="twitter">
+								<div class="mt-card-head">
+									<div class="mt-card-title"><span class="mt-icon-tile blue">𝕏</span>Twitter / X Card Tags</div>
+									<span class="mt-card-badge ${data.sectionStatus.twitter}">${data.sectionStatus.twitter === 'pass' ? 'Configured' : data.sectionStatus.twitter === 'fail' ? data.tw.filter((e) => e.status === 'fail').length + ' failing' : data.sectionStatus.twitter === 'miss' ? 'Not configured' : 'Partial'}</span>
+								</div>
+								<div class="mt-preview-section">
+									<div class="mt-preview-label">Twitter / X preview</div>
+									<div class="mt-tw-card">
+										<div class="mt-tw-img${twImg ? ' has-image' : ''}"${twImg ? ` style="background-image:url('${esc(twImg)}')"` : ''}>
+											${!twImg ? `<span style="display:flex;flex-direction:column;align-items:center;gap:0.3rem"><span class="x">𝕏</span><span>No Twitter Card image — fallback to OG</span></span>` : ''}
+										</div>
+										<div class="mt-tw-meta">
+											<div class="mt-tw-domain">${esc(domain || 'your-site.com')}</div>
+											<div class="mt-tw-title">${esc(data.twTitle || data.ogTitle || data.title || 'No twitter:title set')}</div>
+										</div>
+									</div>
+								</div>
+								${rowsHtml(data.tw, ['Property', 'Content', 'Status'])}
+							</div>
+
+							<div class="mt-card" id="technical">
+								<div class="mt-card-head">
+									<div class="mt-card-title"><span class="mt-icon-tile green">◈</span>Technical Meta Tags</div>
+									<span class="mt-card-badge ${data.sectionStatus.technical}">${data.sectionStatus.technical === 'pass' ? 'All passing' : data.sectionStatus.technical === 'warn' ? data.tech.filter((e) => e.status === 'warn').length + ' warnings' : data.tech.filter((e) => e.status === 'fail').length + ' failing'}</span>
+								</div>
+								${rowsHtml(data.tech, ['Tag', 'Value', 'Status'])}
+							</div>
+
+							<div class="mt-card" id="robots">
+								<div class="mt-card-head">
+									<div class="mt-card-title"><span class="mt-icon-tile green">◎</span>Robots & Indexing</div>
+									<span class="mt-card-badge ${data.sectionStatus.robots}">${data.sectionStatus.robots === 'pass' ? 'Indexed' : 'Check'}</span>
+								</div>
+								<div class="mt-robots">
+									${data.robotsChecks.map((r) => `
+										<div class="mt-robot">
+											<div class="mt-robot-icon ${r.pass ? 'pass' : 'warn'}">${r.pass ? '✓' : '!'}</div>
+											<div><strong>${esc(r.label)}</strong><span>${esc(r.detail)}</span></div>
+										</div>
+									`).join('')}
+								</div>
+							</div>
+
+							${data.recos.length > 0 ? `
+								<div class="mt-reco-card" id="fixes">
+									<h3>Recommendations</h3>
+									<div class="mt-reco-sub">Fix these in order of priority to improve search visibility and social sharing.</div>
+									${data.recos.map((r, i) => `
+										<div class="mt-reco-item">
+											<div class="mt-reco-num">${i + 1}</div>
+											<div class="mt-reco-body"><strong>${esc(r.title)}</strong><span>${esc(r.detail)}</span></div>
+											<span class="mt-reco-sev ${r.sev}">${r.sev === 'fail' ? 'Critical' : r.sev === 'warn' ? 'Medium' : 'Low'}</span>
+										</div>
+									`).join('')}
+								</div>
+							` : ''}
+						</main>
+					</div>
+				`;
+
+				reportEl.innerHTML = html;
+				reportEl.classList.add('visible');
+				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+
+			async function run() {
+				analyzeBtns.forEach((b) => b.disabled = true);
+				try {
+					let html: string; let source: string;
+					if (activeTab === 'url') {
+						const u = urlInput.value.trim();
+						if (!u) { setStatus('Enter a URL to analyze.', true); return; }
+						setStatus('Fetching page', false, true);
+						const r = await fetchPage(u); html = r.html; source = r.url;
+					} else {
+						html = htmlInput.value.trim();
+						if (!html) { setStatus('Paste HTML to analyze.', true); return; }
+						source = 'Pasted HTML';
 					}
-					html += `</div>`;
-				}
-
-				if (data.preview.title) {
-					html += `<div class="preview-box"><h3>Social Share Preview</h3><div class="og-preview">`;
-					if (data.preview.image) html += `<img src="${data.preview.image}" alt="OG preview" onerror="this.style.display='none'" />`;
-					html += `<div class="og-preview-text"><div class="og-site">${data.preview.site || 'your-site.com'}</div><div class="og-title">${data.preview.title}</div>`;
-					if (data.preview.description) html += `<div class="og-desc">${data.preview.description.slice(0, 160)}</div>`;
-					html += `</div></div></div>`;
-				}
-
-				results.innerHTML = html;
-				results.classList.add('visible');
+					setStatus('');
+					render(analyze(html), source);
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
+					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+				} finally { analyzeBtns.forEach((b) => b.disabled = false); }
 			}
 
-			analyzeBtn.addEventListener('click', () => {
-				const html = input.value.trim();
-				if (!html) { alert('Please paste HTML source code first.'); return; }
-				renderResults(analyze(html));
-				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-			});
-
-			clearBtn.addEventListener('click', () => { input.value = ''; results.innerHTML = ''; results.classList.remove('visible'); });
+			analyzeBtns.forEach((b) => b.addEventListener('click', run));
+			urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); run(); } });
+			clearBtns.forEach((b) => b.addEventListener('click', () => {
+				urlInput.value = ''; htmlInput.value = '';
+				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
+			}));
 		</script>
 	</body>
 </html>

@@ -3,179 +3,1417 @@ import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
 import { SITE_TITLE } from '../../consts';
+import '../../styles/tools-polish.css';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead
-			title={`Free Keyword Density Analyzer | ${SITE_TITLE}`}
-			description="Analyze keyword frequency, density percentage, and prominence in your page content. Free client-side tool."
+			title={`Free Keyword Density Checker | ${SITE_TITLE}`}
+			description="Analyze keyword frequency, density, n-grams, and placement on any URL. Surfaces over-optimised terms, content gaps, and exact tag-level placement."
 		/>
-		<style>
-			.tool-page { width: min(1000px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 4rem; }
-			.tool-header { margin-bottom: 1.5rem; }
-			.tool-header h1 { font-family: 'Atkinson', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; margin: 0.4rem 0 0.6rem; }
-			.tool-header p { color: rgba(var(--ink), 0.72); max-width: 36rem; }
-			.tool-input { margin-bottom: 1rem; }
-			.tool-input label { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: rgba(var(--ink), 0.6); }
-			.tool-input textarea { width: 100%; min-height: 160px; padding: 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-family: monospace; font-size: 0.82rem; line-height: 1.5; resize: vertical; }
-			.tool-input textarea:focus, .keyword-field:focus { outline: 2px solid var(--signal); outline-offset: 1px; }
-			.keyword-row { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; align-items: end; }
-			.keyword-field { flex: 1; padding: 0.7rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(var(--paper-strong), 0.5); color: rgb(var(--ink)); font-size: 0.92rem; }
-			.tool-actions { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
-			.btn-primary { padding: 0.75rem 1.5rem; border: none; border-radius: 999px; background: var(--signal); color: #fff; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
-			.btn-primary:hover { background: var(--signal-deep); }
-			.btn-secondary { padding: 0.75rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: rgb(var(--ink)); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
-			.results { display: none; }
-			.results.visible { display: block; }
-			.density-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; }
-			.density-table th, .density-table td { padding: 0.6rem 0.8rem; border: 1px solid var(--line); text-align: left; }
-			.density-table th { background: rgba(var(--ink), 0.04); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
-			.density-bar { height: 6px; border-radius: 3px; background: var(--signal); margin-top: 0.3rem; }
-			.check-group { margin-bottom: 1.25rem; padding: 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.35); }
-			.check-group h3 { font-family: 'Atkinson', sans-serif; font-size: 0.95rem; margin: 0 0 0.75rem; }
-			.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-			.stat-card { padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--line); background: rgba(var(--paper-strong), 0.55); text-align: center; }
-			.stat-num { font-size: 1.6rem; font-weight: 700; color: var(--signal-deep); }
-			.stat-label { font-size: 0.72rem; color: rgba(var(--ink), 0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
-			.back-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-			@media (max-width: 600px) { .stat-grid { grid-template-columns: 1fr; } .keyword-row { flex-direction: column; } }
+		<style is:global>
+			:root {
+				--kd-cream: rgba(var(--paper-strong), 0.6);
+				--kd-cream-2: rgba(var(--paper-strong), 0.9);
+				--kd-cream-3: rgba(var(--ink), 0.06);
+				--kd-white: rgb(var(--paper));
+				--kd-paper: rgb(var(--paper));
+				--kd-ink: rgb(var(--ink));
+				--kd-ink-2: rgba(var(--ink), 0.85);
+				--kd-ink-3: rgba(var(--ink), 0.62);
+				--kd-ink-4: rgba(var(--ink), 0.45);
+				--kd-border: var(--line);
+				--kd-border-2: rgba(var(--ink), 0.18);
+				--kd-rust: var(--signal-deep);
+				--kd-rust-2: var(--signal);
+				--kd-rust-bg: color-mix(in srgb, var(--signal-deep) 10%, transparent);
+				--kd-green: #1A7A4F;
+				--kd-green-bg: rgba(26,122,79,0.12);
+				--kd-amber: #B07A00;
+				--kd-amber-bg: rgba(176,122,0,0.12);
+				--kd-red: #B82828;
+				--kd-red-bg: rgba(184,40,40,0.10);
+				--kd-blue: #2A5B96;
+				--kd-blue-bg: rgba(42,91,150,0.10);
+				--kd-purple: #5A2796;
+				--kd-purple-bg: rgba(90,39,150,0.10);
+				--kd-dark-card: rgb(var(--ink));
+			}
+			[data-theme="dark"] {
+				--kd-green: #4ade80;
+				--kd-amber: #fbbf24;
+				--kd-red: #f87171;
+				--kd-blue: #93c5fd;
+				--kd-purple: #c4b5fd;
+			}
+
+			.kd-page { font-family: 'Atkinson', 'Trebuchet MS', sans-serif; }
+
+			.kd-header {
+				background: var(--kd-cream-2);
+				border-bottom: 1px solid var(--kd-border);
+				padding: 2.5rem 2rem 2rem;
+			}
+			.kd-header-inner { width: min(1100px, 100%); margin: 0 auto; }
+			.kd-breadcrumb {
+				font-size: 0.7rem;
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				color: var(--kd-rust);
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+			.kd-header h1 {
+				font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+				font-size: clamp(2rem, 4vw, 2.6rem);
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				line-height: 1.08;
+				margin: 0 0 0.55rem;
+			}
+			.kd-header p {
+				font-size: 0.97rem;
+				color: var(--kd-ink-3);
+				max-width: 560px;
+				line-height: 1.65;
+				margin: 0;
+			}
+
+			.kd-input-wrap {
+				background: var(--kd-cream-2);
+				border-bottom: 1px solid var(--kd-border);
+				padding: 1.25rem 2rem 1.75rem;
+			}
+			.kd-input-card {
+				width: min(820px, 100%);
+				margin: 0 auto;
+				background: var(--kd-cream);
+				border: 1px solid var(--kd-border-2);
+				border-radius: 14px;
+				padding: 1.25rem;
+			}
+			.kd-input-tabs { display: flex; gap: 0.25rem; margin-bottom: 0.85rem; }
+			.kd-tab-btn {
+				background: transparent;
+				border: 1px solid var(--kd-border);
+				color: var(--kd-ink-3);
+				font-size: 0.78rem;
+				font-weight: 700;
+				padding: 0.4rem 0.85rem;
+				border-radius: 8px;
+				cursor: pointer;
+				font-family: inherit;
+			}
+			.kd-tab-btn[aria-selected="true"] {
+				background: var(--kd-ink);
+				color: var(--kd-paper);
+				border-color: var(--kd-ink);
+			}
+			.kd-tab-panel { display: none; }
+			.kd-tab-panel.active { display: block; }
+			.kd-input-row {
+				display: grid;
+				grid-template-columns: 1fr 1fr auto auto;
+				gap: 0.5rem;
+				margin-bottom: 0.9rem;
+			}
+			@media (max-width: 720px) {
+				.kd-input-row { grid-template-columns: 1fr; }
+			}
+			.kd-url-input,
+			.kd-keyword-input {
+				background: var(--kd-paper);
+				border: 1.5px solid var(--kd-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 0.95rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.84rem;
+				color: var(--kd-ink);
+				outline: none;
+			}
+			.kd-html-input {
+				width: 100%;
+				background: var(--kd-paper);
+				border: 1.5px solid var(--kd-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 0.95rem;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.8rem;
+				color: var(--kd-ink);
+				resize: vertical;
+				min-height: 120px;
+				box-sizing: border-box;
+				margin-bottom: 0.7rem;
+			}
+			.kd-url-input:focus, .kd-keyword-input:focus, .kd-html-input:focus { border-color: var(--kd-rust); outline: 2px solid color-mix(in srgb, var(--kd-rust) 35%, transparent); outline-offset: 1px; }
+			.kd-btn-run {
+				background: var(--kd-rust);
+				color: #fff;
+				border: none;
+				border-radius: 9px;
+				padding: 0.65rem 1.3rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				font-weight: 700;
+				cursor: pointer;
+				white-space: nowrap;
+			}
+			.kd-btn-run:hover { opacity: 0.92; }
+			.kd-btn-run:disabled { opacity: 0.55; cursor: default; }
+			.kd-btn-clear {
+				background: transparent;
+				border: 1.5px solid var(--kd-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 1rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				color: var(--kd-ink-3);
+				font-weight: 600;
+				cursor: pointer;
+				white-space: nowrap;
+			}
+			.kd-options-row {
+				display: flex;
+				gap: 1.1rem;
+				align-items: center;
+				flex-wrap: wrap;
+				font-size: 0.78rem;
+				color: var(--kd-ink-3);
+			}
+			.kd-opt { display: flex; align-items: center; gap: 0.4rem; }
+			.kd-opt-select {
+				background: var(--kd-paper);
+				border: 1.5px solid var(--kd-border-2);
+				border-radius: 7px;
+				padding: 0.25rem 0.55rem;
+				font-family: inherit;
+				font-size: 0.78rem;
+				color: var(--kd-ink);
+				outline: none;
+				cursor: pointer;
+			}
+			.kd-check { display: flex; align-items: center; gap: 0.35rem; cursor: pointer; }
+			.kd-check input { accent-color: var(--kd-rust); cursor: pointer; }
+
+			.kd-status {
+				margin-top: 0.7rem;
+				font-size: 0.85rem;
+				color: var(--kd-ink-3);
+				min-height: 1.1em;
+			}
+			.kd-status.error { color: var(--kd-red); }
+			.kd-status.loading::after {
+				content: '';
+				display: inline-block;
+				width: 0.5rem; height: 0.5rem;
+				margin-left: 0.4rem;
+				border-radius: 50%;
+				background: var(--kd-rust);
+				animation: kd-pulse 1.1s ease-in-out infinite;
+			}
+			@keyframes kd-pulse { 50% { opacity: 0.35; } }
+
+			.kd-report { display: none; }
+			.kd-report.visible { display: block; }
+
+			.kd-meta-bar {
+				width: min(1100px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				background: var(--kd-white);
+				border-bottom: 1px solid var(--kd-border);
+				border-left: 1px solid var(--kd-border);
+				border-right: 1px solid var(--kd-border);
+			}
+
+			/* Focus keyword executive summary */
+			.kd-focus-card {
+				width: min(1100px, calc(100% - 2rem));
+				margin: 0 auto 0.75rem;
+				background: var(--kd-white);
+				border: 1px solid var(--kd-border);
+				border-radius: 14px;
+				padding: 1.4rem 1.5rem 1.25rem;
+				box-shadow: var(--ts-shadow-1, 0 1px 2px rgba(20, 16, 12, 0.04));
+			}
+			.kd-focus-head {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 0.75rem;
+				margin-bottom: 0.35rem;
+			}
+			.kd-focus-kicker {
+				font-size: 0.7rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: var(--kd-ink-4);
+			}
+			.kd-focus-verdict {
+				font-size: 0.72rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				padding: 0.25rem 0.65rem;
+				border-radius: 999px;
+				white-space: nowrap;
+			}
+			.kd-focus-verdict.bad { background: var(--kd-red-bg); color: var(--kd-red); }
+			.kd-focus-verdict.warn { background: var(--kd-amber-bg); color: var(--kd-amber); }
+			.kd-focus-verdict.ok { background: var(--kd-green-bg); color: var(--kd-green); }
+			.kd-focus-keyword {
+				font-family: 'Iowan Old Style', 'Iowan Old Style W01', Georgia, serif;
+				font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+				font-weight: 600;
+				color: var(--kd-ink);
+				margin: 0 0 1rem;
+				line-height: 1.2;
+				letter-spacing: -0.01em;
+			}
+			.kd-focus-stats {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 0;
+				border: 1px solid var(--kd-border);
+				border-radius: 10px;
+				background: var(--kd-cream);
+				margin-bottom: 1rem;
+				overflow: hidden;
+			}
+			.kd-focus-stat {
+				padding: 0.85rem 1rem;
+				text-align: center;
+				border-right: 1px solid var(--kd-border);
+			}
+			.kd-focus-stat:last-child { border-right: 0; }
+			.kd-focus-stat-val {
+				font-family: 'Atkinson', 'Trebuchet MS', sans-serif;
+				font-size: 1.5rem;
+				font-weight: 600;
+				color: var(--kd-ink);
+				line-height: 1.1;
+				letter-spacing: -0.01em;
+			}
+			.kd-focus-stat-val.bad { color: var(--kd-red); }
+			.kd-focus-stat-val.warn { color: var(--kd-amber); }
+			.kd-focus-stat-val.ok { color: var(--kd-green); }
+			.kd-focus-stat-lbl {
+				font-size: 0.66rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--kd-ink-4);
+				margin-top: 0.25rem;
+			}
+			.kd-focus-placement {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4rem;
+				margin-bottom: 0.85rem;
+			}
+			.kd-fp {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				font-size: 0.78rem;
+				font-weight: 600;
+				padding: 0.32rem 0.65rem;
+				border-radius: 6px;
+				border: 1px solid var(--kd-border);
+			}
+			.kd-fp.on { background: var(--kd-green-bg); color: var(--kd-green); border-color: transparent; }
+			.kd-fp.off { background: transparent; color: var(--kd-ink-4); text-decoration: line-through; text-decoration-color: var(--kd-red); text-decoration-thickness: 1.5px; }
+			.kd-fp-mark { font-weight: 800; font-size: 0.85rem; }
+			.kd-focus-verdict-text {
+				font-size: 0.92rem;
+				line-height: 1.5;
+				color: var(--kd-ink-2);
+				padding: 0.85rem 1rem;
+				background: var(--kd-cream-2);
+				border-radius: 8px;
+				border-left: 3px solid var(--kd-rust);
+			}
+			.kd-focus-verdict-text strong { color: var(--kd-ink); font-weight: 700; }
+			@media (max-width: 600px) {
+				.kd-focus-card { padding: 1.1rem 1rem 1rem; }
+				.kd-focus-stats { grid-template-columns: 1fr; }
+				.kd-focus-stat { border-right: 0; border-bottom: 1px solid var(--kd-border); }
+				.kd-focus-stat:last-child { border-bottom: 0; }
+			}
+			.kd-meta-tile {
+				padding: 1rem 1.1rem;
+				border-right: 1px solid var(--kd-border);
+				border-top: 1px solid var(--kd-border);
+			}
+			.kd-meta-tile:last-child { border-right: 0; }
+			.kd-meta-val {
+				font-family: 'Iowan Old Style', Georgia, serif;
+				font-size: 1.55rem;
+				font-weight: 800;
+				line-height: 1.05;
+				margin-bottom: 0.15rem;
+				letter-spacing: -0.02em;
+			}
+			.kd-meta-lbl { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--kd-ink-3); font-weight: 700; }
+			.kd-meta-val.ok { color: var(--kd-green); }
+			.kd-meta-val.warn { color: var(--kd-amber); }
+			.kd-meta-val.bad { color: var(--kd-red); }
+			.kd-meta-val.ink { color: var(--kd-ink); }
+
+			@media (max-width: 720px) {
+				.kd-meta-bar { grid-template-columns: repeat(2, 1fr); }
+				.kd-meta-tile { border-right: 1px solid var(--kd-border); }
+				.kd-meta-tile:nth-child(even) { border-right: 0; }
+			}
+
+			.kd-layout {
+				width: min(1100px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 1.75rem 0 4rem;
+				display: grid;
+				grid-template-columns: 220px minmax(0, 1fr);
+				gap: 1.25rem;
+				align-items: start;
+			}
+
+			.kd-sidebar { position: sticky; top: 5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+
+			.kd-side-card {
+				background: var(--kd-white);
+				border: 1px solid var(--kd-border);
+				border-radius: 14px;
+				overflow: hidden;
+			}
+			.kd-side-head {
+				padding: 0.7rem 1rem;
+				font-size: 0.66rem;
+				text-transform: uppercase;
+				letter-spacing: 0.13em;
+				font-weight: 700;
+				color: var(--kd-ink-4);
+				background: var(--kd-cream);
+				border-bottom: 1px solid var(--kd-border);
+			}
+			.kd-filter-body { padding: 0.9rem 1rem; display: flex; flex-direction: column; gap: 0.7rem; }
+			.kd-filter-row { display: flex; flex-direction: column; gap: 0.2rem; }
+			.kd-filter-lbl { font-size: 0.72rem; color: var(--kd-ink-3); font-weight: 500; }
+			.kd-filter-sel {
+				background: var(--kd-cream);
+				border: 1.5px solid var(--kd-border-2);
+				border-radius: 7px;
+				padding: 0.4rem 0.55rem;
+				font-family: inherit;
+				font-size: 0.82rem;
+				color: var(--kd-ink);
+				outline: none;
+				width: 100%;
+			}
+			.kd-guide { padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+			.kd-guide-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--kd-ink-3); }
+			.kd-guide-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+			.kd-jumplink {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.55rem 1rem;
+				border-bottom: 1px solid var(--kd-border);
+				font-size: 0.82rem;
+				color: var(--kd-ink-3);
+				text-decoration: none;
+				cursor: pointer;
+			}
+			.kd-jumplink:last-child { border-bottom: 0; }
+			.kd-jumplink:hover { background: var(--kd-cream); color: var(--kd-ink); }
+			.kd-jumplink-left { display: flex; align-items: center; gap: 0.5rem; }
+			.kd-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+			.kd-dot.ok { background: var(--kd-green); }
+			.kd-dot.warn { background: var(--kd-amber); }
+			.kd-dot.bad { background: var(--kd-red); }
+			.kd-jump-badge {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.68rem;
+				padding: 0.12rem 0.5rem;
+				border-radius: 8px;
+				background: var(--kd-cream-3);
+				color: var(--kd-ink-3);
+			}
+			.kd-jump-badge.bad { background: var(--kd-red-bg); color: var(--kd-red); }
+
+			.kd-main { display: flex; flex-direction: column; gap: 0.85rem; min-width: 0; }
+
+			.kd-card { background: var(--kd-white); border: 1px solid var(--kd-border); border-radius: 14px; overflow: hidden; }
+			.kd-card-head {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.85rem 1.25rem;
+				background: var(--kd-cream);
+				border-bottom: 1px solid var(--kd-border);
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+			.kd-card-title { font-size: 0.88rem; font-weight: 700; color: var(--kd-ink); display: flex; align-items: center; gap: 0.55rem; }
+			.kd-icon-tile {
+				width: 24px; height: 24px;
+				border-radius: 6px;
+				display: flex; align-items: center; justify-content: center;
+				font-size: 0.78rem;
+				font-weight: 700;
+				flex-shrink: 0;
+			}
+			.kd-icon-tile.rust { background: var(--kd-rust-bg); color: var(--kd-rust); }
+			.kd-icon-tile.blue { background: var(--kd-blue-bg); color: var(--kd-blue); }
+			.kd-icon-tile.green { background: var(--kd-green-bg); color: var(--kd-green); }
+			.kd-icon-tile.amber { background: var(--kd-amber-bg); color: var(--kd-amber); }
+			.kd-icon-tile.purple { background: var(--kd-purple-bg); color: var(--kd-purple); }
+			.kd-card-note { font-size: 0.78rem; color: var(--kd-ink-3); }
+
+			/* Cloud */
+			.kd-cloud {
+				padding: 1.5rem 1.25rem;
+				display: flex; flex-wrap: wrap; gap: 0.6rem;
+				align-items: center; justify-content: center;
+				min-height: 160px;
+			}
+			.kd-cloud-word {
+				display: inline-block;
+				padding: 0.25rem 0.75rem;
+				border-radius: 999px;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				border: 1px solid transparent;
+				font-weight: 500;
+				cursor: default;
+				transition: transform 0.15s;
+			}
+			.kd-cloud-word:hover { transform: scale(1.08); }
+			.kd-cloud-word.s5 { font-size: 1.4rem; background: color-mix(in srgb, var(--kd-rust) 14%, transparent); color: var(--kd-rust); border-color: color-mix(in srgb, var(--kd-rust) 30%, transparent); }
+			.kd-cloud-word.s4 { font-size: 1.15rem; background: var(--kd-green-bg); color: var(--kd-green); border-color: color-mix(in srgb, var(--kd-green) 25%, transparent); }
+			.kd-cloud-word.s3 { font-size: 1rem; background: var(--kd-amber-bg); color: var(--kd-amber); border-color: color-mix(in srgb, var(--kd-amber) 22%, transparent); }
+			.kd-cloud-word.s2 { font-size: 0.88rem; background: var(--kd-blue-bg); color: var(--kd-blue); border-color: color-mix(in srgb, var(--kd-blue) 20%, transparent); }
+			.kd-cloud-word.s1 { font-size: 0.78rem; background: var(--kd-cream-3); color: var(--kd-ink-3); border-color: var(--kd-border); }
+
+			/* Tables */
+			.kd-table { width: 100%; border-collapse: collapse; }
+			.kd-table th {
+				text-align: left;
+				padding: 0.65rem 1.25rem;
+				font-size: 0.65rem;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				font-weight: 700;
+				color: var(--kd-ink-4);
+				background: var(--kd-cream);
+				border-bottom: 1px solid var(--kd-border);
+				white-space: nowrap;
+			}
+			.kd-table td {
+				padding: 0.7rem 1.25rem;
+				border-bottom: 1px solid var(--kd-border);
+				font-size: 0.85rem;
+				vertical-align: middle;
+			}
+			.kd-table tr:last-child td { border-bottom: 0; }
+			.kd-table tr:hover td { background: var(--kd-cream); }
+			.kd-rank-col { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 0.78rem; color: var(--kd-ink-4); text-align: center; width: 40px; }
+			.kd-kw {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.86rem;
+				color: var(--kd-ink);
+				font-weight: 500;
+			}
+			.kd-kw mark {
+				background: color-mix(in srgb, var(--kd-rust) 14%, transparent);
+				color: var(--kd-rust);
+				border-radius: 3px;
+				padding: 0 0.2rem;
+				font-style: normal;
+			}
+			.kd-density-cell { min-width: 170px; }
+			.kd-density-row { display: flex; align-items: center; gap: 0.6rem; }
+			.kd-density-track { flex: 1; height: 6px; background: var(--kd-cream-3); border-radius: 3px; overflow: hidden; }
+			.kd-density-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+			.kd-density-fill.ok { background: var(--kd-green); }
+			.kd-density-fill.warn { background: var(--kd-amber); }
+			.kd-density-fill.over { background: var(--kd-red); }
+			.kd-density-pct {
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.78rem;
+				width: 42px;
+				text-align: right;
+				flex-shrink: 0;
+			}
+			.kd-density-pct.ok { color: var(--kd-green); }
+			.kd-density-pct.warn { color: var(--kd-amber); }
+			.kd-density-pct.over { color: var(--kd-red); }
+
+			.kd-count-cell { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 0.82rem; color: var(--kd-ink-2); text-align: right; white-space: nowrap; }
+			.kd-tfidf-cell { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 0.82rem; text-align: right; white-space: nowrap; }
+			.kd-tfidf-cell.high { color: var(--kd-green); }
+			.kd-tfidf-cell.mid { color: var(--kd-amber); }
+			.kd-tfidf-cell.low { color: var(--kd-ink-4); }
+
+			.kd-placement { display: flex; gap: 0.3rem; flex-wrap: wrap; align-items: center; }
+			.kd-place {
+				font-size: 0.72rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				padding: 0.18rem 0.55rem;
+				border-radius: 5px;
+				cursor: help;
+				transition: transform 120ms ease;
+			}
+			.kd-place:hover { transform: translateY(-1px); }
+			.kd-place.title { background: var(--kd-blue-bg); color: var(--kd-blue); }
+			.kd-place.desc { background: var(--kd-amber-bg); color: var(--kd-amber); }
+			.kd-place.h1 { background: var(--kd-red-bg); color: var(--kd-red); }
+			.kd-place.h2 { background: var(--kd-purple-bg); color: var(--kd-purple); }
+			.kd-place.body { background: var(--kd-green-bg); color: var(--kd-green); }
+			.kd-place.alt { background: var(--kd-rust-bg); color: var(--kd-rust); }
+
+			.kd-empty { padding: 1.5rem 1.25rem; text-align: center; color: var(--kd-ink-4); font-size: 0.88rem; }
+
+			/* Placement matrix */
+			.kd-matrix-wrap { padding: 1rem 1.25rem; overflow-x: auto; }
+			.kd-matrix { width: 100%; border-collapse: collapse; font-size: 0.84rem; min-width: 500px; }
+			.kd-matrix th, .kd-matrix td {
+				padding: 0.55rem 0.75rem;
+				border-bottom: 1px solid var(--kd-border);
+				text-align: center;
+				font-size: 0.82rem;
+			}
+			.kd-matrix th {
+				font-size: 0.66rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				font-weight: 700;
+				color: var(--kd-ink-4);
+				background: var(--kd-cream);
+				border-bottom: 1px solid var(--kd-border);
+				white-space: nowrap;
+			}
+			.kd-matrix th:first-child { text-align: left; }
+			.kd-matrix th.col-title { color: var(--kd-blue); }
+			.kd-matrix th.col-desc { color: var(--kd-amber); }
+			.kd-matrix th.col-h1 { color: var(--kd-red); }
+			.kd-matrix th.col-h2 { color: var(--kd-purple); }
+			.kd-matrix th.col-body { color: var(--kd-green); }
+			.kd-matrix th.col-alt { color: var(--kd-rust); }
+			.kd-matrix td:first-child {
+				text-align: left;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				font-size: 0.8rem;
+				color: var(--kd-ink-2);
+			}
+			.kd-matrix td.focus { color: var(--kd-rust); font-weight: 600; }
+			.kd-matrix .yes { font-size: 0.95rem; color: var(--kd-green); font-weight: 700; }
+			.kd-matrix .no { font-size: 0.95rem; color: var(--kd-red); font-weight: 700; }
+			.kd-matrix .nope { color: var(--kd-ink-4); }
+			.kd-matrix-note { font-size: 0.78rem; color: var(--kd-ink-4); margin: 0.85rem 1.25rem 1.25rem; }
+
+			/* Charts */
+			.kd-chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+			.kd-chart-panel { padding: 1.2rem 1.25rem; }
+			.kd-chart-panel + .kd-chart-panel { border-left: 1px solid var(--kd-border); }
+			.kd-chart-panel h4 {
+				font-size: 0.72rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--kd-ink-3);
+				margin: 0 0 1rem;
+			}
+			.kd-bar-list { display: flex; flex-direction: column; gap: 0.6rem; }
+			.kd-bar-row { display: grid; grid-template-columns: 110px 1fr 50px; gap: 0.55rem; align-items: center; font-size: 0.78rem; }
+			.kd-bar-row .name { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; color: var(--kd-ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+			.kd-bar-row .track { height: 8px; background: var(--kd-cream-3); border-radius: 4px; overflow: hidden; }
+			.kd-bar-row .fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+			.kd-bar-row .fill.ok { background: var(--kd-green); }
+			.kd-bar-row .fill.warn { background: var(--kd-amber); }
+			.kd-bar-row .fill.over { background: var(--kd-red); }
+			.kd-bar-row .pct { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; color: var(--kd-ink-2); text-align: right; }
+
+			.kd-donut-wrap { display: grid; grid-template-columns: 140px 1fr; gap: 1rem; align-items: center; }
+			.kd-donut { position: relative; width: 140px; height: 140px; }
+			.kd-donut svg { transform: rotate(-90deg); width: 100%; height: 100%; display: block; }
+			.kd-donut-center {
+				position: absolute; inset: 0;
+				display: flex; flex-direction: column;
+				align-items: center; justify-content: center;
+			}
+			.kd-donut-total {
+				font-family: 'Iowan Old Style', serif;
+				font-size: 1.4rem;
+				font-weight: 700;
+				line-height: 1;
+			}
+			.kd-donut-lbl {
+				font-size: 0.64rem;
+				color: var(--kd-ink-4);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				margin-top: 0.2rem;
+				font-weight: 700;
+			}
+			.kd-donut-legend { display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.78rem; }
+			.kd-donut-legend .li { display: grid; grid-template-columns: 12px 1fr auto; gap: 0.55rem; align-items: center; }
+			.kd-donut-legend .sw { width: 12px; height: 12px; border-radius: 3px; }
+			.kd-donut-legend .nm { color: var(--kd-ink-2); }
+			.kd-donut-legend .ct { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; color: var(--kd-ink-3); }
+
+			/* Recommendations */
+			.kd-reco {
+				background: var(--kd-dark-card);
+				border-radius: 14px;
+				padding: 1.4rem 1.5rem;
+				color: #fff;
+			}
+			[data-theme="dark"] .kd-reco { background: rgba(var(--paper-strong), 0.2); color: var(--kd-ink); }
+			.kd-reco h3 {
+				font-family: 'Iowan Old Style', serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				margin: 0 0 0.2rem;
+			}
+			[data-theme="dark"] .kd-reco h3 { color: var(--kd-ink); }
+			.kd-reco-sub { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 1.1rem; }
+			[data-theme="dark"] .kd-reco-sub { color: var(--kd-ink-3); }
+			.kd-reco-item {
+				display: flex; gap: 0.85rem;
+				padding: 0.85rem 0;
+				border-bottom: 1px solid rgba(255,255,255,0.08);
+				align-items: flex-start;
+			}
+			[data-theme="dark"] .kd-reco-item { border-bottom-color: var(--kd-border); }
+			.kd-reco-item:last-child { border-bottom: 0; padding-bottom: 0; }
+			.kd-reco-num {
+				font-family: 'Iowan Old Style', serif;
+				font-size: 1.25rem;
+				font-weight: 700;
+				color: rgba(255,255,255,0.18);
+				min-width: 1.5rem;
+				line-height: 1.2;
+			}
+			[data-theme="dark"] .kd-reco-num { color: var(--kd-ink-4); }
+			.kd-reco-body { flex: 1; min-width: 0; }
+			.kd-reco-body strong { display: block; font-size: 0.92rem; color: #fff; margin-bottom: 0.15rem; }
+			[data-theme="dark"] .kd-reco-body strong { color: var(--kd-ink); }
+			.kd-reco-body span { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+			[data-theme="dark"] .kd-reco-body span { color: var(--kd-ink-3); }
+			.kd-reco-tag {
+				padding: 0.18rem 0.55rem;
+				border-radius: 6px;
+				font-size: 0.7rem;
+				font-weight: 700;
+				font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+				flex-shrink: 0;
+				white-space: nowrap;
+			}
+			.kd-reco-tag.over { background: rgba(248,113,113,0.22); color: #ff8585; }
+			.kd-reco-tag.low { background: rgba(251,191,36,0.22); color: #f5c651; }
+			.kd-reco-tag.miss { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.55); }
+
+			@media (max-width: 880px) {
+				.kd-layout { grid-template-columns: 1fr; padding: 1.25rem 0 3rem; }
+				.kd-sidebar { position: static; }
+				.kd-meta-bar { width: min(1100px, calc(100% - 1.5rem)); }
+				.kd-chart-grid { grid-template-columns: 1fr; }
+				.kd-chart-panel + .kd-chart-panel { border-left: 0; border-top: 1px solid var(--kd-border); }
+				.kd-donut-wrap { grid-template-columns: 1fr; justify-items: center; }
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main class="tool-page">
-			<a href="/tools" class="back-link">&larr; All Tools</a>
-			<div class="tool-header">
-				<p class="section-kicker">Content Analysis</p>
-				<h1>Keyword Density Analyzer</h1>
-				<p>Paste your page content or HTML and enter a target keyword to analyze frequency, density, and prominence.</p>
-			</div>
-			<div class="tool-input">
-				<label for="html-input">Paste Page Content or HTML</label>
-				<textarea id="html-input" placeholder="Paste your page's text content or full HTML source code here"></textarea>
-			</div>
-			<div class="keyword-row">
-				<div class="tool-input" style="flex:1;margin-bottom:0">
-					<label for="keyword-input">Target Keyword</label>
-					<input type="text" id="keyword-input" class="keyword-field" placeholder="e.g. AI visibility" />
+		<main id="main-content" class="kd-page">
+			<div class="kd-header">
+				<div class="kd-header-inner">
+					<div class="kd-breadcrumb">Tools · On-Page SEO</div>
+					<h1>Keyword Density Checker</h1>
+					<p>Analyze keyword frequency, density, and placement across your page content. Identify over-optimized terms, find content gaps, and see exactly where your keywords appear.</p>
 				</div>
 			</div>
-			<div class="tool-actions">
-				<button class="btn-primary" id="analyze-btn">Analyze Density</button>
-				<button class="btn-secondary" id="clear-btn">Clear</button>
+
+			<div class="kd-input-wrap">
+				<div class="kd-input-card">
+					<div class="kd-input-tabs" role="tablist" aria-label="Input mode">
+						<button class="kd-tab-btn" role="tab" aria-selected="true" data-tab="url" type="button">URL</button>
+						<button class="kd-tab-btn" role="tab" aria-selected="false" data-tab="html" type="button">Paste HTML or text</button>
+					</div>
+					<div class="kd-tab-panel active" id="tab-url" role="tabpanel">
+						<div class="kd-input-row">
+							<input id="url-input" class="kd-url-input" type="url" placeholder="https://example.com/page" autocomplete="url" />
+							<input id="keyword-input" class="kd-keyword-input" type="text" placeholder="Focus keyword (optional)" />
+							<button class="kd-btn-run" id="analyze-btn" type="button">Analyze</button>
+							<button class="kd-btn-clear" id="clear-btn" type="button">Clear</button>
+						</div>
+					</div>
+					<div class="kd-tab-panel" id="tab-html" role="tabpanel">
+						<textarea id="html-input" class="kd-html-input" placeholder="Paste HTML source or plain text"></textarea>
+						<div class="kd-input-row">
+							<input id="keyword-input-2" class="kd-keyword-input" type="text" placeholder="Focus keyword (optional)" />
+							<div></div>
+							<button class="kd-btn-run" id="analyze-btn-2" type="button">Analyze</button>
+							<button class="kd-btn-clear" id="clear-btn-2" type="button">Clear</button>
+						</div>
+					</div>
+					<div class="kd-options-row">
+						<div class="kd-opt"><span>Min word length</span>
+							<select class="kd-opt-select" id="opt-minlen">
+								<option value="3">3 chars</option>
+								<option value="4" selected>4 chars</option>
+								<option value="5">5 chars</option>
+							</select>
+						</div>
+						<label class="kd-check"><input type="checkbox" id="opt-stop" checked /> Ignore stop words</label>
+						<label class="kd-check"><input type="checkbox" id="opt-ngrams" checked /> Show n-grams</label>
+					</div>
+					<div class="kd-status" id="tool-status" role="status" aria-live="polite"></div>
+				</div>
 			</div>
-			<div class="results" id="results"></div>
+
+			<section class="kd-report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
-			const analyzeBtn = document.getElementById('analyze-btn')!;
-			const clearBtn = document.getElementById('clear-btn')!;
-			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
-			const keywordInput = document.getElementById('keyword-input') as HTMLInputElement;
-			const results = document.getElementById('results')!;
+			type Severity = 'ok' | 'warn' | 'over' | 'low';
+			type Placement = 'title' | 'desc' | 'h1' | 'h2' | 'body' | 'alt';
+			type Entry = {
+				term: string;
+				count: number;
+				density: number; // percentage
+				tfidf: number;
+				placements: Placement[];
+				severity: Severity;
+			};
 
-			function getTextFromHtml(html: string): string {
-				if (html.includes('<') && html.includes('>')) {
-					const doc = new DOMParser().parseFromString(html, 'text/html');
-					return doc.body?.textContent?.trim() || html;
-				}
-				return html;
+			const tabBtns = document.querySelectorAll<HTMLButtonElement>('.kd-tab-btn');
+			const tabPanels = document.querySelectorAll<HTMLElement>('.kd-tab-panel');
+			const urlInput = document.getElementById('url-input') as HTMLInputElement;
+			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
+			const kwInputs = [document.getElementById('keyword-input'), document.getElementById('keyword-input-2')] as HTMLInputElement[];
+			const statusEl = document.getElementById('tool-status')!;
+			const reportEl = document.getElementById('report')!;
+			const optMinLen = document.getElementById('opt-minlen') as HTMLSelectElement;
+			const optStop = document.getElementById('opt-stop') as HTMLInputElement;
+			const optNgrams = document.getElementById('opt-ngrams') as HTMLInputElement;
+			let activeTab: 'url' | 'html' = 'url';
+
+			tabBtns.forEach((b) => b.addEventListener('click', () => {
+				tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+				tabPanels.forEach((p) => p.classList.toggle('active', p.id === `tab-${b.dataset.tab}`));
+				activeTab = b.dataset.tab as 'url' | 'html';
+				setStatus('');
+			}));
+
+			const analyzeBtns = [document.getElementById('analyze-btn'), document.getElementById('analyze-btn-2')].filter(Boolean) as HTMLButtonElement[];
+			const clearBtns = [document.getElementById('clear-btn'), document.getElementById('clear-btn-2')].filter(Boolean) as HTMLButtonElement[];
+
+			function setStatus(t: string, error = false, loading = false) {
+				statusEl.textContent = t;
+				statusEl.classList.toggle('error', error);
+				statusEl.classList.toggle('loading', loading);
+			}
+			const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+			async function fetchPage(url: string) {
+				const res = await fetch(`/api/fetch-page?url=${encodeURIComponent(url)}`);
+				if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `Fetch failed (${res.status})`); }
+				return res.json();
 			}
 
-			function analyze() {
-				const raw = htmlInput.value.trim();
-				const keyword = keywordInput.value.trim().toLowerCase();
-				if (!raw) { alert('Please paste content first.'); return; }
-				if (!keyword) { alert('Please enter a target keyword.'); return; }
+			const STOP_WORDS = new Set(('the a an is are was were be been being have has had do does did will would shall should may might must can could to of in for on with at by from as into through during before after above below between and but or nor not so yet both either neither each every all any few more most other some such no only own same than too very just because if when while that this these those it its i me my we our you your he him his she her they them their what which who whom how where why also about up out then there here new one two like well back even us much get go make many way use over take').split(' '));
 
-				const text = getTextFromHtml(raw);
-				const words = text.split(/\s+/).filter(w => w.length > 0);
-				const totalWords = words.length;
-				const lowerText = text.toLowerCase();
+			function tokenize(text: string): string[] {
+				return text
+					.toLowerCase()
+					.replace(/[^a-zà-ÿ0-9'\s-]/gi, ' ')
+					.split(/\s+/)
+					.filter(Boolean)
+					.filter((t) => !looksLikeCode(t));
+			}
 
-				// Keyword count (exact phrase match)
-				const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-				const matches = lowerText.match(regex);
-				const kwCount = matches ? matches.length : 0;
-				const kwWords = keyword.split(/\s+/).length;
-				const density = totalWords > 0 ? ((kwCount * kwWords) / totalWords * 100) : 0;
+			// Reject tokens that look like CSS class names, CSS variables,
+			// CSS units, or hex/code identifiers — they aren't content words.
+			function looksLikeCode(t: string): boolean {
+				if (/\d/.test(t)) return true;                // any digit → 20px, etc.
+				if (t.startsWith('--') || t.startsWith('-')) return true; // --ast-global-color
+				if (t.includes('--')) return true;            // CSS custom props anywhere
+				const dashCount = (t.match(/-/g) || []).length;
+				if (dashCount >= 2) return true;              // ast-mm-icon-label, has-3-items, etc.
+				if (/^[a-z]+:[a-z]+/.test(t)) return true;    // namespaced (xmlns:foo)
+				return false;
+			}
 
-				// Prominence checks
-				let doc: Document | null = null;
-				if (raw.includes('<') && raw.includes('>')) {
-					doc = new DOMParser().parseFromString(raw, 'text/html');
+			function ngrams(tokens: string[], n: number, minLen: number, useStop: boolean): Map<string, number> {
+				const map = new Map<string, number>();
+				for (let i = 0; i <= tokens.length - n; i++) {
+					const slice = tokens.slice(i, i + n);
+					if (slice.some((w) => w.length < minLen)) continue;
+					if (useStop && slice.some((w) => STOP_WORDS.has(w))) continue;
+					const phrase = slice.join(' ');
+					map.set(phrase, (map.get(phrase) || 0) + 1);
+				}
+				return map;
+			}
+
+			function computeSeverity(density: number, totalDocCount: number): Severity {
+				if (totalDocCount === 1) {
+					if (density > 4) return 'over';
+					if (density > 3) return 'warn';
+					if (density >= 1) return 'ok';
+					return 'low';
+				}
+				return density > 4 ? 'over' : density > 3 ? 'warn' : density >= 0.5 ? 'ok' : 'low';
+			}
+
+			function placementsFor(term: string, parts: { title: string; desc: string; h1: string; h2s: string[]; body: string; alts: string[] }): Placement[] {
+				const t = term.toLowerCase();
+				const res: Placement[] = [];
+				if (parts.title.toLowerCase().includes(t)) res.push('title');
+				if (parts.desc.toLowerCase().includes(t)) res.push('desc');
+				if (parts.h1.toLowerCase().includes(t)) res.push('h1');
+				if (parts.h2s.some((h) => h.toLowerCase().includes(t))) res.push('h2');
+				if (parts.body.toLowerCase().includes(t)) res.push('body');
+				if (parts.alts.some((a) => a.toLowerCase().includes(t))) res.push('alt');
+				return res;
+			}
+
+			function analyze(html: string, focusKeyword: string) {
+				const minLen = parseInt(optMinLen.value || '4');
+				const useStop = optStop.checked;
+				const showNgrams = optNgrams.checked;
+
+				const isHtml = html.includes('<') && html.includes('>');
+				const doc = isHtml ? new DOMParser().parseFromString(html, 'text/html') : null;
+
+				// Extract visible body text only — strip elements whose textContent
+				// is code/markup noise (inline CSS, scripts, SVG <text>, etc.) and
+				// chrome (nav, footer, aside) that isn't part of the article.
+				// Prefer <main> or <article> when present, fall back to <body>.
+				function extractContentText(d: Document | null, rawHtml: string): string {
+					if (!d || !d.body) return rawHtml;
+					const clone = d.body.cloneNode(true) as HTMLElement;
+					const noise = clone.querySelectorAll(
+						'script, style, noscript, template, iframe, svg, code, pre, ' +
+						'nav, footer, aside, header[role="banner"], [role="navigation"], ' +
+						'[role="banner"], [role="contentinfo"], [aria-hidden="true"]'
+					);
+					noise.forEach((n) => n.remove());
+					const main = clone.querySelector('main, article, [role="main"]');
+					const source = (main as HTMLElement | null) || clone;
+					return (source.textContent || '').trim();
+				}
+				const text = extractContentText(doc, html);
+
+				const title = doc?.querySelector('title')?.textContent?.trim() || '';
+				const desc = doc?.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || '';
+				const h1 = doc?.querySelector('h1')?.textContent?.trim() || '';
+				const h2s = doc ? Array.from(doc.querySelectorAll('h2')).map((h) => h.textContent?.trim() || '') : [];
+				const alts = doc ? Array.from(doc.querySelectorAll('img')).map((i) => i.getAttribute('alt') || '').filter(Boolean) : [];
+				const parts = { title, desc, h1, h2s, body: text, alts };
+
+				const allTokens = tokenize(text);
+				const totalWords = allTokens.length;
+
+				// Single keywords
+				const oneMap = new Map<string, number>();
+				allTokens.forEach((w) => {
+					if (w.length < minLen) return;
+					if (useStop && STOP_WORDS.has(w)) return;
+					oneMap.set(w, (oneMap.get(w) || 0) + 1);
+				});
+				const uniqueCount = oneMap.size;
+				const maxOne = Math.max(0, ...oneMap.values());
+				const singles: Entry[] = [...oneMap.entries()]
+					.sort((a, b) => b[1] - a[1])
+					.slice(0, 25)
+					.map(([term, count]) => {
+						const density = totalWords ? (count / totalWords) * 100 : 0;
+						const tfidf = Math.round(((count / totalWords) * Math.log(1 + uniqueCount / Math.max(1, count)) * 1000) * 100) / 100;
+						return {
+							term,
+							count,
+							density: Math.round(density * 100) / 100,
+							tfidf,
+							placements: placementsFor(term, parts),
+							severity: density > 4 ? 'over' : density > 3 ? 'warn' : density >= 1 ? 'ok' : 'low',
+						};
+					});
+
+				const bigrams: Entry[] = !showNgrams ? [] : [...ngrams(allTokens, 2, minLen, useStop).entries()]
+					.filter(([, c]) => c >= 2)
+					.sort((a, b) => b[1] - a[1])
+					.slice(0, 15)
+					.map(([term, count]) => {
+						const density = totalWords ? (count * 2 / totalWords) * 100 : 0;
+						const tfidf = Math.round(((count / totalWords) * Math.log(1 + uniqueCount / Math.max(1, count)) * 2000) * 100) / 100;
+						return {
+							term,
+							count,
+							density: Math.round(density * 100) / 100,
+							tfidf,
+							placements: placementsFor(term, parts),
+							severity: density > 3 ? 'over' : density > 2 ? 'warn' : density >= 0.5 ? 'ok' : 'low',
+						};
+					});
+
+				const trigrams: Entry[] = !showNgrams ? [] : [...ngrams(allTokens, 3, minLen, useStop).entries()]
+					.filter(([, c]) => c >= 2)
+					.sort((a, b) => b[1] - a[1])
+					.slice(0, 10)
+					.map(([term, count]) => {
+						const density = totalWords ? (count * 3 / totalWords) * 100 : 0;
+						const tfidf = Math.round(((count / totalWords) * Math.log(1 + uniqueCount / Math.max(1, count)) * 3000) * 100) / 100;
+						return {
+							term,
+							count,
+							density: Math.round(density * 100) / 100,
+							tfidf,
+							placements: placementsFor(term, parts),
+							severity: density > 2 ? 'over' : density > 1 ? 'warn' : density >= 0.3 ? 'ok' : 'low',
+						};
+					});
+
+				const focus = focusKeyword.toLowerCase().trim();
+				let focusEntry: Entry | null = null;
+				if (focus) {
+					const escFocus = focus.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+					const count = (text.toLowerCase().match(new RegExp(escFocus, 'g')) || []).length;
+					const words = focus.split(/\s+/).filter(Boolean).length;
+					const density = totalWords ? (count * words / totalWords) * 100 : 0;
+					focusEntry = {
+						term: focus, count, density: Math.round(density * 100) / 100, tfidf: 0,
+						placements: placementsFor(focus, parts),
+						severity: density > 4 ? 'over' : density > 3 ? 'warn' : density >= 1 ? 'ok' : 'low',
+					};
 				}
 
-				const inTitle = doc ? (doc.querySelector('title')?.textContent?.toLowerCase().includes(keyword) || false) : false;
-				const h1 = doc ? doc.querySelector('h1')?.textContent?.toLowerCase() || '' : '';
-				const inH1 = h1.includes(keyword);
-				const firstPara = text.slice(0, 500).toLowerCase();
-				const inFirstPara = firstPara.includes(keyword);
-				const metaDesc = doc ? (doc.querySelector('meta[name="description"]')?.getAttribute('content')?.toLowerCase() || '') : '';
-				const inMetaDesc = metaDesc.includes(keyword);
+				const over = singles.filter((s) => s.severity === 'over').length + bigrams.filter((s) => s.severity === 'over').length;
+				const under = singles.filter((s) => s.severity === 'low' && s.count >= 2).length;
 
-				// Top words frequency (single words, exclude common stop words)
-				const sw = 'the,a,an,is,are,was,were,be,been,being,have,has,had,do,does,did,will,would,shall,should,may,might,must,can,could,to,of,in,for,on,with,at,by,from,as,into,through,during,before,after,above,below,between,and,but,or,nor,not,so,yet,both,either,neither,each,every,all,any,few,more,most,other,some,such,no,only,own,same,than,too,very,just,because,if,when,while,that,this,these,those,it,its,i,me,my,we,our,you,your,he,him,his,she,her,they,them,their,what,which,who,whom,how,where,why,also,about,up,out,then,there,here,new,one,two,like,well,back,even,us,much,get,go,make,many,way,use,over,take';
-				const stopWords = new Set(sw.split(','));
-				const wordFreq = new Map();
-				words.forEach(w => {
-					const lw = w.toLowerCase().replace(/[^a-z0-9]/g, '');
-					if (lw.length > 2 && !stopWords.has(lw)) {
-						wordFreq.set(lw, (wordFreq.get(lw) || 0) + 1);
-					}
+				const recos: { title: string; detail: string; sev: 'over' | 'low' | 'miss' }[] = [];
+				if (focus && focusEntry && focusEntry.count === 0) recos.push({ title: `Focus keyword "${focus}" not found`, detail: `Your focus keyword does not appear anywhere on the page. Add it naturally to the title, H1, intro paragraph, and at least 2–3 times in body content.`, sev: 'miss' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('title')) recos.push({ title: `Add "${focus}" to the title tag`, detail: 'The page title is the strongest on-page ranking signal. Include the focus keyword naturally.', sev: 'miss' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('h1')) recos.push({ title: `Add "${focus}" to the H1`, detail: 'No H1 contains your focus keyword. Add a single H1 with the keyword for highest-impact relevance signal.', sev: 'miss' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('desc')) recos.push({ title: `Add "${focus}" to the meta description`, detail: 'Meta description influences SERP click-through and confirms topical relevance to search engines. Include the focus keyword once, naturally.', sev: 'low' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('h2')) recos.push({ title: `Mention "${focus}" in at least one H2`, detail: 'Variations of the focus keyword in H2 subheadings signal topical depth to search engines.', sev: 'low' });
+				if (focus && focusEntry && focusEntry.count > 0 && !focusEntry.placements.includes('alt')) recos.push({ title: `Use "${focus}" in at least one image alt`, detail: 'Image alt attributes are an additional placement signal and improve accessibility.', sev: 'low' });
+				if (focus && focusEntry && focusEntry.density > 4) recos.push({ title: `"${focus}" is over-optimized (${focusEntry.density}%)`, detail: 'Density above 4% looks like keyword stuffing. Replace some instances with synonyms or related terms.', sev: 'over' });
+				if (focus && focusEntry && focusEntry.count > 0 && focusEntry.density < 0.3) recos.push({ title: `"${focus}" density is very low (${focusEntry.density}%)`, detail: 'Below the 0.5% healthy floor. Use the keyword 4–6 more times across body, H2s, or alt text without forcing it.', sev: 'miss' });
+				else if (focus && focusEntry && focusEntry.density >= 0.3 && focusEntry.density < 0.5) recos.push({ title: `"${focus}" density is low (${focusEntry.density}%)`, detail: 'Slightly below the 0.5% healthy floor. Add 2–3 more natural mentions across body and subheadings.', sev: 'low' });
+				singles.slice(0, 5).forEach((s) => {
+					if (s.severity === 'over') recos.push({ title: `"${s.term}" is over-optimized (${s.density}%)`, detail: `Appears ${s.count} times. Density above 4% risks keyword stuffing penalties. Vary with synonyms.`, sev: 'over' });
 				});
-				const topWords = [...wordFreq.entries()].sort((a, b) => b[1] - a[1]).slice(0, 15);
-				const maxFreq = topWords.length > 0 ? topWords[0][1] : 1;
+				if (alts.length === 0 && doc) recos.push({ title: 'Add keywords to image alt text', detail: 'No images with alt text detected. Alt attributes are a placement signal — include relevant keywords naturally.', sev: 'low' });
+				if (h1 === '' && doc) recos.push({ title: 'Add an H1 tag', detail: 'No H1 found on the page. H1 placement is a strong relevance signal for top keywords.', sev: 'miss' });
+				if (h2s.length === 0 && doc) recos.push({ title: 'Add H2 subheadings', detail: 'No H2 headings detected. Use H2s to break content and place secondary keywords.', sev: 'low' });
+				if (recos.length === 0) {
+					const topTerm = singles[0]?.term;
+					recos.push({ title: 'Distribution looks balanced', detail: topTerm
+						? `Your page is most strongly themed around "${topTerm}" (${singles[0].density}% density). ${focus ? 'Focus keyword placement is solid across all major tags.' : 'No focus keyword was provided — set one above to get targeted recommendations.'} Continue using related terms naturally and monitor over time.`
+						: 'Your keyword distribution looks balanced. Continue using related terms naturally and monitor over time.',
+						sev: 'low' });
+				}
 
-				// Render
-				let densityStatus = 'Good';
-				let densityColor = '#16a34a';
-				if (density < 0.5) { densityStatus = 'Low'; densityColor = '#ca8a04'; }
-				else if (density > 3) { densityStatus = 'High (over-optimized)'; densityColor = '#dc2626'; }
+				const distBands = {
+					over: singles.filter((s) => s.density > 4).length,
+					warn: singles.filter((s) => s.density > 3 && s.density <= 4).length,
+					ok: singles.filter((s) => s.density >= 1 && s.density <= 3).length,
+					low: singles.filter((s) => s.density < 1).length,
+				};
+
+				return {
+					totalWords, uniqueCount, over, under,
+					title, desc, h1, h2s, parts,
+					singles, bigrams, trigrams,
+					focus, focusEntry,
+					recos, distBands, maxOne,
+				};
+			}
+
+			function tier(severity: Severity): 'ok' | 'warn' | 'over' { return severity === 'over' ? 'over' : severity === 'warn' ? 'warn' : 'ok'; }
+
+			function tfidfClass(score: number, max: number): 'high' | 'mid' | 'low' {
+				if (max === 0) return 'low';
+				const ratio = score / max;
+				return ratio >= 0.66 ? 'high' : ratio >= 0.33 ? 'mid' : 'low';
+			}
+
+			function placementPills(places: Placement[]) {
+				const order: Placement[] = ['title', 'desc', 'h1', 'h2', 'body', 'alt'];
+				const tips: Record<Placement, string> = {
+					title: 'Appears in <title> tag',
+					desc: 'Appears in meta description',
+					h1: 'Appears in H1 heading',
+					h2: 'Appears in an H2 subheading',
+					body: 'Appears in body text',
+					alt: 'Appears in image alt text',
+				};
+				return order.filter((p) => places.includes(p)).map((p) => `<span class="kd-place ${p}" title="${tips[p]}">${p}</span>`).join('');
+			}
+
+			function tableHtml(entries: Entry[], maxTfidf: number, focusKw: string) {
+				if (entries.length === 0) return '<div class="kd-empty">No entries match the current filters.</div>';
+				return `
+					<div class="kd-table-scroll">
+					<table class="kd-table">
+						<thead><tr>
+							<th class="kd-rank-col">#</th>
+							<th>Keyword</th>
+							<th style="min-width:180px">Density</th>
+							<th style="text-align:right">Count</th>
+							<th style="text-align:right">TF·IDF</th>
+							<th>Found in</th>
+						</tr></thead>
+						<tbody>
+							${entries.map((e, i) => {
+								const t = tier(e.severity);
+								const isFocus = focusKw && e.term.includes(focusKw);
+								const widthPct = Math.min(100, (e.density / 5) * 100);
+								return `
+									<tr>
+										<td class="kd-rank-col">${i + 1}</td>
+										<td><span class="kd-kw">${isFocus ? `<mark>${esc(e.term)}</mark>` : esc(e.term)}</span></td>
+										<td class="kd-density-cell">
+											<div class="kd-density-row">
+												<div class="kd-density-track"><div class="kd-density-fill ${t}" style="width:${widthPct}%"></div></div>
+												<span class="kd-density-pct ${t}">${e.density.toFixed(2)}%</span>
+											</div>
+										</td>
+										<td class="kd-count-cell">${e.count}</td>
+										<td class="kd-tfidf-cell ${tfidfClass(e.tfidf, maxTfidf)}">${e.tfidf.toFixed(2)}</td>
+										<td>${e.placements.length > 0 ? `<div class="kd-placement">${placementPills(e.placements)}</div>` : '<span class="kd-tfidf-cell low">—</span>'}</td>
+									</tr>
+								`;
+							}).join('')}
+						</tbody>
+					</table>
+					</div>
+				`;
+			}
+
+			function donutSvg(over: number, warn: number, ok: number, low: number) {
+				const total = over + warn + ok + low;
+				if (total === 0) return '';
+				const r = 56;
+				const c = 2 * Math.PI * r;
+				const pct = (n: number) => (n / total) * c;
+				let off = 0;
+				const seg = (color: string, len: number) => {
+					const arc = `<circle cx="70" cy="70" r="${r}" fill="none" stroke="${color}" stroke-width="14" stroke-dasharray="${len.toFixed(1)} ${(c - len).toFixed(1)}" stroke-dashoffset="${(-off).toFixed(1)}"/>`;
+					off += len;
+					return arc;
+				};
+				return `
+					<svg viewBox="0 0 140 140" aria-label="Keyword density band distribution">
+						<circle cx="70" cy="70" r="${r}" fill="none" stroke="var(--kd-cream-3)" stroke-width="14"/>
+						${over > 0 ? seg('var(--kd-red)', pct(over)) : ''}
+						${warn > 0 ? seg('var(--kd-amber)', pct(warn)) : ''}
+						${ok > 0 ? seg('var(--kd-green)', pct(ok)) : ''}
+						${low > 0 ? seg('var(--kd-ink-4)', pct(low)) : ''}
+					</svg>
+				`;
+			}
+
+			function render(data: ReturnType<typeof analyze>, source: string) {
+				const focusKw = data.focus;
+				const maxSingleTfidf = Math.max(0, ...data.singles.map((s) => s.tfidf));
+				const maxBigramTfidf = Math.max(0, ...data.bigrams.map((s) => s.tfidf));
+				const maxTrigramTfidf = Math.max(0, ...data.trigrams.map((s) => s.tfidf));
+
+				// Cloud sizing
+				const cloudTopAll = data.singles.slice(0, 24);
+				const cloudMax = Math.max(0, ...cloudTopAll.map((s) => s.count));
+				const cloudSize = (count: number) => {
+					if (cloudMax === 0) return 's1';
+					const r = count / cloudMax;
+					return r > 0.85 ? 's5' : r > 0.6 ? 's4' : r > 0.4 ? 's3' : r > 0.2 ? 's2' : 's1';
+				};
+
+				// Bar chart top 10 by density (single keywords)
+				const top10 = data.singles.slice(0, 10);
+				const barMax = Math.max(0.01, ...top10.map((s) => s.density));
+
+				// Placement matrix
+				const matrixRows = data.singles.slice(0, 8);
+				const matrixCol = (term: string, place: Placement) => placementsFor(term, data.parts).includes(place);
+
+				let domain = '';
+				try { domain = new URL(source).hostname; } catch { domain = source; }
+
+				const totalForDensityScore = data.focusEntry ? data.focusEntry.density : 0;
+				const focusDensityClass = totalForDensityScore > 4 ? 'bad' : totalForDensityScore > 3 ? 'warn' : totalForDensityScore >= 0.5 ? 'ok' : 'warn';
+
+				// Focus keyword executive summary
+				let focusCardHtml = '';
+				if (focusKw && data.focusEntry) {
+					const fe = data.focusEntry;
+					const d = fe.density;
+					const c = fe.count;
+					const present = (p: Placement) => fe.placements.includes(p);
+					const tagsPresent = (['title','desc','h1','h2','body','alt'] as Placement[]).filter(present).length;
+
+					let verdictLabel: string, verdictClass: 'ok' | 'warn' | 'bad', densityClass: 'ok' | 'warn' | 'bad', verdictText: string;
+					if (c === 0) {
+						verdictLabel = 'Missing entirely'; verdictClass = 'bad'; densityClass = 'bad';
+						verdictText = `Your focus keyword <strong>does not appear anywhere</strong> on the page. Add it to the <strong>&lt;title&gt;</strong>, <strong>H1</strong>, the opening paragraph, and 2–3 times in body content to start ranking for it.`;
+					} else if (d < 0.3) {
+						verdictLabel = 'Very low'; verdictClass = 'bad'; densityClass = 'bad';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> is well below the 0.5%+ healthy floor. Use the focus keyword <strong>4–6 more times</strong> naturally across body content, H2 subheadings, and image alt text.`;
+					} else if (d < 0.5) {
+						verdictLabel = 'Low'; verdictClass = 'warn'; densityClass = 'warn';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> is slightly below the 0.5%–2.5% healthy range. Add <strong>2–3 more natural mentions</strong> across body and subheadings.`;
+					} else if (d <= 2.5) {
+						verdictLabel = 'Healthy'; verdictClass = 'ok'; densityClass = 'ok';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> sits in the natural 0.5%–2.5% range. ${tagsPresent < 6 ? `Still missing from <strong>${6 - tagsPresent} placement${tagsPresent === 5 ? '' : 's'}</strong> — consider adding to the unchecked tags below.` : 'Strong placement across all major tags.'}`;
+					} else if (d <= 4) {
+						verdictLabel = 'High'; verdictClass = 'warn'; densityClass = 'warn';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> is approaching keyword stuffing. Consider replacing <strong>2–3 instances</strong> with synonyms or related terms.`;
+					} else {
+						verdictLabel = 'Over-optimized'; verdictClass = 'bad'; densityClass = 'bad';
+						verdictText = `Density of <strong>${d.toFixed(2)}%</strong> looks like keyword stuffing. Replace <strong>several instances</strong> with synonyms (e.g. semantically related phrases) — this can trigger algorithmic dampening.`;
+					}
+
+					const fp = (key: Placement, label: string) =>
+						`<span class="kd-fp ${present(key) ? 'on' : 'off'}"><span class="kd-fp-mark">${present(key) ? '✓' : '×'}</span>${label}</span>`;
+
+					focusCardHtml = `
+						<div class="kd-focus-card">
+							<div class="kd-focus-head">
+								<div class="kd-focus-kicker">Focus keyword analysis</div>
+								<span class="kd-focus-verdict ${verdictClass}">${verdictLabel}</span>
+							</div>
+							<div class="kd-focus-keyword">"${esc(focusKw)}"</div>
+							<div class="kd-focus-stats">
+								<div class="kd-focus-stat">
+									<div class="kd-focus-stat-val ${densityClass}">${d.toFixed(2)}%</div>
+									<div class="kd-focus-stat-lbl">Density</div>
+								</div>
+								<div class="kd-focus-stat">
+									<div class="kd-focus-stat-val">${c.toLocaleString()}</div>
+									<div class="kd-focus-stat-lbl">Occurrences</div>
+								</div>
+								<div class="kd-focus-stat">
+									<div class="kd-focus-stat-val ${tagsPresent >= 5 ? 'ok' : tagsPresent >= 3 ? 'warn' : 'bad'}">${tagsPresent}/6</div>
+									<div class="kd-focus-stat-lbl">Tag placements</div>
+								</div>
+							</div>
+							<div class="kd-focus-placement">
+								${fp('title', 'Title')}
+								${fp('desc', 'Meta description')}
+								${fp('h1', 'H1')}
+								${fp('h2', 'H2')}
+								${fp('body', 'Body')}
+								${fp('alt', 'Image alt')}
+							</div>
+							<div class="kd-focus-verdict-text">${verdictText}</div>
+						</div>
+					`;
+				}
 
 				let html = `
-					<div class="stat-grid">
-						<div class="stat-card"><div class="stat-num">${kwCount}</div><div class="stat-label">Occurrences</div></div>
-						<div class="stat-card"><div class="stat-num">${density.toFixed(2)}%</div><div class="stat-label">Density</div></div>
-						<div class="stat-card"><div class="stat-num">${totalWords.toLocaleString()}</div><div class="stat-label">Total Words</div></div>
+					${focusCardHtml}
+					<div class="kd-meta-bar">
+						<div class="kd-meta-tile"><div class="kd-meta-val ink">${data.totalWords.toLocaleString()}</div><div class="kd-meta-lbl">Total words</div></div>
+						<div class="kd-meta-tile"><div class="kd-meta-val ink">${data.uniqueCount.toLocaleString()}</div><div class="kd-meta-lbl">Unique terms</div></div>
+						<div class="kd-meta-tile"><div class="kd-meta-val ${focusKw ? focusDensityClass : 'ink'}">${focusKw && data.focusEntry ? data.focusEntry.density.toFixed(2) + '%' : focusKw ? '0%' : '—'}</div><div class="kd-meta-lbl">${focusKw ? `"${esc(focusKw)}" density` : 'Focus density'}</div></div>
+						<div class="kd-meta-tile"><div class="kd-meta-val ${data.over > 0 ? 'warn' : 'ok'}">${data.over}</div><div class="kd-meta-lbl">Over-optimized</div></div>
+						<div class="kd-meta-tile"><div class="kd-meta-val ${data.under > 0 ? 'warn' : 'ok'}">${data.under}</div><div class="kd-meta-lbl">Under-represented</div></div>
 					</div>
-					<div class="check-group">
-						<h3>Density Assessment: <span style="color:${densityColor}">${densityStatus}</span></h3>
-						<p style="font-size:0.86rem;color:rgba(var(--ink),0.7)">
-							${density < 0.5 ? 'Your keyword density is below 0.5%. Consider using the keyword more naturally throughout your content.' :
-							  density > 3 ? 'Your keyword density exceeds 3%. This may appear as keyword stuffing. Reduce usage and focus on natural language.' :
-							  'Your keyword density is within the recommended 0.5-3% range. This looks natural and well-optimized.'}
-						</p>
-					</div>
-					<div class="check-group">
-						<h3>Keyword Prominence</h3>
-						<div class="check-item" style="border-top:none"><span class="check-icon ${inTitle ? 'pass' : 'fail'}">${inTitle ? '\u2713' : '\u2717'}</span><div><strong>In title tag</strong></div></div>
-						<div class="check-item"><span class="check-icon ${inH1 ? 'pass' : 'fail'}">${inH1 ? '\u2713' : '\u2717'}</span><div><strong>In H1 heading</strong></div></div>
-						<div class="check-item"><span class="check-icon ${inFirstPara ? 'pass' : 'warn'}">${inFirstPara ? '\u2713' : '!'}</span><div><strong>In first 500 characters</strong></div></div>
-						<div class="check-item"><span class="check-icon ${inMetaDesc ? 'pass' : 'warn'}">${inMetaDesc ? '\u2713' : '!'}</span><div><strong>In meta description</strong></div></div>
+
+					<div class="kd-layout">
+						<aside class="kd-sidebar">
+							<div class="kd-side-card">
+								<div class="kd-side-head">Density guide</div>
+								<div class="kd-guide">
+									<div class="kd-guide-item"><div class="kd-guide-swatch" style="background:var(--kd-red)"></div><span>&gt; 4% — Over-optimized</span></div>
+									<div class="kd-guide-item"><div class="kd-guide-swatch" style="background:var(--kd-amber)"></div><span>3–4% — Use sparingly</span></div>
+									<div class="kd-guide-item"><div class="kd-guide-swatch" style="background:var(--kd-green)"></div><span>1–3% — Ideal range</span></div>
+									<div class="kd-guide-item"><div class="kd-guide-swatch" style="background:var(--kd-cream-3);border:1px solid var(--kd-border-2)"></div><span>&lt; 1% — Under-used</span></div>
+								</div>
+							</div>
+							<div class="kd-side-card">
+								<div class="kd-side-head">Jump to</div>
+								<a class="kd-jumplink" href="#cloud"><span class="kd-jumplink-left"><span class="kd-dot ok"></span>Keyword cloud</span></a>
+								<a class="kd-jumplink" href="#single"><span class="kd-jumplink-left"><span class="kd-dot ${data.singles.some((s) => s.severity === 'over') ? 'bad' : 'ok'}"></span>Single keywords</span><span class="kd-jump-badge">${data.singles.length}</span></a>
+								${data.bigrams.length > 0 ? `<a class="kd-jumplink" href="#bigrams"><span class="kd-jumplink-left"><span class="kd-dot ok"></span>2-word phrases</span><span class="kd-jump-badge">${data.bigrams.length}</span></a>` : ''}
+								${data.trigrams.length > 0 ? `<a class="kd-jumplink" href="#trigrams"><span class="kd-jumplink-left"><span class="kd-dot ok"></span>3-word phrases</span><span class="kd-jump-badge">${data.trigrams.length}</span></a>` : ''}
+								<a class="kd-jumplink" href="#placement"><span class="kd-jumplink-left"><span class="kd-dot ${data.h1 ? 'ok' : 'bad'}"></span>Tag placement</span></a>
+								<a class="kd-jumplink" href="#charts"><span class="kd-jumplink-left"><span class="kd-dot ok"></span>Distribution</span></a>
+								<a class="kd-jumplink" href="#reco"><span class="kd-jumplink-left"><span class="kd-dot ${data.recos.some((r) => r.sev === 'over' || r.sev === 'miss') ? 'bad' : 'warn'}"></span>Recommendations</span><span class="kd-jump-badge bad">${data.recos.length}</span></a>
+							</div>
+						</aside>
+
+						<main class="kd-main">
+							<div class="kd-card" id="cloud">
+								<div class="kd-card-head">
+									<div class="kd-card-title"><span class="kd-icon-tile rust">◉</span>Keyword Cloud</div>
+									<div class="kd-card-note">Size = frequency · top ${cloudTopAll.length} terms</div>
+								</div>
+								<div class="kd-cloud">
+									${cloudTopAll.length > 0 ? cloudTopAll.map((s) => `<span class="kd-cloud-word ${cloudSize(s.count)}">${esc(s.term)}</span>`).join('') : '<div class="kd-empty">Not enough content to build a keyword cloud.</div>'}
+								</div>
+							</div>
+
+							<div class="kd-card" id="single">
+								<div class="kd-card-head">
+									<div class="kd-card-title"><span class="kd-icon-tile rust">①</span>Single Keywords</div>
+									<div class="kd-card-note">Top ${Math.min(25, data.singles.length)} of ${data.uniqueCount}</div>
+								</div>
+								${tableHtml(data.singles, maxSingleTfidf, focusKw)}
+							</div>
+
+							${data.bigrams.length > 0 ? `
+								<div class="kd-card" id="bigrams">
+									<div class="kd-card-head">
+										<div class="kd-card-title"><span class="kd-icon-tile amber">②</span>2-Word Phrases</div>
+										<div class="kd-card-note">Top ${data.bigrams.length}</div>
+									</div>
+									${tableHtml(data.bigrams, maxBigramTfidf, focusKw)}
+								</div>
+							` : ''}
+
+							${data.trigrams.length > 0 ? `
+								<div class="kd-card" id="trigrams">
+									<div class="kd-card-head">
+										<div class="kd-card-title"><span class="kd-icon-tile purple">③</span>3-Word Phrases</div>
+										<div class="kd-card-note">Top ${data.trigrams.length}</div>
+									</div>
+									${tableHtml(data.trigrams, maxTrigramTfidf, focusKw)}
+								</div>
+							` : ''}
+
+							<div class="kd-card" id="placement">
+								<div class="kd-card-head">
+									<div class="kd-card-title"><span class="kd-icon-tile blue">⊞</span>Keyword Placement by Tag</div>
+									<div class="kd-card-note">Top ${matrixRows.length} keywords</div>
+								</div>
+								<div class="kd-matrix-wrap">
+									<table class="kd-matrix">
+										<thead><tr>
+											<th>Keyword</th>
+											<th class="col-title">&lt;title&gt;</th>
+											<th class="col-desc">meta desc</th>
+											<th class="col-h1">H1</th>
+											<th class="col-h2">H2</th>
+											<th class="col-body">Body</th>
+											<th class="col-alt">Alt text</th>
+										</tr></thead>
+										<tbody>
+											${matrixRows.map((e) => {
+												const isFocus = focusKw && e.term.includes(focusKw);
+												return `<tr>
+													<td class="${isFocus ? 'focus' : ''}">${esc(e.term)}</td>
+													<td>${matrixCol(e.term, 'title') ? `<span class="yes">✓</span>` : `<span class="nope">—</span>`}</td>
+													<td>${matrixCol(e.term, 'desc') ? `<span class="yes">✓</span>` : `<span class="nope">—</span>`}</td>
+													<td>${matrixCol(e.term, 'h1') ? `<span class="yes">✓</span>` : `<span class="no">✕</span>`}</td>
+													<td>${matrixCol(e.term, 'h2') ? `<span class="yes">✓</span>` : `<span class="nope">—</span>`}</td>
+													<td>${matrixCol(e.term, 'body') ? `<span class="yes">✓</span>` : `<span class="nope">—</span>`}</td>
+													<td>${matrixCol(e.term, 'alt') ? `<span class="yes">✓</span>` : `<span class="nope">—</span>`}</td>
+												</tr>`;
+											}).join('')}
+										</tbody>
+									</table>
+									${data.h1 ? '' : '<p class="kd-matrix-note">✕ in H1 column = keyword missing from H1. Note: this page has no H1 tag at all.</p>'}
+								</div>
+							</div>
+
+							<div class="kd-card" id="charts">
+								<div class="kd-card-head">
+									<div class="kd-card-title"><span class="kd-icon-tile green">◈</span>Density Distribution</div>
+								</div>
+								<div class="kd-chart-grid">
+									<div class="kd-chart-panel">
+										<h4>Top 10 keywords by density</h4>
+										<div class="kd-bar-list">
+											${top10.length > 0 ? top10.map((s) => `
+												<div class="kd-bar-row">
+													<span class="name">${esc(s.term)}</span>
+													<div class="track"><div class="fill ${tier(s.severity)}" style="width:${Math.min(100, (s.density / barMax) * 100)}%"></div></div>
+													<span class="pct">${s.density.toFixed(1)}%</span>
+												</div>
+											`).join('') : '<div class="kd-empty">No keywords to display.</div>'}
+										</div>
+									</div>
+									<div class="kd-chart-panel">
+										<h4>Density band distribution</h4>
+										<div class="kd-donut-wrap">
+											<div class="kd-donut">
+												${donutSvg(data.distBands.over, data.distBands.warn, data.distBands.ok, data.distBands.low)}
+												<div class="kd-donut-center"><div class="kd-donut-total">${data.singles.length}</div><div class="kd-donut-lbl">Top keywords</div></div>
+											</div>
+											<ul class="kd-donut-legend" style="list-style:none;padding:0;margin:0">
+												<li class="li"><span class="sw" style="background:var(--kd-red)"></span><span class="nm">Over 4%</span><span class="ct">${data.distBands.over}</span></li>
+												<li class="li"><span class="sw" style="background:var(--kd-amber)"></span><span class="nm">3–4%</span><span class="ct">${data.distBands.warn}</span></li>
+												<li class="li"><span class="sw" style="background:var(--kd-green)"></span><span class="nm">1–3%</span><span class="ct">${data.distBands.ok}</span></li>
+												<li class="li"><span class="sw" style="background:var(--kd-ink-4)"></span><span class="nm">Under 1%</span><span class="ct">${data.distBands.low}</span></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="kd-reco" id="reco">
+								<h3>Recommendations</h3>
+								<div class="kd-reco-sub">Keyword optimization actions sorted by SEO impact.</div>
+								${data.recos.map((r, i) => `
+									<div class="kd-reco-item">
+										<div class="kd-reco-num">${i + 1}</div>
+										<div class="kd-reco-body"><strong>${esc(r.title)}</strong><span>${esc(r.detail)}</span></div>
+										<span class="kd-reco-tag ${r.sev}">${r.sev === 'over' ? 'Critical' : r.sev === 'low' ? 'High' : r.sev === 'miss' ? 'Missing' : 'Low'}</span>
+									</div>
+								`).join('')}
+							</div>
+						</main>
 					</div>
 				`;
 
-				if (topWords.length > 0) {
-					html += `<div class="check-group"><h3>Top 15 Words by Frequency</h3><table class="density-table"><thead><tr><th>Word</th><th>Count</th><th>Density</th><th>Distribution</th></tr></thead><tbody>`;
-					topWords.forEach(([word, count]) => {
-						const wd = ((count / totalWords) * 100).toFixed(2);
-						const barWidth = Math.round((count / maxFreq) * 100);
-						html += `<tr><td><strong>${word}</strong></td><td>${count}</td><td>${wd}%</td><td><div class="density-bar" style="width:${barWidth}%"></div></td></tr>`;
-					});
-					html += `</tbody></table></div>`;
-				}
-
-				results.innerHTML = html;
-				results.classList.add('visible');
-				results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				reportEl.innerHTML = html;
+				reportEl.classList.add('visible');
+				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
-			analyzeBtn.addEventListener('click', analyze);
-			clearBtn.addEventListener('click', () => { htmlInput.value = ''; keywordInput.value = ''; results.innerHTML = ''; results.classList.remove('visible'); });
+			function getFocusKw(): string {
+				return (kwInputs[activeTab === 'url' ? 0 : 1]?.value || kwInputs[0]?.value || '').trim();
+			}
+
+			async function run() {
+				analyzeBtns.forEach((b) => b.disabled = true);
+				try {
+					let html: string; let source: string;
+					if (activeTab === 'url') {
+						const u = urlInput.value.trim();
+						if (!u) { setStatus('Enter a URL to analyze.', true); return; }
+						setStatus('Fetching page', false, true);
+						const r = await fetchPage(u); html = r.html; source = r.url;
+					} else {
+						html = htmlInput.value.trim();
+						if (!html) { setStatus('Paste content to analyze.', true); return; }
+						source = 'Pasted content';
+					}
+					setStatus('');
+					const focus = getFocusKw();
+					render(analyze(html, focus), source);
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
+					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+				} finally { analyzeBtns.forEach((b) => b.disabled = false); }
+			}
+
+			analyzeBtns.forEach((b) => b.addEventListener('click', run));
+			urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); run(); } });
+			kwInputs.forEach((el) => el && el.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); run(); } }));
+			clearBtns.forEach((b) => b.addEventListener('click', () => {
+				urlInput.value = ''; htmlInput.value = '';
+				kwInputs.forEach((el) => { if (el) el.value = ''; });
+				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
+			}));
 		</script>
 	</body>
 </html>

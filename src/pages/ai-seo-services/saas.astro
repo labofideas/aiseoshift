@@ -1,0 +1,368 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO for SaaS Companies',
+		description:
+			'AI SEO services for SaaS startups, scale-ups, and platforms that need visibility in Google, AI Overviews, ChatGPT, Perplexity, Claude, and other AI search environments.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				name: 'How much does SaaS SEO cost?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'SaaS SEO typically ranges from $4,000 to $20,000 per month depending on stage, category competition, and content velocity. One-time audits start lower. The investment reflects the long-tail nature of B2B SaaS demand and the high LTV of acquired customers, which make organic and AI traffic some of the highest-ROI channels available.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'How long does SaaS SEO take to work?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Most SaaS companies see measurable traffic growth in three to six months for long-tail and integration queries. Category-defining keywords ("CRM software," "project management tool") often take twelve to eighteen months in saturated categories. AI citation visibility can improve faster because answer engines re-evaluate sources more frequently than traditional rankings.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Do SaaS companies need AI SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. B2B buyers now ask ChatGPT for product comparisons, ask Perplexity for category leaders, and use Google AI Overviews to summarize "best alternatives to X." If your product is not cited in those answers, you are missing the consideration phase of the buying cycle entirely. Comparison content, integration pages, and category-defining thought leadership are now the highest-leverage SaaS SEO investments.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'What kind of content works best for SaaS SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'The best-performing SaaS content covers four buckets: jobs-to-be-done explainers, alternative and comparison pages, integration and use-case pages, and category-defining thought leadership. Each maps to a different stage of the buying cycle, and each surfaces differently in AI answers. Comparison pages in particular ("X vs Y," "best alternatives to Z") dominate AI citations because they directly answer how buyers actually research.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Should SaaS sites use SoftwareApplication schema?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Yes. SoftwareApplication and Product schema, combined with pricing and rating markup, help Google and AI systems classify your product accurately. Properly marked-up SaaS pages appear in rich results, get cited in AI comparison answers, and are favored when answer engines need to recommend tools in a category.',
+				},
+			},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for SaaS Companies and B2B Platforms | ${SITE_TITLE}`}
+			description="SaaS SEO services for startups and scale-ups. Win Google AI Overviews, ChatGPT recommendations, and Perplexity citations for category-defining queries."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+
+			.svc-figure { margin: var(--space-6) 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); overflow: hidden; }
+			.svc-figure svg { display: block; width: 100%; height: auto; }
+			.svc-figure figcaption { padding: 0.75rem 1rem; border-top: 1px solid var(--line); font-size: 0.85rem; line-height: 1.55; font-style: italic; color: var(--ink-muted); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for SaaS</span>
+					<h1>AI SEO for SaaS Companies and B2B Platforms</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						B2B buyers no longer Google. They ask Perplexity for the best tools in a category, ask
+						ChatGPT to compare your product against the incumbent, and let Google AI Overviews
+						summarize "best alternatives to X." Software discovery now happens inside conversations.
+						The category winners get cited. The challengers without strong comparison content, schema,
+						and category authority do not.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<figure class="svc-figure" aria-labelledby="svc-figure-caption">
+				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How SaaS products get cited by AI: comparison pages, programmatic SEO at scale, SoftwareApplication schema, and original research flow into a cited category leader recommendation">
+					<rect width="1080" height="360" fill="rgb(246,245,240)" />
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.06"><line x1="0" y1="48" x2="1080" y2="48" /><line x1="0" y1="312" x2="1080" y2="312" /></g>
+					<text x="48" y="32" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">INPUT SIGNALS</text>
+					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">AI SYNTHESIS</text>
+					<text x="1032" y="32" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(184,85,46)">CITED OUTCOME</text>
+					<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
+						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Comparison + alternatives</text></g>
+						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Programmatic SEO at scale</text></g>
+						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">SoftwareApplication schema</text></g>
+						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Original research + POV</text></g>
+					</g>
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.2" fill="none">
+						<path d="M 288 100 C 360 100, 380 178, 440 178" /><path d="M 288 152 C 360 152, 380 178, 440 178" /><path d="M 288 204 C 360 204, 380 178, 440 178" /><path d="M 288 256 C 360 256, 380 178, 440 178" />
+					</g>
+					<g transform="translate(440 130)">
+						<rect width="200" height="100" fill="rgb(14,17,22)" rx="6" />
+						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES</text>
+						<text x="100" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">ChatGPT · Perplexity</text>
+						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">Claude · AI Overviews</text>
+					</g>
+					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+						<path d="M 640 180 C 700 180, 760 180, 820 180" />
+						<polyline points="810,174 820,180 810,186" />
+					</g>
+					<g transform="translate(820 110)">
+						<rect width="212" height="140" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="6" />
+						<circle cx="32" cy="38" r="18" fill="rgb(184,85,46)" />
+						<text x="32" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="rgb(250,250,247)">01</text>
+						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Cited category leader</text>
+						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">for SaaS sales CRM</text>
+						<rect x="20" y="76" width="172" height="6" rx="1" fill="rgb(14,17,22)" fill-opacity="0.75" />
+						<rect x="20" y="88" width="140" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="98" width="156" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="108" width="120" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+					</g>
+					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">B2B buyers ask AI for comparisons. The product cited in the comparison enters the consideration set.</text>
+				</svg>
+			</figure>
+
+			<section class="svc-section">
+				<h2>The challenge: software discovery is now conversational</h2>
+				<p>
+					The old SaaS SEO playbook — chase top-of-funnel volume with informational posts and convert
+					with a few money pages — does not match how B2B buyers research anymore. AI answer engines
+					compress weeks of research into one conversation.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Comparison queries dominate</strong><span>"X vs Y," "best alternatives to Z," and "best CRM for small business" are now first answered by AI. Products absent from those comparisons do not get evaluated.</span></div>
+					<div class="outcome"><strong>Category authority compounds</strong><span>AI systems weigh original research, opinionated thought leadership, and category-defining content far more heavily than rehashed listicle posts. Most SaaS blogs are stuck publishing the latter.</span></div>
+					<div class="outcome"><strong>Integration and use-case content wins long tail</strong><span>"X integration with Y" and "X for use case Z" queries have lower competition, higher intent, and are heavily cited by AI when buyers describe a specific job-to-be-done.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for SaaS companies</h2>
+				<p>Three services built for category-defining content, programmatic depth, and the way AI answer engines now evaluate B2B software.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>SaaS Visibility Audit</h3>
+								<p>A complete review of how your product appears across Google Search, AI Overviews, ChatGPT, Perplexity, and Claude for your category, comparisons, and integrations. You walk away with a prioritized roadmap built around the queries that drive trials and signups, not vanity rankings.</p>
+								<ul><li>AI citation audit by category and competitor</li><li>Comparison and alternative content gap analysis</li><li>Integration and use-case coverage review</li><li>SoftwareApplication and Product <a href="/seo/schema-markup/">schema</a> audit</li><li><a href="/seo/eeat/">E-E-A-T</a> and thought leadership review</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Category and Comparison Authority</h3>
+								<p>Implementation work that turns your product site into the highest-authority resource in your category. The comparison pages, integration content, and category POV that AI systems cite when buyers ask which tool to choose.</p>
+								<ul><li>Comparison and alternative pages</li><li>Integration and use-case landing pages</li><li>Programmatic SEO across competitor and JTBD pairs</li><li>Category-defining thought leadership content</li><li>SoftwareApplication and Product <a href="/seo/schema-markup/">schema</a></li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing SaaS AI SEO</h3>
+								<p>Monthly support combining product-led content, original research, technical SEO, programmatic expansion, and AI citation monitoring so you stay the cited category leader as competitors scramble and AI engines re-evaluate sources.</p>
+								<ul><li>Monthly product and category content</li><li>Original research and benchmarks</li><li>Programmatic expansion of long-tail pages</li><li>Technical SEO and schema maintenance</li><li>AI citation monitoring and monthly reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why SaaS needs AI SEO now</h2>
+				<p>B2B buying cycles are long, LTV is high, and AI answer engines now sit at the top of the funnel. The compounding effect of being the cited category leader is enormous.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Comparison content is leverage</strong><span>"X vs Y" and "best alternatives to Z" pages have outsized impact on AI citation lists. Most challengers underinvest here, leaving the incumbent to define the comparison.</span></div>
+					<div class="outcome"><strong>Programmatic SEO is back</strong><span>Programmatic pages covering competitor pairs, integration pairs, and use-case pairs win the long tail. Done right, they map directly to how AI engines disambiguate queries.</span></div>
+					<div class="outcome"><strong>Original research compounds</strong><span>One well-cited benchmark or data study can generate AI citations for years. SaaS companies that invest in original research punch far above their search-volume weight.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote for SaaS SEO</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your product's current AI search visibility, identify the comparisons and use cases with the biggest gaps, and outline next steps.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your product, category, and goals. We will reply with a tailored proposal.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="SaaS SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift SaaS SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Company / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+								<option value="SaaS Visibility Audit">SaaS Visibility Audit</option>
+								<option value="Category and Comparison Authority">Category and Comparison Authority</option>
+								<option value="Ongoing SaaS AI SEO">Ongoing SaaS AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your product and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Category, stage, ICP, main competitors, and what you are trying to achieve."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>SaaS SEO FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does SaaS SEO cost?</h3>
+						<p>SaaS SEO typically ranges from $4,000 to $20,000 per month depending on stage, category competition, and content velocity. One-time audits start lower. The investment reflects the long-tail nature of B2B SaaS demand and the high LTV of acquired customers, which make organic and AI traffic some of the highest-ROI channels available.</p>
+					</li>
+					<li>
+						<h3>How long does SaaS SEO take to work?</h3>
+						<p>Most SaaS companies see measurable traffic growth in three to six months for long-tail and integration queries. Category-defining keywords ("CRM software," "project management tool") often take twelve to eighteen months in saturated categories. AI citation visibility can improve faster because answer engines re-evaluate sources more frequently than traditional rankings.</p>
+					</li>
+					<li>
+						<h3>Do SaaS companies need AI SEO?</h3>
+						<p>Yes. B2B buyers now ask ChatGPT for product comparisons, ask Perplexity for category leaders, and use Google AI Overviews to summarize "best alternatives to X." If your product is not cited in those <a href="/ai-seo-shift/">AI answers</a>, you are missing the consideration phase of the buying cycle entirely.</p>
+					</li>
+					<li>
+						<h3>What kind of content works best for SaaS SEO?</h3>
+						<p>The best-performing SaaS content covers four buckets: jobs-to-be-done explainers, alternative and comparison pages, integration and use-case pages, and category-defining thought leadership. Each maps to a different stage of the buying cycle, and each surfaces differently in AI answers. Comparison pages in particular ("X vs Y," "best alternatives to Z") dominate AI citations because they directly answer how buyers actually research.</p>
+					</li>
+					<li>
+						<h3>Should SaaS sites use SoftwareApplication schema?</h3>
+						<p>Yes. SoftwareApplication and Product <a href="/seo/schema-markup/">schema</a>, combined with pricing and rating markup, help Google and AI systems classify your product accurately. Properly marked-up SaaS pages appear in rich results, get cited in AI comparison answers, and are favored when answer engines need to recommend tools in a category.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
