@@ -21,7 +21,7 @@ const hashtagString = tags
 	.map(t => `#${t.replace(/-/g, '')}`)
 	.join(' ');
 
-const twitterText = encodeURIComponent(`${title} ${hashtagString}`);
+const twitterText = encodeURIComponent(title);
 const twitterUrl = `https://x.com/intent/tweet?url=${encodedUrl}&text=${twitterText}&hashtags=${twitterHashtags}`;
 
 const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
