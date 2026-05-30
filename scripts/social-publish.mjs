@@ -46,6 +46,10 @@ for (let i = 0; i < ADDED_FILES.length; i++) {
 			console.log(`\nSkipping draft: ${post.slug}`);
 			continue;
 		}
+		if (post.pubDate && post.pubDate > new Date()) {
+			console.log(`\nSkipping future-dated post (${post.pubDate.toISOString().slice(0, 10)}): ${post.slug}`);
+			continue;
+		}
 
 		const url = `${SITE_URL}/blog/${post.slug}/`;
 		console.log(`\n=== ${post.slug} ===`);
@@ -105,6 +109,7 @@ async function loadPost(file) {
 		description: fm.description || '',
 		tags: Array.isArray(fm.tags) ? fm.tags : [],
 		draft: fm.draft === true || fm.draft === 'true',
+		pubDate: fm.pubDate ? new Date(fm.pubDate) : null,
 	};
 }
 
