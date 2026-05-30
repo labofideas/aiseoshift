@@ -243,7 +243,7 @@ The more specific rule wins. A `Disallow: /private/` and an `Allow: /` means the
 
 Check your server access logs. If your hosting environment provides raw access logs, search for the user-agent strings: `GPTBot`, `ClaudeBot`, `anthropic-ai`, and `PerplexityBot`. Their presence confirms active crawling. If you use a CDN like Cloudflare, bot traffic may be filtered before it reaches your origin server logs — you may need to check Cloudflare's bot management logs or temporarily adjust bot filtering settings to see AI crawler traffic. Note that some AI crawlers respect your robots.txt and will simply not appear in logs for blocked paths, which is expected behavior.
 
-<script type="application/ld+json">
+<script type="application/ld+json">{`
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -297,5 +297,5 @@ Check your server access logs. If your hosting environment provides raw access l
       }
     }
   ]
-}
+}`}
 </script>

@@ -423,7 +423,7 @@ No. They serve different purposes. A Merchant Center feed powers Google Shopping
 
 Use `Offer` when a product has a single price — a specific SKU at a specific price. Use `AggregateOffer` when you are representing a range of prices across multiple variants or subscription tiers. `AggregateOffer` has `lowPrice`, `highPrice`, and `offerCount` properties, plus an `offers` array containing individual `Offer` objects for each tier. For a SaaS product with three pricing tiers, `AggregateOffer` is the correct type. For a single physical product at one price, `Offer` is correct.
 
-<script type="application/ld+json">
+<script type="application/ld+json">{`
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -477,5 +477,5 @@ Use `Offer` when a product has a single price — a specific SKU at a specific p
       }
     }
   ]
-}
+}`}
 </script>

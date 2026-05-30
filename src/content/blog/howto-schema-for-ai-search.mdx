@@ -343,7 +343,7 @@ Yes. Schema stacking is legitimate and often the right approach for comprehensiv
 
 `HowToSection` is a grouping container for related steps within a longer procedure. It has `name`, `description`, and `step` properties of its own — its `step` array contains `HowToStep` objects. Use `HowToSection` when your guide has distinct phases (e.g., "Installation," "Configuration," "Testing") and each phase contains multiple steps. For simpler guides, a flat array of `HowToStep` objects directly in the HowTo's `step` property is sufficient. Google's rich results display supports both flat and sectioned structures.
 
-<script type="application/ld+json">
+<script type="application/ld+json">{`
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -397,5 +397,5 @@ Yes. Schema stacking is legitimate and often the right approach for comprehensiv
       }
     }
   ]
-}
+}`}
 </script>

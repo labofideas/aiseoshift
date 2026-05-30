@@ -160,7 +160,7 @@ A complete Recipe schema block in JSON-LD looks like this:
 }
 ```
 
-The JSON-LD block goes inside a `<script type="application/ld+json">` tag, placed in the `<head>` or anywhere in the `<body>` of the recipe page. It does not need to be visible to users — it is read by crawlers and AI engines directly from the HTML source.
+The JSON-LD block goes inside a `<script type="application/ld+json">{` tag, placed in the `<head>` or anywhere in the `<body>` of the recipe page. It does not need to be visible to users — it is read by crawlers and AI engines directly from the HTML source.
 
 ## HowToStep within recipeInstructions — structured steps over plain text
 
@@ -337,7 +337,7 @@ Google's Rich Results documentation classifies `name`, `image`, `recipeIngredien
 JSON-LD is the strongly preferred format for Recipe schema in 2026. It keeps the structured data separated from the HTML content, making it easier to maintain, validate, and update without touching the page layout. Google explicitly recommends JSON-LD for all structured data. Microdata — schema markup embedded inline in the HTML using `itemscope` and `itemprop` attributes — is technically valid but creates maintenance complexity and is not recommended for new implementations. If your site uses a CMS with a recipe plugin (Tasty Recipes, WP Recipe Maker, Mediavine Create), those plugins generate JSON-LD automatically.
 
 **How do I add Recipe schema to a WordPress food blog?**
-WordPress food bloggers have several options. Dedicated recipe plugins — Tasty Recipes, WP Recipe Maker, Mediavine Create — automatically generate complete Recipe schema JSON-LD from the recipe data entered in the plugin interface. These are the most practical approach because they also handle the recipe card display, ingredient scaling, and print functionality. For custom implementations, adding a `<script type="application/ld+json">` block with the Recipe schema to the post template in the theme is the manual alternative. After implementing, validate using Google's Rich Results Test and check the Search Console Enhancements report for any schema errors.
+WordPress food bloggers have several options. Dedicated recipe plugins — Tasty Recipes, WP Recipe Maker, Mediavine Create — automatically generate complete Recipe schema JSON-LD from the recipe data entered in the plugin interface. These are the most practical approach because they also handle the recipe card display, ingredient scaling, and print functionality. For custom implementations, adding a `<script type="application/ld+json">{` block with the Recipe schema to the post template in the theme is the manual alternative. After implementing, validate using Google's Rich Results Test and check the Search Console Enhancements report for any schema errors.
 
 **How often should Recipe schema be updated when a recipe is changed?**
 Every time the recipe content changes — ingredient quantities, instructions, cook times, or nutrition data — the schema block should be updated to match. Discrepancies between schema values and visible page content are flagged by Google's quality systems as potential accuracy issues. Additionally, update `dateModified` to the current date whenever the recipe is changed. Regular updates signal to AI engines that the content is actively maintained, which is a trust positive. For sites managing hundreds of recipes, building the schema update into the recipe editing workflow — rather than treating it as a separate task — is the most reliable approach.
@@ -345,7 +345,7 @@ Every time the recipe content changes — ingredient quantities, instructions, c
 **Can I use Recipe schema for recipe roundup posts and recipe collections?**
 Recipe schema is intended for pages that contain a single, complete recipe. For roundup posts ("25 Best Pasta Recipes") and collection pages ("All Our Chicken Dishes"), the appropriate schema types are `ItemList` or `CollectionPage`, not `Recipe`. Using Recipe schema on a page that does not contain a complete, self-contained recipe is a misuse of the type and may trigger schema quality flags in Search Console. Recipe pages linked from a roundup should each have their own Recipe schema. The roundup page itself can use `ItemList` schema to mark up the list of recipes it links to, creating a structured relationship between the collection page and the individual recipe pages.
 
-<script type="application/ld+json">
+<script type="application/ld+json">{`
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -399,5 +399,5 @@ Recipe schema is intended for pages that contain a single, complete recipe. For 
       }
     }
   ]
-}
+}`}
 </script>

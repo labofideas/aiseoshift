@@ -212,7 +212,7 @@ Test directly: submit representative queries in your target languages to ChatGPT
 
 At minimum: implement hreflang `<link>` tags in the `<head>` of every page, including a self-referential tag for each page's own language and an `x-default` tag pointing to your fallback version. Ensure all pages in the hreflang set are indexable — not blocked by robots.txt, not requiring JavaScript rendering, returning 200 status codes. Submit language-specific XML sitemaps to [Google Search Console](https://search.google.com/search-console/about) under the appropriate property, or use a single sitemap with `hreflang` annotations included. These three steps close the most common implementation failures and provide AI crawlers with the signals they need to index language-specific content correctly.
 
-<script type="application/ld+json">
+<script type="application/ld+json">{`
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -266,5 +266,5 @@ At minimum: implement hreflang `<link>` tags in the `<head>` of every page, incl
       }
     }
   ]
-}
+}`}
 </script>

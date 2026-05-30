@@ -322,7 +322,7 @@ A low review count is not disqualifying, but exercise caution. A course showing 
 
 Update Course schema immediately whenever the following change: course title, price, enrollment availability, start or end dates, instructor, or credential awarded. These are the properties AI systems use to verify that their information about your course is current. A course whose schema shows a past `startDate` or a sold-out `availability` will be deprioritized or excluded from AI recommendations for time-sensitive enrollment queries. For ongoing courses, review schema at least quarterly as part of the structured data audit described in the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/).
 
-<script type="application/ld+json">{
+<script type="application/ld+json">{`
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -375,4 +375,4 @@ Update Course schema immediately whenever the following change: course title, pr
       }
     }
   ]
-}</script>
+`}</script>

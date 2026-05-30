@@ -119,25 +119,25 @@ How you add schema markup depends on your platform. Here are the four most commo
 
 The fastest no-code path in WordPress is a plugin. Yoast SEO, Rank Math, and Schema Pro all generate schema markup automatically from your page settings. Yoast generates Article, BreadcrumbList, and Organization schema site-wide. Rank Math lets you add custom JSON-LD blocks per post. Schema Pro gives you the most granular control across schema types.
 
-For manual implementation without a plugin, add the JSON-LD block to your `header.php` template inside the `<head>` section, or use the WordPress theme's custom code field if available. In the block editor, the Custom HTML block can hold a `<script type="application/ld+json">` tag — place it at the top or bottom of the post content area.
+For manual implementation without a plugin, add the JSON-LD block to your `header.php` template inside the `<head>` section, or use the WordPress theme's custom code field if available. In the block editor, the Custom HTML block can hold a `<script type="application/ld+json">{` tag — place it at the top or bottom of the post content area.
 
 If you are adding page-specific schema (like a product schema that varies per page), the manual approach or a plugin with per-page custom JSON fields is more reliable than trying to template it through a theme file.
 
 ### Squarespace
 
-Squarespace does not have a native structured data editor. Add schema markup through **Settings > Advanced > Code Injection**. Paste your `<script type="application/ld+json">` block into the Header code injection field. This adds the block site-wide, which is appropriate for Organization and WebSite schema.
+Squarespace does not have a native structured data editor. Add schema markup through **Settings > Advanced > Code Injection**. Paste your `<script type="application/ld+json">{` block into the Header code injection field. This adds the block site-wide, which is appropriate for Organization and WebSite schema.
 
 For page-specific schema, use the **Page Settings > Advanced > Page Header Code Injection** on each individual page. This is the correct location for Article, Product, or HowTo schema that applies only to that specific page.
 
 ### Custom HTML sites
 
-On a hand-coded site, place your `<script type="application/ld+json">` block inside the `<head>` element. The head placement is preferred because crawlers and prerendering systems often stop processing a page before the closing `</body>` tag is reached. If your head section is templatized, schema that applies to all pages of a type (all blog posts, all product pages) can be added once to the template.
+On a hand-coded site, place your `<script type="application/ld+json">{` block inside the `<head>` element. The head placement is preferred because crawlers and prerendering systems often stop processing a page before the closing `</body>` tag is reached. If your head section is templatized, schema that applies to all pages of a type (all blog posts, all product pages) can be added once to the template.
 
 For page-level schema with dynamic values (the current page's title, URL, and publication date), you will need either a static block per page or a server-side template that populates the JSON values from your content management system.
 
 ### Google Tag Manager
 
-GTM is the preferred deployment method when you want centralized control over schema markup without touching page code, or when you need to roll out schema changes across large sites quickly. Add a new tag, select **Custom HTML**, paste your `<script type="application/ld+json">` block, and set the trigger to fire on the appropriate pages (Page URL matches a pattern, for example).
+GTM is the preferred deployment method when you want centralized control over schema markup without touching page code, or when you need to roll out schema changes across large sites quickly. Add a new tag, select **Custom HTML**, paste your `<script type="application/ld+json">{` block, and set the trigger to fire on the appropriate pages (Page URL matches a pattern, for example).
 
 One important caveat: GTM loads asynchronously. Some crawlers and rendering systems may not execute GTM tags during their crawl window. Test GTM-deployed schema specifically with Google's Rich Results Test using the URL fetch method (not the code input method) to confirm the schema is being detected after JavaScript execution.
 
@@ -265,7 +265,7 @@ For most non-developers on WordPress, a plugin is the faster starting point. Yoa
 
 The direct answer is that AI engines do not publish citation attribution data. The practical proxies are: Google's Rich Results Test confirms the schema is parseable, Search Console confirms Googlebot detected it, and monitoring your AI citation frequency over time using a tool that tracks brand mentions in AI responses gives you the impact signal. Sites that implement complete, validated schema consistently see higher citation rates in AI-generated answers for queries relevant to their content. The [AI SEO Shift framework](/ai-seo-shift/) covers the full measurement approach for tracking AI visibility improvements after schema implementation.
 
-<script type="application/ld+json">
+<script type="application/ld+json">{`
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -319,5 +319,5 @@ The direct answer is that AI engines do not publish citation attribution data. T
       }
     }
   ]
-}
+}`}
 </script>
