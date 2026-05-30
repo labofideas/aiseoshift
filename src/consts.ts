@@ -18,7 +18,7 @@ export const AUTHOR_EMAIL = 'shashank@wbcomdesigns.com';
 export const AUTHOR_PROFILE_URL = `${SITE_URL}/authors/shashank-dubey/`;
 export const AUTHOR_SAME_AS = [
 	'https://www.linkedin.com/in/shashank-dubey-949160148/',
-	'https://x.com/shashankwave',
+	'https://x.com/ai_seo_shift',
 	'https://www.upwork.com/freelancers/~0109471224fe978fe1',
 	'https://gravatar.com/shawbcom',
 ];
@@ -37,4 +37,6 @@ export const SITE_LOGO = `${SITE_URL}/favicon.svg`;
 export const SITE_SAME_AS = [
 	'https://bsky.app/profile/aiseoshift.bsky.social',
 	'https://aiseoshift.tumblr.com',
+	'https://x.com/ai_seo_shift',
+	'https://www.instagram.com/ai_seo_shift',
 ];
