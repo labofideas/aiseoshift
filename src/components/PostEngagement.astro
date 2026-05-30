@@ -7,15 +7,16 @@ interface Props {
 	title: string;
 	url: string;
 	slug: string;
+	tags?: string[];
 }
 
-const { title, url, slug } = Astro.props;
+const { title, url, slug, tags = [] } = Astro.props;
 ---
 
 <aside class="engagement" aria-label="Post engagement">
 	<div class="engagement-row">
 		<UpvoteButton slug={slug} />
-		<SocialShare title={title} url={url} />
+		<SocialShare title={title} url={url} tags={tags} />
 	</div>
 	<div class="engagement-subscribe">
 		<EmailSubscribe />
