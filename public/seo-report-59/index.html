@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Audit Report - Hempeutics.com | AISEOShift</title>
+    <meta name="description" content="Comprehensive SEO audit for Hempeutics.com - CBD & Herbal Medicine brand in Huntington Beach, CA">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=DM+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #4f3f6a;
+            --accent-light: #e8e4ed;
+            --cream: #faf8f5;
+            --rust: #c4704b;
+            --rust-light: #fdf3ef;
+            --success: #2d8a5f;
+            --success-light: #e8f5ef;
+            --warning: #c9860b;
+            --warning-light: #fef9eb;
+            --danger: #c44536;
+            --danger-light: #fdf0ef;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-400: #a3a3a3;
+            --gray-600: #525252;
+            --gray-800: #262626;
+            --gray-900: #171717;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--gray-800);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--primary); }
+        .nav-logo span { color: var(--rust); }
+        .nav-links { display: flex; gap: 8px; list-style: none; flex-wrap: wrap; }
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { background: var(--accent-light); color: var(--accent); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        .hero {
+            padding: 120px 24px 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .hero .subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 16px; }
+        .hero .tagline { font-size: 1rem; opacity: 0.8; margin-bottom: 40px; }
+        .hero-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: 0.9rem; opacity: 0.85; }
+        .hero-meta-item { display: flex; align-items: center; gap: 8px; }
+
+        .metrics-strip {
+            background: white;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+        }
+        .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .metric-card { text-align: center; padding: 15px; }
+        .metric-card .value { font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; }
+        .metric-card .value.danger { color: var(--danger); }
+        .metric-card .value.warning { color: var(--warning); }
+        .metric-card .value.success { color: var(--success); }
+        .metric-card .label { font-size: 0.85rem; color: var(--gray-600); margin-top: 8px; }
+        .metric-card .sublabel { font-size: 0.75rem; color: var(--gray-400); margin-top: 4px; }
+
+        .section { padding: 60px 0; }
+        .section-alt { background: white; }
+        .section-header { margin-bottom: 40px; }
+        .section-number {
+            display: inline-block;
+            background: var(--rust-light);
+            color: var(--rust);
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .section-subtitle { font-size: 1.05rem; color: var(--gray-600); max-width: 700px; }
+        .subsection { margin-top: 40px; }
+        .subsection-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .subsection-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--rust);
+            border-radius: 2px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid var(--gray-200);
+        }
+        .card-alt { background: var(--cream); }
+
+        .table-wrapper { overflow-x: auto; margin: 20px 0; border-radius: 10px; border: 1px solid var(--gray-200); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { background: var(--gray-800); color: white; padding: 14px 18px; text-align: left; font-weight: 600; white-space: nowrap; }
+        td { padding: 14px 18px; border-bottom: 1px solid var(--gray-100); }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: var(--gray-50); }
+        .table-danger th { background: var(--danger); }
+        .table-warning th { background: var(--warning); }
+        .table-success th { background: var(--success); }
+        .table-accent th { background: var(--accent); }
+
+        .badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-danger { background: var(--danger-light); color: var(--danger); }
+        .badge-warning { background: var(--warning-light); color: var(--warning); }
+        .badge-success { background: var(--success-light); color: var(--success); }
+        .badge-accent { background: var(--accent-light); color: var(--accent); }
+
+        .highlight { padding: 24px; border-radius: 10px; margin: 20px 0; }
+        .highlight-danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+        .highlight-warning { background: var(--warning-light); border-left: 4px solid var(--warning); }
+        .highlight-success { background: var(--success-light); border-left: 4px solid var(--success); }
+        .highlight-accent { background: var(--accent-light); border-left: 4px solid var(--accent); }
+        .highlight-rust { background: var(--rust-light); border-left: 4px solid var(--rust); }
+        .highlight strong { display: block; margin-bottom: 8px; }
+
+        .check-list { list-style: none; }
+        .check-list li { padding: 10px 0; padding-left: 32px; position: relative; border-bottom: 1px solid var(--gray-100); }
+        .check-list li:last-child { border-bottom: none; }
+        .check-list li::before { content: "→"; position: absolute; left: 0; color: var(--rust); font-weight: bold; }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .competitor-card { background: white; border-radius: 10px; padding: 20px; border: 1px solid var(--gray-200); }
+        .competitor-card .keyword { font-weight: 600; color: var(--gray-800); font-size: 1rem; margin-bottom: 8px; }
+        .competitor-card .volume { font-size: 0.85rem; color: var(--success); font-weight: 600; margin-bottom: 12px; }
+        .competitor-card .label { font-size: 0.75rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .competitor-card .competitor { font-size: 0.9rem; color: var(--gray-600); }
+
+        .competitor-deep {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .competitor-deep-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .competitor-deep-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        .competitor-deep-url {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            font-family: 'DM Mono', monospace;
+        }
+        .competitor-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .competitor-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .competitor-feature.has { color: var(--success); }
+        .competitor-feature.missing { color: var(--danger); }
+
+        .gap-card {
+            background: var(--danger-light);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--danger);
+        }
+        .gap-card h4 { color: var(--danger); margin-bottom: 10px; }
+
+        .phase-card {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+        .phase-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
+        .phase-card.phase-1::before { background: var(--danger); }
+        .phase-card.phase-2::before { background: var(--warning); }
+        .phase-card.phase-3::before { background: var(--success); }
+        .phase-card.phase-4::before { background: var(--accent); }
+        .phase-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+        .phase-title { font-weight: 600; font-size: 1.1rem; color: var(--gray-800); }
+        .phase-timeline { font-size: 0.85rem; color: var(--gray-600); background: var(--gray-100); padding: 6px 14px; border-radius: 20px; }
+        .phase-card ol { margin-left: 20px; }
+        .phase-card li { padding: 8px 0; color: var(--gray-700); }
+
+        .insight-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 28px;
+            margin: 20px 0;
+        }
+        .insight-card h4 { font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .insight-card p { opacity: 0.9; font-size: 0.95rem; }
+
+        .stats-row { display: flex; gap: 30px; flex-wrap: wrap; margin: 20px 0; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+        .stat-label { font-size: 0.85rem; color: var(--gray-600); }
+
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gray-200); }
+        .timeline-item { position: relative; padding-bottom: 30px; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--accent);
+        }
+        .timeline-item.active::before { background: var(--accent); }
+        .timeline-date { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 4px; }
+        .timeline-title { font-weight: 600; margin-bottom: 8px; }
+        .timeline-content { color: var(--gray-600); font-size: 0.95rem; }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 60px 24px;
+            text-align: center;
+            border-radius: 16px;
+            margin: 40px 0;
+        }
+        .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 16px; }
+        .cta-section p { opacity: 0.9; max-width: 600px; margin: 0 auto 24px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-2, .grid-3, .competitor-features { grid-template-columns: 1fr; }
+            .hero { padding: 100px 24px 60px; }
+            .section { padding: 40px 0; }
+            .card { padding: 20px; }
+            th, td { padding: 10px 12px; font-size: 0.85rem; }
+        }
+
+        @media print {
+            .nav { display: none; }
+            .hero { padding-top: 40px; }
+            body { background: white; }
+            .section { padding: 30px 0; }
+            .metrics-strip { box-shadow: none; border: 1px solid #ddd; }
+        }
+
+        .text-center { text-align: center; }
+        .text-muted { color: var(--gray-600); }
+        .text-small { font-size: 0.9rem; }
+        .mb-0 { margin-bottom: 0; }
+        .mt-20 { margin-top: 20px; }
+        .mt-40 { margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-logo">AISEO<span>Shift</span></div>
+            <ul class="nav-links">
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#industry">Industry</a></li>
+                <li><a href="#technical">Technical</a></li>
+                <li><a href="#keywords">Keywords</a></li>
+                <li><a href="#competitors">Competitors</a></li>
+                <li><a href="#action-plan">Action Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-inner">
+            <span class="hero-badge">📊 SEO Audit Report</span>
+            <h1>Hempeutics.com</h1>
+            <p class="subtitle">CBD & Herbal Medicine | Huntington Beach, CA</p>
+            <p class="tagline">Pharmacist-formulated wellness products with untapped SEO potential</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item"><span>📅</span><span>June 3, 2026</span></div>
+                <div class="hero-meta-item"><span>👤</span><span>Prepared for Pegah Panahi</span></div>
+                <div class="hero-meta-item"><span>✍️</span><span>By Shashank Dubey</span></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="metrics-strip">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="value warning">68%</div>
+                    <div class="label">Site Health Score</div>
+                    <div class="sublabel">Needs improvement</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value success">79%</div>
+                    <div class="label">AI Search Health</div>
+                    <div class="sublabel">Good foundation</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">116</div>
+                    <div class="label">Ranking Keywords</div>
+                    <div class="sublabel">Opportunity to 500+</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value danger">~17/day</div>
+                    <div class="label">Organic Visitors</div>
+                    <div class="sublabel">Target: 100+/day</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <section id="summary" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">Executive Summary</h2>
+                <p class="section-subtitle">The big picture: what's working, what's broken, and the path forward</p>
+            </div>
+
+            <div class="card">
+                <p style="font-size: 1.05rem; line-height: 1.8;">
+                    Hempeutics is a <strong>pharmacist-formulated CBD brand</strong> with a physical clinic in Huntington Beach, California. This combination of professional credentials and local presence creates exceptional E-E-A-T potential that most CBD brands simply cannot match.
+                </p>
+                <p style="margin-top: 16px;">
+                    However, the website is significantly underperforming due to <strong>technical SEO issues</strong> that are limiting organic visibility. The site has strong bones but needs attention to unlock its organic search potential.
+                </p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Key Findings at a Glance</h3>
+                <div class="grid-2">
+                    <div class="card card-alt">
+                        <h4 style="color: var(--danger); margin-bottom: 12px;">❌ Critical Issues</h4>
+                        <ul class="check-list" style="font-size: 0.9rem;">
+                            <li>123 pages missing title tags</li>
+                            <li>227 pages missing meta descriptions</li>
+                            <li>150 pages missing H1 headings</li>
+                            <li>358 broken internal links</li>
+                            <li>No schema markup implemented</li>
+                        </ul>
+                    </div>
+                    <div class="card card-alt">
+                        <h4 style="color: var(--success); margin-bottom: 12px;">✅ Untapped Strengths</h4>
+                        <ul class="check-list" style="font-size: 0.9rem;">
+                            <li>Licensed pharmacist founder (E-E-A-T gold)</li>
+                            <li>Physical clinic location (local SEO advantage)</li>
+                            <li>Quality educational blog content</li>
+                            <li>AI crawlers not blocked (79% health)</li>
+                            <li>Already ranking for 7 page-1 keywords</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight highlight-success mt-40">
+                <strong>📈 Opportunity</strong>
+                With technical fixes and strategic optimization, Hempeutics can realistically achieve <strong>3-5x organic traffic growth within 6 months</strong>. High-value keywords like "cbd suppositories" (1,300 searches/month) and "cbd cream for arthritis" (1,900 searches/month) are within reach.
+            </div>
+        </div>
+    </section>
+
+    <!-- CBD Industry Context -->
+    <section id="industry" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">CBD Industry SEO Landscape</h2>
+                <p class="section-subtitle">Understanding the unique challenges and opportunities in CBD/hemp marketing</p>
+            </div>
+
+            <div class="insight-card">
+                <h4>💡 Why CBD SEO is Different</h4>
+                <p>CBD brands face unique digital marketing challenges that make SEO even more critical than for typical ecommerce. With paid advertising restrictions on Google, Facebook, and Instagram, organic search becomes the primary sustainable traffic channel.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Industry Challenges Hempeutics Must Navigate</h3>
+                <div class="grid-3">
+                    <div class="card">
+                        <h4 style="color: var(--rust); margin-bottom: 12px;">🚫 Ad Restrictions</h4>
+                        <p class="text-small text-muted">Google Ads, Facebook, Instagram prohibit most CBD advertising. SEO is not optional; it's the primary traffic channel.</p>
+                    </div>
+                    <div class="card">
+                        <h4 style="color: var(--rust); margin-bottom: 12px;">⚖️ Compliance</h4>
+                        <p class="text-small text-muted">FDA regulations restrict health claims. Content must be educational without making therapeutic promises.</p>
+                    </div>
+                    <div class="card">
+                        <h4 style="color: var(--rust); margin-bottom: 12px;">🏦 Payment Hurdles</h4>
+                        <p class="text-small text-muted">High-risk merchant status affects trust signals. Third-party verification becomes crucial for credibility.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Why Hempeutics Has a Competitive Moat</h3>
+                <div class="card">
+                    <p>Most CBD brands are faceless ecommerce operations. Hempeutics has two assets that 95% of competitors lack:</p>
+                    <div class="grid-2 mt-20">
+                        <div class="highlight highlight-accent mb-0">
+                            <strong>👩‍⚕️ Licensed Pharmacist Founder</strong>
+                            Dr. Pegah Panahi's credentials provide legitimate medical authority. This is E-E-A-T gold in an industry full of questionable claims.
+                        </div>
+                        <div class="highlight highlight-rust mb-0">
+                            <strong>🏪 Physical Clinic Location</strong>
+                            A real address at Pacifica Medical Tower creates local SEO opportunities and reinforces legitimacy.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical SEO Issues -->
+    <section id="technical" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Technical SEO Audit</h2>
+                <p class="section-subtitle">326 pages crawled. Key issues identified that need attention.</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-value" style="color: var(--danger);">789</div>
+                    <div class="stat-label">Errors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" style="color: var(--warning);">4,340</div>
+                    <div class="stat-label">Warnings</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">326</div>
+                    <div class="stat-label">Pages Crawled</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" style="color: var(--success);">7</div>
+                    <div class="stat-label">Healthy Pages</div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Critical Errors (Fix First)</h3>
+                <div class="table-wrapper">
+                    <table class="table-danger">
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Count</th>
+                                <th>Impact</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Title tags missing/empty</td>
+                                <td><span class="badge badge-danger">123 pages</span></td>
+                                <td>Cannot rank without page titles</td>
+                                <td><span class="badge badge-danger">P0</span></td>
+                            </tr>
+                            <tr>
+                                <td>Meta descriptions missing</td>
+                                <td><span class="badge badge-danger">227 pages</span></td>
+                                <td>Poor click-through rates in search results</td>
+                                <td><span class="badge badge-warning">P1</span></td>
+                            </tr>
+                            <tr>
+                                <td>H1 headings missing</td>
+                                <td><span class="badge badge-danger">150 pages</span></td>
+                                <td>Google cannot understand page topics</td>
+                                <td><span class="badge badge-warning">P1</span></td>
+                            </tr>
+                            <tr>
+                                <td>Viewport not configured</td>
+                                <td><span class="badge badge-danger">123 pages</span></td>
+                                <td>Mobile usability issues</td>
+                                <td><span class="badge badge-warning">P1</span></td>
+                            </tr>
+                            <tr>
+                                <td>Broken internal links</td>
+                                <td><span class="badge badge-danger">358 links</span></td>
+                                <td>Wasted crawl budget, poor user experience</td>
+                                <td><span class="badge badge-warning">P1</span></td>
+                            </tr>
+                            <tr>
+                                <td>Broken internal JS/CSS</td>
+                                <td><span class="badge badge-danger">179 files</span></td>
+                                <td>Page rendering issues</td>
+                                <td><span class="badge badge-accent">P2</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Warnings (High Priority)</h3>
+                <div class="table-wrapper">
+                    <table class="table-warning">
+                        <thead>
+                            <tr>
+                                <th>Issue</th>
+                                <th>Count</th>
+                                <th>Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Low text-to-HTML ratio</td>
+                                <td><span class="badge badge-warning">302 pages</span></td>
+                                <td>Thin content signals to Google</td>
+                            </tr>
+                            <tr>
+                                <td>Nofollow on internal links</td>
+                                <td><span class="badge badge-warning">216 links</span></td>
+                                <td>Wasting internal link equity</td>
+                            </tr>
+                            <tr>
+                                <td>Orphaned sitemap pages</td>
+                                <td><span class="badge badge-warning">97 pages</span></td>
+                                <td>Pages in sitemap but not linked internally</td>
+                            </tr>
+                            <tr>
+                                <td>Pages with only 1 internal link</td>
+                                <td><span class="badge badge-warning">81 pages</span></td>
+                                <td>Weak internal linking structure</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Schema Markup Gaps</h3>
+                <div class="card">
+                    <p>Structured data helps search engines understand your content. Currently, Hempeutics has <strong>no schema markup implemented</strong>.</p>
+                    <div class="table-wrapper mt-20">
+                        <table class="table-accent">
+                            <thead>
+                                <tr>
+                                    <th>Schema Type</th>
+                                    <th>Status</th>
+                                    <th>Recommendation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>LocalBusiness</td>
+                                    <td><span class="badge badge-danger">Missing</span></td>
+                                    <td>Add to location page with full NAP details</td>
+                                </tr>
+                                <tr>
+                                    <td>Person</td>
+                                    <td><span class="badge badge-danger">Missing</span></td>
+                                    <td>Add for Dr. Pegah Panahi with credentials</td>
+                                </tr>
+                                <tr>
+                                    <td>Product</td>
+                                    <td><span class="badge badge-danger">Missing</span></td>
+                                    <td>Add to all product pages with pricing</td>
+                                </tr>
+                                <tr>
+                                    <td>FAQPage</td>
+                                    <td><span class="badge badge-danger">Missing</span></td>
+                                    <td>Add to category pages and key blog posts</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keyword Opportunities -->
+    <section id="keywords" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Keyword Opportunities</h2>
+                <p class="section-subtitle">Currently ranking for 116 keywords. Here's where to focus for maximum impact.</p>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Tier 1: Quick Wins (High ROI)</h3>
+                <div class="table-wrapper">
+                    <table class="table-success">
+                        <thead>
+                            <tr>
+                                <th>Keyword</th>
+                                <th>Position</th>
+                                <th>Volume</th>
+                                <th>Action Required</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>cbd hangovers</strong></td>
+                                <td>15</td>
+                                <td>70</td>
+                                <td>Content refresh, add internal links</td>
+                            </tr>
+                            <tr>
+                                <td><strong>distillate vs isolate</strong></td>
+                                <td>22</td>
+                                <td>50</td>
+                                <td>Expand content, add comparison table</td>
+                            </tr>
+                            <tr>
+                                <td><strong>cbd freeze cream</strong></td>
+                                <td>27</td>
+                                <td>90</td>
+                                <td>Product schema, customer reviews</td>
+                            </tr>
+                            <tr style="background: #c8f7d8;">
+                                <td><strong>cbd suppositories</strong> 🎯</td>
+                                <td>30</td>
+                                <td><strong style="color: var(--success);">1,300</strong></td>
+                                <td>HIGH PRIORITY: Dedicated guide page</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Tier 2: High Volume Targets</h3>
+                <div class="table-wrapper">
+                    <table class="table-warning">
+                        <thead>
+                            <tr>
+                                <th>Keyword</th>
+                                <th>Position</th>
+                                <th>Volume</th>
+                                <th>Competitor to Beat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #fff5e0;">
+                                <td><strong>cbd cream for arthritis</strong> 🎯</td>
+                                <td>43</td>
+                                <td><strong style="color: var(--warning);">1,900</strong></td>
+                                <td>charlottesweb.com, greenroads.com</td>
+                            </tr>
+                            <tr>
+                                <td><strong>different types of thc</strong></td>
+                                <td>44</td>
+                                <td>590</td>
+                                <td>Various cannabis sites</td>
+                            </tr>
+                            <tr>
+                                <td><strong>best cbd suppositories</strong></td>
+                                <td>39</td>
+                                <td>50</td>
+                                <td>thehealingroseco.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Tier 3: Local SEO</h3>
+                <div class="highlight highlight-accent">
+                    <strong>📍 Physical Location Advantage</strong>
+                    Pacifica Medical Tower, 18800 Delaware St Ste 110, Huntington Beach, CA 92648
+                </div>
+                <div class="card mt-20">
+                    <h4 style="margin-bottom: 12px;">🗺️ Local Expansion Opportunity</h4>
+                    <p>Currently only targeting "Huntington Beach." Create dedicated pages for nearby cities:</p>
+                    <div class="grid-3 mt-20">
+                        <div class="highlight highlight-rust mb-0 text-center"><strong>Costa Mesa</strong><br><span class="text-small">4 miles</span></div>
+                        <div class="highlight highlight-rust mb-0 text-center"><strong>Newport Beach</strong><br><span class="text-small">6 miles</span></div>
+                        <div class="highlight highlight-rust mb-0 text-center"><strong>Fountain Valley</strong><br><span class="text-small">5 miles</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Competitor Analysis -->
+    <section id="competitors" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Deep Competitor Analysis</h2>
+                <p class="section-subtitle">What competitors are doing right and where Hempeutics can win</p>
+            </div>
+
+            <!-- Competitor 1: The Healing Rose -->
+            <div class="competitor-deep">
+                <div class="competitor-deep-header">
+                    <div>
+                        <div class="competitor-deep-title">🌹 The Healing Rose Co.</div>
+                        <div class="competitor-deep-url">thehealingroseco.com</div>
+                    </div>
+                    <span class="badge badge-warning">Target: "cbd suppositories" (1,300/mo)</span>
+                </div>
+                
+                <p class="text-muted text-small">Massachusetts-based CBD brand specializing in suppositories ("Cocoa Melts"). Certified organic manufacturing facility in Newburyport.</p>
+                
+                <div class="highlight highlight-accent mt-20">
+                    <strong>What They Do Well</strong>
+                    <ul class="check-list" style="font-size: 0.9rem;">
+                        <li><strong>Product naming:</strong> "CBD Cocoa Melts" instead of clinical "suppositories"</li>
+                        <li><strong>Social proof:</strong> Customer reviews with specific use cases (endometriosis, pelvic pain, intimacy)</li>
+                        <li><strong>Clear pricing:</strong> $22.50/5 pack (100mg each), 30-day supply options</li>
+                        <li><strong>Ingredient transparency:</strong> Just 2 ingredients listed prominently</li>
+                        <li><strong>Multiple product variants:</strong> CBD-only and CBG:CBD 1:1 options</li>
+                    </ul>
+                </div>
+
+                <div class="gap-card mt-20">
+                    <h4>❌ What Hempeutics is Missing</h4>
+                    <div class="competitor-features">
+                        <div class="competitor-feature missing">✗ No dedicated suppository landing page</div>
+                        <div class="competitor-feature missing">✗ No customer reviews displayed</div>
+                        <div class="competitor-feature missing">✗ No usage guide or FAQ section</div>
+                        <div class="competitor-feature missing">✗ No Product schema markup</div>
+                        <div class="competitor-feature missing">✗ Clinical naming vs friendly branding</div>
+                        <div class="competitor-feature missing">✗ No "who it's for" content</div>
+                    </div>
+                </div>
+
+                <div class="highlight highlight-success mt-20 mb-0">
+                    <strong>🎯 How Hempeutics Can Win</strong>
+                    <p style="margin-top: 8px;">Dr. Pegah's pharmacist credentials outweigh Healing Rose's organic certification. Create a comprehensive suppository guide with dosing recommendations, contraindications, and professional guidance that only a licensed pharmacist can provide.</p>
+                </div>
+            </div>
+
+            <!-- Competitor 2: Charlotte's Web -->
+            <div class="competitor-deep">
+                <div class="competitor-deep-header">
+                    <div>
+                        <div class="competitor-deep-title">🕸️ Charlotte's Web</div>
+                        <div class="competitor-deep-url">charlottesweb.com</div>
+                    </div>
+                    <span class="badge badge-warning">Target: "cbd cream for arthritis" (1,900/mo)</span>
+                </div>
+                
+                <p class="text-muted text-small">Major CBD brand with CBDMEDIC topical line. Publicly traded company with extensive product range and marketing budget.</p>
+                
+                <div class="highlight highlight-accent mt-20">
+                    <strong>What They Do Well</strong>
+                    <ul class="check-list" style="font-size: 0.9rem;">
+                        <li><strong>Topical product hub:</strong> Dedicated /collections/topical-cbd page with all creams, balms, roll-ons</li>
+                        <li><strong>FDA-compliant active ingredients:</strong> Menthol and camphor as topical analgesics</li>
+                        <li><strong>Specific product variants:</strong> Arthritis Cream, Back & Neck Ointment, Joint Ointment</li>
+                        <li><strong>Educational blog content:</strong> "Buyer's Guide to CBD Topicals" ranks well</li>
+                        <li><strong>Trust signals:</strong> B Corp certified, third-party tested, vegan, gluten-free labels</li>
+                        <li><strong>Subscription model:</strong> 35% off first order, 30% recurring orders</li>
+                    </ul>
+                </div>
+
+                <div class="gap-card mt-20">
+                    <h4>❌ What Hempeutics is Missing</h4>
+                    <div class="competitor-features">
+                        <div class="competitor-feature missing">✗ No topicals category landing page</div>
+                        <div class="competitor-feature missing">✗ No arthritis-specific product positioning</div>
+                        <div class="competitor-feature missing">✗ No educational topicals guide</div>
+                        <div class="competitor-feature missing">✗ Missing trust badges (lab tested, etc.)</div>
+                        <div class="competitor-feature missing">✗ No subscription/repeat purchase option</div>
+                        <div class="competitor-feature missing">✗ Category pages lack descriptive content</div>
+                    </div>
+                </div>
+
+                <div class="highlight highlight-success mt-20 mb-0">
+                    <strong>🎯 How Hempeutics Can Win</strong>
+                    <p style="margin-top: 8px;">Charlotte's Web is a faceless corporation. Hempeutics has a pharmacist who can speak to drug interactions, proper dosing for arthritis, and contraindications. Create "CBD Cream for Arthritis: A Pharmacist's Guide" with clinical depth that Charlotte's Web legal team would never approve.</p>
+                </div>
+            </div>
+
+            <!-- Competitor 3: Lazarus Naturals -->
+            <div class="competitor-deep">
+                <div class="competitor-deep-header">
+                    <div>
+                        <div class="competitor-deep-title">🌿 Lazarus Naturals</div>
+                        <div class="competitor-deep-url">lazarusnaturals.com</div>
+                    </div>
+                    <span class="badge badge-warning">Target: "cbd hangovers" (70/mo)</span>
+                </div>
+                
+                <p class="text-muted text-small">Portland-based vertically integrated CBD company known for accessibility pricing. B Corp, Leaping Bunny, Kosher, cGMP certified.</p>
+                
+                <div class="highlight highlight-accent mt-20">
+                    <strong>What They Do Well</strong>
+                    <ul class="check-list" style="font-size: 0.9rem;">
+                        <li><strong>Blog content strategy:</strong> "CBD For Hangovers: Myth or Fact?" balanced educational approach</li>
+                        <li><strong>Conversational tone:</strong> Relatable writing ("We've all been there")</li>
+                        <li><strong>Honest disclaimers:</strong> "CBD isn't a hangover cure, but..."</li>
+                        <li><strong>Accessibility program:</strong> 60% off for veterans, disabled, low-income</li>
+                        <li><strong>White papers section:</strong> Scientific credibility through research</li>
+                        <li><strong>Customer stories series:</strong> "CBD For All" testimonial content</li>
+                    </ul>
+                </div>
+
+                <div class="gap-card mt-20">
+                    <h4>❌ What Hempeutics is Missing</h4>
+                    <div class="competitor-features">
+                        <div class="competitor-feature missing">✗ Hangover blog post needs refresh/expansion</div>
+                        <div class="competitor-feature missing">✗ No FAQ schema on blog posts</div>
+                        <div class="competitor-feature missing">✗ Missing internal links from blog to products</div>
+                        <div class="competitor-feature missing">✗ No author byline (E-E-A-T gap)</div>
+                        <div class="competitor-feature missing">✗ No scientific/research backing cited</div>
+                        <div class="competitor-feature missing">✗ No customer story content</div>
+                    </div>
+                </div>
+
+                <div class="highlight highlight-success mt-20 mb-0">
+                    <strong>🎯 How Hempeutics Can Win</strong>
+                    <p style="margin-top: 8px;">Lazarus relies on general wellness claims. Hempeutics can add Dr. Pegah's byline with specific pharmacological insights on CBD's interaction with alcohol metabolism. Position as "What a Pharmacist Wants You to Know About CBD and Hangovers."</p>
+                </div>
+            </div>
+
+            <!-- Competitor Summary -->
+            <div class="subsection">
+                <h3 class="subsection-title">Competitive Gap Summary</h3>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Healing Rose</th>
+                                <th>Charlotte's Web</th>
+                                <th>Lazarus</th>
+                                <th>Hempeutics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Licensed Medical Professional</td>
+                                <td><span class="badge badge-danger">No</span></td>
+                                <td><span class="badge badge-danger">No</span></td>
+                                <td><span class="badge badge-danger">No</span></td>
+                                <td><span class="badge badge-success">Yes ✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>Physical Location</td>
+                                <td><span class="badge badge-warning">Facility only</span></td>
+                                <td><span class="badge badge-danger">No</span></td>
+                                <td><span class="badge badge-danger">No</span></td>
+                                <td><span class="badge badge-success">Yes ✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>Product Schema</td>
+                                <td><span class="badge badge-success">Yes</span></td>
+                                <td><span class="badge badge-success">Yes</span></td>
+                                <td><span class="badge badge-success">Yes</span></td>
+                                <td><span class="badge badge-danger">No</span></td>
+                            </tr>
+                            <tr>
+                                <td>Customer Reviews</td>
+                                <td><span class="badge badge-success">Yes</span></td>
+                                <td><span class="badge badge-success">Yes</span></td>
+                                <td><span class="badge badge-success">Yes</span></td>
+                                <td><span class="badge badge-danger">No</span></td>
+                            </tr>
+                            <tr>
+                                <td>Blog Content</td>
+                                <td><span class="badge badge-warning">Limited</span></td>
+                                <td><span class="badge badge-success">Strong</span></td>
+                                <td><span class="badge badge-success">Strong</span></td>
+                                <td><span class="badge badge-warning">Good topics, needs depth</span></td>
+                            </tr>
+                            <tr>
+                                <td>Local SEO</td>
+                                <td><span class="badge badge-danger">N/A</span></td>
+                                <td><span class="badge badge-danger">N/A</span></td>
+                                <td><span class="badge badge-danger">N/A</span></td>
+                                <td><span class="badge badge-warning">Untapped</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="insight-card mt-20">
+                    <h4>💡 The Big Takeaway</h4>
+                    <p>Competitors have better technical SEO (schema, reviews, structured content), but none have a licensed pharmacist or physical clinic. Hempeutics can leapfrog them by combining Dr. Pegah's E-E-A-T credentials with proper technical implementation. The pharmacist angle is an unfair advantage in CBD, where most brands cannot make clinical claims.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Plan -->
+    <section id="action-plan" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Recommended Action Plan</h2>
+                <p class="section-subtitle">Prioritized roadmap to fix issues and unlock growth</p>
+            </div>
+
+            <div class="phase-card phase-1">
+                <div class="phase-header">
+                    <span class="phase-title">🔴 Phase 1: Critical Technical Fixes</span>
+                    <span class="phase-timeline">Week 1-2</span>
+                </div>
+                <ol>
+                    <li>Add unique title tags to 123 pages</li>
+                    <li>Write meta descriptions for 227 pages</li>
+                    <li>Add H1 headings to 150 pages</li>
+                    <li>Configure viewport for mobile on 123 pages</li>
+                    <li>Fix 358 broken internal links</li>
+                </ol>
+                <div class="highlight highlight-danger mt-20 mb-0">
+                    <strong>Expected Impact:</strong> Proper on-page SEO foundation. Google can understand and rank pages correctly.
+                </div>
+            </div>
+
+            <div class="phase-card phase-2">
+                <div class="phase-header">
+                    <span class="phase-title">🟡 Phase 2: Schema & E-E-A-T</span>
+                    <span class="phase-timeline">Week 3-4</span>
+                </div>
+                <ol>
+                    <li>Implement LocalBusiness schema on location page</li>
+                    <li>Add Person schema for Dr. Pegah Panahi with credentials</li>
+                    <li>Add Product schema to all product pages (match competitors)</li>
+                    <li>Add author bylines to all blog posts</li>
+                    <li>Optimize Google Business Profile</li>
+                    <li>Add customer review functionality</li>
+                </ol>
+            </div>
+
+            <div class="phase-card phase-3">
+                <div class="phase-header">
+                    <span class="phase-title">🟢 Phase 3: Content Optimization</span>
+                    <span class="phase-timeline">Week 5-8</span>
+                </div>
+                <ol>
+                    <li><strong>CBD Suppositories</strong> (1,300 vol): Create "CBD Suppositories: A Pharmacist's Complete Guide" with dosing, use cases, FAQ</li>
+                    <li><strong>CBD Hangovers</strong>: Refresh with Dr. Pegah's byline, add FAQ schema, internal links to products</li>
+                    <li><strong>CBD Cream for Arthritis</strong> (1,900 vol): Create dedicated landing page with pharmacist perspective</li>
+                    <li>Add topicals category hub page (like Charlotte's Web)</li>
+                    <li>Optimize product pages with proper descriptions, reviews integration</li>
+                </ol>
+            </div>
+
+            <div class="phase-card phase-4">
+                <div class="phase-header">
+                    <span class="phase-title">🟣 Phase 4: Local SEO Expansion</span>
+                    <span class="phase-timeline">Week 9-12</span>
+                </div>
+                <ol>
+                    <li>Create location pages for Costa Mesa, Newport Beach, Fountain Valley, Irvine</li>
+                    <li>Build local citations on directories</li>
+                    <li>Implement review generation strategy</li>
+                    <li>Create geo-targeted content</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <h2 class="section-title">Timeline & Results</h2>
+                <p class="section-subtitle">What to expect at each milestone</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item active">
+                    <div class="timeline-date">Month 1-2</div>
+                    <div class="timeline-title">Foundation & Fixes</div>
+                    <div class="timeline-content">Technical issues resolved. Pages properly optimized. Site health improves from 68% to 85%+.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Month 3-4</div>
+                    <div class="timeline-title">Growth Begins</div>
+                    <div class="timeline-content">Quick-win keywords move to page 1. Organic traffic doubles (~35 visitors/day). Rich results appear.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Month 5-6</div>
+                    <div class="timeline-title">Sustained Growth</div>
+                    <div class="timeline-content">High-volume keywords ranking. Local SEO driving clinic visits. Target: 3-5x traffic (75-100+ visitors/day).</div>
+                </div>
+            </div>
+
+            <div class="highlight highlight-success mt-40">
+                <strong>🎯 Target Keywords on Page 1 by Month 6</strong>
+                <p style="margin-top: 8px;">cbd suppositories • cbd hangovers • cbd freeze cream • distillate vs isolate • hemp clinic</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Let's Discuss Implementation</h2>
+                <p>Ready to fix these issues and unlock Hempeutics' organic potential. Looking forward to our conversation.</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
