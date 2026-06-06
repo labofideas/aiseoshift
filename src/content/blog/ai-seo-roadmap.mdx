@@ -1,0 +1,198 @@
+---
+title: "AI SEO Roadmap: From Zero Citations to Consistent Visibility"
+description: "Building AI search visibility is a sequential process, not a set of random tactics. Here is a phased roadmap that takes a brand from no AI citations to consistent multi-engine presence."
+deck: "A phased roadmap organized by what to fix first, what to build next, and how to measure whether each phase is working."
+pubDate: 2026-07-02
+category: Playbooks
+tags: ["ai-seo", "roadmap", "strategy", "ai-visibility", "getting-started", "playbook"]
+author: Shashank Dubey
+---
+
+Most AI SEO advice is presented as a list of tactics without a sequence. Implement schema. Create FAQ sections. Build your entity. Get mentioned in publications. These are all valid moves, but applied in the wrong order they produce much weaker results than a phased approach.
+
+The reason sequence matters is dependency. FAQ schema on a page that AI crawlers cannot access does nothing. Editorial content with strong extraction structure on a site with no entity signals gets cited less than the same content on a site with a clear entity. Content investment in Phase 2 pays off significantly more when the technical and entity foundation from Phase 1 is already in place.
+
+This roadmap is organized into three phases of four weeks each. Each phase has specific tasks, clear completion criteria, and a measurement check to confirm it is working before moving on.
+
+## Phase 1: Foundation (Weeks 1 to 4)
+
+Phase 1 has one objective: make your site technically accessible and entity-legible to AI engines. No amount of content work in Phase 2 will compensate for failures here.
+
+### Week 1: Crawlability and technical access
+
+**Task 1: Audit and fix your robots.txt file.**
+
+Open yourdomain.com/robots.txt. Check for any rules that block the following user agents: GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot, Applebot, Diffbot. If any of these are blocked either explicitly or through a blanket `Disallow: /` rule under `User-agent: *`, remove the restriction.
+
+The most common error is a robots.txt file that has a wildcard disallow and was never updated after AI crawlers became relevant. Fix this before anything else.
+
+Done looks like: you can verify that none of the named AI crawlers are blocked in robots.txt, and a direct HTTP request to your key pages returns 200 status codes.
+
+**Task 2: Create or verify your llms.txt file.**
+
+An llms.txt file at yourdomain.com/llms.txt is an emerging standard that helps AI engines understand your site structure. The format is simple: a brief description of your site followed by a list of your most important pages with their titles and URLs. While not yet universally required, its presence is a clear positive signal for AI engines that actively check for it.
+
+Done looks like: yourdomain.com/llms.txt returns a 200 with a valid file that describes your site and links to your most important pages.
+
+### Week 2: Organization and Person schema
+
+**Task 3: Implement Organization schema on your homepage and About page.**
+
+The schema should include: `name`, `url`, `logo`, `description`, `foundingDate` where applicable, `contactPoint`, and a complete `sameAs` array linking to your LinkedIn company page, Crunchbase profile, Google Business Profile, and any other verified brand profiles.
+
+The description in the schema should be a precise, specific statement of what your brand does and who it serves. This becomes your canonical entity description.
+
+Done looks like: Organization schema validates without errors in Google's Rich Results Test, and all sameAs URLs resolve to live, complete profile pages.
+
+**Task 4: Implement Person schema for each named author.**
+
+For anyone who publishes content on the site under their name, create an author page and add Person schema with: `name`, `jobTitle`, `worksFor` (linking to the Organization entity), `url`, and `sameAs` links to their LinkedIn and any other professional profiles.
+
+Done looks like: every named author has an author page with valid Person schema that links back to the Organization entity.
+
+### Week 3: Profile completion and description consistency
+
+**Task 5: Complete and align your brand profiles.**
+
+Pull up your homepage About section, LinkedIn company bio, Google Business Profile description, and Crunchbase description side by side. These should all describe your brand as the same thing, using the same core claim. Rewrite any that diverge.
+
+Done looks like: four or more platform profiles describe your brand with substantively consistent language covering what you do, who you serve, and your primary differentiator.
+
+**Task 6: Verify your Google Knowledge Panel.**
+
+Search your brand name on Google and check whether a Knowledge Panel appears. If yes, verify that the information shown is accurate. If incorrect information appears, use the "Suggest a change" function in the panel. If no panel appears, note this as a baseline metric. A Knowledge Panel typically appears after your entity signals are stronger, which is the goal of this entire phase.
+
+### Week 4: Baseline citation measurement
+
+**Task 7: Run your baseline citation audit.**
+
+Identify 20 queries where you want your brand to appear in AI-generated answers. These should be queries your target audience genuinely uses. Run each query in ChatGPT with web search enabled, Perplexity, and Google AI Overviews. Record: is your brand cited? If not, who is?
+
+This baseline measurement is not about finding problems to fix. It is about establishing the number you will measure against at the end of Phase 3. Record it carefully.
+
+Done looks like: a spreadsheet with 20 queries, three AI engines, and your brand's citation rate (count of citations divided by 60 total possible citation instances). A baseline citation rate of zero to 15 percent is common for brands starting this process.
+
+## Phase 2: Content (Weeks 5 to 8)
+
+Phase 2 has one objective: make your most important content structurally compatible with AI engine extraction. This means restructuring existing content and creating new content formats that AI engines can cite directly.
+
+### Week 5: Direct-answer content for top queries
+
+**Task 8: Identify your top 20 target queries for AI citation.**
+
+These may or may not be the same as your top organic search queries. Use your baseline citation audit from Week 4 to identify the queries where competitors are being cited and you are not. These are your highest-priority targets.
+
+**Task 9: Restructure the top 20 pages for direct-answer openings.**
+
+For each of your top 20 target pages, ensure the first 100 words answer the primary query directly. The page should not begin with background, history, or context. It should begin with the answer.
+
+A page targeting "what is answer engine optimization" should open with: "Answer engine optimization (AEO) is the practice of structuring content so that AI answer systems select it as the direct response to a query. It differs from traditional SEO in that it optimizes for being the answer, not just ranking near it."
+
+That opening can be cited by an AI engine verbatim. A page that opens with "In today's rapidly evolving digital landscape, businesses face unprecedented challenges..." cannot be cited for anything.
+
+Done looks like: each of the top 20 target pages opens with a direct, specific answer to its primary query in the first two sentences.
+
+### Week 6: FAQ schema implementation
+
+**Task 10: Add FAQ sections and schema to your top 10 pages.**
+
+Using the question research process from the [FAQ schema guide](/blog/faq-schema-ai-seo/), identify four to eight specific questions for each of your top 10 pages. Write answers that are self-contained in two to four sentences each. Add visible FAQ sections to the page and implement FAQPage JSON-LD schema in the page head.
+
+Validate each page in Google's Rich Results Test before moving on.
+
+Done looks like: 10 pages with valid FAQPage schema, four to eight questions each, all validated without errors.
+
+**Task 11: Refresh the top 5 organic pages with AI-optimized structure.**
+
+Your highest-traffic organic pages may not be structured for AI extraction even if they rank well. For the top five pages by organic sessions, implement the complete AI extraction checklist: direct-answer opening, question-format H2 headings, FAQ section with schema, and a table or list element where the content supports it.
+
+Done looks like: five pages updated with all four structural elements and re-submitted in Google Search Console for recrawling.
+
+### Week 7: HowTo schema implementation
+
+**Task 12: Implement HowTo schema on at least three instructional pages.**
+
+Any page on your site that describes a process with steps is a candidate for HowTo schema. This schema type explicitly declares the steps of a process in machine-readable format, which AI engines use for "how to" queries.
+
+The HowTo schema structure includes: `name` (the process name), `description`, `totalTime`, and a `step` array where each step has a `name` and `text`. Steps should be specific and actionable, not generic.
+
+Done looks like: three pages with valid HowTo schema that validates in Google's Rich Results Test.
+
+### Week 8: Content gap filling
+
+**Task 13: Create three new content pieces targeting gaps identified in your baseline audit.**
+
+Your baseline citation audit from Week 4 revealed which queries are being answered by competitors without your brand appearing. For the three highest-priority gaps, create new content specifically designed to be a citation candidate for those queries.
+
+These pieces should be informational, not promotional. They should answer the query directly, with the structural elements built in from the start: direct-answer opening, question-format headings, FAQ section, and appropriate schema.
+
+Done looks like: three new pages published, indexed, and with valid schema implementation.
+
+## Phase 3: Authority (Weeks 9 to 12)
+
+Phase 3 has one objective: build the off-site authority signals that make AI engines confident enough to cite your brand in competitive query contexts.
+
+### Weeks 9 and 10: Third-party citation building
+
+**Task 14: Earn mentions in at least three relevant publications.**
+
+Third-party coverage is the entity corroboration signal that carries the most weight in AI engines' source evaluation. The target for this phase is three editorial mentions in relevant, authoritative publications that describe your brand accurately.
+
+The most efficient approaches: contribute expert commentary to journalists covering your niche (use Help a Reporter Out or similar services), write guest posts for established industry publications, request reviews or coverage from publications that cover your category.
+
+The mentions do not need to be major national publications. Three authoritative niche publications that your target audience reads are more valuable for entity building than a single mention in a major outlet that covers your industry tangentially.
+
+Done looks like: three live editorial mentions that describe your brand consistently and include a link to your domain.
+
+**Task 15: Claim review platform profiles and seed reviews.**
+
+G2, Trustpilot, Clutch, or Capterra depending on your category. Claim the profile, complete it fully, and solicit reviews from your best current customers. The goal is not volume but specificity: reviews that describe what you do and who you help are entity signals. Generic "great service!" reviews are not.
+
+Done looks like: at least one review platform profile with five or more substantive reviews live.
+
+### Week 11: Competitive citation gap analysis
+
+**Task 16: Run the full competitor citation analysis.**
+
+Using the same 20 queries from your Phase 1 baseline, run a complete citation analysis across ChatGPT, Perplexity, and Google AI Overviews. Record the full citation list for each query, not just whether your brand appears. Identify the three competitors most frequently cited across your target query set.
+
+For each frequently cited competitor: examine which pages are being cited, what schema they have implemented, how their content is structured, and what third-party mentions appear to support their entity. This analysis tells you where the remaining gap is and what investment would close it.
+
+Done looks like: a documented competitive citation analysis covering 20 queries across three AI engines.
+
+### Week 12: First measurement report
+
+**Task 17: Calculate your Phase 3 citation rate and compare to baseline.**
+
+Run your 20 queries through the same three AI engines you measured in Week 4. Calculate your brand's citation rate (citations divided by 60 possible instances). Compare to your Phase 1 baseline.
+
+The expected improvement after a full 12-week program ranges widely depending on starting position and competitive density, but a meaningful improvement would be a doubling of citation rate, or moving from near-zero to a consistent 10 to 20 percent citation rate across target queries.
+
+If improvement is lower than expected, the diagnostic question is: which phase did not get fully completed? Most underperformance at Week 12 traces back to incomplete Phase 1 execution, particularly entity signals that were partially implemented.
+
+Done looks like: a documented comparison of Week 1 baseline against Week 12 measurement, with specific citation counts per query and per engine.
+
+## Ongoing maintenance after Week 12
+
+AI SEO is not a one-time project. After the initial 12-week program, ongoing maintenance involves:
+
+**Monthly citation sampling.** Run your top 10 queries monthly across ChatGPT and Perplexity. If citation rate drops, investigate whether new competitors are outperforming you or whether algorithm changes have affected source selection.
+
+**Quarterly content refreshes.** Update your top 10 most-cited pages every three months. Add new FAQ questions based on recent customer questions. Update statistics and claims to reflect current information. AI engines prefer fresh content for queries where recency matters.
+
+**Ongoing entity maintenance.** Audit sameAs links quarterly. Update brand descriptions when positioning changes. Pursue new third-party mentions when entering new markets or launching new offerings.
+
+**Schema validation checks.** Run Google's Rich Results Test on your top 20 schema-enabled pages every quarter. Schema errors accumulate over time as pages are updated and developers make changes. Catching errors early prevents silent citation drops.
+
+The brands that maintain consistent AI visibility are the ones that treat this as a program, not a project. The 12-week roadmap gets you to a foundation. Ongoing maintenance is what keeps the citations consistent as AI engines evolve.
+
+For the defensive dimension of AI brand presence, including how to monitor and correct inaccurate AI brand descriptions, see [defensive SEO and controlling the AI brand narrative](/blog/defensive-seo-control-ai-brand-narrative/).
+
+## Related reading
+
+- [What Is Answer Engine Optimization (AEO)?](/aeo/)
+- [Defensive SEO: Controlling the AI Brand Narrative](/blog/defensive-seo-control-ai-brand-narrative/)
+- [How to Run an AI SEO Audit From Scratch](/blog/ai-seo-audit-guide/)
+- [Entity SEO: How to Build a Knowledge Graph Entity](/blog/entity-seo-knowledge-graph/)
+- [FAQ Schema for AI SEO](/blog/faq-schema-ai-seo/)
+- [How to Measure AI Visibility](/blog/how-to-measure-ai-visibility/)
