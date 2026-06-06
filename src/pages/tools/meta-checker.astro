@@ -2,8 +2,20 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
-import { SITE_TITLE } from '../../consts';
+import { SITE_TITLE, SITE_URL } from '../../consts';
 import '../../styles/tools-polish.css';
+
+const toolSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebApplication',
+	name: 'Meta Tag Checker',
+	url: `${SITE_URL}/tools/meta-checker/`,
+	applicationCategory: 'SEO Tool',
+	operatingSystem: 'Any',
+	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+	featureList: 'Meta title and description audit, Open Graph inspection, Twitter Card validation, canonical tag check, robots meta analysis, SERP preview',
+	provider: { '@id': `${SITE_URL}/#organization` },
+};
 ---
 
 <!doctype html>
@@ -12,6 +24,7 @@ import '../../styles/tools-polish.css';
 		<BaseHead
 			title={`Free Meta Tag Checker | ${SITE_TITLE}`}
 			description="Inspect every meta tag on any URL — title, description, Open Graph, Twitter Card, robots, canonical — with live SERP, Facebook, and Twitter previews."
+			structuredData={toolSchema}
 		/>
 		<style is:global>
 			:root {

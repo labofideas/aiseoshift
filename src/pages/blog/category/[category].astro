@@ -1,0 +1,195 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import Header from '../../../components/Header.astro';
+import imageManifest from '../../../data/image-manifest.json';
+import { SITE_TITLE, SITE_URL } from '../../../consts';
+import { sortPostsByDate } from '../../../utils/blog';
+
+export const getStaticPaths = async () => {
+	const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+	const categories = [...new Set(allPosts.map((p) => p.data.category))];
+	return categories.map((cat) => ({
+		params: { category: cat.toLowerCase() },
+		props: {
+			categoryLabel: cat,
+			posts: sortPostsByDate(
+				allPosts.filter((p) => p.data.category === cat && p.data.pubDate <= new Date()),
+			),
+		},
+	}));
+};
+
+const { categoryLabel, posts } = Astro.props;
+const categorySlug = categoryLabel.toLowerCase();
+const canonicalUrl = `${SITE_URL}/blog/category/${categorySlug}/`;
+
+const categoryDescriptions: Record<string, string> = {
+	Strategy: 'Strategic frameworks for AI search visibility, AEO, GEO, and brand citation across ChatGPT, Perplexity, Google AI Overviews, and more.',
+	Research: 'Data-driven research and analysis on AI search trends, Google Search Console AI reports, ranking changes, and the evolving citation landscape.',
+	Playbooks: 'Step-by-step playbooks for earning AI citations, optimizing for answer engines, and building content systems that perform in AI-powered search.',
+	Tooling: 'Reviews and comparisons of AI SEO tools, citation trackers, visibility platforms, and the software stack for AI search optimization.',
+};
+
+const pageDescription = categoryDescriptions[categoryLabel]
+	?? `Browse all ${categoryLabel} articles on AI SEO, AEO, GEO, and AI search visibility from AISEOShift.`;
+
+const collectionPageSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: `${categoryLabel} | ${SITE_TITLE}`,
+	description: pageDescription,
+	url: canonicalUrl,
+	isPartOf: { '@id': `${SITE_URL}/#website` },
+	publisher: { '@id': `${SITE_URL}/#organization` },
+	inLanguage: 'en-US',
+	breadcrumb: {
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+			{ '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
+			{ '@type': 'ListItem', position: 3, name: categoryLabel, item: canonicalUrl },
+		],
+	},
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`${categoryLabel} | ${SITE_TITLE}`}
+			description={pageDescription}
+			canonical={canonicalUrl}
+			structuredData={collectionPageSchema}
+		/>
+		<style>
+			.archive {
+				width: min(1200px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2rem 0 4rem;
+			}
+
+			.archive-header {
+				margin-bottom: 2rem;
+				max-width: 56rem;
+				padding: 1.6rem 1.8rem;
+				border-radius: 2rem;
+				border: 1px solid rgba(var(--ink), 0.1);
+				background: var(--panel);
+				box-shadow: var(--shadow-soft);
+			}
+
+			.breadcrumbs {
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				color: rgba(var(--ink), 0.7);
+				margin: 0 0 0.75rem;
+			}
+
+			.breadcrumbs a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.breadcrumbs a:hover { color: var(--signal-deep); }
+
+			.archive-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1rem;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.archive-card {
+				padding: 1.5rem;
+				border: 1px solid rgba(var(--ink), 0.1);
+				border-radius: 1.75rem;
+				background: var(--panel);
+				box-shadow: var(--shadow-tight);
+			}
+
+			.archive-card a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.archive-card:hover { transform: translateY(-3px); }
+
+			.archive-card h2 {
+				font-size: 1.45rem;
+				margin-bottom: 0.75rem;
+			}
+
+			.archive-thumb {
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				object-fit: cover;
+				border-radius: 1.25rem;
+				margin-bottom: 1rem;
+			}
+
+			.archive-card p { margin-bottom: 0.75rem; }
+
+			.meta {
+				color: rgba(var(--ink), 0.68);
+				font-size: 0.84rem;
+			}
+
+			.category {
+				font-size: 0.68rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				font-weight: 700;
+				color: var(--signal-deep);
+			}
+
+			@media (max-width: 900px) {
+				.archive-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="archive">
+			<header class="archive-header">
+				<p class="breadcrumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a> / {categoryLabel}</p>
+				<p class="category">{categoryLabel}</p>
+				<h1>{categoryLabel} coverage on AI search and visibility.</h1>
+				<p>{pageDescription}</p>
+			</header>
+			<section>
+				<ul class="archive-grid">
+					{
+						posts.map((post) => (
+							<li class="archive-card">
+								<a href={`/blog/${post.id}/`}>
+									{imageManifest[post.id as keyof typeof imageManifest]?.hero && (
+										<img
+											class="archive-thumb"
+											src={imageManifest[post.id as keyof typeof imageManifest].hero.src}
+											alt={imageManifest[post.id as keyof typeof imageManifest].hero.alt}
+											loading="lazy"
+										/>
+									)}
+									<p class="category">{post.data.category}</p>
+									<h2>{post.data.title}</h2>
+									<p>{post.data.deck}</p>
+									<div class="meta">
+										<FormattedDate date={post.data.pubDate} /> · {post.data.author}
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

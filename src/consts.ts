@@ -32,11 +32,13 @@ export const SITE_KEYWORDS = [
 	'SEO strategy',
 ];
 
-export const SITE_LOGO = `${SITE_URL}/favicon.svg`;
+export const SITE_LOGO = `${SITE_URL}/icon-512.png`;
+export const SITE_EMAIL = 'hello@aiseoshift.com';
 
 export const SITE_SAME_AS = [
 	'https://bsky.app/profile/aiseoshift.bsky.social',
 	'https://aiseoshift.tumblr.com',
 	'https://x.com/ai_seo_shift',
 	'https://www.instagram.com/ai_seo_shift',
+	'https://www.linkedin.com/in/shashank-dubey-949160148/',
 ];

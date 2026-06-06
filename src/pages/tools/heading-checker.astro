@@ -2,8 +2,20 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
-import { SITE_TITLE } from '../../consts';
+import { SITE_TITLE, SITE_URL } from '../../consts';
 import '../../styles/tools-polish.css';
+
+const toolSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebApplication',
+	name: 'Heading Structure Checker',
+	url: `${SITE_URL}/tools/heading-checker/`,
+	applicationCategory: 'SEO Tool',
+	operatingSystem: 'Any',
+	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+	featureList: 'Heading hierarchy analysis, H1 detection, skipped level detection, keyword heatmap, outline tree',
+	provider: { '@id': `${SITE_URL}/#organization` },
+};
 ---
 
 <!doctype html>
@@ -12,6 +24,7 @@ import '../../styles/tools-polish.css';
 		<BaseHead
 			title={`Free Heading Structure Checker | ${SITE_TITLE}`}
 			description="Visualize the complete heading hierarchy of any page. Detect missing H1s, skipped levels, duplicates, empty tags, and over-long text — with a live outline tree and keyword heatmap."
+			structuredData={toolSchema}
 		/>
 		<style is:global>
 			:root {

@@ -2,9 +2,21 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
-import { SITE_TITLE } from '../../consts';
+import { SITE_TITLE, SITE_URL } from '../../consts';
 import '../../styles/tools.css';
 import '../../styles/tools-polish.css';
+
+const toolSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebApplication',
+	name: 'AI SEO Checker',
+	url: `${SITE_URL}/tools/seo-checker/`,
+	applicationCategory: 'SEO Tool',
+	operatingSystem: 'Any',
+	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+	featureList: 'AI SEO audit, on-page analysis, heading structure, meta tags, schema detection, image audit, link analysis',
+	provider: { '@id': `${SITE_URL}/#organization` },
+};
 ---
 
 <!doctype html>
@@ -13,6 +25,7 @@ import '../../styles/tools-polish.css';
 		<BaseHead
 			title={`AI SEO Checker | ${SITE_TITLE}`}
 			description="Run an AI SEO and on-page SEO audit for any page: title, meta, headings, images, links, content, mobile, and technical signals."
+			structuredData={toolSchema}
 		/>
 	</head>
 	<body>

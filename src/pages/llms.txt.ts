@@ -8,7 +8,7 @@ import {
 
 export const prerender = true;
 
-const RECENT_POSTS_LIMIT = 30;
+const RECENT_POSTS_LIMIT = Infinity;
 
 const clean = (value: string): string =>
 	value
@@ -165,7 +165,7 @@ export const GET: APIRoute = async () => {
 	}
 	lines.push('');
 
-	lines.push('## Recent Posts');
+	lines.push('## All Posts');
 	for (const post of posts.slice(0, RECENT_POSTS_LIMIT)) {
 		const url = `${SITE_URL}/blog/${post.id}/`;
 		lines.push(entry(post.data.title, url, post.data.description));

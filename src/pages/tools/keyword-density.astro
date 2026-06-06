@@ -2,8 +2,20 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
-import { SITE_TITLE } from '../../consts';
+import { SITE_TITLE, SITE_URL } from '../../consts';
 import '../../styles/tools-polish.css';
+
+const toolSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebApplication',
+	name: 'Keyword Density Checker',
+	url: `${SITE_URL}/tools/keyword-density/`,
+	applicationCategory: 'SEO Tool',
+	operatingSystem: 'Any',
+	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+	featureList: 'Keyword frequency analysis, n-gram detection, density percentage, tag-level placement, over-optimization detection',
+	provider: { '@id': `${SITE_URL}/#organization` },
+};
 ---
 
 <!doctype html>
@@ -12,6 +24,7 @@ import '../../styles/tools-polish.css';
 		<BaseHead
 			title={`Free Keyword Density Checker | ${SITE_TITLE}`}
 			description="Analyze keyword frequency, density, n-grams, and placement on any URL. Surfaces over-optimised terms, content gaps, and exact tag-level placement."
+			structuredData={toolSchema}
 		/>
 		<style is:global>
 			:root {

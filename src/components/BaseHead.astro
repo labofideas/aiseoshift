@@ -6,6 +6,7 @@ import {
 	SITE_URL,
 	SITE_DESCRIPTION,
 	SITE_LOGO,
+	SITE_EMAIL,
 	SITE_SAME_AS,
 	AUTHOR_NAME,
 	AUTHOR_ROLE,
@@ -24,6 +25,8 @@ interface Props {
 	ogType?: 'website' | 'article';
 	publishedTime?: string;
 	modifiedTime?: string;
+	articleSection?: string;
+	articleTags?: string[];
 	structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 	preloadHero?: string;
 }
@@ -46,6 +49,8 @@ const {
 	ogType = 'website',
 	publishedTime,
 	modifiedTime,
+	articleSection,
+	articleTags,
 	structuredData,
 	preloadHero,
 } = Astro.props;
@@ -84,10 +89,17 @@ const globalGraph = {
 				'@id': `${SITE_URL}/#logo`,
 				url: SITE_LOGO,
 				contentUrl: SITE_LOGO,
+				width: 512,
+				height: 512,
 				caption: SITE_TITLE,
 			},
 			description: SITE_DESCRIPTION,
 			founder: { '@id': `${SITE_URL}/#person` },
+			contactPoint: {
+				'@type': 'ContactPoint',
+				email: SITE_EMAIL,
+				contactType: 'customer service',
+			},
 			sameAs: SITE_SAME_AS,
 		},
 		{
@@ -137,15 +149,22 @@ const globalGraph = {
 <meta property="og:image:alt" content={imageAlt} />
 <meta property="og:image:width" content={String(imageWidth)} />
 <meta property="og:image:height" content={String(imageHeight)} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content={SITE_TITLE} />
 {publishedTime && <meta property="article:published_time" content={publishedTime} />}
 {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+{ogType === 'article' && <meta property="article:author" content={AUTHOR_PROFILE_URL} />}
+{articleSection && <meta property="article:section" content={articleSection} />}
+{articleTags?.map((tag) => <meta property="article:tag" content={tag} />)}
 
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={canonicalURL} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={imageUrl} />
-<meta property="twitter:image:alt" content={imageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@ai_seo_shift" />
+<meta name="twitter:creator" content="@ai_seo_shift" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={imageAlt} />
 
 <script type="application/ld+json" set:html={JSON.stringify(globalGraph)} />
 {

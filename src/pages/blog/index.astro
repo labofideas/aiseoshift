@@ -5,17 +5,32 @@ import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import imageManifest from '../../data/image-manifest.json';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_TITLE, SITE_URL } from '../../consts';
 import { sortPostsByDate } from '../../utils/blog';
 
 const now = new Date();
 const posts = sortPostsByDate(await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now));
+
+const collectionPageSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'CollectionPage',
+	name: `Latest Coverage | ${SITE_TITLE}`,
+	description: 'Reporting, explainers, and field guides on AI SEO, AEO, GEO, answer engine citations, and content strategy. Updated weekly.',
+	url: `${SITE_URL}/blog/`,
+	isPartOf: { '@id': `${SITE_URL}/#website` },
+	publisher: { '@id': `${SITE_URL}/#organization` },
+	inLanguage: 'en-US',
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Latest Coverage | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={`Latest Coverage | ${SITE_TITLE}`}
+			description="Reporting, explainers, and field guides on AI SEO, AEO, GEO, answer engine citations, and content strategy. Updated weekly."
+			structuredData={collectionPageSchema}
+		/>
 		<style>
 			.archive {
 				width: min(1200px, calc(100% - 2rem));

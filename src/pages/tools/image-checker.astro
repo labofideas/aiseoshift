@@ -2,8 +2,20 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
-import { SITE_TITLE } from '../../consts';
+import { SITE_TITLE, SITE_URL } from '../../consts';
 import '../../styles/tools-polish.css';
+
+const toolSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebApplication',
+	name: 'Image SEO Checker',
+	url: `${SITE_URL}/tools/image-checker/`,
+	applicationCategory: 'SEO Tool',
+	operatingSystem: 'Any',
+	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+	featureList: 'Alt text audit, image format detection, lazy loading check, Core Web Vitals image analysis, WebP/AVIF detection',
+	provider: { '@id': `${SITE_URL}/#organization` },
+};
 ---
 
 <!doctype html>
@@ -12,6 +24,7 @@ import '../../styles/tools-polish.css';
 		<BaseHead
 			title={`Free Image SEO Checker | ${SITE_TITLE}`}
 			description="Audit every image on a page for alt text, width/height, lazy loading, and modern formats (WebP/AVIF). Helps fix accessibility and Core Web Vitals issues."
+			structuredData={toolSchema}
 		/>
 		<style is:global>
 			:root {

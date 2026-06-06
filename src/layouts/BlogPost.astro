@@ -32,7 +32,9 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
-const readTime = Math.max(3, Math.round((description.length + deck.length + title.length + tags.join(' ').length * 30) / 180));
+const descWords = description.split(/\s+/).length;
+const deckWords = deck.split(/\s+/).length;
+const readTime = Math.max(3, Math.round((descWords * 20 + deckWords * 8) / 200));
 const tocHeadings = headings.filter((h) => h.depth <= 3 && h.text !== 'Related reading' && h.text !== 'References');
 
 const heroImageAbs = heroImage?.src ? new URL(heroImage.src, SITE_URL).toString() : undefined;
@@ -48,6 +50,12 @@ const articleSchema: Record<string, unknown> = {
 	datePublished: pubDate.toISOString(),
 	dateModified: (updatedDate ?? pubDate).toISOString(),
 	mainEntityOfPage: canonical,
+	inLanguage: 'en-US',
+	articleSection: category,
+	speakable: {
+		'@type': 'SpeakableSpecification',
+		cssSelector: ['.deck', '.prose > p:first-of-type'],
+	},
 };
 if (heroImageAbs) articleSchema.image = heroImageAbs;
 
@@ -66,7 +74,19 @@ const itemListSchema = toolHeadings.length >= 5 ? {
 	})),
 } : null;
 
-const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articleSchema;
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+		{ '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog/` },
+		{ '@type': 'ListItem', position: 3, name: title, item: canonical },
+	],
+};
+
+const structuredData = itemListSchema
+	? [articleSchema, itemListSchema, breadcrumbSchema]
+	: [articleSchema, breadcrumbSchema];
 ---
 
 <html lang="en">
@@ -79,6 +99,8 @@ const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articl
 			ogType="article"
 			publishedTime={pubDate.toISOString()}
 			modifiedTime={(updatedDate ?? pubDate).toISOString()}
+			articleSection={category}
+			articleTags={tags}
 			structuredData={structuredData}
 			preloadHero={heroImage?.src}
 		/>
