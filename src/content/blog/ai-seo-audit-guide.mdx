@@ -1,0 +1,141 @@
+---
+title: "How to Run an AI SEO Audit From Scratch"
+description: "An AI SEO audit covers different ground than a traditional technical audit. Here is the complete framework for auditing a site's AI search visibility, with the exact checks to run."
+deck: "The complete audit framework covering crawlability, schema, content structure, entity signals, and AI citation gaps."
+pubDate: 2026-06-29
+category: Playbooks
+tags: ["ai-seo", "seo-audit", "technical-seo", "ai-visibility", "playbook", "aeo"]
+author: Shashank Dubey
+---
+
+A traditional SEO audit looks for crawl errors, page speed issues, broken links, and thin content. An AI SEO audit asks a different question: can AI engines find, read, and trust this site enough to cite it?
+
+The answer depends on six distinct areas, and most of them have nothing to do with Core Web Vitals or canonical tags. This guide walks through all six in the order you should work through them, with the specific checks to run in each area and what a passing result looks like.
+
+Running this audit once is useful. Running it quarterly is how you build a systematic AI visibility program.
+
+## What an AI SEO audit covers that a traditional audit misses
+
+Traditional audits optimize for crawling and ranking in Google's organic results. AI SEO audits optimize for a different outcome: being retrieved, trusted, and cited by AI answer engines like ChatGPT, Perplexity, and Google AI Overviews.
+
+The gaps between these two audit types are significant. A site can have excellent PageSpeed scores, clean crawl data, and strong backlinks, but still be completely invisible in AI-generated answers because the content is not structured for extraction, the author entity is undefined, or the wrong robots.txt rules are blocking AI-specific crawlers.
+
+The six audit areas below reflect the actual signals AI engines use to select citation sources. They are ordered by dependency: passing earlier areas is required before later areas can have full effect.
+
+## Area 1: Crawlability for AI bots
+
+AI engines use their own crawlers, separate from Googlebot and Bingbot. If those crawlers are blocked, AI engines cannot access your content regardless of how well it is structured.
+
+**What to check.** Open your robots.txt file directly at yourdomain.com/robots.txt. Look for any `Disallow: /` rules that apply to all user agents via `User-agent: *`. Then check whether the following crawlers are explicitly addressed:
+
+- `GPTBot` (OpenAI, used by ChatGPT)
+- `OAI-SearchBot` (OpenAI's search-specific crawler)
+- `PerplexityBot` (Perplexity AI)
+- `ClaudeBot` (Anthropic)
+- `Applebot` (Apple Intelligence)
+- `Diffbot` (used by multiple AI training datasets)
+
+**What a pass looks like.** None of these crawlers are blocked via robots.txt. If you have a global `Disallow: /` rule for staging or maintenance purposes, there should be explicit `Allow: /` exceptions for these bots, or the global disallow should be removed from the production robots.txt.
+
+**How to check it.** Use Google's robots.txt Tester in Search Console for Googlebot, and test GPTBot specifically against your robots.txt rules. For each AI crawler, confirm that a `GET` request to your key pages would return a 200 rather than a robots-blocked response.
+
+Also check whether you have an `llms.txt` file at yourdomain.com/llms.txt. This file is an emerging standard that provides AI engines with a structured overview of your site's content. Its presence is not required, but its absence is a signal worth noting.
+
+## Area 2: Structured data coverage
+
+Schema markup is the primary machine-readable signal AI engines use to understand what a page is, who created it, and what it contains.
+
+**What to check.** Audit the following schema types across your site:
+
+- **Organization schema** on the homepage and About page: does it exist, is it complete (name, url, logo, contactPoint, sameAs), and does it validate without errors?
+- **Person schema** on author pages and About pages: does it exist for key individuals associated with the brand?
+- **Article or BlogPosting schema** on all blog and editorial content: is it implemented with datePublished, dateModified, author, and headline?
+- **FAQPage schema** on pages with FAQ sections: are questions and answers specific, self-contained, and 50 to 150 words per answer?
+- **Product schema** on product pages if applicable: does it include aggregateRating, offers, brand?
+- **BreadcrumbList schema** on key landing pages: does it accurately reflect the page hierarchy?
+
+**What a pass looks like.** Core schema types are present on appropriate pages, validate without errors in Google's Rich Results Test, and the content in the schema matches the visible page content exactly.
+
+**How to check it.** Use Google's Rich Results Test (search.google.com/test/rich-results) for individual page validation. For site-wide coverage, use Screaming Frog with the custom extraction feature to check which pages have JSON-LD schema blocks and which types are present. Cross-reference against your page inventory to identify coverage gaps.
+
+## Area 3: Content structure quality
+
+AI engines extract content from pages in specific ways. Pages that are not structured for extraction are cited less frequently than equivalent pages that are.
+
+**What to check.** For your top 20 highest-traffic pages and your top 10 target pages for AI citations, evaluate the following:
+
+- Does each page open with a direct answer to the primary query in the first 100 words, before any background or context?
+- Are H2 and H3 headings phrased as questions or clear topical statements rather than generic section labels?
+- Does each page have a FAQ section covering at least four specific, question-format queries related to the topic?
+- Are specific factual claims made with sources? Are statistics attributed? Are claims verifiable?
+- Are long explanations broken into short paragraphs of three to five sentences each?
+- Does the page include at least one table, list, or structured comparison where the content supports it?
+
+**What a pass looks like.** The most important pages answer their primary query in the opening paragraph, have FAQ sections with specific Q-and-A pairs, and use headings that would make sense as standalone queries in ChatGPT or Perplexity.
+
+**How to check it.** Read each page as if you are an AI engine receiving a query. Ask: if a user asked ChatGPT the primary query this page targets, would this page's opening paragraph be a usable citation? Would the FAQ section answer follow-up questions the user is likely to have? If the answer to both questions is no, the page needs restructuring.
+
+## Area 4: Entity signals
+
+AI engines build a model of what your brand is by reconciling information from multiple sources. Inconsistency across those sources creates uncertainty, and uncertain entities get cited less frequently than well-defined ones.
+
+**What to check.** Audit the following entity signal sources:
+
+- **Organization schema sameAs links**: does your Organization schema include sameAs links to your LinkedIn company page, Crunchbase profile, Wikipedia page (if applicable), and primary social profiles?
+- **Consistency of brand description**: compare how your brand is described on your homepage About section, LinkedIn company bio, Google Business Profile description, and Crunchbase profile. Are these descriptions substantively the same in terms of what you do, who you serve, and what differentiates you?
+- **Author entity completeness**: for each named author on the site, is there a dedicated author page with name, bio, credentials, and links to their external profiles?
+- **Third-party mentions**: does your brand appear in at least three to five relevant industry publications, directories, or editorial sources that describe you consistently?
+- **Google Knowledge Panel**: does a Knowledge Panel appear when you search your brand name? If not, the entity is not yet recognized by Google's Knowledge Graph.
+
+**What a pass looks like.** Organization schema includes sameAs links to verified profiles. Brand descriptions are consistent across owned and third-party sources. Key authors have complete entity pages. The brand appears in third-party sources that describe it accurately.
+
+**How to check it.** Search your brand name on Google and check whether a Knowledge Panel appears. Manually compare your brand description across your homepage, LinkedIn, and your Crunchbase or industry directory profiles. Use Google's Rich Results Test to validate Organization schema and confirm sameAs links resolve correctly.
+
+## Area 5: AI impression data from Google Search Console
+
+Google Search Console's AI Overviews data reveals which pages are appearing in AI-generated answers and which are invisible despite strong organic traffic.
+
+**What to check.** In Google Search Console, navigate to the Performance report and filter by Search Type for "AI Overviews" if that filter is available in your account. If not, look at the overall Search Appearance data and compare AI Overview impressions against organic impressions.
+
+Identify the following patterns:
+
+- Pages with strong organic click-through but zero or near-zero AI Overview impressions: these pages rank well traditionally but are not being extracted by AI Overviews. Content structure and schema are likely the cause.
+- Pages with high AI Overview impressions but low click-through: your content is being cited in AI answers, but the answer is complete enough that users do not click through. This is not necessarily a problem, but it indicates the pages are working as AI citation sources.
+- Queries driving AI Overview impressions that the page was not originally targeting: these are opportunities to create dedicated FAQ entries or supporting content for those queries.
+
+**What a pass looks like.** Your most authoritative pages for core topics have AI Overview impressions that are proportional to their organic impressions. Pages with zero AI Overview impressions but strong organic traffic are flagged for content restructuring.
+
+**How to check it.** Export the Performance data from Search Console filtered to your top 50 organic pages. Compare organic impressions against AI Overview impressions. Calculate the ratio. Pages with a ratio below 0.05 (less than 5 AI Overview impressions per 100 organic impressions) are underperforming for AI extraction.
+
+## Area 6: Competitor citation gap analysis
+
+The most direct measure of AI SEO performance is whether you appear in AI-generated answers when a competitor does not, or vice versa.
+
+**What to check.** Identify the 10 highest-intent queries in your niche. Run each query in ChatGPT (with web search enabled), Perplexity, and Google AI Overviews. For each query, record:
+
+- Which brands are cited?
+- Which pages are cited as sources?
+- Is your brand present?
+- If not, which competitors are?
+
+**What a pass looks like.** Your brand appears in AI-generated answers for at least half of your target queries. Where competitors appear and you do not, you can identify a specific reason: they have FAQ schema and you do not, their content answers the query more directly, or they have stronger entity signals.
+
+**How to check it.** Build a simple tracking spreadsheet: queries in rows, AI engines in columns. Run each query, record citations, and score your brand's presence. Do this before the audit and again 90 days after implementing fixes. The change in citation rate is your primary audit outcome metric.
+
+This gap analysis pairs directly with the [AEO](/aeo/) methodology, which uses competitive citation data as both a diagnostic and a measurement tool. For a step-by-step competitor citation tracking process, the competitive analysis playbook covers the methodology in detail.
+
+## What to do with audit results
+
+Prioritize fixes in the order of the six areas. Crawlability blocks are binary: fix them first or nothing else matters. Schema errors are next because they undermine the machine-readable signals AI engines rely on. Content structure issues take the most time to fix but have the largest citation impact for informational pages.
+
+After your first audit, schedule a follow-up in 60 to 90 days. AI SEO changes take time to propagate through training data and index cycles. Changes you make today to content structure and schema will affect citation rates over weeks to months, not days.
+
+For a comprehensive checklist version of this audit framework, see the complete [AI SEO audit checklist](/blog/ai-seo-audit-checklist/).
+
+## Related reading
+
+- [What Is Answer Engine Optimization (AEO)?](/aeo/)
+- [FAQ Schema for AI SEO: The Patterns That Get Extracted](/blog/faq-schema-ai-seo/)
+- [Entity SEO: How to Build a Knowledge Graph Entity for Your Brand](/blog/entity-seo-knowledge-graph/)
+- [AI SEO Roadmap: From Zero Citations to Consistent Visibility](/blog/ai-seo-roadmap/)
+- [How to Measure AI Visibility](/blog/how-to-measure-ai-visibility/)

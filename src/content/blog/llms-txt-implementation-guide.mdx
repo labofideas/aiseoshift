@@ -1,0 +1,145 @@
+---
+title: "How to Write an llms.txt File That AI Engines Actually Use"
+description: llms.txt tells AI agents and answer engines which pages on your site matter most. Here is the format, what to include, the mistakes that make it useless, and a template.
+deck: The format, the common mistakes, and a copy-paste template that AI crawlers can actually parse and use.
+pubDate: 2026-06-26
+category: Playbooks
+tags: ["llms-txt", "technical-seo", "ai-seo", "ai-crawlers", "implementation", "aeo"]
+author: Shashank Dubey
+featured: false
+---
+
+Most sites have a robots.txt file. It tells crawlers what they cannot access. An llms.txt file does the opposite: it tells AI agents and large language model systems what they should prioritize. It is a signal, not a gate.
+
+The concept was proposed by Jeremy Howard in 2024 and has since been adopted as an informal standard by a growing number of sites trying to improve their AI visibility. It does not have official W3C or schema.org backing, and no AI company has formally committed to reading it, but Anthropic's Claude documentation and several AI agent frameworks have explicitly acknowledged the format. For sites invested in [AEO (answer engine optimization)](/aeo/) and [AI citation visibility](/chatgpt-seo/), implementing llms.txt correctly is a low-cost, high-signal action.
+
+This guide covers the format, what to include, common mistakes that make the file useless, and a complete template you can adapt.
+
+## What llms.txt is and why it exists
+
+When an AI agent browses your site to extract information for a response, it faces the same problem human readers face: your site has hundreds or thousands of pages, and most of them are not relevant to what the agent needs. A product page from 2019, a privacy policy, a terms of service document, a support forum thread from a deprecated feature: none of these help the AI produce a useful, accurate answer about your core products or services.
+
+robots.txt solves access control: it blocks crawlers from specific paths. But it was designed for search engine indexing, not for guiding AI agents toward the content that best represents your brand.
+
+llms.txt fills that gap. It is a plain text file in markdown format, placed at the root of your domain at `/llms.txt`, that describes your site and links to your most important pages. An AI agent that reads it before crawling your site has a map: here is what this site is about, here are the most important pages, here is the documentation that matters.
+
+The file does not override robots.txt. Pages blocked in robots.txt remain inaccessible. llms.txt operates on pages the crawler can already access, helping it prioritize.
+
+## The official spec format
+
+The llms.txt format uses a specific markdown structure. There are four elements:
+
+**Site name:** A level-one heading (`#`) with your site or brand name.
+
+**Site description:** A blockquote (`>`) with a one to three sentence description of what the site covers, written for an AI system rather than a human.
+
+**Section headers:** Level-two headings (`##`) that group links by content type or purpose.
+
+**Links with descriptions:** Each link uses the format `- [Page Title](URL): Short description of what this page covers and why it matters.`
+
+The descriptions are critical. An llms.txt file with links but no descriptions is significantly less useful than one with clear, specific descriptions, because the AI agent uses the description to decide whether to follow the link before fetching the page.
+
+Here is a minimal valid example:
+
+```
+# Acme Analytics
+
+> Acme Analytics provides small business reporting software. This site covers product documentation, tutorials, pricing, and case studies for the Acme Analytics platform.
+
+## Core Product Pages
+
+- [Features Overview](https://acmeanalytics.com/features/): Complete list of reporting features including dashboard templates, CSV export, and team sharing.
+- [Pricing](https://acmeanalytics.com/pricing/): Current pricing tiers, plan comparison, and enterprise options.
+
+## Guides
+
+- [Getting Started Guide](https://acmeanalytics.com/docs/getting-started/): Step-by-step setup from account creation to first dashboard.
+- [Connecting Data Sources](https://acmeanalytics.com/docs/data-sources/): How to connect Google Sheets, Airtable, and CSV files.
+```
+
+## What sections to include
+
+The sections you include depend on your site type, but there are four categories that belong in almost every llms.txt:
+
+**Hub pages or pillar content.** Your most authoritative pages on your core topics. For a SaaS company, this is the features page, the product overview, and the use case pages. For a content site, this is the main category or topic hub pages that link out to your key guides.
+
+**Key guides and tutorials.** The specific how-to content that answers the questions your audience asks most frequently. These are the pages most likely to be cited when an AI engine handles a query in your category.
+
+**Recent or notable posts.** A curated selection of recent content that reflects your current expertise and perspective. Not all recent posts, and not all posts. Select the ones with the clearest relevance to the queries you want to be cited for.
+
+**Feeds or indexes.** A link to your sitemap or RSS feed, with a note that it contains a full index. This gives AI agents a path to discover content beyond the curated list in llms.txt, without requiring you to list every page manually.
+
+## Character limits and truncation considerations
+
+There is no official character limit for llms.txt, but practical constraints exist. AI agents operating with context window limits will truncate files that are too long. If your llms.txt runs to 10,000 words because you have listed 200 blog posts, the bottom half of the file may never be read.
+
+The working recommendation from practitioners is to keep llms.txt under 2,000 characters for the core prioritized content, with optional additional sections for feeds and full indexes. Think of it as a table of contents for your most important content, not a comprehensive sitemap replacement.
+
+A companion file, sometimes called `llms-full.txt`, can contain a longer, more comprehensive version for AI agents that fetch it explicitly. Your primary `llms.txt` should remain short and focused.
+
+## Common mistakes that make the file useless
+
+**Listing all 200 posts.** The entire value of llms.txt is curation. An uncurated list of every page on your site is no better than a sitemap, and a sitemap is already available to crawlers. Select 10 to 20 pages that represent the best your site has to offer for your core topics.
+
+**No descriptions on links.** A list of links with no context tells an AI agent nothing about what it will find. The agent has to fetch every page to decide which ones are relevant. Descriptions allow the agent to prioritize without fetching, which means more of your important content gets read.
+
+**Generic descriptions.** "Our blog post about SEO" is useless. "Step-by-step guide to configuring Google Search Console filters for AI Overview impression data" is useful. Write descriptions that would help a researcher decide, in one sentence, whether this specific page answers their specific question.
+
+**Including non-content pages.** Your privacy policy, cookie consent page, author archive pages, and tag pages do not help AI agents understand your expertise. Including them dilutes the signal of the pages that do matter.
+
+**Putting the file at the wrong path.** llms.txt must be at `yourdomain.com/llms.txt`, not in a subdirectory. An AI agent looking for the file will check the root domain path. If it is not there, it is not found.
+
+**Not updating it.** llms.txt is not a set-and-forget file. As you publish major new guides, add them. As priorities shift, update the curated selection. A file last updated 18 months ago that still links to outdated content is worse than no file at all.
+
+## How to test whether AI engines are reading it
+
+Direct testing is limited because AI companies do not publish logs of which files their crawlers read. But several indirect signals suggest your llms.txt is having an effect:
+
+**Check your server logs** for requests to `/llms.txt` from known AI crawler user agents: `ClaudeBot`, `GPTBot`, `PerplexityBot`, `anthropic-ai`. These requests confirm that AI crawlers are fetching the file.
+
+**Monitor citation patterns** in your [manual query log](/blog/how-ai-search-monitoring-improves-seo-strategy/) before and after implementing llms.txt. If pages you prioritized in the file begin appearing more frequently in AI citations, that is a directional signal of effect.
+
+**Use the Wayback Machine or cache checkers** to verify that the file is accessible and rendering correctly at your root domain.
+
+## A complete copy-paste template
+
+Here is a functional template you can adapt for your site. Replace the placeholder content with your actual pages and descriptions.
+
+```
+# [Your Site Name]
+
+> [Your site] covers [topic area] for [target audience]. Content includes [what you publish: guides, research, documentation, case studies, etc.]. The site is managed by [author or team name].
+
+## Hub Pages
+
+- [Topic Hub 1](https://yoursite.com/hub-page-1/): [Specific description of what this hub covers and who it is for.]
+- [Topic Hub 2](https://yoursite.com/hub-page-2/): [Specific description of what this hub covers and who it is for.]
+
+## Key Guides
+
+- [Guide Title 1](https://yoursite.com/guide-1/): [One-sentence description of the exact process or answer this guide provides.]
+- [Guide Title 2](https://yoursite.com/guide-2/): [One-sentence description of the exact process or answer this guide provides.]
+- [Guide Title 3](https://yoursite.com/guide-3/): [One-sentence description of the exact process or answer this guide provides.]
+
+## Recent Posts
+
+- [Post Title 1](https://yoursite.com/blog/post-1/): [Specific topic covered and why it is current or notable.]
+- [Post Title 2](https://yoursite.com/blog/post-2/): [Specific topic covered and why it is current or notable.]
+
+## Full Index
+
+- [Sitemap](https://yoursite.com/sitemap.xml): XML sitemap with all indexed pages.
+- [RSS Feed](https://yoursite.com/feed.xml): Full post feed updated with each new publication.
+```
+
+Place this file at `yourdomain.com/llms.txt`. Ensure your server is not blocking access to the file via robots.txt or authentication. Verify it is accessible by visiting the URL directly in a browser.
+
+For sites pursuing a comprehensive AI search strategy, llms.txt is one structural signal among many. It works best alongside properly implemented structured data, strong author signals, and content that is already written to be cited. See the [AEO guide](/aeo/) and the [ChatGPT SEO guide](/chatgpt-seo/) for the content-level practices that give your llms.txt pointers the authority to matter.
+
+## Related reading
+
+- [Answer Engine Optimization (AEO)](/aeo/)
+- [ChatGPT SEO: How to Get Cited by ChatGPT](/chatgpt-seo/)
+- [AI Tech SEO Optimization Strategies](/blog/ai-tech-seo-optimization-strategies/)
+- [AI SEO Audit Checklist](/blog/ai-seo-audit-checklist/)
+- [How to Get Cited by AI Search Systems](/blog/how-to-get-cited-by-ai-search-systems/)
