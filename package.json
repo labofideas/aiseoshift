@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node ./scripts/og-svg-to-png.mjs",
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "images:fetch": "node ./scripts/fetch-editorial-images.mjs",
