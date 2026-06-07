@@ -136,7 +136,7 @@ For sites with significant mobile traffic — which is nearly all content sites 
 
 Not all CWV fixes are equal in their impact on AI citation eligibility. The following prioritization reflects the combination of effort required and the frequency with which each fix resolves disqualifying metric failures.
 
-**Highest priority: image optimization and LCP element hinting.** The majority of LCP failures on content sites trace back to unoptimized hero images. Compress all images, serve next-gen formats (WebP, AVIF), set explicit `width` and `height` on all `<img>` elements, and add `fetchpriority="high"` to the LCP element. This single category of fixes resolves LCP failures on a large share of content sites with minimal engineering effort.
+**Highest priority: image optimization and LCP element hinting.** The majority of LCP failures on content sites trace back to unoptimized hero images. Before compressing, run our [image SEO tool](/tools/image-checker/) to audit each page for missing alt text, unspecified dimensions, and oversized files. Then compress all images, serve next-gen formats (WebP, AVIF), set explicit `width` and `height` on all `<img>` elements, and add `fetchpriority="high"` to the LCP element. This single category of fixes resolves LCP failures on a large share of content sites with minimal engineering effort.
 
 **Second priority: third-party script audit.** Third-party scripts are the dominant cause of both LCP delays (render-blocking scripts) and INP failures (long tasks triggered on interaction). Run a third-party audit in Chrome DevTools, identify scripts executing during or after load, and either remove unnecessary scripts, delay them with `async`/`defer`, or move their loading to after the user has interacted with the page.
 
