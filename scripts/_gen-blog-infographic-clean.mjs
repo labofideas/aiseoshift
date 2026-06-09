@@ -70,7 +70,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1620" 
 
   <!-- Footer -->
   <line x1="60" y1="1500" x2="1020" y2="1500" stroke="${RUST}" stroke-width="1" opacity="0.4"/>
-  <text x="540" y="1556" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" letter-spacing="1" fill="${GRAY}">wbcomdesigns.com</text>
+  <text x="540" y="1556" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" letter-spacing="1" fill="${GRAY}">aiseoshift.com</text>
 </svg>`;
 
 await sharp(Buffer.from(svg)).png().toFile(`${OUT}/infographic-the-click-is-leaving-clean.png`);
