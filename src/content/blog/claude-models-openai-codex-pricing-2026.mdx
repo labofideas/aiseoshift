@@ -119,6 +119,45 @@ Pick subscription over API once you are a heavy daily user. If you are coding fu
 
 Watch output, not just input. Output is where the cost concentrates. Tighter prompts and structured outputs cut bills faster than switching models.
 
+## Which model for which job
+
+Most people overpay by defaulting to the flagship for everything, or underperform by using a cheap model on work that needs reasoning. Here is the task-to-model mapping that keeps both cost and quality in the right place.
+
+| Type of work | Best fit | Why |
+|---|---|---|
+| Hard, multi-step coding and agents | Fable 5, or GPT-5.3-Codex in Codex | Top SWE-bench scores; built for long agentic tasks |
+| Everyday coding, refactors, reviews | Sonnet 4.6 or GPT-5.3-Codex | Strong enough for most code at a much lower rate |
+| Complex reasoning, analysis, strategy | Opus 4.8 | Flagship reasoning without Fable 5 pricing |
+| Long-document work (contracts, reports) | Opus 4.8 or Sonnet 4.6 | 1M context at flat rate handles big inputs |
+| High-volume writing and content | Sonnet 4.6 | Best quality-per-dollar for routine generation |
+| Classification, extraction, tagging, routing | Haiku 4.5 or GPT-5.4-Mini | Fast and cheap; reasoning is not the bottleneck |
+| Vision tasks (screenshots, diagrams, docs) | Fable 5, Opus 4.8, Sonnet 4.6 | Vision input across the modern lineup |
+| Scientific or frontier research | Fable 5 | Highest capability; note safeguard fallbacks |
+| Customer-facing chatbots at scale | Haiku 4.5, step up to Sonnet 4.6 | Latency and cost matter more than peak IQ |
+| Regulated / YMYL topics (legal, medical, finance) | Opus 4.8 | Reliable, and avoids Fable 5's guarded-domain fallbacks |
+
+The general pattern: start one tier lower than your instinct says, test on your real task, and only move up if quality actually requires it. The cheap tiers exist because most work does not need a flagship.
+
+## Which model for which kind of professional
+
+The same logic, mapped to who you are and what your day actually looks like.
+
+| Role / field | Day-to-day driver | Reach for when... |
+|---|---|---|
+| Software engineer | Sonnet 4.6 / GPT-5.3-Codex | Gnarly bug or large refactor: Fable 5 or GPT-5.5 |
+| Founder / solopreneur | Pro plan with Sonnet 4.6 | Big strategic or financial call: Opus 4.8 |
+| Content marketer / SEO | Sonnet 4.6 | Cornerstone research piece: Opus 4.8 |
+| Data analyst / scientist | Opus 4.8 | Bulk parsing and labeling: Haiku 4.5 |
+| Researcher / academic | Opus 4.8, Fable 5 for the hardest problems | Note guarded-domain fallbacks on Fable 5 |
+| Customer support / ops | Haiku 4.5 | Nuanced escalations and summaries: Sonnet 4.6 |
+| Lawyer / compliance / finance | Opus 4.8 | Long contracts and filings: 1M context on Opus |
+| Healthcare / life sciences | Opus 4.8 | Avoid Fable 5 for biology/chemistry (it falls back anyway) |
+| Designer / product | Sonnet 4.6 with vision | Reviewing dense mockups or flows: Opus 4.8 |
+| Student / learner | Free or Pro with Sonnet 4.6 | Heavy project weeks: Max 5x |
+| Enterprise / regulated org | Opus 4.8 on Enterprise (500k context, audit logs) | Governance and compliance needs |
+
+Two cross-cutting notes. If your field touches cybersecurity, biology, chemistry, or distillation, remember that Fable 5 quietly falls back to Opus 4.8 in those domains, so you may as well plan around Opus there. And if you are a heavy daily user in any of these roles, a Max or Codex Pro subscription almost always beats per-token API billing.
+
 ## The bottom line
 
 As of June 2026, Claude's lineup runs from Fable 5 at $10/$50 down to Haiku at $1/$5, with a flagship Opus 4.8 at $5/$25 and a 1M-token context that is flat-rate on the newer models. OpenAI's Codex runs on the GPT-5 family, from an efficient GPT-5.3-Codex at $1.75/$14 to a token-efficient GPT-5.5 at $5/$30, billed through a token-credit system since April.
