@@ -1,5 +1,4 @@
 ---
-import EmailSubscribe from './EmailSubscribe.astro';
 import SocialShare from './SocialShare.astro';
 import UpvoteButton from './UpvoteButton.astro';
 
@@ -8,46 +7,40 @@ interface Props {
 	url: string;
 	slug: string;
 	tags?: string[];
+	description?: string;
+	image?: string;
 }
 
-const { title, url, slug, tags = [] } = Astro.props;
+const { title, url, slug, tags = [], description, image } = Astro.props;
 ---
 
 <aside class="engagement" aria-label="Post engagement">
 	<div class="engagement-row">
 		<UpvoteButton slug={slug} />
-		<SocialShare title={title} url={url} tags={tags} />
-	</div>
-	<div class="engagement-subscribe">
-		<EmailSubscribe />
+		<SocialShare title={title} url={url} tags={tags} description={description} image={image} />
 	</div>
 </aside>
 
 <style>
 	.engagement {
-		margin-top: 3rem;
-		padding: 1.8rem 0;
+		margin: 0 0 1.6rem;
+		padding: 1rem 0;
 		border-top: 1px solid var(--line);
 		border-bottom: 1px solid var(--line);
 	}
 
 	.engagement-row {
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
 		justify-content: space-between;
 		gap: 1rem;
 		flex-wrap: wrap;
 	}
 
-	.engagement-subscribe {
-		margin-top: 1.4rem;
-		padding-top: 1.2rem;
-		border-top: 1px solid var(--line);
-	}
-
 	@media (max-width: 520px) {
 		.engagement-row {
 			flex-direction: column;
+			align-items: flex-start;
 		}
 	}
 </style>

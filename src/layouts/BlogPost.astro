@@ -606,6 +606,7 @@ const structuredData = [articleSchema, itemListSchema, faqSchema, breadcrumbSche
 						</div>
 					</header>
 					<EditorialImage image={heroImage} className="hero-visual" loading="eager" />
+					<PostEngagement title={title} url={canonical} slug={slug} tags={tags} description={description} image={ogImageAbs} />
 					<div class="prose">
 						<slot />
 					</div>
@@ -616,7 +617,6 @@ const structuredData = [articleSchema, itemListSchema, faqSchema, breadcrumbSche
 						lede="One short email every Tuesday on AEO, GEO, AI Overviews, and what is actually changing in AI search."
 						cta="Subscribe by Email"
 					/>
-					<PostEngagement title={title} url={canonical} slug={slug} tags={tags} />
 				</div>
 			</article>
 		</main>
