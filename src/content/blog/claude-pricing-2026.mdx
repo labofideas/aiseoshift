@@ -1,0 +1,84 @@
+---
+title: "Claude Pricing in 2026: Every Model, Plan, and Cost Lever Explained"
+description: "A complete guide to Claude pricing in 2026: API token rates for Fable 5, Opus 4.8, Sonnet 4.6, and Haiku 4.5, plus Pro, Max, Team, and Enterprise subscription plans and the levers that cut your bill."
+deck: "Every Claude model rate, every subscription tier, and the caching and batch levers that decide your real cost."
+pubDate: 2026-06-10
+updatedDate: 2026-06-10
+category: "Tooling"
+tags: ["claude", "pricing", "ai-models", "anthropic"]
+faqs:
+  - q: "How much does the Claude API cost in 2026?"
+    a: "Per million tokens (input/output): Claude Fable 5 is $10/$50, Opus 4.8 is $5/$25, Sonnet 4.6 is $3/$15, and Haiku 4.5 is $1/$5. Prompt caching cuts cached input about 90% and the Batch API is 50% cheaper."
+  - q: "What is the cheapest Claude model?"
+    a: "Claude Haiku 4.5 at $1 input / $5 output per million tokens is the cheapest in the lineup, built for high-volume, latency-sensitive tasks like classification, extraction, and routing."
+  - q: "Is Claude Pro or Max better value?"
+    a: "Pro ($20/mo) suits most individuals. If you use Claude Code heavily and regularly hit limits, Max 5x ($100/mo) or Max 20x ($200/mo) almost always beats per-token API billing, since the average Claude Code user runs about $6/day."
+---
+
+If you are budgeting for Claude in 2026, there are two separate pricing worlds: the per-token API and the flat-rate subscriptions. This guide covers both, plus the cost levers that matter more than which model you pick.
+
+Everything here is current as of June 10, 2026. Prices move often, so confirm against the official pages before you commit a budget.
+
+## Claude API pricing by model
+
+Anthropic runs a four-tier lineup, from the Mythos-class flagship down to the cheap, fast workhorse. Rates are per million tokens.
+
+| Model | Input ($/M) | Output ($/M) | Context | Best for |
+|---|---|---|---|---|
+| Claude Fable 5 | $10 | $50 | 1M | Hardest agentic, coding, research |
+| Claude Opus 4.8 | $5 | $25 | 1M | Flagship reasoning; Fast Mode $10/$50 |
+| Claude Sonnet 4.6 | $3 | $15 | 1M | Balanced daily driver |
+| Claude Haiku 4.5 | $1 | $5 | — | High-volume, fast, cheap tasks |
+
+**Fable 5** is the public, safeguarded deployment of Anthropic's Mythos-class weights, with a 1M-token context and up to 128k output tokens. It is the strongest model on coding and research benchmarks, but it falls back to Opus 4.8 in guarded domains (cybersecurity, biology, chemistry), so for those topics you are effectively paying for Opus anyway.
+
+**Opus 4.8** is the flagship most teams should default to for hard reasoning. At $5/$25 it is a fraction of older Opus generations, with a Fast Mode at $10/$50 for quicker output.
+
+**Sonnet 4.6** is the value sweet spot for everyday work, and **Haiku 4.5** is the volume tier where speed and cost beat maximum reasoning.
+
+## The cost levers that actually move your bill
+
+The headline rate is only the start. Three levers matter more:
+
+**Prompt caching cuts cached input by about 90%.** Any workflow that resends the same context (a system prompt, a codebase, a long document) should cache it. In agents and chat, this is the single biggest saving available.
+
+**The Batch API is 50% cheaper.** For asynchronous work (bulk generation, evals, pipelines), batch halves the cost.
+
+**Output is 5x input.** Output is the expensive half, so tighter, structured outputs cut bills faster than switching models.
+
+The 1M-token context is a flat rate on Opus 4.8, Opus 4.7, and Sonnet 4.6, so long context carries no surcharge.
+
+## Claude subscription plans
+
+If you use Claude through the app or Claude Code, you are on a subscription rather than token billing.
+
+| Plan | Price | What you get |
+|---|---|---|
+| Free | $0 | Basic access |
+| Pro | $20/mo ($17 annual) | 5x usage, flagship Opus, Claude Code |
+| Max 5x | $100/mo | ~5x Pro (~88k tokens / 5-hr window) |
+| Max 20x | $200/mo | ~20x Pro (~220k tokens / 5-hr window) |
+| Team Standard | $25/seat ($20 annual) | Collaboration, min 5 seats |
+| Team Premium | $125/seat ($100 annual) | Adds Claude Code |
+| Enterprise | Custom | 500k context, SCIM, audit logs, Compliance API |
+
+Anthropic's own data puts the average Claude Code user near $6/day, with 90% under $12/day. At full-time usage that is roughly $100-$200/month, which is exactly where Max sits. The rule of thumb: heavy daily users save on Max; light or spiky usage is cheaper on the API.
+
+## Which Claude plan should you pick?
+
+If you are an individual using Claude occasionally, Pro is plenty. If you live in Claude Code all day, jump to Max 5x and move to 20x only if you keep hitting limits. Teams that build with Claude need Team Premium for Claude Code access; everyone else on the team can sit on Standard. Enterprises with governance, audit, or data-residency needs go custom for the 500k context and compliance tooling.
+
+## FAQ
+
+**How much does the Claude API cost in 2026?**
+Per million tokens: Fable 5 $10/$50, Opus 4.8 $5/$25, Sonnet 4.6 $3/$15, Haiku 4.5 $1/$5. Caching cuts cached input ~90%; batch is 50% off.
+
+**What is the cheapest Claude model?**
+Haiku 4.5 at $1/$5 per million tokens.
+
+**Is Claude Pro or Max better value?**
+Pro for most individuals; Max if you use Claude Code heavily, since it beats per-token billing at full-time usage.
+
+This page is part of our full [AI model pricing and comparison guide](/blog/claude-models-openai-codex-pricing-2026). See also [OpenAI GPT pricing](/blog/openai-gpt-pricing-2026), [Gemini pricing](/blog/gemini-pricing-2026), and [Grok pricing](/blog/grok-pricing-2026), or jump to [the best AI model for coding](/blog/best-ai-model-for-coding-2026). For optimizing content for Anthropic's models, see our [Claude SEO guide](/claude-seo/).
+
+Verify against the official [Claude API pricing](https://platform.claude.com/docs/en/about-claude/pricing) and [Claude plans](https://claude.com/pricing) pages.
