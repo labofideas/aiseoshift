@@ -16,6 +16,7 @@ const blog = defineCollection({
 			author: z.string().default('AISEOShift Editorial Desk'),
 			featured: z.boolean().default(false),
 			draft: z.boolean().default(false),
+			faqs: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
 		}),
 });
 

@@ -1,15 +1,29 @@
 ---
-title: "Every Claude Model and OpenAI Codex in 2026: Full Pricing, Features, and How to Choose"
-description: "A complete, current reference for Claude's 2026 model lineup (Fable 5, Opus 4.8, Sonnet 4.6, Haiku 4.5) and OpenAI Codex: API token rates, subscription plans, context windows, features, and which to use for what."
-deck: "Token rates, context windows, subscription tiers, and the cost levers that actually move your bill. One reference, current as of June 2026."
+title: "Every Major AI Model in 2026: Claude, GPT, Gemini & Grok Pricing, Benchmarks, and How to Choose"
+description: "A complete, current reference for the 2026 AI model landscape: Claude (Fable 5, Opus 4.8, Sonnet, Haiku), OpenAI GPT and Codex, Google Gemini, and xAI Grok. API token rates, subscription plans, benchmarks, features, worked cost examples, and which model to use for which job and profession."
+deck: "Token rates, benchmarks, context windows, and which model fits which job and which professional, across Claude, GPT, Gemini, and Grok. One reference, kept current."
 pubDate: 2026-06-10
+updatedDate: 2026-06-10
 category: "Tooling"
-tags: ["ai-models", "claude", "openai", "pricing", "ai-tools"]
+tags: ["ai-models", "claude", "openai", "gemini", "pricing"]
+faqs:
+  - q: "What is the cheapest AI model in 2026?"
+    a: "Among the major frontier models, Grok 4.1 Fast is the cheapest at about $0.20 per million input tokens and $0.50 per million output tokens. On Anthropic's lineup, Claude Haiku 4.5 is the budget tier at $1/$5, and Google's Gemini 3 Flash is competitive at $0.50/$3."
+  - q: "Which AI model is best for coding in 2026?"
+    a: "On SWE-bench Verified the top scores cluster around GPT-5.5 (about 88.7%) and Claude Opus 4.8 (about 88.6%), with Claude Fable 5 higher (around 95%) in unguarded domains. For most teams the practical choice is Claude (via Claude Code) or GPT-5.3-Codex (via Codex); test both on your own codebase before committing."
+  - q: "How much does Claude cost per million tokens?"
+    a: "As of June 2026: Claude Fable 5 is $10 input / $50 output, Opus 4.8 is $5/$25, Sonnet 4.6 is $3/$15, and Haiku 4.5 is $1/$5. Prompt caching cuts cached input by about 90% and the Batch API is 50% cheaper."
+  - q: "Is Claude Fable 5 worth it over Opus 4.8?"
+    a: "For the hardest agentic, coding, and research tasks, yes, since it benchmarks a clear tier above Opus 4.8. But it costs double and falls back to Opus 4.8 in guarded domains like cybersecurity, biology, and chemistry, so for those topics or for routine work, Opus 4.8 is the better value."
+  - q: "Codex or Claude Code, which is better?"
+    a: "Both are autonomous coding agents. Claude Code runs on Anthropic's lineup with flat-rate 1M context; Codex runs on the GPT-5 family with a token-credit system and strong parallel cloud tasks. The deciding factor is which model your developers trust on your actual code, so trial both."
+  - q: "Should I use a subscription or pay per token?"
+    a: "If you use an AI coding agent full time, a subscription such as Claude Max or Codex Pro (roughly $100 to $200 per month) almost always beats per-token API billing. For light or spiky usage, the API or a lower-tier plan is cheaper."
 ---
 
-Pricing for frontier AI models changes almost monthly, and the official pages are scattered across API docs, plan pages, and help-center rate cards. This is a single, current reference for the two stacks most builders are comparing right now: Anthropic's Claude lineup and OpenAI's Codex.
+Pricing for frontier AI models changes almost monthly, and the official pages are scattered across API docs, plan pages, and help-center rate cards. This is a single, current reference for the four stacks most builders are comparing right now: Anthropic's Claude, OpenAI's GPT and Codex, Google's Gemini, and xAI's Grok.
 
-Everything below is accurate as of June 10, 2026. Because these numbers move fast, treat this as a working snapshot and confirm against the official pricing pages (linked at the end) before you budget anything important.
+**Last updated: June 10, 2026.** Everything below is accurate as of that date. Because these numbers move fast, treat this as a working snapshot and confirm against the official pricing pages (linked at the end) before you budget anything important.
 
 A note on how to read token pricing: rates are quoted per one million tokens, split into input (what you send) and output (what the model generates). Output almost always costs several times more than input, so output volume is usually what drives your bill.
 
@@ -105,6 +119,55 @@ Codex leans on the GPT-5 family, with GPT-5.3-Codex as an efficient default and 
 
 For most teams the deciding factors are not the spec sheet. They are which model your developers trust on your actual code, which context limits fit your repo, and which billing model matches your usage pattern. Run both on a real task from your own codebase before committing. Benchmarks are a starting point, not a verdict.
 
+## The full 2026 pricing comparison: Claude vs GPT vs Gemini vs Grok
+
+Claude and Codex are the focus above, but you are almost certainly weighing them against Google and xAI. Here is the whole field on one chart, by API token rate.
+
+| Provider | Model | Input ($/M) | Output ($/M) | Context | Notes |
+|---|---|---|---|---|---|
+| Anthropic | Claude Fable 5 | $10 | $50 | 1M | Mythos-class; guarded-domain fallback to Opus 4.8 |
+| Anthropic | Claude Opus 4.8 | $5 | $25 | 1M | Flagship; Fast Mode $10/$50 |
+| Anthropic | Claude Sonnet 4.6 | $3 | $15 | 1M | Balanced daily driver |
+| Anthropic | Claude Haiku 4.5 | $1 | $5 | — | Budget / high-volume |
+| OpenAI | GPT-5.5 | $5 | $30 | large | Token-efficient flagship; ~$0.50 cached input |
+| OpenAI | GPT-5.2 | $1.75 | $14 | large | Mainline general model |
+| OpenAI | GPT-5.3-Codex | $1.75 | $14 | large | Default model inside Codex |
+| Google | Gemini 3.1 Pro | $2 | $12 | 200k | $4/$18 above 200k tokens |
+| Google | Gemini 3 Flash | $0.50 | $3 | large | Budget price-performance pick |
+| xAI | Grok 4.3 | $1.25 | $2.50 | 1M | Cheap flagship |
+| xAI | Grok 4.1 Fast | $0.20 | $0.50 | 2M | Cheapest rate, largest context |
+
+A dash means the figure was not confirmed at publication; check the provider's docs. The short read: Grok leads on raw cost-efficiency, Gemini Flash is the budget price-performance pick, OpenAI sits in the competitive middle, and Claude runs a clean tier from Haiku at the bottom to Fable 5 at the top.
+
+On the consumer side the market has standardized: a roughly $20/month tier gets you flagship access from every provider, the premium tier is $200/month (ChatGPT Pro, Claude Max 20x), and Google AI Ultra tops out around $250/month for the full tool and video suite.
+
+## Benchmarks: how the models actually compare
+
+Price only matters next to capability. SWE-bench Verified (real-world coding) is the most-watched number; here is roughly where the field sits in mid-2026.
+
+| Model | SWE-bench Verified | Other notes |
+|---|---|---|
+| Claude Fable 5 | ~95.0% (unguarded) | SWE-bench Pro ~80.0%; GDPval ~1932 Elo |
+| GPT-5.5 | ~88.7% | Reported #1 on the public leaderboard |
+| Claude Opus 4.8 | ~88.6% | Current flagship |
+| Claude Opus 4.7 | ~87.6% | |
+| GPT-5.3-Codex | ~85.0% | Codex default |
+| Gemini 3.1 Pro | ~80.6% | GPQA ~94.3% (science) |
+| Grok 4 | ~72-75% self-reported | ~58.6% in independent testing |
+
+Two honest caveats. OpenAI has flagged training-data contamination concerns across all frontier models on SWE-bench Verified, and SWE-bench Pro (multi-language, standardized scaffold) is emerging as the more reliable successor. And scaffolding choices move scores a lot, which is why Grok's self-reported and independently tested numbers differ so much. Treat these as a guide, not gospel, and benchmark on your own work.
+
+## Capability and feature matrix
+
+| Family | Context | Vision input | Prompt caching | Notable |
+|---|---|---|---|---|
+| Claude 4.x + Fable 5 | up to 1M | Yes | ~90% off cached | Extended thinking, memory, context editing, batch 50% off |
+| OpenAI GPT-5 / Codex | large | Yes | ~10% of input rate | Token-credit billing, parallel cloud agents |
+| Google Gemini 3.x | 200k (Pro) | Yes | Available | Deep Google Workspace and tool integration |
+| xAI Grok 4.x | up to 2M | Yes | Available | Largest context windows, lowest prices |
+
+Feature availability and discount levels shift often, so verify the specifics (especially caching and batch terms for Gemini and Grok) against each provider's current docs.
+
 ## How to choose, and how to not overpay
 
 A few rules that hold across both stacks:
@@ -158,6 +221,51 @@ The same logic, mapped to who you are and what your day actually looks like.
 
 Two cross-cutting notes. If your field touches cybersecurity, biology, chemistry, or distillation, remember that Fable 5 quietly falls back to Opus 4.8 in those domains, so you may as well plan around Opus there. And if you are a heavy daily user in any of these roles, a Max or Codex Pro subscription almost always beats per-token API billing.
 
+## What it actually costs: three worked examples
+
+Token rates feel abstract until you run a real job through them. Here are three common workloads, with the assumptions stated so you can adjust. All figures are before caching and batch discounts, which can cut them dramatically.
+
+**1. A batch of 100 articles** (about 2k input + 2k output tokens each, so 0.2M input and 0.2M output total):
+
+| Model | Cost | With Batch (50% off) |
+|---|---|---|
+| Haiku 4.5 | $1.20 | $0.60 |
+| Sonnet 4.6 | $3.60 | $1.80 |
+| Gemini 3 Flash | $0.70 | — |
+| Opus 4.8 | $6.00 | $3.00 |
+
+**2. A RAG support chatbot** (10,000 messages/month, ~1k input + 300 output tokens each, so 10M input and 3M output):
+
+| Model | Monthly cost (no caching) | Why caching matters |
+|---|---|---|
+| Haiku 4.5 | ~$25 | Most input is a repeated system prompt and context |
+| Gemini 3 Flash | ~$14 | so caching can cut the input line by ~90% |
+| Sonnet 4.6 | ~$75 | turning these into a fraction of the listed cost |
+
+**3. A full day of AI-assisted coding** (heavy context reuse: ~5M input, mostly cached, plus ~500k output):
+
+Without caching, 5M input + 0.5M output on Sonnet 4.6 is about $22.50; on Opus 4.8 about $37.50. With prompt caching on the repeated codebase context, the input line drops by roughly 90%, which is exactly why Anthropic's own data puts the average Claude Code user near $6/day rather than $30+. The lesson repeats: caching, not model choice, is usually the biggest lever on a real bill.
+
+## Frequently asked questions
+
+**What is the cheapest AI model in 2026?**
+Among the major frontier models, Grok 4.1 Fast is the cheapest at about $0.20/$0.50 per million tokens. On Anthropic's lineup, Haiku 4.5 ($1/$5) is the budget tier, and Google's Gemini 3 Flash ($0.50/$3) is competitive.
+
+**Which AI model is best for coding?**
+The top SWE-bench Verified scores cluster around GPT-5.5 (~88.7%) and Claude Opus 4.8 (~88.6%), with Fable 5 higher (~95%) in unguarded domains. For most teams the real choice is Claude Code or GPT-5.3-Codex; test both on your own codebase.
+
+**How much does Claude cost per million tokens?**
+As of June 2026: Fable 5 $10/$50, Opus 4.8 $5/$25, Sonnet 4.6 $3/$15, Haiku 4.5 $1/$5. Caching cuts cached input ~90%; batch is 50% off.
+
+**Is Claude Fable 5 worth it over Opus 4.8?**
+For the hardest agentic, coding, and research work, yes. But it costs double and falls back to Opus 4.8 in guarded domains (cybersecurity, biology, chemistry), so for those topics or routine work, Opus 4.8 is better value.
+
+**Codex or Claude Code?**
+Both are autonomous coding agents. Claude Code runs on Anthropic's models with flat-rate 1M context; Codex runs on the GPT-5 family with token credits and strong parallel cloud tasks. Trial both on real code.
+
+**Subscription or pay-per-token?**
+Full-time users almost always save with a subscription (Claude Max or Codex Pro, ~$100-$200/mo). Light or spiky usage is cheaper on the API or a lower tier.
+
 ## The bottom line
 
 As of June 2026, Claude's lineup runs from Fable 5 at $10/$50 down to Haiku at $1/$5, with a flagship Opus 4.8 at $5/$25 and a 1M-token context that is flat-rate on the newer models. OpenAI's Codex runs on the GPT-5 family, from an efficient GPT-5.3-Codex at $1.75/$14 to a token-efficient GPT-5.5 at $5/$30, billed through a token-credit system since April.
@@ -166,4 +274,8 @@ The right choice is rarely the cheapest sticker price or the highest benchmark. 
 
 For the strategic read on what cheaper, more capable models mean for visibility and getting cited, see our piece on [Claude Fable 5 and AI search](/blog/claude-fable-5-ai-search-seo) and the broader [future of SEO in the AI era](/blog/future-of-seo-ai-era). For optimizing specifically for Anthropic's models, see our [Claude SEO guide](/claude-seo/).
 
-Sources and official pricing to verify against: [Claude API pricing](https://platform.claude.com/docs/en/about-claude/pricing), [Claude plans](https://claude.com/pricing), [Fable 5 and Mythos 5 docs](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5), and [OpenAI Codex pricing](https://developers.openai.com/codex/pricing).
+Sources and official pricing to verify against: [Claude API pricing](https://platform.claude.com/docs/en/about-claude/pricing), [Claude plans](https://claude.com/pricing), [Fable 5 and Mythos 5 docs](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5), [OpenAI Codex pricing](https://developers.openai.com/codex/pricing), [Gemini pricing](https://cloud.google.com/vertex-ai/generative-ai/pricing), and [Grok / xAI pricing](https://x.ai/api).
+
+---
+
+*Changelog — June 10, 2026: Expanded from Claude + Codex to a full cross-vendor comparison (added Google Gemini and xAI Grok), plus benchmark and feature matrices, worked cost examples, and an FAQ. This is a living reference and is refreshed as pricing changes.*
