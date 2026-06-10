@@ -28,7 +28,7 @@ type Props = CollectionEntry<'blog'>['data'] & {
 
 const {
 	title, description, deck, pubDate, updatedDate, category, tags, author,
-	slug, heroImage, ogImage, headings = [], relatedPosts = [], imageManifest = {},
+	slug, heroImage, ogImage, headings = [], relatedPosts = [], imageManifest = {}, faqs,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
@@ -84,9 +84,17 @@ const breadcrumbSchema = {
 	],
 };
 
-const structuredData = itemListSchema
-	? [articleSchema, itemListSchema, breadcrumbSchema]
-	: [articleSchema, breadcrumbSchema];
+const faqSchema = faqs && faqs.length ? {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faqs.map((f: { q: string; a: string }) => ({
+		'@type': 'Question',
+		name: f.q,
+		acceptedAnswer: { '@type': 'Answer', text: f.a },
+	})),
+} : null;
+
+const structuredData = [articleSchema, itemListSchema, faqSchema, breadcrumbSchema].filter(Boolean);
 ---
 
 <html lang="en">
