@@ -1,0 +1,364 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	provider: { '@type': 'Organization', name: SITE_TITLE },
+	areaServed: 'Worldwide',
+	serviceType: 'AI SEO for CBD and Hemp Brands',
+	description:
+		'AI SEO services for CBD and hemp brands that cannot run paid ads and need visibility in Google, AI Overviews, ChatGPT, and other AI search environments.',
+};
+
+const faqStructuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: [
+		{
+			'@type': 'Question',
+			name: 'Why do CBD brands need SEO more than other ecommerce?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Because the paid channels are closed. Google Ads, Meta, and most major ad platforms restrict or ban CBD advertising, so the usual paid-acquisition playbook is off the table. That makes organic and AI search the primary scalable way customers find a CBD brand. SEO is not one channel among many for CBD; for most brands it is the channel.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'Can CBD brands get cited by ChatGPT and Google AI Overviews?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Yes, but the bar is high. AI engines refuse or hedge on a large share of cannabis and CBD questions, so they cite only a small set of sources they trust. That concentration is an opportunity: the brands that earn that trust capture an outsized share of AI recommendations. We build the compliance, credibility, and content signals that get a CBD brand into that trusted set.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'How do you handle FDA compliance and health claims?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Carefully, because it is the whole game. CBD is a YMYL (Your Money or Your Life) category, and unsubstantiated health claims are both a legal risk and a ranking risk. We build content that educates and demonstrates expertise without making prohibited therapeutic claims, attribute it to credible authors, and structure it so AI systems can cite it confidently. Compliance and visibility are the same project, not competing ones.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'How much does CBD SEO cost?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'CBD and hemp SEO typically ranges from $2,000 to $8,000 per month depending on catalog size, number of product categories, and competition, with one-time audits starting lower. The investment reflects the compliance complexity and the fact that, with paid ads off the table, search is doing the work that ads do for other brands.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'Is CBD SEO different from regular ecommerce SEO?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Significantly. CBD SEO combines YMYL trust requirements, FDA-claim compliance, high-risk payment and reputation signals, and the reality that paid ads cannot backfill traffic gaps. It demands credentialed, claim-safe content, careful link building rather than spray-and-pray tactics, and structured data that helps AI engines trust a regulated product. Generic ecommerce SEO ignores all of this.',
+			},
+		},
+	],
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for CBD and Hemp Brands | ${SITE_TITLE}`}
+			description="CBD and hemp SEO powered by AI. When you cannot run ads, search is the channel. Get your brand cited in Google, AI Overviews, and ChatGPT."
+			structuredData={structuredData}
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+
+			.svc-figure { margin: var(--space-6) 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); overflow: hidden; }
+			.svc-figure svg { display: block; width: 100%; height: auto; }
+			.svc-figure figcaption { padding: 0.75rem 1rem; border-top: 1px solid var(--line); font-size: 0.85rem; line-height: 1.55; font-style: italic; color: var(--ink-muted); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for CBD & Hemp</span>
+					<h1>AI SEO for CBD and Hemp Brands</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						You cannot run Google Ads. You cannot run Meta Ads. For most CBD and hemp brands, that leaves organic and AI search as the only scalable way customers find you. And in the <a href="/seo/eeat/">YMYL category</a> CBD sits in, AI engines hedge or refuse most cannabis questions, citing only a small set of sources they trust. We help CBD brands become one of those cited, recommended sources.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<figure class="svc-figure" aria-labelledby="svc-figure-caption">
+				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="With paid ads blocked, CBD brands rely on compliant content, credentialed authors, Product schema, and reviews to become the cited brand in AI search">
+					<rect width="1080" height="360" fill="rgb(246,245,240)" />
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.06"><line x1="0" y1="48" x2="1080" y2="48" /><line x1="0" y1="312" x2="1080" y2="312" /></g>
+					<text x="48" y="32" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">PAID ADS BLOCKED</text>
+					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">YMYL · AI FILTER</text>
+					<text x="1032" y="32" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(184,85,46)">CITED BRAND</text>
+					<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
+						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Compliant, claim-safe content</text></g>
+						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Credentialed author bylines</text></g>
+						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Product &amp; FAQ schema</text></g>
+						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Third-party lab &amp; reviews</text></g>
+					</g>
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.2" fill="none">
+						<path d="M 288 100 C 360 100, 380 178, 440 178" /><path d="M 288 152 C 360 152, 380 178, 440 178" /><path d="M 288 204 C 360 204, 380 178, 440 178" /><path d="M 288 256 C 360 256, 380 178, 440 178" />
+					</g>
+					<g transform="translate(440 130)">
+						<rect width="200" height="100" fill="rgb(14,17,22)" rx="6" />
+						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES · YMYL</text>
+						<text x="100" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">ChatGPT · Perplexity</text>
+						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">AI Overviews · Gemini</text>
+					</g>
+					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+						<path d="M 640 180 C 700 180, 760 180, 820 180" />
+						<polyline points="810,174 820,180 810,186" />
+					</g>
+					<g transform="translate(820 110)">
+						<rect width="212" height="140" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="6" />
+						<circle cx="32" cy="38" r="18" fill="rgb(184,85,46)" />
+						<text x="32" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="rgb(250,250,247)">01</text>
+						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Cited CBD brand</text>
+						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">recommended by AI</text>
+						<rect x="20" y="76" width="172" height="6" rx="1" fill="rgb(14,17,22)" fill-opacity="0.75" />
+						<rect x="20" y="88" width="140" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="98" width="156" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="108" width="120" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+					</g>
+					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">With ads blocked, compliant signals decide which CBD brand AI engines cite.</text>
+				</svg>
+			</figure>
+
+			<section class="svc-section">
+				<h2>The challenge: CBD lives or dies on search</h2>
+				<p>
+					CBD and hemp brands face a marketing problem almost no other industry does: the paid channels are closed. That makes organic and AI search not a nice-to-have, but the foundation of the entire business.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Paid ads are off the table</strong><span>Google Ads, Meta, and most major platforms restrict or ban CBD advertising. The acquisition channel other brands lean on simply does not exist for you, which puts the full weight of growth on search.</span></div>
+					<div class="outcome"><strong>AI refuses most CBD questions</strong><span>AI engines hedge, disclaim, or refuse a large share of cannabis and CBD prompts. They cite only a small, trusted set of sources, so the few brands that earn that trust capture an outsized share of recommendations.</span></div>
+					<div class="outcome"><strong>Compliance is a ranking factor</strong><span>CBD is <a href="/seo/eeat/">YMYL</a>. Unsubstantiated health claims are both a legal risk and a trust-signal failure that gets a brand filtered out of AI answers. Visibility and compliance are the same project.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do</h2>
+				<p>Three services built specifically for CBD and hemp brands, covering audit, compliant authority building, and ongoing AI search growth.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>CBD Visibility & Compliance Audit</h3>
+								<p>A full audit of how your brand appears across Google Search, <a href="/ai-overviews-seo/">AI Overviews</a>, ChatGPT, and Perplexity for your products and categories, paired with a compliance review of your claims and trust signals, and a prioritized action plan.</p>
+								<ul><li>AI citation analysis for your products and category terms</li><li>FDA-claim and YMYL compliance review</li><li><a href="/seo/schema-markup/">Product and FAQ schema</a> audit</li><li>Trust-signal review (lab results, reviews, NAP)</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Compliant Authority Building</h3>
+								<p>Implementation that makes your brand citable: claim-safe educational content, credentialed author attribution, and the structured data AI engines need to trust a regulated product, without crossing FDA lines.</p>
+								<ul><li>Claim-safe educational and product content</li><li>Credentialed author <a href="/seo/eeat/">E-E-A-T</a> profiles</li><li>Product, Organization, and FAQ <a href="/seo/schema-markup/">schema</a></li><li>Careful, compliance-aware link building</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing CBD AI SEO</h3>
+								<p>Monthly support that combines category and education content, <a href="/blog/local-seo-2026-ai-overview-local-packs/">local SEO</a> for stores and clinics, and AI visibility monitoring into one operating rhythm built for the post-ad-ban reality.</p>
+								<ul><li>Category, product, and education content</li><li><a href="/geo/">Generative engine optimization</a> for AI citation</li><li><a href="/blog/local-seo-2026-ai-overview-local-packs/">Local SEO</a> for dispensaries and clinics</li><li>AI citation monitoring and monthly reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why CBD needs specialized AI SEO</h2>
+				<p>
+					CBD is not generic ecommerce. The channel constraints, the compliance stakes, and the AI-trust dynamics all demand an approach built for this specific industry.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Search is the whole channel</strong><span>With paid ads banned, search is doing the work ads do for everyone else. That raises both the stakes and the ROI of getting AI SEO right.</span></div>
+					<div class="outcome"><strong>Winner-takes-most citations</strong><span>Because AI engines trust so few CBD sources, citations concentrate. Established brands are widening their moat. The window to become a cited brand is open now, not indefinitely.</span></div>
+					<div class="outcome"><strong>Compliance is non-negotiable</strong><span>One careless health claim is a legal and trust liability. We treat claim-safe content and <a href="/ai-seo-shift/">AI visibility</a> as a single discipline, not a trade-off.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will review your brand's current visibility, your compliance posture, and where CBD AI SEO can have the biggest impact.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your brand and goals, and we will reply with a tailored plan and next steps.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="CBD/Hemp AI SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift CBD Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Brand / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service...</option>
+								<option value="CBD Visibility & Compliance Audit">CBD Visibility &amp; Compliance Audit</option>
+								<option value="Compliant Authority Building">Compliant Authority Building</option>
+								<option value="Ongoing CBD AI SEO">Ongoing CBD AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your brand and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="What products do you sell? Do you have physical locations? What are your growth goals?"></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>Why do CBD brands need SEO more than other ecommerce?</h3>
+						<p>Because the paid channels are closed. Google Ads, Meta, and most major platforms restrict or ban CBD advertising, so the usual paid-acquisition playbook is off the table. That makes organic and AI search the primary scalable way customers find a CBD brand. SEO is not one channel among many for CBD; for most brands it is the channel.</p>
+					</li>
+					<li>
+						<h3>Can CBD brands get cited by ChatGPT and AI Overviews?</h3>
+						<p>Yes, but the bar is high. AI engines refuse or hedge on a large share of cannabis and CBD questions, so they cite only a small set of sources they trust. That concentration is the opportunity: the brands that earn that trust capture an outsized share of <a href="/geo/">AI recommendations</a>. We build the compliance, credibility, and content signals that get a CBD brand into that trusted set.</p>
+					</li>
+					<li>
+						<h3>How do you handle FDA compliance and health claims?</h3>
+						<p>Carefully, because it is the whole game. CBD is a <a href="/seo/eeat/">YMYL</a> category, and unsubstantiated health claims are both a legal risk and a ranking risk. We build content that educates and demonstrates expertise without making prohibited therapeutic claims, attribute it to credible authors, and structure it so AI systems can cite it confidently.</p>
+					</li>
+					<li>
+						<h3>How much does CBD SEO cost?</h3>
+						<p>CBD and hemp SEO typically ranges from $2,000 to $8,000 per month depending on catalog size, categories, and competition, with one-time audits starting lower. The investment reflects the compliance complexity and the fact that, with paid ads off the table, search is doing the work that ads do for other brands.</p>
+					</li>
+					<li>
+						<h3>Is CBD SEO different from regular ecommerce SEO?</h3>
+						<p>Significantly. CBD SEO combines YMYL trust requirements, FDA-claim compliance, high-risk reputation signals, and the reality that paid ads cannot backfill traffic gaps. It demands credentialed, claim-safe content, careful link building, and <a href="/seo/schema-markup/">structured data</a> that helps AI engines trust a regulated product. Generic ecommerce SEO ignores all of this.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
