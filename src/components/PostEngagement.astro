@@ -1,6 +1,6 @@
 ---
 import SocialShare from './SocialShare.astro';
-import UpvoteButton from './UpvoteButton.astro';
+import ClapButton from './ClapButton.astro';
 
 interface Props {
 	title: string;
@@ -16,7 +16,7 @@ const { title, url, slug, tags = [], description, image } = Astro.props;
 
 <aside class="engagement" aria-label="Post engagement">
 	<div class="engagement-row">
-		<UpvoteButton slug={slug} />
+		<ClapButton slug={slug} />
 		<SocialShare title={title} url={url} tags={tags} description={description} image={image} />
 	</div>
 </aside>
