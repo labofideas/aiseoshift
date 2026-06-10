@@ -32,10 +32,12 @@ const { image, className = '', loading = 'lazy' } = Astro.props;
 				width={image.width}
 				height={image.height}
 			/>
-			<figcaption>
-				Photo by <a href={image.photographerUrl} target="_blank" rel="noreferrer">{image.photographer}</a> on{' '}
-				<a href={image.sourceUrl} target="_blank" rel="noreferrer">{image.sourceName}</a>
-			</figcaption>
+			{image.photographer && (
+				<figcaption>
+					Photo by <a href={image.photographerUrl} target="_blank" rel="noreferrer">{image.photographer}</a> on{' '}
+					<a href={image.sourceUrl} target="_blank" rel="noreferrer">{image.sourceName}</a>
+				</figcaption>
+			)}
 		</figure>
 	)
 }
