@@ -1,0 +1,75 @@
+---
+title: "OpenAI GPT & ChatGPT Pricing in 2026: Every Model and Plan Explained"
+description: "A complete guide to OpenAI pricing in 2026: API token rates for GPT-5.5, GPT-5.4 and its Mini and Nano variants, GPT-5.3-Codex, plus ChatGPT Plus, Pro, Team, and Enterprise plans and the Codex credit system."
+deck: "Every GPT API rate, the Codex coding agent, and the ChatGPT plans, with the cost levers that matter."
+pubDate: 2026-06-10
+updatedDate: 2026-06-10
+category: "Tooling"
+tags: ["openai", "pricing", "ai-models", "gpt"]
+faqs:
+  - q: "How much does the OpenAI API cost in 2026?"
+    a: "Per million tokens (input/output): GPT-5.5 is $5/$30 (GPT-5.5-pro $30/$180), GPT-5.4 is $2.50/$15, GPT-5.4 Mini is $0.75/$4.50, GPT-5.4 Nano is $0.20/$1.25, and the Codex coding model GPT-5.3-Codex is $1.75/$14."
+  - q: "What is the cheapest OpenAI model?"
+    a: "Among current GPT-5 models, GPT-5.4 Nano at $0.20 input / $1.25 output per million tokens is the cheapest, with legacy options like GPT-4.1 nano ($0.10/$0.40) cheaper still for simple tasks."
+  - q: "How does Codex billing work?"
+    a: "Since April 2, 2026, Codex bills with token-based credits across all plans, consumed as (input x rate) + (cached input x cached rate) + (output x rate). Cached input costs roughly 10% of the input rate, the biggest single saving in agentic workflows."
+---
+
+OpenAI's 2026 pricing spans a wide GPT-5 lineup, the Codex coding agent, and ChatGPT subscription plans. This guide pulls the current numbers into one place.
+
+Everything here is accurate as of June 10, 2026. Confirm against the official pages before budgeting, since rates change often.
+
+## OpenAI API pricing by model
+
+Rates are per million tokens, input/output.
+
+| Model | Input ($/M) | Output ($/M) | Best for |
+|---|---|---|---|
+| GPT-5.5 | $5 | $30 | Token-efficient flagship; 1M context |
+| GPT-5.5-pro | $30 | $180 | Maximum capability, premium price |
+| GPT-5.4 | $2.50 | $15 | Recommended production workhorse |
+| GPT-5.4 Mini | $0.75 | $4.50 | Budget mid-tier |
+| GPT-5.4 Nano | $0.20 | $1.25 | Cheapest current tier |
+| GPT-5.3-Codex | $1.75 | $14 | Default model inside Codex |
+
+**GPT-5.5** is the flagship, notable for reaching strong results with fewer tokens, which can offset its higher per-token rate. **GPT-5.4** is the practical workhorse for production at $2.50/$15, with Mini and Nano variants for cheaper, lighter jobs. For coding, **GPT-5.3-Codex** is the default inside the Codex agent.
+
+Legacy budget models remain available, including GPT-4.1 nano around $0.10/$0.40 for simple, high-volume tasks.
+
+## Codex: OpenAI's coding agent
+
+Codex is OpenAI's cloud-based autonomous coding agent powered by the GPT-5 family. It runs multi-step tasks in isolated sandboxes and works in parallel across projects, making it the direct competitor to Anthropic's Claude Code.
+
+Since April 2, 2026, Codex bills with token-based credits rather than per message. Credits are consumed as input plus cached input plus output, each at the model's rate. Cached input (repeated project context) costs roughly 10% of the input rate, which is the most important cost lever in any agentic workflow.
+
+## ChatGPT and Codex subscription plans
+
+| Plan | Price | Notes |
+|---|---|---|
+| ChatGPT Plus | $20/mo | Flagship access for individuals |
+| ChatGPT Pro | $200/mo | Highest limits; heavy users |
+| Codex Plus | $20/mo | 10-60 cloud tasks / 5-hr window |
+| Codex Pro (5x) | $100/mo | ~5x capacity; active developers |
+| ChatGPT Team | $25-$30/seat | GPT-5.5 access, shared workspace, admin |
+| Enterprise | Custom | Governance, security, scale |
+
+In practice, Codex runs roughly $100-$200 per developer per month, with wide variance based on model choice, parallel instances, and automation.
+
+## Which OpenAI option should you pick?
+
+For everyday assistant use, ChatGPT Plus is enough. For full-time coding with the Codex agent, Codex Pro almost always beats per-token billing. On the API, default to GPT-5.4 for production, drop to Mini or Nano for routine jobs, and reserve GPT-5.5 or 5.5-pro for the work that genuinely needs the extra capability. Cache aggressively; it is the single biggest saving.
+
+## FAQ
+
+**How much does the OpenAI API cost in 2026?**
+GPT-5.5 $5/$30 (pro $30/$180), GPT-5.4 $2.50/$15, GPT-5.4 Mini $0.75/$4.50, GPT-5.4 Nano $0.20/$1.25, GPT-5.3-Codex $1.75/$14.
+
+**What is the cheapest OpenAI model?**
+GPT-5.4 Nano ($0.20/$1.25), with legacy GPT-4.1 nano cheaper for simple tasks.
+
+**How does Codex billing work?**
+Token credits since April 2026; cached input is ~10% of the input rate.
+
+This page is part of our full [AI model pricing and comparison guide](/blog/claude-models-openai-codex-pricing-2026). See also [Claude pricing](/blog/claude-pricing-2026), [Gemini pricing](/blog/gemini-pricing-2026), and [Grok pricing](/blog/grok-pricing-2026), or [the best AI model for coding](/blog/best-ai-model-for-coding-2026).
+
+Verify against the official [OpenAI API pricing](https://openai.com/api/pricing/) and [Codex pricing](https://developers.openai.com/codex/pricing) pages.
