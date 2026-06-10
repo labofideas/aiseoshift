@@ -1,0 +1,40 @@
+name: AI Pricing Refresh Reminder
+
+# Opens a monthly issue reminding us to refresh AI model pricing and benchmarks
+# across the AI-model pillar and its cluster. See docs/ai-pricing-refresh-checklist.md.
+
+on:
+  schedule:
+    # 09:00 UTC on the 1st of every month
+    - cron: '0 9 1 * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Open monthly refresh issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          MONTH="$(date -u +'%B %Y')"
+          TITLE="Monthly AI pricing & benchmark refresh — ${MONTH}"
+
+          # Skip if an open issue with this title already exists.
+          EXISTING="$(gh issue list --state open --search "in:title \"${TITLE}\"" --json number --jq 'length')"
+          if [ "${EXISTING}" != "0" ]; then
+            echo "Reminder issue for ${MONTH} already exists. Skipping."
+            exit 0
+          fi
+
+          gh issue create \
+            --title "${TITLE}" \
+            --body-file docs/ai-pricing-refresh-checklist.md

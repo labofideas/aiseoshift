@@ -1583,5 +1583,41 @@
 			"height": 675,
 			"bytes": 17492
 		}
+	},
+	"future-of-seo-ai-era": {
+		"hero": {
+			"src": "/images/posts/future-of-seo-ai-era-hero.webp",
+			"alt": "The Future of SEO in the AI Era — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 17106
+		}
+	},
+	"local-seo-2026-ai-overview-local-packs": {
+		"hero": {
+			"src": "/images/posts/local-seo-2026-ai-overview-local-packs-hero.webp",
+			"alt": "Local SEO in 2026 — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 13216
+		}
+	},
+	"ai-metered-utility-future-of-seo": {
+		"hero": {
+			"src": "/images/posts/ai-metered-utility-future-of-seo-hero.webp",
+			"alt": "When Intelligence Is Metered — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 18772
+		}
+	},
+	"claude-fable-5-ai-search-seo": {
+		"hero": {
+			"src": "/images/posts/claude-fable-5-ai-search-seo-hero.webp",
+			"alt": "Claude Fable 5 and AI Search — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 17176
+		}
 	}
 }
