@@ -1619,5 +1619,14 @@
 			"height": 675,
 			"bytes": 17176
 		}
+	},
+	"google-trends-ai-fanout-data": {
+		"hero": {
+			"src": "/images/posts/google-trends-ai-fanout-data-hero.webp",
+			"alt": "Google Trends is breaking: AI fan-out queries are polluting search data — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21206
+		}
 	}
 }
