@@ -1,0 +1,130 @@
+---
+title: "Every Claude Model and OpenAI Codex in 2026: Full Pricing, Features, and How to Choose"
+description: "A complete, current reference for Claude's 2026 model lineup (Fable 5, Opus 4.8, Sonnet 4.6, Haiku 4.5) and OpenAI Codex: API token rates, subscription plans, context windows, features, and which to use for what."
+deck: "Token rates, context windows, subscription tiers, and the cost levers that actually move your bill. One reference, current as of June 2026."
+pubDate: 2026-06-10
+category: "Tooling"
+tags: ["ai-models", "claude", "openai", "pricing", "ai-tools"]
+---
+
+Pricing for frontier AI models changes almost monthly, and the official pages are scattered across API docs, plan pages, and help-center rate cards. This is a single, current reference for the two stacks most builders are comparing right now: Anthropic's Claude lineup and OpenAI's Codex.
+
+Everything below is accurate as of June 10, 2026. Because these numbers move fast, treat this as a working snapshot and confirm against the official pricing pages (linked at the end) before you budget anything important.
+
+A note on how to read token pricing: rates are quoted per one million tokens, split into input (what you send) and output (what the model generates). Output almost always costs several times more than input, so output volume is usually what drives your bill.
+
+## The Claude model lineup (June 2026)
+
+Anthropic now runs a four-tier lineup, from the new Mythos-class flagship down to the fast, cheap workhorse.
+
+| Model | Input ($/M) | Output ($/M) | Context | Max output | Best for |
+|---|---|---|---|---|---|
+| Claude Fable 5 | $10 | $50 | 1M | 128k | Hardest agentic, coding, research |
+| Claude Opus 4.8 | $5 | $25 | 1M | — | Flagship reasoning, complex work |
+| Claude Sonnet 4.6 | $3 | $15 | 1M | — | Balanced daily driver |
+| Claude Haiku 4.5 | $1 | $5 | — | — | High-volume, fast, cheap tasks |
+
+A few things worth unpacking.
+
+**Claude Fable 5** (released June 9, 2026) is the first publicly available model from Anthropic's Mythos class. It supports a 1M-token context window by default and up to 128k output tokens per request. Adaptive thinking is always on, and it ships with effort and task budgets, memory, context editing, compaction, and vision input. In unguarded domains it sits a clear tier above Opus 4.8, reportedly scoring 95.0% versus 88.6% on SWE-bench Verified and 80.0% versus 69.2% on SWE-bench Pro. One important caveat: Fable 5 is the safeguarded public deployment of the same weights as the restricted Claude Mythos 5, and requests touching cybersecurity, biology, chemistry, or distillation fall back to Opus 4.8. It is also a Covered Model with 30-day data retention and no zero-data-retention option.
+
+**Claude Opus 4.8** (launched May 28, 2026) is the flagship for complex reasoning and the default for most heavy knowledge work. At $5/$25 it costs a fraction of older Opus generations, and it offers a Fast Mode at $10/$50 for faster output without dropping to a smaller model. It supports the 1M-token context window.
+
+**Claude Sonnet 4.6** at $3/$15 is the balanced daily driver: most of the capability for routine work at a meaningfully lower price, also with 1M context.
+
+**Claude Haiku 4.5** at $1/$5 is the speed-and-volume tier for classification, extraction, routing, and other high-throughput tasks where latency and cost matter more than maximum reasoning.
+
+## The Claude cost levers that actually matter
+
+The headline token rate is only the starting point. Three levers move your real bill more than which model you pick:
+
+**Prompt caching cuts cached input by about 90%.** If you reuse the same context across turns (a system prompt, a codebase, a long document), caching is the single biggest optimization available. In agentic and chat workloads where context repeats constantly, this is the difference between a sane bill and a scary one.
+
+**Batch processing is 50% cheaper.** For anything asynchronous (bulk generation, evaluations, offline pipelines), the Batch API halves the cost across models.
+
+**Output is 5x input across the lineup.** Because output is the expensive half, the cheapest optimization is often just asking for less: tighter outputs, structured formats, and not regenerating what you already have.
+
+**The 1M context window is a flat rate on the newer models.** Opus 4.8, Opus 4.7, and Sonnet 4.6 support 1M-token context with no surcharge, so you can use long context without a pricing penalty.
+
+## Claude subscription plans
+
+If you are using Claude through the app or Claude Code rather than the raw API, you are on a subscription, not token billing.
+
+| Plan | Price | What you get |
+|---|---|---|
+| Free | $0 | Basic access |
+| Pro | $20/mo ($17/mo annual) | 5x usage, flagship Opus access, Claude Code in terminal/web/desktop |
+| Max 5x | $100/mo | ~5x Pro usage (~88k tokens / 5-hr window) |
+| Max 20x | $200/mo | ~20x Pro usage (~220k tokens / 5-hr window) |
+| Team Standard | $25/seat/mo ($20 annual) | Collaboration, min 5 seats |
+| Team Premium | $125/seat/mo ($100 annual) | Adds Claude Code |
+| Enterprise | Custom | 500k context, SCIM, audit logs, Compliance API |
+
+For Claude Code specifically, Anthropic's own data puts the average user at about $6 per developer per day, with 90% of users staying under $12/day. At full-time usage that lands around $100-$200 per developer per month, which is exactly where the Max plan sits. So the practical rule: heavy Claude Code users usually come out ahead on Max 5x or 20x rather than paying per token.
+
+## OpenAI Codex: what it actually is
+
+Codex is easy to misunderstand because the name has been reused. In 2026, Codex is OpenAI's cloud-based autonomous coding agent, powered by the GPT-5 family. It runs multi-step software tasks in isolated sandboxes and can work in parallel across many projects. It is the closest direct competitor to Anthropic's Claude Code, not a single model.
+
+The billing model changed meaningfully this year. On April 2, 2026, OpenAI switched Codex from per-message billing to token-based credits across all plans. Credits are now consumed as (input tokens x input rate) + (cached input tokens x cached rate) + (output tokens x output rate), with rates varying by the underlying model.
+
+## Codex models and API pricing
+
+| Model | Input ($/M) | Output ($/M) | Notes |
+|---|---|---|---|
+| GPT-5.3-Codex | $1.75 | $14 | Default for many agent tasks and code review |
+| GPT-5.4-Mini | lower-cost tier | lower-cost tier | Designed for lighter tasks, lower credit rate |
+| GPT-5.5 | $5 | $30 | Higher capability, uses fewer tokens; $0.50 cached input |
+
+**GPT-5.3-Codex** (released February 24, 2026) is the workhorse: strong agentic performance at $1.75/$14, and the default for code review and many agent tasks.
+
+**GPT-5.4-Mini** is the lighter, cheaper option for simpler tasks where you do not need full agentic muscle.
+
+**GPT-5.5** is the high-capability tier at $5/$30, notable because it is designed to reach comparable results using significantly fewer tokens than GPT-5.4, which can offset its higher per-token rate. Cached input is around $0.50/M.
+
+As with Claude, cached input is the big lever: repeated context costs roughly 10% of the regular input rate, the most important single cost optimization in agentic workflows where the same project context is sent turn after turn.
+
+## Codex subscription plans
+
+| Plan | Price | What you get |
+|---|---|---|
+| Plus | $20/mo | 10-60 cloud tasks per 5-hr window, full GPT-5.3-Codex access |
+| Pro (5x) | $100/mo | ~5x Plus capacity; the sweet spot for active developers |
+
+In practice, Codex runs roughly $100-$200 per developer per month, with wide variance depending on which model you use, how many parallel instances you run, how much you automate, and whether you lean on fast mode.
+
+## Codex vs Claude Code: how to think about it
+
+If your real question is "which coding agent," here is the honest framing.
+
+Both are cloud-capable autonomous agents that run multi-step tasks, work in sandboxes, and bill by tokens or subscription. The differences that matter day to day:
+
+Claude Code leans on Anthropic's lineup, where Opus 4.8 and now Fable 5 post the highest published SWE-bench scores, and the 1M-token context is a flat rate. If you work in large codebases where long context without a surcharge matters, that is a real advantage.
+
+Codex leans on the GPT-5 family, with GPT-5.3-Codex as an efficient default and GPT-5.5 as a token-efficient high-end option. Its credit system and parallel cloud tasks are well suited to running many automated jobs at once.
+
+For most teams the deciding factors are not the spec sheet. They are which model your developers trust on your actual code, which context limits fit your repo, and which billing model matches your usage pattern. Run both on a real task from your own codebase before committing. Benchmarks are a starting point, not a verdict.
+
+## How to choose, and how to not overpay
+
+A few rules that hold across both stacks:
+
+Match the model to the task. Do not run a flagship on work a mid-tier model handles fine. Haiku, Sonnet, and GPT-5.4-Mini exist precisely so you do not pay Opus or GPT-5.5 rates for routine jobs.
+
+Cache aggressively. On both platforms, cached input is the single biggest saving (about 90% off on Claude, roughly 10% of input rate on Codex). Any workflow that resends the same context should be caching it.
+
+Use batch for anything asynchronous. Claude's Batch API is 50% off for non-interactive workloads.
+
+Pick subscription over API once you are a heavy daily user. If you are coding full time, Claude Max or Codex Pro almost always beats per-token billing. If your usage is spiky or light, the API or a lower tier wins.
+
+Watch output, not just input. Output is where the cost concentrates. Tighter prompts and structured outputs cut bills faster than switching models.
+
+## The bottom line
+
+As of June 2026, Claude's lineup runs from Fable 5 at $10/$50 down to Haiku at $1/$5, with a flagship Opus 4.8 at $5/$25 and a 1M-token context that is flat-rate on the newer models. OpenAI's Codex runs on the GPT-5 family, from an efficient GPT-5.3-Codex at $1.75/$14 to a token-efficient GPT-5.5 at $5/$30, billed through a token-credit system since April.
+
+The right choice is rarely the cheapest sticker price or the highest benchmark. It is the model your team trusts on your real work, at a context limit that fits your codebase, billed in a way that matches how you actually use it. Pick on that, then use caching, batching, and right-sizing to keep the bill sane.
+
+For the strategic read on what cheaper, more capable models mean for visibility and getting cited, see our piece on [Claude Fable 5 and AI search](/blog/claude-fable-5-ai-search-seo) and the broader [future of SEO in the AI era](/blog/future-of-seo-ai-era). For optimizing specifically for Anthropic's models, see our [Claude SEO guide](/claude-seo/).
+
+Sources and official pricing to verify against: [Claude API pricing](https://platform.claude.com/docs/en/about-claude/pricing), [Claude plans](https://claude.com/pricing), [Fable 5 and Mythos 5 docs](https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5), and [OpenAI Codex pricing](https://developers.openai.com/codex/pricing).
