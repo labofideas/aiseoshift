@@ -845,120 +845,743 @@
 		}
 	},
 	"best-ai-image-detectors-2026": {
-		"hero": { "src": "/images/posts/best-ai-image-detectors-2026-hero.webp", "alt": "AI image detection and content authenticity analysis", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-image-detectors-2026", "width": 1200, "height": 675, "bytes": 85204 },
-		"inline": [{ "src": "/images/posts/best-ai-image-detectors-2026-inline-1.webp", "alt": "Comparison of AI image detector tools by accuracy", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-image-detectors-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+		"hero": {
+			"src": "/images/posts/best-ai-image-detectors-2026-hero.webp",
+			"alt": "AI image detection and content authenticity analysis",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/best-ai-image-detectors-2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		},
+		"inline": [
+			{
+				"src": "/images/posts/best-ai-image-detectors-2026-inline-1.webp",
+				"alt": "Comparison of AI image detector tools by accuracy",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/best-ai-image-detectors-2026",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
 	},
 	"new-chatgpt-plans-2026": {
-		"hero": { "src": "/images/posts/new-chatgpt-plans-2026-hero.webp", "alt": "ChatGPT subscription plans and pricing tiers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/new-chatgpt-plans-2026", "width": 1200, "height": 675, "bytes": 64892 },
-		"inline": [{ "src": "/images/posts/new-chatgpt-plans-2026-inline-1.webp", "alt": "ChatGPT plan comparison table", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/new-chatgpt-plans-2026", "width": 1200, "height": 675, "bytes": 123376 }]
+		"hero": {
+			"src": "/images/posts/new-chatgpt-plans-2026-hero.webp",
+			"alt": "ChatGPT subscription plans and pricing tiers in 2026",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/new-chatgpt-plans-2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 64892
+		},
+		"inline": [
+			{
+				"src": "/images/posts/new-chatgpt-plans-2026-inline-1.webp",
+				"alt": "ChatGPT plan comparison table",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/new-chatgpt-plans-2026",
+				"width": 1200,
+				"height": 675,
+				"bytes": 123376
+			}
+		]
 	},
 	"claude-updates-march-april-2026": {
-		"hero": { "src": "/images/posts/claude-updates-march-april-2026-hero.webp", "alt": "Claude AI model updates and Anthropic news roundup", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026", "width": 1200, "height": 675, "bytes": 187976 },
-		"inline": [{ "src": "/images/posts/claude-updates-march-april-2026-inline-1.webp", "alt": "Timeline of Anthropic Claude releases", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026", "width": 1200, "height": 675, "bytes": 27286 }]
+		"hero": {
+			"src": "/images/posts/claude-updates-march-april-2026-hero.webp",
+			"alt": "Claude AI model updates and Anthropic news roundup",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 187976
+		},
+		"inline": [
+			{
+				"src": "/images/posts/claude-updates-march-april-2026-inline-1.webp",
+				"alt": "Timeline of Anthropic Claude releases",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/claude-updates-march-april-2026",
+				"width": 1200,
+				"height": 675,
+				"bytes": 27286
+			}
+		]
 	},
 	"semantic-seo-new-website-ranking": {
-		"hero": { "src": "/images/posts/semantic-seo-new-website-ranking-hero.webp", "alt": "Semantic SEO strategy for new websites without domain authority", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking", "width": 1200, "height": 675, "bytes": 32986 },
-		"inline": [{ "src": "/images/posts/semantic-seo-new-website-ranking-inline-1.webp", "alt": "Topic cluster diagram showing semantic SEO authority building", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking", "width": 1200, "height": 675, "bytes": 37536 }]
+		"hero": {
+			"src": "/images/posts/semantic-seo-new-website-ranking-hero.webp",
+			"alt": "Semantic SEO strategy for new websites without domain authority",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking",
+			"width": 1200,
+			"height": 675,
+			"bytes": 32986
+		},
+		"inline": [
+			{
+				"src": "/images/posts/semantic-seo-new-website-ranking-inline-1.webp",
+				"alt": "Topic cluster diagram showing semantic SEO authority building",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/semantic-seo-new-website-ranking",
+				"width": 1200,
+				"height": 675,
+				"bytes": 37536
+			}
+		]
 	},
 	"ai-news-roundup-march-april-2026": {
-		"hero": { "src": "/images/posts/ai-news-roundup-march-april-2026-hero.webp", "alt": "AI industry news roundup covering model releases funding and regulation", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-news-roundup-march-april-2026", "width": 1200, "height": 675, "bytes": 52340 },
-		"inline": [{ "src": "/images/posts/ai-news-roundup-march-april-2026-inline-1.webp", "alt": "AI funding and model release timeline March April 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-news-roundup-march-april-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+		"hero": {
+			"src": "/images/posts/ai-news-roundup-march-april-2026-hero.webp",
+			"alt": "AI industry news roundup covering model releases funding and regulation",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/ai-news-roundup-march-april-2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 52340
+		},
+		"inline": [
+			{
+				"src": "/images/posts/ai-news-roundup-march-april-2026-inline-1.webp",
+				"alt": "AI funding and model release timeline March April 2026",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/ai-news-roundup-march-april-2026",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
 	},
 	"ai-seo-shift": {
-		"hero": { "src": "/images/posts/ai-seo-shift-hero.webp", "alt": "The AI SEO shift from traditional rankings to AI citations and visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift", "width": 1200, "height": 675, "bytes": 7772 },
-		"inline": [{ "src": "/images/posts/ai-seo-shift-inline-1.webp", "alt": "Comparison of traditional SEO vs AI SEO strategy approaches", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift", "width": 1200, "height": 675, "bytes": 31596 }]
+		"hero": {
+			"src": "/images/posts/ai-seo-shift-hero.webp",
+			"alt": "The AI SEO shift from traditional rankings to AI citations and visibility",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 7772
+		},
+		"inline": [
+			{
+				"src": "/images/posts/ai-seo-shift-inline-1.webp",
+				"alt": "Comparison of traditional SEO vs AI SEO strategy approaches",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/ai-seo-shift",
+				"width": 1200,
+				"height": 675,
+				"bytes": 31596
+			}
+		]
 	},
 	"ai-keyword-research-reddit-youtube-forums": {
-		"hero": { "src": "/images/posts/ai-keyword-research-reddit-youtube-forums-hero.webp", "alt": "Mining Reddit YouTube and forums for AI keyword research", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-keyword-research-reddit-youtube-forums", "width": 1200, "height": 675, "bytes": 85204 },
-		"inline": [{ "src": "/images/posts/ai-keyword-research-reddit-youtube-forums-inline-1.webp", "alt": "Question-first content calendar for AI keyword research", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/ai-keyword-research-reddit-youtube-forums", "width": 1200, "height": 675, "bytes": 28978 }]
+		"hero": {
+			"src": "/images/posts/ai-keyword-research-reddit-youtube-forums-hero.webp",
+			"alt": "Mining Reddit YouTube and forums for AI keyword research",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/ai-keyword-research-reddit-youtube-forums",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		},
+		"inline": [
+			{
+				"src": "/images/posts/ai-keyword-research-reddit-youtube-forums-inline-1.webp",
+				"alt": "Question-first content calendar for AI keyword research",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/ai-keyword-research-reddit-youtube-forums",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
 	},
 	"multimodal-seo-images-video-audio": {
-		"hero": { "src": "/images/posts/multimodal-seo-images-video-audio-hero.webp", "alt": "Multimodal SEO optimizing images video and audio for AI search", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/multimodal-seo-images-video-audio", "width": 1200, "height": 675, "bytes": 85204 },
-		"inline": [{ "src": "/images/posts/multimodal-seo-images-video-audio-inline-1.webp", "alt": "Image alt text and video transcript optimization for AI", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/multimodal-seo-images-video-audio", "width": 1200, "height": 675, "bytes": 28978 }]
+		"hero": {
+			"src": "/images/posts/multimodal-seo-images-video-audio-hero.webp",
+			"alt": "Multimodal SEO optimizing images video and audio for AI search",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/multimodal-seo-images-video-audio",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		},
+		"inline": [
+			{
+				"src": "/images/posts/multimodal-seo-images-video-audio-inline-1.webp",
+				"alt": "Image alt text and video transcript optimization for AI",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/multimodal-seo-images-video-audio",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
 	},
 	"llm-crawler-optimization": {
-		"hero": { "src": "/images/posts/llm-crawler-optimization-hero.webp", "alt": "LLM crawler optimization for GPTBot ClaudeBot and AI search bots", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/llm-crawler-optimization", "width": 1200, "height": 675, "bytes": 85204 },
-		"inline": [{ "src": "/images/posts/llm-crawler-optimization-inline-1.webp", "alt": "Robots.txt and ai.txt configuration for AI crawlers", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/llm-crawler-optimization", "width": 1200, "height": 675, "bytes": 28978 }]
+		"hero": {
+			"src": "/images/posts/llm-crawler-optimization-hero.webp",
+			"alt": "LLM crawler optimization for GPTBot ClaudeBot and AI search bots",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/llm-crawler-optimization",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		},
+		"inline": [
+			{
+				"src": "/images/posts/llm-crawler-optimization-inline-1.webp",
+				"alt": "Robots.txt and ai.txt configuration for AI crawlers",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/llm-crawler-optimization",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
 	},
 	"omnichannel-ai-brand-presence": {
-		"hero": { "src": "/images/posts/omnichannel-ai-brand-presence-hero.webp", "alt": "Building omnichannel AI brand presence across LinkedIn YouTube Reddit", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence", "width": 1200, "height": 675, "bytes": 85204 },
-		"inline": [{ "src": "/images/posts/omnichannel-ai-brand-presence-inline-1.webp", "alt": "Platform strategy for AI visibility across multiple channels", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence", "width": 1200, "height": 675, "bytes": 28978 }]
+		"hero": {
+			"src": "/images/posts/omnichannel-ai-brand-presence-hero.webp",
+			"alt": "Building omnichannel AI brand presence across LinkedIn YouTube Reddit",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		},
+		"inline": [
+			{
+				"src": "/images/posts/omnichannel-ai-brand-presence-inline-1.webp",
+				"alt": "Platform strategy for AI visibility across multiple channels",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/omnichannel-ai-brand-presence",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
 	},
 	"best-ai-sales-tools-2026": {
-		"hero": { "src": "/images/posts/best-ai-sales-tools-2026-hero.webp", "alt": "Best AI sales tools for pipeline building and revenue growth in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026", "width": 1200, "height": 675, "bytes": 85204 },
-		"inline": [{ "src": "/images/posts/best-ai-sales-tools-2026-inline-1.webp", "alt": "Comparison of AI sales platforms by category and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026", "width": 1200, "height": 675, "bytes": 28978 }]
+		"hero": {
+			"src": "/images/posts/best-ai-sales-tools-2026-hero.webp",
+			"alt": "Best AI sales tools for pipeline building and revenue growth in 2026",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		},
+		"inline": [
+			{
+				"src": "/images/posts/best-ai-sales-tools-2026-inline-1.webp",
+				"alt": "Comparison of AI sales platforms by category and pricing",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/best-ai-sales-tools-2026",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
 	},
 	"best-web-scraping-proxy-tools-2026": {
-		"hero": { "src": "/images/posts/best-web-scraping-proxy-tools-2026-hero.webp", "alt": "Web scraping and proxy tools for AI data collection and SEO monitoring", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026", "width": 1200, "height": 675, "bytes": 69752 },
-		"inline": [{ "src": "/images/posts/best-web-scraping-proxy-tools-2026-inline-1.webp", "alt": "Comparison of proxy and scraping platforms by type and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026", "width": 1200, "height": 675, "bytes": 48086 }]
+		"hero": {
+			"src": "/images/posts/best-web-scraping-proxy-tools-2026-hero.webp",
+			"alt": "Web scraping and proxy tools for AI data collection and SEO monitoring",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 69752
+		},
+		"inline": [
+			{
+				"src": "/images/posts/best-web-scraping-proxy-tools-2026-inline-1.webp",
+				"alt": "Comparison of proxy and scraping platforms by type and pricing",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/best-web-scraping-proxy-tools-2026",
+				"width": 1200,
+				"height": 675,
+				"bytes": 48086
+			}
+		]
 	},
 	"best-ai-coding-tools-2026": {
-		"hero": { "src": "/images/posts/best-ai-coding-tools-2026-hero.webp", "alt": "Best AI coding tools for developers in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-coding-tools-2026", "width": 1200, "height": 675, "bytes": 69752 },
-		"inline": [{ "src": "/images/posts/best-ai-coding-tools-2026-inline-1.webp", "alt": "Comparison of AI code editors and app builders by features and pricing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-ai-coding-tools-2026", "width": 1200, "height": 675, "bytes": 48086 }]
+		"hero": {
+			"src": "/images/posts/best-ai-coding-tools-2026-hero.webp",
+			"alt": "Best AI coding tools for developers in 2026",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/best-ai-coding-tools-2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 69752
+		},
+		"inline": [
+			{
+				"src": "/images/posts/best-ai-coding-tools-2026-inline-1.webp",
+				"alt": "Comparison of AI code editors and app builders by features and pricing",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/best-ai-coding-tools-2026",
+				"width": 1200,
+				"height": 675,
+				"bytes": 48086
+			}
+		]
 	},
 	"wordpress-7-ai-release": {
-		"hero": { "src": "/images/posts/wordpress-7-ai-release-hero.webp", "alt": "WordPress 7.0 Armstrong release with native AI integration", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/wordpress-7-ai-release", "width": 1200, "height": 675, "bytes": 42580 },
-		"inline": [{ "src": "/images/posts/wordpress-7-ai-release-inline-1.webp", "alt": "WordPress 7.0 AI features including Connectors API and WP AI Client", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/wordpress-7-ai-release", "width": 1200, "height": 675, "bytes": 31596 }]
+		"hero": {
+			"src": "/images/posts/wordpress-7-ai-release-hero.webp",
+			"alt": "WordPress 7.0 Armstrong release with native AI integration",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/wordpress-7-ai-release",
+			"width": 1200,
+			"height": 675,
+			"bytes": 42580
+		},
+		"inline": [
+			{
+				"src": "/images/posts/wordpress-7-ai-release-inline-1.webp",
+				"alt": "WordPress 7.0 AI features including Connectors API and WP AI Client",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/wordpress-7-ai-release",
+				"width": 1200,
+				"height": 675,
+				"bytes": 31596
+			}
+		]
 	},
 	"google-ai-search-taking-your-content": {
-		"hero": { "src": "/images/posts/google-ai-search-taking-your-content-hero.webp", "alt": "Google AI search extracting website content for AI Overviews", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/google-ai-search-taking-your-content", "width": 1200, "height": 675, "bytes": 64892 },
-		"inline": [{ "src": "/images/posts/google-ai-search-taking-your-content-inline-1.webp", "alt": "Zero click search statistics and publisher traffic decline from AI Overviews", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/google-ai-search-taking-your-content", "width": 1200, "height": 675, "bytes": 123376 }]
+		"hero": {
+			"src": "/images/posts/google-ai-search-taking-your-content-hero.webp",
+			"alt": "Google AI search extracting website content for AI Overviews",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/google-ai-search-taking-your-content",
+			"width": 1200,
+			"height": 675,
+			"bytes": 64892
+		},
+		"inline": [
+			{
+				"src": "/images/posts/google-ai-search-taking-your-content-inline-1.webp",
+				"alt": "Zero click search statistics and publisher traffic decline from AI Overviews",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/google-ai-search-taking-your-content",
+				"width": 1200,
+				"height": 675,
+				"bytes": 123376
+			}
+		]
 	},
 	"best-seo-mcp-servers-github": {
-		"hero": { "src": "/images/posts/best-seo-mcp-servers-github-hero.webp", "alt": "Best SEO MCP servers on GitHub for AI-powered search optimization", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-seo-mcp-servers-github", "width": 1200, "height": 675, "bytes": 85204 },
-		"inline": [{ "src": "/images/posts/best-seo-mcp-servers-github-inline-1.webp", "alt": "Comparison of SEO MCP server features and ratings", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/best-seo-mcp-servers-github", "width": 1200, "height": 675, "bytes": 28978 }]
+		"hero": {
+			"src": "/images/posts/best-seo-mcp-servers-github-hero.webp",
+			"alt": "Best SEO MCP servers on GitHub for AI-powered search optimization",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/best-seo-mcp-servers-github",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		},
+		"inline": [
+			{
+				"src": "/images/posts/best-seo-mcp-servers-github-inline-1.webp",
+				"alt": "Comparison of SEO MCP server features and ratings",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/best-seo-mcp-servers-github",
+				"width": 1200,
+				"height": 675,
+				"bytes": 28978
+			}
+		]
 	},
 	"perplexity-bumblebee-open-source-scanner": {
-		"hero": { "src": "/images/posts/perplexity-bumblebee-open-source-scanner-hero.webp", "alt": "Perplexity Bumblebee open source supply chain security scanner for developers", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/perplexity-bumblebee-open-source-scanner", "width": 1200, "height": 675, "bytes": 69752 },
-		"inline": [{ "src": "/images/posts/perplexity-bumblebee-open-source-scanner-inline-1.webp", "alt": "Bumblebee scanning developer packages extensions and AI tool configs", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/perplexity-bumblebee-open-source-scanner", "width": 1200, "height": 675, "bytes": 48086 }]
+		"hero": {
+			"src": "/images/posts/perplexity-bumblebee-open-source-scanner-hero.webp",
+			"alt": "Perplexity Bumblebee open source supply chain security scanner for developers",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/perplexity-bumblebee-open-source-scanner",
+			"width": 1200,
+			"height": 675,
+			"bytes": 69752
+		},
+		"inline": [
+			{
+				"src": "/images/posts/perplexity-bumblebee-open-source-scanner-inline-1.webp",
+				"alt": "Bumblebee scanning developer packages extensions and AI tool configs",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/perplexity-bumblebee-open-source-scanner",
+				"width": 1200,
+				"height": 675,
+				"bytes": 48086
+			}
+		]
 	},
 	"code-with-claude-may-2026": {
-		"hero": { "src": "/images/posts/code-with-claude-may-2026-hero.webp", "alt": "Code with Claude 2026 developer conference announcements and new features", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/code-with-claude-may-2026", "width": 1200, "height": 675, "bytes": 187976 },
-		"inline": [{ "src": "/images/posts/code-with-claude-may-2026-inline-1.webp", "alt": "Claude Managed Agents with Dreaming multi-agent orchestration and Outcomes", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/code-with-claude-may-2026", "width": 1200, "height": 675, "bytes": 27286 }]
+		"hero": {
+			"src": "/images/posts/code-with-claude-may-2026-hero.webp",
+			"alt": "Code with Claude 2026 developer conference announcements and new features",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/code-with-claude-may-2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 187976
+		},
+		"inline": [
+			{
+				"src": "/images/posts/code-with-claude-may-2026-inline-1.webp",
+				"alt": "Claude Managed Agents with Dreaming multi-agent orchestration and Outcomes",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/code-with-claude-may-2026",
+				"width": 1200,
+				"height": 675,
+				"bytes": 27286
+			}
+		]
 	},
 	"guide-what-is-seo": {
-		"hero": { "src": "/images/posts/guide-what-is-seo-hero.webp", "alt": "What is SEO in 2026 - search engine optimization definition and guide", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/what-is-seo", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-what-is-seo-hero.webp",
+			"alt": "What is SEO in 2026 - search engine optimization definition and guide",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/what-is-seo",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-how-search-engines-work": {
-		"hero": { "src": "/images/posts/guide-how-search-engines-work-hero.webp", "alt": "How search engines and AI systems work - crawling indexing ranking in 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/how-search-engines-work", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-how-search-engines-work-hero.webp",
+			"alt": "How search engines and AI systems work - crawling indexing ranking in 2026",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/how-search-engines-work",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-keyword-research": {
-		"hero": { "src": "/images/posts/guide-keyword-research-hero.webp", "alt": "Keyword research and search intent optimization strategy for SEO 2026", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/keyword-research", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-keyword-research-hero.webp",
+			"alt": "Keyword research and search intent optimization strategy for SEO 2026",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/keyword-research",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-on-page-seo": {
-		"hero": { "src": "/images/posts/guide-on-page-seo-hero.webp", "alt": "On-page SEO and content optimization - title tags meta descriptions headings", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/on-page-seo", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-on-page-seo-hero.webp",
+			"alt": "On-page SEO and content optimization - title tags meta descriptions headings",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/on-page-seo",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-technical-seo": {
-		"hero": { "src": "/images/posts/guide-technical-seo-hero.webp", "alt": "Technical SEO and site architecture - Core Web Vitals crawling indexing", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/technical-seo", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-technical-seo-hero.webp",
+			"alt": "Technical SEO and site architecture - Core Web Vitals crawling indexing",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/technical-seo",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-schema-markup": {
-		"hero": { "src": "/images/posts/guide-schema-markup-hero.webp", "alt": "Schema markup and structured data - JSON-LD implementation for SEO and AI visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/schema-markup", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-schema-markup-hero.webp",
+			"alt": "Schema markup and structured data - JSON-LD implementation for SEO and AI visibility",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/schema-markup",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-eeat": {
-		"hero": { "src": "/images/posts/guide-eeat-hero.webp", "alt": "E-E-A-T SEO guide - Experience Expertise Authoritativeness Trustworthiness", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/eeat", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-eeat-hero.webp",
+			"alt": "E-E-A-T SEO guide - Experience Expertise Authoritativeness Trustworthiness",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/eeat",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-ai-citation-building": {
-		"hero": { "src": "/images/posts/guide-ai-citation-building-hero.webp", "alt": "AI citation building - how to get cited by ChatGPT Perplexity and AI search engines", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/ai-citation-building", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-ai-citation-building-hero.webp",
+			"alt": "AI citation building - how to get cited by ChatGPT Perplexity and AI search engines",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/ai-citation-building",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-ai-search-optimization": {
-		"hero": { "src": "/images/posts/guide-ai-search-optimization-hero.webp", "alt": "AEO GEO and AI Overviews - answer engine optimization and generative engine optimization", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/ai-search-optimization", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-ai-search-optimization-hero.webp",
+			"alt": "AEO GEO and AI Overviews - answer engine optimization and generative engine optimization",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/ai-search-optimization",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-content-strategy": {
-		"hero": { "src": "/images/posts/guide-content-strategy-hero.webp", "alt": "Content strategy and topic clusters for SEO - pillar pages semantic SEO", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/content-strategy", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-content-strategy-hero.webp",
+			"alt": "Content strategy and topic clusters for SEO - pillar pages semantic SEO",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/content-strategy",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-search-everywhere": {
-		"hero": { "src": "/images/posts/guide-search-everywhere-hero.webp", "alt": "Search everywhere optimization - YouTube LinkedIn Reddit SEO multi-platform visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/search-everywhere", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-search-everywhere-hero.webp",
+			"alt": "Search everywhere optimization - YouTube LinkedIn Reddit SEO multi-platform visibility",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/search-everywhere",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"guide-measuring-seo": {
-		"hero": { "src": "/images/posts/guide-measuring-seo-hero.webp", "alt": "Measuring SEO and AI visibility - metrics analytics Google Search Console", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/seo/measuring-seo", "width": 1200, "height": 675, "bytes": 85204 }
+		"hero": {
+			"src": "/images/posts/guide-measuring-seo-hero.webp",
+			"alt": "Measuring SEO and AI visibility - metrics analytics Google Search Console",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/seo/measuring-seo",
+			"width": 1200,
+			"height": 675,
+			"bytes": 85204
+		}
 	},
 	"seo-authority-not-rankings": {
-		"hero": { "src": "/images/posts/seo-authority-not-rankings-hero.webp", "alt": "SEO is not about rankings anymore - building authority for AI search visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
-		"og": { "src": "/images/posts/seo-authority-not-rankings-og.webp", "width": 1200, "height": 630 },
+		"hero": {
+			"src": "/images/posts/seo-authority-not-rankings-hero.webp",
+			"alt": "SEO is not about rankings anymore - building authority for AI search visibility",
+			"photographer": "AISEOShift",
+			"photographerUrl": "https://aiseoshift.com",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings",
+			"width": 1200,
+			"height": 675,
+			"bytes": 24306
+		},
+		"og": {
+			"src": "/images/posts/seo-authority-not-rankings-og.webp",
+			"width": 1200,
+			"height": 630
+		},
 		"inline": [
-			{ "src": "/images/posts/seo-authority-not-rankings-inline-1.webp", "alt": "The full SEO authority stack - citations backlinks PR entity signals for AI search visibility", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
-			{ "src": "/images/posts/seo-authority-not-rankings-inline-2.webp", "alt": "Digital PR earns authority through coverage backlinks and brand trust signals", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 },
-			{ "src": "/images/posts/seo-authority-not-rankings-inline-3.webp", "alt": "Authority compounds over time while rankings fluctuate - build what lasts", "photographer": "AISEOShift", "photographerUrl": "https://aiseoshift.com", "sourceName": "AISEOShift", "sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings", "width": 1200, "height": 675, "bytes": 24306 }
+			{
+				"src": "/images/posts/seo-authority-not-rankings-inline-1.webp",
+				"alt": "The full SEO authority stack - citations backlinks PR entity signals for AI search visibility",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings",
+				"width": 1200,
+				"height": 675,
+				"bytes": 24306
+			},
+			{
+				"src": "/images/posts/seo-authority-not-rankings-inline-2.webp",
+				"alt": "Digital PR earns authority through coverage backlinks and brand trust signals",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings",
+				"width": 1200,
+				"height": 675,
+				"bytes": 24306
+			},
+			{
+				"src": "/images/posts/seo-authority-not-rankings-inline-3.webp",
+				"alt": "Authority compounds over time while rankings fluctuate - build what lasts",
+				"photographer": "AISEOShift",
+				"photographerUrl": "https://aiseoshift.com",
+				"sourceName": "AISEOShift",
+				"sourceUrl": "https://aiseoshift.com/blog/seo-authority-not-rankings",
+				"width": 1200,
+				"height": 675,
+				"bytes": 24306
+			}
 		]
+	},
+	"claude-models-openai-codex-pricing-2026": {
+		"hero": {
+			"src": "/images/posts/claude-models-openai-codex-pricing-2026-hero.webp",
+			"alt": "Every Major AI Model in 2026 — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 17846
+		}
+	},
+	"claude-pricing-2026": {
+		"hero": {
+			"src": "/images/posts/claude-pricing-2026-hero.webp",
+			"alt": "Claude Pricing in 2026 — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 15516
+		}
+	},
+	"openai-gpt-pricing-2026": {
+		"hero": {
+			"src": "/images/posts/openai-gpt-pricing-2026-hero.webp",
+			"alt": "GPT & ChatGPT Pricing in 2026 — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 18144
+		}
+	},
+	"gemini-pricing-2026": {
+		"hero": {
+			"src": "/images/posts/gemini-pricing-2026-hero.webp",
+			"alt": "Google Gemini Pricing in 2026 — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 18402
+		}
+	},
+	"grok-pricing-2026": {
+		"hero": {
+			"src": "/images/posts/grok-pricing-2026-hero.webp",
+			"alt": "xAI Grok Pricing in 2026 — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 15922
+		}
+	},
+	"best-ai-model-for-coding-2026": {
+		"hero": {
+			"src": "/images/posts/best-ai-model-for-coding-2026-hero.webp",
+			"alt": "Best AI Model for Coding 2026 — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 17980
+		}
+	},
+	"cheapest-ai-model-2026": {
+		"hero": {
+			"src": "/images/posts/cheapest-ai-model-2026-hero.webp",
+			"alt": "The Cheapest AI Model in 2026 — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 17492
+		}
 	}
 }
