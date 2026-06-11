@@ -3,6 +3,7 @@ title: "AI SEO for Dental Practices: The 2026 Playbook for Patient Acquisition"
 description: How dental practices win Google AI Overviews, ChatGPT recommendations, and the local pack in 2026. A playbook for solo dentists and DSO groups.
 deck: Patients now ask ChatGPT for dentist recommendations before they ever call a practice. Reviews, schema, and local content decide who gets cited. Here is what wins.
 pubDate: 2026-05-27
+updatedDate: 2026-06-11
 category: Playbooks
 tags:
   - dental SEO
@@ -122,6 +123,60 @@ YMYL scrutiny means structured data matters. Every dental practice needs:
 
 For implementation, see the [dental schema post](/blog/dental-schema-procedure-pages/) and the broader [schema markup guide](/seo/schema-markup/).
 
+## What AI engines verify before recommending a dentist
+
+The four pillars get you eligible. Eligibility is not a recommendation. Before ChatGPT, Perplexity, or an AI Overview names a practice for "best dentist in [zip]," it runs a quiet trust check, and most of it happens on signals that live outside your site.
+
+Here is what gets checked.
+
+**License verifiability.** State dental boards publish public lookups. A bio that says "DDS, licensed by the [state] Board of Dentistry, member of the ADA and [state] Dental Association" can be confirmed. Bios that name the degree, the school, the license, and the associations read as verifiable. "Experienced caring dentist" reads as nothing.
+
+**Name, address, and phone consistency.** The practice name, the suite, the phone, the hours, identical across your site, GBP, Healthgrades, ZocDoc, and Yelp. A mismatch on any of these lowers confidence in all of them. "Suite 12" on one profile and "Ste. 12" on another registers as a conflict.
+
+**Third-party corroboration.** A dentist who appears only on the practice site is weaker than one with matching profiles on the state board, the ADA find-a-dentist directory, Healthgrades, ZocDoc, and a dental school alumni page. AI engines weight independent confirmation for health providers. Five sources that agree are hard to fake.
+
+**Recency.** A procedure page last touched two years ago loses to one reviewed in the last six months, because materials and techniques move and cost ranges drift. The "reviewed by Dr. [Name] on [date]" line is a freshness signal the engine reads, not decoration.
+
+This is the same evidence a careful patient gathers before booking. Practices win by making it trivial to find.
+
+## Cost, insurance, and financing: the content most practices bury
+
+Dental is the most cost-sensitive care most people pay for directly, and "how much does [procedure] cost" is one of the highest-intent queries in the category. Most practices answer it nowhere, so the AI answer gets built from a directory or a competitor.
+
+You do not need to post an exact price to be useful. Give honest ranges and the context around them:
+
+- A real cost range for the procedure, and what moves it up or down (single implant vs full arch, simple vs surgical extraction)
+- How insurance typically applies, and what is usually out of pocket
+- Whether you offer financing, and which: CareCredit, in-house plans, payment schedules
+- Whether you have a membership or savings plan for uninsured patients, and what it covers
+- What the free or low-cost consultation includes
+
+An implants page that says "single implants typically run $3,000 to $5,000 including the crown, financing available through CareCredit, and our consultation maps your exact cost" answers the question that decides whether someone calls. AI engines lift these concrete numbers and named programs into answers. "Contact us for pricing" gives them nothing.
+
+This is also where uninsured patients live. Roughly a third of adults have no dental coverage. A clear membership-plan page wins a segment DSO marketing usually ignores.
+
+## Emergency and new-patient access
+
+Two query types convert at the highest rate in dental, and most sites answer neither well.
+
+Emergency: "emergency dentist near me," "broken tooth [city]," "tooth pain can't sleep." Someone in pain at 9pm is the most ready-to-book patient there is. Make the page answer the panic directly: are you open now or do you have after-hours coverage, do you reserve same-day emergency slots, what to do for a knocked-out tooth or abscess before you arrive, and the number to call right now. A crawler that can read "same-day emergency appointments, call [number]" makes you the named practice.
+
+New-patient access: are you accepting new patients, how fast is the first appointment, do you take their insurance, do you see kids, do you offer sedation for anxious patients, is there parking. A parent comparing two practices at night books the one that answered these on a page, not the one that left them to call and find out.
+
+## Common mistakes that keep practices invisible
+
+The pattern across practices that look polished and still get no AI citations:
+
+- **"Our team" instead of named dentists.** The most common YMYL failure. A procedure page with no dentist byline does not get cited, however good the photos.
+- **One page for multiple locations.** Each location needs its own page and its own GBP. A combined page ranks well for none of them.
+- **Procedure pages with no cost or recovery detail.** "We offer dental implants" is invisible to an engine answering "how much do implants cost and how long is recovery." Answer the real question.
+- **Stale content with no review date.** A whitening page citing two-year-old pricing reads as abandoned and is probably wrong.
+- **Gated or incentivized reviews.** A Google policy violation that also produces sentiment engines discount, and a HIPAA risk in healthcare.
+- **Thin or missing schema.** No `Dentist`, no `hasCredential`, no `MedicalProcedure`. Readable by humans, invisible to the systems doing the citing.
+- **Ignoring the cost and financing question.** The highest-intent dental query, answered nowhere on the site.
+
+Fix the byline problem first. It gates everything else in YMYL.
+
 ## The query types that book appointments
 
 Stop chasing "dentist in [city]." It is a $15 to $40 CPC head term dominated by directory sites and DSO networks. The queries that book new patients are deeper:
@@ -165,6 +220,18 @@ DSO-controlled marketing is constrained by what the DSO permits. Most allow loca
 ### Can I use AI to write procedure pages?
 
 For first drafts, yes. For clinical accuracy, the named licensed dentist must contribute substantively. AI-drafted health content without licensed review fails YMYL extraction.
+
+### Should procedure pages show prices?
+
+They should show honest ranges and the financing context, even without an exact figure. "Single implants typically run $3,000 to $5,000 including the crown, with CareCredit financing available" answers the question that decides whether a patient calls. AI engines extract these concrete numbers and named financing programs, and the page that addresses cost wins the patient comparing practices.
+
+### How do multi-location and DSO groups handle this?
+
+Give each location its own page and its own GBP, and give each dentist a bio page with credentials and `Person` schema. Byline procedure content to the provider who performs it at that location. A group of six offices is an advantage: six local pages and a roster of named, verifiable dentists beat one centralized site with anonymous content. Where the DSO controls the main site, negotiate for location pages, bylines, and schema.
+
+### How does a private practice compete with corporate dental chains?
+
+On depth the chains template away. Corporate sites run thin, near-identical procedure pages across hundreds of locations with no named provider. A private practice wins with real cost ranges, named dentists with verifiable credentials, genuine local reviews, and answers to the emergency and financing questions chain pages skip. You will not outspend them on "dentist [city]"; you beat them on the specific procedure and access queries that actually book.
 
 ## Where to go next
 
@@ -224,6 +291,30 @@ For a structured engagement, our [AI SEO services for dentists](/ai-seo-services
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "For first drafts, yes. For clinical accuracy, the named licensed dentist must contribute substantively. AI-drafted health content without licensed review fails YMYL extraction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should procedure pages show prices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They should show honest ranges and the financing context, even without an exact figure. 'Single implants typically run $3,000 to $5,000 including the crown, with CareCredit financing available' answers the question that decides whether a patient calls. AI engines extract these concrete numbers and named financing programs, and the page that addresses cost wins the patient comparing practices."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do multi-location and DSO groups handle this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Give each location its own page and its own GBP, and give each dentist a bio page with credentials and Person schema. Byline procedure content to the provider who performs it at that location. A group of six offices is an advantage: six local pages and a roster of named, verifiable dentists beat one centralized site with anonymous content. Where the DSO controls the main site, negotiate for location pages, bylines, and schema."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a private practice compete with corporate dental chains?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On depth the chains template away. Corporate sites run thin, near-identical procedure pages across hundreds of locations with no named provider. A private practice wins with real cost ranges, named dentists with verifiable credentials, genuine local reviews, and answers to the emergency and financing questions chain pages skip. You beat them on the specific procedure and access queries that actually book."
       }
     }
   ]
