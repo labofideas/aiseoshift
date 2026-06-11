@@ -33,6 +33,14 @@ interface Props {
 
 const canonicalURL = Astro.props.canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 
+// Keep the SERP <title> from being truncated: drop the " | AISEOShift" brand
+// suffix when the full title runs long (social og/twitter titles keep it).
+const brandSuffix = ` | ${SITE_TITLE}`;
+const seoTitle =
+	Astro.props.title.length > 60 && Astro.props.title.endsWith(brandSuffix)
+		? Astro.props.title.slice(0, -brandSuffix.length)
+		: Astro.props.title;
+
 // Compute a per-page OG card slug from the request path.
 // '/' -> 'index'; '/seo/' -> 'seo'; '/blog/foo/' -> 'blog/foo'.
 const ogSlug = (() => {
@@ -185,7 +193,7 @@ if (autoBreadcrumb) (globalGraph['@graph'] as any[]).push(autoBreadcrumb);
 
 <link rel="canonical" href={canonicalURL} />
 
-<title>{title}</title>
+<title>{seoTitle}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
