@@ -3,6 +3,7 @@ title: "AI SEO for Medical Practices and Doctors: The 2026 Playbook"
 description: How medical practices win Google AI Overviews, ChatGPT recommendations, and the local pack in 2026. A playbook for solo and multi-provider groups.
 deck: Patients ask ChatGPT about symptoms before they call a doctor. Medical content is the strictest YMYL class. Most practices are invisible. Here is what changes that.
 pubDate: 2026-05-27
+updatedDate: 2026-06-11
 category: Playbooks
 tags:
   - medical SEO
@@ -107,6 +108,66 @@ YMYL scrutiny means structured data matters. Every medical practice needs:
 
 The companion post on [medical schema markup](/blog/medical-schema-markup-physician-condition/) covers the full implementation.
 
+## What AI engines verify before recommending a doctor
+
+The four pillars get you eligible. Eligibility is not a citation. When ChatGPT, Perplexity, or an AI Overview decides which practices to name in a medical answer, it runs a quiet verification pass first. Most of that pass happens on signals that live outside your website.
+
+Here is what gets checked.
+
+**Name, address, and phone consistency.** The practice name, the suite number, the phone, the hours. If your website says one thing, your GBP says another, and an old Healthgrades profile says a third, the engine downgrades confidence in all three. Pick the exact legal practice name and the exact address format and make every directory match, character for character. "Suite 200" and "Ste. 200" read as a conflict.
+
+**License verifiability.** State medical board lookups are public. When a physician bio claims board certification in cardiology and license number 12345, that claim can be checked against the state board and the ABMS database. Bios that name the certifying board, the year, and the license read as verifiable. Bios that say "board certified" with no specifics read as filler.
+
+**Third-party corroboration.** A doctor who exists only on their own practice site is weaker than one with a matching profile on the hospital affiliation page, the specialty society directory, a university faculty listing, and PubMed. AI engines weight independent confirmation heavily for medical claims. One source can be wrong. Five sources that agree are hard to fake.
+
+**Recency.** A condition page last touched in 2022 loses to one reviewed in the last six months, because treatment guidelines move. The "Reviewed by Dr. [Name] on [Date]" line is not decoration. It is a freshness signal the engine reads.
+
+None of this is exotic. It is the same evidence a careful patient would gather. The practices that win are the ones that make the evidence trivial to find.
+
+## The reviews and reputation layer
+
+Reviews do two jobs at once. They feed the local pack ranking, and they feed the sentiment AI engines summarize when someone asks "is Dr. Reyes good with anxious patients." Both jobs reward the same behavior: steady volume, recent dates, specific text, and replies.
+
+Volume and recency beat a frozen 4.9. A practice with 200 reviews where the newest is fourteen months old looks abandoned. A practice with 90 reviews where six landed this month looks alive. Aim for a handful of new reviews every week, not a once-a-year campaign.
+
+The mechanism that works: ask at the moment of relief. The patient whose back pain just resolved, the parent whose kid's ear infection cleared. A staff member sends a direct review link by text within a day. No incentives, no gating, no kiosks that only surface happy patients. Review gating violates Google policy and, in healthcare, edges toward problems no SEO gain is worth.
+
+Now the part most guides skip. You are bound by HIPAA, and the patient is not. A patient can name their condition in a review. You cannot confirm, deny, or reference any clinical detail in your reply, because acknowledging that someone is your patient is itself a disclosure. Train front-desk staff on one safe reply template: thank them, invite them to call the office to discuss anything specific, stop there. A well-meaning "so glad your knee surgery went well, Janet" in a public reply is a reportable breach.
+
+Negative reviews need a response, and the same rule applies. "We take all feedback seriously and would welcome the chance to discuss your experience. Please call our office manager at [number]." Calm, generic, off the public thread. Engines read the presence of a measured reply as a maturity signal. They read defensive or clinical replies as a red flag.
+
+## Insurance and access: the content most practices skip
+
+"Doctor in [city]" is a vanity term. "Does [practice] take Aetna" is a booking. The gap between those two queries is where most practices leak patients, because the insurance answer lives in a PDF or a phone tree instead of on an indexable page.
+
+Build a real insurance page. List the carriers by name: Aetna, Cigna, UnitedHealthcare, Blue Cross Blue Shield, Medicare, Medicaid, the regional plans. Note which plans need a referral. Say plainly whether you take new patients on each. AI engines extract named entities, and a carrier name on a clean page is exactly the kind of fact they lift into an answer.
+
+Access details convert at the same rate and almost nobody publishes them:
+
+- Are you accepting new patients right now, and is there a waitlist
+- Typical time to a new-patient appointment
+- Same-day or next-day sick visits
+- Telehealth availability and which states you are licensed in
+- Languages spoken by providers and staff
+- Wheelchair access, parking, public transit
+- After-hours and weekend coverage
+
+A parent searching at 9pm for a pediatrician who takes their plan and has a Saturday opening is ready to book. Answer that exact question on a page a crawler can read, and you are the practice that gets named.
+
+## Common mistakes that keep practices invisible
+
+The pattern across practices that do everything "right" and still get no AI citations:
+
+- **"Our team" instead of named doctors.** The single most common YMYL failure. A condition page with no physician byline does not get cited, no matter how good the writing is.
+- **One page for five locations.** Separate locations need separate pages and separate GBP listings. A combined page ranks for none of them well.
+- **Marketing language over clinical substance.** "State-of-the-art compassionate care" is invisible to an engine answering "what are the treatment options for plantar fasciitis." Write what a patient asked, in the words they used.
+- **Stale content with no review date.** Medical guidance ages. A page with no visible review date and a three-year-old copyright reads as abandoned.
+- **Gated or incentivized reviews.** A policy violation that also produces fake-sounding sentiment AI engines discount.
+- **Thin or missing schema.** No `Physician`, no `hasCredential`, no `MedicalCondition`. The practice is readable by humans and invisible to the systems doing the citing.
+- **Ignoring the insurance question.** The highest-intent query in healthcare, answered nowhere on the site.
+
+Fix these in order. The byline problem first, because it gates everything else in YMYL.
+
 ## The query types that book appointments
 
 Stop chasing "doctor in [city]." It is a $25 to $80 CPC head term dominated by hospital systems and ZocDoc. The queries that produce appointments are deeper:
@@ -150,6 +211,18 @@ Hospital-employed physicians often have practice marketing controlled by hospita
 ### Can AI write medical content?
 
 For first drafts, with significant rewrite and full physician review. AI-drafted medical content without licensed physician review fails YMYL extraction and exposes the practice to liability.
+
+### How do practices with many providers handle this?
+
+Give every provider their own bio page with credentials and `Person` schema, then byline each clinical page to the provider whose specialty matches it. A 12-physician group is an advantage, not a burden: twelve verifiable experts beat one anonymous "our team" voice. Map conditions to the right physician and let each one own their slice of the content.
+
+### Does telehealth change the SEO approach?
+
+It widens it. Telehealth means you can rank for and serve patients across every state where your providers hold a license, so name those states explicitly on the page. State the conditions you treat virtually versus in person, and what a video visit covers. "Online doctor who takes [insurance] in [state]" is a high-intent query most practices never answer.
+
+### How is this different from hospital or health-system SEO?
+
+Hospital systems compete on brand and budget for head terms like "cardiologist [city]." An independent practice cannot outspend them there and should not try. The winning play is depth on specific conditions, named individual physicians, and the access and insurance questions big-system pages answer poorly. You beat the hospital on the long-tail booking query, not the brand term.
 
 ## Where to go next
 
@@ -209,6 +282,30 @@ For a structured engagement, our [AI SEO services for doctors and healthcare pra
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "For first drafts, with significant rewrite and full physician review. AI-drafted medical content without licensed physician review fails YMYL extraction and exposes the practice to liability."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do practices with many providers handle this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Give every provider their own bio page with credentials and Person schema, then byline each clinical page to the provider whose specialty matches it. A 12-physician group is an advantage: twelve verifiable experts beat one anonymous 'our team' voice. Map conditions to the right physician and let each one own their slice of the content."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does telehealth change the SEO approach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It widens it. Telehealth means you can rank for and serve patients across every state where your providers hold a license, so name those states explicitly on the page. State the conditions you treat virtually versus in person, and what a video visit covers. 'Online doctor who takes [insurance] in [state]' is a high-intent query most practices never answer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from hospital or health-system SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hospital systems compete on brand and budget for head terms like 'cardiologist [city].' An independent practice cannot outspend them there and should not try. The winning play is depth on specific conditions, named individual physicians, and the access and insurance questions big-system pages answer poorly. You beat the hospital on the long-tail booking query, not the brand term."
       }
     }
   ]
