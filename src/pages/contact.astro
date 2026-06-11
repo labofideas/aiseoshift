@@ -1,0 +1,137 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'ContactPage',
+	name: 'Get a free AI visibility audit',
+	url: 'https://aiseoshift.com/contact/',
+	description:
+		'Request a free AI visibility audit. We check how your site appears across Google, AI Overviews, ChatGPT, and Perplexity and tell you what to fix.',
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Get a Free AI Visibility Audit | ${SITE_TITLE}`}
+			description="Request a free AI visibility audit. We review your citations, schema, E-E-A-T signals, and content structure across Google, AI Overviews, ChatGPT, and Perplexity, and tell you exactly what to fix."
+			structuredData={structuredData}
+		/>
+		<style>
+			.lead-page { width: min(960px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+			.lead-hero { padding: var(--space-6) 0 var(--space-7); border-bottom: 1px solid var(--line); }
+			.lead-kicker { color: var(--signal-deep); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.lead-hero h1 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); line-height: 1.05; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-3) 0 var(--space-4); max-width: 18ch; }
+			.lead-hero p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: 52ch; margin: 0; }
+			.lead-what { margin: var(--space-6) 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+			.lead-what div { padding-top: var(--space-3); border-top: 1px solid var(--line-strong); }
+			.lead-what strong { display: block; font-family: 'Iowan Old Style', Georgia, serif; font-style: italic; font-weight: 400; font-size: 1.1rem; margin-bottom: var(--space-2); }
+			.lead-what span { font-size: 0.92rem; color: var(--ink-muted); line-height: 1.55; }
+			.lead-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-7) 0 0; align-items: start; }
+			.lead-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.lead-card h2 { font-size: 1.3rem; margin: 0 0 var(--space-3); font-weight: 600; letter-spacing: -0.015em; }
+			.lead-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.btn-primary:hover { background: var(--signal-deep); }
+			.btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); margin-top: var(--space-3); }
+			.btn-secondary:hover { border-color: rgb(var(--ink)); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form input:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: var(--signal); color: #fff; font-weight: 700; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+			.lead-proof { margin-top: var(--space-5); font-size: 0.9rem; color: var(--ink-muted); }
+			.lead-proof a { color: var(--signal-deep); font-weight: 600; }
+			@media (max-width: 760px) { .lead-grid, .lead-what { grid-template-columns: 1fr; } }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="lead-page">
+			<section class="lead-hero">
+				<span class="lead-kicker">Free AI Visibility Audit</span>
+				<h1>Find out why AI isn't recommending you.</h1>
+				<p>We check how your site shows up across Google, AI Overviews, ChatGPT, and Perplexity, then send you a clear, prioritized list of what to fix. No charge, no obligation.</p>
+				<div class="lead-what">
+					<div><strong>AI citation check</strong><span>Where you are cited, where competitors are cited instead, and the gaps.</span></div>
+					<div><strong>E-E-A-T & schema</strong><span>The trust and structured-data signals AI engines look for before citing you.</span></div>
+					<div><strong>A fix list</strong><span>The specific, prioritized changes that move the needle first.</span></div>
+				</div>
+			</section>
+
+			<div class="lead-grid">
+				<div class="lead-card">
+					<h2>Request your free audit</h2>
+					<p>Send your site and goals. We reply within one business day.</p>
+					<form class="contact-form" id="lead-form" aria-label="Free audit request">
+						<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+						<input type="hidden" name="subject" value="Free AI audit request from aiseoshift.com" />
+						<input type="hidden" name="from_name" value="AISEOShift Free Audit" />
+						<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+						<label for="l-name">Name <span class="req" aria-hidden="true">*</span></label>
+						<input id="l-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+						<label for="l-email">Email <span class="req" aria-hidden="true">*</span></label>
+						<input id="l-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+						<label for="l-website">Website <span class="req" aria-hidden="true">*</span></label>
+						<input id="l-website" type="text" name="website" required aria-required="true" placeholder="yourbrand.com" />
+						<label for="l-message">What are you trying to improve?</label>
+						<textarea id="l-message" name="message" placeholder="Rankings, AI citations, leads, a specific page or topic..."></textarea>
+						<button type="submit">Send my free audit request</button>
+						<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+					</form>
+				</div>
+				<div class="lead-card">
+					<h2>Or book a 15-minute call</h2>
+					<p>Prefer to talk it through? Grab a slot and we will walk through where AI SEO can have the biggest impact for you.</p>
+					<a class="btn btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					<a class="btn btn-secondary" href="/sample-seo-audit/">See a sample audit &rarr;</a>
+					<p class="lead-proof">Curious what you get? The <a href="/sample-seo-audit/">sample report</a> shows the depth of a full audit, and our <a href="/ai-seo-services/">AI SEO services</a> cover what comes after.</p>
+				</div>
+			</div>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('lead-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! Your audit request is in. We will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
