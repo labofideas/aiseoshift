@@ -28,6 +28,7 @@ const isActive = (href: string) => {
 			</svg>
 		</a>
 		<div class="header-actions">
+			<a class="header-cta-mobile" href="/contact/">Free Audit</a>
 			<button class="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false" type="button">
 				<svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
 					<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
@@ -261,5 +262,24 @@ const isActive = (href: string) => {
 		/* Toggle hamburger / close icon */
 		.menu-toggle[aria-expanded="true"] .icon-menu { display: none; }
 		.menu-toggle[aria-expanded="true"] .icon-close { display: block; }
+
+		.header-cta-mobile {
+			display: inline-flex;
+			align-items: center;
+			padding: 0.4rem 0.8rem;
+			background: var(--signal);
+			color: #fff;
+			border-radius: var(--radius-sm);
+			font-size: 0.72rem;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			text-decoration: none;
+		}
+		.header-cta-mobile:hover,
+		.header-cta-mobile:focus-visible { background: var(--signal-deep); color: #fff; }
 	}
+
+	/* Mobile CTA is only shown when the nav (with its own CTA) is collapsed */
+	.header-cta-mobile { display: none; }
 </style>
