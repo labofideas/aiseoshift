@@ -49,6 +49,7 @@ const isActive = (href: string) => {
 			{navItems.map((item) => (
 				<a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
 			))}
+			<a class="nav-cta" href="/contact/">Free AI Audit</a>
 		</nav>
 	</div>
 </header>
@@ -175,6 +176,22 @@ const isActive = (href: string) => {
 	.main-nav a[aria-current="page"] {
 		color: var(--signal-deep);
 		border-bottom-color: var(--signal);
+	}
+
+	.main-nav .nav-cta {
+		padding: 0.45rem 0.95rem;
+		background: var(--signal);
+		color: #fff;
+		border-radius: var(--radius-sm);
+		border-bottom: none;
+		letter-spacing: 0.08em;
+	}
+
+	.main-nav .nav-cta:hover,
+	.main-nav .nav-cta:focus-visible {
+		background: var(--signal-deep);
+		color: #fff;
+		border-bottom: none;
 	}
 
 	.theme-toggle,
