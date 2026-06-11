@@ -18,7 +18,7 @@ import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
 A marketing director asked ChatGPT how to build a content moat in a competitive SaaS niche. The response cited three sources: a long-form article, a podcast transcript, and a YouTube video from a channel with fewer than 12,000 subscribers. The video had 800 views. It was not the most-watched video on the topic by a wide margin. But it had a complete, clean transcript, a precise title that matched the query, chapter markers that broke the content into discrete topics, and VideoObject schema on the publisher's website. The AI could parse it, extract from it, and cite it with confidence. The channel with 400,000 subscribers and a video on the same topic got nothing.
 
-This is the new dynamic of video SEO. Reach and subscriber count still matter — channel authority is a real signal — but in the AI discovery layer, parsability and structural optimization have become primary selection criteria. AI systems are not watching videos. They are reading transcripts, parsing schema, and extracting structured signals. Optimize for what the AI can actually process, and you compete on different terms than raw audience size.
+This is the new dynamic of video SEO. Reach and subscriber count still matter, channel authority is a real signal, but in the AI discovery layer, parsability and structural optimization have become primary selection criteria. AI systems are not watching videos. They are reading transcripts, parsing schema, and extracting structured signals. Optimize for what the AI can actually process, and you compete on different terms than raw audience size.
 
 <figure class="post-figure">
 <svg viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Video AI discovery funnel: four stages from Upload through Optimize, Schema, and Cited, each with supporting sub-steps">
@@ -76,15 +76,15 @@ This is the new dynamic of video SEO. Reach and subscriber count still matter �
 
 ## Quick answer
 
-To get videos cited by AI engines in 2026, you need three things working together: a clean, accurate transcript that AI systems can parse for direct answers; VideoObject schema on any page where the video is embedded; and a YouTube channel with enough topical consistency and engagement signals to be treated as an authoritative source. All three are required — strong transcripts without schema, or schema without transcript quality, produces partial results at best.
+To get videos cited by AI engines in 2026, you need three things working together: a clean, accurate transcript that AI systems can parse for direct answers; VideoObject schema on any page where the video is embedded; and a YouTube channel with enough topical consistency and engagement signals to be treated as an authoritative source. All three are required, strong transcripts without schema, or schema without transcript quality, produces partial results at best.
 
 ## Why AI engines now surface video content
 
 The shift toward video citations in AI answers is not incidental. It reflects two structural changes in how AI systems work.
 
-First, AI systems are increasingly multimodal in their source evaluation even when their outputs are text-only. Systems like Google AI Overviews, ChatGPT, and Perplexity do not just crawl web pages — they index YouTube transcripts, process structured video metadata, and treat video content as a first-class source alongside written articles. Google has direct pipeline access to YouTube's transcript and metadata infrastructure. ChatGPT's web browsing indexes YouTube descriptions and, where transcripts are publicly available, their content.
+First, AI systems are increasingly multimodal in their source evaluation even when their outputs are text-only. Systems like Google AI Overviews, ChatGPT, and Perplexity do not just crawl web pages, they index YouTube transcripts, process structured video metadata, and treat video content as a first-class source alongside written articles. Google has direct pipeline access to YouTube's transcript and metadata infrastructure. ChatGPT's web browsing indexes YouTube descriptions and, where transcripts are publicly available, their content.
 
-Second, many queries are better answered by video content. Procedural questions ("how do I configure this"), visual explanations ("what does this look like"), and expert commentary ("what does a financial advisor think about this") have natural video equivalents. AI systems recognize this and surface video when the query type matches. The practical implication: if you are in a niche where video naturally fits the question type, video content can compete directly with written content for AI citations — sometimes outcompeting it.
+Second, many queries are better answered by video content. Procedural questions ("how do I configure this"), visual explanations ("what does this look like"), and expert commentary ("what does a financial advisor think about this") have natural video equivalents. AI systems recognize this and surface video when the query type matches. The practical implication: if you are in a niche where video naturally fits the question type, video content can compete directly with written content for AI citations, sometimes outcompeting it.
 
 The question is not whether AI engines cite video. They do, and with increasing frequency as [AI search systems mature in 2026](/blog/what-is-answer-engine-optimization/). The question is what separates cited video from ignored video.
 
@@ -102,23 +102,23 @@ Titles should be between 60 and 80 characters to display fully in both YouTube s
 
 ### Descriptions as structured content
 
-YouTube descriptions are indexed content. AI systems read them. Most creators treat descriptions as a formality — a few lines, some hashtags, a link dump. That is a significant missed opportunity.
+YouTube descriptions are indexed content. AI systems read them. Most creators treat descriptions as a formality, a few lines, some hashtags, a link dump. That is a significant missed opportunity.
 
 An AI-optimized YouTube description follows the same answer-first structure as a well-optimized blog post. The first 150–200 characters (the visible snippet before "show more") should state the direct answer or the core takeaway of the video. The full description should include: a 3–5 sentence summary of what the video covers, a timestamped chapter breakdown (which YouTube converts into navigable chapters), key terms and concepts covered in the video, and relevant links including your website and related content.
 
-A description structured this way gives AI systems a parseable text summary of video content — equivalent to an article abstract that the AI can extract from without needing to process the video itself.
+A description structured this way gives AI systems a parseable text summary of video content, equivalent to an article abstract that the AI can extract from without needing to process the video itself.
 
 ### Chapter markers as extraction anchors
 
-YouTube chapters — created by adding timestamped headers to the description — do two things that matter for AI discovery. They create a structured table of contents that YouTube's search algorithm uses for topic indexing. And they correspond directly to the `Clip` property in VideoObject schema, which tells AI systems precisely which portion of a video addresses which sub-topic.
+YouTube chapters, created by adding timestamped headers to the description, do two things that matter for AI discovery. They create a structured table of contents that YouTube's search algorithm uses for topic indexing. And they correspond directly to the `Clip` property in VideoObject schema, which tells AI systems precisely which portion of a video addresses which sub-topic.
 
-When a user asks an AI system a specific question and your video has a chapter that directly addresses it, the AI can cite not just the video but the specific chapter — increasing the citation specificity and the probability that the AI will use your content over a competitor's. Format chapters with descriptive labels that match query language: "0:00 — Why video gets cited by AI engines" rather than "0:00 — Intro."
+When a user asks an AI system a specific question and your video has a chapter that directly addresses it, the AI can cite not just the video but the specific chapter, increasing the citation specificity and the probability that the AI will use your content over a competitor's. Format chapters with descriptive labels that match query language: "0:00, Why video gets cited by AI engines" rather than "0:00, Intro."
 
 Aim for chapters every 3–5 minutes for longer videos. Each chapter label should be a complete descriptive phrase, not a single word.
 
 ## VideoObject schema markup on your own site
 
-YouTube optimization alone captures AI citations from systems with YouTube integration. To capture citations from systems that crawl the open web — including Perplexity's independent indexing and ChatGPT's web search — you need VideoObject schema on any page where your video is embedded.
+YouTube optimization alone captures AI citations from systems with YouTube integration. To capture citations from systems that crawl the open web, including Perplexity's independent indexing and ChatGPT's web search, you need VideoObject schema on any page where your video is embedded.
 
 [Schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) covers the full implementation spectrum, but VideoObject deserves specific treatment here because it is the most underimplemented schema type among video publishers.
 
@@ -161,13 +161,13 @@ Stack VideoObject with Article schema on embed pages using the `@graph` structur
 
 ## Transcript quality and how AI uses it for extraction
 
-Every video that targets AI citations needs a high-quality, human-edited transcript. Not the auto-generated version YouTube provides by default — a corrected, proofread transcript that reads as cleanly as a written article.
+Every video that targets AI citations needs a high-quality, human-edited transcript. Not the auto-generated version YouTube provides by default, a corrected, proofread transcript that reads as cleanly as a written article.
 
 AI systems use transcripts in two ways. First, as source material for answer extraction: the same way an AI system reads a blog post to find a citable passage, it reads a transcript to identify the moment in a video that directly answers a query. A transcript full of filler words, incomplete sentences, and transcription errors produces garbled extraction. A clean transcript produces citable excerpts.
 
 Second, as a signal of content quality. Transcripts with consistent terminology, complete sentences, and accurate proper nouns (names, product names, statistics) signal a higher quality video than a transcript riddled with "[inaudible]" markers and misheard words. AI citation systems are trained on quality signals, and transcript cleanliness is an accessible proxy for overall content quality.
 
-The practical workflow: download YouTube's auto-generated captions as a starting point, then edit them for accuracy, punctuation, and clarity. Remove filler words that would read oddly in text ("um," "you know," "like" used as a filler). Correct misheard proper nouns. Add punctuation where YouTube's auto-captions have none. The editing process takes 20–40% of the video's running time — roughly 30–60 minutes for a 15-minute video. That time investment compounds: a clean transcript serves the YouTube caption file, the VideoObject schema's transcript property, and a standalone transcript page on your website.
+The practical workflow: download YouTube's auto-generated captions as a starting point, then edit them for accuracy, punctuation, and clarity. Remove filler words that would read oddly in text ("um," "you know," "like" used as a filler). Correct misheard proper nouns. Add punctuation where YouTube's auto-captions have none. The editing process takes 20–40% of the video's running time, roughly 30–60 minutes for a 15-minute video. That time investment compounds: a clean transcript serves the YouTube caption file, the VideoObject schema's transcript property, and a standalone transcript page on your website.
 
 Publish the full transcript as a separate page on your site. This gives the content a crawlable URL, allows it to be indexed independently of the video, and creates an additional citation surface for AI systems that do not process video-embedded content. Structure the transcript page with the video embed at the top, a timestamped chapter summary, and then the full transcript text. This aligns with the [cross-platform citation strategy](/blog/how-to-get-cited-by-ai-search-systems/) that consistently produces the highest AI visibility results.
 
@@ -177,9 +177,9 @@ Channel-level authority affects whether your individual videos get cited, in the
 
 The signals that build channel authority for AI citation purposes are:
 
-**Topical consistency.** A channel that covers one topic deeply — say, B2B content marketing — is treated as a subject-matter authority for that topic. A channel that posts about B2B content marketing, personal finance, travel vlogs, and gaming builds no topical authority signal. AI systems are trained to prefer sources that demonstrate concentrated expertise in a domain. This mirrors the same topical authority principle that governs [content strategy for AI citation](/blog/perfect-blog-post-structure-ai-citation/).
+**Topical consistency.** A channel that covers one topic deeply, say, B2B content marketing, is treated as a subject-matter authority for that topic. A channel that posts about B2B content marketing, personal finance, travel vlogs, and gaming builds no topical authority signal. AI systems are trained to prefer sources that demonstrate concentrated expertise in a domain. This mirrors the same topical authority principle that governs [content strategy for AI citation](/blog/perfect-blog-post-structure-ai-citation/).
 
-**Engagement relative to niche size.** Absolute view counts matter less than relative engagement within a specific topic category. A channel with 10,000 subscribers and a 12% average view-through rate in a niche B2B topic will often outperform — for AI citation purposes — a channel with 200,000 subscribers and a 3% view-through rate on broad consumer topics. AI systems are increasingly sophisticated about distinguishing genuine audience engagement from inflated vanity metrics.
+**Engagement relative to niche size.** Absolute view counts matter less than relative engagement within a specific topic category. A channel with 10,000 subscribers and a 12% average view-through rate in a niche B2B topic will often outperform, for AI citation purposes, a channel with 200,000 subscribers and a 3% view-through rate on broad consumer topics. AI systems are increasingly sophisticated about distinguishing genuine audience engagement from inflated vanity metrics.
 
 **External links and citations.** When other websites embed your videos, link to your YouTube channel, or cite your video content in their articles, these are authority signals that AI systems read the same way traditional search engines read backlinks. Publishing transcripts on your own site and getting them linked from other authoritative sources amplifies this signal.
 
@@ -203,7 +203,7 @@ For technical validation of your VideoObject implementation, [Google's structure
 
 Several common practices actively undermine AI citation probability. They are easy to avoid once identified.
 
-**Relying on auto-generated captions without editing.** YouTube's automatic speech recognition is good but not clean enough for AI extraction purposes. Every video targeting AI citations needs a human-edited transcript. Auto-captions left unedited introduce enough noise — misheard words, missing punctuation, garbled proper nouns — to reduce the quality signal that AI systems read from your content.
+**Relying on auto-generated captions without editing.** YouTube's automatic speech recognition is good but not clean enough for AI extraction purposes. Every video targeting AI citations needs a human-edited transcript. Auto-captions left unedited introduce enough noise, misheard words, missing punctuation, garbled proper nouns, to reduce the quality signal that AI systems read from your content.
 
 **Writing keyword-stuffed descriptions.** The old YouTube SEO practice of loading descriptions with keyword variations ("video SEO, video SEO optimization, video SEO tips, video SEO 2026...") reads as spam to modern AI systems and is actively counterproductive. Write descriptions as natural language summaries of what the video covers. The same guidance applies here as to all AI-era content: [write for humans and AI simultaneously](/blog/how-to-write-content-for-humans-and-ai/), not for a keyword-matching algorithm.
 
@@ -211,7 +211,7 @@ Several common practices actively undermine AI citation probability. They are ea
 
 **Publishing videos without a content cluster.** A standalone video with no written counterpart, no transcript page, and no internal linking to related content on your site has weak topical authority signals. AI systems evaluate the content ecosystem around a video, not just the video in isolation. Build video into a content cluster strategy from the outset.
 
-**Treating video as a secondary content format.** Many content teams produce video as a repurposing exercise — they turn a blog post into a video as an afterthought. For AI citation purposes, video that is planned as a primary format (with its own title strategy, chapter structure, and schema implementation) consistently outperforms video that was produced as a secondary derivative.
+**Treating video as a secondary content format.** Many content teams produce video as a repurposing exercise, they turn a blog post into a video as an afterthought. For AI citation purposes, video that is planned as a primary format (with its own title strategy, chapter structure, and schema implementation) consistently outperforms video that was produced as a secondary derivative.
 
 **Ignoring channel-level topical focus.** Creating a YouTube channel that covers multiple unrelated topics in the hope of reaching a larger audience is the video equivalent of a site with no topical authority. For AI citations, depth beats breadth. A 50-video channel focused entirely on one industry vertical will outperform a 500-video channel with no consistent focus for queries within that vertical.
 
@@ -223,7 +223,7 @@ For the full framework on how structured data supports AI discovery across conte
 
 ### Do AI engines like ChatGPT actually watch videos, or do they only read transcripts?
 
-AI engines do not watch videos in the way humans do. They read transcripts, parse video metadata (titles, descriptions, chapter labels), and process VideoObject schema. When a video has a clean, complete transcript — whether embedded in schema or available as a caption file — AI systems can extract quoted passages from it exactly as they would from a written article. Videos without accessible transcripts are effectively invisible to AI systems that do not have direct YouTube integration.
+AI engines do not watch videos in the way humans do. They read transcripts, parse video metadata (titles, descriptions, chapter labels), and process VideoObject schema. When a video has a clean, complete transcript, whether embedded in schema or available as a caption file, AI systems can extract quoted passages from it exactly as they would from a written article. Videos without accessible transcripts are effectively invisible to AI systems that do not have direct YouTube integration.
 
 ### Is VideoObject schema worth implementing if my video is already optimized on YouTube?
 
@@ -235,7 +235,7 @@ Aim for 400–700 words for videos targeting AI citations. The first 150–200 c
 
 ### Does a video's view count affect whether AI engines cite it?
 
-View count is an indirect signal rather than a direct citation criterion. High view counts contribute to channel authority, which is a real AI citation signal. But AI systems also weigh topical relevance, transcript quality, schema completeness, and external link signals. A lower-view-count video that is highly optimized — clean transcript, complete VideoObject schema, specific and direct content — will frequently outcompete a higher-view-count video that lacks these signals. Focus on the structural optimization variables you control rather than chasing view count as a primary strategy.
+View count is an indirect signal rather than a direct citation criterion. High view counts contribute to channel authority, which is a real AI citation signal. But AI systems also weigh topical relevance, transcript quality, schema completeness, and external link signals. A lower-view-count video that is highly optimized, clean transcript, complete VideoObject schema, specific and direct content, will frequently outcompete a higher-view-count video that lacks these signals. Focus on the structural optimization variables you control rather than chasing view count as a primary strategy.
 
 ### Should I publish a separate transcript page for every video?
 
@@ -243,7 +243,7 @@ Not necessarily every video, but for any video targeting a competitive query or 
 
 ### How does playlist structure on YouTube affect AI discovery?
 
-YouTube playlists function similarly to content clusters on a website. A well-structured playlist signals topical coherence — a series of videos that collectively cover a subject in depth. AI systems interpret playlist membership as a topical grouping signal, similar to how internal linking between related articles signals content cluster structure. For AI citation purposes, organize playlists around specific topic areas rather than by date or format. Use descriptive playlist titles that match how someone would phrase a broad topic query. Link your playlists from your website to connect your YouTube content cluster to your domain's topical authority signals.
+YouTube playlists function similarly to content clusters on a website. A well-structured playlist signals topical coherence, a series of videos that collectively cover a subject in depth. AI systems interpret playlist membership as a topical grouping signal, similar to how internal linking between related articles signals content cluster structure. For AI citation purposes, organize playlists around specific topic areas rather than by date or format. Use descriptive playlist titles that match how someone would phrase a broad topic query. Link your playlists from your website to connect your YouTube content cluster to your domain's topical authority signals.
 
 <script type="application/ld+json">{`
   "@context": "https://schema.org",
@@ -254,7 +254,7 @@ YouTube playlists function similarly to content clusters on a website. A well-st
       "name": "Do AI engines like ChatGPT actually watch videos, or do they only read transcripts?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AI engines do not watch videos in the way humans do. They read transcripts, parse video metadata (titles, descriptions, chapter labels), and process VideoObject schema. When a video has a clean, complete transcript — whether embedded in schema or available as a caption file — AI systems can extract quoted passages from it exactly as they would from a written article. Videos without accessible transcripts are effectively invisible to AI systems that do not have direct YouTube integration."
+        "text": "AI engines do not watch videos in the way humans do. They read transcripts, parse video metadata (titles, descriptions, chapter labels), and process VideoObject schema. When a video has a clean, complete transcript, whether embedded in schema or available as a caption file, AI systems can extract quoted passages from it exactly as they would from a written article. Videos without accessible transcripts are effectively invisible to AI systems that do not have direct YouTube integration."
       }
     },
     {
@@ -278,7 +278,7 @@ YouTube playlists function similarly to content clusters on a website. A well-st
       "name": "Does a video's view count affect whether AI engines cite it?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "View count is an indirect signal rather than a direct citation criterion. High view counts contribute to channel authority, which is a real AI citation signal. But AI systems also weigh topical relevance, transcript quality, schema completeness, and external link signals. A lower-view-count video that is highly optimized — clean transcript, complete VideoObject schema, specific and direct content — will frequently outcompete a higher-view-count video that lacks these signals."
+        "text": "View count is an indirect signal rather than a direct citation criterion. High view counts contribute to channel authority, which is a real AI citation signal. But AI systems also weigh topical relevance, transcript quality, schema completeness, and external link signals. A lower-view-count video that is highly optimized, clean transcript, complete VideoObject schema, specific and direct content, will frequently outcompete a higher-view-count video that lacks these signals."
       }
     },
     {

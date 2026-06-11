@@ -16,7 +16,7 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-When a user types "how do I migrate my site to HTTPS" or "how do I set up two-factor authentication," AI engines do not just find a page that contains those words. They look for a page whose structure makes the answer extractable. HowTo schema is the mechanism that makes your procedural content machine-readable — and that machine-readability is what converts a good guide into an AI citation.
+When a user types "how do I migrate my site to HTTPS" or "how do I set up two-factor authentication," AI engines do not just find a page that contains those words. They look for a page whose structure makes the answer extractable. HowTo schema is the mechanism that makes your procedural content machine-readable, and that machine-readability is what converts a good guide into an AI citation.
 
 Pages with HowTo schema are structured so that an AI engine can identify each discrete step, the order of those steps, and any supporting information like tools required or estimated time. That structure removes ambiguity. The AI does not have to infer where one step ends and the next begins. It does not have to guess whether a paragraph is a prerequisite or an instruction. HowTo schema answers those questions before the AI even processes the page.
 
@@ -28,35 +28,35 @@ HowTo schema is a structured data type defined in the [Schema.org HowTo specific
 
 For AI engines, HowTo schema does something that plain HTML cannot: it labels the structure of a procedure in a way that is independent of how the content is visually formatted. An AI engine reading plain HTML has to interpret heading levels, numbered lists, and paragraph structure to understand what is a step and what is narrative context. HowTo schema eliminates that interpretation layer.
 
-The downstream effect is significant. When ChatGPT, Perplexity, or Google AI Overviews constructs a response to a procedural query, it looks for sources where the steps can be extracted cleanly and presented reliably. A page with valid HowTo schema gives the engine exactly that. A page without it forces the engine to make inference calls that introduce error probability — and engines avoid sources that require error-prone inference when cleaner alternatives exist.
+The downstream effect is significant. When ChatGPT, Perplexity, or Google AI Overviews constructs a response to a procedural query, it looks for sources where the steps can be extracted cleanly and presented reliably. A page with valid HowTo schema gives the engine exactly that. A page without it forces the engine to make inference calls that introduce error probability, and engines avoid sources that require error-prone inference when cleaner alternatives exist.
 
-This is why HowTo schema has a citation leverage that exceeds most other schema types for procedural content. It does not just make your content eligible for citation — it makes your content the easier choice. For a broader view of how all schema types interact with AI visibility, [the schema markup guide for AI visibility](/blog/schema-markup-for-ai-visibility/) covers the full hierarchy.
+This is why HowTo schema has a citation leverage that exceeds most other schema types for procedural content. It does not just make your content eligible for citation, it makes your content the easier choice. For a broader view of how all schema types interact with AI visibility, [the schema markup guide for AI visibility](/blog/schema-markup-for-ai-visibility/) covers the full hierarchy.
 
 ## The HowTo property set
 
 The Schema.org specification defines several properties for HowTo, and understanding what each property does helps you decide how much detail to include.
 
 **Required in practice:**
-- `name` — the title of the procedure
-- `step` — an array of HowToStep objects, each with its own `name` and `text`
+- `name`, the title of the procedure
+- `step`, an array of HowToStep objects, each with its own `name` and `text`
 
 **Strongly recommended:**
-- `description` — a brief summary of what the procedure achieves
-- `totalTime` — the expected duration in ISO 8601 format (e.g., `PT30M` for 30 minutes)
-- `estimatedCost` — cost in a Currency/MonetaryAmount format if relevant
+- `description`, a brief summary of what the procedure achieves
+- `totalTime`, the expected duration in ISO 8601 format (e.g., `PT30M` for 30 minutes)
+- `estimatedCost`, cost in a Currency/MonetaryAmount format if relevant
 
 **Optional but high-value for AI:**
-- `tool` — an array of HowToTool objects listing tools required
-- `supply` — an array of HowToSupply objects listing materials required
-- `image` — an ImageObject for the procedure overall or for individual steps
+- `tool`, an array of HowToTool objects listing tools required
+- `supply`, an array of HowToSupply objects listing materials required
+- `image`, an ImageObject for the procedure overall or for individual steps
 
 Each `HowToStep` can carry its own properties:
-- `name` — a short label for the step (appears as the step heading)
-- `text` — the full instruction text for the step
-- `image` — an ImageObject specific to that step
-- `url` — a URL pointing to the section of the page where this step appears
+- `name`, a short label for the step (appears as the step heading)
+- `text`, the full instruction text for the step
+- `image`, an ImageObject specific to that step
+- `url`, a URL pointing to the section of the page where this step appears
 
-The depth of your implementation should match the depth of your content. If your guide genuinely describes tools and materials, include them. If you add properties that have no corresponding visible content on the page, you create a schema-to-content mismatch — a problem covered in detail in the mistakes section below.
+The depth of your implementation should match the depth of your content. If your guide genuinely describes tools and materials, include them. If you add properties that have no corresponding visible content on the page, you create a schema-to-content mismatch, a problem covered in detail in the mistakes section below.
 
 ## When to use HowTo schema versus Article schema
 
@@ -68,7 +68,7 @@ Use Article schema when the page explains a topic rather than guides through a p
 
 The distinction matters because AI engines use schema type as a classification signal. An Article labeled as HowTo will not render correctly in rich results, and it sends a confused type signal to AI systems. Conversely, a genuine step-by-step guide labeled only as Article loses the structural advantages that HowTo schema provides.
 
-In many cases, the best answer is both — a stacked schema implementation where the page carries Article or WebPage schema for the content-level metadata and HowTo schema for the procedural structure. The nesting section below covers exactly how to do this.
+In many cases, the best answer is both, a stacked schema implementation where the page carries Article or WebPage schema for the content-level metadata and HowTo schema for the procedural structure. The nesting section below covers exactly how to do this.
 
 One more clarification: use Recipe schema for cooking content, not HowTo. Recipe is a subtype of HowTo with cooking-specific properties, and AI engines recognize it as a distinct content type. Using generic HowTo for recipes leaves structured data value on the table. [The complete guide to getting cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) has more on matching schema type to content type as a citation signal.
 
@@ -123,7 +123,7 @@ One more clarification: use Recipe schema for cooking content, not HowTo. Recipe
   <text x="68" y="529" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)">Core HowTo properties (left branches)</text>
   <rect x="260" y="518" width="14" height="14" fill="rgb(14,17,22)" rx="2"/>
   <text x="282" y="529" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)">HowToStep sub-properties (right branch)</text>
-  <text x="410" y="550" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.4" text-anchor="middle">All HowToStep properties are optional at the schema level — but name and text are required for Google rich results eligibility.</text>
+  <text x="410" y="550" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.4" text-anchor="middle">All HowToStep properties are optional at the schema level, but name and text are required for Google rich results eligibility.</text>
 </svg>
 </figure>
 
@@ -219,7 +219,7 @@ The following example implements a realistic HowTo schema with all major propert
 }
 ```
 
-A few implementation notes worth emphasizing. The `position` property on each HowToStep is optional according to the spec — order is determined by array position — but including it reduces ambiguity for AI parsers that may not preserve array ordering. The `url` property on each step pointing to a page anchor is particularly valuable for AI engines: it allows the engine to link directly to the relevant section when citing a specific step rather than the page as a whole. The `image` property per step is optional but increases the likelihood of rich result eligibility and provides AI systems with additional context signals.
+A few implementation notes worth emphasizing. The `position` property on each HowToStep is optional according to the spec, order is determined by array position, but including it reduces ambiguity for AI parsers that may not preserve array ordering. The `url` property on each step pointing to a page anchor is particularly valuable for AI engines: it allows the engine to link directly to the relevant section when citing a specific step rather than the page as a whole. The `image` property per step is optional but increases the likelihood of rich result eligibility and provides AI systems with additional context signals.
 
 ## Nesting HowTo within Article or WebPage schema
 
@@ -261,9 +261,9 @@ For most editorial guides, the page is both a HowTo procedure and a published ar
 }
 ```
 
-The `mainEntity` property on the Article node references the HowTo node by `@id`. This creates an explicit relationship between the two schema objects — the Article has a main entity that is the HowTo procedure. AI engines that process `@graph` implementations use these relationships to understand the page's structure holistically rather than treating each schema block independently.
+The `mainEntity` property on the Article node references the HowTo node by `@id`. This creates an explicit relationship between the two schema objects, the Article has a main entity that is the HowTo procedure. AI engines that process `@graph` implementations use these relationships to understand the page's structure holistically rather than treating each schema block independently.
 
-This stacking approach is also described in the [structured data strategy at the AI SEO Shift](/ai-seo-shift/) — schema stacking is consistently one of the highest-ROI technical implementations for pages that qualify for multiple schema types.
+This stacking approach is also described in the [structured data strategy at the AI SEO Shift](/ai-seo-shift/), schema stacking is consistently one of the highest-ROI technical implementations for pages that qualify for multiple schema types.
 
 ## Common implementation mistakes
 
@@ -273,7 +273,7 @@ The Schema.org spec technically allows minimal step definitions, but Google's ri
 
 ### Schema properties with no matching visible content
 
-This is the mistake that causes the most long-term damage. If your HowTo schema lists tools that are not mentioned in the visible page content, or includes steps that do not have corresponding visible instructions, you create a content-to-schema mismatch. AI engines cross-reference structured data claims against visible content — a mismatch signals either spam or error, and increasingly triggers trust penalties rather than just schema being ignored. Every property in your JSON-LD must have a corresponding visible element on the page.
+This is the mistake that causes the most long-term damage. If your HowTo schema lists tools that are not mentioned in the visible page content, or includes steps that do not have corresponding visible instructions, you create a content-to-schema mismatch. AI engines cross-reference structured data claims against visible content, a mismatch signals either spam or error, and increasingly triggers trust penalties rather than just schema being ignored. Every property in your JSON-LD must have a corresponding visible element on the page.
 
 ### Using `HowToStep` text that is too thin
 
@@ -293,35 +293,35 @@ HowTo schema on an article that discusses a topic without guiding through steps 
 
 ## How Google and AI engines validate and use HowTo schema
 
-Google's approach to HowTo schema is documented in [Google's HowTo structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/how-to). Google uses valid HowTo schema to generate rich results in search — a visual display of numbered steps that appears directly in the SERP for eligible queries. This rich result format has a higher click-through rate than standard blue links, which is valuable in its own right, but the schema's benefits extend beyond rich results into AI systems.
+Google's approach to HowTo schema is documented in [Google's HowTo structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/how-to). Google uses valid HowTo schema to generate rich results in search, a visual display of numbered steps that appears directly in the SERP for eligible queries. This rich result format has a higher click-through rate than standard blue links, which is valuable in its own right, but the schema's benefits extend beyond rich results into AI systems.
 
 For Google AI Overviews, HowTo schema gives the AI layer the same structural clarity it provides for rich results. When AI Overview is constructing a response to a "how do I" query, pages with valid HowTo schema are structurally preferable because the steps, their order, and their text are explicitly defined rather than inferred from HTML formatting.
 
-Perplexity's retrieval system and the systems powering ChatGPT's answer generation similarly benefit from HowTo schema, though neither publishes explicit documentation about their structured data handling. The common thread is that all these systems prefer sources where structural parsing is unambiguous — and HowTo schema is the clearest possible signal for procedural content.
+Perplexity's retrieval system and the systems powering ChatGPT's answer generation similarly benefit from HowTo schema, though neither publishes explicit documentation about their structured data handling. The common thread is that all these systems prefer sources where structural parsing is unambiguous, and HowTo schema is the clearest possible signal for procedural content.
 
-The relationship between content structure and AI citation is explored in detail in [how to structure your content for AI citation](/blog/perfect-blog-post-structure-ai-citation/). HowTo schema is the structured data complement to good HTML structure — the two work together, not in place of each other.
+The relationship between content structure and AI citation is explored in detail in [how to structure your content for AI citation](/blog/perfect-blog-post-structure-ai-citation/). HowTo schema is the structured data complement to good HTML structure, the two work together, not in place of each other.
 
 ## Testing and validating your HowTo schema
 
 Validation is not optional. Unvalidated schema can contain errors that make it invisible to both rich results systems and AI parsers while looking correct to a human reviewer.
 
-**Google's Rich Results Test** at [search.google.com/test/rich-results](https://search.google.com/test/rich-results) is the primary validation tool for HowTo schema. Enter your page URL or paste your JSON-LD directly, and the tool will tell you whether your schema qualifies for rich results, what properties are detected, and what errors or warnings exist. Pay particular attention to warnings about missing recommended properties — these do not disqualify rich results eligibility but indicate gaps that reduce AI citation effectiveness.
+**Google's Rich Results Test** at [search.google.com/test/rich-results](https://search.google.com/test/rich-results) is the primary validation tool for HowTo schema. Enter your page URL or paste your JSON-LD directly, and the tool will tell you whether your schema qualifies for rich results, what properties are detected, and what errors or warnings exist. Pay particular attention to warnings about missing recommended properties, these do not disqualify rich results eligibility but indicate gaps that reduce AI citation effectiveness.
 
-**Schema Markup Validator** at [validator.schema.org](https://validator.schema.org) validates against the full Schema.org specification rather than just Google's rich results requirements. It is more permissive than the Rich Results Test but catches structural errors — wrong property types, invalid nesting, and incorrect relationship declarations — that the Rich Results Test may not surface in detail.
+**Schema Markup Validator** at [validator.schema.org](https://validator.schema.org) validates against the full Schema.org specification rather than just Google's rich results requirements. It is more permissive than the Rich Results Test but catches structural errors, wrong property types, invalid nesting, and incorrect relationship declarations, that the Rich Results Test may not surface in detail.
 
 **Google Search Console** provides ongoing monitoring after deployment. The Enhancements section under the Rich Results report shows HowTo schema detections, valid counts, and error counts for your entire site. Set up a monitoring cadence to catch regressions when content is updated or templates are modified.
 
 The validation workflow that matters most: test the JSON-LD in the Rich Results Test before deployment, deploy, and then verify in Search Console 48-72 hours later that the schema was detected with no errors. If you update content, re-validate the schema. If you update templates, re-validate every affected page type.
 
-For the full technical audit picture beyond schema validation, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers the complete set of signals that affect AI crawlability and citation eligibility. HowTo schema sits at the intersection of technical and content optimization — it requires both a clean implementation and content depth to actually earn citations.
+For the full technical audit picture beyond schema validation, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers the complete set of signals that affect AI crawlability and citation eligibility. HowTo schema sits at the intersection of technical and content optimization, it requires both a clean implementation and content depth to actually earn citations.
 
-A complete strategy for making your procedural content citation-ready across all AI platforms — combining HowTo schema with content structure, authority signals, and crawl access — is covered in [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/).
+A complete strategy for making your procedural content citation-ready across all AI platforms, combining HowTo schema with content structure, authority signals, and crawl access, is covered in [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/).
 
 ## Frequently asked questions
 
 ### Does HowTo schema guarantee my content will be cited by AI engines?
 
-No structured data type guarantees citation — AI engines decide what to cite based on a combination of content quality, authority signals, crawl access, and structural clarity. HowTo schema improves the structural clarity component significantly, which increases citation probability for procedural queries. Pages with valid HowTo schema are structurally preferable to AI engines when constructing responses to "how do I" queries, but the content itself must be accurate, specific, and authoritative for that structural preference to translate into actual citations.
+No structured data type guarantees citation, AI engines decide what to cite based on a combination of content quality, authority signals, crawl access, and structural clarity. HowTo schema improves the structural clarity component significantly, which increases citation probability for procedural queries. Pages with valid HowTo schema are structurally preferable to AI engines when constructing responses to "how do I" queries, but the content itself must be accurate, specific, and authoritative for that structural preference to translate into actual citations.
 
 ### Does HowTo schema still help if my content is not eligible for Google rich results?
 
@@ -329,7 +329,7 @@ Yes. Google's rich results eligibility requirements are stricter than what AI pa
 
 ### How many steps should my HowTo schema include?
 
-Include exactly as many steps as your visible content covers — no more, no fewer. Schema steps that do not correspond to visible content create a mismatch that validators and AI systems detect. There is no minimum or maximum step count in the spec, but practically, guides with fewer than three steps may not trigger HowTo rich result display. Guides with more than ten steps may be split into sections, in which case each section can optionally use a `HowToSection` type as a parent grouping for related steps.
+Include exactly as many steps as your visible content covers, no more, no fewer. Schema steps that do not correspond to visible content create a mismatch that validators and AI systems detect. There is no minimum or maximum step count in the spec, but practically, guides with fewer than three steps may not trigger HowTo rich result display. Guides with more than ten steps may be split into sections, in which case each section can optionally use a `HowToSection` type as a parent grouping for related steps.
 
 ### Should I include HowTo schema on every tutorial or guide page?
 
@@ -341,7 +341,7 @@ Yes. Schema stacking is legitimate and often the right approach for comprehensiv
 
 ### What is the difference between HowToStep and HowToSection?
 
-`HowToSection` is a grouping container for related steps within a longer procedure. It has `name`, `description`, and `step` properties of its own — its `step` array contains `HowToStep` objects. Use `HowToSection` when your guide has distinct phases (e.g., "Installation," "Configuration," "Testing") and each phase contains multiple steps. For simpler guides, a flat array of `HowToStep` objects directly in the HowTo's `step` property is sufficient. Google's rich results display supports both flat and sectioned structures.
+`HowToSection` is a grouping container for related steps within a longer procedure. It has `name`, `description`, and `step` properties of its own, its `step` array contains `HowToStep` objects. Use `HowToSection` when your guide has distinct phases (e.g., "Installation," "Configuration," "Testing") and each phase contains multiple steps. For simpler guides, a flat array of `HowToStep` objects directly in the HowTo's `step` property is sufficient. Google's rich results display supports both flat and sectioned structures.
 
 <script type="application/ld+json">{`
 {

@@ -16,7 +16,7 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-Getting your first AI citation feels difficult because there is no single lever that makes it happen. It is the result of several small decisions aligning — your robots.txt, your page structure, your schema markup, and your ongoing monitoring. Once you understand how each piece connects, the process becomes straightforward.
+Getting your first AI citation feels difficult because there is no single lever that makes it happen. It is the result of several small decisions aligning, your robots.txt, your page structure, your schema markup, and your ongoing monitoring. Once you understand how each piece connects, the process becomes straightforward.
 
 This guide walks through the five-step minimum viable setup. It is not the exhaustive version. It is the version that gets most sites their first citation within 60 to 90 days, without requiring a full technical overhaul.
 
@@ -83,7 +83,7 @@ Most sites fail at step one and never realize it. Their content is good, their s
   </svg>
 </figure>
 
-## Step 1: Check your robots.txt — unblock AI crawlers
+## Step 1: Check your robots.txt, unblock AI crawlers
 
 The single fastest win available to most sites is updating their robots.txt file to stop blocking AI crawlers. This is not a rare edge case. Many sites have broad disallow rules that were written years ago and inadvertently block bots like GPTBot, ClaudeBot, and PerplexityBot.
 
@@ -95,11 +95,11 @@ Navigate to your domain's robots.txt by visiting `yourdomain.com/robots.txt`. Lo
 
 If your robots.txt blocks any of these agents, fix it before doing anything else. The specific crawlers to allow are:
 
-- **GPTBot** — used by OpenAI for ChatGPT
-- **ClaudeBot** — used by Anthropic for Claude
-- **PerplexityBot** — used by Perplexity AI
-- **Google-Extended** — used for Google AI training and features
-- **Googlebot** — still required for Google AI Overviews to find your content
+- **GPTBot**, used by OpenAI for ChatGPT
+- **ClaudeBot**, used by Anthropic for Claude
+- **PerplexityBot**, used by Perplexity AI
+- **Google-Extended**, used for Google AI training and features
+- **Googlebot**, still required for Google AI Overviews to find your content
 
 A properly configured robots.txt for AI visibility should either have no block on these agents or should explicitly allow them. If you want to allow crawling but opt out of specific training uses, you can use more targeted controls, but for most sites the practical goal is to ensure the content is retrievable.
 
@@ -128,7 +128,7 @@ The biggest structural shift that improves citation probability is moving your d
 
 The answer-first format means:
 
-**Your opening paragraph directly answers the target query.** Not teases it, not sets up context for it — answers it. Ideally in two to four sentences that could be lifted and used as a standalone response.
+**Your opening paragraph directly answers the target query.** Not teases it, not sets up context for it, answers it. Ideally in two to four sentences that could be lifted and used as a standalone response.
 
 **Descriptive headings that mirror the query structure.** Use headings that contain the specific language your target audience uses. Avoid clever or creative headings that require context to understand. A heading like "What GPTBot does and why your robots.txt needs to allow it" is more extractable than "The technical details explained."
 
@@ -142,7 +142,7 @@ The goal of restructuring is not to make your page worse for human readers. Answ
 
 ## Step 4: Add FAQ schema to the page
 
-Structured data is one of the clearest signals you can send to an AI system about what your content contains and how it should be used. FAQ schema — also called FAQPage schema in the Schema.org vocabulary — tells AI systems that your page contains a set of matched questions and answers, which is exactly the format AI answer systems prefer to cite.
+Structured data is one of the clearest signals you can send to an AI system about what your content contains and how it should be used. FAQ schema, also called FAQPage schema in the Schema.org vocabulary, tells AI systems that your page contains a set of matched questions and answers, which is exactly the format AI answer systems prefer to cite.
 
 Adding FAQ schema to your target page requires two things:
 
@@ -171,7 +171,7 @@ The implementation looks like this:
 
 For sites on WordPress, plugins like Yoast SEO or Rank Math can generate this schema through their FAQ block implementations. For custom-built sites, the JSON-LD block can be added directly to the page template. Google's [Introduction to Structured Data](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) documentation provides the canonical reference for implementation requirements.
 
-The broader context for why schema matters goes well beyond FAQ markup. [Schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) explains how Article, Organization, BreadcrumbList, and entity markup work together to create a machine-readable picture of your content that AI systems can trust and cite. FAQ schema is the entry point — the full structured data stack is what compounds over time.
+The broader context for why schema matters goes well beyond FAQ markup. [Schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) explains how Article, Organization, BreadcrumbList, and entity markup work together to create a machine-readable picture of your content that AI systems can trust and cite. FAQ schema is the entry point, the full structured data stack is what compounds over time.
 
 You can also validate your implementation using [Google's Rich Results Test](https://search.google.com/test/rich-results) before publishing, which confirms the schema parses correctly and contains no structural errors.
 
@@ -199,7 +199,7 @@ Your first citation is the proof of concept. It confirms that your approach is w
 
 **Build internal links toward your strongest pages.** Pages that earn citations tend to earn more citations over time when they are well-connected to the rest of your site. Internal linking from related pages signals topical depth and keeps the citation-earning page within the site's authority network.
 
-**Add Article schema and author markup.** FAQ schema is the entry point, but a full structured data stack — including Article, Person, and Organization markup — strengthens the trust signals that AI systems use to decide whether a source is reliable enough to cite repeatedly.
+**Add Article schema and author markup.** FAQ schema is the entry point, but a full structured data stack, including Article, Person, and Organization markup, strengthens the trust signals that AI systems use to decide whether a source is reliable enough to cite repeatedly.
 
 For a full picture of how content strategy connects to AI citation across a site rather than a single page, the guide on [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/) maps the content creation process from topic selection through publication in a way that builds toward sustained citation frequency.
 
@@ -227,7 +227,7 @@ Content that answers specific, factual questions directly tends to earn the most
 
 ### Can a brand new site get AI citations?
 
-Yes, but it takes longer. Newer sites need to establish enough topical authority and trust signals before AI systems will reliably select them as sources. The fastest path for a new site is to focus on one narrow topic, publish consistently within that topic area, and ensure every technical element — robots.txt, schema, page structure — is correctly configured from the start. Building an initial external link profile also helps AI systems evaluate the site as a credible source worth citing.
+Yes, but it takes longer. Newer sites need to establish enough topical authority and trust signals before AI systems will reliably select them as sources. The fastest path for a new site is to focus on one narrow topic, publish consistently within that topic area, and ensure every technical element, robots.txt, schema, page structure, is correctly configured from the start. Building an initial external link profile also helps AI systems evaluate the site as a credible source worth citing.
 
 ### Is FAQ schema the only structured data I need?
 
@@ -275,7 +275,7 @@ FAQ schema is the most important structured data for citation specifically, beca
       "name": "Can a brand new site get AI citations?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, but it takes longer. Newer sites need to establish enough topical authority and trust signals before AI systems will reliably select them as sources. The fastest path for a new site is to focus on one narrow topic, publish consistently within that topic area, and ensure every technical element — robots.txt, schema, page structure — is correctly configured from the start. Building an initial external link profile also helps AI systems evaluate the site as a credible source worth citing."
+        "text": "Yes, but it takes longer. Newer sites need to establish enough topical authority and trust signals before AI systems will reliably select them as sources. The fastest path for a new site is to focus on one narrow topic, publish consistently within that topic area, and ensure every technical element, robots.txt, schema, page structure, is correctly configured from the start. Building an initial external link profile also helps AI systems evaluate the site as a credible source worth citing."
       }
     },
     {

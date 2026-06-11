@@ -1,7 +1,7 @@
 ---
 title: "Content Audit Framework for the AI Era: Upgrade Your Existing Posts for AI Citation"
 description: A step-by-step framework for auditing existing blog content to improve AI citation rates. Covers structure, E-E-A-T signals, schema gaps, and freshness.
-deck: Most sites have dozens of posts that rank but never get cited by AI engines. A structured content audit identifies the gaps — missing answer structure, weak author signals, no schema — and prioritizes the highest-ROI fixes.
+deck: Most sites have dozens of posts that rank but never get cited by AI engines. A structured content audit identifies the gaps, missing answer structure, weak author signals, no schema, and prioritizes the highest-ROI fixes.
 pubDate: 2026-06-06
 category: Strategy
 tags:
@@ -18,11 +18,11 @@ import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
 Most content teams run audits once a year, check rankings and traffic, prune thin pages, and call it done. That workflow was designed for traditional search engines, and it misses almost everything that matters for AI visibility.
 
-AI citation is a fundamentally different evaluation. ChatGPT, Perplexity, and Google AI Overviews are not ranking pages — they are extracting passages. A page can hold a stable position on page one and never earn a single AI citation because the answer is buried three paragraphs deep, the author has no visible credentials, and there is no schema to help the AI parser classify the content. Traditional SEO metrics will not surface that problem.
+AI citation is a fundamentally different evaluation. ChatGPT, Perplexity, and Google AI Overviews are not ranking pages, they are extracting passages. A page can hold a stable position on page one and never earn a single AI citation because the answer is buried three paragraphs deep, the author has no visible credentials, and there is no schema to help the AI parser classify the content. Traditional SEO metrics will not surface that problem.
 
-The audit framework in this post is designed specifically to close that gap. It is a five-step process — Inventory, Score, Prioritize, Fix, Track — that treats your existing content library as a portfolio of AI citation candidates, identifies which pages are closest to citability, and systematically upgrades them.
+The audit framework in this post is designed specifically to close that gap. It is a five-step process, Inventory, Score, Prioritize, Fix, Track, that treats your existing content library as a portfolio of AI citation candidates, identifies which pages are closest to citability, and systematically upgrades them.
 
-**Quick answer:** Run an inventory of your content using Google Search Console and a crawl tool. Score each page on four AI citation dimensions: answer structure, author signals, schema coverage, and freshness. Prioritize pages with high organic traffic but low AI citation scores — they offer the best return on remediation effort. Fix the five most common gaps (quick answer, FAQ section, schema, author byline, updated date). Track citation rates directly on ChatGPT, Perplexity, and Google AI Overviews over 60–90 days.
+**Quick answer:** Run an inventory of your content using Google Search Console and a crawl tool. Score each page on four AI citation dimensions: answer structure, author signals, schema coverage, and freshness. Prioritize pages with high organic traffic but low AI citation scores, they offer the best return on remediation effort. Fix the five most common gaps (quick answer, FAQ section, schema, author byline, updated date). Track citation rates directly on ChatGPT, Perplexity, and Google AI Overviews over 60–90 days.
 
 ## Why existing content needs a different kind of audit
 
@@ -34,23 +34,23 @@ AI systems evaluate content on dimensions that do not show up in standard analyt
 
 **Authority verification signals.** Does the page signal who wrote it, what qualifies them to write it, and when the information was last verified? AI systems increasingly cross-reference author credentials against external knowledge graphs. A page without a named, credentialed author competes at a structural disadvantage. For a deeper look at how experience signals drive AI visibility, see the guide on [E-E-A-T in the AI era](/blog/eeat-in-the-ai-era/).
 
-**Schema completeness.** Does the page have JSON-LD markup that classifies its content type and surfaces key entities? Pages with Article, FAQPage, and BreadcrumbList schema give AI parsers a pre-processed signal they can act on directly. Pages without schema force AI systems to interpret everything from natural language alone — which introduces ambiguity.
+**Schema completeness.** Does the page have JSON-LD markup that classifies its content type and surfaces key entities? Pages with Article, FAQPage, and BreadcrumbList schema give AI parsers a pre-processed signal they can act on directly. Pages without schema force AI systems to interpret everything from natural language alone, which introduces ambiguity.
 
 **Content freshness.** AI engines, especially Perplexity and Google AI Overviews, apply meaningful recency weighting. A page with a publication date from 2022 and no visible update signal will lose citation eligibility to a less comprehensive but fresher competitor.
 
 Your existing content almost certainly has pages that are weak on one or more of these dimensions. The audit is how you find them systematically.
 
-## Step 1: Inventory — pulling the right data
+## Step 1: Inventory, pulling the right data
 
 The inventory phase produces a master list of every page worth auditing, with enough data attached to score and prioritize it in the next step.
 
-**Pull from Google Search Console.** Export your top pages by impressions over the last 90 days. Filter to pages with at least 50 impressions per month — lower-traffic pages can wait. For each page, record: URL, primary query, average position, click-through rate, total impressions, and last crawl date. The [Google Search Console Performance report](https://support.google.com/webmasters/answer/7576553) gives you all of this in a single export.
+**Pull from Google Search Console.** Export your top pages by impressions over the last 90 days. Filter to pages with at least 50 impressions per month, lower-traffic pages can wait. For each page, record: URL, primary query, average position, click-through rate, total impressions, and last crawl date. The [Google Search Console Performance report](https://support.google.com/webmasters/answer/7576553) gives you all of this in a single export.
 
 **Layer in crawl data.** Run your site through [Screaming Frog](https://www.screamingfrog.co.uk/seo-spider/) or a similar crawler and export: word count, H1, meta description, canonical status, last-modified header, and whether each page contains JSON-LD markup. Cross-reference by URL with your GSC export. This gives you a single spreadsheet with both traffic data and on-page signals.
 
 **Tag content type.** Categorize each page: how-to guide, comparison post, definition/glossary, FAQ page, news post, pillar page, or service page. Content type affects which scoring criteria matter most in Step 2.
 
-**Flag AI-relevant pages.** Not every page is a candidate for AI citation. Filter your list to pages that answer informational queries — "how to," "what is," "best practices," comparison topics, and process guides. Transactional and navigational pages are not the target here.
+**Flag AI-relevant pages.** Not every page is a candidate for AI citation. Filter your list to pages that answer informational queries, "how to," "what is," "best practices," comparison topics, and process guides. Transactional and navigational pages are not the target here.
 
 At the end of Step 1 you should have a spreadsheet of 30–150 pages (depending on your content library size), each with traffic data, crawl signals, content type, and a flag for AI relevance.
 
@@ -105,28 +105,28 @@ With your inventory built, score each page on four dimensions. Use a 0–3 scale
     <text x="32" y="258" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="0.06em" fill="rgb(14,17,22)" opacity="0.5">SCORING DIMENSIONS (0–3 EACH · MAX 12)</text>
     <rect x="32" y="272" width="170" height="110" rx="5" fill="rgb(250,250,247)"/>
     <text x="46" y="294" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="rgb(184,85,46)">Answer Structure</text>
-    <text x="46" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">0 — buried answer</text>
-    <text x="46" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">1 — answer in intro</text>
-    <text x="46" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">2 — bold quick answer</text>
-    <text x="46" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">3 — callout + FAQ</text>
+    <text x="46" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">0, buried answer</text>
+    <text x="46" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">1, answer in intro</text>
+    <text x="46" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">2, bold quick answer</text>
+    <text x="46" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">3, callout + FAQ</text>
     <rect x="214" y="272" width="170" height="110" rx="5" fill="rgb(250,250,247)"/>
     <text x="228" y="294" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="rgb(184,85,46)">Author Signals</text>
-    <text x="228" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">0 — no byline</text>
-    <text x="228" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">1 — name only</text>
-    <text x="228" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">2 — bio + credentials</text>
-    <text x="228" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">3 — schema + links</text>
+    <text x="228" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">0, no byline</text>
+    <text x="228" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">1, name only</text>
+    <text x="228" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">2, bio + credentials</text>
+    <text x="228" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">3, schema + links</text>
     <rect x="396" y="272" width="170" height="110" rx="5" fill="rgb(250,250,247)"/>
     <text x="410" y="294" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="rgb(184,85,46)">Schema Coverage</text>
-    <text x="410" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">0 — no JSON-LD</text>
-    <text x="410" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">1 — Article only</text>
-    <text x="410" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">2 — Article + FAQ</text>
-    <text x="410" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">3 — full stack</text>
+    <text x="410" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">0, no JSON-LD</text>
+    <text x="410" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">1, Article only</text>
+    <text x="410" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">2, Article + FAQ</text>
+    <text x="410" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">3, full stack</text>
     <rect x="578" y="272" width="190" height="110" rx="5" fill="rgb(250,250,247)"/>
     <text x="592" y="294" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="rgb(184,85,46)">Freshness</text>
-    <text x="592" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">0 — no date visible</text>
-    <text x="592" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">1 — published 18m+ ago</text>
-    <text x="592" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">2 — updated within 12m</text>
-    <text x="592" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">3 — updated within 6m</text>
+    <text x="592" y="312" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">0, no date visible</text>
+    <text x="592" y="328" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">1, published 18m+ ago</text>
+    <text x="592" y="344" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">2, updated within 12m</text>
+    <text x="592" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.7">3, updated within 6m</text>
     <text x="400" y="406" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="rgb(14,17,22)" opacity="0.45" text-anchor="middle">Score 0–12. Pages scoring 8+ are citation-ready. Pages scoring 0–5 are highest-ROI remediation targets.</text>
   </svg>
 </figure>
@@ -149,35 +149,35 @@ Score 0 if the page has no JSON-LD markup of any kind. Score 1 if it has basic A
 
 Score 0 if no publication or update date is visible on the page. Score 1 if the page was published more than 18 months ago with no visible update. Score 2 if the page has been updated within the last 12 months. Score 3 if the page has been updated within the last 6 months and includes an explicit "Last updated" signal near the top.
 
-## Step 3: Prioritize — where to start
+## Step 3: Prioritize, where to start
 
 After scoring every page, you have a spreadsheet with both traffic data and AI citation readiness scores. Now you need to prioritize which pages to fix first.
 
 The prioritization matrix is straightforward: **high organic traffic + low AI citation score = highest ROI**.
 
-Sort your spreadsheet by impressions descending. Flag every page in the top half of impressions that scores below 6 on the AI citation rubric. These are your Tier 1 remediation candidates — pages that already attract search demand but are structurally ineligible for AI citation. Fixing them does not require building new traffic; it requires upgrading the pages that already have it.
+Sort your spreadsheet by impressions descending. Flag every page in the top half of impressions that scores below 6 on the AI citation rubric. These are your Tier 1 remediation candidates, pages that already attract search demand but are structurally ineligible for AI citation. Fixing them does not require building new traffic; it requires upgrading the pages that already have it.
 
-Tier 2 candidates are pages in the top half of impressions that score 6–8. They are close to citation-ready and require smaller interventions — often just adding schema or a quick answer callout.
+Tier 2 candidates are pages in the top half of impressions that score 6–8. They are close to citation-ready and require smaller interventions, often just adding schema or a quick answer callout.
 
 Pages in the bottom half of impressions are not worth prioritizing regardless of their AI citation score. They do not have enough demand to generate meaningful citation volume even if they are perfectly optimized. The exception: pages targeting emerging queries where you expect impressions to grow.
 
 Within Tier 1, sequence pages by content type. How-to guides and FAQ posts are the fastest to remediate because the fix pattern is predictable. Comparison posts take longer because they often need a structural rewrite, not just an addition.
 
-## Step 4: Remediate — the five most common fixes
+## Step 4: Remediate, the five most common fixes
 
 Across most content libraries, AI citation gaps cluster around the same five issues. For each prioritized page, work through this checklist:
 
-**Fix 1: Add a formatted quick answer.** Place a direct, self-contained answer to the primary query within the first 100–150 words of the page. It should be readable as a standalone passage — no "as we'll see below" or context dependencies. Bold it or wrap it in a visually distinct callout block. This single change improves citation extractability more than any other individual fix.
+**Fix 1: Add a formatted quick answer.** Place a direct, self-contained answer to the primary query within the first 100–150 words of the page. It should be readable as a standalone passage, no "as we'll see below" or context dependencies. Bold it or wrap it in a visually distinct callout block. This single change improves citation extractability more than any other individual fix.
 
-**Fix 2: Add or expand an FAQ section.** An FAQ section at the end of the post serves two purposes. It expands coverage of long-tail related queries, and it is the content source for FAQPage schema. Six to eight questions is the practical minimum for meaningful schema coverage. Questions should mirror how users phrase queries in search — start each question with "What," "How," "Does," "Can," or "Why." For guidance on writing content that serves both readers and AI engines simultaneously, see [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/).
+**Fix 2: Add or expand an FAQ section.** An FAQ section at the end of the post serves two purposes. It expands coverage of long-tail related queries, and it is the content source for FAQPage schema. Six to eight questions is the practical minimum for meaningful schema coverage. Questions should mirror how users phrase queries in search, start each question with "What," "How," "Does," "Can," or "Why." For guidance on writing content that serves both readers and AI engines simultaneously, see [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/).
 
 **Fix 3: Implement or complete JSON-LD schema.** For most blog posts, the minimum viable schema stack is Article plus FAQPage. Add BreadcrumbList to every page. If the author has verifiable credentials, add Person schema for the author with `knowsAbout` fields populated. Validate everything in Google's Rich Results Test before publishing. The full schema implementation guide at [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) covers every type you need.
 
-**Fix 4: Add or strengthen the author byline.** Every post targeting informational queries needs a visible author byline with at least a name and a brief credential statement. "Written by [Name]" is not sufficient. The byline should include a one- or two-sentence description of the author's relevant expertise — years of experience, role, industry background, or specific credentials. For a comprehensive guide to auditing your site's full AI visibility posture, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers author signals alongside technical and structural factors.
+**Fix 4: Add or strengthen the author byline.** Every post targeting informational queries needs a visible author byline with at least a name and a brief credential statement. "Written by [Name]" is not sufficient. The byline should include a one- or two-sentence description of the author's relevant expertise, years of experience, role, industry background, or specific credentials. For a comprehensive guide to auditing your site's full AI visibility posture, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers author signals alongside technical and structural factors.
 
 **Fix 5: Update the content and the date.** Any page with a last-modified date more than 12 months old should be reviewed for factual accuracy, especially if it covers tools, platforms, statistics, or best practices that change over time. Even a page that remains technically accurate often benefits from a freshness update: adding a recent data point, referencing a current platform update, or adding a section that addresses a question that has become more common since the original publication. Update the `dateModified` field in schema and display the updated date visibly near the top of the post.
 
-## Step 5: Track — measuring improvement
+## Step 5: Track, measuring improvement
 
 Tracking AI citation improvement requires more active monitoring than traditional SEO reporting, because citation data does not flow through analytics platforms. You have to observe it directly.
 
@@ -191,7 +191,7 @@ Tracking AI citation improvement requires more active monitoring than traditiona
 
 **Review your scoring spreadsheet quarterly.** As you publish new content and update existing pages, re-score the full inventory every quarter. The goal is to move the average AI citation score across your library upward over time. A library-wide average of 8+ means most of your high-traffic pages are citation-competitive.
 
-For a complete picture of how all the moving parts of AI SEO fit together — structure, schema, E-E-A-T, technical signals — the [AI SEO Shift guide](/ai-seo-shift/) covers the full framework.
+For a complete picture of how all the moving parts of AI SEO fit together, structure, schema, E-E-A-T, technical signals, the [AI SEO Shift guide](/ai-seo-shift/) covers the full framework.
 
 ## The scoring rubric
 
@@ -217,27 +217,27 @@ Use this reference when auditing pages:
 
 **How often should I run a full AI content audit?**
 
-Quarterly is the right cadence for most content teams. A full audit — inventory, score, prioritize, fix, track — is too resource-intensive to run monthly. But AI citation criteria evolve quickly, and the competitive landscape shifts. A quarterly review lets you catch pages that have drifted below the citation threshold due to content aging or competitor upgrades. Between full audits, run lighter monthly checks on your top 10–15 highest-traffic pages to make sure nothing has fallen out of citation contention.
+Quarterly is the right cadence for most content teams. A full audit, inventory, score, prioritize, fix, track, is too resource-intensive to run monthly. But AI citation criteria evolve quickly, and the competitive landscape shifts. A quarterly review lets you catch pages that have drifted below the citation threshold due to content aging or competitor upgrades. Between full audits, run lighter monthly checks on your top 10–15 highest-traffic pages to make sure nothing has fallen out of citation contention.
 
 **Does improving AI citation scores hurt traditional SEO rankings?**
 
-In most cases, no. The fixes that improve AI citation readiness — clearer structure, stronger author signals, better schema, fresher content — are also good for traditional SEO. The main risk is structural: if you significantly reorganize a page's content flow to surface a quick answer, you may temporarily affect bounce rate or dwell time signals. This tends to resolve within a few weeks as crawlers re-evaluate the page. The more significant risk is consolidation: if the audit recommends merging two pages and you handle the redirect incorrectly, you can lose ranking equity. Always implement 301 redirects and monitor rankings closely after any consolidation.
+In most cases, no. The fixes that improve AI citation readiness, clearer structure, stronger author signals, better schema, fresher content, are also good for traditional SEO. The main risk is structural: if you significantly reorganize a page's content flow to surface a quick answer, you may temporarily affect bounce rate or dwell time signals. This tends to resolve within a few weeks as crawlers re-evaluate the page. The more significant risk is consolidation: if the audit recommends merging two pages and you handle the redirect incorrectly, you can lose ranking equity. Always implement 301 redirects and monitor rankings closely after any consolidation.
 
 **Which pages have the highest AI citation potential?**
 
-Comprehensive how-to guides, process-oriented posts with numbered steps, definition pages for industry terms, FAQ pages, and comparison posts consistently earn higher AI citation rates than other content types. Within those types, pages that answer a question in their first paragraph and support it with an FAQ section at the end outperform structurally similar pages that bury the answer. Query intent matters as well — informational queries with clear factual answers are the easiest to optimize for AI citation. Transactional and navigational queries rarely generate AI-cited answers from blog content.
+Comprehensive how-to guides, process-oriented posts with numbered steps, definition pages for industry terms, FAQ pages, and comparison posts consistently earn higher AI citation rates than other content types. Within those types, pages that answer a question in their first paragraph and support it with an FAQ section at the end outperform structurally similar pages that bury the answer. Query intent matters as well, informational queries with clear factual answers are the easiest to optimize for AI citation. Transactional and navigational queries rarely generate AI-cited answers from blog content.
 
 **What is the minimum AI citation score worth targeting?**
 
-Target a minimum score of 8 out of 12 for any page in your top 50% by impressions. Pages scoring below 8 are competing at a disadvantage for AI citation regardless of their organic ranking position. For pages in your top 10 by impressions — your highest-traffic informational posts — target 10 or higher. The investment in getting those pages citation-ready has the largest possible return because those pages already have the most demand.
+Target a minimum score of 8 out of 12 for any page in your top 50% by impressions. Pages scoring below 8 are competing at a disadvantage for AI citation regardless of their organic ranking position. For pages in your top 10 by impressions, your highest-traffic informational posts, target 10 or higher. The investment in getting those pages citation-ready has the largest possible return because those pages already have the most demand.
 
 **How do I track AI citations without expensive tools?**
 
-Manual query tracking is the most reliable method available without enterprise tooling. Maintain a spreadsheet with your priority pages and their target queries. Every two to four weeks, run each query on ChatGPT, Perplexity, and Google AI Overviews and note whether your page is cited. For Google specifically, watch AI Overviews impressions in Google Search Console — this is free and provides trend data over time. Some third-party tools are beginning to offer AI citation monitoring, but as of mid-2026, the manual approach is still more accurate for understanding your specific citation patterns.
+Manual query tracking is the most reliable method available without enterprise tooling. Maintain a spreadsheet with your priority pages and their target queries. Every two to four weeks, run each query on ChatGPT, Perplexity, and Google AI Overviews and note whether your page is cited. For Google specifically, watch AI Overviews impressions in Google Search Console, this is free and provides trend data over time. Some third-party tools are beginning to offer AI citation monitoring, but as of mid-2026, the manual approach is still more accurate for understanding your specific citation patterns.
 
 **Should I audit all my content at once or start with a subset?**
 
-Start with a subset. For most sites, auditing the top 30–50 pages by impressions gives you 80% of the citation opportunity with a fraction of the effort of a full audit. These pages already have traffic momentum — the AI citation gap represents citations you are almost earning but not capturing. Run the full five-step process on this subset first, complete the remediation cycle, and track results for 60–90 days before expanding the audit to the rest of the content library. This approach also lets you refine your scoring process on a manageable batch before applying it to hundreds of pages.
+Start with a subset. For most sites, auditing the top 30–50 pages by impressions gives you 80% of the citation opportunity with a fraction of the effort of a full audit. These pages already have traffic momentum, the AI citation gap represents citations you are almost earning but not capturing. Run the full five-step process on this subset first, complete the remediation cycle, and track results for 60–90 days before expanding the audit to the rest of the content library. This approach also lets you refine your scoring process on a manageable batch before applying it to hundreds of pages.
 
 ---
 
@@ -252,9 +252,9 @@ Start with a subset. For most sites, auditing the top 30–50 pages by impressio
 
 ## References
 
-<a href="https://support.google.com/webmasters/answer/7576553" target="_blank" rel="noopener noreferrer">Google Search Console Help: Performance reports — how to export and filter by search type</a>
+<a href="https://support.google.com/webmasters/answer/7576553" target="_blank" rel="noopener noreferrer">Google Search Console Help: Performance reports, how to export and filter by search type</a>
 
-<a href="https://www.screamingfrog.co.uk/seo-spider/" target="_blank" rel="noopener noreferrer">Screaming Frog SEO Spider — crawl and export on-page signals at scale</a>
+<a href="https://www.screamingfrog.co.uk/seo-spider/" target="_blank" rel="noopener noreferrer">Screaming Frog SEO Spider, crawl and export on-page signals at scale</a>
 
 <script type="application/ld+json">{`
 {
@@ -274,7 +274,7 @@ Start with a subset. For most sites, auditing the top 30–50 pages by impressio
       "name": "Does improving AI citation scores hurt traditional SEO rankings?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In most cases, no. Fixes that improve AI citation readiness — clearer structure, stronger author signals, better schema, fresher content — are also good for traditional SEO. The main risk is structural: significant content reorganization may temporarily affect dwell time signals, which typically resolves within a few weeks. Always implement 301 redirects and monitor rankings after any page consolidation."
+        "text": "In most cases, no. Fixes that improve AI citation readiness, clearer structure, stronger author signals, better schema, fresher content, are also good for traditional SEO. The main risk is structural: significant content reorganization may temporarily affect dwell time signals, which typically resolves within a few weeks. Always implement 301 redirects and monitor rankings after any page consolidation."
       }
     },
     {

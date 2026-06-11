@@ -13,7 +13,7 @@ author: Shashank Dubey
 featured: false
 ---
 
-When ChatGPT answers "best CPA for short-term rental investors," it needs to verify that the firms it considers are actually accounting firms with credentialed CPAs. Schema markup is the primary mechanism. Firms with structured `AccountingService` and `Person` markup with `hasCredential` get verified and cited. Firms without it have to be inferred — and AI engines often choose not to bother inferring.
+When ChatGPT answers "best CPA for short-term rental investors," it needs to verify that the firms it considers are actually accounting firms with credentialed CPAs. Schema markup is the primary mechanism. Firms with structured `AccountingService` and `Person` markup with `hasCredential` get verified and cited. Firms without it have to be inferred, and AI engines often choose not to bother inferring.
 
 This is the implementation guide. Five schema types, copy-paste JSON-LD, and the deployment patterns that work for accounting firm websites.
 
@@ -31,27 +31,27 @@ For the strategic context, see the pillar on [AI SEO for CPA firms](/blog/ai-seo
 		<g transform="translate(90 60)">
 			<rect width="620" height="34" fill="rgb(184,85,46)" rx="3" />
 			<text x="16" y="22" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" font-weight="700">01</text>
-			<text x="56" y="22" fill="rgb(250,250,247)" font-weight="600">AccountingService — homepage, the firm entity</text>
+			<text x="56" y="22" fill="rgb(250,250,247)" font-weight="600">AccountingService, homepage, the firm entity</text>
 		</g>
 		<g transform="translate(120 102)">
 			<rect width="560" height="30" fill="rgb(184,85,46)" fill-opacity="0.75" rx="3" />
 			<text x="16" y="20" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" font-weight="700">02</text>
-			<text x="56" y="20" fill="rgb(250,250,247)" font-weight="600">Person + hasCredential — CPA bios</text>
+			<text x="56" y="20" fill="rgb(250,250,247)" font-weight="600">Person + hasCredential, CPA bios</text>
 		</g>
 		<g transform="translate(150 140)">
 			<rect width="500" height="28" fill="rgb(184,85,46)" fill-opacity="0.5" rx="3" />
 			<text x="16" y="19" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" font-weight="700">03</text>
-			<text x="56" y="19" font-size="12" fill="rgb(14,17,22)" font-weight="600">Service — each specialty area</text>
+			<text x="56" y="19" font-size="12" fill="rgb(14,17,22)" font-weight="600">Service, each specialty area</text>
 		</g>
 		<g transform="translate(180 176)">
 			<rect width="440" height="26" fill="rgb(184,85,46)" fill-opacity="0.3" rx="3" />
 			<text x="16" y="18" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.7" font-weight="700">04</text>
-			<text x="56" y="18" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.85">Article + author — blog posts</text>
+			<text x="56" y="18" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.85">Article + author, blog posts</text>
 		</g>
 		<g transform="translate(210 210)">
 			<rect width="380" height="22" fill="rgb(184,85,46)" fill-opacity="0.18" rx="3" />
 			<text x="16" y="16" font-size="11" letter-spacing="2" fill="rgb(14,17,22)" fill-opacity="0.6" font-weight="700">05</text>
-			<text x="56" y="16" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.7">FAQPage — service-page FAQs</text>
+			<text x="56" y="16" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.7">FAQPage, service-page FAQs</text>
 		</g>
 	</g>
 	<text x="400" y="266" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">hasCredential is the field that lets AI engines trust your CPA claims.</text>

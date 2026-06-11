@@ -1,6 +1,6 @@
 ---
 title: "NAP Consistency for AI Local SEO: Why Inconsistent Business Data Costs You Citations"
-description: How NAP consistency — name, address, phone number — affects local AI engine citations in 2026. How to audit, fix, and maintain consistent business data across directories and platforms.
+description: How NAP consistency, name, address, phone number, affects local AI engine citations in 2026. How to audit, fix, and maintain consistent business data across directories and platforms.
 deck: When ChatGPT or Perplexity recommends a local business, they pull from a web of structured data signals. Inconsistent NAP data creates conflicting entity signals that reduce citation probability. Here is how to audit and fix it.
 pubDate: 2026-06-06
 category: Strategy
@@ -16,29 +16,29 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-NAP stands for name, address, and phone number — the three data points that uniquely identify a physical business location on the web. In traditional local SEO, NAP consistency meant making sure these three fields matched across citation directories so Google could confidently map them to a single business entity. In 2026, the same logic applies to AI engines, but the stakes are higher and the mechanisms are more sensitive.
+NAP stands for name, address, and phone number, the three data points that uniquely identify a physical business location on the web. In traditional local SEO, NAP consistency meant making sure these three fields matched across citation directories so Google could confidently map them to a single business entity. In 2026, the same logic applies to AI engines, but the stakes are higher and the mechanisms are more sensitive.
 
-The quick answer: when ChatGPT, Perplexity, Google AI Overviews, or any other AI engine is asked to recommend a local business, it performs entity resolution — a process of identifying which web signals all refer to the same real-world entity. Inconsistent NAP data creates conflicting entity signals. The AI engine cannot confidently merge "Smith & Associates HVAC at 402 W. Oak Street, Suite 12, (312) 555-0190" with "Smith and Associates Heating, 402 West Oak St, Chicago IL, 312-555-0190" into a single authoritative entity. The result is a fragmented or low-confidence entity profile that reduces citation probability. Businesses with clean, consistent NAP data across authoritative platforms get cited more often because they are easier to verify.
+The quick answer: when ChatGPT, Perplexity, Google AI Overviews, or any other AI engine is asked to recommend a local business, it performs entity resolution, a process of identifying which web signals all refer to the same real-world entity. Inconsistent NAP data creates conflicting entity signals. The AI engine cannot confidently merge "Smith & Associates HVAC at 402 W. Oak Street, Suite 12, (312) 555-0190" with "Smith and Associates Heating, 402 West Oak St, Chicago IL, 312-555-0190" into a single authoritative entity. The result is a fragmented or low-confidence entity profile that reduces citation probability. Businesses with clean, consistent NAP data across authoritative platforms get cited more often because they are easier to verify.
 
 This post covers how AI engines actually use NAP data, where inconsistencies most commonly occur, how to run a practical NAP audit, which platforms to prioritize, and how to implement [LocalBusiness schema](/blog/schema-markup-for-ai-visibility/) as the authoritative NAP anchor on your own domain.
 
 ## How AI engines use NAP data to verify business entity identity
 
-AI engines do not simply retrieve a list of businesses from a single database when answering local queries. They perform a cross-source entity matching process, drawing from structured data they have indexed across your website, Google Business Profile, major citation directories, review platforms, social profiles, and news or editorial mentions. Each source contributes a set of signals — and NAP is the primary identifier used to determine whether two signals refer to the same business.
+AI engines do not simply retrieve a list of businesses from a single database when answering local queries. They perform a cross-source entity matching process, drawing from structured data they have indexed across your website, Google Business Profile, major citation directories, review platforms, social profiles, and news or editorial mentions. Each source contributes a set of signals, and NAP is the primary identifier used to determine whether two signals refer to the same business.
 
-Entity resolution works roughly like this: the AI engine finds multiple references to what might be the same business across different sources. It looks for matching patterns in the name, address, and phone number fields. If the signals are consistent, confidence in the entity's identity increases, and the entity is more likely to be surfaced as a recommendation. If the signals conflict — different name spellings, different address formats, different phone numbers — the entity either resolves weakly or splits into multiple low-confidence entities that do not meet the threshold for citation.
+Entity resolution works roughly like this: the AI engine finds multiple references to what might be the same business across different sources. It looks for matching patterns in the name, address, and phone number fields. If the signals are consistent, confidence in the entity's identity increases, and the entity is more likely to be surfaced as a recommendation. If the signals conflict, different name spellings, different address formats, different phone numbers, the entity either resolves weakly or splits into multiple low-confidence entities that do not meet the threshold for citation.
 
 The practical consequence is that a business with 40 citations all showing slightly different NAP variations is not accumulating 40 trust signals. It is generating 40 conflicting signals that create entity noise rather than entity clarity. Understanding [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) starts with recognizing that citation quantity means nothing if the underlying data is contradictory.
 
-This is compounded by how AI engines handle uncertainty in local recommendations. When an AI engine is confident about an entity — it has corroborating signals from multiple authoritative sources, all pointing to the same name, address, and phone number — it will cite that entity with specificity: "Smith and Associates HVAC at 402 West Oak Street." When confidence is low due to conflicting data, the AI either omits the business, cites it with hedged language, or surfaces a competitor whose entity data is cleaner.
+This is compounded by how AI engines handle uncertainty in local recommendations. When an AI engine is confident about an entity, it has corroborating signals from multiple authoritative sources, all pointing to the same name, address, and phone number, it will cite that entity with specificity: "Smith and Associates HVAC at 402 West Oak Street." When confidence is low due to conflicting data, the AI either omits the business, cites it with hedged language, or surfaces a competitor whose entity data is cleaner.
 
-## Common NAP inconsistencies — the specific variations that cause entity confusion
+## Common NAP inconsistencies, the specific variations that cause entity confusion
 
 Most NAP inconsistencies are not the result of deliberate errors. They accumulate gradually through different people entering business data across different platforms at different times, each using slightly different formatting conventions. The most common categories:
 
 **Business name variations** are the most damaging. These include abbreviations ("and" vs. "&"), the inclusion or omission of a legal entity suffix ("LLC", "Inc.", "Co."), keyword additions on directory profiles that were meant to improve search visibility ("Smith HVAC Services" vs. "Smith Heating and Cooling"), and outdated name data on platforms that were not updated after a rebrand. AI engines treat name variations as potential evidence of different entities unless they can find other corroborating data to establish they are the same business.
 
-**Address format variations** are extremely common because there is no single enforced standard for how addresses are entered. The same location becomes "402 W. Oak Street Suite 12," "402 West Oak St, Ste 12," "402 W Oak St #12," and "402 West Oak Street, Suite 12, Unit 12" across different platforms. Suite number formatting alone — "Suite," "Ste," "Ste.," "#," "Unit" — generates dozens of variations. Street type abbreviations ("St" vs. "Street," "Blvd" vs. "Boulevard," "Ave" vs. "Avenue") add further inconsistency. For entity matching purposes, each distinct address string is a different signal.
+**Address format variations** are extremely common because there is no single enforced standard for how addresses are entered. The same location becomes "402 W. Oak Street Suite 12," "402 West Oak St, Ste 12," "402 W Oak St #12," and "402 West Oak Street, Suite 12, Unit 12" across different platforms. Suite number formatting alone, "Suite," "Ste," "Ste.," "#," "Unit", generates dozens of variations. Street type abbreviations ("St" vs. "Street," "Blvd" vs. "Boulevard," "Ave" vs. "Avenue") add further inconsistency. For entity matching purposes, each distinct address string is a different signal.
 
 **Phone number format variations** are the easiest to fix but often overlooked. The same number can appear as "(312) 555-0190," "312-555-0190," "312.555.0190," "+13125550190," or "3125550190" across different platforms. Some platforms also list call tracking numbers or forwarding numbers that differ from the primary business number, creating a persistent format discrepancy even after manual cleanup.
 
@@ -66,7 +66,7 @@ Most NAP inconsistencies are not the result of deliberate errors. They accumulat
     <text x="190" y="328" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Facebook</text>
     <text x="190" y="344" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" fill-opacity="0.5" text-anchor="middle">Smith and Associates | 402 W. Oak Street, Chicago | 3125550190</text>
     <rect x="55" y="366" width="270" height="26" fill="rgb(184,85,46)" rx="4" opacity="0.15"/>
-    <text x="190" y="383" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">ENTITY CONFUSION — Low citation probability</text>
+    <text x="190" y="383" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">ENTITY CONFUSION, Low citation probability</text>
     <rect x="400" y="68" width="340" height="52" fill="rgb(250,250,247)" rx="5" stroke="rgb(184,85,46)" stroke-width="1.5"/>
     <text x="570" y="88" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Google Business Profile</text>
     <text x="570" y="104" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" fill-opacity="0.5" text-anchor="middle">Smith and Associates HVAC | 402 West Oak Street Suite 12 | (312) 555-0190</text>
@@ -83,21 +83,21 @@ Most NAP inconsistencies are not the result of deliberate errors. They accumulat
     <text x="570" y="328" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(14,17,22)" text-anchor="middle">Facebook</text>
     <text x="570" y="344" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" fill-opacity="0.5" text-anchor="middle">Smith and Associates HVAC | 402 West Oak Street Suite 12 | (312) 555-0190</text>
     <rect x="435" y="366" width="270" height="26" fill="rgb(184,85,46)" rx="4" opacity="0.15"/>
-    <text x="570" y="383" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">ENTITY CONFIDENCE — High citation probability</text>
+    <text x="570" y="383" font-family="Georgia, serif" font-size="10" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle">ENTITY CONFIDENCE, High citation probability</text>
     <line x1="378" y1="60" x2="378" y2="392" stroke="rgb(14,17,22)" stroke-opacity="0.2" stroke-width="1" stroke-dasharray="4,3"/>
     <text x="380" y="398" font-family="Georgia, serif" font-size="9" fill="rgb(14,17,22)" fill-opacity="0.4" text-anchor="middle">Five platforms, identical NAP data = strong entity signal AI engines can act on with confidence.</text>
   </svg>
 </figure>
 
-## NAP audit process — tools and manual methods
+## NAP audit process, tools and manual methods
 
 A NAP audit has two stages: discovery and comparison. Discovery means finding every place your business's name, address, or phone number appears across the web. Comparison means measuring each discovered listing against your canonical NAP data.
 
-**Define your canonical NAP first.** Before auditing anything, decide on the single authoritative version of your business name, address, and phone number. This becomes the standard every other listing is measured against. Write it out in full — do not abbreviate anything. "Smith and Associates HVAC" not "Smith & Associates." "402 West Oak Street Suite 12" not "402 W. Oak St, Ste 12." "(312) 555-0190" in consistent format. Post this canonical NAP in a shared document so anyone touching business listings uses the same version.
+**Define your canonical NAP first.** Before auditing anything, decide on the single authoritative version of your business name, address, and phone number. This becomes the standard every other listing is measured against. Write it out in full, do not abbreviate anything. "Smith and Associates HVAC" not "Smith & Associates." "402 West Oak Street Suite 12" not "402 W. Oak St, Ste 12." "(312) 555-0190" in consistent format. Post this canonical NAP in a shared document so anyone touching business listings uses the same version.
 
 **Use automated citation audit tools for discovery breadth.** [Moz Local](https://moz.com/products/local) scans major citation sources and flags inconsistencies against your claimed NAP data. [BrightLocal's Citation Tracker](https://www.brightlocal.com/learn/citation-audit/) provides a comprehensive directory of citations with match scoring. [Whitespark's Citation Finder](https://whitespark.ca/citation-finder/) is particularly useful for finding citations your competitors have that you may be missing. These tools cover the major directories automatically but will not catch every niche or industry-specific citation.
 
-**Supplement with manual searches.** Search for your phone number in quotes — "3125550190" and "(312) 555-0190" — to find citations the automated tools may have missed. Search for your old address if you have moved. Search for any previous business names. These manual checks catch the long-tail inconsistencies that are often the most damaging because they are the most obscure — an old Chamber of Commerce listing from eight years ago or a business data aggregator that was seeded with outdated information.
+**Supplement with manual searches.** Search for your phone number in quotes, "3125550190" and "(312) 555-0190", to find citations the automated tools may have missed. Search for your old address if you have moved. Search for any previous business names. These manual checks catch the long-tail inconsistencies that are often the most damaging because they are the most obscure, an old Chamber of Commerce listing from eight years ago or a business data aggregator that was seeded with outdated information.
 
 **Build a citation spreadsheet.** Record every discovered citation with its URL, the current name, address, and phone as listed, and a flag for each field that does not match your canonical NAP. This spreadsheet becomes your cleanup task list and your ongoing monitoring tool. The [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) includes NAP consistency as one of the foundational signals to verify before evaluating higher-level AI citation factors.
 
@@ -105,7 +105,7 @@ A NAP audit has two stages: discovery and comparison. Discovery means finding ev
 
 Not all citation platforms carry equal weight in AI entity resolution. Fix these five first because they are most likely to be referenced by AI engines building their entity knowledge:
 
-**Google Business Profile** is the highest priority. It feeds Google AI Overviews, Google Maps, and Google's entity knowledge graph. Any discrepancy here has the most direct impact on AI citation probability. Verify every field: primary name, address, phone, website URL, and business categories. If your GBP has tracking numbers or call-forwarding numbers instead of your primary number, correct this. An optimized [Google Business Profile posts strategy](/blog/google-business-profile-posts-guide/) builds on a foundation of accurate core data — the posts add freshness signals, but only if the base entity data is correct.
+**Google Business Profile** is the highest priority. It feeds Google AI Overviews, Google Maps, and Google's entity knowledge graph. Any discrepancy here has the most direct impact on AI citation probability. Verify every field: primary name, address, phone, website URL, and business categories. If your GBP has tracking numbers or call-forwarding numbers instead of your primary number, correct this. An optimized [Google Business Profile posts strategy](/blog/google-business-profile-posts-guide/) builds on a foundation of accurate core data, the posts add freshness signals, but only if the base entity data is correct.
 
 **Yelp** feeds multiple downstream data sources and is indexed by AI engines as an authoritative local business source. Yelp data is also used by Bing, Apple Maps, and several AI assistants as a corroborating signal. A discrepancy on Yelp propagates more broadly than a discrepancy on a single-purpose directory.
 
@@ -113,21 +113,21 @@ Not all citation platforms carry equal weight in AI entity resolution. Fix these
 
 **Bing Places** feeds Microsoft Copilot, Bing AI answers, and Cortana-powered recommendations. With Copilot's growing share of AI-assisted search, Bing Places accuracy has become a material AI citation factor. The platform is often overlooked because Bing's traditional search share is smaller than Google's, but its AI integration has changed the calculus.
 
-**Facebook Business Page** is used as a corroborating entity signal by multiple AI systems. The name, address, phone, and website fields in Facebook's About section are crawled and indexed. Facebook also feeds some citation aggregators. A business page with outdated information — a previous address, a discontinued phone number — creates persistent entity noise that is difficult to trace back to its source.
+**Facebook Business Page** is used as a corroborating entity signal by multiple AI systems. The name, address, phone, and website fields in Facebook's About section are crawled and indexed. Facebook also feeds some citation aggregators. A business page with outdated information, a previous address, a discontinued phone number, creates persistent entity noise that is difficult to trace back to its source.
 
-## Citation building vs. citation cleanup — what to do first
+## Citation building vs. citation cleanup, what to do first
 
 A question that comes up consistently in local AI SEO strategy: should you build new citations or clean up existing inconsistent ones? The answer is unambiguous: fix existing inconsistencies before building new ones.
 
-Adding new citations to a polluted entity landscape amplifies rather than solves the problem. If an AI engine has already built an entity profile from 60 inconsistent citations, adding 20 more consistent ones helps, but it does not override the existing noise — it adds to a contested signal set. The entity confidence calculation improves slowly. If you instead clean the existing 60 citations to match your canonical NAP, then add 20 new consistent ones, you have transformed a fragmented entity profile into a coherent one that AI engines can resolve with high confidence.
+Adding new citations to a polluted entity landscape amplifies rather than solves the problem. If an AI engine has already built an entity profile from 60 inconsistent citations, adding 20 more consistent ones helps, but it does not override the existing noise, it adds to a contested signal set. The entity confidence calculation improves slowly. If you instead clean the existing 60 citations to match your canonical NAP, then add 20 new consistent ones, you have transformed a fragmented entity profile into a coherent one that AI engines can resolve with high confidence.
 
-The practical order of operations: complete your canonical NAP definition, run the audit, prioritize the five platform fixes above, then work through the rest of your citation list by domain authority — higher-authority directories first. Only begin new citation building after you have resolved the inconsistencies in your existing footprint. [Understanding what answer engine optimization is](/blog/what-is-answer-engine-optimization/) helps frame why this sequencing matters: you are not just collecting links, you are building a verifiable entity signal that AI systems can trust.
+The practical order of operations: complete your canonical NAP definition, run the audit, prioritize the five platform fixes above, then work through the rest of your citation list by domain authority, higher-authority directories first. Only begin new citation building after you have resolved the inconsistencies in your existing footprint. [Understanding what answer engine optimization is](/blog/what-is-answer-engine-optimization/) helps frame why this sequencing matters: you are not just collecting links, you are building a verifiable entity signal that AI systems can trust.
 
 ## LocalBusiness schema as the authoritative NAP source
 
-Your website is the one citation source you fully control. Implementing complete LocalBusiness schema on your website's homepage or contact page establishes your canonical NAP in machine-readable format directly on your domain — giving AI engines an authoritative, first-party source to reference when resolving your entity.
+Your website is the one citation source you fully control. Implementing complete LocalBusiness schema on your website's homepage or contact page establishes your canonical NAP in machine-readable format directly on your domain, giving AI engines an authoritative, first-party source to reference when resolving your entity.
 
-The NAP fields in LocalBusiness schema must match your canonical NAP exactly. The `name` property should be your exact legal or trade name as used consistently across all platforms. The `address` object should use your full, spelled-out address without abbreviations. The `telephone` property should use E.164 format or consistent local format — whichever you have standardized across platforms. A minimal but complete NAP-focused LocalBusiness schema block:
+The NAP fields in LocalBusiness schema must match your canonical NAP exactly. The `name` property should be your exact legal or trade name as used consistently across all platforms. The `address` object should use your full, spelled-out address without abbreviations. The `telephone` property should use E.164 format or consistent local format, whichever you have standardized across platforms. A minimal but complete NAP-focused LocalBusiness schema block:
 
 ```json
 {
@@ -165,11 +165,11 @@ NAP cleanup is not a one-time project. Inconsistencies re-emerge through several
 
 Set up a monitoring cadence. A quarterly manual check of the five priority platforms takes under an hour and catches most drift before it compounds. For larger citation footprints, [BrightLocal's automated monitoring](https://www.brightlocal.com/learn/local-citations/) provides ongoing consistency scoring with alerts when discrepancies appear. Moz Local offers a similar ongoing monitoring product that pushes updated NAP data to its partner directories automatically, reducing re-emergence of old inconsistencies.
 
-When a business change requires a NAP update — a new phone number, a new address, a business name change — treat it as a full citation audit event. Update your canonical NAP document, update LocalBusiness schema on your website first, then work through every citation platform systematically. The website schema update is the most important first step because it gives AI engines a first-party signal about the change before the wider citation footprint has been updated.
+When a business change requires a NAP update, a new phone number, a new address, a business name change, treat it as a full citation audit event. Update your canonical NAP document, update LocalBusiness schema on your website first, then work through every citation platform systematically. The website schema update is the most important first step because it gives AI engines a first-party signal about the change before the wider citation footprint has been updated.
 
 Also monitor for unauthorized or accidental edits on platforms that allow public editing. Google Business Profile's "suggest an edit" feature can introduce address or name variations submitted by well-intentioned but incorrect users. Facebook's business page data can be edited by page admins inadvertently. Set up Google Alerts for your business name and phone number to catch new citation appearances or news mentions that may contain incorrect NAP data.
 
-For a comprehensive view of where NAP consistency fits within the broader local AI optimization framework, the [AI SEO Shift methodology](/ai-seo-shift/) treats entity coherence — of which NAP is the foundation — as a prerequisite for all higher-level citation building work.
+For a comprehensive view of where NAP consistency fits within the broader local AI optimization framework, the [AI SEO Shift methodology](/ai-seo-shift/) treats entity coherence, of which NAP is the foundation, as a prerequisite for all higher-level citation building work.
 
 ## Frequently asked questions
 
@@ -179,19 +179,19 @@ Any variation in your business name, address, or phone number that would prevent
 
 **How do I decide which version of my business name to standardize on?**
 
-Use the name that appears on your business registration documents, your signage, and any legal or financial documents as your canonical name. Avoid adding keyword-rich descriptions to your business name on directory listings — "Smith HVAC — Best Heating and Cooling Chicago" is a spam signal on most platforms and creates a name variation that conflicts with your legal name. Keep your canonical name clean and consistent with how customers actually refer to your business.
+Use the name that appears on your business registration documents, your signage, and any legal or financial documents as your canonical name. Avoid adding keyword-rich descriptions to your business name on directory listings, "Smith HVAC, Best Heating and Cooling Chicago" is a spam signal on most platforms and creates a name variation that conflicts with your legal name. Keep your canonical name clean and consistent with how customers actually refer to your business.
 
 **Can I use a call tracking number as my listed phone number without hurting NAP consistency?**
 
-Call tracking numbers create NAP inconsistency when they appear on some platforms but not others. If you use a tracking number on your website but your primary number on GBP and citation directories, the discrepancy reduces entity confidence. The recommended approach is to use your primary business number as your canonical NAP number on all directories and your website, and implement call tracking through other mechanisms — Google's call tracking within GBP, or session-based dynamic number insertion on your website that does not affect the static number in your schema or footer.
+Call tracking numbers create NAP inconsistency when they appear on some platforms but not others. If you use a tracking number on your website but your primary number on GBP and citation directories, the discrepancy reduces entity confidence. The recommended approach is to use your primary business number as your canonical NAP number on all directories and your website, and implement call tracking through other mechanisms, Google's call tracking within GBP, or session-based dynamic number insertion on your website that does not affect the static number in your schema or footer.
 
 **How long does it take for NAP cleanup to improve AI citation results?**
 
-The timeline depends on how widely the inconsistencies are distributed and how quickly the platforms you update re-index. GBP updates can be reflected in Google's entity knowledge within days to a few weeks. Third-party directories vary — some update within days of a correction, others take weeks or months. Data aggregators like Infogroup and Acxiom, which seed many downstream directories, can take one to three months to propagate corrected data through their networks. Expect to see measurable improvement in AI citation frequency within two to four months of a thorough cleanup.
+The timeline depends on how widely the inconsistencies are distributed and how quickly the platforms you update re-index. GBP updates can be reflected in Google's entity knowledge within days to a few weeks. Third-party directories vary, some update within days of a correction, others take weeks or months. Data aggregators like Infogroup and Acxiom, which seed many downstream directories, can take one to three months to propagate corrected data through their networks. Expect to see measurable improvement in AI citation frequency within two to four months of a thorough cleanup.
 
 **Do NAP inconsistencies only affect local AI citations, or do they impact other SEO signals too?**
 
-NAP inconsistencies primarily affect local AI citation and local search visibility, but they have secondary effects on broader SEO. Google uses entity coherence as part of its E-E-A-T assessment — a business with a fragmented, unverifiable entity signal is treated as less authoritative than one with a coherent, corroborated identity. Inconsistent NAP data also reduces the effectiveness of local link building, since links pointing to a business from directories with mismatched data contribute less entity reinforcement than links from directories with clean, matching data.
+NAP inconsistencies primarily affect local AI citation and local search visibility, but they have secondary effects on broader SEO. Google uses entity coherence as part of its E-E-A-T assessment, a business with a fragmented, unverifiable entity signal is treated as less authoritative than one with a coherent, corroborated identity. Inconsistent NAP data also reduces the effectiveness of local link building, since links pointing to a business from directories with mismatched data contribute less entity reinforcement than links from directories with clean, matching data.
 
 **Should I add NAP data to every page of my website, or just the homepage?**
 
@@ -223,7 +223,7 @@ At minimum, your LocalBusiness schema with complete NAP data should appear on yo
       "name": "Can I use a call tracking number as my listed phone number without hurting NAP consistency?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Call tracking numbers create NAP inconsistency when they appear on some platforms but not others. If you use a tracking number on your website but your primary number on GBP and citation directories, the discrepancy reduces entity confidence. The recommended approach is to use your primary business number as your canonical NAP number on all directories and your website, and implement call tracking through other mechanisms — Google's call tracking within GBP, or session-based dynamic number insertion on your website that does not affect the static number in your schema or footer."
+        "text": "Call tracking numbers create NAP inconsistency when they appear on some platforms but not others. If you use a tracking number on your website but your primary number on GBP and citation directories, the discrepancy reduces entity confidence. The recommended approach is to use your primary business number as your canonical NAP number on all directories and your website, and implement call tracking through other mechanisms, Google's call tracking within GBP, or session-based dynamic number insertion on your website that does not affect the static number in your schema or footer."
       }
     },
     {
@@ -231,7 +231,7 @@ At minimum, your LocalBusiness schema with complete NAP data should appear on yo
       "name": "How long does it take for NAP cleanup to improve AI citation results?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The timeline depends on how widely the inconsistencies are distributed and how quickly the platforms you update re-index. GBP updates can be reflected in Google's entity knowledge within days to a few weeks. Third-party directories vary — some update within days of a correction, others take weeks or months. Data aggregators like Infogroup and Acxiom, which seed many downstream directories, can take one to three months to propagate corrected data through their networks. Expect to see measurable improvement in AI citation frequency within two to four months of a thorough cleanup."
+        "text": "The timeline depends on how widely the inconsistencies are distributed and how quickly the platforms you update re-index. GBP updates can be reflected in Google's entity knowledge within days to a few weeks. Third-party directories vary, some update within days of a correction, others take weeks or months. Data aggregators like Infogroup and Acxiom, which seed many downstream directories, can take one to three months to propagate corrected data through their networks. Expect to see measurable improvement in AI citation frequency within two to four months of a thorough cleanup."
       }
     },
     {
@@ -239,7 +239,7 @@ At minimum, your LocalBusiness schema with complete NAP data should appear on yo
       "name": "Do NAP inconsistencies only affect local AI citations, or do they impact other SEO signals too?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "NAP inconsistencies primarily affect local AI citation and local search visibility, but they have secondary effects on broader SEO. Google uses entity coherence as part of its E-E-A-T assessment — a business with a fragmented, unverifiable entity signal is treated as less authoritative than one with a coherent, corroborated identity. Inconsistent NAP data also reduces the effectiveness of local link building, since links pointing to a business from directories with mismatched data contribute less entity reinforcement than links from directories with clean, matching data."
+        "text": "NAP inconsistencies primarily affect local AI citation and local search visibility, but they have secondary effects on broader SEO. Google uses entity coherence as part of its E-E-A-T assessment, a business with a fragmented, unverifiable entity signal is treated as less authoritative than one with a coherent, corroborated identity. Inconsistent NAP data also reduces the effectiveness of local link building, since links pointing to a business from directories with mismatched data contribute less entity reinforcement than links from directories with clean, matching data."
       }
     },
     {

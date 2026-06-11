@@ -1,6 +1,6 @@
 ---
 title: "Claude AI Updates: Everything Anthropic Shipped in March-April 2026"
-description: "A complete roundup of every major Claude update from March and April 2026 — Opus 4.7, Claude Design, Mythos Preview, 30+ Claude Code releases, and the performance controversy."
+description: "A complete roundup of every major Claude update from March and April 2026, Opus 4.7, Claude Design, Mythos Preview, 30+ Claude Code releases, and the performance controversy."
 deck: "Anthropic had its busiest stretch ever. Opus 4.7, Claude Design, Mythos Preview, Project Glasswing, and 30+ Claude Code releases in five weeks. Here is everything that shipped and what it means for AI visibility."
 pubDate: 2026-04-22
 category: Research
@@ -17,30 +17,30 @@ import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
 Anthropic shipped more in March and April 2026 than most AI companies ship in a year. A new flagship model. A visual design product. A cybersecurity-focused frontier model so capable it triggered a gated research release. Over 30 Claude Code updates in five weeks. And a user backlash over perceived quality drops that made Fortune headlines.
 
-If you build content for AI search engines, optimize for [AI visibility](/blog/what-is-ai-visibility/), or simply use Claude daily, every one of these updates changes something about how you work. This roundup covers all of them — what shipped, when, and why it matters.
+If you build content for AI search engines, optimize for [AI visibility](/blog/what-is-ai-visibility/), or simply use Claude daily, every one of these updates changes something about how you work. This roundup covers all of them, what shipped, when, and why it matters.
 
 ## Opus 4.7: the new flagship (April 16)
 
 Claude Opus 4.7 replaced Opus 4.6 as the most capable Claude model on April 16, 2026. The improvements focus on three areas: agentic coding, vision, and task execution control.
 
-**Software engineering gains.** On Anthropic's internal 93-task coding benchmark, Opus 4.7 lifted resolution by 13 percent over Opus 4.6, including four tasks that neither Opus 4.6 nor Sonnet 4.6 could solve. Users report being able to hand off their hardest coding work — multi-file refactors, complex debugging, architecture decisions — to Opus 4.7 with confidence.
+**Software engineering gains.** On Anthropic's internal 93-task coding benchmark, Opus 4.7 lifted resolution by 13 percent over Opus 4.6, including four tasks that neither Opus 4.6 nor Sonnet 4.6 could solve. Users report being able to hand off their hardest coding work, multi-file refactors, complex debugging, architecture decisions, to Opus 4.7 with confidence.
 
-**Vision upgrade.** Opus 4.7 is the first Claude model with high-resolution image support. Maximum image resolution increased from 1,568 pixels (1.15 megapixels) to 2,576 pixels on the long edge (3.75 megapixels). This means Claude can now accurately read complex user interfaces, detailed design files, existing websites, and intricate diagrams — a meaningful jump for anyone using Claude for UI review, document analysis, or visual QA.
+**Vision upgrade.** Opus 4.7 is the first Claude model with high-resolution image support. Maximum image resolution increased from 1,568 pixels (1.15 megapixels) to 2,576 pixels on the long edge (3.75 megapixels). This means Claude can now accurately read complex user interfaces, detailed design files, existing websites, and intricate diagrams, a meaningful jump for anyone using Claude for UI review, document analysis, or visual QA.
 
 **New control features.** Two new mechanisms give users finer control over how Opus 4.7 allocates compute:
 
 - **xhigh effort level.** A new tier between high and max that offers deeper reasoning without the full latency cost of max. Available via /effort in Claude Code and the API.
-- **Task budgets.** A new feature that gives Claude a rough estimate of how many tokens to target for a full agentic loop. The model sees a running countdown and uses it to prioritize work and finish gracefully — preventing the common problem of agentic runs that spiral or stall.
+- **Task budgets.** A new feature that gives Claude a rough estimate of how many tokens to target for a full agentic loop. The model sees a running countdown and uses it to prioritize work and finish gracefully, preventing the common problem of agentic runs that spiral or stall.
 
 **Pricing and availability.** Same as Opus 4.6: $5 per million input tokens and $25 per million output tokens. Available across Claude.ai, the API, Amazon Bedrock, Google Cloud Vertex AI, and Microsoft Foundry.
 
-For [AI SEO practitioners](/blog/seo-in-2026-complete-guide/), the vision upgrade matters most. Claude can now parse full web page screenshots with enough resolution to evaluate layout, typography, and content hierarchy — useful for competitive audits and [AI visibility assessments](/blog/how-to-measure-ai-visibility/).
+For [AI SEO practitioners](/blog/seo-in-2026-complete-guide/), the vision upgrade matters most. Claude can now parse full web page screenshots with enough resolution to evaluate layout, typography, and content hierarchy, useful for competitive audits and [AI visibility assessments](/blog/how-to-measure-ai-visibility/).
 
 ## Claude Design: visual creation without a design tool (April 17)
 
-One day after Opus 4.7, Anthropic launched Claude Design — a new Anthropic Labs product that lets users create visual assets through conversation.
+One day after Opus 4.7, Anthropic launched Claude Design, a new Anthropic Labs product that lets users create visual assets through conversation.
 
-Instead of opening Figma or Canva, users describe what they want in plain language. Claude generates a working visual — prototype, wireframe, slide deck, social asset, one-pager — that can be refined through follow-up conversation, inline comments, direct edits, or custom sliders that Claude builds on the fly.
+Instead of opening Figma or Canva, users describe what they want in plain language. Claude generates a working visual, prototype, wireframe, slide deck, social asset, one-pager, that can be refined through follow-up conversation, inline comments, direct edits, or custom sliders that Claude builds on the fly.
 
 **Key capabilities:**
 
@@ -56,7 +56,7 @@ For content teams, Claude Design is significant because it collapses the gap bet
 
 ## Claude Mythos Preview: the model that leaked (March 26 - April 8)
 
-Claude Mythos is the most unusual Anthropic release in the company's history. It was not announced — it was discovered.
+Claude Mythos is the most unusual Anthropic release in the company's history. It was not announced, it was discovered.
 
 **The leak.** On March 26, Fortune reported that a CMS misconfiguration on Anthropic's website briefly exposed documentation for a model codenamed Mythos. Anthropic confirmed the leak and described Mythos as a "step change in capabilities" compared to existing models.
 
@@ -64,7 +64,7 @@ Claude Mythos is the most unusual Anthropic release in the company's history. It
 
 **The cybersecurity factor.** Mythos Preview is capable of identifying and exploiting zero-day vulnerabilities in every major operating system and every major web browser when directed by a user. Anthropic used Mythos to identify thousands of previously unknown vulnerabilities across critical software.
 
-**Project Glasswing.** Rather than releasing Mythos broadly, Anthropic launched Project Glasswing — an initiative to use Mythos Preview to help secure the world's most critical software. Anthropic and AWS are prioritizing access for internet-critical companies and open-source maintainers whose software impacts hundreds of millions of users. CrowdStrike became one of the first founding members.
+**Project Glasswing.** Rather than releasing Mythos broadly, Anthropic launched Project Glasswing, an initiative to use Mythos Preview to help secure the world's most critical software. Anthropic and AWS are prioritizing access for internet-critical companies and open-source maintainers whose software impacts hundreds of millions of users. CrowdStrike became one of the first founding members.
 
 **Gated access.** Mythos Preview is available on red.anthropic.com for vetted security researchers, on Amazon Bedrock (gated research preview), and on Google Cloud Vertex AI. It is not available to general consumers.
 
@@ -72,7 +72,7 @@ For the [AI visibility ecosystem](/blog/what-is-ai-visibility/), Mythos matters 
 
 ## Claude Code: 30+ releases in five weeks
 
-Claude Code entered its most intensive iteration cycle between March and April 2026, pushing from v2.1.69 to v2.1.101 — over 30 releases in five weeks. The major changes cluster around performance, developer experience, and security.
+Claude Code entered its most intensive iteration cycle between March and April 2026, pushing from v2.1.69 to v2.1.101, over 30 releases in five weeks. The major changes cluster around performance, developer experience, and security.
 
 ### Performance upgrades
 
@@ -84,10 +84,10 @@ Claude Code entered its most intensive iteration cycle between March and April 2
 ### Developer experience
 
 - **/powerup interactive tutorials.** New guided tutorials that teach Claude Code features through hands-on exercises rather than documentation.
-- **Auto mode for Max subscribers.** When using Opus 4.7, Claude Code can now run autonomously with minimal user intervention — reading files, making changes, running tests, and iterating without pausing for approval at each step.
+- **Auto mode for Max subscribers.** When using Opus 4.7, Claude Code can now run autonomously with minimal user intervention, reading files, making changes, running tests, and iterating without pausing for approval at each step.
 - **Session recap.** A new feature that summarizes what happened during a session, useful for handoffs and reviewing work done by autonomous agents.
 - **1-hour and forced 5-minute prompt caching.** New caching controls that reduce latency and cost on repeated operations.
-- **Computer use in CLI.** Research preview of Claude controlling native applications — opening apps, clicking through UI, and verifying changes visually.
+- **Computer use in CLI.** Research preview of Claude controlling native applications, opening apps, clicking through UI, and verifying changes visually.
 
 ### Security hardening
 
@@ -118,7 +118,7 @@ Beyond models and tools, Anthropic made several structural moves:
 
 ## The performance controversy
 
-Not everything went smoothly. In mid-April, multiple user communities reported that Claude responses felt less thorough, less creative, and more likely to produce surface-level output — even on paid tiers.
+Not everything went smoothly. In mid-April, multiple user communities reported that Claude responses felt less thorough, less creative, and more likely to produce surface-level output, even on paid tiers.
 
 Fortune covered the backlash on April 14, reporting widespread user complaints about "perceived quality degradation" and "lack of transparency" from Anthropic. The controversy connected to changes in default effort levels and compute allocation that Anthropic had not publicly communicated.
 
@@ -140,7 +140,7 @@ Three takeaways for teams working on [AI visibility](/blog/what-is-ai-visibility
 
 1. **Claude is getting better at reading your site.** Opus 4.7's vision upgrade means Claude can now parse full-page screenshots at 3.75 megapixels. If your content looks good visually and is [structured for AI extraction](/blog/how-to-structure-pages-ai-extraction/), Claude can evaluate both the text and the layout quality.
 
-2. **Agentic workflows will reshape competitive research.** Claude Code's auto mode and computer use preview mean that automated competitive audits — where Claude visits competitor sites, evaluates their content, and reports findings — are now practical at scale.
+2. **Agentic workflows will reshape competitive research.** Claude Code's auto mode and computer use preview mean that automated competitive audits, where Claude visits competitor sites, evaluates their content, and reports findings, are now practical at scale.
 
 3. **Quality still depends on effort settings.** The performance controversy proved that default AI output quality fluctuates. Teams building content workflows around Claude should pin effort levels and test output quality regularly rather than assuming consistent performance.
 
@@ -160,7 +160,7 @@ Claude Mythos is Anthropic's most capable model, first revealed through an accid
 
 ### What is Claude Design?
 
-Claude Design is an Anthropic Labs product launched April 17, 2026 that lets users create visual assets — prototypes, slide decks, social graphics, wireframes — through natural language conversation. It is powered by Opus 4.7 and available in research preview for Pro, Max, Team, and Enterprise subscribers.
+Claude Design is an Anthropic Labs product launched April 17, 2026 that lets users create visual assets, prototypes, slide decks, social graphics, wireframes, through natural language conversation. It is powered by Opus 4.7 and available in research preview for Pro, Max, Team, and Enterprise subscribers.
 
 ### Is Claude better than ChatGPT in 2026?
 
@@ -177,11 +177,11 @@ It depends on the task. Claude Opus 4.7 leads on complex software engineering an
 
 ## References
 
-- [Introducing Claude Opus 4.7 — Anthropic](https://www.anthropic.com/news/claude-opus-4-7)
-- [Anthropic launches Claude Design — TechCrunch](https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/)
-- [Exclusive: Anthropic Mythos — Fortune](https://fortune.com/2026/03/26/anthropic-says-testing-mythos-powerful-new-ai-model-after-data-leak-reveals-its-existence-step-change-in-capabilities/)
-- [Claude Mythos Preview — red.anthropic.com](https://red.anthropic.com/2026/mythos-preview/)
-- [Claude Code Changelog — Apiyi](https://help.apiyi.com/en/claude-code-changelog-2026-april-updates-en.html)
-- [Claude Performance Backlash — Fortune](https://fortune.com/2026/04/14/anthropic-claude-performance-decline-user-complaints-backlash-lack-of-transparency-accusations-compute-crunch/)
-- [Claude Opus 4.7 on Amazon Bedrock — AWS](https://aws.amazon.com/blogs/aws/introducing-anthropics-claude-opus-4-7-model-in-amazon-bedrock/)
-- [Anthropic Claude Mythos Preview — CrowdStrike](https://www.crowdstrike.com/en-us/blog/crowdstrike-founding-member-anthropic-mythos-frontier-model-to-secure-ai/)
+- [Introducing Claude Opus 4.7, Anthropic](https://www.anthropic.com/news/claude-opus-4-7)
+- [Anthropic launches Claude Design, TechCrunch](https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/)
+- [Exclusive: Anthropic Mythos, Fortune](https://fortune.com/2026/03/26/anthropic-says-testing-mythos-powerful-new-ai-model-after-data-leak-reveals-its-existence-step-change-in-capabilities/)
+- [Claude Mythos Preview, red.anthropic.com](https://red.anthropic.com/2026/mythos-preview/)
+- [Claude Code Changelog, Apiyi](https://help.apiyi.com/en/claude-code-changelog-2026-april-updates-en.html)
+- [Claude Performance Backlash, Fortune](https://fortune.com/2026/04/14/anthropic-claude-performance-decline-user-complaints-backlash-lack-of-transparency-accusations-compute-crunch/)
+- [Claude Opus 4.7 on Amazon Bedrock, AWS](https://aws.amazon.com/blogs/aws/introducing-anthropics-claude-opus-4-7-model-in-amazon-bedrock/)
+- [Anthropic Claude Mythos Preview, CrowdStrike](https://www.crowdstrike.com/en-us/blog/crowdstrike-founding-member-anthropic-mythos-frontier-model-to-secure-ai/)
