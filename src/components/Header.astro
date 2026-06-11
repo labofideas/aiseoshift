@@ -176,15 +176,18 @@ const isActive = (href: string) => {
 	}
 
 	.main-nav a[aria-current="page"] {
-		color: var(--signal-deep);
-		border-bottom-color: var(--signal);
+		background: rgb(var(--ink));
+		color: rgb(var(--paper));
+		border-radius: 2rem;
+		border-bottom-color: transparent;
+		padding: 0.35rem 0.95rem;
 	}
 
 	.main-nav .nav-cta {
 		padding: 0.45rem 0.95rem;
 		background: var(--signal);
 		color: #fff;
-		border-radius: var(--radius-sm);
+		border-radius: 2rem;
 		border-bottom: none;
 		letter-spacing: 0.08em;
 	}
@@ -267,10 +270,10 @@ const isActive = (href: string) => {
 		.header-cta-mobile {
 			display: inline-flex;
 			align-items: center;
-			padding: 0.4rem 0.8rem;
+			padding: 0.4rem 0.85rem;
 			background: var(--signal);
 			color: #fff;
-			border-radius: var(--radius-sm);
+			border-radius: 2rem;
 			font-size: 0.72rem;
 			font-weight: 700;
 			letter-spacing: 0.08em;

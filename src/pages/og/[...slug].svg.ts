@@ -211,7 +211,7 @@ const renderCard = ({ title, kicker }: RenderProps): string => {
 		<line x1="0" y1="525" x2="1200" y2="525" />
 	</g>
 	<text x="80" y="74" font-family="system-ui, -apple-system, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3.6" fill="rgb(14,17,22)" fill-opacity="0.7">${escapeXml(kicker.toUpperCase())}</text>
-	<text font-family="Iowan Old Style, Palatino Linotype, Georgia, serif" font-size="68" font-weight="600" letter-spacing="-2" fill="rgb(14,17,22)" line-height="1">${titleSpans}</text>
+	<text font-family="Figtree, system-ui, sans-serif" font-size="68" font-weight="600" letter-spacing="-2" fill="rgb(14,17,22)" line-height="1">${titleSpans}</text>
 	<g transform="translate(80 565)">
 		<g stroke="rgb(184,85,46)" stroke-width="2" fill="none" stroke-linecap="round">
 			<line x1="0" y1="0" x2="22" y2="0" />
