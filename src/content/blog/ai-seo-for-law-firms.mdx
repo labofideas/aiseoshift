@@ -3,6 +3,7 @@ title: "AI SEO for Law Firms: The 2026 Playbook for Client Acquisition"
 description: How law firms win Google AI Overviews, ChatGPT recommendations, and the local pack in 2026. A playbook for solo attorneys and multi-practice firms.
 deck: Potential clients ask ChatGPT legal questions before they call any lawyer. Legal content is YMYL at maximum intensity. Here is what wins citations and consultations.
 pubDate: 2026-05-27
+updatedDate: 2026-06-11
 category: Playbooks
 tags:
   - lawyer SEO
@@ -107,6 +108,61 @@ YMYL needs structured data. Every firm needs:
 
 For the implementation guide, see the [legal schema post](/blog/legal-schema-markup-attorney-legalservice/).
 
+## What AI engines verify before recommending a lawyer
+
+The four pillars make you eligible. They do not make you the firm an AI engine names. Before ChatGPT, Perplexity, or an AI Overview lists a firm in answer to "best DUI lawyer near me," it runs a quiet trust check, and most of that check happens off your website.
+
+Here is what gets looked at.
+
+**Bar admission, and whether the claim holds up.** Every state bar publishes a public attorney lookup. When a bio says "admitted to the State Bar of California, 2011, member in good standing," that is checkable against the bar's own database. Bios that name the bar, the admission year, and the bar number read as verifiable. Bios that say "licensed attorney" with no specifics read as filler. Disciplinary history is public too, and a clean record that matches across sources builds the confidence an engine needs to recommend you in a YMYL category.
+
+**Name, address, and phone consistency.** The firm name, the suite, the phone, the office hours. If your site, your GBP, your Avvo profile, and an old Justia listing disagree on any of these, the engine loses confidence in all of them. Lock the exact legal firm name and the exact address format and make every directory match to the character. "Suite 400" and "Ste. 400" register as a conflict.
+
+**Third-party corroboration.** An attorney who exists only on the firm's own site is weaker than one with matching profiles on the state bar, Avvo, Martindale-Hubbell, Justia, a law school faculty or alumni page, and bar association committee listings. AI engines weight independent confirmation heavily for legal claims. One source can be gamed. Five that agree cannot.
+
+**Recency and jurisdiction accuracy.** Law changes. A statute-of-limitations page citing a figure that a legislative amendment has since changed is worse than no page, because it is confidently wrong in a YMYL field. The "reviewed by [attorney] on [date]" line is a freshness signal, and naming the specific state the page applies to is a precision signal. "Two years from the date of injury in Texas" beats "usually a couple of years."
+
+None of this is exotic. It is the same evidence a careful client would gather before hiring. Firms win by making that evidence trivial to find.
+
+## The reviews and reputation layer
+
+Reviews do two jobs. They feed the local pack ranking, and they feed the sentiment an AI engine summarizes when someone asks "is this firm good for a contested custody case." Both reward the same behavior: steady volume, recent dates, specific text, and measured replies.
+
+Volume and recency beat a frozen 5.0. A firm with 150 reviews where the newest is a year old looks dormant. A firm with 70 where five landed this month looks active and trusted. Ask for the review at the natural moment: case resolved, settlement received, matter closed. A staff member sends a direct review link by text within a day. No incentives, no gating to filter out unhappy clients. Review gating violates Google policy, and for a law firm it compounds an ethics problem on top of a platform one.
+
+Now the part most guides miss, and the part bar rules actually govern. In most states, attorney advertising rules constrain what a testimonial can say and require disclaimers, and client confidentiality binds your response even when the client has waived it in their own review. A client can name their case and their result in a review. You cannot confirm the representation, the facts, or the outcome in a public reply, because acknowledging the engagement and discussing it publicly can breach confidentiality and run afoul of advertising rules on outcome claims.
+
+Train staff on one safe template: thank them, invite them to call the office to discuss anything specific, stop there. For a negative review, the same restraint: "We take all feedback seriously and would welcome a conversation. Please contact our office manager at [number]." Never argue the facts of a matter in public, and never reveal anything about the representation, even to defend the firm. Engines read a calm, generic reply as maturity. They read a defensive or detail-revealing reply as a red flag, and a bar grievance can follow.
+
+## Fees and the cost question most firms refuse to answer
+
+"Lawyer in [city]" is a vanity term. "How much does a divorce lawyer cost in [state]" is a client deciding whether to call. The gap is enormous, and most firms leave the money question to the phone call, which means the AI answer gets built from someone else's page.
+
+Address fees directly, in the words clients use. You do not have to publish a fixed price to publish useful information:
+
+- How fees work for this practice area: contingency, hourly, flat fee, or retainer
+- What a contingency percentage typically covers and when costs come out
+- Whether the consultation is free, and what happens in it
+- What drives cost up or down in this kind of matter
+- Payment options and whether you offer plans
+
+A personal injury page that explains "we work on contingency, so you pay nothing unless we recover, and the fee comes from the settlement" answers the single biggest fear a prospective client has. A family law page that explains how a retainer works removes the same friction. AI engines lift these concrete, named facts into answers. Vague "every case is different, call us" pages give them nothing to lift.
+
+## Common mistakes that keep firms invisible
+
+The pattern across firms that look polished and still get no AI citations:
+
+- **"Our attorneys" instead of named lawyers.** The most common YMYL failure in legal. A practice area page with no attorney byline does not get cited, however well written.
+- **One generic "practice areas" page.** Each area needs its own page with its own depth. A list of bullet points ranks for nothing.
+- **No jurisdiction specificity.** Law is state-specific. A page that never names the state it applies to cannot win "statute of limitations in [state]" queries.
+- **Marketing language over substance.** "Aggressive representation, results that matter" is invisible to an engine answering "what happens at a DUI arraignment." Write the answer to the question the client typed.
+- **Stale content with no review date.** Legal guidance ages with every amendment. A page with a three-year-old date and no review note reads as abandoned and risks being wrong.
+- **Gated or non-compliant reviews and testimonials.** A platform violation and, often, a bar advertising violation at once.
+- **Thin or missing schema.** No `Attorney`, no `hasCredential`, no `LegalService`. Readable by humans, invisible to the systems doing the citing.
+- **Dodging the fee question entirely.** The highest-intent legal query, answered nowhere on the site.
+
+Fix the byline problem first. It gates everything else in YMYL.
+
 ## The query types that book consultations
 
 Stop chasing "lawyer in [city]." It is a $40 to $200 CPC head term dominated by major firms and Justia. The queries that produce consultations are deeper:
@@ -149,6 +205,18 @@ State bar advertising rules vary. Common restrictions: no specific outcome guara
 ### Can I use AI to write legal content?
 
 For first drafts with significant attorney review. AI-drafted legal content without attorney review fails YMYL extraction and exposes the firm to ethical and accuracy issues.
+
+### How do multi-practice or multi-office firms handle this?
+
+Give every attorney their own bio page with bar credentials and `Person` schema, byline each practice area page to the attorney who handles that work, and give each office its own page and GBP listing. A firm with eight attorneys across three practice areas is an advantage: that is eight verifiable experts and a deep set of practice area pages, not one anonymous "our team" voice spread thin.
+
+### Should the page list prices for legal services?
+
+It should address cost even when it cannot fix a price. Explain the fee structure for each practice area: contingency, hourly, flat fee, or retainer, and what is and is not included. "We work on contingency; you pay nothing unless we recover" answers a real question. AI engines extract these concrete fee facts, and the page that answers the cost question wins the prospect who is comparing firms.
+
+### How is this different from ranking on Avvo or FindLaw?
+
+Legal directories rank for broad head terms because of their domain authority, and you will rarely outrank them there. The winning play is depth they cannot match: jurisdiction-specific practice area pages, named individual attorneys with verifiable credentials, and the fee and process questions directory profiles answer thinly. You also want to be present on those directories, because they are part of the third-party corroboration AI engines check. Beat them on the long-tail booking query, and use them as confirming signals.
 
 ## Where to go next
 
@@ -208,6 +276,30 @@ For a structured engagement, our [AI SEO services for lawyers and law firms](/ai
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "For first drafts with significant attorney review. AI-drafted legal content without attorney review fails YMYL extraction and exposes the firm to ethical and accuracy issues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do multi-practice or multi-office firms handle this?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Give every attorney their own bio page with bar credentials and Person schema, byline each practice area page to the attorney who handles that work, and give each office its own page and GBP listing. A firm with eight attorneys across three practice areas is an advantage: eight verifiable experts and a deep set of practice area pages, not one anonymous 'our team' voice spread thin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should the page list prices for legal services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It should address cost even when it cannot fix a price. Explain the fee structure for each practice area: contingency, hourly, flat fee, or retainer, and what is and is not included. 'We work on contingency; you pay nothing unless we recover' answers a real question. AI engines extract these concrete fee facts, and the page that answers the cost question wins the prospect comparing firms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from ranking on Avvo or FindLaw?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Legal directories rank for broad head terms because of their domain authority, and you will rarely outrank them there. The winning play is depth they cannot match: jurisdiction-specific practice area pages, named individual attorneys with verifiable credentials, and the fee and process questions directory profiles answer thinly. You also want to be present on those directories, because they are part of the third-party corroboration AI engines check."
       }
     }
   ]
