@@ -1637,5 +1637,41 @@
 			"height": 675,
 			"bytes": 17294
 		}
+	},
+	"cbd-ai-refusal-rate": {
+		"hero": {
+			"src": "/images/posts/cbd-ai-refusal-rate-hero.webp",
+			"alt": "AI Refuses 28% of CBD Questions — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 19200
+		}
+	},
+	"charlottes-web-cbd-ai-citations": {
+		"hero": {
+			"src": "/images/posts/charlottes-web-cbd-ai-citations-hero.webp",
+			"alt": "The CBD Citation Moat — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 14018
+		}
+	},
+	"cbd-marketing-without-ads": {
+		"hero": {
+			"src": "/images/posts/cbd-marketing-without-ads-hero.webp",
+			"alt": "CBD Marketing Without Ads — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 16680
+		}
+	},
+	"local-ai-seo-cbd-stores": {
+		"hero": {
+			"src": "/images/posts/local-ai-seo-cbd-stores-hero.webp",
+			"alt": "Local AI SEO for CBD Stores — AISEOShift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 16156
+		}
 	}
 }
