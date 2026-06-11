@@ -60,6 +60,53 @@ const imageUrl =
 const imageWidth = typeof image === 'string' ? 1200 : image.width;
 const imageHeight = typeof image === 'string' ? 630 : image.height;
 
+// Auto-generate a BreadcrumbList for any non-home page that does not already
+// supply one (blog posts and the SEO guide bring their own). Centralizes
+// breadcrumb schema sitewide without editing every page template.
+const SEGMENT_LABELS: Record<string, string> = {
+	'ai-seo-services': 'AI SEO Services',
+	seo: 'SEO Guide',
+	blog: 'Blog',
+	tools: 'AI SEO Tools',
+	'ai-seo-tools': 'AI SEO Tools',
+	glossary: 'Glossary',
+	authors: 'Authors',
+	geo: 'GEO',
+	aeo: 'AEO',
+};
+const cleanTitle = (t: string) => t.replace(/\s*\|\s*AISEOShift\s*$/i, '').trim();
+const labelFor = (seg: string) =>
+	SEGMENT_LABELS[seg] ?? seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
+const sdArray = Array.isArray(structuredData) ? structuredData : structuredData ? [structuredData] : [];
+const hasBreadcrumb = sdArray.some(
+	(o: any) =>
+		o &&
+		(o['@type'] === 'BreadcrumbList' ||
+			(Array.isArray(o['@graph']) && o['@graph'].some((g: any) => g?.['@type'] === 'BreadcrumbList')))
+);
+const segs = Astro.url.pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+const autoBreadcrumb =
+	segs.length > 0 && !hasBreadcrumb
+		? {
+				'@type': 'BreadcrumbList',
+				'@id': `${canonicalURL}#breadcrumb`,
+				itemListElement: [
+					{ '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+					...segs.map((seg, i) => {
+						const isLast = i === segs.length - 1;
+						const url = `${SITE_URL}/${segs.slice(0, i + 1).join('/')}/`;
+						return {
+							'@type': 'ListItem',
+							position: i + 2,
+							name: isLast ? cleanTitle(title) : labelFor(seg),
+							item: url,
+						};
+					}),
+				],
+		  }
+		: null;
+
 const globalGraph = {
 	'@context': 'https://schema.org',
 	'@graph': [
@@ -113,6 +160,7 @@ const globalGraph = {
 		},
 	],
 };
+if (autoBreadcrumb) (globalGraph['@graph'] as any[]).push(autoBreadcrumb);
 ---
 
 <script is:inline>
