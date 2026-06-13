@@ -1,6 +1,6 @@
 ---
 title: "LLM Crawler Optimization: How to Make Your Website Readable by AI Search Bots"
-description: "A technical guide to optimizing your website for LLM crawlers — GPTBot, ClaudeBot, PerplexityBot, and Google's AI bots. Covers robots.txt, ai.txt, structured data, and content architecture."
+description: "A technical guide to optimizing your website for LLM crawlers, GPTBot, ClaudeBot, PerplexityBot, and Google's AI bots. Covers robots.txt, ai.txt, structured data, and content architecture."
 deck: "AI companies now operate crawlers that collectively represent over 51 percent of all crawler traffic. If your site blocks them or serves them unstructured content, you are invisible to the fastest-growing search surfaces."
 pubDate: 2026-04-23
 category: Playbooks
@@ -16,11 +16,11 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-AI crawlers and LLM bots — GPTBot, ClaudeBot, Meta-ExternalAgent, Amazonbot, and PerplexityBot — now collectively represent 51.69 percent of all crawler traffic, surpassing traditional search engine crawlers combined. This is not a future trend. It is the current reality.
+AI crawlers and LLM bots, GPTBot, ClaudeBot, Meta-ExternalAgent, Amazonbot, and PerplexityBot, now collectively represent 51.69 percent of all crawler traffic, surpassing traditional search engine crawlers combined. This is not a future trend. It is the current reality.
 
 Yet most websites are either blocking these crawlers entirely, serving them poorly structured content, or not even aware they exist. The result: invisible to ChatGPT, Claude, Perplexity, and every other AI system that is rapidly becoming how people find information.
 
-This guide covers the technical optimization needed to ensure AI crawlers can access, parse, and understand your content — so you get cited instead of ignored.
+This guide covers the technical optimization needed to ensure AI crawlers can access, parse, and understand your content, so you get cited instead of ignored.
 
 ## The AI crawler landscape in 2026
 
@@ -28,24 +28,24 @@ Every major AI company operates its own web crawlers, each with different purpos
 
 ### OpenAI crawlers
 
-- **GPTBot** — Crawls the web to collect training data for OpenAI's models. User agent: `GPTBot`
-- **ChatGPT-User** — Fetches pages in real time when a ChatGPT user asks a question requiring current web data. User agent: `ChatGPT-User`
-- **OAI-SearchBot** — Crawls for ChatGPT's search feature. User agent: `OAI-SearchBot`
+- **GPTBot**, Crawls the web to collect training data for OpenAI's models. User agent: `GPTBot`
+- **ChatGPT-User**, Fetches pages in real time when a ChatGPT user asks a question requiring current web data. User agent: `ChatGPT-User`
+- **OAI-SearchBot**, Crawls for ChatGPT's search feature. User agent: `OAI-SearchBot`
 
 ### Anthropic crawlers
 
-- **ClaudeBot** — Collects content for Claude model training. User agent: `ClaudeBot`
-- **Claude-User** — Fetches pages in real time when a user asks Claude a question needing current web access. User agent: `Claude-User`
-- **Claude-SearchBot** — Indexes content for Claude's search results quality. User agent: `Claude-SearchBot`
+- **ClaudeBot**, Collects content for Claude model training. User agent: `ClaudeBot`
+- **Claude-User**, Fetches pages in real time when a user asks Claude a question needing current web access. User agent: `Claude-User`
+- **Claude-SearchBot**, Indexes content for Claude's search results quality. User agent: `Claude-SearchBot`
 
 ### Other major AI crawlers
 
-- **PerplexityBot** — Crawls for Perplexity search. User agent: `PerplexityBot`
-- **Google-Extended** — Google's crawler for Gemini training data (separate from Googlebot)
-- **Meta-ExternalAgent** — Meta's crawler for AI training
-- **Amazonbot** — Amazon's crawler for Alexa and AI features
-- **Bytespider** — ByteDance's crawler for TikTok AI features
-- **CCBot** — Common Crawl's open crawler used by many AI training datasets
+- **PerplexityBot**, Crawls for Perplexity search. User agent: `PerplexityBot`
+- **Google-Extended**, Google's crawler for Gemini training data (separate from Googlebot)
+- **Meta-ExternalAgent**, Meta's crawler for AI training
+- **Amazonbot**, Amazon's crawler for Alexa and AI features
+- **Bytespider**, ByteDance's crawler for TikTok AI features
+- **CCBot**, Common Crawl's open crawler used by many AI training datasets
 
 ### The crawl-to-refer problem
 
@@ -138,9 +138,9 @@ No-Inference: false
 
 Key directives:
 
-- **No-Training** — Prohibits using your data to train or update LLM models
-- **Allow-RAG** — Allows bots to access your page for retrieval-augmented generation (answering questions with citation)
-- **No-Inference** — Prohibits using data to generate real-time answers (you would rarely set this to true)
+- **No-Training**, Prohibits using your data to train or update LLM models
+- **Allow-RAG**, Allows bots to access your page for retrieval-augmented generation (answering questions with citation)
+- **No-Inference**, Prohibits using data to generate real-time answers (you would rarely set this to true)
 
 The `ai.txt` standard is not universally adopted yet, but major AI companies are beginning to respect it. Implementing it signals sophistication and gives you documented control over how AI systems use your content.
 
@@ -152,7 +152,7 @@ The `ai.txt` standard is not universally adopted yet, but major AI companies are
 
 ### Priority schema types for AI visibility
 
-**Article schema** — Every blog post and article should have this. It tells AI systems: this is editorial content with an author, date, and publisher.
+**Article schema**, Every blog post and article should have this. It tells AI systems: this is editorial content with an author, date, and publisher.
 
 ```json
 {
@@ -164,19 +164,19 @@ The `ai.txt` standard is not universally adopted yet, but major AI companies are
 }
 ```
 
-**FAQPage schema** — Marks up question-answer pairs. AI systems extract FAQ content directly.
+**FAQPage schema**, Marks up question-answer pairs. AI systems extract FAQ content directly.
 
-**HowTo schema** — Marks up step-by-step instructions. AI systems cite HowTo content for procedural queries.
+**HowTo schema**, Marks up step-by-step instructions. AI systems cite HowTo content for procedural queries.
 
-**Organization schema** — Establishes your brand as an entity in the Knowledge Graph.
+**Organization schema**, Establishes your brand as an entity in the Knowledge Graph.
 
-**BreadcrumbList schema** — Shows your site hierarchy, helping AI systems understand content relationships.
+**BreadcrumbList schema**, Shows your site hierarchy, helping AI systems understand content relationships.
 
 ### Why structured data matters for LLMs
 
 LLMs parse HTML structure to understand content. But structured data gives them machine-readable facts that require zero interpretation. When your page includes Article schema with a named author and publication date, the LLM does not need to guess whether the content is editorial or user-generated. When FAQ schema wraps a question-answer pair, the LLM can extract it with complete confidence.
 
-Sites with comprehensive schema markup are cited more accurately by AI systems — and accuracy leads to trust, which leads to more frequent citation.
+Sites with comprehensive schema markup are cited more accurately by AI systems, and accuracy leads to trust, which leads to more frequent citation.
 
 ## Content architecture for AI parsing
 
@@ -228,7 +228,7 @@ Place it at `yourdomain.com/llms.txt` and include:
 - Key facts about your organization
 - Content categories and their URLs
 
-Think of `llms.txt` as an elevator pitch for AI systems — a structured summary that helps them understand your site's scope and authority before they start crawling individual pages.
+Think of `llms.txt` as an elevator pitch for AI systems, a structured summary that helps them understand your site's scope and authority before they start crawling individual pages.
 
 ## Monitoring AI crawler activity
 
@@ -253,13 +253,13 @@ If you use Cloudflare, check the bot traffic analytics for AI crawler activity. 
 
 LLM crawler optimization is the technical foundation of the [AI SEO shift](/ai-seo-shift/). Without proper crawler access, your content structure, schema markup, and topical authority are invisible to AI systems. This is the layer that makes everything else work.
 
-The investment is small — updating `robots.txt`, adding `ai.txt`, implementing schema, and using semantic HTML — but the impact is substantial. Sites that get the technical foundation right earn disproportionate AI visibility because most competitors have not made these changes yet.
+The investment is small, updating `robots.txt`, adding `ai.txt`, implementing schema, and using semantic HTML, but the impact is substantial. Sites that get the technical foundation right earn disproportionate AI visibility because most competitors have not made these changes yet.
 
 ## Frequently asked questions
 
 ### Should I block GPTBot?
 
-It depends on your goals. Blocking GPTBot prevents your content from being used for OpenAI model training. However, you should still allow ChatGPT-User and OAI-SearchBot, which are the agents that actually cite your content in real-time ChatGPT answers. Block training, allow citation — that is the common 2026 approach.
+It depends on your goals. Blocking GPTBot prevents your content from being used for OpenAI model training. However, you should still allow ChatGPT-User and OAI-SearchBot, which are the agents that actually cite your content in real-time ChatGPT answers. Block training, allow citation, that is the common 2026 approach.
 
 ### What percentage of crawler traffic is AI bots?
 
@@ -267,7 +267,7 @@ As of early 2026, AI crawlers collectively represent 51.69 percent of all crawle
 
 ### What is ai.txt?
 
-The ai.txt file is a 2026 standard that gives website owners granular control over how AI systems use their content. Unlike robots.txt which controls access, ai.txt controls usage — you can allow AI systems to cite your content (Allow-RAG) while preventing them from using it for training (No-Training).
+The ai.txt file is a 2026 standard that gives website owners granular control over how AI systems use their content. Unlike robots.txt which controls access, ai.txt controls usage, you can allow AI systems to cite your content (Allow-RAG) while preventing them from using it for training (No-Training).
 
 ## Related reading
 

@@ -16,11 +16,11 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-Most SEOs opened Google Search Console in 2024 expecting the same interface they had always known — queries, clicks, impressions, average position. What they found instead was a Search Type filter that had quietly added an option called "AI Overviews." That filter is now the closest thing the industry has to an official AI citation tracker. It shows you which queries triggered an AI Overview that included your site, how many times that happened, and whether users clicked through to your page afterward.
+Most SEOs opened Google Search Console in 2024 expecting the same interface they had always known, queries, clicks, impressions, average position. What they found instead was a Search Type filter that had quietly added an option called "AI Overviews." That filter is now the closest thing the industry has to an official AI citation tracker. It shows you which queries triggered an AI Overview that included your site, how many times that happened, and whether users clicked through to your page afterward.
 
 This is not a perfect dataset. Google's AI Overview impression data has coverage gaps, sampling limitations, and CTR patterns that look nothing like traditional organic results. But it is Google's own data, it updates regularly, and it is the first meaningful measurement tool that connects your content directly to AI citation activity. Understanding how to read it, segment it, and act on it is a prerequisite for any serious AI visibility strategy.
 
-This guide walks through exactly how to use Google Search Console for AI Overview tracking — where to find the data, how to interpret CTR patterns, which GSC reports surface the highest-value optimization opportunities, and how to build a repeatable weekly workflow that turns raw GSC data into prioritized action items.
+This guide walks through exactly how to use Google Search Console for AI Overview tracking, where to find the data, how to interpret CTR patterns, which GSC reports surface the highest-value optimization opportunities, and how to build a repeatable weekly workflow that turns raw GSC data into prioritized action items.
 
 For the foundational framework on what AI visibility actually measures and why it matters differently from traditional organic rankings, the [AI visibility primer](/blog/what-is-ai-visibility/) provides the conceptual grounding. For the end-to-end optimization methodology, the [AI SEO Shift framework](/ai-seo-shift/) integrates GSC measurement into a complete strategy.
 
@@ -33,17 +33,17 @@ Google Search Console surfaces AI Overview data in one primary location: the **P
 3. Click the **+ New** filter button (or the search type selector at the top of the report)
 4. Select **Search type** and choose **AI Overviews**
 
-Once this filter is applied, all metrics in the report — impressions, clicks, CTR, and average position — reflect only queries where an AI Overview appeared and your site was cited or visible within it. You can then layer on the standard dimension tabs: **Queries**, **Pages**, **Countries**, **Devices**, and **Dates**.
+Once this filter is applied, all metrics in the report, impressions, clicks, CTR, and average position, reflect only queries where an AI Overview appeared and your site was cited or visible within it. You can then layer on the standard dimension tabs: **Queries**, **Pages**, **Countries**, **Devices**, and **Dates**.
 
-The critical thing to understand about this data: an impression in the AI Overviews search type does not simply mean your page ranked on a page that showed an AI Overview. It means your content was surfaced within the AI Overview itself — either cited directly as a source, referenced in a supporting link panel, or included in the expanding source list beneath the AI-generated summary. This is citation-level data, not proximity data.
+The critical thing to understand about this data: an impression in the AI Overviews search type does not simply mean your page ranked on a page that showed an AI Overview. It means your content was surfaced within the AI Overview itself, either cited directly as a source, referenced in a supporting link panel, or included in the expanding source list beneath the AI-generated summary. This is citation-level data, not proximity data.
 
 Google's [official documentation on AI Overviews in Search Console](https://support.google.com/webmasters/answer/11524212) confirms that the AI Overviews search type metric captures impressions where the AI Overview component contained a link to your site.
 
-## AI Overview impressions in GSC — understanding the Search Type filter
+## AI Overview impressions in GSC, understanding the Search Type filter
 
-The Search Type filter in GSC now contains four options: Web, Image, Video, and AI Overviews. For most sites that have been tracking traditional organic performance, the AI Overviews option will show a dramatically different impression volume than the Web search type — often ten to forty times lower, depending on the site's content category and the extent to which that category triggers AI Overviews.
+The Search Type filter in GSC now contains four options: Web, Image, Video, and AI Overviews. For most sites that have been tracking traditional organic performance, the AI Overviews option will show a dramatically different impression volume than the Web search type, often ten to forty times lower, depending on the site's content category and the extent to which that category triggers AI Overviews.
 
-This volume difference is expected and should not be misread as low performance. AI Overviews appear on a subset of queries — primarily informational and definitional queries where Google's systems determine that a synthesized answer adds more value than a standard results page. Commercial and transactional queries trigger AI Overviews at much lower rates, which means sites in e-commerce and local services categories will see lower AI Overview impression volumes than sites in education, health, finance, and how-to content categories.
+This volume difference is expected and should not be misread as low performance. AI Overviews appear on a subset of queries, primarily informational and definitional queries where Google's systems determine that a synthesized answer adds more value than a standard results page. Commercial and transactional queries trigger AI Overviews at much lower rates, which means sites in e-commerce and local services categories will see lower AI Overview impression volumes than sites in education, health, finance, and how-to content categories.
 
 The date range selection matters significantly for AI Overview data. Google began reporting AI Overviews impressions in May 2024, following the rollout of AI Overviews at Google I/O. Any date range that extends before May 2024 will show zero AI Overview impressions for the pre-rollout period, which can distort trend charts. For accurate trend analysis, use date ranges that begin no earlier than June 2024.
 
@@ -53,13 +53,13 @@ For understanding how to optimize content to appear within AI Overviews once you
 
 Switching from the Queries tab to the **Pages** tab while the AI Overviews filter is active is one of the most immediately actionable things you can do in GSC. This view shows which specific URLs on your site are being cited in AI Overviews, ranked by impression volume.
 
-The pages that appear here are your current AI citation assets. These are the pages Google has determined are authoritative, well-structured, and relevant enough to include in its generated summaries. Understanding what these pages have in common — their format, length, heading structure, use of definitions and lists, schema markup, and internal linking patterns — gives you a replicable template for pages you want to move into AI citation range.
+The pages that appear here are your current AI citation assets. These are the pages Google has determined are authoritative, well-structured, and relevant enough to include in its generated summaries. Understanding what these pages have in common, their format, length, heading structure, use of definitions and lists, schema markup, and internal linking patterns, gives you a replicable template for pages you want to move into AI citation range.
 
 Sort the Pages view by impressions descending to identify your strongest AI citation performers. Then look for these patterns:
 
 **High impressions, low clicks:** Pages that appear in many AI Overviews but generate few click-throughs. This is the most important segment for understanding AI-era CTR dynamics, covered in detail in the next section.
 
-**Pages with no AI Overview impressions:** Compare your AI Overviews Pages view with your Web search Pages view sorted by impressions. Pages that rank well in organic but appear nowhere in AI Overviews are candidates for structured content improvement — the page has topical authority but lacks the format signals that prompt AI Overview citation.
+**Pages with no AI Overview impressions:** Compare your AI Overviews Pages view with your Web search Pages view sorted by impressions. Pages that rank well in organic but appear nowhere in AI Overviews are candidates for structured content improvement, the page has topical authority but lacks the format signals that prompt AI Overview citation.
 
 **Pages with very high impressions relative to their organic ranking:** These are pages Google's AI system has identified as particularly useful for generated summaries, sometimes regardless of their traditional ranking position. They warrant content investment to protect and strengthen.
 
@@ -113,7 +113,7 @@ For a methodical process for identifying which pages are underperforming on AI v
   <text x="520" y="316" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="rgb(184,85,46)" font-weight="600">below 2% threshold</text>
   <text x="710" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.55">Citation rate</text>
   <text x="710" y="316" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="rgb(184,85,46)" font-weight="600">improvement over 90d</text>
-  <text x="410" y="365" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">The four-step GSC AI visibility workflow. Each step has a single key metric — track all four on a weekly basis to build a reliable AI citation measurement routine.</text>
+  <text x="410" y="365" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">The four-step GSC AI visibility workflow. Each step has a single key metric, track all four on a weekly basis to build a reliable AI citation measurement routine.</text>
 </svg>
 </figure>
 
@@ -121,21 +121,21 @@ For a methodical process for identifying which pages are underperforming on AI v
 
 This is where the GSC AI Overview data becomes genuinely counterintuitive, and where misreading it causes real strategy errors.
 
-Traditional organic CTR benchmarks — 25 to 35 percent for position one, declining in a known curve to roughly 2 percent by position ten — do not apply to AI Overview citations. AI Overview CTR is structurally different because the user intent is often satisfied by the AI-generated summary itself. The user asked a question, received an answer, and did not need to visit the source page. This is by design.
+Traditional organic CTR benchmarks, 25 to 35 percent for position one, declining in a known curve to roughly 2 percent by position ten, do not apply to AI Overview citations. AI Overview CTR is structurally different because the user intent is often satisfied by the AI-generated summary itself. The user asked a question, received an answer, and did not need to visit the source page. This is by design.
 
-In practice, AI Overview CTR for most pages runs between 0.5 percent and 4 percent across query categories. This is dramatically lower than organic CTR benchmarks, and it is not a failure signal. A page generating 50,000 AI Overview impressions per month at a 1.2 percent CTR is earning 600 clicks from AI-assisted queries — traffic it would not have received at all without the AI Overview citation.
+In practice, AI Overview CTR for most pages runs between 0.5 percent and 4 percent across query categories. This is dramatically lower than organic CTR benchmarks, and it is not a failure signal. A page generating 50,000 AI Overview impressions per month at a 1.2 percent CTR is earning 600 clicks from AI-assisted queries, traffic it would not have received at all without the AI Overview citation.
 
 The more useful framing is to evaluate AI Overview CTR relative to other AI Overview pages in your own property, not against organic CTR norms. Pages with AI Overview CTR above 3 percent typically share common characteristics: they cover topics where the AI summary whets appetite for deeper detail rather than fully satisfying it, or they are pages where the query intent includes a "next step" (downloading a template, using a tool, viewing a product) that the AI summary cannot complete for the user.
 
-Pages with AI Overview CTR below 0.5 percent are typically pure definitional or factual queries where the AI answer is complete. These pages should be evaluated on brand visibility value — being cited as a source builds topical authority even when click-through is minimal — rather than on traffic contribution alone.
+Pages with AI Overview CTR below 0.5 percent are typically pure definitional or factual queries where the AI answer is complete. These pages should be evaluated on brand visibility value, being cited as a source builds topical authority even when click-through is minimal, rather than on traffic contribution alone.
 
 ## Using the GSC Queries report to find AI citation opportunities
 
 The Queries tab in the AI Overviews view surfaces the specific search terms for which your site has already been cited. Sorting this view by impressions descending reveals your strongest existing citation topics. But the highest-value analysis is in the middle of the list, not the top.
 
-Look for queries where you have meaningful impressions (100 or more over a 90-day period) but relatively low click volume. These are queries where Google has already determined your content is worth citing in AI Overviews — a significant trust signal — but where the connection between query intent and your page's content may not be as tight as it could be. Improving content alignment for these queries can increase both the frequency of AI Overview citation and the CTR from those citations.
+Look for queries where you have meaningful impressions (100 or more over a 90-day period) but relatively low click volume. These are queries where Google has already determined your content is worth citing in AI Overviews, a significant trust signal, but where the connection between query intent and your page's content may not be as tight as it could be. Improving content alignment for these queries can increase both the frequency of AI Overview citation and the CTR from those citations.
 
-The second analysis is identifying topic clusters in your existing AI citation query set. If your AI Overview impressions are clustered around a specific subtopic of your broader content area, that cluster signals that Google's AI systems have identified your site as an authority in that subtopic. Building deeper content coverage around that subtopic — more specific guides, comparison content, case studies — tends to expand the circle of queries for which you are cited.
+The second analysis is identifying topic clusters in your existing AI citation query set. If your AI Overview impressions are clustered around a specific subtopic of your broader content area, that cluster signals that Google's AI systems have identified your site as an authority in that subtopic. Building deeper content coverage around that subtopic, more specific guides, comparison content, case studies, tends to expand the circle of queries for which you are cited.
 
 The third analysis is gap identification: comparing the queries for which you have Web search type impressions against the queries for which you have AI Overviews impressions. Topics where you rank organically but have zero AI Overview impressions despite query types that routinely trigger AI Overviews are the highest-priority content improvement candidates. These pages have proven topical authority (organic ranking) but something about their structure, formatting, or content completeness is causing AI systems to skip them in favor of other sources.
 
@@ -143,7 +143,7 @@ The [complete guide to getting cited by AI search systems](/blog/how-to-get-cite
 
 ## Index coverage and AI crawler access issues
 
-AI Overview citation requires more than well-formatted content — it requires that Google's AI systems can actually access and process your pages. The Index Coverage report in GSC is the right place to audit for technical barriers that may suppress AI visibility.
+AI Overview citation requires more than well-formatted content, it requires that Google's AI systems can actually access and process your pages. The Index Coverage report in GSC is the right place to audit for technical barriers that may suppress AI visibility.
 
 The primary crawl access issues that affect AI Overview citation fall into three categories:
 
@@ -153,19 +153,19 @@ The primary crawl access issues that affect AI Overview citation fall into three
 
 **Thin content and duplicate content flags:** The Coverage report surfaces pages marked as "Duplicate without user-selected canonical" or "Thin content with little or no added value." These pages are the least likely to be cited in AI Overviews. If high-value pages are being incorrectly flagged, canonical tag corrections can restore their citation eligibility.
 
-For schema markup issues that affect how AI systems read and categorize your content — a distinct layer of technical access — the [schema markup for AI visibility guide](/blog/schema-markup-for-ai-visibility/) covers the specific structured data types that most directly improve AI citation frequency.
+For schema markup issues that affect how AI systems read and categorize your content, a distinct layer of technical access, the [schema markup for AI visibility guide](/blog/schema-markup-for-ai-visibility/) covers the specific structured data types that most directly improve AI citation frequency.
 
 ## Performance report segmentation for AI visibility tracking
 
 The real analytical power in GSC for AI visibility comes from building segmented views that isolate specific performance questions. Here are the most useful segmentations to build into your regular reporting:
 
-**AI Overviews vs. Web search type comparison:** Run the Performance report twice — once filtered to AI Overviews, once filtered to Web — and export both. Compare your top-performing pages in each view. Pages that rank in the top 20 for Web impressions but do not appear at all in AI Overviews top pages are your highest-priority content upgrade candidates. These pages have organic authority but lack AI citation signals.
+**AI Overviews vs. Web search type comparison:** Run the Performance report twice, once filtered to AI Overviews, once filtered to Web, and export both. Compare your top-performing pages in each view. Pages that rank in the top 20 for Web impressions but do not appear at all in AI Overviews top pages are your highest-priority content upgrade candidates. These pages have organic authority but lack AI citation signals.
 
 **Device segmentation for AI Overviews:** Apply the AI Overviews filter and then segment by device. AI Overviews appear differently on mobile versus desktop, and CTR patterns differ between the two. Mobile AI Overview CTR tends to be lower (users on mobile are more likely to accept the summary and not click through) while desktop CTR is somewhat higher. If your content is heavily mobile-trafficked, this context helps calibrate CTR expectations.
 
 **Date comparison for AI citation trend:** Use the date comparison feature (set one period to the past 90 days, compare to the prior 90 days) with the AI Overviews filter active. This shows whether your AI Overview impression volume is growing, stable, or declining. Growing sites will see month-over-month AI impression increases as their content improves. Declining AI impressions without a corresponding organic traffic drop can indicate that competitors have improved their content quality and displaced your citations in specific query areas.
 
-**Country segmentation:** AI Overviews availability and frequency varies significantly by country and language. If your site has international traffic, the country breakdown can reveal that you have strong AI citation performance in some markets and weak performance in others — potentially due to language-specific content gaps.
+**Country segmentation:** AI Overviews availability and frequency varies significantly by country and language. If your site has international traffic, the country breakdown can reveal that you have strong AI citation performance in some markets and weak performance in others, potentially due to language-specific content gaps.
 
 ## Building an AI visibility tracking workflow in GSC
 
@@ -173,13 +173,13 @@ Measurement without a workflow produces data but not action. The goal of the GSC
 
 The workflow structure that works most reliably for ongoing AI visibility tracking has four components:
 
-**Weekly pulse check (10 minutes):** Open the AI Overviews Performance report set to the past 7 days. Check total AI Overview impressions, total clicks, and average CTR. Compare against the previous 7-day period. Note any significant changes — a 20 percent week-over-week impression increase or decrease warrants investigation, not just logging.
+**Weekly pulse check (10 minutes):** Open the AI Overviews Performance report set to the past 7 days. Check total AI Overview impressions, total clicks, and average CTR. Compare against the previous 7-day period. Note any significant changes, a 20 percent week-over-week impression increase or decrease warrants investigation, not just logging.
 
 **Monthly deep dive (60 minutes):** Export the AI Overviews Queries and Pages data for the past 90 days. Run the gap analysis between AI Overviews and Web search type page performance. Identify the top five pages with more than 500 AI Overview impressions and CTR below 2 percent. Add these to the content optimization queue with a specific brief: identify which queries are driving impressions, determine whether the page's content fully addresses the informational need those queries represent, and structure improvements accordingly.
 
 **Quarterly benchmark (2 hours):** Compare the current quarter's AI Overview impression total to the prior quarter. Calculate what percentage of your total impressions are now coming from AI Overviews versus Web search type. This percentage should grow over time as AI Overviews expand to more query categories. If it is stagnant, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) provides a structured diagnostic for identifying what is blocking citation growth.
 
-**Content improvement loop:** The output of the monthly deep dive feeds directly into a content queue. Pages that have been identified as gap candidates get content audits and structural improvements. After improvements are made, add the page URL and improvement date to a tracking log. Check that page's AI Overview impressions four to six weeks after the improvement — this is the typical lag time between a content update being indexed and the AI Overview citation frequency reflecting the change.
+**Content improvement loop:** The output of the monthly deep dive feeds directly into a content queue. Pages that have been identified as gap candidates get content audits and structural improvements. After improvements are made, add the page URL and improvement date to a tracking log. Check that page's AI Overview impressions four to six weeks after the improvement, this is the typical lag time between a content update being indexed and the AI Overview citation frequency reflecting the change.
 
 This workflow integrates with the broader [AI SEO Shift methodology](/ai-seo-shift/) which coordinates GSC measurement with off-page citation signals, schema markup updates, and entity-based content strategy into a single prioritization system.
 
@@ -187,27 +187,27 @@ This workflow integrates with the broader [AI SEO Shift methodology](/ai-seo-shi
 
 ### Where exactly do I find AI Overview data in Google Search Console?
 
-Open the Performance report in GSC, then click the search type filter at the top of the report and select "AI Overviews." This filters all metrics — impressions, clicks, CTR, and average position — to show only activity where your site appeared within an AI Overview component. The Queries and Pages tabs within this filtered view are the most useful for identifying what is working and where opportunities exist.
+Open the Performance report in GSC, then click the search type filter at the top of the report and select "AI Overviews." This filters all metrics, impressions, clicks, CTR, and average position, to show only activity where your site appeared within an AI Overview component. The Queries and Pages tabs within this filtered view are the most useful for identifying what is working and where opportunities exist.
 
 ### Why are my AI Overview CTR rates so much lower than my organic CTR?
 
-AI Overview CTR is structurally lower than organic CTR because many users' queries are fully answered by the AI-generated summary without needing to visit the source page. A CTR of 1 to 3 percent for AI Overview citations is normal and expected across most informational content categories. Compare your AI Overview CTR against other pages in your own property rather than against organic benchmarks — the relevant question is which of your AI-cited pages earns higher CTR and why, not whether your AI CTR matches organic position-one norms.
+AI Overview CTR is structurally lower than organic CTR because many users' queries are fully answered by the AI-generated summary without needing to visit the source page. A CTR of 1 to 3 percent for AI Overview citations is normal and expected across most informational content categories. Compare your AI Overview CTR against other pages in your own property rather than against organic benchmarks, the relevant question is which of your AI-cited pages earns higher CTR and why, not whether your AI CTR matches organic position-one norms.
 
 ### Can I see which specific AI Overview placements cited my content?
 
-Not directly. GSC reports aggregate impression data — it tells you a query triggered an AI Overview that included your site, but it does not show a screenshot of the specific AI Overview or the exact text that cited your content. To see the actual AI Overview citing your page, manually search the high-impression queries from your GSC Queries report and observe the AI Overview that appears. This qualitative check helps you understand how your content is being summarized and whether your brand or page is being cited prominently or as a secondary source.
+Not directly. GSC reports aggregate impression data, it tells you a query triggered an AI Overview that included your site, but it does not show a screenshot of the specific AI Overview or the exact text that cited your content. To see the actual AI Overview citing your page, manually search the high-impression queries from your GSC Queries report and observe the AI Overview that appears. This qualitative check helps you understand how your content is being summarized and whether your brand or page is being cited prominently or as a secondary source.
 
 ### What does an "impression" count as in the AI Overviews search type?
 
-According to Google's documentation, an impression in the AI Overviews search type is counted when your site's URL appeared within the AI Overview component on a search results page that was viewed by a user. This means the AI Overview was triggered for that query and your site was included as a cited source — either in the main summary, the source link panel, or the expandable source list. It does not count cases where an AI Overview appeared but your site was not cited within it.
+According to Google's documentation, an impression in the AI Overviews search type is counted when your site's URL appeared within the AI Overview component on a search results page that was viewed by a user. This means the AI Overview was triggered for that query and your site was included as a cited source, either in the main summary, the source link panel, or the expandable source list. It does not count cases where an AI Overview appeared but your site was not cited within it.
 
 ### How long does it take to see GSC data reflect AI Overview improvements?
 
-GSC AI Overview data typically has a 48 to 72 hour reporting lag, similar to standard organic data. However, the effect of content improvements on AI Overview citation frequency has a longer lag — Google needs to re-crawl and re-index your improved page, and the AI systems need to reassess it for citation relevance. Expect four to six weeks between a meaningful content improvement and a measurable change in AI Overview impression volume for that page. Mark improvement dates in your tracking log so you can accurately attribute changes to specific optimizations.
+GSC AI Overview data typically has a 48 to 72 hour reporting lag, similar to standard organic data. However, the effect of content improvements on AI Overview citation frequency has a longer lag, Google needs to re-crawl and re-index your improved page, and the AI systems need to reassess it for citation relevance. Expect four to six weeks between a meaningful content improvement and a measurable change in AI Overview impression volume for that page. Mark improvement dates in your tracking log so you can accurately attribute changes to specific optimizations.
 
 ### Does Google Search Console data cover AI Mode as well as AI Overviews?
 
-As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview panel that appears in standard search results pages. Google AI Mode — the fully conversational search interface — has distinct tracking limitations in GSC. Some AI Mode activity may surface in the AI Overviews data depending on how Google classifies the query type internally, but there is no guaranteed separate reporting dimension for AI Mode queries in GSC at this time. Watch the [Google Search Central blog](https://developers.google.com/search/blog) for updates as GSC reporting capabilities for AI Mode expand.
+As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview panel that appears in standard search results pages. Google AI Mode, the fully conversational search interface, has distinct tracking limitations in GSC. Some AI Mode activity may surface in the AI Overviews data depending on how Google classifies the query type internally, but there is no guaranteed separate reporting dimension for AI Mode queries in GSC at this time. Watch the [Google Search Central blog](https://developers.google.com/search/blog) for updates as GSC reporting capabilities for AI Mode expand.
 
 <script type="application/ld+json">{`
 {
@@ -219,7 +219,7 @@ As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview 
       "name": "Where exactly do I find AI Overview data in Google Search Console?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Open the Performance report in GSC, then click the search type filter at the top of the report and select 'AI Overviews.' This filters all metrics — impressions, clicks, CTR, and average position — to show only activity where your site appeared within an AI Overview component. The Queries and Pages tabs within this filtered view are the most useful for identifying what is working and where opportunities exist."
+        "text": "Open the Performance report in GSC, then click the search type filter at the top of the report and select 'AI Overviews.' This filters all metrics, impressions, clicks, CTR, and average position, to show only activity where your site appeared within an AI Overview component. The Queries and Pages tabs within this filtered view are the most useful for identifying what is working and where opportunities exist."
       }
     },
     {
@@ -227,7 +227,7 @@ As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview 
       "name": "Why are my AI Overview CTR rates so much lower than my organic CTR?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AI Overview CTR is structurally lower than organic CTR because many users' queries are fully answered by the AI-generated summary without needing to visit the source page. A CTR of 1 to 3 percent for AI Overview citations is normal and expected across most informational content categories. Compare your AI Overview CTR against other pages in your own property rather than against organic benchmarks — the relevant question is which of your AI-cited pages earns higher CTR and why, not whether your AI CTR matches organic position-one norms."
+        "text": "AI Overview CTR is structurally lower than organic CTR because many users' queries are fully answered by the AI-generated summary without needing to visit the source page. A CTR of 1 to 3 percent for AI Overview citations is normal and expected across most informational content categories. Compare your AI Overview CTR against other pages in your own property rather than against organic benchmarks, the relevant question is which of your AI-cited pages earns higher CTR and why, not whether your AI CTR matches organic position-one norms."
       }
     },
     {
@@ -235,7 +235,7 @@ As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview 
       "name": "Can I see which specific AI Overview placements cited my content?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not directly. GSC reports aggregate impression data — it tells you a query triggered an AI Overview that included your site, but it does not show a screenshot of the specific AI Overview or the exact text that cited your content. To see the actual AI Overview citing your page, manually search the high-impression queries from your GSC Queries report and observe the AI Overview that appears. This qualitative check helps you understand how your content is being summarized and whether your brand or page is being cited prominently or as a secondary source."
+        "text": "Not directly. GSC reports aggregate impression data, it tells you a query triggered an AI Overview that included your site, but it does not show a screenshot of the specific AI Overview or the exact text that cited your content. To see the actual AI Overview citing your page, manually search the high-impression queries from your GSC Queries report and observe the AI Overview that appears. This qualitative check helps you understand how your content is being summarized and whether your brand or page is being cited prominently or as a secondary source."
       }
     },
     {
@@ -243,7 +243,7 @@ As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview 
       "name": "What does an 'impression' count as in the AI Overviews search type?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "According to Google's documentation, an impression in the AI Overviews search type is counted when your site's URL appeared within the AI Overview component on a search results page that was viewed by a user. This means the AI Overview was triggered for that query and your site was included as a cited source — either in the main summary, the source link panel, or the expandable source list. It does not count cases where an AI Overview appeared but your site was not cited within it."
+        "text": "According to Google's documentation, an impression in the AI Overviews search type is counted when your site's URL appeared within the AI Overview component on a search results page that was viewed by a user. This means the AI Overview was triggered for that query and your site was included as a cited source, either in the main summary, the source link panel, or the expandable source list. It does not count cases where an AI Overview appeared but your site was not cited within it."
       }
     },
     {
@@ -251,7 +251,7 @@ As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview 
       "name": "How long does it take to see GSC data reflect AI Overview improvements?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "GSC AI Overview data typically has a 48 to 72 hour reporting lag, similar to standard organic data. However, the effect of content improvements on AI Overview citation frequency has a longer lag — Google needs to re-crawl and re-index your improved page, and the AI systems need to reassess it for citation relevance. Expect four to six weeks between a meaningful content improvement and a measurable change in AI Overview impression volume for that page. Mark improvement dates in your tracking log so you can accurately attribute changes to specific optimizations."
+        "text": "GSC AI Overview data typically has a 48 to 72 hour reporting lag, similar to standard organic data. However, the effect of content improvements on AI Overview citation frequency has a longer lag, Google needs to re-crawl and re-index your improved page, and the AI systems need to reassess it for citation relevance. Expect four to six weeks between a meaningful content improvement and a measurable change in AI Overview impression volume for that page. Mark improvement dates in your tracking log so you can accurately attribute changes to specific optimizations."
       }
     },
     {
@@ -259,7 +259,7 @@ As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview 
       "name": "Does Google Search Console data cover AI Mode as well as AI Overviews?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview panel that appears in standard search results pages. Google AI Mode — the fully conversational search interface — has distinct tracking limitations in GSC. Some AI Mode activity may surface in the AI Overviews data depending on how Google classifies the query type internally, but there is no guaranteed separate reporting dimension for AI Mode queries in GSC at this time. Watch the Google Search Central blog for updates as GSC reporting capabilities for AI Mode expand."
+        "text": "As of mid-2026, GSC's AI Overviews search type primarily covers the AI Overview panel that appears in standard search results pages. Google AI Mode, the fully conversational search interface, has distinct tracking limitations in GSC. Some AI Mode activity may surface in the AI Overviews data depending on how Google classifies the query type internally, but there is no guaranteed separate reporting dimension for AI Mode queries in GSC at this time. Watch the Google Search Central blog for updates as GSC reporting capabilities for AI Mode expand."
       }
     }
   ]

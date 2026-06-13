@@ -16,9 +16,9 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-When someone asks ChatGPT "how do I prune a fruit tree" or asks Google AI Overviews for a walkthrough of a technical process, the video results that appear alongside text citations are not random. They come from pages where the video has been explicitly described to machines via VideoObject schema — where the title, description, thumbnail, duration, and ideally a full transcript have been provided in a structured format AI engines can parse without ambiguity.
+When someone asks ChatGPT "how do I prune a fruit tree" or asks Google AI Overviews for a walkthrough of a technical process, the video results that appear alongside text citations are not random. They come from pages where the video has been explicitly described to machines via VideoObject schema, where the title, description, thumbnail, duration, and ideally a full transcript have been provided in a structured format AI engines can parse without ambiguity.
 
-Pages hosting video without VideoObject schema are effectively invisible to AI-powered video discovery. The crawler sees an embedded player, a title, maybe some surrounding prose — but it cannot reliably extract what the video is about, when it was published, how long it runs, or which segments answer which questions. Structured data closes that gap. It transforms an opaque media embed into a citable source.
+Pages hosting video without VideoObject schema are effectively invisible to AI-powered video discovery. The crawler sees an embedded player, a title, maybe some surrounding prose, but it cannot reliably extract what the video is about, when it was published, how long it runs, or which segments answer which questions. Structured data closes that gap. It transforms an opaque media embed into a citable source.
 
 This guide covers the full implementation: core VideoObject properties, the transcript field that unlocks text-level AI citation, clip and SeekToAction markup for video chapters, combining VideoObject with Article or WebPage schema in a `@graph` block, the differences between YouTube and self-hosted video markup, and how to validate everything once it is live.
 
@@ -26,7 +26,7 @@ For the foundational argument for why structured data now drives AI citations, t
 
 ## Quick answer: VideoObject schema and AI video citations
 
-VideoObject schema is a JSON-LD block placed in the `<head>` of a video page that describes the video to search engines and AI systems. It uses the [Schema.org VideoObject specification](https://schema.org/VideoObject) — an extension of `MediaObject` and `CreativeWork` — to communicate structured metadata about the video content.
+VideoObject schema is a JSON-LD block placed in the `<head>` of a video page that describes the video to search engines and AI systems. It uses the [Schema.org VideoObject specification](https://schema.org/VideoObject), an extension of `MediaObject` and `CreativeWork`, to communicate structured metadata about the video content.
 
 AI engines use this data in three ways. First, they use it for indexing: `name`, `description`, and `thumbnailUrl` give crawlers reliable identifiers for the video without depending on natural language extraction. Second, they use it for query matching: `description` and `transcript` supply the text an AI engine searches when deciding which videos match a user query. Third, they use it for citation: `uploadDate`, `duration`, and `contentUrl` allow AI systems to construct accurate citations that point users to the correct video at the correct source.
 
@@ -60,19 +60,19 @@ A minimum viable VideoObject block requires `name`, `description`, `thumbnailUrl
 
 Here is what each property contributes to AI discoverability:
 
-**`name`** — the video title used verbatim in AI-generated recommendations. Be specific and include the primary query term. "How to Prune an Apple Tree" outperforms "Pruning Guide" for both AI and traditional search matching.
+**`name`**, the video title used verbatim in AI-generated recommendations. Be specific and include the primary query term. "How to Prune an Apple Tree" outperforms "Pruning Guide" for both AI and traditional search matching.
 
-**`description`** — the most important text field after `transcript`. AI engines extract query-relevant passages from `description` when deciding whether a video matches a user's question. Write it as a complete paragraph summarizing the video's content, not a marketing tagline. Include the key topics covered and the specific questions the video answers.
+**`description`**, the most important text field after `transcript`. AI engines extract query-relevant passages from `description` when deciding whether a video matches a user's question. Write it as a complete paragraph summarizing the video's content, not a marketing tagline. Include the key topics covered and the specific questions the video answers.
 
-**`thumbnailUrl`** — required for rich results. Provide a high-resolution image (1280x720 minimum) at 16:9, 4:3, or 1:1 aspect ratio. The thumbnail must be accessible to Googlebot — do not serve it behind authentication or hotlink protection.
+**`thumbnailUrl`**, required for rich results. Provide a high-resolution image (1280x720 minimum) at 16:9, 4:3, or 1:1 aspect ratio. The thumbnail must be accessible to Googlebot, do not serve it behind authentication or hotlink protection.
 
-**`uploadDate`** — ISO 8601 format. Used by AI engines for recency filtering. Queries like "recent tutorials on X" depend on this field for accurate temporal sorting. Include time and timezone when available.
+**`uploadDate`**, ISO 8601 format. Used by AI engines for recency filtering. Queries like "recent tutorials on X" depend on this field for accurate temporal sorting. Include time and timezone when available.
 
-**`duration`** — ISO 8601 duration format (`PT12M38S` = 12 minutes and 38 seconds). Helps AI engines answer "short videos on X" versus "comprehensive guide to X" queries. A user asking for a "quick overview" gets different results than one asking for a "deep dive."
+**`duration`**, ISO 8601 duration format (`PT12M38S` = 12 minutes and 38 seconds). Helps AI engines answer "short videos on X" versus "comprehensive guide to X" queries. A user asking for a "quick overview" gets different results than one asking for a "deep dive."
 
-**`contentUrl`** — the direct URL to the video file. Required if `embedUrl` is not present. Used by AI systems for direct playback linking and by crawlers for content access.
+**`contentUrl`**, the direct URL to the video file. Required if `embedUrl` is not present. Used by AI systems for direct playback linking and by crawlers for content access.
 
-**`embedUrl`** — the embeddable player URL. For YouTube videos, this is the `https://www.youtube.com/embed/VIDEO_ID` format. Provide both `contentUrl` and `embedUrl` when both are available.
+**`embedUrl`**, the embeddable player URL. For YouTube videos, this is the `https://www.youtube.com/embed/VIDEO_ID` format. Provide both `contentUrl` and `embedUrl` when both are available.
 
 <figure class="post-figure">
 <svg viewBox="0 0 820 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VideoObject schema property hierarchy showing required, recommended, and extended properties branching from the VideoObject root, with transcript and hasPart/Clip highlighted">
@@ -136,13 +136,13 @@ Here is what each property contributes to AI discoverability:
     <rect x="610" y="254" width="160" height="26" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-opacity="0.2" stroke-width="1.5" rx="3" />
     <text x="622" y="271" fill-opacity="0.75">isPartOf</text>
   </g>
-  <text x="410" y="416" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Required properties enable indexing. AI-extended properties — transcript, Clip, and SeekToAction — enable direct citation and chapter surfacing.</text>
+  <text x="410" y="416" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Required properties enable indexing. AI-extended properties, transcript, Clip, and SeekToAction, enable direct citation and chapter surfacing.</text>
 </svg>
 </figure>
 
-## The transcript property — how AI engines use it for text extraction
+## The transcript property, how AI engines use it for text extraction
 
-`transcript` is the single property that most dramatically increases the citability of video content in AI search. It provides the full spoken-word text of the video as a string, giving AI engines a text corpus to search, quote, and cite — without relying on automatic speech recognition or natural language extraction from surrounding page content.
+`transcript` is the single property that most dramatically increases the citability of video content in AI search. It provides the full spoken-word text of the video as a string, giving AI engines a text corpus to search, quote, and cite, without relying on automatic speech recognition or natural language extraction from surrounding page content.
 
 When a user asks ChatGPT or Perplexity a specific question, the AI engine matches the query against available text. For a video page without a transcript, the only text available for matching is the page title, meta description, and surrounding article content. For a video page with a full transcript in the schema block, the AI engine can match against every word spoken in the video. That is a fundamentally different surface area for relevance matching.
 
@@ -164,7 +164,7 @@ Implementing `transcript` is straightforward:
 }
 ```
 
-The `transcript` value can be several thousand characters long. Place the full transcript text — not a summary — in this field. If your video has closed captions or a companion article, the transcript for that article is a natural source for this field. For the [video SEO for AI discovery guide](/blog/video-seo-for-ai-discovery/), which covers the full content strategy around video transcripts, the tactical and strategic cases are both developed in depth.
+The `transcript` value can be several thousand characters long. Place the full transcript text, not a summary, in this field. If your video has closed captions or a companion article, the transcript for that article is a natural source for this field. For the [video SEO for AI discovery guide](/blog/video-seo-for-ai-discovery/), which covers the full content strategy around video transcripts, the tactical and strategic cases are both developed in depth.
 
 ## Clip and SeekToAction for video chapters and key moments
 
@@ -228,7 +228,7 @@ This granular citation capability is exactly what the [how to get cited by AI se
 
 ## Combining VideoObject with Article or WebPage schema in @graph
 
-Most video pages are not pure video pages — they are article pages or tutorial pages that embed a video alongside text content. These pages should carry both `VideoObject` schema and either `Article` or `WebPage` schema, connected via a `@graph` block.
+Most video pages are not pure video pages, they are article pages or tutorial pages that embed a video alongside text content. These pages should carry both `VideoObject` schema and either `Article` or `WebPage` schema, connected via a `@graph` block.
 
 The `@graph` pattern prevents schema conflicts and allows AI engines to understand the relationship between the video and the page content. It also enables `@id` references that connect entities without duplicating data.
 
@@ -277,11 +277,11 @@ The `@graph` pattern prevents schema conflicts and allows AI engines to understa
 }
 ```
 
-The `isPartOf` reference connects the `VideoObject` to the `WebPage`. The `publisher` `@id` reference reuses the organization entity without repeating its name and URL. This kind of entity graph is what AI engines use to build confidence that the video is authoritative — a video published by a known organization on a page they own carries more citability weight than an anonymous embed.
+The `isPartOf` reference connects the `VideoObject` to the `WebPage`. The `publisher` `@id` reference reuses the organization entity without repeating its name and URL. This kind of entity graph is what AI engines use to build confidence that the video is authoritative, a video published by a known organization on a page they own carries more citability weight than an anonymous embed.
 
 For guides and tutorial pages, using `Article` or `HowTo` in place of `WebPage` creates additional rich result eligibility. The [HowTo schema for AI search guide](/blog/howto-schema-for-ai-search/) covers the specifics of procedural markup that pairs naturally with embedded instructional video.
 
-## YouTube vs. self-hosted video — schema differences
+## YouTube vs. self-hosted video, schema differences
 
 The schema structure for YouTube-hosted videos and self-hosted videos is nearly identical, but there are a few meaningful differences worth understanding.
 
@@ -303,13 +303,13 @@ For **YouTube-hosted videos**, `embedUrl` uses the `https://www.youtube.com/embe
 
 For YouTube thumbnails, use the `maxresdefault.jpg` variant at `https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg` when available, falling back to `hqdefault.jpg`. These are publicly accessible and Googlebot-crawlable without authentication.
 
-For **self-hosted videos**, provide the direct MP4 URL in `contentUrl`. If you use a custom video player that supports timestamp seeking, `SeekToAction` can use your player's native timestamp parameter. Self-hosted videos that are not publicly accessible — behind a paywall or login — should still carry VideoObject schema; Google and AI engines will not crawl the video file but will use the metadata for indexing and recommendation.
+For **self-hosted videos**, provide the direct MP4 URL in `contentUrl`. If you use a custom video player that supports timestamp seeking, `SeekToAction` can use your player's native timestamp parameter. Self-hosted videos that are not publicly accessible, behind a paywall or login, should still carry VideoObject schema; Google and AI engines will not crawl the video file but will use the metadata for indexing and recommendation.
 
-One important distinction: YouTube already generates its own VideoObject schema for your video on youtube.com. The schema you add to your own website is separate and describes the video in the context of your page and your authority, not YouTube's. Do not skip VideoObject markup on your site on the assumption that YouTube's schema covers you — it does not. The two are independent signals.
+One important distinction: YouTube already generates its own VideoObject schema for your video on youtube.com. The schema you add to your own website is separate and describes the video in the context of your page and your authority, not YouTube's. Do not skip VideoObject markup on your site on the assumption that YouTube's schema covers you, it does not. The two are independent signals.
 
 ## Video series and playlist markup
 
-A series of related videos — a course, a podcast with video, a multi-part tutorial — can be marked up with `isPartOf` pointing to a `VideoPlaylist` or connected via a parent `VideoSeries` entity. This signals to AI engines that the video is part of a longer body of work, which contributes to topical authority signals.
+A series of related videos, a course, a podcast with video, a multi-part tutorial, can be marked up with `isPartOf` pointing to a `VideoPlaylist` or connected via a parent `VideoSeries` entity. This signals to AI engines that the video is part of a longer body of work, which contributes to topical authority signals.
 
 ```json
 {
@@ -353,7 +353,7 @@ A series of related videos — a course, a podcast with video, a multi-part tuto
 }
 ```
 
-The `isPartOf` reference connecting the `VideoObject` to an `ItemList` entity helps AI engines recognize series membership. The `position` field within each video item helps AI engines answer "where do I start in this series" and "what comes next" queries — the kind of navigational questions that AI engines increasingly handle and that require structured series data to answer reliably.
+The `isPartOf` reference connecting the `VideoObject` to an `ItemList` entity helps AI engines recognize series membership. The `position` field within each video item helps AI engines answer "where do I start in this series" and "what comes next" queries, the kind of navigational questions that AI engines increasingly handle and that require structured series data to answer reliably.
 
 ## Testing VideoObject schema
 
@@ -369,7 +369,7 @@ Two tools handle VideoObject schema validation before and after deployment.
 
 **Google Search Console URL Inspection** is the second tool, used after deployment. Once the page has been crawled, the URL Inspection tool shows whether Google has detected the VideoObject schema and whether rich results are enabled for the page. Navigate to URL Inspection, enter the video page URL, and expand the "Enhancements" section to see video structured data status.
 
-Common issues caught at this stage include `embedUrl` values that Google's crawler cannot resolve — for example, video player URLs that redirect or require JavaScript to load. If Google cannot confirm the video is accessible at the `embedUrl`, it may withhold rich result eligibility even when the schema itself is valid.
+Common issues caught at this stage include `embedUrl` values that Google's crawler cannot resolve, for example, video player URLs that redirect or require JavaScript to load. If Google cannot confirm the video is accessible at the `embedUrl`, it may withhold rich result eligibility even when the schema itself is valid.
 
 For a complete audit of your structured data health across the site, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) includes a VideoObject section that walks through each validation point alongside broader AI visibility signals.
 
@@ -381,7 +381,7 @@ No. VideoObject schema makes your video eligible for AI citation and significant
 
 ### Is the transcript field officially supported by Google for video schema?
 
-`transcript` is part of the Schema.org VideoObject specification and is used by AI engines for text-level matching and citation. Google's official video structured data documentation focuses on properties required for rich results eligibility, which does not include `transcript` as a required or recommended field for that specific purpose. However, providing a full transcript significantly increases the text surface area available to AI engines for query matching — which directly affects AI Overview citations and conversational AI recommendations regardless of rich results status.
+`transcript` is part of the Schema.org VideoObject specification and is used by AI engines for text-level matching and citation. Google's official video structured data documentation focuses on properties required for rich results eligibility, which does not include `transcript` as a required or recommended field for that specific purpose. However, providing a full transcript significantly increases the text surface area available to AI engines for query matching, which directly affects AI Overview citations and conversational AI recommendations regardless of rich results status.
 
 ### What is the difference between contentUrl and embedUrl in VideoObject schema?
 
@@ -389,11 +389,11 @@ No. VideoObject schema makes your video eligible for AI citation and significant
 
 ### Should I add VideoObject schema to every page that embeds a video?
 
-Yes, for any page where the video is a primary content element. For pages where a video is decorative or incidental — a background video on a homepage or a short animation in a sidebar — VideoObject schema adds noise without benefit. The deciding factor is whether the video contains substantive content you want AI engines to be able to cite. If the video teaches something, demonstrates a process, or answers a question, mark it up. If it is purely visual, skip it.
+Yes, for any page where the video is a primary content element. For pages where a video is decorative or incidental, a background video on a homepage or a short animation in a sidebar, VideoObject schema adds noise without benefit. The deciding factor is whether the video contains substantive content you want AI engines to be able to cite. If the video teaches something, demonstrates a process, or answers a question, mark it up. If it is purely visual, skip it.
 
 ### How do I implement VideoObject schema for a video behind a paywall?
 
-Add the schema as normal with all available metadata — `name`, `description`, `thumbnailUrl`, `uploadDate`, `duration`, and `contentUrl` or `embedUrl`. Google will not crawl the video file itself if it is behind authentication, but it will index the metadata for discovery purposes. Set `requiresSubscription` to `true` in the schema. This signals to AI engines and Google that the content exists and what it covers, while accurately representing that access requires a subscription. AI engines can still cite the video as an available resource.
+Add the schema as normal with all available metadata, `name`, `description`, `thumbnailUrl`, `uploadDate`, `duration`, and `contentUrl` or `embedUrl`. Google will not crawl the video file itself if it is behind authentication, but it will index the metadata for discovery purposes. Set `requiresSubscription` to `true` in the schema. This signals to AI engines and Google that the content exists and what it covers, while accurately representing that access requires a subscription. AI engines can still cite the video as an available resource.
 
 ### How long does it take for VideoObject schema changes to be reflected in search?
 
@@ -417,7 +417,7 @@ Google processes structured data changes during the next crawl of the page. For 
       "name": "Is the transcript field officially supported by Google for video schema?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "transcript is part of the Schema.org VideoObject specification and is used by AI engines for text-level matching and citation. Google's official video structured data documentation focuses on properties required for rich results eligibility, which does not include transcript as a required or recommended field for that specific purpose. However, providing a full transcript significantly increases the text surface area available to AI engines for query matching — which directly affects AI Overview citations and conversational AI recommendations regardless of rich results status."
+        "text": "transcript is part of the Schema.org VideoObject specification and is used by AI engines for text-level matching and citation. Google's official video structured data documentation focuses on properties required for rich results eligibility, which does not include transcript as a required or recommended field for that specific purpose. However, providing a full transcript significantly increases the text surface area available to AI engines for query matching, which directly affects AI Overview citations and conversational AI recommendations regardless of rich results status."
       }
     },
     {
@@ -433,7 +433,7 @@ Google processes structured data changes during the next crawl of the page. For 
       "name": "Should I add VideoObject schema to every page that embeds a video?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, for any page where the video is a primary content element. For pages where a video is decorative or incidental — a background video on a homepage or a short animation in a sidebar — VideoObject schema adds noise without benefit. The deciding factor is whether the video contains substantive content you want AI engines to be able to cite. If the video teaches something, demonstrates a process, or answers a question, mark it up. If it is purely visual, skip it."
+        "text": "Yes, for any page where the video is a primary content element. For pages where a video is decorative or incidental, a background video on a homepage or a short animation in a sidebar, VideoObject schema adds noise without benefit. The deciding factor is whether the video contains substantive content you want AI engines to be able to cite. If the video teaches something, demonstrates a process, or answers a question, mark it up. If it is purely visual, skip it."
       }
     },
     {
@@ -441,7 +441,7 @@ Google processes structured data changes during the next crawl of the page. For 
       "name": "How do I implement VideoObject schema for a video behind a paywall?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Add the schema as normal with all available metadata — name, description, thumbnailUrl, uploadDate, duration, and contentUrl or embedUrl. Google will not crawl the video file itself if it is behind authentication, but it will index the metadata for discovery purposes. Set requiresSubscription to true in the schema. This signals to AI engines and Google that the content exists and what it covers, while accurately representing that access requires a subscription. AI engines can still cite the video as an available resource."
+        "text": "Add the schema as normal with all available metadata, name, description, thumbnailUrl, uploadDate, duration, and contentUrl or embedUrl. Google will not crawl the video file itself if it is behind authentication, but it will index the metadata for discovery purposes. Set requiresSubscription to true in the schema. This signals to AI engines and Google that the content exists and what it covers, while accurately representing that access requires a subscription. AI engines can still cite the video as an available resource."
       }
     },
     {

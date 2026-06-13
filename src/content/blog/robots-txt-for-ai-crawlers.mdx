@@ -16,7 +16,7 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-A single line in your robots.txt file can remove your site from ChatGPT's citation pool permanently. Not temporarily — permanently, until the model is retrained on a new data snapshot that no longer includes that restriction. If GPTBot crawled your site before you added a block, the content it captured may still appear in training data. But from the moment you added `Disallow: /` under `User-agent: GPTBot`, you stopped accumulating presence in future training snapshots. That is the stakes of robots.txt decisions in 2026, and most site owners made those decisions without understanding what they were doing.
+A single line in your robots.txt file can remove your site from ChatGPT's citation pool permanently. Not temporarily, permanently, until the model is retrained on a new data snapshot that no longer includes that restriction. If GPTBot crawled your site before you added a block, the content it captured may still appear in training data. But from the moment you added `Disallow: /` under `User-agent: GPTBot`, you stopped accumulating presence in future training snapshots. That is the stakes of robots.txt decisions in 2026, and most site owners made those decisions without understanding what they were doing.
 
 This guide covers the complete technical framework for configuring robots.txt for AI crawlers: which user agents to allow, which to block and when, how to audit what your current file is actually doing, and the common mistakes that have quietly removed thousands of sites from the AI citation ecosystem.
 
@@ -24,26 +24,26 @@ This guide covers the complete technical framework for configuring robots.txt fo
 
 If your goal is maximum AI visibility and you have no legal or competitive reason to restrict content access, allow all major AI crawlers. The five you cannot afford to accidentally block are GPTBot (OpenAI's training and retrieval crawler), ClaudeBot (Anthropic's training crawler), PerplexityBot (Perplexity's real-time retrieval crawler), Google-Extended (Google's AI training and Gemini crawler), and Bingbot (Microsoft's crawler that feeds Copilot). Each of these represents a distinct AI platform where your content either appears in citations or does not, and that status is controlled in large part by what your robots.txt says.
 
-The default posture for most content publishers should be: allow all AI crawlers, apply selective blocks only where there is a specific, justified reason. The opposite posture — block everything and selectively allow — is defensible for certain content types but costs you AI visibility across every platform simultaneously.
+The default posture for most content publishers should be: allow all AI crawlers, apply selective blocks only where there is a specific, justified reason. The opposite posture, block everything and selectively allow, is defensible for certain content types but costs you AI visibility across every platform simultaneously.
 
 ## The AI crawler landscape: who is crawling and what they feed
 
-Understanding what each crawler does with your content changes how you think about robots.txt decisions. These are not interchangeable bots with the same downstream effects — they feed fundamentally different AI systems, and blocking one has different consequences from blocking another.
+Understanding what each crawler does with your content changes how you think about robots.txt decisions. These are not interchangeable bots with the same downstream effects, they feed fundamentally different AI systems, and blocking one has different consequences from blocking another.
 
-**GPTBot** is OpenAI's web crawler, documented at [OpenAI's GPTBot usage policies page](https://openai.com/gptbot-operator-and-user-policy-may-2025). It crawls for training data that is incorporated into future versions of GPT-4 and subsequent models. Blocking GPTBot does not affect ChatGPT's ability to browse your site in real time when a user explicitly asks it to visit a URL — that is handled by a separate system. What GPTBot affects is the parametric knowledge embedded in the model itself: whether ChatGPT "knows" your brand, your content, your expertise as baked-in knowledge rather than retrieved knowledge. Blocking GPTBot removes you from that base layer.
+**GPTBot** is OpenAI's web crawler, documented at [OpenAI's GPTBot usage policies page](https://openai.com/gptbot-operator-and-user-policy-may-2025). It crawls for training data that is incorporated into future versions of GPT-4 and subsequent models. Blocking GPTBot does not affect ChatGPT's ability to browse your site in real time when a user explicitly asks it to visit a URL, that is handled by a separate system. What GPTBot affects is the parametric knowledge embedded in the model itself: whether ChatGPT "knows" your brand, your content, your expertise as baked-in knowledge rather than retrieved knowledge. Blocking GPTBot removes you from that base layer.
 
 **ClaudeBot** (also identified by the `anthropic-ai` user agent string) is Anthropic's training crawler. Like GPTBot, it feeds training data rather than real-time retrieval. Blocking it means future versions of Claude will not have your content in their training base.
 
-**PerplexityBot** operates differently from the training crawlers. Perplexity is a retrieval-augmented AI search engine — it fetches live web content at query time and synthesizes answers from those sources. Blocking PerplexityBot does not affect a model's parametric knowledge; it affects whether your content can be surfaced as a citation source for live Perplexity queries right now. This means the impact of blocking PerplexityBot is more immediate and more directly visible in citation counts than blocking a training crawler.
+**PerplexityBot** operates differently from the training crawlers. Perplexity is a retrieval-augmented AI search engine, it fetches live web content at query time and synthesizes answers from those sources. Blocking PerplexityBot does not affect a model's parametric knowledge; it affects whether your content can be surfaced as a citation source for live Perplexity queries right now. This means the impact of blocking PerplexityBot is more immediate and more directly visible in citation counts than blocking a training crawler.
 
 **Google-Extended** is Google's crawler for AI training data, distinct from Googlebot (which handles traditional search indexing). Blocking Google-Extended while allowing Googlebot is possible and common among publishers who want traditional search visibility without contributing content to Google's AI training datasets. This is one of the more defensible targeted-block use cases, particularly for news publishers concerned about AI training monetization.
 
-**Bingbot** feeds Microsoft's entire search and AI stack, including Bing Search and Microsoft Copilot. Unlike some of the pure-AI crawlers, Bingbot has a longer history as a traditional search crawler, and many robots.txt files have legacy Bingbot rules that predate the Copilot era — sometimes blocking it for reasons that no longer apply.
+**Bingbot** feeds Microsoft's entire search and AI stack, including Bing Search and Microsoft Copilot. Unlike some of the pure-AI crawlers, Bingbot has a longer history as a traditional search crawler, and many robots.txt files have legacy Bingbot rules that predate the Copilot era, sometimes blocking it for reasons that no longer apply.
 
 The relationships between these crawlers, their user-agent strings, and what blocking each one costs you are shown in the diagram below.
 
 <figure class="post-figure">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 500" width="860" height="500" role="img" aria-label="Table showing five AI crawlers — GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Bingbot — with their user-agent strings and what blocking each one costs in AI citation reach">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 500" width="860" height="500" role="img" aria-label="Table showing five AI crawlers, GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Bingbot, with their user-agent strings and what blocking each one costs in AI citation reach">
   <rect width="860" height="500" fill="rgb(246,245,240)" rx="8"/>
   <text x="430" y="34" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" text-anchor="middle" letter-spacing="2">AI CRAWLER REFERENCE · USER-AGENT STRINGS AND BLOCKING CONSEQUENCES</text>
   <rect x="24" y="52" width="812" height="36" fill="rgb(14,17,22)" rx="6"/>
@@ -92,7 +92,7 @@ The relationships between these crawlers, their user-agent strings, and what blo
   <text x="480" y="398" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">+ Microsoft Copilot data</text>
   <text x="700" y="382" font-family="Georgia, serif" font-size="10" fill="rgb(184,85,46)" text-anchor="middle">Bing rankings and Microsoft</text>
   <text x="700" y="398" font-family="Georgia, serif" font-size="10" fill="rgb(184,85,46)" text-anchor="middle">Copilot citation eligibility</text>
-  <text x="430" y="468" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.4" text-anchor="middle">Each crawler feeds a distinct AI platform. Blocking any one removes you from that platform's citation pool — often permanently until the next model retraining cycle.</text>
+  <text x="430" y="468" font-family="Georgia, serif" font-size="10" fill="rgb(14,17,22)" fill-opacity="0.4" text-anchor="middle">Each crawler feeds a distinct AI platform. Blocking any one removes you from that platform's citation pool, often permanently until the next model retraining cycle.</text>
 </svg>
 </figure>
 
@@ -104,7 +104,7 @@ Start by fetching your robots.txt directly: visit `https://yourdomain.com/robots
 
 **Wildcard catch-all rules.** A rule like `User-agent: *` followed by `Disallow: /` blocks every crawler that is not explicitly listed with its own `Allow` rules above the wildcard section. If your file has this pattern and GPTBot, ClaudeBot, or PerplexityBot are not explicitly listed above the wildcard with their own rules, they are being blocked. This is the most common and most damaging pattern.
 
-**Legacy security rules.** Many robots.txt files were written years ago to block scrapers, spam bots, or test environments. Rules like `Disallow: /wp-admin/` or `Disallow: /private/` are fine, but broader rules added during a security concern — such as `Disallow: /content/` or `Disallow: /articles/` — now block the exact pages you want AI crawlers to index.
+**Legacy security rules.** Many robots.txt files were written years ago to block scrapers, spam bots, or test environments. Rules like `Disallow: /wp-admin/` or `Disallow: /private/` are fine, but broader rules added during a security concern, such as `Disallow: /content/` or `Disallow: /articles/`, now block the exact pages you want AI crawlers to index.
 
 **CMS-generated defaults.** WordPress, Shopify, Wix, and other CMSs sometimes generate robots.txt files with rules that made sense for traditional SEO but predate AI crawlers. Some security plugins and CDN configurations add blanket bot-blocking rules. Check whether your robots.txt is auto-generated by a plugin and whether that plugin has been updated to understand AI crawlers as a distinct category from scrapers.
 
@@ -112,7 +112,7 @@ For a comprehensive technical audit that goes beyond robots.txt, the [AI SEO aud
 
 ## Correct robots.txt syntax for AI crawlers
 
-The robots.txt specification uses a straightforward syntax, but the order of rules and the specificity of user-agent matching have important implications. [Google's robots.txt documentation](https://developers.google.com/search/docs/crawling-indexing/robots/intro) covers the full specification — here is what matters specifically for AI crawler configuration.
+The robots.txt specification uses a straightforward syntax, but the order of rules and the specificity of user-agent matching have important implications. [Google's robots.txt documentation](https://developers.google.com/search/docs/crawling-indexing/robots/intro) covers the full specification, here is what matters specifically for AI crawler configuration.
 
 Each crawler is addressed by a separate `User-agent:` block. Rules in one block do not affect other crawlers. If you want to allow all content to all major AI crawlers, the explicit version looks like this:
 
@@ -136,7 +136,7 @@ User-agent: bingbot
 Allow: /
 ```
 
-If your site's default posture is to allow all crawlers and you only want to restrict specific paths, you can rely on the wildcard rule for AI crawlers — provided the wildcard rule allows crawling. If your wildcard rule disallows crawling, you must list each AI crawler explicitly above it with `Allow: /` rules:
+If your site's default posture is to allow all crawlers and you only want to restrict specific paths, you can rely on the wildcard rule for AI crawlers, provided the wildcard rule allows crawling. If your wildcard rule disallows crawling, you must list each AI crawler explicitly above it with `Allow: /` rules:
 
 ```
 User-agent: GPTBot
@@ -163,19 +163,19 @@ In this configuration, GPTBot, ClaudeBot, anthropic-ai, PerplexityBot, and Googl
 
 One syntax note worth emphasizing: `Allow: /` with a trailing slash means "allow everything from the root." An `Allow` directive with no path, or with an incomplete path, may not behave as expected in all crawler implementations. Write complete paths.
 
-For sites using JavaScript-rendered content, robots.txt is only part of the access story — the [JavaScript SEO for AI crawlers](/blog/javascript-seo-for-ai-crawlers/) guide covers why crawlers that cannot execute JavaScript miss content that is accessible from robots.txt's perspective but practically invisible because it requires client-side rendering.
+For sites using JavaScript-rendered content, robots.txt is only part of the access story, the [JavaScript SEO for AI crawlers](/blog/javascript-seo-for-ai-crawlers/) guide covers why crawlers that cannot execute JavaScript miss content that is accessible from robots.txt's perspective but practically invisible because it requires client-side rendering.
 
 ## When blocking AI crawlers is legitimate
 
 There are genuine reasons to block AI crawlers, and the goal here is not to argue that everyone should allow everything. The goal is to ensure you are making deliberate decisions rather than accidental ones.
 
-**Protecting proprietary research or subscriber content.** If your site's value depends on exclusive research or paywalled content, training AI models on that content without compensation or permission is a legitimate concern. Blocking GPTBot and ClaudeBot from training crawls (not from retrieval systems) is a reasonable choice. Note that this does not protect content from real-time retrieval by PerplexityBot or ChatGPT Browse — those systems can still access your content if it is publicly accessible via HTTP.
+**Protecting proprietary research or subscriber content.** If your site's value depends on exclusive research or paywalled content, training AI models on that content without compensation or permission is a legitimate concern. Blocking GPTBot and ClaudeBot from training crawls (not from retrieval systems) is a reasonable choice. Note that this does not protect content from real-time retrieval by PerplexityBot or ChatGPT Browse, those systems can still access your content if it is publicly accessible via HTTP.
 
-**Legal obligations.** Some categories of content — certain medical records, personally identifiable information, legally sensitive documents — may carry obligations that make automated crawling inadvisable regardless of the crawler's identity.
+**Legal obligations.** Some categories of content, certain medical records, personally identifiable information, legally sensitive documents, may carry obligations that make automated crawling inadvisable regardless of the crawler's identity.
 
 **Competitive intelligence protection.** If your site contains pricing data, inventory signals, or other information that competitors could extract via AI-assisted analysis, targeted blocks on specific directories may be appropriate. Be specific: block the sensitive paths, not the entire site.
 
-**News publishers negotiating licensing.** Several major news organizations have blocked OpenAI and Google AI crawlers as a negotiating position around licensing of their journalism for AI training. This is a business decision with real AI visibility tradeoffs — blocking GPTBot removes you from future ChatGPT knowledge while the negotiation proceeds.
+**News publishers negotiating licensing.** Several major news organizations have blocked OpenAI and Google AI crawlers as a negotiating position around licensing of their journalism for AI training. This is a business decision with real AI visibility tradeoffs, blocking GPTBot removes you from future ChatGPT knowledge while the negotiation proceeds.
 
 What is almost never legitimate: blocking AI crawlers because you once blocked all bots for security reasons, or because your CMS defaulted to blocking unknown user agents, or because someone added a line to robots.txt during a site migration and no one has checked since.
 
@@ -183,11 +183,11 @@ What is almost never legitimate: blocking AI crawlers because you once blocked a
 
 The most important conceptual distinction for robots.txt strategy is between training data crawling and real-time retrieval crawling. Robots.txt affects both, but the consequences of blocking each are different in timing, reversibility, and visibility.
 
-**Training data crawlers** (GPTBot, ClaudeBot, Google-Extended) collect content to incorporate into future model training. The content they collect today will not appear in model knowledge for months — it enters training pipelines that run periodically. Blocking them has no immediate visible effect. You will not notice missing citations next week. But when the next training run happens and your content is not in the dataset, you are absent from the knowledge base of that model for its entire deployment lifecycle — potentially years. The damage is deferred and invisible until it compounds.
+**Training data crawlers** (GPTBot, ClaudeBot, Google-Extended) collect content to incorporate into future model training. The content they collect today will not appear in model knowledge for months, it enters training pipelines that run periodically. Blocking them has no immediate visible effect. You will not notice missing citations next week. But when the next training run happens and your content is not in the dataset, you are absent from the knowledge base of that model for its entire deployment lifecycle, potentially years. The damage is deferred and invisible until it compounds.
 
-**Real-time retrieval crawlers** (PerplexityBot, ChatGPT Browse) access content at query time to construct live answers. Blocking PerplexityBot produces immediate, observable effects: you stop appearing in Perplexity citations within days. This makes real-time retrieval blocks both more immediately damaging in obvious ways and more immediately recoverable — remove the block, and you can be back in citations within a crawl cycle.
+**Real-time retrieval crawlers** (PerplexityBot, ChatGPT Browse) access content at query time to construct live answers. Blocking PerplexityBot produces immediate, observable effects: you stop appearing in Perplexity citations within days. This makes real-time retrieval blocks both more immediately damaging in obvious ways and more immediately recoverable, remove the block, and you can be back in citations within a crawl cycle.
 
-Understanding this distinction shapes how you think about XML sitemaps alongside robots.txt. Sitemaps help retrieval crawlers prioritize which of your allowed pages to fetch. The [XML sitemaps for AI crawlers](/blog/xml-sitemaps-for-ai-crawlers/) guide covers how to structure sitemaps specifically for AI retrieval systems. Together, robots.txt and sitemaps define the crawl access layer — and both must be correct for AI citation eligibility to be maximized.
+Understanding this distinction shapes how you think about XML sitemaps alongside robots.txt. Sitemaps help retrieval crawlers prioritize which of your allowed pages to fetch. The [XML sitemaps for AI crawlers](/blog/xml-sitemaps-for-ai-crawlers/) guide covers how to structure sitemaps specifically for AI retrieval systems. Together, robots.txt and sitemaps define the crawl access layer, and both must be correct for AI citation eligibility to be maximized.
 
 ## Testing your robots.txt
 
@@ -199,21 +199,21 @@ Configuring robots.txt correctly and confirming it works correctly are two separ
 
 **Third-party robots.txt validators.** Several SEO tools including Screaming Frog and SEMrush offer robots.txt validators that let you test any user-agent string against your file. Input `GPTBot`, `ClaudeBot`, `PerplexityBot` in sequence and verify that your highest-value pages return `allowed` for each.
 
-After confirming that robots.txt allows AI crawlers, the next validation step is confirming those pages are actually being crawled. Server log analysis — if your hosting provides access to raw access logs — will show actual crawl visits by user agent. GPTBot, ClaudeBot, and PerplexityBot will appear in logs using their documented user-agent strings if they are actively crawling your content.
+After confirming that robots.txt allows AI crawlers, the next validation step is confirming those pages are actually being crawled. Server log analysis, if your hosting provides access to raw access logs, will show actual crawl visits by user agent. GPTBot, ClaudeBot, and PerplexityBot will appear in logs using their documented user-agent strings if they are actively crawling your content.
 
 ## Common mistakes that cost AI citations
 
-The pattern we see repeatedly when auditing sites for AI visibility problems is not deliberate decisions made in bad faith — it is old rules left in place that no one thought to revisit.
+The pattern we see repeatedly when auditing sites for AI visibility problems is not deliberate decisions made in bad faith, it is old rules left in place that no one thought to revisit.
 
 **Wildcard blocks with no AI-specific exceptions.** A robots.txt file that was written five years ago with `User-agent: *` followed by `Disallow: /` was probably designed to block scrapers. At the time, GPTBot did not exist. It now catches GPTBot, ClaudeBot, and PerplexityBot indiscriminately. No one added exceptions because no one was monitoring the robots.txt file after the initial migration.
 
 **Security plugin overwrites.** Some WordPress security plugins generate and overwrite robots.txt with their own rule sets on each update. A plugin that adds broad bot-blocking rules as a security measure may be silently blocking AI crawlers on every plugin update cycle. Check whether a plugin controls your robots.txt and what it is outputting.
 
-**Staging environment rules in production.** A common pattern: robots.txt was set to `Disallow: /` in the staging environment to prevent indexing. During a site migration or server move, the staging robots.txt was copied to production. The site owner thinks their robots.txt allows crawling because they never explicitly blocked anything — but the file that was migrated was the one that blocked everything.
+**Staging environment rules in production.** A common pattern: robots.txt was set to `Disallow: /` in the staging environment to prevent indexing. During a site migration or server move, the staging robots.txt was copied to production. The site owner thinks their robots.txt allows crawling because they never explicitly blocked anything, but the file that was migrated was the one that blocked everything.
 
 **Conflicting rule ordering.** In some robots.txt parsers, rule ordering within a block matters when specificity is equal. A robots.txt that has `Disallow: /` followed by `Allow: /blog/` may or may not work as intended depending on the crawler's parsing implementation. When rules conflict, be explicit: use separate named user-agent blocks for each AI crawler with clear, unambiguous `Allow: /` directives.
 
-**Assuming noindex blocks crawlers.** `noindex` meta tags are processed by crawlers that have already accessed the page — they are instructions about indexing, not about crawling. A page blocked by robots.txt never receives the noindex instruction because the crawler never reaches the page to read it. Robots.txt and meta robots serve different functions and should not be treated as interchangeable. The full picture of how AI systems decide what to cite — beyond robots.txt — is covered in [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/).
+**Assuming noindex blocks crawlers.** `noindex` meta tags are processed by crawlers that have already accessed the page, they are instructions about indexing, not about crawling. A page blocked by robots.txt never receives the noindex instruction because the crawler never reaches the page to read it. Robots.txt and meta robots serve different functions and should not be treated as interchangeable. The full picture of how AI systems decide what to cite, beyond robots.txt, is covered in [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/).
 
 For the specific challenge of building ChatGPT visibility through the Browse and search product rather than training data, [how to optimize for ChatGPT search](/blog/how-to-optimize-for-chatgpt-search/) covers the retrieval-layer signals that complement robots.txt configuration. And for the broader strategic context of where robots.txt fits in a complete AI visibility plan, [the AI SEO Shift framework](/ai-seo-shift/) provides the systematic approach to prioritizing these technical fixes alongside content and authority signals.
 
@@ -221,19 +221,19 @@ For the specific challenge of building ChatGPT visibility through the Browse and
 
 ### Does blocking GPTBot in robots.txt affect ChatGPT's ability to browse my site live?
 
-No — robots.txt and GPTBot control training data collection, not ChatGPT's real-time browsing capability. When a ChatGPT user manually asks it to visit a URL, that request goes through a separate system with a different user-agent string. Blocking GPTBot removes your content from future training data snapshots, which affects ChatGPT's parametric (baked-in) knowledge of your site. It does not prevent a ChatGPT user from asking the tool to directly fetch and read a specific URL on your site.
+No, robots.txt and GPTBot control training data collection, not ChatGPT's real-time browsing capability. When a ChatGPT user manually asks it to visit a URL, that request goes through a separate system with a different user-agent string. Blocking GPTBot removes your content from future training data snapshots, which affects ChatGPT's parametric (baked-in) knowledge of your site. It does not prevent a ChatGPT user from asking the tool to directly fetch and read a specific URL on your site.
 
 ### Can I block AI training crawlers without affecting traditional search rankings?
 
-Yes, with precision. Google-Extended is separate from Googlebot — blocking Google-Extended prevents your content from being used in Google's AI training while leaving Googlebot's access to your site entirely intact. For OpenAI, GPTBot handles training data and is a separate crawler from any retrieval system. You can block GPTBot without affecting your traditional search rankings in Google or Bing, since those rankings are driven by Googlebot and Bingbot respectively, not GPTBot.
+Yes, with precision. Google-Extended is separate from Googlebot, blocking Google-Extended prevents your content from being used in Google's AI training while leaving Googlebot's access to your site entirely intact. For OpenAI, GPTBot handles training data and is a separate crawler from any retrieval system. You can block GPTBot without affecting your traditional search rankings in Google or Bing, since those rankings are driven by Googlebot and Bingbot respectively, not GPTBot.
 
 ### How often do AI crawlers re-crawl pages?
 
-Training crawlers like GPTBot and ClaudeBot do not operate on predictable schedules in the way search engine crawlers do. They run crawling campaigns tied to training data collection cycles, which may happen irregularly. Real-time retrieval crawlers like PerplexityBot operate more frequently and closer to search-engine crawl cadences — popular, frequently updated content may be re-crawled daily or more often. If you remove a robots.txt block that was preventing AI crawler access, expect a lag of days to weeks before training crawlers visit and potentially months before that data influences a model's knowledge.
+Training crawlers like GPTBot and ClaudeBot do not operate on predictable schedules in the way search engine crawlers do. They run crawling campaigns tied to training data collection cycles, which may happen irregularly. Real-time retrieval crawlers like PerplexityBot operate more frequently and closer to search-engine crawl cadences, popular, frequently updated content may be re-crawled daily or more often. If you remove a robots.txt block that was preventing AI crawler access, expect a lag of days to weeks before training crawlers visit and potentially months before that data influences a model's knowledge.
 
 ### Should I add AI crawler rules to my existing robots.txt or create a separate file?
 
-Add them to your existing robots.txt — there is only one robots.txt per domain, located at the root (`/robots.txt`). Place the AI crawler user-agent blocks near the top of the file, before any wildcard rules. This ensures that if your wildcard rule includes broad Disallow directives, the named AI crawler blocks are evaluated first and their explicit Allow rules take precedence.
+Add them to your existing robots.txt, there is only one robots.txt per domain, located at the root (`/robots.txt`). Place the AI crawler user-agent blocks near the top of the file, before any wildcard rules. This ensures that if your wildcard rule includes broad Disallow directives, the named AI crawler blocks are evaluated first and their explicit Allow rules take precedence.
 
 ### What happens if I have both `Allow: /` and `Disallow: /` for the same user agent?
 
@@ -241,7 +241,7 @@ The more specific rule wins. A `Disallow: /private/` and an `Allow: /` means the
 
 ### How do I know if AI crawlers have visited my site recently?
 
-Check your server access logs. If your hosting environment provides raw access logs, search for the user-agent strings: `GPTBot`, `ClaudeBot`, `anthropic-ai`, and `PerplexityBot`. Their presence confirms active crawling. If you use a CDN like Cloudflare, bot traffic may be filtered before it reaches your origin server logs — you may need to check Cloudflare's bot management logs or temporarily adjust bot filtering settings to see AI crawler traffic. Note that some AI crawlers respect your robots.txt and will simply not appear in logs for blocked paths, which is expected behavior.
+Check your server access logs. If your hosting environment provides raw access logs, search for the user-agent strings: `GPTBot`, `ClaudeBot`, `anthropic-ai`, and `PerplexityBot`. Their presence confirms active crawling. If you use a CDN like Cloudflare, bot traffic may be filtered before it reaches your origin server logs, you may need to check Cloudflare's bot management logs or temporarily adjust bot filtering settings to see AI crawler traffic. Note that some AI crawlers respect your robots.txt and will simply not appear in logs for blocked paths, which is expected behavior.
 
 <script type="application/ld+json">{`
 {
@@ -261,7 +261,7 @@ Check your server access logs. If your hosting environment provides raw access l
       "name": "Can I block AI training crawlers without affecting traditional search rankings?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Google-Extended is separate from Googlebot — blocking Google-Extended prevents AI training data collection while leaving traditional Google Search indexing intact. GPTBot is separate from Bingbot, so blocking GPTBot does not affect Bing or Microsoft Copilot rankings driven by Bingbot."
+        "text": "Yes. Google-Extended is separate from Googlebot, blocking Google-Extended prevents AI training data collection while leaving traditional Google Search indexing intact. GPTBot is separate from Bingbot, so blocking GPTBot does not affect Bing or Microsoft Copilot rankings driven by Bingbot."
       }
     },
     {
@@ -293,7 +293,7 @@ Check your server access logs. If your hosting environment provides raw access l
       "name": "How do I know if AI crawlers have visited my site recently?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Check your server access logs for user-agent strings: GPTBot, ClaudeBot, anthropic-ai, and PerplexityBot. If you use a CDN like Cloudflare, check bot management logs as AI crawler traffic may be filtered before reaching origin server logs. Absence in logs for blocked paths is expected behavior — crawlers that respect your robots.txt will not attempt to fetch disallowed URLs."
+        "text": "Check your server access logs for user-agent strings: GPTBot, ClaudeBot, anthropic-ai, and PerplexityBot. If you use a CDN like Cloudflare, check bot management logs as AI crawler traffic may be filtered before reaching origin server logs. Absence in logs for blocked paths is expected behavior, crawlers that respect your robots.txt will not attempt to fetch disallowed URLs."
       }
     }
   ]

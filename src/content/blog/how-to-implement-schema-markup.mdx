@@ -16,7 +16,7 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-Schema markup sits at the intersection of technical SEO and AI visibility, and it is also the place where most non-developers get stuck. The vocabulary feels arcane, the JSON syntax looks intimidating, and the official documentation is written for engineers. But the actual process of implementing schema markup — choosing the right type, writing the code, adding it to your site, and verifying it works — is something anyone with basic web access can accomplish in a single afternoon.
+Schema markup sits at the intersection of technical SEO and AI visibility, and it is also the place where most non-developers get stuck. The vocabulary feels arcane, the JSON syntax looks intimidating, and the official documentation is written for engineers. But the actual process of implementing schema markup, choosing the right type, writing the code, adding it to your site, and verifying it works, is something anyone with basic web access can accomplish in a single afternoon.
 
 This guide cuts through the jargon. By the end you will have a clear, platform-specific process for implementing JSON-LD schema markup on any page, an understanding of which schema types to prioritize for maximum AI SEO impact, and a validation workflow that confirms your implementation is actually being read by search engines and AI systems.
 
@@ -26,31 +26,31 @@ The four-step process in brief: choose your schema type based on the page's cont
 
 There are three ways to add structured data to a web page: JSON-LD, Microdata, and RDFa. JSON-LD has been Google's recommended format since 2016, and it is the format that AI systems process most reliably in 2026. The case for using it exclusively is straightforward.
 
-JSON-LD is a separate code block — usually placed in the `<head>` of your page or immediately before the closing `</body>` tag — that does not interfere with your visible HTML. Microdata and RDFa are woven into the actual HTML elements that display content, which means any change to your page layout can break your structured data. JSON-LD has no such dependency. You can update the schema without touching the template and update the template without breaking the schema.
+JSON-LD is a separate code block, usually placed in the `<head>` of your page or immediately before the closing `</body>` tag, that does not interfere with your visible HTML. Microdata and RDFa are woven into the actual HTML elements that display content, which means any change to your page layout can break your structured data. JSON-LD has no such dependency. You can update the schema without touching the template and update the template without breaking the schema.
 
 For AI systems specifically, JSON-LD's separation from HTML is a parsing advantage. AI crawlers that extract structured data can locate and parse the JSON-LD block in a single operation rather than traversing the entire DOM to find scattered attribute annotations. This efficiency makes JSON-LD the format that AI engines process most completely.
 
 You will see the JSON-LD block wrapped in a `<script>` tag with `type="application/ld+json"`. That tag tells browsers and crawlers to treat the content as structured data rather than executable JavaScript. The browser ignores it for display purposes; crawlers extract and process it. [Google's structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) covers the format specification in full detail.
 
-For the full picture of why schema matters for AI citation — beyond implementation mechanics — the [schema markup guide for AI visibility](/blog/schema-markup-for-ai-visibility/) covers the evidence and strategic rationale.
+For the full picture of why schema matters for AI citation, beyond implementation mechanics, the [schema markup guide for AI visibility](/blog/schema-markup-for-ai-visibility/) covers the evidence and strategic rationale.
 
 ## Step 1: Choose the right schema type for your page
 
 The most consequential decision in schema implementation is choosing the correct type. Using the wrong type sends a false classification signal to AI systems, which is worse than having no schema at all. Match the schema type to the primary purpose of the page.
 
-**Article** — use for blog posts, news articles, editorial content, and guides that explain a topic. Article schema establishes authorship, publication date, and publisher identity — the trust signals AI systems use to evaluate citation worthiness.
+**Article**, use for blog posts, news articles, editorial content, and guides that explain a topic. Article schema establishes authorship, publication date, and publisher identity, the trust signals AI systems use to evaluate citation worthiness.
 
-**HowTo** — use for step-by-step guides that walk through a procedure to achieve a specific result. HowTo schema structures each step in a machine-readable format, making procedural content directly extractable by AI engines. The [complete HowTo schema implementation guide](/blog/howto-schema-for-ai-search/) covers the full property set and nesting patterns.
+**HowTo**, use for step-by-step guides that walk through a procedure to achieve a specific result. HowTo schema structures each step in a machine-readable format, making procedural content directly extractable by AI engines. The [complete HowTo schema implementation guide](/blog/howto-schema-for-ai-search/) covers the full property set and nesting patterns.
 
-**FAQPage** — use for pages with question-and-answer sections. FAQ schema is the highest-impact single schema type for AI citation because AI engines extract Q&A pairs directly and use them verbatim in generated responses. Every page with a FAQ section should implement FAQPage schema. The [FAQPage schema guide for AI search](/blog/faqpage-schema-for-ai-search/) details the implementation specifics.
+**FAQPage**, use for pages with question-and-answer sections. FAQ schema is the highest-impact single schema type for AI citation because AI engines extract Q&A pairs directly and use them verbatim in generated responses. Every page with a FAQ section should implement FAQPage schema. The [FAQPage schema guide for AI search](/blog/faqpage-schema-for-ai-search/) details the implementation specifics.
 
-**Product** — use for product pages in e-commerce. Product schema carries pricing, availability, review aggregates, and merchant information — data that AI shopping assistants extract when recommending products. The [e-commerce product schema guide for AI search](/blog/ecommerce-product-schema-ai-search/) covers the complete property set.
+**Product**, use for product pages in e-commerce. Product schema carries pricing, availability, review aggregates, and merchant information, data that AI shopping assistants extract when recommending products. The [e-commerce product schema guide for AI search](/blog/ecommerce-product-schema-ai-search/) covers the complete property set.
 
-**LocalBusiness** — use for business pages with a physical location. Includes address, hours, phone number, and service area data that AI systems use when answering local queries.
+**LocalBusiness**, use for business pages with a physical location. Includes address, hours, phone number, and service area data that AI systems use when answering local queries.
 
-**Organization** — use on your homepage and about page. Establishes your brand identity, logo, social profiles, and contact information as a structured entity that AI systems can reference when building knowledge about your organization.
+**Organization**, use on your homepage and about page. Establishes your brand identity, logo, social profiles, and contact information as a structured entity that AI systems can reference when building knowledge about your organization.
 
-One page can carry multiple schema types simultaneously — this is called schema stacking. A blog post can have Article schema for publication metadata and FAQPage schema for its FAQ section. An e-commerce page can have Product schema for the item and Organization schema for the merchant. Stack schema types whenever the page genuinely contains content that maps to multiple types. Use the `@graph` array format for stacked implementations.
+One page can carry multiple schema types simultaneously, this is called schema stacking. A blog post can have Article schema for publication metadata and FAQPage schema for its FAQ section. An e-commerce page can have Product schema for the item and Organization schema for the merchant. Stack schema types whenever the page genuinely contains content that maps to multiple types. Use the `@graph` array format for stacked implementations.
 
 ## Step 2: Write the JSON-LD
 
@@ -109,7 +109,7 @@ A few things to verify in any JSON-LD block you write:
 
 **The `datePublished` and `dateModified` values should match visible page content.** AI engines cross-reference schema claims against the visible page. A date discrepancy is a trust signal problem.
 
-If you want to validate your JSON syntax before deploying, paste the block into [jsonlint.com](https://jsonlint.com) — it will catch structural errors instantly. Then use Google's Rich Results Test (covered in Step 4) for full schema validation.
+If you want to validate your JSON syntax before deploying, paste the block into [jsonlint.com](https://jsonlint.com), it will catch structural errors instantly. Then use Google's Rich Results Test (covered in Step 4) for full schema validation.
 
 ## Step 3: Add the JSON-LD to your page
 
@@ -119,7 +119,7 @@ How you add schema markup depends on your platform. Here are the four most commo
 
 The fastest no-code path in WordPress is a plugin. Yoast SEO, Rank Math, and Schema Pro all generate schema markup automatically from your page settings. Yoast generates Article, BreadcrumbList, and Organization schema site-wide. Rank Math lets you add custom JSON-LD blocks per post. Schema Pro gives you the most granular control across schema types.
 
-For manual implementation without a plugin, add the JSON-LD block to your `header.php` template inside the `<head>` section, or use the WordPress theme's custom code field if available. In the block editor, the Custom HTML block can hold a `<script type="application/ld+json">{` tag — place it at the top or bottom of the post content area.
+For manual implementation without a plugin, add the JSON-LD block to your `header.php` template inside the `<head>` section, or use the WordPress theme's custom code field if available. In the block editor, the Custom HTML block can hold a `<script type="application/ld+json">{` tag, place it at the top or bottom of the post content area.
 
 If you are adding page-specific schema (like a product schema that varies per page), the manual approach or a plugin with per-page custom JSON fields is more reliable than trying to template it through a theme file.
 
@@ -205,7 +205,7 @@ Implementing schema markup without validating it is like writing an email withou
 
 **Google's Rich Results Test** at [search.google.com/test/rich-results](https://search.google.com/test/rich-results) is the primary tool. You can test either a live URL or paste raw JSON-LD code directly. The tool shows you which schema types were detected, whether each type is eligible for rich results, and what errors and warnings exist.
 
-Errors are blocking — they prevent rich result eligibility and typically indicate structural problems with your JSON-LD. Address every error before considering the implementation complete. Warnings indicate missing recommended properties. Warnings do not block rich result eligibility, but they often represent gaps that reduce AI citation effectiveness. A warning about a missing `author` property on an Article schema should be addressed — that property is how AI systems verify editorial attribution.
+Errors are blocking, they prevent rich result eligibility and typically indicate structural problems with your JSON-LD. Address every error before considering the implementation complete. Warnings indicate missing recommended properties. Warnings do not block rich result eligibility, but they often represent gaps that reduce AI citation effectiveness. A warning about a missing `author` property on an Article schema should be addressed, that property is how AI systems verify editorial attribution.
 
 **Schema Markup Validator** at [validator.schema.org](https://validator.schema.org) tests against the full Schema.org specification rather than just Google's rich results subset. It catches type mismatches, incorrect property nesting, and relationship declaration errors that the Rich Results Test may not surface explicitly. Run your implementation through both tools.
 
@@ -217,11 +217,11 @@ One practical note: if you deployed schema via GTM, the URL-based test in the Ri
 
 Not all schema types contribute equally to AI citation frequency. The [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) identifies FAQPage, Article, and Organization as the three types with the broadest impact across site types. Here is the full prioritization for AI SEO.
 
-**First: FAQPage schema on any page with Q&A content.** AI engines extract Q&A pairs from FAQPage schema and use them directly in generated answers. This is the most direct structural link between your schema implementation and AI citation output. If your pages have FAQ sections — and most good informational pages should — FAQPage schema is the highest-leverage single change you can make.
+**First: FAQPage schema on any page with Q&A content.** AI engines extract Q&A pairs from FAQPage schema and use them directly in generated answers. This is the most direct structural link between your schema implementation and AI citation output. If your pages have FAQ sections, and most good informational pages should, FAQPage schema is the highest-leverage single change you can make.
 
 **Second: Article schema across all editorial content.** Article schema establishes the authorship, publication date, and publisher identity signals that AI systems use to evaluate trust and cite sources correctly. Every blog post, guide, and news article should have Article schema with complete author and publisher data.
 
-**Third: Organization schema on your homepage and about page.** AI systems build entity models of organizations from structured data. Organization schema tells AI engines definitively who you are, what you do, and how to find you — it anchors your brand as a citable entity across all pages of your site.
+**Third: Organization schema on your homepage and about page.** AI systems build entity models of organizations from structured data. Organization schema tells AI engines definitively who you are, what you do, and how to find you, it anchors your brand as a citable entity across all pages of your site.
 
 **Fourth: HowTo schema on procedural guides.** Step-by-step content without HowTo schema forces AI engines to infer structure from HTML formatting. HowTo schema eliminates that inference layer and makes your procedural content the structurally cleanest option available for procedural queries.
 
@@ -233,7 +233,7 @@ The compounding effect is worth noting: sites with three or more schema types im
 
 ## The cardinal rule: schema must match visible content
 
-Every property in your JSON-LD must correspond to visible content on the page. This is not a recommendation — it is the rule that determines whether AI engines trust or penalize your schema.
+Every property in your JSON-LD must correspond to visible content on the page. This is not a recommendation, it is the rule that determines whether AI engines trust or penalize your schema.
 
 If your Article schema includes an `author` property, the author's name must appear visibly on the page. If your Product schema lists a price, that price must be visible on the product page. If your HowTo schema defines five steps, five steps must be visible in the page body. AI engines cross-reference structured data claims against the visible content as a trust verification step.
 
@@ -247,19 +247,19 @@ No. On WordPress, plugins like Yoast SEO and Rank Math generate schema automatic
 
 ### How long does it take for schema markup to affect search results and AI visibility?
 
-For Google rich results, schema typically takes 1 to 2 weeks to be detected and reflected in Search Console after initial deployment. For AI citation visibility, the timeline is less predictable — AI systems pull from their training data and live retrieval indices on different schedules. Perplexity and other live-retrieval AI engines may surface the schema effect within days of Googlebot recrawling your page. The priority is to deploy correctly validated schema now, since every day without it is a day your pages compete with structurally cleaner alternatives.
+For Google rich results, schema typically takes 1 to 2 weeks to be detected and reflected in Search Console after initial deployment. For AI citation visibility, the timeline is less predictable, AI systems pull from their training data and live retrieval indices on different schedules. Perplexity and other live-retrieval AI engines may surface the schema effect within days of Googlebot recrawling your page. The priority is to deploy correctly validated schema now, since every day without it is a day your pages compete with structurally cleaner alternatives.
 
 ### What happens if my schema has errors?
 
-Errors in JSON-LD schema are silently ignored by most parsers — your page will not display a visible error, but the schema will not be processed. The Rich Results Test will catch errors before deployment. Post-deployment, Google Search Console's Rich Results report shows error counts by schema type. If errors exist, the schema may be partially processed (some properties read, others ignored) or entirely skipped depending on the nature of the error. Structural JSON errors (missing brackets, trailing commas) typically cause the entire block to be skipped. Property-level errors (wrong data type, invalid URL format) typically cause that specific property to be ignored while the rest of the block is processed.
+Errors in JSON-LD schema are silently ignored by most parsers, your page will not display a visible error, but the schema will not be processed. The Rich Results Test will catch errors before deployment. Post-deployment, Google Search Console's Rich Results report shows error counts by schema type. If errors exist, the schema may be partially processed (some properties read, others ignored) or entirely skipped depending on the nature of the error. Structural JSON errors (missing brackets, trailing commas) typically cause the entire block to be skipped. Property-level errors (wrong data type, invalid URL format) typically cause that specific property to be ignored while the rest of the block is processed.
 
 ### Can I have multiple schema types on the same page?
 
-Yes. Schema stacking is legitimate and frequently the correct approach. A blog post with a FAQ section should have Article schema for the post metadata and FAQPage schema for the Q&A content. A tutorial page can carry Article, HowTo, and FAQPage schema simultaneously. Use the `@graph` array format to include multiple schema types in a single JSON-LD script block, with `@id` values connecting related entities. Each schema type should correspond to a distinct section of visible page content — do not add a schema type for content that does not appear on the page.
+Yes. Schema stacking is legitimate and frequently the correct approach. A blog post with a FAQ section should have Article schema for the post metadata and FAQPage schema for the Q&A content. A tutorial page can carry Article, HowTo, and FAQPage schema simultaneously. Use the `@graph` array format to include multiple schema types in a single JSON-LD script block, with `@id` values connecting related entities. Each schema type should correspond to a distinct section of visible page content, do not add a schema type for content that does not appear on the page.
 
 ### Should I use a schema plugin or write JSON-LD manually?
 
-For most non-developers on WordPress, a plugin is the faster starting point. Yoast SEO and Rank Math handle Article, BreadcrumbList, Organization, and WebSite schema automatically, which covers the baseline requirements. The limitation is that plugins generate schema from fixed templates and may not let you add custom properties or implement niche schema types. For FAQPage schema, HowTo schema, and any type that requires page-specific customization, manual JSON-LD — added through a plugin's custom schema field or a Custom HTML block — gives you precise control. The best approach for most sites is plugin-generated baseline schema supplemented by manual JSON-LD for page-specific types.
+For most non-developers on WordPress, a plugin is the faster starting point. Yoast SEO and Rank Math handle Article, BreadcrumbList, Organization, and WebSite schema automatically, which covers the baseline requirements. The limitation is that plugins generate schema from fixed templates and may not let you add custom properties or implement niche schema types. For FAQPage schema, HowTo schema, and any type that requires page-specific customization, manual JSON-LD, added through a plugin's custom schema field or a Custom HTML block, gives you precise control. The best approach for most sites is plugin-generated baseline schema supplemented by manual JSON-LD for page-specific types.
 
 ### How do I know if my schema is actually being read by AI engines?
 

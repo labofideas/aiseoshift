@@ -16,7 +16,7 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-Most e-commerce category pages are digital filing cabinets. They exist to hold products, not to earn citations. In 2026, that architecture is leaving enormous organic traffic — and AI citation share — on the table.
+Most e-commerce category pages are digital filing cabinets. They exist to hold products, not to earn citations. In 2026, that architecture is leaving enormous organic traffic, and AI citation share, on the table.
 
 AI engines answer "best running shoes under $150" and "top-rated espresso machines for beginners" by pulling from pages that provide editorial context, structured buying guidance, and machine-readable product lists. A well-optimized category page hits all three. A default Shopify or WooCommerce category page hits none of them.
 
@@ -34,7 +34,7 @@ An AI-citation-ready category page has five elements that most current implement
 4. **Proper canonical and parameter handling** that ensures crawl budget goes to canonical category URLs, not faceted filter variants
 5. **Internal links to subcategories, related categories, and best-seller product pages** that distribute authority and give AI engines a navigable content graph
 
-The absence of any one of these weakens AI citation probability. The absence of all five — the default state of most category pages — means AI engines simply cannot extract enough signal to cite the page with confidence.
+The absence of any one of these weakens AI citation probability. The absence of all five, the default state of most category pages, means AI engines simply cannot extract enough signal to cite the page with confidence.
 
 <figure class="post-figure">
 <svg viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anatomy of an AI-optimized category page showing sections from editorial introduction at top through product grid to FAQ section at bottom, with SEO and AI impact labels for each section">
@@ -87,7 +87,7 @@ Visit a hundred randomly selected e-commerce category pages and you will find th
 
 This architecture was acceptable in the keyword-matching era. A page titled "Men's Running Shoes" with enough product names and brand mentions would rank for "men's running shoes" queries because the keyword density matched the query. AI search engines do not work this way.
 
-When an AI engine evaluates a category page as a potential citation source for "best men's running shoes for wide feet," it needs editorial content that addresses the query. It needs to find something that explains what makes a running shoe good for wide feet, what width designations mean, which price tiers offer genuine quality differences, and which brands have historically performed well in this category. If that content does not exist on the page, the AI engine cannot cite it — no matter how authoritative the domain or how many products are listed.
+When an AI engine evaluates a category page as a potential citation source for "best men's running shoes for wide feet," it needs editorial content that addresses the query. It needs to find something that explains what makes a running shoe good for wide feet, what width designations mean, which price tiers offer genuine quality differences, and which brands have historically performed well in this category. If that content does not exist on the page, the AI engine cannot cite it, no matter how authoritative the domain or how many products are listed.
 
 The problem compounds because most e-commerce teams treat category pages as a navigation layer, not a content layer. Editorial resources go to blog posts and product descriptions. Category pages get template-generated metadata and nothing else. The result is a large surface area of pages with zero editorial value from an AI extraction perspective.
 
@@ -103,7 +103,7 @@ A well-constructed category introduction answers these questions in order of pri
 
 **What separates good options from bad options in this category?** This is the buying guidance layer. It is also the layer most likely to get cited by AI engines for "what should I look for in X" queries. Be specific: outsole durability, upper breathability, stack height trade-offs, brand-specific sizing quirks.
 
-**What price tier should different buyer profiles expect?** Budget guidance earns AI citations for "best X under $Y" queries. Do not bury this in individual product descriptions — put it in the introduction where it is easy to extract.
+**What price tier should different buyer profiles expect?** Budget guidance earns AI citations for "best X under $Y" queries. Do not bury this in individual product descriptions, put it in the introduction where it is easy to extract.
 
 **What are the key subcategories or use cases?** If your running shoe category spans road running, trail running, and track, say so. Link to those subcategories. This breadth signal tells AI engines that the page covers the category comprehensively.
 
@@ -146,7 +146,7 @@ The schema structure nests an ItemList at the category level with ListItem entri
 }
 ```
 
-The `numberOfItems` property is often overlooked but carries meaningful signal — it tells AI engines the category has substantive inventory. A category with 3 products is treated differently from a category with 240.
+The `numberOfItems` property is often overlooked but carries meaningful signal, it tells AI engines the category has substantive inventory. A category with 3 products is treated differently from a category with 240.
 
 Include price range data at the ItemList level when possible. Some schema implementations add a `priceRange` property, though this is not a standard schema.org property. The more defensible approach is ensuring that individual Product schema entries carry accurate pricing, and that the editorial introduction states the category's price range in natural language for AI extraction.
 
@@ -156,17 +156,17 @@ For a deeper treatment of how product-level schema signals affect AI extraction,
 
 Faceted navigation is the largest technical SEO liability on most e-commerce sites, and category pages are where it surfaces most visibly. A single category page can generate hundreds or thousands of URL variants through filter combinations: color, size, price range, brand, rating. Each variant is potentially crawlable, which fragments crawl budget and creates duplicate content at scale.
 
-The standard approach — canonical tags pointing filtered URLs back to the root category URL — is correct but often implemented inconsistently. The rules:
+The standard approach, canonical tags pointing filtered URLs back to the root category URL, is correct but often implemented inconsistently. The rules:
 
 **Canonical tags must point to the indexable version.** A URL like `/mens-shoes/running/?color=blue&size=10` should have a canonical pointing to `/mens-shoes/running/` unless that specific filter combination warrants its own indexed page (for example, a high-volume query like "blue running shoes size 10" with genuine search demand).
 
-**Robots meta tags should block parameter-only pages from indexing.** Adding `noindex` to pages that are purely filter states — no editorial content, no unique value — prevents crawl waste and index dilution. Google's [URL parameter handling guidelines](https://developers.google.com/search/docs/crawling-indexing/url-parameters) provide the technical reference for parameter configuration in Search Console.
+**Robots meta tags should block parameter-only pages from indexing.** Adding `noindex` to pages that are purely filter states, no editorial content, no unique value, prevents crawl waste and index dilution. Google's [URL parameter handling guidelines](https://developers.google.com/search/docs/crawling-indexing/url-parameters) provide the technical reference for parameter configuration in Search Console.
 
-**Use `rel="next"` and `rel="prev"` where pagination exists.** Paginated category pages — page 2, page 3 — should be self-canonicalized (each page is canonical to itself) and linked sequentially. Google has officially deprecated `rel="next"`/`rel="prev"` for pagination, but it still aids crawler comprehension for large category hierarchies.
+**Use `rel="next"` and `rel="prev"` where pagination exists.** Paginated category pages, page 2, page 3, should be self-canonicalized (each page is canonical to itself) and linked sequentially. Google has officially deprecated `rel="next"`/`rel="prev"` for pagination, but it still aids crawler comprehension for large category hierarchies.
 
 **XML sitemaps should include only canonical category URLs.** If your sitemap includes faceted filter URLs, you are sending AI crawlers into a duplicate content maze. Audit your sitemap against your canonical tag implementation and resolve conflicts.
 
-The [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers crawl efficiency as a scored component of AI visibility — faceted navigation problems are one of the most common findings in technical audits.
+The [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers crawl efficiency as a scored component of AI visibility, faceted navigation problems are one of the most common findings in technical audits.
 
 ## Internal linking from category pages
 
@@ -176,9 +176,9 @@ Category pages are hubs in the site's internal link graph, and how they distribu
 
 **Related category links build topical coverage signals.** A "Men's Running Shoes" category page should link to "Women's Running Shoes," "Running Accessories," and "Trail Running Shoes." These contextual links tell AI engines that the domain covers the broader running footwear topic comprehensively, not just a single segment. Google's [internal linking best practices](https://developers.google.com/search/docs/crawling-indexing/links-crawlable) note that contextual internal links carry stronger authority signals than navigation links.
 
-**Best-seller and editorial picks links serve dual purposes.** Linking to the two or three top-selling products from the editorial introduction — with anchor text that describes the product's use case, not just its name — distributes category authority to individual product pages and creates AI-extractable recommendations. "The [New Balance 1080v13 Wide](#)" is weaker than "The [New Balance 1080v13 Wide](#) is the most forgiving option for neutral high-arched runners needing a wide forefoot."
+**Best-seller and editorial picks links serve dual purposes.** Linking to the two or three top-selling products from the editorial introduction, with anchor text that describes the product's use case, not just its name, distributes category authority to individual product pages and creates AI-extractable recommendations. "The [New Balance 1080v13 Wide](#)" is weaker than "The [New Balance 1080v13 Wide](#) is the most forgiving option for neutral high-arched runners needing a wide forefoot."
 
-**Filter-state deep links warrant separate evaluation.** High-volume filter combinations — "running shoes under $100," "trail running shoes for wide feet" — sometimes merit dedicated landing pages with their own editorial content rather than filterable views of the category. The threshold is demand: if the query has 500+ monthly searches and the filterable page cannot be indexed due to canonical tags, a dedicated subcategory page is worth building.
+**Filter-state deep links warrant separate evaluation.** High-volume filter combinations, "running shoes under $100," "trail running shoes for wide feet", sometimes merit dedicated landing pages with their own editorial content rather than filterable views of the category. The threshold is demand: if the query has 500+ monthly searches and the filterable page cannot be indexed due to canonical tags, a dedicated subcategory page is worth building.
 
 For the relationship between internal linking and AI citation probability, [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) explains how AI engines use link graphs to evaluate topical authority.
 
@@ -198,18 +198,18 @@ Each entry is two to four sentences. The section as a whole runs 300 to 500 word
 
 The comparison content also serves traditional SEO. It creates additional keyword surface area on the page without diluting the core category focus, and it keeps visitors engaged long enough to make a selection decision.
 
-This is the category page equivalent of the comparison approach described in the [AI product descriptions for e-commerce](/blog/ai-product-descriptions-ecommerce/) guide — editorial framing that gives AI engines extractable, citable claims rather than neutral product listings.
+This is the category page equivalent of the comparison approach described in the [AI product descriptions for e-commerce](/blog/ai-product-descriptions-ecommerce/) guide, editorial framing that gives AI engines extractable, citable claims rather than neutral product listings.
 
-The [AI SEO Shift framework](/ai-seo-shift/) categorizes this as topical depth: going beyond naming products in a category to actually explaining which products serve which needs. It is the difference between a page that lists options and a page that advises on them — and AI engines strongly prefer the latter as citation sources.
+The [AI SEO Shift framework](/ai-seo-shift/) categorizes this as topical depth: going beyond naming products in a category to actually explaining which products serve which needs. It is the difference between a page that lists options and a page that advises on them, and AI engines strongly prefer the latter as citation sources.
 
 ## Implementation priority
 
 If you are auditing a large e-commerce site and cannot overhaul every category page at once, prioritize in this order:
 
-1. Top-revenue category pages — highest business impact
-2. Category pages that currently rank on page two or three for high-volume queries — editorial addition often moves these to page one
+1. Top-revenue category pages, highest business impact
+2. Category pages that currently rank on page two or three for high-volume queries, editorial addition often moves these to page one
 3. Category pages targeted by high-intent AI queries ("best X for Y") where the current page has no editorial content
-4. Subcategory pages where the parent category already performs well — authority is flowing to these pages, and adding content accelerates citation probability
+4. Subcategory pages where the parent category already performs well, authority is flowing to these pages, and adding content accelerates citation probability
 
 Do not prioritize long-tail or low-volume categories in the first pass. The editorial investment is identical regardless of category size, so start where the traffic opportunity is largest.
 
@@ -221,7 +221,7 @@ Do not prioritize long-tail or low-volume categories in the first pass. The edit
 
 **Does ItemList schema replace individual Product schema on category pages?**
 
-No. ItemList schema operates at the category level and provides the container structure. Individual Product schema — with offers, ratings, and availability — belongs on product detail pages and can be referenced from ItemList via URL. If you can implement inline Product schema within each ListItem, do so. If you are constrained to URL references, ensure every linked product page has complete Product schema implemented.
+No. ItemList schema operates at the category level and provides the container structure. Individual Product schema, with offers, ratings, and availability, belongs on product detail pages and can be referenced from ItemList via URL. If you can implement inline Product schema within each ListItem, do so. If you are constrained to URL references, ensure every linked product page has complete Product schema implemented.
 
 **How do canonical tags affect category page AI visibility?**
 
@@ -233,11 +233,11 @@ Yes. Category-level FAQs answer different questions than product-level FAQs. Pro
 
 **How often should category page editorial content be updated?**
 
-At minimum, review it quarterly. Practical triggers for updates include: product assortment changes that affect buying guidance (a new brand entering the lineup, a price tier shift), algorithm changes that affect how AI engines are answering category queries, or performance data showing the page is losing citations for queries it previously owned. Set a calendar reminder rather than relying on performance data alone — by the time a decline is visible in analytics, the content has often been stale for months.
+At minimum, review it quarterly. Practical triggers for updates include: product assortment changes that affect buying guidance (a new brand entering the lineup, a price tier shift), algorithm changes that affect how AI engines are answering category queries, or performance data showing the page is losing citations for queries it previously owned. Set a calendar reminder rather than relying on performance data alone, by the time a decline is visible in analytics, the content has often been stale for months.
 
 **Do category page optimizations work differently for large catalogues versus boutique retailers?**
 
-The same principles apply, but scale changes implementation complexity. Large-catalogue retailers need templated editorial frameworks that can be applied systematically — a modular structure where category managers fill in category-specific buying criteria, price guidance, and use-case recommendations within a fixed template. Boutique retailers can write fully custom editorial introductions for each of their smaller number of categories. In both cases, the content signals AI engines need are the same: buying criteria, price tier context, and use-case differentiation.
+The same principles apply, but scale changes implementation complexity. Large-catalogue retailers need templated editorial frameworks that can be applied systematically, a modular structure where category managers fill in category-specific buying criteria, price guidance, and use-case recommendations within a fixed template. Boutique retailers can write fully custom editorial introductions for each of their smaller number of categories. In both cases, the content signals AI engines need are the same: buying criteria, price tier context, and use-case differentiation.
 
 <script type="application/ld+json">{`
 {
@@ -281,7 +281,7 @@ The same principles apply, but scale changes implementation complexity. Large-ca
       "name": "How often should category page editorial content be updated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "At minimum, review it quarterly. Practical triggers for updates include product assortment changes that affect buying guidance, algorithm changes that affect how AI engines are answering category queries, or performance data showing the page is losing citations for queries it previously owned. Set a calendar reminder rather than relying on performance data alone — by the time a decline is visible in analytics, the content has often been stale for months."
+        "text": "At minimum, review it quarterly. Practical triggers for updates include product assortment changes that affect buying guidance, algorithm changes that affect how AI engines are answering category queries, or performance data showing the page is losing citations for queries it previously owned. Set a calendar reminder rather than relying on performance data alone, by the time a decline is visible in analytics, the content has often been stale for months."
       }
     },
     {
