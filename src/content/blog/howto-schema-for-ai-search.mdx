@@ -219,7 +219,7 @@ The following example implements a realistic HowTo schema with all major propert
 }
 ```
 
-A few implementation notes worth emphasizing. The `position` property on each HowToStep is optional according to the spec, order is determined by array position, but including it reduces ambiguity for AI parsers that may not preserve array ordering. The `url` property on each step pointing to a page anchor is particularly valuable for AI engines: it allows the engine to link directly to the relevant section when citing a specific step rather than the page as a whole. The `image` property per step is optional but increases the likelihood of rich result eligibility and provides AI systems with additional context signals.
+A few implementation notes worth emphasizing. The `position` property on each HowToStep is optional according to the spec (order is determined by array position) but including it reduces ambiguity for AI parsers that may not preserve array ordering. The `url` property on each step pointing to a page anchor is particularly valuable for AI engines: it allows the engine to link directly to the relevant section when citing a specific step rather than the page as a whole. The `image` property per step is optional but increases the likelihood of rich result eligibility and provides AI systems with additional context signals.
 
 ## Nesting HowTo within Article or WebPage schema
 
@@ -307,7 +307,7 @@ Validation is not optional. Unvalidated schema can contain errors that make it i
 
 **Google's Rich Results Test** at [search.google.com/test/rich-results](https://search.google.com/test/rich-results) is the primary validation tool for HowTo schema. Enter your page URL or paste your JSON-LD directly, and the tool will tell you whether your schema qualifies for rich results, what properties are detected, and what errors or warnings exist. Pay particular attention to warnings about missing recommended properties, these do not disqualify rich results eligibility but indicate gaps that reduce AI citation effectiveness.
 
-**Schema Markup Validator** at [validator.schema.org](https://validator.schema.org) validates against the full Schema.org specification rather than just Google's rich results requirements. It is more permissive than the Rich Results Test but catches structural errors, wrong property types, invalid nesting, and incorrect relationship declarations, that the Rich Results Test may not surface in detail.
+**Schema Markup Validator** at [validator.schema.org](https://validator.schema.org) validates against the full Schema.org specification rather than just Google's rich results requirements. It is more permissive than the Rich Results Test but catches structural errors (wrong property types, invalid nesting, and incorrect relationship declarations) that the Rich Results Test may not surface in detail.
 
 **Google Search Console** provides ongoing monitoring after deployment. The Enhancements section under the Rich Results report shows HowTo schema detections, valid counts, and error counts for your entire site. Set up a monitoring cadence to catch regressions when content is updated or templates are modified.
 
@@ -315,7 +315,7 @@ The validation workflow that matters most: test the JSON-LD in the Rich Results 
 
 For the full technical audit picture beyond schema validation, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers the complete set of signals that affect AI crawlability and citation eligibility. HowTo schema sits at the intersection of technical and content optimization, it requires both a clean implementation and content depth to actually earn citations.
 
-A complete strategy for making your procedural content citation-ready across all AI platforms, combining HowTo schema with content structure, authority signals, and crawl access, is covered in [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/).
+A complete strategy for making your procedural content citation-ready across all AI platforms (combining HowTo schema with content structure, authority signals, and crawl access) is covered in [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/).
 
 ## Frequently asked questions
 

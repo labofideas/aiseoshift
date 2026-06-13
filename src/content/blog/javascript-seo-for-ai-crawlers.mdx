@@ -18,7 +18,7 @@ import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
 JavaScript is everywhere on the modern web. React, Vue, Angular, and Svelte power the majority of new sites being built today. For traditional SEO, the advice has been nuanced: Googlebot can execute JavaScript, but it does so on a deferred queue, and client-side rendering still introduces crawl and indexing risks. For AI crawlers, the situation is far less forgiving.
 
-**Quick answer:** GPTBot, ClaudeBot, and PerplexityBot do not execute JavaScript. They fetch raw HTML from your server and parse what they receive. If your content is injected into the DOM by client-side JavaScript, as it is in most React, Vue, or Angular single-page applications, those crawlers see an empty shell. The text of your article, the headings that structure your argument, the FAQ answers that drive AI citations: none of it exists from their perspective. The fix is server-side rendering, static site generation, or pre-rendering at build time.
+**Quick answer:** GPTBot, ClaudeBot, and PerplexityBot do not execute JavaScript. They fetch raw HTML from your server and parse what they receive. If your content is injected into the DOM by client-side JavaScript (as it is in most React, Vue, or Angular single-page applications) those crawlers see an empty shell. The text of your article, the headings that structure your argument, the FAQ answers that drive AI citations: none of it exists from their perspective. The fix is server-side rendering, static site generation, or pre-rendering at build time.
 
 ## Which AI crawlers execute JavaScript, and which do not
 
@@ -26,7 +26,7 @@ The most important fact about AI crawler JavaScript handling is also the most un
 
 Google's Googlebot uses a Chromium-based rendering pipeline. It fetches the HTML, then places the page in a rendering queue where JavaScript is eventually executed. The rendered DOM becomes the indexable version of the page. This process is well-documented in [Google Search Central's JavaScript SEO basics guide](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics) and has been refined over many years.
 
-OpenAI's GPTBot, Anthropic's ClaudeBot, and Perplexity's PerplexityBot do not have a publicly documented rendering pipeline of this kind. Based on the technical behavior of these crawlers and statements from their operators, all three fetch raw HTML without executing JavaScript. Google-Extended, Google's bot that feeds Gemini and AI Overviews training data separately from organic search, has JavaScript rendering capability inherited from Googlebot's infrastructure, but behaves differently from organic crawling in terms of crawl frequency and content prioritization.
+OpenAI's GPTBot, Anthropic's ClaudeBot, and Perplexity's PerplexityBot do not have a publicly documented rendering pipeline of this kind. Based on the technical behavior of these crawlers and statements from their operators, all three fetch raw HTML without executing JavaScript. Google-Extended (Google's bot that feeds Gemini and AI Overviews training data separately from organic search) has JavaScript rendering capability inherited from Googlebot's infrastructure, but behaves differently from organic crawling in terms of crawl frequency and content prioritization.
 
 For practical purposes, assume that every AI crawler except Google-Extended sees only your server-delivered HTML. If your content does not exist in that HTML, it does not exist for AI indexing.
 
@@ -38,7 +38,7 @@ The differences between Googlebot and AI crawlers go beyond just JavaScript rend
 
 **Crawl frequency.** Googlebot crawls major sites continuously. GPTBot, ClaudeBot, and PerplexityBot crawl at significantly lower frequencies and are more sensitive to server response times and crawl budget signals. Slow or resource-intensive pages are more likely to be skipped entirely.
 
-**Content extraction focus.** Googlebot indexes the full page and uses ranking signals to determine what surfaces for which queries. AI crawlers, especially those feeding large language model training, are more focused on extractable prose: well-structured paragraphs, clearly headed sections, and explicit Q&A pairs. A page that renders beautifully in a browser but delivers an empty `<div id="root"></div>` to a raw HTTP request is a zero-content page from an AI crawler's perspective.
+**Content extraction focus.** Googlebot indexes the full page and uses ranking signals to determine what surfaces for which queries. AI crawlers (especially those feeding large language model training) are more focused on extractable prose: well-structured paragraphs, clearly headed sections, and explicit Q&A pairs. A page that renders beautifully in a browser but delivers an empty `<div id="root"></div>` to a raw HTTP request is a zero-content page from an AI crawler's perspective.
 
 **Interaction with robots.txt.** All major crawlers respect robots.txt directives, but AI crawlers are often blocked by site owners who added `User-agent: GPTBot` or `User-agent: ClaudeBot` disallow rules without fully understanding the tradeoff. Blocking AI crawlers prevents training data collection but also prevents your content from being cited in AI-generated answers. For a full audit of your site's AI visibility posture including robots.txt configuration, see the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/).
 
@@ -97,7 +97,7 @@ The rendering architecture of your site determines what AI crawlers find. Here i
   </svg>
 </figure>
 
-**Client-side rendering (CSR)** is the default mode for React, Vue, and Angular single-page applications. The server delivers a minimal HTML document, often just a `<div id="root">` or `<app-root>`, and a JavaScript bundle. The browser downloads and executes that bundle, which then fetches data and renders content into the DOM. From a human user's perspective the page loads and looks complete. From an AI crawler's perspective, the HTTP response contains nothing worth indexing.
+**Client-side rendering (CSR)** is the default mode for React, Vue, and Angular single-page applications. The server delivers a minimal HTML document (often just a `<div id="root">` or `<app-root>`) and a JavaScript bundle. The browser downloads and executes that bundle, which then fetches data and renders content into the DOM. From a human user's perspective the page loads and looks complete. From an AI crawler's perspective, the HTTP response contains nothing worth indexing.
 
 **Server-side rendering (SSR)** executes the JavaScript framework on the server for each incoming request. The server generates a complete HTML document containing all the text, headings, and structured content, and sends that as the HTTP response. The browser receives a complete, immediately readable page. AI crawlers receive the same complete page. SSR adds server-side compute overhead per request, but fully solves the AI crawler visibility problem.
 
@@ -111,7 +111,7 @@ Before investing in architectural changes, verify whether you actually have a JS
 
 **The curl test.** Run `curl -A "GPTBot" https://yoursite.com/your-page` from a terminal and inspect the output. This simulates a basic AI crawler request without JavaScript execution. The response body should contain your article text, headings, and structured content. An empty div or a loading indicator confirms the problem.
 
-**Google Search Console URL Inspection.** Enter any URL into the URL Inspection tool in Google Search Console. The "Test Live URL" function shows both the HTTP response and the rendered version. If there is a meaningful difference between the two, content present in rendered but absent in HTTP response, your content depends on client-side JavaScript execution.
+**Google Search Console URL Inspection.** Enter any URL into the URL Inspection tool in Google Search Console. The "Test Live URL" function shows both the HTTP response and the rendered version. If there is a meaningful difference between the two (content present in rendered but absent in HTTP response) your content depends on client-side JavaScript execution.
 
 For a complete technical audit of your site's AI crawler accessibility, the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) covers these tests alongside schema, robots.txt, and content structure checks.
 
@@ -125,7 +125,7 @@ If the view-source or curl test confirms your content is JavaScript-rendered, yo
 
 **Option 3: Use a pre-rendering service.** Services like Prerender.io or cloud rendering pipelines detect crawler user agents and serve a pre-rendered HTML snapshot instead of the JavaScript bundle. The real application continues to serve JavaScript to browsers; bots receive static HTML. This approach is a practical middle-ground for teams that cannot modify their application architecture. The limitation: pre-rendered snapshots can go stale if not refreshed frequently, which creates a freshness signal risk for time-sensitive content.
 
-**Option 4: Decouple content delivery from the application.** For content-heavy pages specifically, blog posts, documentation, landing pages, FAQs, consider serving them from a separate static or SSR system while keeping the interactive application for authenticated or dynamic sections. Many enterprise sites do this: the marketing site is static or SSR, the logged-in application is CSR. The crawlable surface area is the static layer, which is where your AI citation opportunities live anyway.
+**Option 4: Decouple content delivery from the application.** For content-heavy pages specifically (blog posts, documentation, landing pages, FAQs) consider serving them from a separate static or SSR system while keeping the interactive application for authenticated or dynamic sections. Many enterprise sites do this: the marketing site is static or SSR, the logged-in application is CSR. The crawlable surface area is the static layer, which is where your AI citation opportunities live anyway.
 
 The [web.dev Rendering on the Web article](https://web.dev/articles/rendering-on-the-web) provides a comprehensive technical comparison of these rendering patterns and their performance tradeoffs.
 
@@ -161,7 +161,7 @@ AI crawlers crawl less frequently than Googlebot. Making the most of each crawl 
 
 ### Next.js (React)
 
-Next.js is the most common framework for teams migrating away from CSR React. Use `getStaticProps` and `generateStaticParams` for content that does not change per request, blog posts, documentation, and landing pages. These generate static HTML at build time, which AI crawlers receive in full. Use `getServerSideProps` only for pages that genuinely require per-request data, authenticated pages, real-time dashboards. Mixing SSG for content pages and SSR for dynamic pages within the same Next.js application is a well-supported pattern.
+Next.js is the most common framework for teams migrating away from CSR React. Use `getStaticProps` and `generateStaticParams` for content that does not change per request (blog posts, documentation, and landing pages. These generate static HTML at build time, which AI crawlers receive in full. Use `getServerSideProps` only for pages that genuinely require per-request data) authenticated pages, real-time dashboards. Mixing SSG for content pages and SSR for dynamic pages within the same Next.js application is a well-supported pattern.
 
 One common mistake: using `useEffect` to fetch and render primary content client-side even within an otherwise server-rendered Next.js page. Content loaded in a `useEffect` hook is not present in the server-rendered HTML. Always fetch content used for the main text of a page in `getStaticProps` or `getServerSideProps`, not in client-side hooks.
 

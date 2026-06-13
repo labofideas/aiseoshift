@@ -1,7 +1,7 @@
 ---
 title: "Recipe Schema for AI Search: How to Get Your Recipes Cited by ChatGPT and Google AI Overviews"
 description: How to implement Recipe schema markup so your recipes appear in AI engine answers. Complete JSON-LD guide covering ingredients, instructions, nutrition, and AI-specific optimization.
-deck: Recipe queries are among the highest-volume "how to" questions on AI engines. Sites with complete Recipe schema, ingredients, step-by-step instructions, nutrition, images, get cited. Sites without it get skipped. Here is the complete implementation guide.
+deck: Recipe queries are among the highest-volume "how to" questions on AI engines. Sites with complete Recipe schema (ingredients, step-by-step instructions, nutrition, images) get cited. Sites without it get skipped. Here is the complete implementation guide.
 pubDate: 2026-06-17
 category: Strategy
 tags:
@@ -18,7 +18,7 @@ import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
 Recipe queries are a dominant category of AI engine usage. "How do I make sourdough bread?" "What is a good chicken tikka masala recipe?" "Show me a low-carb pasta dish", these are among the most common informational queries users route through ChatGPT, Google AI Overviews, Perplexity, and similar systems. The AI engines answering those questions need structured, reliable recipe data to generate accurate, citable responses. Recipe schema is how you give them that data.
 
-The quick answer: food bloggers and recipe sites that implement complete Recipe schema markup, covering all required and recommended properties, including structured step instructions, nutrition facts, author credentials, and high-quality images, are substantially more likely to be cited in AI engine recipe answers than sites with minimal or absent schema. AI engines can extract recipe content from plain text, but they prefer structured data because it removes ambiguity about what the ingredients are, what the steps are, and whether the information is trustworthy. Schema markup is a reliability signal, not just a formatting convenience.
+The quick answer: food bloggers and recipe sites that implement complete Recipe schema markup (covering all required and recommended properties, including structured step instructions, nutrition facts, author credentials, and high-quality images) are substantially more likely to be cited in AI engine recipe answers than sites with minimal or absent schema. AI engines can extract recipe content from plain text, but they prefer structured data because it removes ambiguity about what the ingredients are, what the steps are, and whether the information is trustworthy. Schema markup is a reliability signal, not just a formatting convenience.
 
 This post walks through every relevant property of the [Schema.org Recipe type](https://schema.org/Recipe), the correct JSON-LD implementation pattern, the AI-specific optimizations that go beyond Google's basic requirements, and the mistakes that cause otherwise strong recipe content to be overlooked.
 
@@ -261,7 +261,7 @@ Beyond the schema itself, the images should:
 - Carry descriptive, keyword-relevant `alt` text on the HTML `<img>` tag
 - Be hosted on the same domain as the recipe, not a CDN subdomain that could be interpreted as third-party
 
-Step images, individual photos for each `HowToStep`, are strongly recommended for complex recipes. They add visual instruction quality and increase the total structured data surface area of the page, giving AI engines more citable content anchors.
+Step images (individual photos for each `HowToStep`) are strongly recommended for complex recipes. They add visual instruction quality and increase the total structured data surface area of the page, giving AI engines more citable content anchors.
 
 ## Recipe variations and VideoObject integration
 
@@ -299,7 +299,7 @@ The combination of recipe schema, step-level images, video content, and nutritio
 
 Even well-intentioned schema implementations frequently contain errors that prevent rich results and reduce AI citation eligibility. The most consequential mistakes:
 
-**Missing required fields.** Omitting `name`, `image`, `recipeIngredient`, or `recipeInstructions`, any of the four required properties, disqualifies the schema block from triggering rich results entirely. AI engines can still read the partial schema but treat it as lower-confidence structured data. Every recipe page should pass [Google's Rich Results Test](https://search.google.com/test/rich-results) before publishing.
+**Missing required fields.** Omitting `name`, `image`, `recipeIngredient`, or `recipeInstructions` (any of the four required properties) disqualifies the schema block from triggering rich results entirely. AI engines can still read the partial schema but treat it as lower-confidence structured data. Every recipe page should pass [Google's Rich Results Test](https://search.google.com/test/rich-results) before publishing.
 
 **Plain text instead of HowToStep arrays.** Passing `recipeInstructions` as a single string rather than an array of `HowToStep` objects is the most common missed optimization. It produces technically valid schema but throws away all the structural information that makes recipe steps machine-readable.
 
@@ -323,7 +323,7 @@ Technical health matters too, a fast-loading recipe page that passes Core Web Vi
 
 Domain-level authority for food content builds over time as the site accumulates more well-structured recipes, earns links from food media and other culinary sites, and establishes consistent authorship from credentialed contributors. Individual recipe schema is a page-level signal; domain topical authority is the signal that determines which food site's recipe gets cited when ten different sites have all implemented schema correctly.
 
-The [AI SEO Shift framework](/ai-seo-shift/) covers how these signals, structured data, content quality, authority, and technical health, interact to determine citation probability across content categories including recipe and food content.
+The [AI SEO Shift framework](/ai-seo-shift/) covers how these signals (structured data, content quality, authority, and technical health) interact to determine citation probability across content categories including recipe and food content.
 
 ## Frequently asked questions
 
@@ -331,16 +331,16 @@ The [AI SEO Shift framework](/ai-seo-shift/) covers how these signals, structure
 No, Recipe schema is a necessary condition for reliable AI citation, not a sufficient one. Schema tells AI engines what your recipe contains and makes it machine-readable, but citation decisions also depend on content quality, domain authority, topical relevance, and the specific query being answered. Complete, correct schema significantly increases your citation probability by ensuring AI engines can read and trust your data. Incomplete or erroneous schema actively suppresses citation probability. Schema is the floor; quality content and authority are what get you cited consistently.
 
 **Which Recipe schema properties are required versus optional?**
-Google's Rich Results documentation classifies `name`, `image`, `recipeIngredient`, and `recipeInstructions` as required for recipe rich results. All other properties, `author`, `datePublished`, `nutrition`, `prepTime`, `cookTime`, `totalTime`, `recipeCategory`, `recipeCuisine`, `recipeYield`, `video`, `suitableForDiet`, are recommended or optional. For AI citation specifically, `author`, `datePublished`, `nutrition`, structured `HowToStep` instructions, and multiple images are effectively required for competitive citation probability even if Google's rich results test does not mark them as required.
+Google's Rich Results documentation classifies `name`, `image`, `recipeIngredient`, and `recipeInstructions` as required for recipe rich results. All other properties (`author`, `datePublished`, `nutrition`, `prepTime`, `cookTime`, `totalTime`, `recipeCategory`, `recipeCuisine`, `recipeYield`, `video`, `suitableForDiet`) are recommended or optional. For AI citation specifically, `author`, `datePublished`, `nutrition`, structured `HowToStep` instructions, and multiple images are effectively required for competitive citation probability even if Google's rich results test does not mark them as required.
 
 **Should Recipe schema use JSON-LD or microdata?**
-JSON-LD is the strongly preferred format for Recipe schema in 2026. It keeps the structured data separated from the HTML content, making it easier to maintain, validate, and update without touching the page layout. Google explicitly recommends JSON-LD for all structured data. Microdata, schema markup embedded inline in the HTML using `itemscope` and `itemprop` attributes, is technically valid but creates maintenance complexity and is not recommended for new implementations. If your site uses a CMS with a recipe plugin (Tasty Recipes, WP Recipe Maker, Mediavine Create), those plugins generate JSON-LD automatically.
+JSON-LD is the strongly preferred format for Recipe schema in 2026. It keeps the structured data separated from the HTML content, making it easier to maintain, validate, and update without touching the page layout. Google explicitly recommends JSON-LD for all structured data. Microdata (schema markup embedded inline in the HTML using `itemscope` and `itemprop` attributes) is technically valid but creates maintenance complexity and is not recommended for new implementations. If your site uses a CMS with a recipe plugin (Tasty Recipes, WP Recipe Maker, Mediavine Create), those plugins generate JSON-LD automatically.
 
 **How do I add Recipe schema to a WordPress food blog?**
-WordPress food bloggers have several options. Dedicated recipe plugins, Tasty Recipes, WP Recipe Maker, Mediavine Create, automatically generate complete Recipe schema JSON-LD from the recipe data entered in the plugin interface. These are the most practical approach because they also handle the recipe card display, ingredient scaling, and print functionality. For custom implementations, adding a `<script type="application/ld+json">{` block with the Recipe schema to the post template in the theme is the manual alternative. After implementing, validate using Google's Rich Results Test and check the Search Console Enhancements report for any schema errors.
+WordPress food bloggers have several options. Dedicated recipe plugins (Tasty Recipes, WP Recipe Maker, Mediavine Create) automatically generate complete Recipe schema JSON-LD from the recipe data entered in the plugin interface. These are the most practical approach because they also handle the recipe card display, ingredient scaling, and print functionality. For custom implementations, adding a `<script type="application/ld+json">{` block with the Recipe schema to the post template in the theme is the manual alternative. After implementing, validate using Google's Rich Results Test and check the Search Console Enhancements report for any schema errors.
 
 **How often should Recipe schema be updated when a recipe is changed?**
-Every time the recipe content changes, ingredient quantities, instructions, cook times, or nutrition data, the schema block should be updated to match. Discrepancies between schema values and visible page content are flagged by Google's quality systems as potential accuracy issues. Additionally, update `dateModified` to the current date whenever the recipe is changed. Regular updates signal to AI engines that the content is actively maintained, which is a trust positive. For sites managing hundreds of recipes, building the schema update into the recipe editing workflow, rather than treating it as a separate task, is the most reliable approach.
+Every time the recipe content changes (ingredient quantities, instructions, cook times, or nutrition data) the schema block should be updated to match. Discrepancies between schema values and visible page content are flagged by Google's quality systems as potential accuracy issues. Additionally, update `dateModified` to the current date whenever the recipe is changed. Regular updates signal to AI engines that the content is actively maintained, which is a trust positive. For sites managing hundreds of recipes, building the schema update into the recipe editing workflow (rather than treating it as a separate task) is the most reliable approach.
 
 **Can I use Recipe schema for recipe roundup posts and recipe collections?**
 Recipe schema is intended for pages that contain a single, complete recipe. For roundup posts ("25 Best Pasta Recipes") and collection pages ("All Our Chicken Dishes"), the appropriate schema types are `ItemList` or `CollectionPage`, not `Recipe`. Using Recipe schema on a page that does not contain a complete, self-contained recipe is a misuse of the type and may trigger schema quality flags in Search Console. Recipe pages linked from a roundup should each have their own Recipe schema. The roundup page itself can use `ItemList` schema to mark up the list of recipes it links to, creating a structured relationship between the collection page and the individual recipe pages.
@@ -363,7 +363,7 @@ Recipe schema is intended for pages that contain a single, complete recipe. For 
       "name": "Which Recipe schema properties are required versus optional?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Google's Rich Results documentation classifies name, image, recipeIngredient, and recipeInstructions as required for recipe rich results. All other properties, author, datePublished, nutrition, prepTime, cookTime, totalTime, recipeCategory, recipeCuisine, recipeYield, video, suitableForDiet, are recommended or optional. For AI citation specifically, author, datePublished, nutrition, structured HowToStep instructions, and multiple images are effectively required for competitive citation probability even if Google's rich results test does not mark them as required."
+        "text": "Google's Rich Results documentation classifies name, image, recipeIngredient, and recipeInstructions as required for recipe rich results. All other properties (author, datePublished, nutrition, prepTime, cookTime, totalTime, recipeCategory, recipeCuisine, recipeYield, video, suitableForDiet) are recommended or optional. For AI citation specifically, author, datePublished, nutrition, structured HowToStep instructions, and multiple images are effectively required for competitive citation probability even if Google's rich results test does not mark them as required."
       }
     },
     {
@@ -371,7 +371,7 @@ Recipe schema is intended for pages that contain a single, complete recipe. For 
       "name": "Should Recipe schema use JSON-LD or microdata?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "JSON-LD is the strongly preferred format for Recipe schema in 2026. It keeps the structured data separated from the HTML content, making it easier to maintain, validate, and update without touching the page layout. Google explicitly recommends JSON-LD for all structured data. Microdata, schema markup embedded inline in the HTML using itemscope and itemprop attributes, is technically valid but creates maintenance complexity and is not recommended for new implementations. If your site uses a CMS with a recipe plugin (Tasty Recipes, WP Recipe Maker, Mediavine Create), those plugins generate JSON-LD automatically."
+        "text": "JSON-LD is the strongly preferred format for Recipe schema in 2026. It keeps the structured data separated from the HTML content, making it easier to maintain, validate, and update without touching the page layout. Google explicitly recommends JSON-LD for all structured data. Microdata (schema markup embedded inline in the HTML using itemscope and itemprop attributes) is technically valid but creates maintenance complexity and is not recommended for new implementations. If your site uses a CMS with a recipe plugin (Tasty Recipes, WP Recipe Maker, Mediavine Create), those plugins generate JSON-LD automatically."
       }
     },
     {
@@ -379,7 +379,7 @@ Recipe schema is intended for pages that contain a single, complete recipe. For 
       "name": "How do I add Recipe schema to a WordPress food blog?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "WordPress food bloggers have several options. Dedicated recipe plugins, Tasty Recipes, WP Recipe Maker, Mediavine Create, automatically generate complete Recipe schema JSON-LD from the recipe data entered in the plugin interface. These are the most practical approach because they also handle the recipe card display, ingredient scaling, and print functionality. For custom implementations, adding a script tag with type application/ld+json containing the Recipe schema to the post template is the manual alternative. After implementing, validate using Google's Rich Results Test and check the Search Console Enhancements report for any schema errors."
+        "text": "WordPress food bloggers have several options. Dedicated recipe plugins (Tasty Recipes, WP Recipe Maker, Mediavine Create) automatically generate complete Recipe schema JSON-LD from the recipe data entered in the plugin interface. These are the most practical approach because they also handle the recipe card display, ingredient scaling, and print functionality. For custom implementations, adding a script tag with type application/ld+json containing the Recipe schema to the post template is the manual alternative. After implementing, validate using Google's Rich Results Test and check the Search Console Enhancements report for any schema errors."
       }
     },
     {
@@ -387,7 +387,7 @@ Recipe schema is intended for pages that contain a single, complete recipe. For 
       "name": "How often should Recipe schema be updated when a recipe is changed?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Every time the recipe content changes, ingredient quantities, instructions, cook times, or nutrition data, the schema block should be updated to match. Discrepancies between schema values and visible page content are flagged by Google's quality systems as potential accuracy issues. Additionally, update dateModified to the current date whenever the recipe is changed. Regular updates signal to AI engines that the content is actively maintained, which is a trust positive. For sites managing hundreds of recipes, building the schema update into the recipe editing workflow rather than treating it as a separate task is the most reliable approach."
+        "text": "Every time the recipe content changes (ingredient quantities, instructions, cook times, or nutrition data) the schema block should be updated to match. Discrepancies between schema values and visible page content are flagged by Google's quality systems as potential accuracy issues. Additionally, update dateModified to the current date whenever the recipe is changed. Regular updates signal to AI engines that the content is actively maintained, which is a trust positive. For sites managing hundreds of recipes, building the schema update into the recipe editing workflow rather than treating it as a separate task is the most reliable approach."
       }
     },
     {

@@ -48,7 +48,7 @@ The goal of this setup is to extract maximum signal from what GA4 can see, and c
 
 ## Setting up custom channel groups for AI-influenced traffic
 
-GA4's default channel groupings, Organic Search, Direct, Referral, Paid Search, were designed for a pre-AI traffic taxonomy. They still work for their original purpose, but they are not granular enough to surface AI-influenced behavior as a distinct category.
+GA4's default channel groupings (Organic Search, Direct, Referral, Paid Search) were designed for a pre-AI traffic taxonomy. They still work for their original purpose, but they are not granular enough to surface AI-influenced behavior as a distinct category.
 
 Custom channel groups let you define your own traffic buckets based on session source, medium, hostname, and landing page URL patterns. You create them in GA4 under Admin > Data Display > Channel Groups > Create New Channel Group.
 
@@ -72,7 +72,7 @@ Some AI platforms do pass referral traffic with identifiable sources. Perplexity
 
 Configuration: Session source contains `perplexity.ai|you.com|phind.com` (regex), AND Session medium exactly matches `referral`.
 
-Track this channel monthly and watch it grow. As AI citation volume increases, this referral stream, though small today, is one of the few fully attributable signals you have. For a comprehensive look at [AI SEO dashboard setup](/blog/ai-seo-dashboard-setup/) that incorporates these channels, the dedicated guide covers Looker Studio integration as well.
+Track this channel monthly and watch it grow. As AI citation volume increases, this referral stream (though small today) is one of the few fully attributable signals you have. For a comprehensive look at [AI SEO dashboard setup](/blog/ai-seo-dashboard-setup/) that incorporates these channels, the dedicated guide covers Looker Studio integration as well.
 
 <figure class="post-figure">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 520" width="820" height="520" role="img" aria-label="GA4 configuration map showing four layers: channel groups, custom events, conversions, and reports, connected by arrows">
@@ -135,7 +135,7 @@ Track this channel monthly and watch it grow. As AI citation volume increases, t
 
 ## Custom events for tracking AI SEO touchpoints
 
-GA4's default event collection, page views, scrolls, clicks, session starts, gives you a useful baseline, but it does not surface the behavioral signals most relevant to AI-influenced traffic. Custom events let you annotate specific interactions that distinguish AI-origin visits from generic organic traffic.
+GA4's default event collection (page views, scrolls, clicks, session starts) gives you a useful baseline, but it does not surface the behavioral signals most relevant to AI-influenced traffic. Custom events let you annotate specific interactions that distinguish AI-origin visits from generic organic traffic.
 
 These events are implemented through Google Tag Manager or the GA4 `gtag.js` `event` command. Each one should include at least one custom parameter that carries context about the AI content type or landing page category.
 
@@ -181,7 +181,7 @@ For a framework that connects these conversion signals to multi-touch attributio
 
 ## Building an AI SEO report in GA4 Explore
 
-GA4's standard reports are useful for operational monitoring, but the Explore section, accessible via the sidebar, is where you build the analytical reports that reveal AI SEO patterns. According to the <a href="https://support.google.com/analytics/answer/7579450" target="_blank" rel="noopener noreferrer">Google Analytics Explorations documentation</a>, Explorations support free-form reports, funnel analysis, path exploration, and segment overlap, all of which are relevant to AI traffic analysis.
+GA4's standard reports are useful for operational monitoring, but the Explore section (accessible via the sidebar) is where you build the analytical reports that reveal AI SEO patterns. According to the <a href="https://support.google.com/analytics/answer/7579450" target="_blank" rel="noopener noreferrer">Google Analytics Explorations documentation</a>, Explorations support free-form reports, funnel analysis, path exploration, and segment overlap, all of which are relevant to AI traffic analysis.
 
 **Report 1: AI Channel Performance Free-Form**
 
@@ -205,7 +205,7 @@ GA4 alone cannot tell you about AI Overview impressions. That data lives in Goog
 
 To link the accounts, go to GA4 Admin > Product Links > Search Console Links. Complete the linking wizard and enable data sharing. After linking, a new "Search Console" collection will appear in your GA4 reports with two report types: Queries and Google organic search traffic.
 
-The Queries report shows you which search queries drive clicks to your site, alongside GA4 engagement metrics for those sessions. Filter this report to question-format queries, those containing "how," "what," "why," "best", to isolate the query types most likely to trigger AI Overviews. High-impression, low-CTR queries in this filter set are your strongest AI Overview candidates: Search Console shows they are generating impressions, but users are getting answers without clicking.
+The Queries report shows you which search queries drive clicks to your site, alongside GA4 engagement metrics for those sessions. Filter this report to question-format queries (those containing "how," "what," "why," "best") to isolate the query types most likely to trigger AI Overviews. High-impression, low-CTR queries in this filter set are your strongest AI Overview candidates: Search Console shows they are generating impressions, but users are getting answers without clicking.
 
 For a detailed walkthrough of configuring this integration to surface AI-specific signals, the [Google Search Console AI visibility guide](/blog/google-search-console-ai-visibility/) covers every filter and export configuration.
 
@@ -213,7 +213,7 @@ The Google Developers documentation on the <a href="https://developers.google.co
 
 ## Exporting to Looker Studio for stakeholder reporting
 
-GA4's built-in reports are designed for analysts who live inside the platform. Stakeholder reporting, the monthly deck, the executive summary, the channel performance review, needs a different format. Looker Studio (formerly Google Data Studio) is the native export layer for GA4 data.
+GA4's built-in reports are designed for analysts who live inside the platform. Stakeholder reporting (the monthly deck, the executive summary, the channel performance review) needs a different format. Looker Studio (formerly Google Data Studio) is the native export layer for GA4 data.
 
 Connect GA4 to Looker Studio using the built-in GA4 connector under Data Sources > Add a Data Source. Select your GA4 property and authenticate. Once connected, all your GA4 dimensions and metrics are available as data source fields, including your custom channel groups and custom events.
 

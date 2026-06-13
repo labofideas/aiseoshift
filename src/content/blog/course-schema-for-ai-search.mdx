@@ -22,7 +22,7 @@ Course schema is the structured data vocabulary that tells AI search engines pre
 
 ## Quick answer
 
-Implementing Course schema alongside CourseInstance markup gives AI engines the machine-readable signals they need to surface your programs in response to learning-intent queries. The minimum viable implementation requires `@type: Course` with `name`, `description`, and `provider` (as an `Organization`), combined with at least one `hasCourseInstance` block that specifies `courseMode`, `startDate`, and `offers`. Courses with complete schema, including instructor, duration, credentials, and aggregate ratings, are significantly more likely to appear as specific recommendations in AI-generated answers than courses with bare-minimum or no structured data.
+Implementing Course schema alongside CourseInstance markup gives AI engines the machine-readable signals they need to surface your programs in response to learning-intent queries. The minimum viable implementation requires `@type: Course` with `name`, `description`, and `provider` (as an `Organization`), combined with at least one `hasCourseInstance` block that specifies `courseMode`, `startDate`, and `offers`. Courses with complete schema (including instructor, duration, credentials, and aggregate ratings) are significantly more likely to appear as specific recommendations in AI-generated answers than courses with bare-minimum or no structured data.
 
 ## Why Course schema drives AI discoverability
 
@@ -106,7 +106,7 @@ A complete `hasCourseInstance` block:
 }
 ```
 
-For self-paced courses with rolling enrollment, add `courseWorkload` to describe the expected time commitment, `"PT5H"` for five hours per week, for example, which helps AI systems match queries that specify time availability alongside learning goals.
+For self-paced courses with rolling enrollment, add `courseWorkload` to describe the expected time commitment (`"PT5H"` for five hours per week, for example) which helps AI systems match queries that specify time availability alongside learning goals.
 
 <figure class="post-figure">
 <svg viewBox="0 0 820 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Course schema entity hierarchy diagram showing Course at the top, branching to CourseInstance and Organization, with CourseInstance connecting to Person (Instructor) and Offer">
@@ -187,7 +187,7 @@ A full credential block:
 
 `credentialCategory` accepts values including `"certificate"`, `"degree"`, `"badge"`, `"license"`, and `"diploma"`. Using the correct category helps AI engines match queries that specify the type of credential students are seeking.
 
-`recognizedBy` is critical for professional certifications. Linking the credential to the recognizing organization, a professional body, accreditation agency, or industry association, signals to AI systems that the credential has external verification, which substantially increases recommendation confidence for career-oriented queries.
+`recognizedBy` is critical for professional certifications. Linking the credential to the recognizing organization (a professional body, accreditation agency, or industry association) signals to AI systems that the credential has external verification, which substantially increases recommendation confidence for career-oriented queries.
 
 ## Review and AggregateRating as trust signals for AI
 
@@ -207,19 +207,19 @@ AI engines prioritize recommending courses that have demonstrated learner satisf
 
 Never fabricate or round up rating data. AI systems cross-reference structured data claims against visible page content, and inconsistencies between schema values and displayed ratings are detected and reduce trust scores. Only implement AggregateRating if you have a real review collection system and the values reflect actual learner feedback.
 
-Individual `Review` objects can be embedded to provide qualitative signals alongside aggregate data. Include reviewer name, rating value, and review body. AI systems that surface specific course recommendations in conversational contexts frequently draw on review content to generate the summaries they present alongside citations. A well-written review that mentions specific outcomes, "I got my first freelance client within two weeks of finishing", gives AI engines the concrete testimonial language they use when recommending courses for practical outcomes queries.
+Individual `Review` objects can be embedded to provide qualitative signals alongside aggregate data. Include reviewer name, rating value, and review body. AI systems that surface specific course recommendations in conversational contexts frequently draw on review content to generate the summaries they present alongside citations. A well-written review that mentions specific outcomes ("I got my first freelance client within two weeks of finishing") gives AI engines the concrete testimonial language they use when recommending courses for practical outcomes queries.
 
 ## Platform considerations: Udemy, Coursera, Teachable, and self-hosted
 
 Course schema implementation varies significantly depending on whether you host your course on a third-party platform or a self-hosted site. Understanding the distinction determines where your optimization effort should go.
 
-**Udemy and Coursera** implement Course schema at the platform level. The structured data on a Udemy course page is controlled by Udemy's engineering team, not individual instructors. This means your optimization leverage is in the content inputs that feed the platform's schema generation: course title, description, learning objectives (which feed `teaches`), curriculum structure, and the category/subcategory taxonomy. Write course descriptions as if they were going directly into a `description` field, complete, scannable, outcome-focused, because that content feeds the platform's schema output.
+**Udemy and Coursera** implement Course schema at the platform level. The structured data on a Udemy course page is controlled by Udemy's engineering team, not individual instructors. This means your optimization leverage is in the content inputs that feed the platform's schema generation: course title, description, learning objectives (which feed `teaches`), curriculum structure, and the category/subcategory taxonomy. Write course descriptions as if they were going directly into a `description` field (complete, scannable, outcome-focused) because that content feeds the platform's schema output.
 
 The limitation of platform hosting is that you cannot control which schema properties the platform includes or excludes, and you cannot add credential markup, custom `sameAs` references for your instructor profile, or AggregateRating from external review sources. What you can control is the quality of content inputs.
 
 **Teachable, Thinkific, and Kajabi** offer varying levels of schema support. Teachable generates basic Course schema automatically but does not support full CourseInstance markup with pricing and scheduling by default. If you host on these platforms and want complete schema coverage, the workaround is to maintain a self-hosted landing page for each course that contains the full JSON-LD block, with enrollment links pointing to the platform. This approach separates AI discoverability (your site, full schema) from course delivery (the platform). The strategy is described in more detail in the [AI SEO for tutoring and learning centers guide](/blog/ai-seo-for-tutoring-learning-centers/).
 
-**Self-hosted courses**, WordPress with LMS plugins like LearnDash or LifterLMS, or custom-built platforms, give you complete control over schema output. Add the JSON-LD block to the `<head>` of each course landing page. If your LMS plugin generates schema automatically, audit what it produces. Most LMS plugins generate minimal Course schema without CourseInstance, instructor markup, credential data, or AggregateRating. Supplement or replace the plugin-generated schema with a complete manual implementation.
+**Self-hosted courses** (WordPress with LMS plugins like LearnDash or LifterLMS, or custom-built platforms) give you complete control over schema output. Add the JSON-LD block to the `<head>` of each course landing page. If your LMS plugin generates schema automatically, audit what it produces. Most LMS plugins generate minimal Course schema without CourseInstance, instructor markup, credential data, or AggregateRating. Supplement or replace the plugin-generated schema with a complete manual implementation.
 
 For any platform, a self-hosted course hub page that aggregates your full catalog with `ItemList` schema pointing to individual course pages creates an additional AI-discoverable entry point. This is the approach that works regardless of where courses are delivered. The [how to get cited by AI search systems guide](/blog/how-to-get-cited-by-ai-search-systems/) covers the hub page strategy for educational sites in detail.
 
@@ -233,7 +233,7 @@ The [Schema.org validator at validator.schema.org](https://validator.schema.org/
 
 After deployment, monitor Google Search Console for structured data errors in the Enhancements section. Course schema that passes the Rich Results Test at implementation time can later develop errors if page content changes in ways that contradict schema values, a course that is retired but whose schema still shows an `InStock` availability, for example. Quarterly audits of structured data health are part of the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/).
 
-AI engines beyond Google, Perplexity, ChatGPT with web browsing, and others, do not expose a similar validation tool. But because they process the same JSON-LD standard that Google uses, a schema block that passes the Rich Results Test is correctly formed for all AI systems. The quality of the content properties, how well `description`, `teaches`, and `educationalCredentialAwarded` capture the course's actual value, determines AI recommendation frequency beyond the baseline of technical correctness.
+AI engines beyond Google (Perplexity, ChatGPT with web browsing, and others) do not expose a similar validation tool. But because they process the same JSON-LD standard that Google uses, a schema block that passes the Rich Results Test is correctly formed for all AI systems. The quality of the content properties (how well `description`, `teaches`, and `educationalCredentialAwarded` capture the course's actual value) determines AI recommendation frequency beyond the baseline of technical correctness.
 
 For a comprehensive framework covering all structured data types and their AI discoverability implications, the [AI SEO Shift resource library](/ai-seo-shift/) provides the full strategic context.
 
@@ -294,7 +294,7 @@ Combining all sections above into a single reference template for a self-hosted 
 
 This template covers every layer of the entity hierarchy: the Course itself, its CourseInstance with scheduling and pricing, the delivering Organization and named Instructor, the awarded credential, and the aggregate social proof signal that tips AI recommendation confidence for competitive queries.
 
-For HowTo-style instructional content associated with your courses, free preview lessons, tutorial articles, step-by-step setup guides, the [HowTo schema guide for AI search](/blog/howto-schema-for-ai-search/) covers the complementary markup layer that builds topical authority around your course catalog.
+For HowTo-style instructional content associated with your courses (free preview lessons, tutorial articles, step-by-step setup guides) the [HowTo schema guide for AI search](/blog/howto-schema-for-ai-search/) covers the complementary markup layer that builds topical authority around your course catalog.
 
 ## Frequently asked questions
 

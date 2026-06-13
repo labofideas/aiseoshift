@@ -1,7 +1,7 @@
 ---
 title: "Product Schema for AI Search: Get Your Products Recommended by ChatGPT and AI Engines in 2026"
 description: How to implement Product schema markup so AI engines recommend your products when users ask for buying recommendations. Complete JSON-LD guide with offers, reviews, and availability.
-deck: When someone asks ChatGPT "what is the best standing desk under $500," the answer comes from structured Product data. Product pages with complete schema, price, availability, reviews, brand, are cited. Pages without schema are invisible to AI shoppers.
+deck: When someone asks ChatGPT "what is the best standing desk under $500," the answer comes from structured Product data. Product pages with complete schema (price, availability, reviews, brand) are cited. Pages without schema are invisible to AI shoppers.
 pubDate: 2026-06-18
 category: Strategy
 tags:
@@ -55,7 +55,7 @@ The [Schema.org Product specification](https://schema.org/Product) defines a com
 - `review`, nested `Review` objects for individual reviews
 - `category`, product category; use Schema.org taxonomy values where possible
 
-The presence of a GTIN is worth emphasizing separately. When a user asks an AI engine about a specific product model, "Bose QuietComfort 45 headphones", the engine needs to be confident that the product you are describing is the same product described on five other pages it is considering as sources. GTIN is the only globally unique product identifier that resolves that ambiguity with certainty. Including `gtin13` in your schema is one of the highest-leverage additions you can make to an existing Product schema implementation.
+The presence of a GTIN is worth emphasizing separately. When a user asks an AI engine about a specific product model ("Bose QuietComfort 45 headphones") the engine needs to be confident that the product you are describing is the same product described on five other pages it is considering as sources. GTIN is the only globally unique product identifier that resolves that ambiguity with certainty. Including `gtin13` in your schema is one of the highest-leverage additions you can make to an existing Product schema implementation.
 
 ## Offers schema: price, availability, and the full Offer object
 
@@ -96,7 +96,7 @@ Here is a minimal but complete `Offer` block:
 
 ## AggregateRating and Review nesting
 
-AI engines handling "best reviewed" queries, "what standing desk has the best reviews", depend entirely on `AggregateRating` data in Product schema. Without it, the engine cannot compare products by rating. With it, your product becomes a direct candidate for any query where aggregate rating is a decision factor.
+AI engines handling "best reviewed" queries ("what standing desk has the best reviews") depend entirely on `AggregateRating` data in Product schema. Without it, the engine cannot compare products by rating. With it, your product becomes a direct candidate for any query where aggregate rating is a decision factor.
 
 The `AggregateRating` object requires:
 - `ratingValue`, the numeric average rating, e.g., `"4.6"`
@@ -317,7 +317,7 @@ For a complete picture of how AI-optimized technical changes drive measurable re
 
 ## Dynamic pricing and real-time price changes in schema
 
-Dynamic pricing is one of the genuinely hard problems in Product schema implementation. Many e-commerce sites update prices frequently, promotional pricing, inventory-based pricing, personalized pricing, and server-rendered Product schema can go stale between crawls.
+Dynamic pricing is one of the genuinely hard problems in Product schema implementation. Many e-commerce sites update prices frequently (promotional pricing, inventory-based pricing, personalized pricing) and server-rendered Product schema can go stale between crawls.
 
 The best approaches to dynamic pricing in schema:
 
@@ -327,7 +327,7 @@ The best approaches to dynamic pricing in schema:
 
 **Use the Content API for Google integration.** For Merchant Center-linked implementations, the Content API allows real-time price updates that propagate faster than schema recrawls. This handles the Google Shopping side; you still need server-side rendering or a robust cache-invalidation strategy for page-level schema.
 
-**Flag price-dependent availability separately.** If a product is available at one price tier but not another, use `availability` accurately, `InStock`, `LimitedAvailability`, or `OutOfStock`, rather than trying to encode pricing tiers in availability status.
+**Flag price-dependent availability separately.** If a product is available at one price tier but not another, use `availability` accurately (`InStock`, `LimitedAvailability`, or `OutOfStock`) rather than trying to encode pricing tiers in availability status.
 
 The key principle: AI engines and Google's systems increasingly cross-reference schema data against visible page content. A schema price that differs from the displayed price is flagged as a trust issue. Keeping schema data accurate is not just a quality concern, it is a trust signal that affects how AI engines weight your site as a citation source.
 
@@ -379,9 +379,9 @@ SaaS pricing frequently involves multiple tiers, and the `AggregateOffer` type h
 }
 ```
 
-For digital products with user reviews, software apps, online courses, productivity tools, including `aggregateRating` is particularly high-value. AI engines answering "best project management software under $50/month" queries are doing a structured comparison where rating data is a primary ranking signal.
+For digital products with user reviews (software apps, online courses, productivity tools) including `aggregateRating` is particularly high-value. AI engines answering "best project management software under $50/month" queries are doing a structured comparison where rating data is a primary ranking signal.
 
-The content strategy that supports Product schema for SaaS, including how to structure comparison pages and feature lists for AI citation, connects directly to the broader approach covered in [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/). Schema is the technical layer; supporting content that establishes context and specificity is the content layer.
+The content strategy that supports Product schema for SaaS (including how to structure comparison pages and feature lists for AI citation) connects directly to the broader approach covered in [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/). Schema is the technical layer; supporting content that establishes context and specificity is the content layer.
 
 ## Validating your Product schema implementation
 
@@ -395,7 +395,7 @@ Validation is essential before deployment and after any content or template upda
 
 The most common validation failure for Product schema is an `Offer` block with a `price` of `"0"` or a missing `priceValidUntil`, both of which cause Google to reject the schema for rich results eligibility while leaving it technically valid at the Schema.org level. Always verify with the Rich Results Test, not just the Markup Validator.
 
-For sites managing Product schema at scale, hundreds or thousands of product pages, validation needs to be part of a systematic audit process. The approach to auditing AI-related structured data at scale is covered in the [VideoObject schema guide for AI search](/blog/videoobject-schema-for-ai-search/), which applies the same audit methodology to a different schema type.
+For sites managing Product schema at scale (hundreds or thousands of product pages) validation needs to be part of a systematic audit process. The approach to auditing AI-related structured data at scale is covered in the [VideoObject schema guide for AI search](/blog/videoobject-schema-for-ai-search/), which applies the same audit methodology to a different schema type.
 
 ## Frequently asked questions
 
@@ -409,7 +409,7 @@ The minimum set that provides real AI citation value: `name`, `description`, `im
 
 ### How often should I update my Product schema price data?
 
-Price in schema should reflect the current visible price on the page at all times. The only acceptable lag is the time between a price change and the next page render or cache invalidation. If your site uses aggressive page caching, your cache-clearing process should trigger a schema update. Set `priceValidUntil` to a realistic future date, the end of a promotional period or the end of the fiscal year, and treat a past `priceValidUntil` date as a critical bug requiring immediate fix.
+Price in schema should reflect the current visible price on the page at all times. The only acceptable lag is the time between a price change and the next page render or cache invalidation. If your site uses aggressive page caching, your cache-clearing process should trigger a schema update. Set `priceValidUntil` to a realistic future date (the end of a promotional period or the end of the fiscal year) and treat a past `priceValidUntil` date as a critical bug requiring immediate fix.
 
 ### Should I use Product schema or FAQPage schema on a product page?
 

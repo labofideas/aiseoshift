@@ -46,7 +46,7 @@ This matters for content in three specific ways.
 
 **Question format dominates.** More than sixty percent of queries on conversational AI platforms are grammatically phrased as questions, "what," "how," "which," "why," "where." This is a fundamental shift from the noun-phrase fragment that dominated traditional search. Content that is structured to directly answer question-format queries retrieves more cleanly from these systems.
 
-**Intent is explicit, not implied.** Traditional queries required content to guess at intent. A query for "running shoes" might mean buying, reviewing, or repairing. Conversational queries declare intent in the query itself: "best running shoes under $100 for flat feet" is unambiguously a purchase decision query with budget and physical constraints embedded. Content that matches the full specificity of intent, not just the topic, wins in this environment.
+**Intent is explicit, not implied.** Traditional queries required content to guess at intent. A query for "running shoes" might mean buying, reviewing, or repairing. Conversational queries declare intent in the query itself: "best running shoes under $100 for flat feet" is unambiguously a purchase decision query with budget and physical constraints embedded. Content that matches the full specificity of intent (not just the topic) wins in this environment.
 
 Understanding the long-tail dimension of this shift is explored in depth in the guide on [long-tail keywords in AI search](/blog/long-tail-keywords-ai-search/), which covers why the tail got longer and more specific in the conversational era.
 
@@ -124,11 +124,11 @@ For a broader overview of what this means for your content strategy, the [AI SEO
 
 The query transformation described above directly dictates which content formats extract well from AI retrieval systems. Three formats consistently outperform the rest.
 
-**FAQ pages and FAQ sections.** FAQ format is the most direct match to the question-dominated query landscape. When a user asks "what are the best running shoes for flat feet," a page with a clearly labeled FAQ section containing that exact question, followed by a direct, specific answer, gives the retrieval system exactly what it needs. The question is the retrieval hook; the answer is the extracted content. FAQ sections embedded in longer pages also give AI systems discrete extractable units without requiring them to parse the full document.
+**FAQ pages and FAQ sections.** FAQ format is the most direct match to the question-dominated query landscape. When a user asks "what are the best running shoes for flat feet," a page with a clearly labeled FAQ section containing that exact question (followed by a direct, specific answer) gives the retrieval system exactly what it needs. The question is the retrieval hook; the answer is the extracted content. FAQ sections embedded in longer pages also give AI systems discrete extractable units without requiring them to parse the full document.
 
-**HowTo content.** Procedural queries, "how do I," "how to," "steps for", are among the most common conversational query types. Step-by-step content with labeled, numbered steps retrieves more cleanly than prose instructions because the structure makes the procedure machine-legible. The key is granularity: each step should complete one discrete action, not bundle multiple actions into a paragraph.
+**HowTo content.** Procedural queries ("how do I," "how to," "steps for") are among the most common conversational query types. Step-by-step content with labeled, numbered steps retrieves more cleanly than prose instructions because the structure makes the procedure machine-legible. The key is granularity: each step should complete one discrete action, not bundle multiple actions into a paragraph.
 
-**Direct-answer opening paragraphs.** For informational and definitional queries, the most powerful content format is a direct, two-to-three sentence answer at the top of the page or section. This format, sometimes called the "inverted pyramid", was borrowed from journalism. In AI retrieval, it works because the system can extract the answer from the opening without processing the entire document. Pages that bury the answer after several paragraphs of preamble lose the citation to pages that lead with it.
+**Direct-answer opening paragraphs.** For informational and definitional queries, the most powerful content format is a direct, two-to-three sentence answer at the top of the page or section. This format (sometimes called the "inverted pyramid") was borrowed from journalism. In AI retrieval, it works because the system can extract the answer from the opening without processing the entire document. Pages that bury the answer after several paragraphs of preamble lose the citation to pages that lead with it.
 
 The practical approach to combining these formats into content that both users and AI systems find useful is laid out in detail in the guide on [how to write content for humans and AI](/blog/how-to-write-content-for-humans-and-ai/).
 
@@ -142,7 +142,7 @@ Structured data does not improve your content, it makes your content's structure
 
 **Speakable schema.** Speakable is the one schema type designed specifically for voice search. It identifies which sections of a page are appropriate for text-to-speech playback, the sections that read naturally when spoken aloud and directly answer common voice queries. Speakable schema is implemented using cssSelector or xpath to point to the relevant page sections. While adoption is still relatively low, Google explicitly supports it for voice search optimization, and it is likely to gain importance as voice surfaces proliferate.
 
-The broader landscape of schema markup for AI visibility, including Article, BreadcrumbList, and Organization, is covered in the comprehensive guide to [perfect blog post structure for AI citation](/blog/perfect-blog-post-structure-ai-citation/), which addresses how these schema types work together in a fully optimized document.
+The broader landscape of schema markup for AI visibility (including Article, BreadcrumbList, and Organization) is covered in the comprehensive guide to [perfect blog post structure for AI citation](/blog/perfect-blog-post-structure-ai-citation/), which addresses how these schema types work together in a fully optimized document.
 
 External guidance from [Google's structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/speakable) covers the Speakable type in detail, including implementation examples and the query categories where it applies.
 
@@ -164,7 +164,7 @@ Most content libraries were written for a typed keyword world. Rewriting them fo
 
 **Step 1: Audit for buried answers.** Go through your existing pages and identify where the key answer to the implied query actually appears. In most legacy content, the answer is in the third or fourth paragraph, after an introduction, context section, and framing paragraph. The rewrite task is to surface that answer to the opening of the page or section without eliminating the supporting content.
 
-**Step 2: Add question-format headings.** Many pages use declarative H2 headings like "Schema Markup Benefits" or "Implementation Process." Rewriting these as questions, "What are the benefits of schema markup?" or "How do you implement schema markup?", makes the page directly matchable to question-format voice and AI queries without changing the underlying content.
+**Step 2: Add question-format headings.** Many pages use declarative H2 headings like "Schema Markup Benefits" or "Implementation Process." Rewriting these as questions ("What are the benefits of schema markup?" or "How do you implement schema markup?") makes the page directly matchable to question-format voice and AI queries without changing the underlying content.
 
 **Step 3: Encode FAQ sections explicitly.** Identify the three to six most common questions your page implicitly answers. Write them out as explicit Q&A pairs in a dedicated FAQ section at the bottom of the page. Add FAQPage JSON-LD schema to encode them structurally. This step alone frequently produces measurable citation rate improvements within four to eight weeks.
 
@@ -174,7 +174,7 @@ The complete framework for ensuring content is structured for AI retrieval is in
 
 ## What this means for content strategy going forward
 
-The voice search and AI search convergence is not a trend that will reverse. The query format that wins today, long, conversational, question-oriented, intent-explicit, reflects a genuine change in how people interact with information retrieval systems. That change is stable.
+The voice search and AI search convergence is not a trend that will reverse. The query format that wins today (long, conversational, question-oriented, intent-explicit) reflects a genuine change in how people interact with information retrieval systems. That change is stable.
 
 The implication for content strategy is that the keyword-first planning model needs to be supplemented with a question-first planning model. When you decide to create a new piece of content, the relevant question is not only "what keyword does this target?" but also "what is the full-sentence question that a user would speak to a voice assistant, and does this content answer it directly?"
 
@@ -182,7 +182,7 @@ For teams building new content, this means drafting FAQ sections before drafting
 
 The answer engine context for all of this is covered in the primer on [what is answer engine optimization](/blog/what-is-answer-engine-optimization/), which places voice and conversational search within the broader framework of how AI systems select and cite sources.
 
-The sites that are building lasting AI citation presence in 2026 are not the ones that optimized for voice search as a separate channel. They are the ones that recognized voice search and AI search as the same problem, a retrieval system that needs machine-legible, directly answerable, intent-matched content, and built their content strategy around that unified reality.
+The sites that are building lasting AI citation presence in 2026 are not the ones that optimized for voice search as a separate channel. They are the ones that recognized voice search and AI search as the same problem (a retrieval system that needs machine-legible, directly answerable, intent-matched content) and built their content strategy around that unified reality.
 
 ## Frequently asked questions
 
@@ -200,7 +200,7 @@ Voice search queries average twelve to fifteen words, roughly three to four time
 
 **Do local businesses need a different approach for voice search?**
 
-Yes, with one caveat. The content optimization principles are the same, direct answers, question-format structure, schema markup, but local businesses also need LocalBusiness, Review, and service-specific schema to be discoverable for location-dependent voice queries like "dentist near me accepting Medicaid." The AI answering local queries pulls heavily from structured data because it cannot always synthesize reliable location-specific recommendations from prose content alone.
+Yes, with one caveat. The content optimization principles are the same (direct answers, question-format structure, schema markup) but local businesses also need LocalBusiness, Review, and service-specific schema to be discoverable for location-dependent voice queries like "dentist near me accepting Medicaid." The AI answering local queries pulls heavily from structured data because it cannot always synthesize reliable location-specific recommendations from prose content alone.
 
 **What is Speakable schema and should I implement it?**
 
@@ -244,7 +244,7 @@ The highest-leverage rewrites are: (1) surfacing buried answers to the opening o
       "name": "Do local businesses need a different approach for voice search?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, with one caveat. The content optimization principles are the same, direct answers, question-format structure, schema markup, but local businesses also need LocalBusiness, Review, and service-specific schema to be discoverable for location-dependent voice queries like 'dentist near me accepting Medicaid.' The AI answering local queries pulls heavily from structured data because it cannot always synthesize reliable location-specific recommendations from prose content alone."
+        "text": "Yes, with one caveat. The content optimization principles are the same (direct answers, question-format structure, schema markup) but local businesses also need LocalBusiness, Review, and service-specific schema to be discoverable for location-dependent voice queries like 'dentist near me accepting Medicaid.' The AI answering local queries pulls heavily from structured data because it cannot always synthesize reliable location-specific recommendations from prose content alone."
       }
     },
     {

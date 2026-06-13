@@ -16,7 +16,7 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-Most e-commerce category pages are digital filing cabinets. They exist to hold products, not to earn citations. In 2026, that architecture is leaving enormous organic traffic, and AI citation share, on the table.
+Most e-commerce category pages are digital filing cabinets. They exist to hold products, not to earn citations. In 2026, that architecture is leaving enormous organic traffic (and AI citation share) on the table.
 
 AI engines answer "best running shoes under $150" and "top-rated espresso machines for beginners" by pulling from pages that provide editorial context, structured buying guidance, and machine-readable product lists. A well-optimized category page hits all three. A default Shopify or WooCommerce category page hits none of them.
 
@@ -34,7 +34,7 @@ An AI-citation-ready category page has five elements that most current implement
 4. **Proper canonical and parameter handling** that ensures crawl budget goes to canonical category URLs, not faceted filter variants
 5. **Internal links to subcategories, related categories, and best-seller product pages** that distribute authority and give AI engines a navigable content graph
 
-The absence of any one of these weakens AI citation probability. The absence of all five, the default state of most category pages, means AI engines simply cannot extract enough signal to cite the page with confidence.
+The absence of any one of these weakens AI citation probability. The absence of all five (the default state of most category pages) means AI engines simply cannot extract enough signal to cite the page with confidence.
 
 <figure class="post-figure">
 <svg viewBox="0 0 760 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anatomy of an AI-optimized category page showing sections from editorial introduction at top through product grid to FAQ section at bottom, with SEO and AI impact labels for each section">
@@ -156,13 +156,13 @@ For a deeper treatment of how product-level schema signals affect AI extraction,
 
 Faceted navigation is the largest technical SEO liability on most e-commerce sites, and category pages are where it surfaces most visibly. A single category page can generate hundreds or thousands of URL variants through filter combinations: color, size, price range, brand, rating. Each variant is potentially crawlable, which fragments crawl budget and creates duplicate content at scale.
 
-The standard approach, canonical tags pointing filtered URLs back to the root category URL, is correct but often implemented inconsistently. The rules:
+The standard approach (canonical tags pointing filtered URLs back to the root category URL) is correct but often implemented inconsistently. The rules:
 
 **Canonical tags must point to the indexable version.** A URL like `/mens-shoes/running/?color=blue&size=10` should have a canonical pointing to `/mens-shoes/running/` unless that specific filter combination warrants its own indexed page (for example, a high-volume query like "blue running shoes size 10" with genuine search demand).
 
-**Robots meta tags should block parameter-only pages from indexing.** Adding `noindex` to pages that are purely filter states, no editorial content, no unique value, prevents crawl waste and index dilution. Google's [URL parameter handling guidelines](https://developers.google.com/search/docs/crawling-indexing/url-parameters) provide the technical reference for parameter configuration in Search Console.
+**Robots meta tags should block parameter-only pages from indexing.** Adding `noindex` to pages that are purely filter states (no editorial content, no unique value) prevents crawl waste and index dilution. Google's [URL parameter handling guidelines](https://developers.google.com/search/docs/crawling-indexing/url-parameters) provide the technical reference for parameter configuration in Search Console.
 
-**Use `rel="next"` and `rel="prev"` where pagination exists.** Paginated category pages, page 2, page 3, should be self-canonicalized (each page is canonical to itself) and linked sequentially. Google has officially deprecated `rel="next"`/`rel="prev"` for pagination, but it still aids crawler comprehension for large category hierarchies.
+**Use `rel="next"` and `rel="prev"` where pagination exists.** Paginated category pages (page 2, page 3) should be self-canonicalized (each page is canonical to itself) and linked sequentially. Google has officially deprecated `rel="next"`/`rel="prev"` for pagination, but it still aids crawler comprehension for large category hierarchies.
 
 **XML sitemaps should include only canonical category URLs.** If your sitemap includes faceted filter URLs, you are sending AI crawlers into a duplicate content maze. Audit your sitemap against your canonical tag implementation and resolve conflicts.
 
@@ -176,9 +176,9 @@ Category pages are hubs in the site's internal link graph, and how they distribu
 
 **Related category links build topical coverage signals.** A "Men's Running Shoes" category page should link to "Women's Running Shoes," "Running Accessories," and "Trail Running Shoes." These contextual links tell AI engines that the domain covers the broader running footwear topic comprehensively, not just a single segment. Google's [internal linking best practices](https://developers.google.com/search/docs/crawling-indexing/links-crawlable) note that contextual internal links carry stronger authority signals than navigation links.
 
-**Best-seller and editorial picks links serve dual purposes.** Linking to the two or three top-selling products from the editorial introduction, with anchor text that describes the product's use case, not just its name, distributes category authority to individual product pages and creates AI-extractable recommendations. "The [New Balance 1080v13 Wide](#)" is weaker than "The [New Balance 1080v13 Wide](#) is the most forgiving option for neutral high-arched runners needing a wide forefoot."
+**Best-seller and editorial picks links serve dual purposes.** Linking to the two or three top-selling products from the editorial introduction (with anchor text that describes the product's use case, not just its name) distributes category authority to individual product pages and creates AI-extractable recommendations. "The [New Balance 1080v13 Wide](#)" is weaker than "The [New Balance 1080v13 Wide](#) is the most forgiving option for neutral high-arched runners needing a wide forefoot."
 
-**Filter-state deep links warrant separate evaluation.** High-volume filter combinations, "running shoes under $100," "trail running shoes for wide feet", sometimes merit dedicated landing pages with their own editorial content rather than filterable views of the category. The threshold is demand: if the query has 500+ monthly searches and the filterable page cannot be indexed due to canonical tags, a dedicated subcategory page is worth building.
+**Filter-state deep links warrant separate evaluation.** High-volume filter combinations ("running shoes under $100," "trail running shoes for wide feet") sometimes merit dedicated landing pages with their own editorial content rather than filterable views of the category. The threshold is demand: if the query has 500+ monthly searches and the filterable page cannot be indexed due to canonical tags, a dedicated subcategory page is worth building.
 
 For the relationship between internal linking and AI citation probability, [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) explains how AI engines use link graphs to evaluate topical authority.
 
@@ -221,7 +221,7 @@ Do not prioritize long-tail or low-volume categories in the first pass. The edit
 
 **Does ItemList schema replace individual Product schema on category pages?**
 
-No. ItemList schema operates at the category level and provides the container structure. Individual Product schema, with offers, ratings, and availability, belongs on product detail pages and can be referenced from ItemList via URL. If you can implement inline Product schema within each ListItem, do so. If you are constrained to URL references, ensure every linked product page has complete Product schema implemented.
+No. ItemList schema operates at the category level and provides the container structure. Individual Product schema (with offers, ratings, and availability) belongs on product detail pages and can be referenced from ItemList via URL. If you can implement inline Product schema within each ListItem, do so. If you are constrained to URL references, ensure every linked product page has complete Product schema implemented.
 
 **How do canonical tags affect category page AI visibility?**
 

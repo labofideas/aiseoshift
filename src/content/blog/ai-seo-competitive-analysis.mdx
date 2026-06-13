@@ -16,7 +16,7 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-Most businesses that discover they are not being cited by ChatGPT or Perplexity start by auditing their own site. That is a reasonable first move, but it answers only half the question. The other half, why your competitors are being cited instead of you, requires looking outward. Competitive analysis for AI SEO is different from traditional competitive analysis because the signals that determine citation are not always the same signals that determine organic ranking. A competitor with a weaker domain authority than yours might be cited far more frequently because they have structured content in a format AI engines prefer, better author credentials, or a schema implementation that makes their expertise legible to language models.
+Most businesses that discover they are not being cited by ChatGPT or Perplexity start by auditing their own site. That is a reasonable first move, but it answers only half the question. The other half (why your competitors are being cited instead of you) requires looking outward. Competitive analysis for AI SEO is different from traditional competitive analysis because the signals that determine citation are not always the same signals that determine organic ranking. A competitor with a weaker domain authority than yours might be cited far more frequently because they have structured content in a format AI engines prefer, better author credentials, or a schema implementation that makes their expertise legible to language models.
 
 This guide walks through a structured process for identifying which competitors appear in AI-generated answers, understanding what signals produce their citations, and building an action plan that closes the most impactful gaps first. The framework is built around six measurable citation signals, a matrix approach for comparative scoring, and a prioritization method based on gap size and implementation effort.
 
@@ -30,9 +30,9 @@ For the measurement framework that tracks citation rates before and after implem
 
 ## Why traditional competitive analysis misses AI visibility
 
-Traditional SEO competitive analysis focuses on keyword rankings, backlink profiles, domain authority, and on-page optimization. Tools like [Ahrefs](https://ahrefs.com) and [Semrush](https://www.semrush.com) provide deep data on all of these dimensions. That data is still useful, domain authority and backlink quality are citation signals, but it is insufficient on its own for understanding AI citation performance.
+Traditional SEO competitive analysis focuses on keyword rankings, backlink profiles, domain authority, and on-page optimization. Tools like [Ahrefs](https://ahrefs.com) and [Semrush](https://www.semrush.com) provide deep data on all of these dimensions. That data is still useful (domain authority and backlink quality are citation signals) but it is insufficient on its own for understanding AI citation performance.
 
-The reason is that AI engines evaluate content along dimensions that traditional SEO tools do not measure. An AI engine deciding whether to cite a page for a factual query is not primarily asking "how many backlinks does this page have?" It is asking: does this page contain a clear, well-structured answer to the question? Does the author have demonstrable expertise in this topic? Is there schema markup that makes the entity and claims on this page machine-readable? Are there external corroborating signals, reviews, mentions, citations, that confirm the expertise claims?
+The reason is that AI engines evaluate content along dimensions that traditional SEO tools do not measure. An AI engine deciding whether to cite a page for a factual query is not primarily asking "how many backlinks does this page have?" It is asking: does this page contain a clear, well-structured answer to the question? Does the author have demonstrable expertise in this topic? Is there schema markup that makes the entity and claims on this page machine-readable? Are there external corroborating signals (reviews, mentions, citations) that confirm the expertise claims?
 
 A competitor might have a weaker backlink profile than you but still receive more AI citations because they have implemented FAQ schema on every how-to page, because their author bio pages include credentials that AI engines can parse, or because their content uses the definition-then-explanation structure that language models reliably extract and cite.
 
@@ -44,7 +44,7 @@ The [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) provides the full fr
 
 The starting point is manual query testing. This is not automatable in a meaningful way, because the goal is not just to record which domain appears, it is to understand the full citation context: what is the AI saying, what source does it cite, and how is the cited content framed.
 
-**Build your query list first.** Start with the ten to fifteen queries most important to your business. These should be the informational and decision-stage queries where someone is actively seeking expertise in your category, "best [category] tools for [use case]," "how to [core problem in your domain]," "what should I look for in [product or service type]." Add the comparison queries, "[your category] vs [alternative]", and the "who is the best" queries that are common in your vertical.
+**Build your query list first.** Start with the ten to fifteen queries most important to your business. These should be the informational and decision-stage queries where someone is actively seeking expertise in your category ("best [category] tools for [use case]," "how to [core problem in your domain]," "what should I look for in [product or service type]." Add the comparison queries) "[your category] vs [alternative]", and the "who is the best" queries that are common in your vertical.
 
 **Test across all three major AI surfaces.** Run each query in ChatGPT (GPT-4), Perplexity, and Google AI Overviews. Record the results in a spreadsheet: query, AI engine, domain cited, page URL if visible, and a brief note on how the citation was framed. Some AI engines will show citations explicitly (Perplexity always shows source links); others require you to ask for sources.
 
@@ -56,7 +56,7 @@ The starting point is manual query testing. This is not automatable in a meaning
 
 Once you have identified which competitor pages are being cited, pull up those pages and analyze them against the six core citation signals. This is the core of the competitive analysis, you are building a detailed profile of what a highly citable page in your category looks like.
 
-**Content structure and answer format.** Cited pages almost always answer the primary question directly in the first two to three paragraphs, then expand with supporting detail. AI engines are trained to find the most direct answer to a query, pages that bury the answer after a lengthy preamble are less reliably cited than pages where the answer is visible immediately. Check whether cited competitor pages use a "quick answer" or "summary" section near the top. Check whether they use definition-first writing (state the concept, then explain it) rather than narrative-first writing. Check whether they use headers that match query language precisely, a page titled "How to Calculate Customer Acquisition Cost" with an H2 that says "What is customer acquisition cost?" maps directly to query patterns.
+**Content structure and answer format.** Cited pages almost always answer the primary question directly in the first two to three paragraphs, then expand with supporting detail. AI engines are trained to find the most direct answer to a query (pages that bury the answer after a lengthy preamble are less reliably cited than pages where the answer is visible immediately. Check whether cited competitor pages use a "quick answer" or "summary" section near the top. Check whether they use definition-first writing (state the concept, then explain it) rather than narrative-first writing. Check whether they use headers that match query language precisely) a page titled "How to Calculate Customer Acquisition Cost" with an H2 that says "What is customer acquisition cost?" maps directly to query patterns.
 
 **Schema implementation.** View the page source or use a schema validator to check what schema the cited competitor has implemented. FAQ schema on informational pages is the most common gap, it creates machine-readable question-and-answer pairs that AI engines can extract directly. HowTo schema on procedural content, Article schema with authorship attributes, and Organization schema with verifiable credentials are the other high-value implementations. Record what schema types each cited competitor has deployed.
 
@@ -104,7 +104,7 @@ The citation matrix is the central deliverable of the competitive analysis. It i
 
 Score each cell on a three-level scale: strong, moderate, or weak. Use color coding to make the pattern visible at a glance. A competitor row that shows strong scores across four of six dimensions and weak scores on two tells you something specific: the two weak dimensions are not what is driving their citations. The four strong dimensions are the ones worth reverse-engineering.
 
-Your baseline row will typically show a mix of scores. The cells where competitors are strong and you are weak, particularly when those cells align with dimensions that correlate with citation in your category, are your prioritized action items.
+Your baseline row will typically show a mix of scores. The cells where competitors are strong and you are weak (particularly when those cells align with dimensions that correlate with citation in your category) are your prioritized action items.
 
 <figure class="post-figure">
 <svg viewBox="0 0 860 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Competitor citation matrix showing five competitors and your site scored across six AI citation signals">
@@ -243,7 +243,7 @@ Refresh the full matrix every sixty to ninety days, and run lightweight query sp
 
 ### Does a competitor's domain authority determine their AI citation advantage?
 
-Domain authority is one of six citation signals, not the primary one. Competitors with lower domain authority than yours frequently outperform you on AI citations because they have stronger schema implementation, better-structured content, or clearer author credentials. Domain authority is a lagging indicator that is slow to change and difficult to target directly. Focus first on the signals you can change quickly, schema, content structure, author attribution, and treat domain authority as a long-term project that compounds alongside the faster wins.
+Domain authority is one of six citation signals, not the primary one. Competitors with lower domain authority than yours frequently outperform you on AI citations because they have stronger schema implementation, better-structured content, or clearer author credentials. Domain authority is a lagging indicator that is slow to change and difficult to target directly. Focus first on the signals you can change quickly (schema, content structure, author attribution) and treat domain authority as a long-term project that compounds alongside the faster wins.
 
 ### Can I use AI tools to help with the competitive analysis itself?
 
@@ -283,7 +283,7 @@ When a cited competitor does not have a direct equivalent to your page, analyze 
       "name": "Does a competitor's domain authority determine their AI citation advantage?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Domain authority is one of six citation signals, not the primary one. Competitors with lower domain authority than yours frequently outperform you on AI citations because they have stronger schema implementation, better-structured content, or clearer author credentials. Domain authority is a lagging indicator that is slow to change and difficult to target directly. Focus first on the signals you can change quickly, schema, content structure, author attribution, and treat domain authority as a long-term project that compounds alongside the faster wins."
+        "text": "Domain authority is one of six citation signals, not the primary one. Competitors with lower domain authority than yours frequently outperform you on AI citations because they have stronger schema implementation, better-structured content, or clearer author credentials. Domain authority is a lagging indicator that is slow to change and difficult to target directly. Focus first on the signals you can change quickly (schema, content structure, author attribution) and treat domain authority as a long-term project that compounds alongside the faster wins."
       }
     },
     {

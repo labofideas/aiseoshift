@@ -76,7 +76,7 @@ This is the reality of AI citations in 2026. Core Web Vitals are no longer just 
 
 ## Quick answer
 
-Core Web Vitals do not act as a hard binary gate for AI citations in the way a robots.txt exclusion does. But they function as a strong eligibility signal. Google's documentation on AI Overviews confirms that page experience signals, including Core Web Vitals, factor into source selection. In practice, pages that fail the Good threshold in LCP, INP, or CLS are consistently under-represented in AI Overview citations relative to their content quality. Fixing performance issues will not guarantee citations, but failing performance checks creates a structural disadvantage that content quality alone cannot overcome.
+Core Web Vitals do not act as a hard binary gate for AI citations in the way a robots.txt exclusion does. But they function as a strong eligibility signal. Google's documentation on AI Overviews confirms that page experience signals (including Core Web Vitals) factor into source selection. In practice, pages that fail the Good threshold in LCP, INP, or CLS are consistently under-represented in AI Overview citations relative to their content quality. Fixing performance issues will not guarantee citations, but failing performance checks creates a structural disadvantage that content quality alone cannot overcome.
 
 ## Page experience and AI Overviews eligibility
 
@@ -90,21 +90,21 @@ This connects directly to the broader [AI SEO audit framework](/blog/ai-seo-audi
 
 ## LCP: Largest Contentful Paint
 
-Largest Contentful Paint measures how long it takes for the main visible element on a page, typically a hero image, a featured video thumbnail, or a large block of text, to become fully rendered in the viewport. The 2026 Good threshold remains at 2.5 seconds or below for the 75th percentile of real-user page loads. Needs Improvement runs from 2.5 to 4 seconds. Anything above 4 seconds is Poor.
+Largest Contentful Paint measures how long it takes for the main visible element on a page (typically a hero image, a featured video thumbnail, or a large block of text) to become fully rendered in the viewport. The 2026 Good threshold remains at 2.5 seconds or below for the 75th percentile of real-user page loads. Needs Improvement runs from 2.5 to 4 seconds. Anything above 4 seconds is Poor.
 
-LCP failures are concentrated in a handful of predictable causes. Render-blocking resources, JavaScript and CSS files that must load before the browser can paint the page, are the most common. A page that loads six third-party scripts before rendering its hero image will consistently fail LCP on mobile connections. Unoptimized images are the second major cause: a 2.4 MB hero image served without compression, without proper `srcset` attributes, and without a `fetchpriority="high"` hint will fail LCP even on fast connections. Server response time (Time to First Byte, or TTFB) is the third lever, a slow TTFB pushes every subsequent load event out by the same offset.
+LCP failures are concentrated in a handful of predictable causes. Render-blocking resources (JavaScript and CSS files that must load before the browser can paint the page) are the most common. A page that loads six third-party scripts before rendering its hero image will consistently fail LCP on mobile connections. Unoptimized images are the second major cause: a 2.4 MB hero image served without compression, without proper `srcset` attributes, and without a `fetchpriority="high"` hint will fail LCP even on fast connections. Server response time (Time to First Byte, or TTFB) is the third lever, a slow TTFB pushes every subsequent load event out by the same offset.
 
 The highest-ROI LCP fixes, roughly in priority order: set `fetchpriority="high"` on your LCP image element, serve images in WebP or AVIF format with appropriate compression, preconnect to critical third-party origins, eliminate render-blocking JavaScript with `defer` or `async` attributes, and migrate to a CDN if your TTFB is above 600ms. For image-heavy content sites, these five changes alone typically move LCP from the Poor or Needs Improvement range into Good.
 
-[web.dev's LCP documentation](https://web.dev/articles/lcp) provides the authoritative breakdown of LCP sub-parts, TTFB, resource load delay, resource load time, and render delay, which helps pinpoint exactly where time is being lost on a specific page.
+[web.dev's LCP documentation](https://web.dev/articles/lcp) provides the authoritative breakdown of LCP sub-parts (TTFB, resource load delay, resource load time, and render delay) which helps pinpoint exactly where time is being lost on a specific page.
 
 ## INP: Interaction to Next Paint
 
-INP replaced First Input Delay as a Core Web Vital in March 2024. The distinction matters for AI citation strategy because INP is a substantially harder metric to pass than FID was. FID only measured the delay before the browser began processing the first user interaction. INP measures the full latency of every interaction across the page lifetime, click, tap, keyboard input, and reports the worst-performing interaction at the 98th percentile. Good is 200 milliseconds or below. Needs Improvement runs to 500ms. Above 500ms is Poor.
+INP replaced First Input Delay as a Core Web Vital in March 2024. The distinction matters for AI citation strategy because INP is a substantially harder metric to pass than FID was. FID only measured the delay before the browser began processing the first user interaction. INP measures the full latency of every interaction across the page lifetime (click, tap, keyboard input) and reports the worst-performing interaction at the 98th percentile. Good is 200 milliseconds or below. Needs Improvement runs to 500ms. Above 500ms is Poor.
 
 Sites that had clean FID scores in 2023 and 2024 often discovered their INP scores were significantly worse when Google began factoring INP into ranking. The reason is that INP captures input handling that FID missed entirely, a click that triggers a complex React state update, a filter interaction that re-renders a large product grid, or a form submission that triggers a long JavaScript task before the UI updates.
 
-The causes of INP failures are almost always JavaScript-related. Long tasks on the main thread, tasks exceeding 50 milliseconds, block the browser from processing input events promptly. Common culprits include third-party analytics and tag manager scripts executing large payloads on user interaction, client-side frameworks that perform expensive reconciliation on every state change, and synchronous event handlers that do heavy DOM manipulation before yielding.
+The causes of INP failures are almost always JavaScript-related. Long tasks on the main thread (tasks exceeding 50 milliseconds) block the browser from processing input events promptly. Common culprits include third-party analytics and tag manager scripts executing large payloads on user interaction, client-side frameworks that perform expensive reconciliation on every state change, and synchronous event handlers that do heavy DOM manipulation before yielding.
 
 Effective INP fixes focus on breaking up long tasks and reducing JavaScript execution during interactions. The most impactful changes for most sites: audit your tag manager for scripts executing on click events, defer non-critical JavaScript execution using `scheduler.yield()` or `setTimeout` to split long tasks, move expensive computations off the main thread using Web Workers, and replace heavy client-side filtering or sorting with server-side equivalents where possible.
 
@@ -114,15 +114,15 @@ INP is the CWV metric most likely to be in the Poor range on sites that appear t
 
 Cumulative Layout Shift measures visual instability, how much the visible content of a page shifts unexpectedly during and after load. The Good threshold is a score of 0.1 or below. Needs Improvement runs to 0.25. Above 0.25 is Poor. The score is a unitless calculation that accounts for both the fraction of the viewport affected and the distance elements move.
 
-CLS matters for AI citation eligibility for a reason that is distinct from the user experience concern: layout instability is a proxy signal for content reliability. A page whose main body text shifts position because a late-loading ad or cookie banner pushes content down is a page where the content relationship, what appears adjacent to what, is not stable at crawl time. This introduces uncertainty into how AI systems read and extract the page content.
+CLS matters for AI citation eligibility for a reason that is distinct from the user experience concern: layout instability is a proxy signal for content reliability. A page whose main body text shifts position because a late-loading ad or cookie banner pushes content down is a page where the content relationship (what appears adjacent to what) is not stable at crawl time. This introduces uncertainty into how AI systems read and extract the page content.
 
-The most common CLS causes are easily addressed. Images and video embeds without explicit `width` and `height` attributes cause the browser to reserve no space for them, so the page reflows when they load. Web fonts that load after the initial text render cause text content to shift when the custom font is applied (FOUT, Flash of Unstyled Text). Dynamically injected content, ad slots that expand, cookie banners that push page content down, newsletter popups, contributes to CLS if inserted above existing content after the initial load.
+The most common CLS causes are easily addressed. Images and video embeds without explicit `width` and `height` attributes cause the browser to reserve no space for them, so the page reflows when they load. Web fonts that load after the initial text render cause text content to shift when the custom font is applied (FOUT (Flash of Unstyled Text). Dynamically injected content) ad slots that expand, cookie banners that push page content down, newsletter popups, contributes to CLS if inserted above existing content after the initial load.
 
 The standard fixes: add explicit dimensions to all images and embeds, use `font-display: optional` or `font-display: swap` with a size-adjusted fallback to minimize font-related shifts, reserve space for ads and dynamic content using CSS `min-height`, and avoid inserting content above the fold after the initial render. For most content sites, fixing image dimensions and ad slot sizing alone eliminates the majority of CLS score.
 
 ## How to measure: PageSpeed Insights, CrUX, and Search Console
 
-Diagnosing CWV issues requires both lab data and field data. Lab data, from tools like Lighthouse or PageSpeed Insights run on demand, tests a single simulated page load and gives you a controlled baseline. Field data, from the Chrome User Experience Report (CrUX), which Google uses in its ranking and AI Overview signals, reflects the actual 75th percentile of real user sessions over the past 28 days.
+Diagnosing CWV issues requires both lab data and field data. Lab data (from tools like Lighthouse or PageSpeed Insights run on demand) tests a single simulated page load and gives you a controlled baseline. Field data (from the Chrome User Experience Report (CrUX), which Google uses in its ranking and AI Overview signals) reflects the actual 75th percentile of real user sessions over the past 28 days.
 
 PageSpeed Insights at [pagespeed.web.dev](https://pagespeed.web.dev) shows both lab and field data for any URL. The field data panel at the top of the report is what Google uses for its signals, this is the number that matters for AI citation eligibility. The lab data diagnostics below it explain why the field data scores are what they are. Use the lab diagnostics to identify fixes; use the field data to verify that fixes are having the expected impact at scale.
 
@@ -130,7 +130,7 @@ Google Search Console's Core Web Vitals report shows field data performance acro
 
 CrUX data updates on a 28-day rolling basis. After deploying fixes, expect to wait 4–6 weeks before field data scores reflect the improvement. Lab data will update immediately and can be used to verify that fixes are in place before the field data window rolls over.
 
-For sites with significant mobile traffic, which is nearly all content sites in 2026, segment CWV data by device type. Google's AI Overview indexing uses mobile-first data. A page that passes Good on desktop and fails on mobile will be treated as a failing page for AI citation purposes.
+For sites with significant mobile traffic (which is nearly all content sites in 2026) segment CWV data by device type. Google's AI Overview indexing uses mobile-first data. A page that passes Good on desktop and fails on mobile will be treated as a failing page for AI citation purposes.
 
 ## Priority fixes with the highest ROI for AI citation improvement
 
@@ -178,7 +178,7 @@ For most content sites, LCP image optimization delivers the highest impact relat
 
 ### Does INP matter for content pages where users mostly just read?
 
-Yes, more than it might seem. Even on primarily read-only content pages, users interact with navigation menus, share buttons, comment sections, newsletter signup forms, and cookie consent dialogs. INP captures the responsiveness of all these interactions. Third-party scripts, analytics, tag managers, advertising systems, frequently execute long JavaScript tasks triggered by user interactions on what appear to be simple content pages. An INP failure on a page with 200ms of actual reading and one button click is still an INP failure that affects AI citation eligibility.
+Yes, more than it might seem. Even on primarily read-only content pages, users interact with navigation menus, share buttons, comment sections, newsletter signup forms, and cookie consent dialogs. INP captures the responsiveness of all these interactions. Third-party scripts (analytics, tag managers, advertising systems) frequently execute long JavaScript tasks triggered by user interactions on what appear to be simple content pages. An INP failure on a page with 200ms of actual reading and one button click is still an INP failure that affects AI citation eligibility.
 
 ### How long does it take for Core Web Vitals improvements to show up in Google's data?
 
@@ -186,7 +186,7 @@ CrUX (Chrome User Experience Report) data, which is what Google uses for ranking
 
 ### Should I prioritize CWV fixes on all pages or focus on specific templates?
 
-Focus on templates first. Most content sites have a relatively small number of page templates, article pages, category pages, landing pages, product pages, that account for the majority of total URLs. A CWV fix applied to a template propagates to every URL built on that template. Identify which templates are failing using Search Console's Core Web Vitals report, which groups URLs by status and template pattern. Fixing the article template on a blog that publishes 500 posts is far more efficient than fixing individual URLs one at a time.
+Focus on templates first. Most content sites have a relatively small number of page templates (article pages, category pages, landing pages, product pages) that account for the majority of total URLs. A CWV fix applied to a template propagates to every URL built on that template. Identify which templates are failing using Search Console's Core Web Vitals report, which groups URLs by status and template pattern. Fixing the article template on a blog that publishes 500 posts is far more efficient than fixing individual URLs one at a time.
 
 ### Can a page pass CWV but still fail to appear in AI Overviews?
 
@@ -217,7 +217,7 @@ Absolutely. Core Web Vitals determine eligibility; they do not determine selecti
       "name": "Does INP matter for content pages where users mostly just read?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, more than it might seem. Even on primarily read-only content pages, users interact with navigation menus, share buttons, comment sections, newsletter signup forms, and cookie consent dialogs. INP captures the responsiveness of all these interactions. Third-party scripts, analytics, tag managers, advertising systems, frequently execute long JavaScript tasks triggered by user interactions on what appear to be simple content pages. An INP failure on a page with mostly reading and one button click is still an INP failure that affects AI citation eligibility."
+        "text": "Yes, more than it might seem. Even on primarily read-only content pages, users interact with navigation menus, share buttons, comment sections, newsletter signup forms, and cookie consent dialogs. INP captures the responsiveness of all these interactions. Third-party scripts (analytics, tag managers, advertising systems) frequently execute long JavaScript tasks triggered by user interactions on what appear to be simple content pages. An INP failure on a page with mostly reading and one button click is still an INP failure that affects AI citation eligibility."
       }
     },
     {
@@ -233,7 +233,7 @@ Absolutely. Core Web Vitals determine eligibility; they do not determine selecti
       "name": "Should I prioritize CWV fixes on all pages or focus on specific templates?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Focus on templates first. Most content sites have a relatively small number of page templates, article pages, category pages, landing pages, product pages, that account for the majority of total URLs. A CWV fix applied to a template propagates to every URL built on that template. Identify which templates are failing using Search Console's Core Web Vitals report, which groups URLs by status and template pattern. Fixing the article template on a blog that publishes 500 posts is far more efficient than fixing individual URLs one at a time."
+        "text": "Focus on templates first. Most content sites have a relatively small number of page templates (article pages, category pages, landing pages, product pages) that account for the majority of total URLs. A CWV fix applied to a template propagates to every URL built on that template. Identify which templates are failing using Search Console's Core Web Vitals report, which groups URLs by status and template pattern. Fixing the article template on a blog that publishes 500 posts is far more efficient than fixing individual URLs one at a time."
       }
     },
     {

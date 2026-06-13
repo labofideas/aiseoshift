@@ -16,15 +16,15 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-AI search engines do not speak English by default, they speak the language of the query. When a user in Germany asks ChatGPT a question in German, the system draws from German-language sources it has indexed and trusts. When a user in Brazil asks Perplexity the same question in Portuguese, a different pool of sources is consulted. If your site exists only in English with no technical signals pointing AI crawlers to language-specific content, you are invisible in every non-English market, not because your content is weak, but because AI engines have no reliable way to surface it in those contexts.
+AI search engines do not speak English by default (they speak the language of the query. When a user in Germany asks ChatGPT a question in German, the system draws from German-language sources it has indexed and trusts. When a user in Brazil asks Perplexity the same question in Portuguese, a different pool of sources is consulted. If your site exists only in English with no technical signals pointing AI crawlers to language-specific content, you are invisible in every non-English market) not because your content is weak, but because AI engines have no reliable way to surface it in those contexts.
 
-This is the core international SEO challenge for AI visibility in 2026. The good news is that the technical framework for solving it already exists in hreflang, localized URL structures, and language-specific schema markup. The challenge is that most sites implement these signals poorly, or not at all, leaving significant AI citation coverage on the table in every non-primary language market they operate in.
+This is the core international SEO challenge for AI visibility in 2026. The good news is that the technical framework for solving it already exists in hreflang, localized URL structures, and language-specific schema markup. The challenge is that most sites implement these signals poorly (or not at all) leaving significant AI citation coverage on the table in every non-primary language market they operate in.
 
 This guide covers how AI engines handle language targeting, what correct hreflang implementation looks like in practice, how to choose a URL structure that maximizes AI crawlability, and why translated content consistently underperforms localized content in AI citation rates.
 
 ## The quick answer: does hreflang affect AI citations?
 
-Yes, but not in the direct way that traditional search signals do. Hreflang itself is not a ranking factor that AI systems explicitly reward. The relationship is structural. Hreflang tells crawlers which version of a page to index for which language and region combination. When hreflang is implemented correctly, AI engines crawl and index the right language-specific pages. When it is missing or broken, AI systems default to the canonical version, almost always the English version, regardless of the language of the query.
+Yes (but not in the direct way that traditional search signals do. Hreflang itself is not a ranking factor that AI systems explicitly reward. The relationship is structural. Hreflang tells crawlers which version of a page to index for which language and region combination. When hreflang is implemented correctly, AI engines crawl and index the right language-specific pages. When it is missing or broken, AI systems default to the canonical version) almost always the English version, regardless of the language of the query.
 
 The practical consequence: a properly hreflang-annotated site with German, Spanish, and Japanese versions of its content gives AI engines in those language markets something to cite. A site with no hreflang and only English content gives those same engines nothing language-appropriate to surface, regardless of content quality. Hreflang is not a citation booster, it is a prerequisite for multilingual citation to be possible at all. For the broader framework on how AI engines decide what to cite, [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) covers the retrieval mechanics in depth.
 
@@ -136,7 +136,7 @@ The choice of URL structure for international content is one of the most debated
 </svg>
 </figure>
 
-For most sites building international AI visibility from scratch, subdirectories are the clear recommendation. The root domain's existing authority, its backlink profile, its established crawl frequency, its citation history across AI training data, is immediately available to every language subdirectory. A new German-language page at `example.com/de/` inherits all of that on day one. A new `example.de` domain starts from zero and must build an entirely separate authority profile.
+For most sites building international AI visibility from scratch, subdirectories are the clear recommendation. The root domain's existing authority (its backlink profile, its established crawl frequency, its citation history across AI training data) is immediately available to every language subdirectory. A new German-language page at `example.com/de/` inherits all of that on day one. A new `example.de` domain starts from zero and must build an entirely separate authority profile.
 
 The ccTLD option has genuine advantages in markets where local domain extensions carry consumer trust (Germany's `.de` is a clear example), but those advantages apply to human users, not AI crawlers. From an AI system's perspective, `example.de` and `example.com` are unrelated sites with separate authority profiles. Only brands with the resources to build local link profiles for each ccTLD should pursue this structure.
 
@@ -158,7 +158,7 @@ Three levels of content investment, ranked by AI citation potential:
 
 ## Building multilingual schema markup
 
-Schema markup needs to be localized, not just translated. This is a frequently missed layer of international AI SEO implementation. The content in your schema blocks, business names, descriptions, FAQ questions and answers, should be in the language of the page it annotates. A German-language page with English-language schema markup sends conflicting signals and reduces the confidence AI engines have in that page's language classification.
+Schema markup needs to be localized, not just translated. This is a frequently missed layer of international AI SEO implementation. The content in your schema blocks (business names, descriptions, FAQ questions and answers) should be in the language of the page it annotates. A German-language page with English-language schema markup sends conflicting signals and reduces the confidence AI engines have in that page's language classification.
 
 The approach covered in [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) applies to each language version independently. Implement language-specific instances of each schema type:
 
@@ -170,7 +170,7 @@ The approach covered in [schema markup for AI visibility](/blog/schema-markup-fo
 
 ## Identifying content gaps: which languages need which content
 
-The systematic approach to multilingual content investment starts with query gap analysis, not content volume. The goal is to find specific topics where AI engines in a target language market lack authoritative sources, and therefore have low citation competition, before investing in content creation.
+The systematic approach to multilingual content investment starts with query gap analysis, not content volume. The goal is to find specific topics where AI engines in a target language market lack authoritative sources (and therefore have low citation competition) before investing in content creation.
 
 The process works in four stages. First, identify your highest-performing AI citation topics in your primary language using the methodology described in the [answer engine optimization guide](/blog/what-is-answer-engine-optimization/). These are the topics where your content is already being cited, meaning the topic-content match is proven. Second, test whether equivalent queries in your target languages return strong or weak source pools in AI engines. Search in German, Spanish, or French for the same topics and observe the source diversity and quality of citations. Thin source pools in a target language signal citation opportunity. Third, check search volume data in target markets to confirm that users in those markets actually search for these topics at meaningful volume. Fourth, prioritize based on the intersection of citation opportunity, search volume, and content production cost.
 
@@ -180,11 +180,11 @@ This approach typically reveals that 20 to 30 percent of your highest-value AI c
 
 Beyond real-time retrieval, there is a training data dimension to international AI visibility that shapes which sources get cited in each language. Large language models are trained on web-scale corpora, and those corpora are dramatically uneven across languages.
 
-English dominates at roughly 50 to 60 percent of the indexed web. German, Spanish, French, and Chinese each represent a few percent. Most other languages are represented by fractions of a percent. This distribution means that AI language models have encyclopedic knowledge about English-language topics, there are thousands of authoritative sources covering any given subject, while knowledge of the same topic in, say, Norwegian or Thai is sparse and may depend on a handful of sources.
+English dominates at roughly 50 to 60 percent of the indexed web. German, Spanish, French, and Chinese each represent a few percent. Most other languages are represented by fractions of a percent. This distribution means that AI language models have encyclopedic knowledge about English-language topics (there are thousands of authoritative sources covering any given subject) while knowledge of the same topic in, say, Norwegian or Thai is sparse and may depend on a handful of sources.
 
-For brands building international AI visibility, this sparsity is an advantage. In a language where AI training data is thin, a single well-structured, authoritative piece of content can become the go-to cited source because it has few or no competitors in the training data. Building that content, with correct hreflang signals, native-language quality, and appropriate schema, is a disproportionately high-leverage investment compared to adding another English article to an already-saturated topic.
+For brands building international AI visibility, this sparsity is an advantage. In a language where AI training data is thin, a single well-structured, authoritative piece of content can become the go-to cited source because it has few or no competitors in the training data. Building that content (with correct hreflang signals, native-language quality, and appropriate schema) is a disproportionately high-leverage investment compared to adding another English article to an already-saturated topic.
 
-The practical implementation of this full international AI strategy, combining technical signals, content quality, and schema markup, is what the [AI SEO Shift framework](/ai-seo-shift/) is built around: systematic, measurable improvements to AI citation probability across every language market you operate in.
+The practical implementation of this full international AI strategy (combining technical signals, content quality, and schema markup) is what the [AI SEO Shift framework](/ai-seo-shift/) is built around: systematic, measurable improvements to AI citation probability across every language market you operate in.
 
 ## Frequently asked questions
 
@@ -194,7 +194,7 @@ Hreflang's primary function in traditional search is to prevent duplicate conten
 
 ### Can I use automatic translation tools to create multilingual content for AI visibility?
 
-Machine translation alone is insufficient for serious AI citation targeting. Automated tools produce linguistically accurate text that frequently lacks the native-language naturalness that AI systems associate with authoritative sources. The minimum viable standard is translation with native-language editorial review. For your highest-priority markets, full localization, content researched and written for local users, produces significantly better AI citation rates. Machine translation is a useful first draft, not a finished content strategy.
+Machine translation alone is insufficient for serious AI citation targeting. Automated tools produce linguistically accurate text that frequently lacks the native-language naturalness that AI systems associate with authoritative sources. The minimum viable standard is translation with native-language editorial review. For your highest-priority markets, full localization (content researched and written for local users) produces significantly better AI citation rates. Machine translation is a useful first draft, not a finished content strategy.
 
 ### Which URL structure is best for international AI SEO, subdirectory, subdomain, or ccTLD?
 

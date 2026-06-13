@@ -16,7 +16,7 @@ featured: false
 
 import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
 
-Anthropic's Code with Claude 2026, held in San Francisco on May 6 with follow-up events in London (May 19) and Tokyo (June 10), was the company's most significant product event to date. Five major features shipped, usage limits doubled across every paid plan, and a compute partnership with SpaceX gave Anthropic access to over 220,000 Nvidia GPUs.
+Anthropic's Code with Claude 2026 (held in San Francisco on May 6 with follow-up events in London (May 19) and Tokyo (June 10)) was the company's most significant product event to date. Five major features shipped, usage limits doubled across every paid plan, and a compute partnership with SpaceX gave Anthropic access to over 220,000 Nvidia GPUs.
 
 Then on May 13, Anthropic launched Claude for Small Business, extending AI agents into QuickBooks, PayPal, HubSpot, and a dozen other tools that small businesses use daily.
 
@@ -58,7 +58,7 @@ The most technically ambitious announcement: **Dreaming** is a new capability wh
 
 ### How Dreaming works
 
-When a Claude Code agent completes a task, say, refactoring a module, it may have encountered errors, discovered undocumented patterns in the codebase, or found approaches that worked better than others. Without Dreaming, that knowledge disappears when the session ends.
+When a Claude Code agent completes a task (say, refactoring a module) it may have encountered errors, discovered undocumented patterns in the codebase, or found approaches that worked better than others. Without Dreaming, that knowledge disappears when the session ends.
 
 With Dreaming, a scheduled background process reviews completed sessions and curates a memory store. The next agent that works on the same codebase can access these notes, getting up to speed faster and avoiding mistakes that previous agents already made.
 
@@ -76,13 +76,13 @@ Dreaming is available in research preview. It represents a shift from stateless 
 
 ## Outcomes: defining what success looks like
 
-**Outcomes** lets you write a rubric describing what a successful result looks like. A separate grader, running in its own context window, independent from the working agent, evaluates the output against your criteria.
+**Outcomes** lets you write a rubric describing what a successful result looks like. A separate grader (running in its own context window, independent from the working agent) evaluates the output against your criteria.
 
 When something does not meet the rubric, the grader pinpoints what needs to change and the agent takes another pass. This creates a feedback loop: the agent works, the grader evaluates, the agent improves, until the outcome criteria are met.
 
 The key design decision: the grader runs in a **separate context window** so it is not influenced by the agent's reasoning. It evaluates the output objectively, not the process that produced it.
 
-For teams building AI-powered content workflows, Outcomes means you can define quality standards, "the meta description must be under 155 characters, include the primary keyword, and match the page's actual content", and the agent will iterate until the standard is met. This connects directly to [how AI systems evaluate content quality](/blog/eeat-in-the-ai-era/).
+For teams building AI-powered content workflows, Outcomes means you can define quality standards ("the meta description must be under 155 characters, include the primary keyword, and match the page's actual content") and the agent will iterate until the standard is met. This connects directly to [how AI systems evaluate content quality](/blog/eeat-in-the-ai-era/).
 
 ## Multi-agent orchestration: scaling complex tasks
 

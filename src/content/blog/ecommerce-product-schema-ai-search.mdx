@@ -22,7 +22,7 @@ This guide covers everything required to implement Product schema that performs 
 
 ## The quick answer: which Product schema properties drive AI citations
 
-If you want a single principle: AI systems cite product pages when they can answer a shopping query without ambiguity. That means the schema must supply name, price, availability, and a description specific enough to distinguish this product from near-identical alternatives. Everything else, ratings, GTIN, brand, SKU, increases confidence and citation likelihood, but the floor is a non-ambiguous, in-stock product with a current price.
+If you want a single principle: AI systems cite product pages when they can answer a shopping query without ambiguity. That means the schema must supply name, price, availability, and a description specific enough to distinguish this product from near-identical alternatives. Everything else (ratings, GTIN, brand, SKU) increases confidence and citation likelihood, but the floor is a non-ambiguous, in-stock product with a current price.
 
 For a broader introduction to how structured data affects machine citability across content types, the guide on [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) covers the underlying retrieval mechanics. The Product type is one of the most richly specified schemas on Schema.org, and using that richness correctly is what separates product pages that get cited from those that do not.
 
@@ -131,7 +131,7 @@ The `seller` field identifies the entity making the offer. For multi-vendor mark
 
 ## AggregateRating integration
 
-`aggregateRating` has a disproportionate effect on AI citation rates for product queries where the user is comparing options. When a user asks "what is a good pair of noise-cancelling headphones," AI systems are constructing a ranked comparison, not just retrieving a single page. Pages with complete `aggregateRating` data, specifically those with high `reviewCount` alongside a strong `ratingValue`, are weighted more heavily in that construction.
+`aggregateRating` has a disproportionate effect on AI citation rates for product queries where the user is comparing options. When a user asks "what is a good pair of noise-cancelling headphones," AI systems are constructing a ranked comparison, not just retrieving a single page. Pages with complete `aggregateRating` data (specifically those with high `reviewCount` alongside a strong `ratingValue`) are weighted more heavily in that construction.
 
 For the [review schema for AI search](/blog/review-schema-for-ai-search/) topic specifically, the full implementation pattern is covered in depth. For Product schema purposes, the critical rules are:
 
@@ -144,7 +144,7 @@ A product page with 4.6+ rating and 100+ reviews, combined with complete Tier 1 
 
 ## Product variants and ItemList for category pages
 
-Individual product pages are not the only e-commerce surface that benefits from structured data. Category pages, those listing multiple products under a brand or type, should implement `ItemList` schema to signal their contents to AI systems.
+Individual product pages are not the only e-commerce surface that benefits from structured data. Category pages (those listing multiple products under a brand or type) should implement `ItemList` schema to signal their contents to AI systems.
 
 **Variant pages**
 
@@ -191,7 +191,7 @@ A category page listing ten headphones under $200 should carry an `ItemList` tha
 }
 ```
 
-The HowTo schema pattern for instructional e-commerce content, assembly guides, setup walkthroughs, follows a related but distinct pattern covered in the [HowTo schema for AI search](/blog/howto-schema-for-ai-search/) playbook.
+The HowTo schema pattern for instructional e-commerce content (assembly guides, setup walkthroughs) follows a related but distinct pattern covered in the [HowTo schema for AI search](/blog/howto-schema-for-ai-search/) playbook.
 
 <figure class="post-figure">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 500" width="820" height="500" role="img" aria-label="Product schema property importance matrix showing three tiers: Required, Strongly Recommended, and Optional, ranked by AI citation impact">
@@ -255,7 +255,7 @@ The HowTo schema pattern for instructional e-commerce content, assembly guides, 
 
 ## Common implementation mistakes
 
-Audit data from e-commerce sites consistently reveals the same set of errors. These mistakes do not cause obvious failures, the page still renders, Google may still index it, but they silently reduce AI citation probability.
+Audit data from e-commerce sites consistently reveals the same set of errors. These mistakes do not cause obvious failures (the page still renders, Google may still index it) but they silently reduce AI citation probability.
 
 **Missing GTIN**
 
@@ -279,7 +279,7 @@ Pages that include both a legacy microdata or RDFa Product markup in HTML and a 
 
 For the broader strategic picture of how Product schema fits into a full AI visibility strategy, the guide on [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) covers the content and authority signals that work alongside structured data.
 
-The [product schema for AI search](/blog/product-schema-for-ai-search/) playbook also covers platform-specific behavior differences, how Google AI Overviews, Bing Copilot, and Perplexity each interpret Product schema differently, which matters for sites prioritizing specific platforms.
+The [product schema for AI search](/blog/product-schema-for-ai-search/) playbook also covers platform-specific behavior differences (how Google AI Overviews, Bing Copilot, and Perplexity each interpret Product schema differently) which matters for sites prioritizing specific platforms.
 
 ## Frequently asked questions
 
@@ -301,7 +301,7 @@ The practical minimum is `name`, `description`, `image`, and a complete `Offer` 
 
 **Should out-of-stock product pages be removed or kept with schema?**
 
-Keep out-of-stock pages, but update `availability` to `"https://schema.org/OutOfStock"`. Do not remove the schema. Out-of-stock pages with accurate schema continue to accumulate link equity and indexing history. When stock is restored, the page resumes citation eligibility immediately rather than requiring re-crawl from scratch. Removing schema from out-of-stock pages, or deleting the pages entirely, loses that compounding asset.
+Keep out-of-stock pages, but update `availability` to `"https://schema.org/OutOfStock"`. Do not remove the schema. Out-of-stock pages with accurate schema continue to accumulate link equity and indexing history. When stock is restored, the page resumes citation eligibility immediately rather than requiring re-crawl from scratch. Removing schema from out-of-stock pages (or deleting the pages entirely) loses that compounding asset.
 
 **Does aggregateRating affect AI citation priority over pages with no rating?**
 
@@ -349,7 +349,7 @@ Yes, and the effect is significant for comparison queries. When an AI system is 
       "name": "Should out-of-stock product pages be removed or kept with schema?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Keep out-of-stock pages, but update availability to https://schema.org/OutOfStock. Do not remove the schema. Out-of-stock pages with accurate schema continue to accumulate link equity and indexing history. When stock is restored, the page resumes citation eligibility immediately rather than requiring re-crawl from scratch. Removing schema from out-of-stock pages, or deleting the pages entirely, loses that compounding asset."
+        "text": "Keep out-of-stock pages, but update availability to https://schema.org/OutOfStock. Do not remove the schema. Out-of-stock pages with accurate schema continue to accumulate link equity and indexing history. When stock is restored, the page resumes citation eligibility immediately rather than requiring re-crawl from scratch. Removing schema from out-of-stock pages (or deleting the pages entirely) loses that compounding asset."
       }
     },
     {

@@ -151,7 +151,7 @@ This principle is covered in depth in the post on [how to write content for huma
 
 ## Mistake 4: Anonymous authorship on YMYL content
 
-YMYL, Your Money or Your Life, covers health, finance, legal, and safety topics. For these categories, Google's Search Quality Rater Guidelines require demonstrable expertise, and AI engines apply similar scrutiny. Anonymous content on YMYL topics gets deprioritized because there is no person to verify.
+YMYL (Your Money or Your Life) covers health, finance, legal, and safety topics. For these categories, Google's Search Quality Rater Guidelines require demonstrable expertise, and AI engines apply similar scrutiny. Anonymous content on YMYL topics gets deprioritized because there is no person to verify.
 
 An "Editorial Team" byline is not sufficient. AI systems look for a named person with verifiable credentials, a name that appears on LinkedIn, in publications, or in professional directories. Without that, the trust signal is absent.
 
@@ -159,7 +159,7 @@ An "Editorial Team" byline is not sufficient. AI systems look for a named person
 
 ## Mistake 5: Missing LocalBusiness schema for local businesses
 
-When someone asks ChatGPT or Perplexity to recommend a service provider in their city, the AI engine draws on structured signals to identify legitimate, verifiable local businesses. Sites without `LocalBusiness` JSON-LD, or the appropriate subtype like `Dentist`, `LegalService`, or `AutoRepair`, are harder for AI to classify and cross-reference against their geographic data.
+When someone asks ChatGPT or Perplexity to recommend a service provider in their city, the AI engine draws on structured signals to identify legitimate, verifiable local businesses. Sites without `LocalBusiness` JSON-LD (or the appropriate subtype like `Dentist`, `LegalService`, or `AutoRepair`) are harder for AI to classify and cross-reference against their geographic data.
 
 This is especially costly because local AI queries have high commercial intent. Being left out of a "best [service] in [city]" AI answer is a significant revenue leak.
 
@@ -175,7 +175,7 @@ Content written around keywords tends to be circular and repetitive. Content wri
 
 ## Mistake 7: No E-E-A-T signals in author bios or content
 
-Thin author bios, "Jane is a content writer with five years of experience", contribute nothing to E-E-A-T. AI engines evaluate whether the named author has the kind of experience and expertise that makes their claims credible. A generic bio does not provide that signal.
+Thin author bios ("Jane is a content writer with five years of experience") contribute nothing to E-E-A-T. AI engines evaluate whether the named author has the kind of experience and expertise that makes their claims credible. A generic bio does not provide that signal.
 
 The same applies to content body: pages that assert expertise without demonstrating it ("We are industry leaders with decades of experience") give AI systems nothing to verify. E-E-A-T requires concrete signals: credentials, publications, testing, data, specific professional roles.
 
@@ -183,7 +183,7 @@ The same applies to content body: pages that assert expertise without demonstrat
 
 ## Mistake 8: Thin service pages with no FAQ or procedure depth
 
-A service page that describes what a business does in three paragraphs, with no FAQ, no process breakdown, no pricing context, and no outcome examples, is a thin page. Thin pages rarely earn AI citations because they do not contain the depth an AI engine needs to construct a useful answer.
+A service page that describes what a business does in three paragraphs (with no FAQ, no process breakdown, no pricing context, and no outcome examples) is a thin page. Thin pages rarely earn AI citations because they do not contain the depth an AI engine needs to construct a useful answer.
 
 This problem is especially common on agency, consulting, and professional services sites where copywriters were told to keep pages short and punchy. Short and punchy may look clean in a browser, but it performs poorly in AI search.
 
@@ -191,11 +191,11 @@ This problem is especially common on agency, consulting, and professional servic
 
 ## Mistake 9: Inconsistent NAP across citations (local businesses)
 
-NAP, Name, Address, Phone, consistency is a foundational local SEO signal, and it matters even more for AI visibility. AI engines cross-reference business information across multiple sources: your website, Google Business Profile, Yelp, industry directories, and data aggregators. When the address on your site says "Suite 100" but your GBP listing says "Ste. 100" and your Yelp listing omits the suite entirely, the entity matching algorithm flags the inconsistency.
+NAP (Name, Address, Phone) consistency is a foundational local SEO signal, and it matters even more for AI visibility. AI engines cross-reference business information across multiple sources: your website, Google Business Profile, Yelp, industry directories, and data aggregators. When the address on your site says "Suite 100" but your GBP listing says "Ste. 100" and your Yelp listing omits the suite entirely, the entity matching algorithm flags the inconsistency.
 
 Inconsistent NAP lowers the AI engine's confidence that these are all the same business, which can suppress local AI citations even when your overall signal strength is high.
 
-**The fix:** Run a citation audit using a tool like [Moz Local](https://moz.com/products/local) or BrightLocal to surface every directory listing for your business. Standardize the exact formatting of your name, address, and phone number, down to punctuation and abbreviation conventions, and update every listing to match. Then update your `LocalBusiness` schema to reflect the canonical version.
+**The fix:** Run a citation audit using a tool like [Moz Local](https://moz.com/products/local) or BrightLocal to surface every directory listing for your business. Standardize the exact formatting of your name, address, and phone number (down to punctuation and abbreviation conventions) and update every listing to match. Then update your `LocalBusiness` schema to reflect the canonical version.
 
 ## Mistake 10: No structured data on any page type
 
@@ -209,17 +209,17 @@ Structured data is not optional for competitive AI SEO. It is the primary mechan
 
 There is a meaningful difference between content that describes expertise and content that demonstrates it. "We have deep expertise in tax compliance for technology companies" is a description. "Here is a breakdown of how the R&D tax credit applies to software development costs under IRC Section 41, including the three qualification tests and a worked example from a SaaS company" is a demonstration.
 
-AI engines, trained on vast corpora of expert text, can distinguish between surface-level description and genuine domain knowledge. Descriptive content gets lower trust scores. Demonstrative content, with specifics, nuance, and original insight, earns citations because it is the kind of content AI engines want to cite.
+AI engines (trained on vast corpora of expert text) can distinguish between surface-level description and genuine domain knowledge. Descriptive content gets lower trust scores. Demonstrative content, with specifics, nuance, and original insight, earns citations because it is the kind of content AI engines want to cite.
 
 **The fix:** For each important page, identify the single claim you most want users to trust. Then ask: what is the evidence? Replace the assertion with the evidence. Add original data from your own work, a worked example, a case study with specific numbers, or a test you ran and the results you got. This is the shift from generic content to E-E-A-T content that the [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) guide addresses.
 
 ## Mistake 12: Outdated content with stale dates on AI-critical pages
 
-AI engines weight recency for time-sensitive queries. A guide with a 2021 publication date and no update timestamp looks unreliable for questions about a fast-changing landscape. AI systems use publication and modification dates, available both in the page's visible text and in `Article` schema's `dateModified` field, to assess whether content reflects the current state of a topic.
+AI engines weight recency for time-sensitive queries. A guide with a 2021 publication date and no update timestamp looks unreliable for questions about a fast-changing landscape. AI systems use publication and modification dates (available both in the page's visible text and in `Article` schema's `dateModified` field) to assess whether content reflects the current state of a topic.
 
 Stale dates do not just reduce citation probability. They actively signal that the content may be wrong.
 
-**The fix:** Add a visible "Last reviewed" or "Last updated" date to every page that targets time-sensitive queries. Perform a substantive review, not just a date change, and actually update any data, statistics, or recommendations that have changed. Update the `dateModified` field in your `Article` schema to match. Schedule annual reviews for evergreen content and quarterly reviews for content in fast-moving topic areas.
+**The fix:** Add a visible "Last reviewed" or "Last updated" date to every page that targets time-sensitive queries. Perform a substantive review (not just a date change) and actually update any data, statistics, or recommendations that have changed. Update the `dateModified` field in your `Article` schema to match. Schedule annual reviews for evergreen content and quarterly reviews for content in fast-moving topic areas.
 
 ## Putting the fixes together
 

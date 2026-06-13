@@ -144,7 +144,7 @@ Review and AggregateRating are not limited to one entity type. Schema.org allows
 
 **Product** is the most common parent type for e-commerce and software review pages. A product with AggregateRating is eligible for Google's review snippet rich results and AI citation in product recommendation queries.
 
-**LocalBusiness**, and its subtypes Restaurant, Hotel, MedicalBusiness, LegalService, and others, supports AggregateRating for business ratings. A restaurant with AggregateRating schema on its own website gives AI engines first-party rating data that supplements what is available from third-party platforms.
+**LocalBusiness** (and its subtypes Restaurant, Hotel, MedicalBusiness, LegalService, and others) supports AggregateRating for business ratings. A restaurant with AggregateRating schema on its own website gives AI engines first-party rating data that supplements what is available from third-party platforms.
 
 **Service** covers professional service offerings. A consulting firm, design agency, or SaaS product can use Service with AggregateRating to mark up client ratings. This is particularly valuable for [E-E-A-T in the AI era](/blog/eeat-in-the-ai-era/) because it establishes trust signals on the entity's own domain rather than relying entirely on external review platforms.
 
@@ -154,7 +154,7 @@ The critical rule: the `@type` of the parent entity must accurately reflect what
 
 ## Combining AggregateRating with LocalBusiness schema
 
-Local businesses have a specific opportunity with AggregateRating schema because they operate in a query category, "best [business type] in [location]", where AI engines frequently make recommendation-style citations that directly reflect rating quality. Implementing AggregateRating within a complete LocalBusiness schema block is the most impactful single schema action a local business can take for AI search visibility.
+Local businesses have a specific opportunity with AggregateRating schema because they operate in a query category ("best [business type] in [location]") where AI engines frequently make recommendation-style citations that directly reflect rating quality. Implementing AggregateRating within a complete LocalBusiness schema block is the most impactful single schema action a local business can take for AI search visibility.
 
 A complete LocalBusiness schema block with AggregateRating:
 
@@ -224,9 +224,9 @@ Many businesses aggregate reviews from Google Business Profile, Yelp, Trustpilot
 
 You may include AggregateRating values that reflect ratings from a third-party platform **if you clearly indicate the source platform** and the rating is current and accurate. Some schema implementations include a `reviewAspect` or descriptive name property to attribute the source. The rating value must match what is actually on the third-party platform.
 
-You may not import individual review text from third-party platforms and mark it up as `Review` schema on your own domain without appropriate licensing from the platform. Most major review platforms, Google, Yelp, Trustpilot, have terms of service that govern whether and how review text can be reproduced. Using their review text in your schema without authorization violates both platform terms and Google's review markup policies.
+You may not import individual review text from third-party platforms and mark it up as `Review` schema on your own domain without appropriate licensing from the platform. Most major review platforms (Google, Yelp, Trustpilot) have terms of service that govern whether and how review text can be reproduced. Using their review text in your schema without authorization violates both platform terms and Google's review markup policies.
 
-The safest approach for most businesses: use AggregateRating to reflect your own platform's natively collected reviews, and if you want to reference third-party rating data, do so in visible page text rather than in schema markup. For businesses using a first-party review collection system, forms, post-purchase surveys, app-native reviews, those reviews can be marked up in full Review schema, provided the collection process was not manipulative and the reviews are authentic.
+The safest approach for most businesses: use AggregateRating to reflect your own platform's natively collected reviews, and if you want to reference third-party rating data, do so in visible page text rather than in schema markup. For businesses using a first-party review collection system (forms, post-purchase surveys, app-native reviews) those reviews can be marked up in full Review schema, provided the collection process was not manipulative and the reviews are authentic.
 
 ## How AI engines use aggregate ratings as trust signals
 
@@ -236,11 +236,11 @@ First, AI engines check whether the rating data is structurally coherent. Does `
 
 Second, AI engines weight rating volume heavily. A `ratingValue` of 4.8 from 12 reviews is treated very differently from 4.8 from 1,200 reviews. Volume signals authenticity: it is statistically unlikely that 1,200 independent reviewers would converge on a fake rating in the same way that 12 curated testimonials might. This is why `reviewCount` is arguably more important than `ratingValue` from an AI trust perspective.
 
-Third, recency of the most recent reviews affects the trust signal. If the `review` objects on a page all have `datePublished` values from 2021 and nothing more recent, an AI engine evaluating a query in 2026 may deprioritize that content for recency-sensitive queries about "the best options right now." Including recent individual Review schema entries, even just two or three from the past six months, refreshes the trust signal.
+Third, recency of the most recent reviews affects the trust signal. If the `review` objects on a page all have `datePublished` values from 2021 and nothing more recent, an AI engine evaluating a query in 2026 may deprioritize that content for recency-sensitive queries about "the best options right now." Including recent individual Review schema entries (even just two or three from the past six months) refreshes the trust signal.
 
 Fourth, AI engines integrate on-page review schema with their broader knowledge about the entity. A business with strong AggregateRating schema, a fully realized LocalBusiness entity, and matching presence on authoritative third-party platforms (consistent NAP data, claimed Google Business Profile, Trustpilot profile) presents a corroborated trust picture that a business with schema alone cannot match. This is the "corroboration across sources" principle that the [AI SEO audit checklist](/blog/ai-seo-audit-checklist/) evaluates as part of a comprehensive AI visibility review.
 
-The practical implication: AggregateRating schema is most powerful when it is one element in a coherent trust signal system, not a standalone tactic. The [AI SEO Shift framework](/ai-seo-shift/) covers how these signals, structured data accuracy, entity coherence, review volume and recency, and domain authority, interact to determine which entities get cited in AI-generated recommendations.
+The practical implication: AggregateRating schema is most powerful when it is one element in a coherent trust signal system, not a standalone tactic. The [AI SEO Shift framework](/ai-seo-shift/) covers how these signals (structured data accuracy, entity coherence, review volume and recency, and domain authority) interact to determine which entities get cited in AI-generated recommendations.
 
 For a complete view of how structured data strategy fits into a broader AI citation approach, [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) and the [HowTo schema guide](/blog/howto-schema-for-ai-search/) provide complementary implementation depth.
 
@@ -252,7 +252,7 @@ Yes, AggregateRating schema is one of the primary triggers for Google's review s
 
 **Can I add AggregateRating schema to a page that collects reviews via a third-party widget?**
 
-Yes, with conditions. If the widget renders reviews in the page's HTML source, so that the review text and ratings are present in the DOM that crawlers see, you can mark up AggregateRating based on those reviews. If the widget loads reviews dynamically via JavaScript after the initial page render, the reviews may not be crawled, and the schema would not be backed by crawlable review content. Server-side rendering or static rendering of review widgets is necessary for schema to be accurate and verifiable.
+Yes, with conditions. If the widget renders reviews in the page's HTML source (so that the review text and ratings are present in the DOM that crawlers see) you can mark up AggregateRating based on those reviews. If the widget loads reviews dynamically via JavaScript after the initial page render, the reviews may not be crawled, and the schema would not be backed by crawlable review content. Server-side rendering or static rendering of review widgets is necessary for schema to be accurate and verifiable.
 
 **How many individual Review schema entries should I include on a product or business page?**
 
@@ -268,7 +268,7 @@ Yes, Service and ProfessionalService entity types fully support AggregateRating 
 
 **Is it safe to mark up reviews collected through email surveys or post-service feedback forms?**
 
-Reviews collected through direct feedback channels, post-service email surveys, in-app feedback prompts, post-purchase forms, can be marked up with Review schema provided: the feedback was genuinely voluntary (not incentivized in a way that inflates ratings), the reviewer is a real customer who received the product or service, the review content is authentic and unedited, and you retain the data showing the review's origin. Fabricated or heavily curated reviews from internal forms are a policy violation regardless of the collection mechanism. The test is authenticity, not the channel through which the feedback was gathered.
+Reviews collected through direct feedback channels (post-service email surveys, in-app feedback prompts, post-purchase forms) can be marked up with Review schema provided: the feedback was genuinely voluntary (not incentivized in a way that inflates ratings), the reviewer is a real customer who received the product or service, the review content is authentic and unedited, and you retain the data showing the review's origin. Fabricated or heavily curated reviews from internal forms are a policy violation regardless of the collection mechanism. The test is authenticity, not the channel through which the feedback was gathered.
 
 <script type="application/ld+json">{`
 {
@@ -288,7 +288,7 @@ Reviews collected through direct feedback channels, post-service email surveys, 
       "name": "Can I add AggregateRating schema to a page that collects reviews via a third-party widget?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, with conditions. If the widget renders reviews in the page's HTML source, so that the review text and ratings are present in the DOM that crawlers see, you can mark up AggregateRating based on those reviews. If the widget loads reviews dynamically via JavaScript after the initial page render, the reviews may not be crawled, and the schema would not be backed by crawlable review content. Server-side rendering or static rendering of review widgets is necessary for schema to be accurate and verifiable."
+        "text": "Yes, with conditions. If the widget renders reviews in the page's HTML source (so that the review text and ratings are present in the DOM that crawlers see) you can mark up AggregateRating based on those reviews. If the widget loads reviews dynamically via JavaScript after the initial page render, the reviews may not be crawled, and the schema would not be backed by crawlable review content. Server-side rendering or static rendering of review widgets is necessary for schema to be accurate and verifiable."
       }
     },
     {
@@ -320,7 +320,7 @@ Reviews collected through direct feedback channels, post-service email surveys, 
       "name": "Is it safe to mark up reviews collected through email surveys or post-service feedback forms?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Reviews collected through direct feedback channels, post-service email surveys, in-app feedback prompts, post-purchase forms, can be marked up with Review schema provided the feedback was genuinely voluntary, the reviewer is a real customer who received the product or service, the review content is authentic and unedited, and you retain the data showing the review's origin. Fabricated or heavily curated reviews from internal forms are a policy violation regardless of the collection mechanism. The test is authenticity, not the channel through which the feedback was gathered."
+        "text": "Reviews collected through direct feedback channels (post-service email surveys, in-app feedback prompts, post-purchase forms) can be marked up with Review schema provided the feedback was genuinely voluntary, the reviewer is a real customer who received the product or service, the review content is authentic and unedited, and you retain the data showing the review's origin. Fabricated or heavily curated reviews from internal forms are a policy violation regardless of the collection mechanism. The test is authenticity, not the channel through which the feedback was gathered."
       }
     }
   ]

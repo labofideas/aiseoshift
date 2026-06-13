@@ -43,7 +43,7 @@ Standard reporting fails AI SEO because the attribution chain is broken in three
 
 **The zero-click break.** When a user asks Google "best accounting software for small business" and the AI Overview answers that question with a paragraph citing your client's review page, the user reads the answer and leaves. Your client's page received an impression in the AI surface, influenced a purchasing decision, and generated zero sessions in Google Analytics. The old report marks this as nothing. The new report marks it as a visibility win.
 
-**The dark traffic break.** A user reads a Perplexity answer that recommends your client's service. Three days later, they search your client's brand name directly or type the URL from memory. GA4 attributes that session to direct or branded organic. The actual driver, an AI citation, is invisible. Branded search volume growth is the only proxy that captures this dynamic at scale.
+**The dark traffic break.** A user reads a Perplexity answer that recommends your client's service. Three days later, they search your client's brand name directly or type the URL from memory. GA4 attributes that session to direct or branded organic. The actual driver (an AI citation) is invisible. Branded search volume growth is the only proxy that captures this dynamic at scale.
 
 **The last-touch distortion.** GA4 default attribution models assign conversion credit to the final touchpoint before purchase. When AI search built brand awareness five sessions before the email click that triggered checkout, the email gets full credit. Adjusting to data-driven attribution and analyzing assisted conversions surfaces the AI-search contribution that last-touch models erase.
 
@@ -69,7 +69,7 @@ Month-over-month AI Overviews impressions, plus a trendline. If impressions are 
 
 Brand search volume is the single most important proxy metric for AI SEO impact that most reporting frameworks ignore entirely.
 
-Here is how it works. When an AI system cites your client's brand or content, in a ChatGPT response, a Perplexity answer, a Google AI Overview, many users do not click. They read the answer, close the interface, and go on with their day. But the brand name is now in their head. When a purchase decision comes up later, they search the brand directly. That branded search is the fingerprint of an AI citation that produced no click.
+Here is how it works. When an AI system cites your client's brand or content (in a ChatGPT response, a Perplexity answer, a Google AI Overview) many users do not click. They read the answer, close the interface, and go on with their day. But the brand name is now in their head. When a purchase decision comes up later, they search the brand directly. That branded search is the fingerprint of an AI citation that produced no click.
 
 **How to pull the data:**
 
@@ -79,7 +79,7 @@ Use Google Search Console filtered to branded queries (your client's brand name 
 
 Branded organic impressions and branded direct sessions growing at the same time that non-branded organic traffic is flat or declining is the signature of healthy AI SEO at work. The AI surfaces are building awareness. The brand search is the proof. Report this side-by-side: here is what AI Overviews impressions are doing, here is what branded search is doing, here is the correlation.
 
-**The client conversation:** Frame this for clients as the difference between renting attention and building recognition. Non-branded traffic is rented, it lasts only as long as rankings hold. Brand search growth is owned, it is evidence of people actively seeking your client by name, often because an AI system put that name in front of them first.
+**The client conversation:** Frame this for clients as the difference between renting attention and building recognition. Non-branded traffic is rented (it lasts only as long as rankings hold. Brand search growth is owned) it is evidence of people actively seeking your client by name, often because an AI system put that name in front of them first.
 
 ## Metric 3: Citation monitoring, manual and tool-based
 
@@ -113,7 +113,7 @@ Going forward, GA4 will route sessions from these sources into the AI Search cha
 
 **Assisted conversion analysis:**
 
-For the broader attribution picture, capturing AI search's role in multi-session journeys, use GA4's Conversion Paths report (under Advertising). Filter by AI Search channel appearance at any touchpoint. This shows conversions where AI search appeared somewhere in the journey, even when it was not the final click. Month-over-month growth in AI-assisted conversions is the most compelling ROI signal you can put in a client report.
+For the broader attribution picture (capturing AI search's role in multi-session journeys) use GA4's Conversion Paths report (under Advertising). Filter by AI Search channel appearance at any touchpoint. This shows conversions where AI search appeared somewhere in the journey, even when it was not the final click. Month-over-month growth in AI-assisted conversions is the most compelling ROI signal you can put in a client report.
 
 For a deeper look at how GA4 configuration supports AI SEO measurement, [AI SEO dashboard setup](/blog/ai-seo-dashboard-setup/) covers the full analytics stack. For understanding how to model the ROI these conversions contribute to, [the ROI of AI SEO](/blog/roi-of-ai-seo/) provides the valuation framework.
 

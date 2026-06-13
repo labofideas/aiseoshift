@@ -26,7 +26,7 @@ For the foundational case for structured data in AI search, see the [schema mark
 
 ## Why AI engines depend on Event schema
 
-AI engines face a structural problem with event pages. Event information, dates, venues, ticket prices, cancellation status, changes frequently and must be extracted with precision. Natural language parsing of HTML is error-prone for time-sensitive data. A model that misreads "June 17" as "July 17" or extracts an outdated ticket price causes a bad user experience that gets attributed to the AI system, not the source page.
+AI engines face a structural problem with event pages. Event information (dates, venues, ticket prices, cancellation status) changes frequently and must be extracted with precision. Natural language parsing of HTML is error-prone for time-sensitive data. A model that misreads "June 17" as "July 17" or extracts an outdated ticket price causes a bad user experience that gets attributed to the AI system, not the source page.
 
 Event schema solves this by delivering the data in a machine-readable format that AI engines can parse without ambiguity. The `startDate`, `endDate`, `location`, and `offers` fields are explicit. There is no inference required. AI systems that use Event schema data can surface accurate, up-to-date event information with high confidence, which means they do use it, and do not consistently fall back on natural language extraction when structured data is available.
 
@@ -207,7 +207,7 @@ The location array approach for hybrid events ensures that both local "events ne
 
 ## Recurring events and EventSeries
 
-Recurring events, weekly workshops, monthly meetups, annual conferences, present a specific schema challenge. You have two options: mark up each individual instance, or use `EventSeries` to represent the recurring program.
+Recurring events (weekly workshops, monthly meetups, annual conferences) present a specific schema challenge. You have two options: mark up each individual instance, or use `EventSeries` to represent the recurring program.
 
 For a weekly class with a consistent schedule, marking up each instance individually creates the most precise data for AI engines. Each occurrence gets its own `startDate`, `endDate`, and `offers`, which means AI can accurately answer "yoga class this Tuesday at 6pm" queries.
 
@@ -452,11 +452,11 @@ Yes. Webinars with a defined start time and registration should use Event schema
 
 ### Should each recurring event instance have its own page?
 
-For maximum AI visibility, yes. Individual instance pages with their own Event schema, each with a specific date, registration link, and available offers, are significantly more surfaceable for date-specific queries than a single series page. A single series page is acceptable for resources-constrained situations, but the tradeoff is reduced precision in AI discovery for specific occurrence queries.
+For maximum AI visibility, yes. Individual instance pages with their own Event schema (each with a specific date, registration link, and available offers) are significantly more surfaceable for date-specific queries than a single series page. A single series page is acceptable for resources-constrained situations, but the tradeoff is reduced precision in AI discovery for specific occurrence queries.
 
 ### How does Event schema interact with LocalBusiness schema on a venue page?
 
-They complement each other strongly. `LocalBusiness` schema on a venue page establishes the entity and earns venue-specific query appearances. Individual `Event` schema blocks on the same page or on dedicated event detail pages, linked via `@id` references, layer in event-specific discovery. Venues that implement both see AI citation in two distinct query categories: "event venues near [city]" and "[specific event type] events near [city]." The `@graph` pattern with `@id` references is the correct way to connect the two.
+They complement each other strongly. `LocalBusiness` schema on a venue page establishes the entity and earns venue-specific query appearances. Individual `Event` schema blocks on the same page or on dedicated event detail pages (linked via `@id` references) layer in event-specific discovery. Venues that implement both see AI citation in two distinct query categories: "event venues near [city]" and "[specific event type] events near [city]." The `@graph` pattern with `@id` references is the correct way to connect the two.
 
 <script type="application/ld+json">{`
 {
@@ -500,7 +500,7 @@ They complement each other strongly. `LocalBusiness` schema on a venue page esta
       "name": "Should each recurring event instance have its own page?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For maximum AI visibility, yes. Individual instance pages with their own Event schema, each with a specific date, registration link, and available offers, are significantly more surfaceable for date-specific queries than a single series page. A single series page is acceptable for resources-constrained situations, but the tradeoff is reduced precision in AI discovery for specific occurrence queries."
+        "text": "For maximum AI visibility, yes. Individual instance pages with their own Event schema (each with a specific date, registration link, and available offers) are significantly more surfaceable for date-specific queries than a single series page. A single series page is acceptable for resources-constrained situations, but the tradeoff is reduced precision in AI discovery for specific occurrence queries."
       }
     },
     {
@@ -508,7 +508,7 @@ They complement each other strongly. `LocalBusiness` schema on a venue page esta
       "name": "How does Event schema interact with LocalBusiness schema on a venue page?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "They complement each other strongly. LocalBusiness schema on a venue page establishes the entity and earns venue-specific query appearances. Individual Event schema blocks on the same page or on dedicated event detail pages, linked via @id references, layer in event-specific discovery. Venues that implement both see AI citation in two distinct query categories: event venues near a city and specific event type events near a city. The @graph pattern with @id references is the correct way to connect the two."
+        "text": "They complement each other strongly. LocalBusiness schema on a venue page establishes the entity and earns venue-specific query appearances. Individual Event schema blocks on the same page or on dedicated event detail pages (linked via @id references) layer in event-specific discovery. Venues that implement both see AI citation in two distinct query categories: event venues near a city and specific event type events near a city. The @graph pattern with @id references is the correct way to connect the two."
       }
     }
   ]
