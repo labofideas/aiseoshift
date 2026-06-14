@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
@@ -13,6 +14,11 @@ import {
 
 const canonical = new URL('/glossary/', SITE_URL).toString();
 const pubDate = new Date('2026-05-26');
+
+// In-depth term pages (content collection), each rendered as its own subpage.
+const deepTerms = (await getCollection('glossary', ({ data }) => !data.draft)).sort((a, b) =>
+	a.data.term.localeCompare(b.data.term)
+);
 
 type Term = {
 	id: string;
@@ -77,7 +83,7 @@ const terms: Term[] = [
 		term: 'Generative Engine Optimization',
 		abbreviation: 'GEO',
 		definition:
-			'The practice of optimizing web content so generative AI search experiences — Google AI Overviews, Gemini, Search Generative Experience — synthesize answers from your content. Where AEO is about earning a citation, GEO is about being the substrate the generative engine builds its answer from.',
+			'The practice of optimizing web content so generative AI search experiences (Google AI Overviews, Gemini, Search Generative Experience) synthesize answers from your content. Where AEO is about earning a citation, GEO is about being the substrate the generative engine builds its answer from.',
 		link: '/geo/',
 	},
 	{
@@ -117,7 +123,7 @@ const terms: Term[] = [
 		id: 'speakable',
 		term: 'Speakable Schema',
 		definition:
-			'A schema.org type (SpeakableSpecification) that marks specific page sections as appropriate for voice or audio reading by AI assistants. Useful for TL;DR blocks and definition paragraphs — signals to Google Assistant and similar systems which content to read aloud.',
+			'A schema.org type (SpeakableSpecification) that marks specific page sections as appropriate for voice or audio reading by AI assistants. Useful for TL;DR blocks and definition paragraphs, signaling to Google Assistant and similar systems which content to read aloud.',
 	},
 	{
 		id: 'topic-cluster',
@@ -183,8 +189,8 @@ const articleSchema = {
 <html lang="en">
 	<head>
 		<BaseHead
-			title={`AI SEO Glossary: AEO, GEO, AI Overviews and More | ${SITE_TITLE}`}
-			description="Concise definitions of the 16 terms that matter for AI search in 2026 — AEO, GEO, AI Overviews, schema, E-E-A-T, llms.txt, and more. Built for fast extraction by AI answer engines."
+			title={`SEO and Digital Marketing Glossary | ${SITE_TITLE}`}
+			description="Clear definitions of the SEO and digital marketing terms every practitioner should know, from backlinks and Core Web Vitals to AEO, GEO, and AI Overviews. In-depth term guides plus quick definitions."
 			canonical={canonical}
 			ogType="article"
 			publishedTime={pubDate.toISOString()}
@@ -257,6 +263,79 @@ const articleSchema = {
 			.glossary-index a:hover {
 				color: var(--signal-deep);
 				border-color: var(--signal);
+			}
+
+			.glossary-deep {
+				padding: var(--space-6) 0;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.glossary-deep-head h2 {
+				font-size: clamp(1.5rem, 2.6vw, 2rem);
+				letter-spacing: -0.02em;
+				font-weight: 600;
+				margin: 0;
+			}
+
+			.glossary-deep-head p {
+				margin: var(--space-2) 0 var(--space-5);
+				color: rgba(var(--ink), 0.72);
+				font-size: 1rem;
+				max-width: var(--measure);
+			}
+
+			.glossary-deep-grid {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+				gap: var(--space-4);
+			}
+
+			.glossary-deep-grid a {
+				display: flex;
+				flex-direction: column;
+				gap: 0.35rem;
+				height: 100%;
+				padding: var(--space-4);
+				border: 1px solid var(--line-strong);
+				border-radius: 8px;
+				background: rgb(var(--paper));
+				text-decoration: none;
+				color: rgb(var(--ink));
+				transition: border-color 0.15s ease;
+			}
+
+			.glossary-deep-grid a:hover {
+				border-color: var(--signal);
+			}
+
+			.glossary-deep-cat {
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--signal-deep);
+			}
+
+			.glossary-deep-term {
+				font-family: 'Iowan Old Style', Georgia, serif;
+				font-size: 1.15rem;
+				font-weight: 600;
+				letter-spacing: -0.015em;
+			}
+
+			.glossary-deep-abbr {
+				font-style: italic;
+				font-weight: 400;
+				color: var(--ink-muted);
+			}
+
+			.glossary-deep-sum {
+				font-size: 0.88rem;
+				line-height: 1.5;
+				color: rgba(var(--ink), 0.72);
 			}
 
 			.glossary-list {
@@ -379,13 +458,14 @@ const articleSchema = {
 			<section class="glossary-hero">
 				<div>
 					<p class="kicker">AISEOShift · Reference</p>
-					<h1>AI SEO Glossary.</h1>
+					<h1>SEO and Marketing Glossary.</h1>
 				</div>
 				<div class="glossary-hero-lede">
 					<p>
-						Concise definitions of the 16 terms that matter most for AI search in 2026.
-						Each entry is short on purpose — built to be quoted verbatim by AI answer engines
-						and to give human readers a fast mental model.
+						The terms every SEO and digital marketer should know, from classical
+						fundamentals to the vocabulary of AI search. In-depth guides explain the
+						core terms on their own pages, and quick definitions cover the rest,
+						written to be quoted verbatim by AI answer engines.
 					</p>
 					<a class="glossary-author" href={AUTHOR_PROFILE_URL} rel="author">
 						<img src={AUTHOR_IMAGE} alt={AUTHOR_NAME} width="40" height="40" />
@@ -396,6 +476,26 @@ const articleSchema = {
 					</a>
 				</div>
 			</section>
+
+			{deepTerms.length > 0 && (
+				<section class="glossary-deep" aria-label="In-depth term guides">
+					<div class="glossary-deep-head">
+						<h2>In-depth guides</h2>
+						<p>Full explanations of the core SEO and digital-marketing terms, each on its own page with examples and related terms.</p>
+					</div>
+					<ul class="glossary-deep-grid">
+						{deepTerms.map((t) => (
+							<li>
+								<a href={`/glossary/${t.id}/`}>
+									<span class="glossary-deep-cat">{t.data.category}</span>
+									<span class="glossary-deep-term">{t.data.term}{t.data.abbreviation && <span class="glossary-deep-abbr"> ({t.data.abbreviation})</span>}</span>
+									<span class="glossary-deep-sum">{t.data.summary}</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			)}
 
 			<nav class="glossary-index" aria-label="Glossary index">
 				{terms.map((t) => (

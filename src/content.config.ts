@@ -33,4 +33,19 @@ const guide = defineCollection({
 		}),
 });
 
-export const collections = { blog, guide };
+const glossary = defineCollection({
+	loader: glob({ base: './src/content/glossary', pattern: '**/*.{md,mdx}' }),
+	schema: () =>
+		z.object({
+			term: z.string(),
+			abbreviation: z.string().optional(),
+			category: z.string(),
+			summary: z.string(),
+			related: z.array(z.string()).default([]),
+			pubDate: z.coerce.date(),
+			updatedDate: z.coerce.date().optional(),
+			draft: z.boolean().default(false),
+		}),
+});
+
+export const collections = { blog, guide, glossary };
