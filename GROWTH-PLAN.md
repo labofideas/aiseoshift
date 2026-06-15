@@ -90,5 +90,13 @@ once, commits in logical groups, pushes, and updates the log.
 ## Progress log
 
 - 2026-06-15: Plan created. 13 new tool roundups + FAQ schema on 6
-  striking-distance pages shipped earlier in the day. Next: /best-ai-tools/
-  hub + cluster cross-linking.
+  striking-distance pages shipped earlier in the day.
+- 2026-06-15: Built /best-ai-tools/ hub (51 roundups, 7 categories) and
+  /ai-seo-by-industry/ hub (48 vertical playbooks, 6 sectors), both
+  collection-driven with CollectionPage + ItemList + BreadcrumbList schema.
+  Linked both sitewide from the footer. Added a category-aware cluster-hub
+  callout in the blog layout so every Tooling post links to /best-ai-tools/
+  and every Playbooks post links to /ai-seo-by-industry/. Post-to-post
+  linking already handled by the layout's "Continue Reading" module.
+  Next: refresh remaining striking-distance pages; glossary -> money-page
+  anchors; off-site authority target list. Re-share GSC to re-prioritize.

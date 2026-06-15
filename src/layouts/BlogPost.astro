@@ -32,6 +32,13 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).toString();
+
+// Cluster hub link by category, so each post points back to its hub.
+const clusterHub = ({
+	Tooling: { href: '/best-ai-tools/', label: 'Browse all AI tool guides' },
+	Playbooks: { href: '/ai-seo-by-industry/', label: 'See AI SEO playbooks by industry' },
+} as Record<string, { href: string; label: string }>)[category];
+
 const readTime = Math.max(3, Math.round((description.length + deck.length + title.length + tags.join(' ').length * 30) / 180));
 const tocHeadings = headings.filter((h) => h.depth <= 3 && h.text !== 'Related reading' && h.text !== 'References');
 
@@ -406,6 +413,30 @@ const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articl
 			}
 
 			/* ── Related Posts ── */
+			.cluster-hub-wrap {
+				width: min(var(--measure-wide, 720px), calc(100% - 2rem));
+				margin: var(--space-6) auto 0;
+			}
+
+			.cluster-hub {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				padding: 0.7rem 1.1rem;
+				border: 1px solid var(--line-strong);
+				border-radius: 999px;
+				background: rgb(var(--paper));
+				color: rgb(var(--ink));
+				text-decoration: none;
+				font-size: 0.9rem;
+				font-weight: 600;
+			}
+
+			.cluster-hub:hover {
+				border-color: var(--signal);
+				color: var(--signal-deep);
+			}
+
 			.related-section {
 				width: min(1240px, calc(100% - 2rem));
 				margin: 0 auto;
@@ -590,6 +621,12 @@ const structuredData = itemListSchema ? [articleSchema, itemListSchema] : articl
 				</div>
 			</article>
 		</main>
+
+		{clusterHub && (
+			<div class="cluster-hub-wrap">
+				<a class="cluster-hub" href={clusterHub.href}>{clusterHub.label} &rarr;</a>
+			</div>
+		)}
 
 		{relatedPosts.length > 0 && (
 			<section class="related-section" aria-label="Related articles">
