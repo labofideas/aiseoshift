@@ -1,0 +1,135 @@
+---
+title: "Google Dropped FAQ Rich Results: Why FAQ Schema Still Matters"
+description: Google deprecated FAQ rich results in May 2026 and is removing the Search Console reports. The markup still helps AI engines extract answers. Here is what changed and what to do.
+deck: The blue FAQ dropdowns are gone from Google results. FAQPage schema is not. The reason to keep it just changed.
+pubDate: 2026-06-16
+category: Strategy
+tags:
+  - FAQ schema
+  - structured data
+  - AI search
+  - schema markup
+author: Shashank Dubey
+featured: false
+---
+
+import InlineEditorialImage from '../../components/InlineEditorialImage.astro';
+
+The FAQ dropdowns that used to expand under search results are gone. On May 7, 2026, Google stopped showing FAQ rich results, and the reporting around them is being dismantled over the following months.
+
+If you spent the last few years adding FAQPage schema to win those expandable answers, the payoff you were chasing no longer exists. That does not mean the markup was a waste, and it does not mean you should rip it out. The reason to keep FAQ schema simply moved from one place to another.
+
+Here is what actually happened and what to do about it.
+
+## What Google removed, and when
+
+Google is retiring the feature in three stages, not one.
+
+**May 7, 2026.** FAQ rich results stopped appearing in search. The expandable question-and-answer block no longer shows under any result.
+
+**June 2026.** The FAQ search appearance, the rich result report in Search Console, and FAQ support in the Rich Results Test are removed. You can no longer test or monitor the feature, because the feature is gone.
+
+**August 2026.** Support for FAQ rich results in the Search Console API is removed, closing out the last reporting surface.
+
+One distinction matters more than any of these dates. Google deprecated the rich result, not the markup. `FAQPage` is still a valid Schema.org type. Your existing JSON-LD does not throw errors, does not violate any policy, and does not need to be deleted. It just no longer produces a visible feature in Google's results.
+
+## This was years in the making
+
+The deprecation is not a surprise if you watched the trend.
+
+Google first pulled back on FAQ rich results in 2023. In August of that year it limited them to "well-known, authoritative government and health websites," which removed the feature for almost everyone overnight. Most sites lost their FAQ dropdowns then. The May 2026 change finishes the job for the remaining sites and shuts down the reporting.
+
+So for the majority of site owners, nothing visible changed in May 2026. The blue dropdowns had already been gone for nearly three years. What changed is the official status: the feature is now fully retired rather than quietly restricted.
+
+## FAQ schema still earns its place
+
+Rich results were never the only reason structured Q&A content mattered. They were the visible reason. The invisible one is now the important one.
+
+AI answer engines lean on question-and-answer structure heavily. When ChatGPT, Perplexity, or a Google AI Overview assembles a response, it looks for clean, extractable units of meaning, and a question paired with a direct answer is exactly that. Research on AI citations in 2026 found that a large share of cited text comes from tightly scoped, answer-shaped passages rather than long unbroken prose.
+
+FAQPage markup hands those engines a labeled map of your Q&A content. It tells a machine "this string is a question, this string is its answer" without making the system infer that structure from your HTML. The markup that used to earn a SERP dropdown now earns cleaner extraction by the systems that increasingly sit between your page and the searcher.
+
+For the strategic frame behind this shift, see [what AI visibility is](/blog/what-is-ai-visibility/) and the [AI SEO Shift pillar](/ai-seo-shift/).
+
+## What to do now
+
+Keep the markup. Removing valid `FAQPage` schema gains you nothing and costs you the extraction benefit. Leave it in place on pages where the Q&A is genuine.
+
+Stop optimizing for the rich result. Do not write FAQ sections purely to trigger a feature that no longer fires. If a question section existed only to game the dropdown, that incentive is gone, and stuffing thin Q&A onto pages to chase it was never a good idea anyway.
+
+Write FAQ sections that answer real questions. A useful question with a direct, self-contained answer helps a human reader and gives an AI engine a quotable unit. A padded list of keyword-variant questions helps neither.
+
+Reallocate the monitoring effort. The Search Console FAQ report is going away, so there is nothing left to track there. Shift that attention to AI citation tracking, where your Q&A content now does its work. The [guide to getting cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) covers what to measure instead.
+
+Keep your other schema types healthy. `Article`, `Organization`, `Product`, and `HowTo` are unaffected. For the full picture, the [schema markup guide](/seo/schema-markup/) and the [step-by-step implementation guide](/blog/how-to-implement-schema-markup/) still apply.
+
+## The pattern worth noticing
+
+FAQ rich results are one data point in a larger move. Google keeps trimming visible SERP features while AI-generated answers take over more of the result page. The value of structured data is migrating with it, away from "earn a visual feature" and toward "be machine-readable for the system writing the answer."
+
+That reframes how you should think about every schema decision. The question is no longer "will this produce a rich result." Google answers fewer and fewer queries with those. The question is "does this make my content easier for an answer engine to parse, trust, and quote." FAQ schema still passes that test. It just stopped passing the old one.
+
+## FAQs
+
+### Should I remove FAQPage schema from my site now?
+
+No. `FAQPage` is still a valid Schema.org type and breaks nothing. Removing it costs you the extraction benefit that AI engines get from labeled question-and-answer content, and gains you nothing. Leave it on pages where the Q&A is real.
+
+### Will FAQ schema still help my SEO at all?
+
+Yes, but not through rich results. The benefit moved to AI answer engines, which use the question-and-answer structure to extract and cite content. It no longer produces a visible dropdown in Google search.
+
+### When exactly did FAQ rich results stop working?
+
+FAQ rich results stopped appearing on May 7, 2026. The Search Console report and Rich Results Test support are removed in June 2026, and the Search Console API support is removed in August 2026.
+
+### Does this affect How-To schema too?
+
+This change is specific to FAQ rich results. Google deprecated How-To rich results separately back in 2023. The `HowTo` markup, like `FAQPage`, remains a valid type and still helps AI engines parse procedural content.
+
+## Sources
+
+- [Search Engine Land: Google to no longer support FAQ rich results](https://searchengineland.com/google-to-no-longer-support-faq-rich-results-476957)
+- [Search Engine Journal: Google drops FAQ rich results from search](https://www.searchenginejournal.com/google-drops-faq-rich-results-from-search/574429/)
+- [Google Search Central: documentation updates](https://developers.google.com/search/updates)
+
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should I remove FAQPage schema from my site now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. FAQPage is still a valid Schema.org type and breaks nothing. Removing it costs you the extraction benefit that AI engines get from labeled question-and-answer content, and gains you nothing. Leave it on pages where the Q&A is real."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will FAQ schema still help my SEO at all?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but not through rich results. The benefit moved to AI answer engines, which use the question-and-answer structure to extract and cite content. It no longer produces a visible dropdown in Google search."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When exactly did FAQ rich results stop working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FAQ rich results stopped appearing on May 7, 2026. The Search Console report and Rich Results Test support are removed in June 2026, and the Search Console API support is removed in August 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this affect How-To schema too?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This change is specific to FAQ rich results. Google deprecated How-To rich results separately back in 2023. The HowTo markup, like FAQPage, remains a valid type and still helps AI engines parse procedural content."
+      }
+    }
+  ]
+}
+`}</script>
