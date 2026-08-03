@@ -1673,5 +1673,77 @@
 			"height": 675,
 			"bytes": 16156
 		}
+	},
+	"outsource-link-building-ai-era": {
+		"hero": {
+			"src": "/images/posts/outsource-link-building-ai-era-hero.svg",
+			"alt": "Diagram contrasting paying per link, which produces link counts and no movement, with paying per placement",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/outsource-link-building-ai-era",
+			"width": 1200,
+			"height": 675
+		}
+	},
+	"manufacturing-seo-ai-supplier-shortlists": {
+		"hero": {
+			"src": "/images/posts/manufacturing-seo-ai-supplier-shortlists-hero.svg",
+			"alt": "Diagram showing spec data in a PDF being unreadable versus spec data in HTML reaching the AI supplier shortlist",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/manufacturing-seo-ai-supplier-shortlists",
+			"width": 1200,
+			"height": 675
+		}
+	},
+	"enterprise-seo-audit-ai-era": {
+		"hero": {
+			"src": "/images/posts/enterprise-seo-audit-ai-era-hero.svg",
+			"alt": "Diagram of the four new enterprise audit components: citation share, template defects, AI crawl budget, and durable metrics",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/enterprise-seo-audit-ai-era",
+			"width": 1200,
+			"height": 675
+		}
+	},
+	"what-an-ai-seo-strategist-does": {
+		"hero": {
+			"src": "/images/posts/what-an-ai-seo-strategist-does-hero.svg",
+			"alt": "Diagram of the four parts of the AI SEO strategist role: manual diagnosis, evidence design, engineering specs, and honest measurement",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/what-an-ai-seo-strategist-does",
+			"width": 1200,
+			"height": 675
+		}
+	},
+	"ecommerce-seo-audit-checklist-ai-search": {
+		"hero": {
+			"src": "/images/posts/ecommerce-seo-audit-checklist-ai-search-hero.svg",
+			"alt": "Diagram of the five-layer ecommerce audit order from recommendation testing down to crawl and indexation",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/ecommerce-seo-audit-checklist-ai-search",
+			"width": 1200,
+			"height": 675
+		}
+	},
+	"franchise-multi-location-ai-visibility": {
+		"hero": {
+			"src": "/images/posts/franchise-multi-location-ai-visibility-hero.svg",
+			"alt": "Diagram showing a fragmented multi-location brand versus one coherent entity that reaches every location node",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/franchise-multi-location-ai-visibility",
+			"width": 1200,
+			"height": 675
+		}
 	}
 }

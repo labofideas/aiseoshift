@@ -52,6 +52,62 @@ Do this before the crawl and the crawl gets a priority order it would not otherw
 
 An enterprise site does not have 400 issues. It has about 12 issues, repeated across a few hundred thousand URLs by 20 or so templates.
 
+<figure class="post-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 440" width="820" height="440" role="img" aria-label="Diagram showing a 400-row URL issue list reframed as twelve defects across twenty templates, where fixing one template resolves tens of thousands of URLs">
+  <rect width="820" height="440" fill="rgb(246,245,240)" rx="8"/>
+  <text x="410" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" letter-spacing="2">THE SAME AUDIT, REPORTED TWO WAYS</text>
+
+  <g transform="translate(30 60)">
+    <rect width="330" height="330" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.1"/>
+    <text x="24" y="34" font-family="Georgia, serif" font-size="14" font-weight="700" fill="rgb(14,17,22)" fill-opacity="0.5">URL LIST · UNUSABLE</text>
+    <g font-family="Georgia, serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.45">
+      <text x="24" y="66">/products/a-1129  missing canonical</text>
+      <text x="24" y="88">/products/a-1130  missing canonical</text>
+      <text x="24" y="110">/products/a-1131  missing canonical</text>
+      <text x="24" y="132">/products/a-1132  missing canonical</text>
+      <text x="24" y="154">/products/a-1133  missing canonical</text>
+      <text x="24" y="176">/products/a-1134  missing canonical</text>
+      <text x="24" y="198">/products/a-1135  missing canonical</text>
+      <text x="24" y="220">/products/a-1136  missing canonical</text>
+      <text x="24" y="242" fill-opacity="0.3">…41,992 more rows</text>
+    </g>
+    <line x1="24" y1="266" x2="306" y2="266" stroke="rgb(14,17,22)" stroke-opacity="0.08"/>
+    <text x="24" y="292" font-family="Georgia, serif" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.6">Nobody can schedule this.</text>
+    <text x="24" y="314" font-family="Georgia, serif" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.6">It reads as 42,000 problems.</text>
+  </g>
+
+  <g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+    <path d="M 372 225 L 438 225"/>
+    <polyline points="428,219 438,225 428,231"/>
+  </g>
+
+  <g transform="translate(460 60)">
+    <rect width="330" height="330" rx="6" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5"/>
+    <text x="24" y="34" font-family="Georgia, serif" font-size="14" font-weight="700" fill="rgb(14,17,22)">TEMPLATE VIEW · DECIDABLE</text>
+    <g transform="translate(24 54)">
+      <rect width="282" height="76" rx="4" fill="rgb(246,245,240)"/>
+      <text x="16" y="26" font-family="Georgia, serif" font-size="14" font-weight="700" fill="rgb(14,17,22)">product-detail.tsx</text>
+      <text x="16" y="46" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.65">governs 42,000 URLs · 3 defects</text>
+      <text x="16" y="64" font-family="Georgia, serif" font-size="12" fill="rgb(184,85,46)">one release fixes all of them</text>
+    </g>
+    <g transform="translate(24 142)">
+      <rect width="282" height="60" rx="4" fill="rgb(246,245,240)"/>
+      <text x="16" y="24" font-family="Georgia, serif" font-size="14" font-weight="700" fill="rgb(14,17,22)">category-listing.tsx</text>
+      <text x="16" y="44" font-family="Georgia, serif" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.65">governs 3,100 URLs · 2 defects</text>
+    </g>
+    <g transform="translate(24 214)">
+      <rect width="282" height="60" rx="4" fill="rgb(246,245,240)"/>
+      <text x="16" y="24" font-family="Georgia, serif" font-size="14" font-weight="700" fill="rgb(14,17,22)">legacy-landing (unowned)</text>
+      <text x="16" y="44" font-family="Georgia, serif" font-size="12" fill="rgb(184,85,46)">nobody owns this one. Find out who does.</text>
+    </g>
+    <text x="24" y="300" font-family="Georgia, serif" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.75">12 defects. 20 templates. 3 sprints.</text>
+  </g>
+
+  <text x="410" y="424" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-style="italic" fill="rgb(14,17,22)" fill-opacity="0.6">The fix was never at the URL level. Report it where the fix lives.</text>
+</svg>
+<figcaption>Grouping findings by the template that generates them turns an issue list into a sprint plan.</figcaption>
+</figure>
+
 Issue lists that enumerate URLs are unusable at scale and, worse, they misdirect effort. The fix is never at the URL level. It is in the template, the component, or the CMS field that produces the defect everywhere at once.
 
 So group every finding by the template that generates it and report it that way: this template governs 42,000 URLs, it has these three defects, one release fixes all of them. Now a director can decide whether it is worth a sprint, which is the actual decision being made.

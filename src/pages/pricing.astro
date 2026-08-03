@@ -1,0 +1,393 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO Services',
+		description:
+			'Pricing for AI SEO audits, implementation, and ongoing retainers across local, professional services, industrial, ecommerce, and SaaS categories.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+				{
+					'@type': 'Question',
+					name: 'Why is AI SEO priced like SEO rather than cheaper?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Because most of the work is the same work. Structure, evidence, schema, and technical health serve both scoreboards. The genuinely new part, citation testing and evidence design, adds effort rather than removing it. Anyone pricing AI SEO far below SEO is either doing less or automating the part that needed judgment.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'Do you offer a guarantee?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'No, and be careful with anyone who does. Nobody controls what an answer engine cites, and a guarantee in this category is either meaningless in the fine print or a promise to hit a metric that does not matter. What can be committed to is scope, timeline, and reporting you can verify.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'Can we start with just the audit?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Yes, and it is usually the right first step. It is fixed-scope, it is self-contained, and the roadmap is yours whether or not you continue. Roughly a third of audit clients execute internally, which is a reasonable outcome rather than a failed sale.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'What is not included?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Paid media management, brand design, and web development beyond the SEO-specific work. We specify template and schema changes and work with your developers to ship them. If you have no development capacity, we will say so during scoping rather than after.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'How long before it pays for itself?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'For local and long-tail categories, typically four to eight months. For competitive B2B and ecommerce categories, eight to eighteen. Technical fixes can move citation visibility faster than that, sometimes within weeks, because answer engines re-evaluate sources more often than Google re-ranks them. Anyone giving you a payback figure before seeing your site is guessing.',
+					},
+				},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO Pricing | ${SITE_TITLE}`}
+			description="What AI SEO costs in 2026: audit, implementation, and retainer pricing by industry, what moves a quote inside its range, and how to compare proposals honestly."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Figtree', system-ui, -apple-system, sans-serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Figtree', system-ui, -apple-system, sans-serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+
+			.svc-figure { margin: var(--space-6) 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); overflow: hidden; }
+			.svc-figure svg { display: block; width: 100%; height: auto; }
+			.svc-figure figcaption { padding: 0.75rem 1rem; border-top: 1px solid var(--line); font-size: 0.85rem; line-height: 1.55; font-style: italic; color: var(--ink-muted); }
+
+			.price-table-wrap { overflow-x: auto; margin: var(--space-5) 0 0; border: 1px solid var(--line); border-radius: var(--radius-md); }
+			.price-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; min-width: 640px; }
+			.price-table th { text-align: left; padding: 0.85rem 1rem; background: rgb(var(--paper-strong)); border-bottom: 1px solid var(--line-strong); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
+			.price-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-muted); }
+			.price-table tr:last-child td { border-bottom: none; }
+			.price-table td:first-child a { color: rgb(var(--ink)); font-weight: 600; text-decoration: none; }
+			.price-table td:first-child a:hover { color: var(--signal-deep); text-decoration: underline; }
+			.price-table strong { color: rgb(var(--ink)); font-weight: 600; white-space: nowrap; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">Pricing</span>
+					<h1>What AI SEO Costs, and Why the Range Is That Wide</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Most agencies will not publish a number, which is understandable and unhelpful. The honest version is that the range is genuinely wide, and the width comes from a small number of things about your business rather than from how much we feel like charging. Here is the whole picture, including the parts that make a quote go up.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<figure class="svc-figure" aria-labelledby="svc-figure-caption">
+				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of four AI SEO engagement types feeding into the AI engines: fixed-scope audit, implementation build, ongoing retainer, and advisory only">
+					<rect width="1080" height="360" fill="rgb(246,245,240)" />
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.06"><line x1="0" y1="48" x2="1080" y2="48" /><line x1="0" y1="312" x2="1080" y2="312" /></g>
+					<text x="48" y="32" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">INPUT SIGNALS</text>
+					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">AI SYNTHESIS</text>
+					<text x="1032" y="32" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(184,85,46)">CITED OUTCOME</text>
+					<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
+						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Audit (fixed scope)</text></g>
+						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Implementation build</text></g>
+						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Ongoing retainer</text></g>
+						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Advisory only</text></g>
+					</g>
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.2" fill="none">
+						<path d="M 288 100 C 360 100, 380 178, 440 178" /><path d="M 288 152 C 360 152, 380 178, 440 178" /><path d="M 288 204 C 360 204, 380 178, 440 178" /><path d="M 288 256 C 360 256, 380 178, 440 178" />
+					</g>
+					<g transform="translate(440 130)">
+						<rect width="200" height="100" fill="rgb(14,17,22)" rx="6" />
+						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES</text>
+						<text x="100" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">ChatGPT · Perplexity</text>
+						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">Claude · AI Overviews</text>
+					</g>
+					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+						<path d="M 640 180 C 700 180, 760 180, 820 180" />
+						<polyline points="810,174 820,180 810,186" />
+					</g>
+					<g transform="translate(820 110)">
+						<rect width="212" height="140" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="6" />
+						<circle cx="32" cy="38" r="18" fill="rgb(184,85,46)" />
+						<text x="32" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="rgb(250,250,247)">01</text>
+						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Priced before it starts</text>
+						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">no scope surprises</text>
+						<rect x="20" y="76" width="172" height="6" rx="1" fill="rgb(14,17,22)" fill-opacity="0.75" />
+						<rect x="20" y="88" width="140" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="98" width="156" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="108" width="120" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+					</g>
+					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Figtree, system-ui, sans-serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Four shapes of engagement. Pick the one that matches what is actually blocking you.</text>
+				</svg>
+			</figure>
+
+			<section class="svc-section">
+				<h2>Why nobody publishes a single number</h2>
+				<p>A single price would be either wrong or dishonest, because the work scales with things that vary by an order of magnitude between clients. A 200-SKU brand and a 40,000-SKU distributor both want ecommerce AI SEO and need entirely different amounts of it. What can be published is the range and the reasons.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Scale drives most of it</strong><span>Catalog size, number of locations, number of practice areas, number of processes. This is the biggest single factor and it is measurable before anyone quotes.</span></div>
+					<div class="outcome"><strong>Starting condition drives the rest</strong><span>A site with clean templates and complete schema needs a fraction of the work of one where capability data still lives in scanned PDFs. Discovery tells us which you are.</span></div>
+					<div class="outcome"><strong>Competition sets the pace, not the price</strong><span>A hard category does not make the monthly cost higher so much as it makes the timeline longer. Anyone charging a premium purely for competition is charging for their own risk.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Three shapes of engagement</h2>
+				<p>Scoped so you can judge the work before committing to more of it.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Audit, fixed scope</h3>
+								<p>A complete diagnosis with a prioritized roadmap. Prompt testing across ChatGPT, Perplexity, Claude, and Google AI Overviews, a technical and schema review, a content gap analysis against the sources that actually get cited, and a walkthrough call. Quoted as a fixed number before it starts.</p>
+								<ul><li>$1,500 to $6,000 depending on site size</li><li>Two to three weeks</li><li>Roadmap with effort and impact estimates</li><li>Yours to execute anywhere</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Implementation build</h3>
+								<p>A defined project rather than an open retainer. Rebuilding a product template, converting capability data out of PDFs, fixing schema across a catalog, building out a service or location page set. Scoped from the audit, quoted as a project, finished and handed over.</p>
+								<ul><li>Quoted per project from the audit findings</li><li>Four to twelve weeks typical</li><li>Works alongside your dev and content teams</li><li>Standards documented so the work holds</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing retainer</h3>
+								<p>Monthly work for teams that need continuous content, technical maintenance, and citation monitoring. The industry ranges below apply here. Month to month after the first three, because a retainer that needs a lock-in to survive is not working.</p>
+								<ul><li>See the ranges below by industry</li><li>Monthly reporting tied to outcomes</li><li>Quarterly citation re-testing</li><li>Scope reviewed every quarter</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>How to compare quotes, including ours</h2>
+				<p>Most proposals in this category are hard to compare on purpose. Four questions make them comparable, and they work on any vendor.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Ask what happens in month one</strong><span>A vendor who cannot describe the first month concretely has not thought about your site. Vague onboarding usually means the first month is spent deciding what to do, on your budget.</span></div>
+					<div class="outcome"><strong>Ask who does the work</strong><span>Not who wins the pitch. If the answer is a team you have not met, ask to meet them. This single question explains most of the quality variance in the industry.</span></div>
+					<div class="outcome"><strong>Ask what they would not do</strong><span>Any proposal that includes everything includes it thinly. A vendor who tells you a piece of your brief is not worth funding is giving you information the others are withholding.</span></div>
+				</div>
+			</section>
+
+
+			<section class="svc-section" id="ranges">
+				<h2>Monthly ranges by industry</h2>
+				<p>These are the retainer ranges we quote within. Audits are separate and fixed-scope. The third column is the thing that actually moves a quote inside its range, which is usually not the one people expect.</p>
+				<div class="price-table-wrap">
+					<table class="price-table">
+						<thead><tr><th scope="col">Industry</th><th scope="col">Monthly range</th><th scope="col">What drives it</th></tr></thead>
+						<tbody>
+						<tr><td><a href="/ai-seo-services/home-services/">Local service business</a></td><td><strong>$1,000 to $5,000</strong></td><td>Locations, market size, review volume</td></tr>
+						<tr><td><a href="/ai-seo-services/restaurants/">Restaurants and hospitality</a></td><td><strong>$1,000 to $4,500</strong></td><td>Number of venues, market competition</td></tr>
+						<tr><td><a href="/ai-seo-services/real-estate-agents/">Real estate</a></td><td><strong>$1,500 to $7,500</strong></td><td>Agent, team, or brokerage. Neighborhoods covered</td></tr>
+						<tr><td><a href="/ai-seo-services/doctors/">Medical and dental</a></td><td><strong>$2,000 to $8,000</strong></td><td>Practice size, locations, YMYL review depth</td></tr>
+						<tr><td><a href="/ai-seo-services/accountants/">Accounting and professional</a></td><td><strong>$1,500 to $7,000</strong></td><td>Specialties, seasonal cadence</td></tr>
+						<tr><td><a href="/ai-seo-services/lawyers/">Legal</a></td><td><strong>$2,500 to $10,000</strong></td><td>Practice areas, offices, competition level</td></tr>
+						<tr><td><a href="/ai-seo-services/supplements/">Supplements and CBD</a></td><td><strong>$2,000 to $8,000</strong></td><td>Catalog size, claim compliance work</td></tr>
+						<tr><td><a href="/ai-seo-services/manufacturing/">Manufacturing and industrial</a></td><td><strong>$3,000 to $12,000</strong></td><td>Processes, materials, plants, PDF conversion volume</td></tr>
+						<tr><td><a href="/ai-seo-services/ecommerce/">Ecommerce</a></td><td><strong>$2,500 to $15,000</strong></td><td>Catalog size above all else</td></tr>
+						<tr><td><a href="/ai-seo-services/saas/">SaaS and B2B platforms</a></td><td><strong>$4,000 to $20,000</strong></td><td>Category competition, content velocity</td></tr>
+						</tbody>
+					</table>
+				</div>
+				<p style="margin-top: var(--space-5); font-size: 0.95rem;">One-time audits run $1,500 to $6,000 depending on site size and how many categories need prompt testing across the answer engines. The audit stands alone. If you take the roadmap to another team or run it in house, that is a legitimate outcome and we price it as one.</p>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a number for your site</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>Fifteen minutes is usually enough to give you a range and tell you which of the three shapes fits. If none of them do, we will say that too.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your site and what you are trying to change. We reply with a range and a suggested scope within one business day.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="Pricing enquiry from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Pricing Enquiry Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Company / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+									<option value="Audit, fixed scope">Audit, fixed scope</option>
+									<option value="Implementation build">Implementation build</option>
+									<option value="Ongoing retainer">Ongoing retainer</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your site <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Site, industry, rough size (SKUs, locations, or practice areas), and what prompted you to look into this now."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Pricing FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>Why is AI SEO priced like SEO rather than cheaper?</h3>
+						<p>Because most of the work is the same work. Structure, evidence, schema, and technical health serve both scoreboards. The genuinely new part, citation testing and evidence design, adds effort rather than removing it. Anyone pricing <a href="/ai-seo-shift/">AI SEO</a> far below SEO is either doing less or automating the part that needed judgment.</p>
+					</li>
+					<li>
+						<h3>Do you offer a guarantee?</h3>
+						<p>No, and be careful with anyone who does. Nobody controls what an answer engine cites, and a guarantee in this category is either meaningless in the fine print or a promise to hit a metric that does not matter. What can be committed to is scope, timeline, and reporting you can verify.</p>
+					</li>
+					<li>
+						<h3>Can we start with just the audit?</h3>
+						<p>Yes, and it is usually the right first step. It is fixed-scope, it is self-contained, and the roadmap is yours whether or not you continue. Roughly a third of audit clients execute internally, which is a reasonable outcome rather than a failed sale.</p>
+					</li>
+					<li>
+						<h3>What is not included?</h3>
+						<p>Paid media management, brand design, and web development beyond the SEO-specific work. We specify template and schema changes and work with your developers to ship them. If you have no development capacity, we will say so during scoping rather than after.</p>
+					</li>
+					<li>
+						<h3>How long before it pays for itself?</h3>
+						<p>For local and long-tail categories, typically four to eight months. For competitive B2B and ecommerce categories, eight to eighteen. Technical fixes can move citation visibility faster than that, sometimes within weeks, because answer engines re-evaluate sources more often than Google re-ranks them. Anyone giving you a payback figure before seeing your site is guessing.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

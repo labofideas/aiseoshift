@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Diagram contrasting paying per link, which produces link counts and no movement, with paying per placement">
+  <rect width="1200" height="675" fill="rgb(246,245,240)" />
+  <rect x="0" y="0" width="10" height="675" fill="rgb(184,85,46)" />
+  <line x1="80" y1="112" x2="1120" y2="112" stroke="rgb(14,17,22)" stroke-opacity="0.12" />
+  <line x1="80" y1="404" x2="1120" y2="404" stroke="rgb(14,17,22)" stroke-opacity="0.12" />
+  <text x="80" y="78" font-family="Georgia, serif" font-size="15" letter-spacing="4" fill="rgb(184,85,46)">LINK BUILDING</text>
+  <text x="1120" y="78" text-anchor="end" font-family="Georgia, serif" font-size="15" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.45">AISEOSHIFT</text>
+  <text x="80" y="214" font-family="Georgia, serif" font-size="58" font-weight="700" fill="rgb(14,17,22)">Outsourcing Link</text>
+  <text x="80" y="278" font-family="Georgia, serif" font-size="58" font-weight="700" fill="rgb(14,17,22)">Building in 2026</text>
+  <text x="80" y="374" font-family="Georgia, serif" font-size="19" font-style="italic" fill="rgb(14,17,22)" fill-opacity="0.62">The compensation model decides the outcome, long before the vendor does.</text>
+  <g transform="translate(80 452)">
+    <rect width="242" height="70" rx="5" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.18" />
+    <text x="121" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="rgb(14,17,22)">Pay per link</text>
+  </g>
+  <path d="M 326 487 L 342 487" stroke="rgb(14,17,22)" stroke-opacity="0.25" />
+  <g transform="translate(346 452)">
+    <rect width="242" height="70" rx="5" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.18" />
+    <text x="121" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="rgb(14,17,22)">Link count hit</text>
+  </g>
+  <path d="M 592 487 L 608 487" stroke="rgb(14,17,22)" stroke-opacity="0.25" />
+  <g transform="translate(612 452)">
+    <rect width="242" height="70" rx="5" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.18" />
+    <text x="121" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="rgb(14,17,22)">Nothing moves</text>
+  </g>
+  <path d="M 858 487 L 874 487" stroke="rgb(14,17,22)" stroke-opacity="0.25" />
+  <g transform="translate(878 452)">
+    <rect width="242" height="70" rx="5" fill="rgb(14,17,22)" stroke="rgb(184,85,46)" stroke-width="1.5" />
+    <text x="121" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="rgb(250,250,247)">Pay per placement</text>
+  </g>
+</svg>

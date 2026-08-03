@@ -1,0 +1,169 @@
+---
+title: "The Ecommerce SEO Audit Checklist for AI Search"
+description: "A working ecommerce SEO audit checklist for 2026: catalog structure, product schema, attribute coverage, review depth, and the AI recommendation tests most audits skip."
+deck: "Most ecommerce audits check whether a page can rank. That is now half the job. The other half is whether an answer engine has enough to recommend the product at all."
+pubDate: 2026-08-03
+category: Playbooks
+tags:
+  - ecommerce SEO
+  - SEO audit
+  - product schema
+  - AI visibility
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "How often should an ecommerce site be audited?"
+    a: "A full audit annually, a template and schema check quarterly, and a recommendation test quarterly. Catalogs change weekly, so most defects arrive through routine merchandising work rather than through anything anyone would call an SEO change."
+  - q: "What is the most common ecommerce SEO defect?"
+    a: "Templated product copy that varies only by product name, followed closely by incomplete Offer schema. Both are template problems, which is good news: one fix corrects the entire catalog at once."
+  - q: "Do AI shopping assistants need different data than Google?"
+    a: "Mostly the same data, used differently. Google reads schema to build rich results. Answer engines read it to confirm facts before recommending. The practical difference is that missing attributes cost you a badge in Google and cost you the recommendation entirely in an answer engine."
+  - q: "Should faceted navigation pages be indexed?"
+    a: "Index the facet combinations that match how people describe what they want, such as material, size, and use case. Block the rest. The test is whether a shopper would say the phrase out loud. Nobody says they want blue items sorted by price ascending on page four."
+---
+
+Run a standard ecommerce SEO audit today and you will get a competent report about a search environment that now handles maybe half the discovery.
+
+The crawl still matters. Duplicate titles still matter. But the question underneath an ecommerce audit has changed. It used to be: can this page rank for the query. It is now also: does this catalog contain enough machine-readable fact for an engine to recommend the product when a shopper describes a problem.
+
+Those fail in different ways, so here is a checklist that covers both. Work through it in this order, because the early sections change the priority of the later ones.
+
+<figure class="post-figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 480" width="820" height="480" role="img" aria-label="Ecommerce audit stack showing five layers from recommendation testing at the top down through attribute data, schema completeness, template defects, and crawl and indexation at the base">
+  <rect width="820" height="480" fill="rgb(246,245,240)" rx="8"/>
+  <text x="410" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="700" fill="rgb(184,85,46)" letter-spacing="2">AUDIT ORDER · TOP LAYER SETS THE PRIORITY OF EVERYTHING BELOW</text>
+
+  <g font-family="Georgia, serif">
+    <g transform="translate(110 62)">
+      <rect width="600" height="62" rx="5" fill="rgb(14,17,22)"/>
+      <text x="24" y="28" font-size="16" font-weight="700" fill="rgb(250,250,247)">1 · Recommendation testing</text>
+      <text x="24" y="48" font-size="12" fill="rgb(250,250,247)" fill-opacity="0.65">Which brands get named when a shopper describes the problem</text>
+      <text x="576" y="38" text-anchor="end" font-size="12" fill="rgb(184,85,46)">start here</text>
+    </g>
+    <g transform="translate(110 136)">
+      <rect width="600" height="62" rx="5" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5"/>
+      <text x="24" y="28" font-size="16" font-weight="700" fill="rgb(14,17,22)">2 · Attribute coverage</text>
+      <text x="24" y="48" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.65">Material, dimensions, compatibility, use case. On the page, not in a spec image</text>
+    </g>
+    <g transform="translate(110 210)">
+      <rect width="600" height="62" rx="5" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5"/>
+      <text x="24" y="28" font-size="16" font-weight="700" fill="rgb(14,17,22)">3 · Schema completeness</text>
+      <text x="24" y="48" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.65">Identity, offers, availability, ratings, shipping and returns</text>
+    </g>
+    <g transform="translate(110 284)">
+      <rect width="600" height="62" rx="5" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.18"/>
+      <text x="24" y="28" font-size="16" font-weight="700" fill="rgb(14,17,22)">4 · Template defects</text>
+      <text x="24" y="48" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.65">Duplicate copy, missing canonicals, thin category pages. One fix, whole catalog</text>
+    </g>
+    <g transform="translate(110 358)">
+      <rect width="600" height="62" rx="5" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.18"/>
+      <text x="24" y="28" font-size="16" font-weight="700" fill="rgb(14,17,22)">5 · Crawl and indexation</text>
+      <text x="24" y="48" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.65">Facets, pagination, crawl budget, AI crawler access</text>
+    </g>
+  </g>
+
+  <text x="410" y="456" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-style="italic" fill="rgb(14,17,22)" fill-opacity="0.6">Most audits run this stack upside down, then wonder why the findings do not connect to revenue.</text>
+</svg>
+<figcaption>Test the outcome first. It tells you which of the technical findings underneath actually matter.</figcaption>
+</figure>
+
+## 1. Recommendation testing
+
+Before touching a crawler, find out what the engines currently say about your category.
+
+- Write 20 to 40 prompts the way shoppers actually talk. Not "waterproof hiking boots" but "I need boots for wet trails, wide feet, under $200."
+- Run them across ChatGPT, Perplexity, Claude, and Google AI Overviews. Record every brand and product named.
+- For each answer, note what the engine gave as the reason. The reasons are usually attributes, and they tell you which attributes matter in your category.
+- Identify the sources cited. Retailers, review sites, Reddit, and forums show up constantly. If a third party is doing your product's talking, that is a distribution finding, not a content one.
+- Calculate your recommendation share per category. This is your baseline. Re-run quarterly.
+
+## 2. Attribute coverage
+
+The single largest gap in most catalogs, and the least glamorous.
+
+- List the attributes shoppers filter and ask by in your category. Your own site search logs are the best source for this, followed by the reasons collected in step 1.
+- Check whether each attribute appears as text on the PDP. Not in a spec sheet image. Not in a tab that loads on click without server rendering.
+- Check compatibility and fit data specifically. "Fits models X, Y, Z" is the highest-value attribute in parts, accessories, and apparel, and it is missing more often than not.
+- Look for attribute values trapped in your PIM or ERP but never mapped to the template. This is normally where the fix is: the data exists, the template does not render it.
+- Check that size and dimension data uses units and numbers rather than adjectives. "Compact" is not matchable. "31 x 18 x 14 cm" is.
+
+## 3. Schema completeness
+
+Validate against what an engine needs to confirm a fact, not against whether the validator shows green.
+
+- `Product` with name, image, description, brand.
+- Identity fields, `gtin` or `mpn`. These let an engine confirm your listing and a review elsewhere describe the same object. Most catalogs omit them and lose the corroboration.
+- `offers` with price, `priceCurrency`, `availability`, and `priceValidUntil`. Stale availability is worse than absent availability, because it teaches the engine something false.
+- `aggregateRating` and `review`, populated from real reviews. Never hardcoded.
+- Shipping and return details, which Google now reads for merchant listings and answer engines use when a shopper asks about delivery.
+- `hasVariant` or a clean variant strategy. Variant handling is the most commonly broken part of ecommerce schema, especially on Shopify themes that were customized twice by different developers.
+- Category page schema, usually `ItemList` or `CollectionPage`. Frequently forgotten entirely.
+
+## 4. Template defects
+
+Group everything you find by the template that produces it, because that is where the fix lives.
+
+- Product copy that varies only by inserting the product name. Engines treat near-duplicate descriptions as low-value, and shoppers agree.
+- Category pages with a heading, a grid, and nothing else. These should be buying guides with the grid inside them.
+- Missing or self-referencing canonicals on variant URLs.
+- Title and meta patterns that truncate on your longest product names, which is always a bigger share of the catalog than anyone expects.
+- Internal linking that runs only through navigation. Related products, "works with," and use-case links carry topical meaning that navigation does not.
+- Out-of-stock handling. Deleting a URL that has links and history is a permanent loss. Keep the page, mark availability honestly, offer alternatives.
+
+## 5. Crawl and indexation
+
+The classic layer. Still necessary, no longer sufficient.
+
+- Facet indexation rules. Index combinations people say out loud. Block sort orders, session parameters, and deep pagination.
+- Crawl budget consumed by facets and search results pages, which on large catalogs is often the majority of it.
+- AI crawler access. Confirm GPTBot, PerplexityBot, ClaudeBot, and Google-Extended are allowed if you want to be recommended, and confirm your CDN bot rules agree with your robots.txt. They frequently do not.
+- Rendering. If attributes and reviews load client-side only, assume some engines never see them.
+- Feed hygiene. Merchant feed and site data disagreeing on price or availability creates exactly the kind of contradiction that makes an engine drop a source.
+- Indexed-and-serving ratio by template, rather than raw indexed page count.
+
+## What to fix first
+
+Sequence matters more than completeness here.
+
+1. Anything that makes an engine distrust you: wrong availability, contradicting price, broken schema. Distrust is expensive and slow to reverse.
+2. Attribute gaps on the categories where you lost the recommendation test. Direct line from the fix to the outcome.
+3. Template defects on the highest-revenue template. One release, whole catalog.
+4. Category pages rebuilt as buying guides, starting with your top five categories.
+5. Everything else, in whatever order fits the release calendar.
+
+The reason this order works: steps 1 and 2 change whether you get recommended, which is worth more than any ranking improvement available in steps 3 to 5. Most audits deliver the list in the reverse order because that is the order the crawler produced it in.
+
+## Platform gotchas worth checking specifically
+
+The audit is the same everywhere. What breaks differs by platform, and knowing where to look saves a day.
+
+**Shopify.** Default theme schema is often incomplete, and themes customized by more than one developer usually emit two competing `Product` blocks. Variant URLs with `?variant=` need canonical handling that many themes get wrong. Metafields are where attribute data goes, and they are frequently populated but never rendered in the template. Check the rendered HTML, not the admin.
+
+**WooCommerce.** More control, more ways to conflict. The common failure is two or three plugins each injecting their own schema, producing contradictory markup on the same page. Product attributes exist in the data model and often display as a table with no semantic connection to the schema. Check for a `wc-` template override that dropped a field during a redesign nobody documented.
+
+**Headless.** Schema is the thing everyone forgets, because it lived in the theme layer that got replaced. Also check that reviews and attributes render server-side. If they arrive after hydration, assume some engines never see them.
+
+**Marketplaces alongside your store.** If you sell on Amazon or a marketplace as well, your product data exists in two places with different titles and attributes. Engines notice the disagreement. Aligning them is boring and it removes a real source of doubt.
+
+## The 90-minute version
+
+Full audits are the right answer and not always the available one. If you have an afternoon and a large catalog, this order finds most of the damage.
+
+1. Run six shopper-style prompts for your top category. Note who gets named. **15 minutes.**
+2. Open your three best-selling PDPs and read the rendered HTML. List every attribute a shopper would filter by that is missing from the page. **20 minutes.**
+3. Validate schema on those same three PDPs. Check identity fields and offer fields specifically, not just whether the validator is green. **15 minutes.**
+4. Open your top category page. Ask whether it helps anyone decide anything. Usually it does not. **10 minutes.**
+5. Check robots.txt and your CDN bot rules for AI crawler access. **10 minutes.**
+6. Pull the indexed-and-serving ratio for your product template from Search Console. **20 minutes.**
+
+That is not a substitute for the full pass. It will tell you within an afternoon whether the problem is catalog data, template quality, or access, which is enough to decide what to fund.
+
+If you want this run for your catalog rather than run by yourself, our [ecommerce AI SEO](/ai-seo-services/ecommerce/) page covers scope and pricing.
+
+## Related reading
+
+- [AI SEO for ecommerce brands](/blog/ai-seo-for-ecommerce-brands/)
+- [Ecommerce product schema for AI search](/blog/ecommerce-product-schema-ai-search/)
+- [Ecommerce category pages and AI SEO](/blog/ecommerce-category-pages-ai-seo/)
+- [AI SEO audit checklist](/blog/ai-seo-audit-checklist/)
+- [LLM crawler optimization](/blog/llm-crawler-optimization/)
