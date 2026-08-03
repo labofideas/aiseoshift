@@ -1,0 +1,140 @@
+---
+title: "The Enterprise SEO Audit, Rewritten for AI Search"
+description: "What an enterprise SEO audit needs to cover in 2026: citation share, template-level defects, crawl budget against AI bots, and the metrics that survive a board review."
+deck: "The traditional enterprise audit deliverable, a 90-page PDF with 400 issues sorted by severity, was already a bad artifact. Now it is also missing the half of the picture that decides whether an answer engine quotes you."
+pubDate: 2026-08-03
+category: Playbooks
+tags:
+  - enterprise SEO
+  - SEO audit
+  - AI visibility
+  - measurement
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "What should an enterprise SEO audit include in 2026?"
+    a: "Everything a traditional technical audit covered, plus four additions: citation share across the major answer engines, AI crawler access and its own crawl budget, template-level defect analysis rather than URL-level issue lists, and a measurement model that separates AI-influenced traffic from classic organic."
+  - q: "How often should an enterprise site be audited?"
+    a: "A full audit annually, a technical health check quarterly, and citation testing quarterly at minimum. Enterprise sites change weekly through releases nobody labels as SEO work, so the health check catches regressions the annual audit would find nine months late."
+  - q: "What enterprise SEO metrics actually matter now?"
+    a: "Citation share by topic cluster, indexed-and-serving ratio by template, share of revenue-driving queries where an AI Overview appears, and assisted conversions from AI referrers. Total organic sessions is now a blended number that hides more than it reveals."
+  - q: "Should enterprises block AI crawlers?"
+    a: "Block training crawlers if legal or brand requires it, but keep retrieval crawlers open unless you have decided you do not want to be cited. The two are separately controllable for most major engines, and blocking both is a decision that removes you from answers your buyers already read."
+---
+
+Most enterprise SEO audits are performance art. Six weeks of crawling, a 90-page PDF, 400 issues sorted by a severity scale the client did not define, and a slide deck presented to a room where three people needed to be convinced of something and none of them were.
+
+Nine months later, roughly 15 percent of it has been implemented, mostly the parts a developer could do without asking anyone.
+
+That was the state of the practice before AI answers. It is now also incomplete, because the audit measures whether pages can rank and says nothing about whether an answer engine will quote them. Those have become different questions with different failure modes.
+
+Here is what an enterprise audit needs to look like now, and which parts of the old one to keep.
+
+## Start with citation share, not the crawl
+
+The crawl is not the wrong tool. It is the wrong first step, because it tells you what is broken without telling you what matters.
+
+Begin instead by building a prompt set. Take the queries that drive revenue, not traffic, and rewrite them the way a person actually asks an assistant. "enterprise expense management software" becomes "we're a 400-person company outgrowing spreadsheets for expense reports, what should we look at."
+
+Run 40 to 80 of those across ChatGPT, Perplexity, Claude, and Google AI Overviews. Record which brands get named, which sources get cited, and what the cited page had that yours did not.
+
+Three findings come out of this every time.
+
+**You are cited for things you did not target.** Usually a support doc, a glossary entry, or an old blog post nobody has touched since 2023. This is information about what the engines think you are the authority on, and it rarely matches the content strategy.
+
+**Competitors are cited from surprisingly thin pages.** A 900-word page with a clean structure and one clear claim beats a 4,000-word pillar page that never states anything directly. Enterprise content teams find this genuinely upsetting.
+
+**A third party is doing your talking.** G2, Reddit, a trade publication, or a comparison site is cited in answers about your category more often than you are. That is not a content problem you can write your way out of. It is a distribution problem.
+
+Do this before the crawl and the crawl gets a priority order it would not otherwise have.
+
+## Audit templates, not URLs
+
+An enterprise site does not have 400 issues. It has about 12 issues, repeated across a few hundred thousand URLs by 20 or so templates.
+
+Issue lists that enumerate URLs are unusable at scale and, worse, they misdirect effort. The fix is never at the URL level. It is in the template, the component, or the CMS field that produces the defect everywhere at once.
+
+So group every finding by the template that generates it and report it that way: this template governs 42,000 URLs, it has these three defects, one release fixes all of them. Now a director can decide whether it is worth a sprint, which is the actual decision being made.
+
+This reframing does something else useful. It surfaces the templates nobody owns. Every large site has two or three page types produced by a system whose owner left, and they are usually where the worst defects live.
+
+## Crawl budget now has a second consumer
+
+Traditional crawl budget analysis asked whether Googlebot reaches your important pages before it exhausts itself on faceted navigation. That question stands.
+
+There is a second one now. GPTBot, PerplexityBot, ClaudeBot, and Google-Extended have their own access rules, their own crawl behavior, and in most enterprise setups nobody has ever looked at what they do.
+
+What to check:
+
+- **Are they allowed, and did anyone decide that on purpose?** A surprising number of enterprise robots.txt files block AI crawlers because someone copied a template in 2024. Nobody knows who. It is often the highest-impact finding in the whole audit.
+- **Do they get blocked at the edge?** Robots.txt says one thing, the WAF or bot-mitigation rules say another. Check server logs, not configuration files. Cloudflare and Akamai bot rules regularly block AI crawlers that robots.txt permits.
+- **What are they actually fetching?** Log analysis by user agent tells you which sections the engines care about. It is frequently not the sections the business cares about.
+- **Are training and retrieval separated?** For most major engines these are distinct agents and can be controlled independently. Blocking training while permitting retrieval is a coherent position. Blocking both is a decision to be absent from answers, and it should be made by someone senior enough to own it.
+
+## Measurement that survives a board review
+
+The metric problem is now acute. Total organic sessions blends three things that are moving in opposite directions: classic blue-link traffic in decline, AI-referred traffic growing from a small base, and branded search rising if the AI work is going well.
+
+A number that mixes those is not a number. Here is what to report instead.
+
+**Citation share by topic cluster.** Of the prompts you test in a cluster, what percentage name you. Tracked quarterly. This is the closest thing to a rank tracker that exists for answer engines, and it is manual for now. That is fine. It is also the only number in the deck that maps directly to the thing you are trying to change.
+
+**Indexed-and-serving ratio by template.** Not "pages indexed," which is a vanity figure. What percentage of a template's URLs are indexed and receiving at least one impression per month. Templates with a low ratio are where the waste is.
+
+**AI Overview presence on revenue queries.** What share of the queries that drive pipeline now trigger an AI Overview. This number explains CTR decline to executives better than any other slide, and it forecasts where the next decline is coming from.
+
+**Assisted conversions from AI referrers.** Traffic from chatgpt.com, perplexity.ai, and similar sources is small and converts unusually well, because the visitor arrives pre-qualified. Reporting the raw session count undersells it badly. Report conversion rate and assisted revenue alongside it.
+
+One caution worth stating: AI referrer data is incomplete and will stay incomplete. Some engines pass no referrer at all. Treat the numbers as directional, say so out loud in the deck, and do not let anyone build a forecast on them.
+
+## What the old audit got right
+
+Not everything needs rewriting. These still matter and still get skipped.
+
+**Internal linking as a signal of topical ownership.** It tells crawlers and models what you consider central. Most enterprise sites link by navigation convenience instead, which distributes authority to the pages that need it least.
+
+**Structured data accuracy over structured data volume.** Enterprise sites are full of schema that describes a page that no longer exists. Incorrect markup is worse than absent markup, because it teaches an engine something false about your entity.
+
+**Content pruning.** The 60 percent of pages that get no impressions are not neutral. They dilute the topical signal and consume crawl on both scoreboards now.
+
+**Site speed, on the pages that matter.** Core Web Vitals on the templates that carry revenue. Not a sitewide average, which is always dragged around by pages nobody visits.
+
+**Duplicate and near-duplicate content across international variants.** Still the most common enterprise defect, still mostly caused by localization that changed the currency symbol and nothing else.
+
+## The deliverable problem
+
+The audit fails at the handoff more often than it fails at the analysis.
+
+Three changes fix most of it.
+
+**Ship a backlog, not a document.** Findings written as tickets, in the tracker the engineering team already uses, with acceptance criteria. A PDF is a thing to be read. A ticket is a thing to be closed.
+
+**Sort by owner before severity.** A director does not need the whole list. They need the six items their team owns. Cut the audit by team first, priority second, and adoption roughly doubles.
+
+**Attach an estimate you are willing to defend.** "This template defect affects 42,000 URLs generating 8 percent of organic entrances, and the fix is a two-point change to one component." That sentence gets scheduled. "Fix duplicate title tags, priority: high" does not.
+
+## A working scope
+
+For a site over 50,000 URLs, a complete audit is roughly:
+
+1. Prompt set construction and citation testing across four engines
+2. Full crawl, grouped and reported by template
+3. Log analysis by user agent, including AI crawlers
+4. Index coverage and serving ratio by template
+5. Schema audit against what the pages currently say
+6. Content inventory with pruning candidates
+7. Internal link and topical architecture review
+8. Measurement model rebuild with the four metrics above
+9. Backlog delivery into the client tracker, cut by owning team
+
+Four to six weeks with a small team. The citation testing is the part that is new, the part that is manual, and the part that changes what everything else prioritizes.
+
+Skip it and you will produce a competent audit of a website in a search environment that is half gone.
+
+## Related reading
+
+- [AI SEO audit checklist](/blog/ai-seo-audit-checklist/)
+- [AI SEO audit guide](/blog/ai-seo-audit-guide/)
+- [How to measure AI visibility](/blog/how-to-measure-ai-visibility/)
+- [Google Search Console for AI visibility](/blog/google-search-console-ai-visibility/)
+- [LLM crawler optimization](/blog/llm-crawler-optimization/)

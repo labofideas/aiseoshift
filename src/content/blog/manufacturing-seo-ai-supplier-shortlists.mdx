@@ -1,0 +1,154 @@
+---
+title: "Manufacturing SEO in 2026: How Suppliers Get on the AI Shortlist"
+description: "Industrial SEO has changed. Engineers now describe a spec to an AI and get four supplier names back. Here is what decides whether yours is one of them."
+deck: "Your capability data is probably sitting in a PDF brochure that no answer engine can read. That single fact explains most of why manufacturers lose RFQs they never knew existed."
+pubDate: 2026-08-03
+category: Playbooks
+tags:
+  - manufacturing SEO
+  - industrial SEO
+  - B2B SEO
+  - AI visibility
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "What is manufacturing SEO?"
+    a: "Manufacturing SEO is the work of making a manufacturer's capabilities findable and machine-readable, so that engineers and procurement teams reach you when they search by process, material, tolerance, certification, or lead time. In 2026 that increasingly means being named in an AI-generated supplier shortlist rather than ranking on a results page."
+  - q: "Do manufacturers still need Thomasnet?"
+    a: "Keep the profile, drop the dependence. Directory listings still work as corroborating citations, and an AI engine that sees the same capability claim on your site and in a directory treats it as more reliable. What has ended is the directory's role as gatekeeper, because the buyer no longer has to pass through it."
+  - q: "Should capability data be a PDF or a web page?"
+    a: "Web page first, PDF as a companion download. Tables inside scanned or image-based PDFs are effectively invisible to crawlers and models, and gated downloads are invisible to everything. Put the tolerance table in HTML and let the PDF be the thing the engineer forwards to purchasing."
+  - q: "How long does industrial SEO take to produce RFQs?"
+    a: "Spec-level queries usually start producing inbound within four to eight months because competition on them is thin. Broad terms like contract manufacturer take a year or more and convert worse. AI citation visibility can move faster than either, since answer engines re-evaluate sources more often than Google re-ranks them."
+---
+
+A design engineer has a print open and a problem. The part is Inconel 718, the geometry needs 5-axis work, the customer requires AS9100, and the first run is 200 pieces.
+
+Two years ago that engineer opened Thomasnet, filtered, opened eight tabs, and made four phone calls. Today they describe the constraint in a sentence and get four supplier names with reasons attached.
+
+Somewhere in that shift, a lot of manufacturers stopped receiving RFQs they never knew they were losing. Not because their capabilities got worse. Because their capability data was never written for a machine to read.
+
+## Industrial search was always spec-shaped
+
+This is the part that makes manufacturing different from almost every other category.
+
+Consumer SEO fights over head terms. Industrial buying never did. Nobody with an actual part to make searches "contract manufacturer." They search the way they think, which is in constraints: a material, a process, a tolerance band, a certification, a run size, a lead time.
+
+Those queries were too long and too specific to build a keyword strategy around. There are more possible combinations of material, process, and tolerance than any content calendar could cover. So most industrial sites gave up and published a Capabilities page with three paragraphs of prose and a downloadable brochure.
+
+That approach was survivable when a human was doing the filtering, because a human would open the brochure. It stopped being survivable the moment the filtering moved into a model that reads the page and moves on.
+
+The irony is worth sitting with: the queries that were too specific for traditional SEO are exactly the queries AI answers best. The demand did not disappear. It became addressable, and most manufacturers are not addressing it.
+
+## What the engine is actually doing
+
+When someone asks an answer engine for a supplier that meets a spec, the engine is doing a matching job, and it needs three things from you.
+
+**Capability facts it can extract.** Processes you run, materials you work in, envelope sizes, tolerance ranges, typical run quantities. Text on a page. Not an image of a table, not a paragraph that says "tight tolerances" without a number.
+
+**Constraints it can verify.** Certifications are the clearest example. ISO 9001, AS9100D, IATF 16949, ITAR registration. These function as hard filters. If a buyer specifies AS9100 and the engine cannot confirm you hold it, you are excluded silently. There is no partial credit and no follow-up question.
+
+**Corroboration from somewhere else.** A claim that appears only on your own site is weaker than the same claim appearing on your site, in your directory profile, in a trade publication, and in a customer's case study. Engines weight agreement across sources.
+
+Miss any of the three and you fall out of the shortlist without ever generating a log entry you could look at.
+
+## The PDF problem
+
+Here is the single highest-return fix available to most manufacturers, and it is unglamorous enough that almost nobody does it.
+
+Your spec sheets, capability matrices, and quality documentation are almost certainly PDFs. Many are scans. Several are behind a form. Every one of them contains exactly the data an answer engine needs and cannot get.
+
+Models can extract text from a well-formed digital PDF. They do considerably worse with tables inside them, worse still with scanned documents, and they get nothing at all from a file behind a lead-capture form.
+
+So the tolerance table that would win you the match sits in a file that the matching process never opens.
+
+Moving that data into HTML is not a redesign. It is a data-entry job with an SEO outcome. Put the table on the page, keep the PDF as a download for the engineer to forward to purchasing, and you have made a decade of accumulated capability documentation legible to the systems that now decide shortlists.
+
+If you do one thing from this article, do this one.
+
+## What a capability page should contain
+
+Not a paragraph about your commitment to quality. Numbers.
+
+For each process you run, publish a page that states:
+
+- **Equipment and axis count**, by machine class rather than a photo gallery
+- **Envelope limits**, the largest and smallest part you can actually take
+- **Tolerance ranges** you hold routinely, with the caveat about geometry that any honest shop would add
+- **Materials** you run in that process, named specifically, alloys and grades not categories
+- **Run quantities** you are set up for, including the minimum you will accept
+- **Typical lead times**, with the honest range rather than a best case
+- **Secondary operations** available in house versus outsourced
+
+That last one matters more than it looks. "In house" versus "we subcontract it" is a real differentiator for a buyer managing schedule risk, and it is almost never stated.
+
+Two things happen when you publish this. Answer engines can match you. And the quotes you receive get better, because the requests that would have wasted your estimator's week filter themselves out before they arrive.
+
+## Certifications deserve their own pages
+
+Most manufacturers handle certifications the same way: a row of logos in the footer, maybe a scanned certificate on the About page.
+
+That is a graphic. It carries no information a machine can act on.
+
+Give each active registration a page or at minimum a properly marked-up block that states the standard, the scope of the registration, the registrar, the certificate number, and the expiry date. Scope is the part everyone omits and buyers care about most, because an AS9100 registration that covers one facility and not the other is a different fact from a blanket one.
+
+On the schema side, `hasCertification` on your Organization node maps this cleanly, and it maps onto exactly the constraint the buyer is filtering by. [Schema markup](/blog/schema-markup-for-ai-visibility/) does relatively little for a blog post. For a certified manufacturer it does quite a lot.
+
+## Directories: keep them, demote them
+
+The reflex reaction is that Thomasnet, GlobalSpec, and IQS no longer matter. That overcorrects.
+
+What they were: the gatekeeper. Buyers went there first because it was the only structured index of who could make what.
+
+What they are now: a corroborating source. When an engine sees your capability claim on your own site and finds the same claim in an independent industrial directory, the claim gets stronger. That is worth having.
+
+What changed is the dependence. If your entire discovery strategy is a paid directory listing, you have outsourced your visibility to a platform the buyer may never open. Keep the profiles accurate and consistent with your site, then put your effort into the asset you own.
+
+Consistency is not a small note here. Different phone numbers, a different address format, or a capability listed in one place and not the other all weaken the corroboration you are paying for.
+
+## Content for engineers, not for buyers
+
+Most industrial blogs read like they were written for a procurement officer who needs convincing. Engineers do not read those, and answer engines do not quote them.
+
+The content that gets cited in this category is the content that solves a technical problem: material selection tradeoffs, why a tolerance is expensive to hold, design-for-manufacturability guidance for a specific process, failure modes and what causes them.
+
+This is the kind of thing your senior engineers know and your marketing team cannot write. The practical answer is usually a recorded conversation with the person who knows, transcribed and edited, rather than a brief handed to a content agency. It reads differently, and the difference is exactly the part that earns citations.
+
+One well-built technical explainer on a genuinely hard topic will outperform twenty posts about the importance of choosing the right manufacturing partner. That is not a stylistic preference. It is a statement about what an engine has any reason to quote.
+
+## The measurement problem, honestly
+
+You will not see this working in a rankings report, and you should stop looking for it there.
+
+Track three things instead.
+
+**Shortlist appearance.** Take fifteen prompts that describe your real capability set, run them across ChatGPT, Perplexity, Claude, and Google AI Overviews, and record which suppliers get named. Repeat quarterly. It is manual, it takes an afternoon, and it is the closest thing to a direct measurement that exists right now.
+
+**RFQ quality, not just count.** The signal that this is working is usually not more quotes. It is better-qualified ones. Estimators notice before analytics does. Ask them.
+
+**Where new customers say they found you.** Add the question to your RFQ form. The answers have shifted noticeably in the last eighteen months, and it costs nothing to collect.
+
+## What this actually takes
+
+Order of operations, if you are starting from a typical industrial site:
+
+1. **Move spec data out of PDFs into HTML.** Highest return, lowest creativity required.
+2. **Build one page per process** with the numbers listed earlier in this article.
+3. **Give certifications real pages** with scope, registrar, and expiry, plus `hasCertification` markup.
+4. **Fix directory consistency** so your corroborating sources agree with you.
+5. **Publish four technical explainers** written from your engineers' knowledge rather than a content brief.
+6. **Test the shortlist quarterly** and see what moved.
+
+None of that is exotic. Most of it is data you already have, moved to where a machine can read it.
+
+The manufacturers who do it in the next year will spend a period being the only structured supplier in their niche, which is a strange and temporary advantage worth taking. The ones who wait will find the same work costs the same and buys less, because by then everyone's tolerance tables will be in HTML.
+
+If you want help scoping it, our [AI SEO for manufacturers](/ai-seo-services/manufacturing/) page covers how we run audits and capability builds.
+
+## Related reading
+
+- [AI SEO for B2B SaaS](/blog/ai-seo-for-b2b-saas/)
+- [Schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/)
+- [AI SEO audit checklist](/blog/ai-seo-audit-checklist/)
+- [How to structure pages for AI extraction](/blog/how-to-structure-pages-ai-extraction/)
+- [LLM crawler optimization](/blog/llm-crawler-optimization/)

@@ -1,0 +1,360 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO for Ecommerce Brands',
+		description:
+			'AI SEO services for ecommerce brands, DTC stores, and multi-thousand-SKU catalogs that need product and category visibility across ChatGPT, Perplexity, Claude, Google AI Overviews, and agentic shopping assistants.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+				{
+					'@type': 'Question',
+					name: 'How much does ecommerce SEO cost?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Ecommerce AI SEO typically runs $2,500 to $15,000 per month. The range is wide because catalog size drives almost all of it: a 200-SKU DTC brand and a 40,000-SKU distributor need completely different amounts of template, schema, and feed work. One-time audits start lower.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'Does this work on Shopify and WooCommerce?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Yes, and the platform mostly affects how the work gets implemented rather than what the work is. Shopify needs theme and metafield work plus care around its default schema output, which is often incomplete. WooCommerce gives you more control and more ways to ship broken markup. Headless setups need the schema handled in the frontend, where it is frequently forgotten entirely.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'Are AI Overviews killing ecommerce traffic?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'They are changing which traffic arrives. Informational queries that used to land on blog posts and category pages lose clicks. Transactional and comparison queries still convert, and they now arrive pre-qualified because the shopper already read a summary. The brands that lose are the ones whose only asset was ranking for research queries they never monetized well anyway.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'What product schema fields actually matter?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Beyond name, image, description, and brand: gtin or mpn for identity, offers with price, priceCurrency, and availability, aggregateRating and review, and the shipping and return fields Google added for merchant listings. Identity fields matter more than most stores realize, because they let an engine confirm that your listing and a review elsewhere describe the same product.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'Should we block AI crawlers to protect our catalog?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: "Not if you want to be recommended. Blocking GPTBot, PerplexityBot, and ClaudeBot removes you from the answers your buyers are reading. There is a real argument for blocking training crawlers while allowing retrieval crawlers, and the two are separately controllable for most engines. Decide it deliberately rather than by copying someone's robots.txt.",
+					},
+				},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for Ecommerce Brands and Online Stores | ${SITE_TITLE}`}
+			description="Ecommerce AI SEO for Shopify, WooCommerce, and enterprise catalogs. Get products recommended inside ChatGPT, Perplexity, and AI Overviews, not just ranked."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Figtree', system-ui, -apple-system, sans-serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Figtree', system-ui, -apple-system, sans-serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+
+			.svc-figure { margin: var(--space-6) 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); overflow: hidden; }
+			.svc-figure svg { display: block; width: 100%; height: auto; }
+			.svc-figure figcaption { padding: 0.75rem 1rem; border-top: 1px solid var(--line); font-size: 0.85rem; line-height: 1.55; font-style: italic; color: var(--ink-muted); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for ecommerce</span>
+					<h1>AI SEO for Ecommerce Brands and Online Stores</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Shoppers stopped typing "best running shoes for flat feet" into a search box and started describing the problem to an assistant. The assistant names three products. If yours is not one of them, no amount of category-page optimization saves the sale, because the shopper never reaches a results page at all.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<figure class="svc-figure" aria-labelledby="svc-figure-caption">
+				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How ecommerce products get recommended by AI: product schema, attribute-level product copy, review data, and comparison guides feed AI engines that return a product recommendation">
+					<rect width="1080" height="360" fill="rgb(246,245,240)" />
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.06"><line x1="0" y1="48" x2="1080" y2="48" /><line x1="0" y1="312" x2="1080" y2="312" /></g>
+					<text x="48" y="32" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">INPUT SIGNALS</text>
+					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">AI SYNTHESIS</text>
+					<text x="1032" y="32" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(184,85,46)">CITED OUTCOME</text>
+					<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
+						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Product + Offer schema</text></g>
+						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Attribute-level PDP copy</text></g>
+						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Review and Q&amp;A corpus</text></g>
+						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Comparison + buying guides</text></g>
+					</g>
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.2" fill="none">
+						<path d="M 288 100 C 360 100, 380 178, 440 178" /><path d="M 288 152 C 360 152, 380 178, 440 178" /><path d="M 288 204 C 360 204, 380 178, 440 178" /><path d="M 288 256 C 360 256, 380 178, 440 178" />
+					</g>
+					<g transform="translate(440 130)">
+						<rect width="200" height="100" fill="rgb(14,17,22)" rx="6" />
+						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES</text>
+						<text x="100" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">ChatGPT · Perplexity</text>
+						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">Claude · AI Overviews</text>
+					</g>
+					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+						<path d="M 640 180 C 700 180, 760 180, 820 180" />
+						<polyline points="810,174 820,180 810,186" />
+					</g>
+					<g transform="translate(820 110)">
+						<rect width="212" height="140" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="6" />
+						<circle cx="32" cy="38" r="18" fill="rgb(184,85,46)" />
+						<text x="32" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="rgb(250,250,247)">01</text>
+						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Named in the answer</text>
+						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">for stability shoes, wide fit</text>
+						<rect x="20" y="76" width="172" height="6" rx="1" fill="rgb(14,17,22)" fill-opacity="0.75" />
+						<rect x="20" y="88" width="140" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="98" width="156" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="108" width="120" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+					</g>
+					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Figtree, system-ui, sans-serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">The shopper describes a problem. The engine names products. Attribute data decides which ones.</text>
+				</svg>
+			</figure>
+
+			<section class="svc-section">
+				<h2>Product discovery moved above the results page</h2>
+				<p>Ecommerce SEO was built around a funnel that started with a query and ended on a PDP. Answer engines collapsed the middle of it. The shopper describes a constraint in plain language, gets three named products with reasons, and clicks once. Everything that used to happen across a category page, a filter, and four comparison tabs now happens inside one generated paragraph.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Attributes beat keywords</strong><span>"Waterproof, under 400 grams, fits a 15-inch laptop" is a filter query in natural language. It gets answered from structured attribute data, not from a keyword-optimized title tag.</span></div>
+					<div class="outcome"><strong>Reviews are training data now</strong><span>Answer engines read your review corpus for the specifics: sizing quirks, durability complaints, who a product suits. Thin review coverage reads as an unknown product, and unknown products do not get recommended.</span></div>
+					<div class="outcome"><strong>Agentic checkout is arriving</strong><span>Shopping assistants that compare, select, and complete a purchase need machine-readable price, availability, shipping, and returns data. Missing Offer fields will start costing sales, not just impressions.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for ecommerce brands</h2>
+				<p>Three services covering the catalog, the content around it, and the ongoing work of staying in the recommendation set.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Ecommerce AI Visibility Audit</h3>
+								<p>We test the prompts your buyers actually use, problem-shaped and constraint-heavy, and record which brands and SKUs get named across ChatGPT, Perplexity, Claude, and AI Overviews. Then we audit the catalog data that decides those answers, down to the attribute level on your top SKUs.</p>
+								<ul><li>Prompt testing by category, use case, and constraint</li><li>Competitor recommendation-share analysis</li><li>Product, Offer, and AggregateRating <a href="/seo/schema-markup/">schema</a> audit</li><li>PDP attribute coverage and gap mapping</li><li>Category and facet indexation review</li><li>Review corpus depth and coverage analysis</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Catalog and Content Build</h3>
+								<p>Implementation across the catalog, not a rewrite of ten hero PDPs. Attribute data goes into schema and on-page copy, category pages get the buying context they never had, and the comparison content that AI engines quote gets built for the queries that actually convert.</p>
+								<ul><li>PDP templates with attribute-level, non-duplicate copy</li><li>Complete Product and Offer schema with shipping and returns</li><li>Category pages rebuilt as buying guides, not link lists</li><li>Comparison and alternative pages for your top categories</li><li>Use-case and problem-first landing pages</li><li>Review collection and Q&A programs that produce citable specifics</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing Ecommerce AI SEO</h3>
+								<p>Catalogs change weekly. Answer engines re-crawl constantly. Monthly work keeps new SKUs structured on arrival, retires dead ones cleanly, and tracks whether your recommendation share is moving in the right direction.</p>
+								<ul><li>New SKU onboarding with schema and copy standards</li><li>Seasonal and category content cycles</li><li>Recommendation-share monitoring by category</li><li>Technical SEO for faceted navigation and pagination</li><li>Feed and merchant data hygiene</li><li>Monthly reporting tied to revenue, not rankings</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why catalog structure is the whole game now</h2>
+				<p>Most stores have the data an answer engine needs. It sits in the ERP, the PIM, or a supplier spreadsheet, and it never makes it to the page. Fixing that is unglamorous, it is also the difference between being recommended and being invisible.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Long-tail attributes convert hardest</strong><span>A shopper who specifies material, size, and use case is close to buying. Those queries are also the ones your competitors never wrote a page for.</span></div>
+					<div class="outcome"><strong>One audit fixes thousands of pages</strong><span>PDP problems are template problems. Fix the template and the schema, and the whole catalog moves at once. This is the rare SEO work that scales for free.</span></div>
+					<div class="outcome"><strong>Reviews compound quietly</strong><span>Every specific review adds an attribute the engine can match against. Brands with deep, specific review coverage get recommended for use cases they never wrote copy for.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote for ecommerce SEO</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will run live shopping prompts for your top categories, show you which brands get named instead of yours, and outline the catalog work that changes it.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your platform, catalog size, and categories. We will reply with a tailored proposal.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="Ecommerce SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Ecommerce SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Company / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+									<option value="Ecommerce AI Visibility Audit">Ecommerce AI Visibility Audit</option>
+									<option value="Catalog and Content Build">Catalog and Content Build</option>
+									<option value="Ongoing Ecommerce AI SEO">Ongoing Ecommerce AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your store and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Platform, catalog size, main categories, current traffic, and what you are trying to grow."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Ecommerce SEO FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does ecommerce SEO cost?</h3>
+						<p>Ecommerce AI SEO typically runs $2,500 to $15,000 per month. The range is wide because catalog size drives almost all of it: a 200-SKU DTC brand and a 40,000-SKU distributor need completely different amounts of template, schema, and feed work. One-time audits start lower.</p>
+					</li>
+					<li>
+						<h3>Does this work on Shopify and WooCommerce?</h3>
+						<p>Yes, and the platform mostly affects how the work gets implemented rather than what the work is. Shopify needs theme and metafield work plus care around its default schema output, which is often incomplete. WooCommerce gives you more control and more ways to ship broken markup. Headless setups need the schema handled in the frontend, where it is frequently forgotten entirely.</p>
+					</li>
+					<li>
+						<h3>Are AI Overviews killing ecommerce traffic?</h3>
+						<p>They are changing which traffic arrives. Informational queries that used to land on blog posts and category pages lose clicks. Transactional and comparison queries still convert, and they now arrive pre-qualified because the shopper already read a summary. The brands that lose are the ones whose only asset was ranking for research queries they never monetized well anyway.</p>
+					</li>
+					<li>
+						<h3>What product schema fields actually matter?</h3>
+						<p>Beyond name, image, description, and brand: gtin or mpn for identity, offers with price, priceCurrency, and availability, aggregateRating and review, and the shipping and return fields Google added for merchant listings. Identity fields matter more than most stores realize, because they let an engine confirm that your listing and a <a href="/blog/ecommerce-product-schema-ai-search/">review elsewhere</a> describe the same product.</p>
+					</li>
+					<li>
+						<h3>Should we block AI crawlers to protect our catalog?</h3>
+						<p>Not if you want to be recommended. Blocking GPTBot, PerplexityBot, and ClaudeBot removes you from the answers your buyers are reading. There is a real argument for blocking training crawlers while allowing retrieval crawlers, and the two are <a href="/blog/llm-crawler-optimization/">separately controllable</a> for most engines. Decide it deliberately rather than by copying someone’s robots.txt.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

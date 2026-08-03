@@ -1,0 +1,360 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'AI SEO for Manufacturers and Industrial Suppliers',
+		description:
+			'AI SEO services for manufacturers, contract manufacturers, job shops, and industrial distributors that need to appear in AI-generated supplier shortlists across ChatGPT, Perplexity, Claude, and Google AI Overviews.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+				{
+					'@type': 'Question',
+					name: 'How much does manufacturing SEO cost?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Manufacturing and industrial SEO typically runs $3,000 to $12,000 per month depending on the number of processes and materials you cover, how many plants or divisions need their own pages, and how much of your capability data still has to be rebuilt from PDFs. One-time audits start lower.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'How long before we see RFQs from it?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Spec-level and long-tail capability queries usually start producing inbound inside four to eight months, because competition on them is thin. Broad category terms like "contract manufacturer" take a year or more and are worth far less than they look. AI citation visibility often moves faster than rankings, since answer engines re-evaluate sources more frequently than Google re-ranks them.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'Do we still need Thomasnet and GlobalSpec?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Keep them, but stop treating them as the strategy. Directory profiles are useful as corroborating citations: an AI engine that sees the same capability claim on your site, in your directory profile, and in a trade publication treats it as more reliable. What has changed is that the directory is no longer the gatekeeper. The buyer never has to visit it.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'Should spec sheets stay as PDF downloads?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Publish the data as HTML first and offer the PDF as a companion. Models can extract text from many PDFs, but tables inside scanned or image-based PDFs are effectively invisible, and gated downloads are invisible to everything. The tolerance table on the page is what gets quoted. The PDF is what the engineer forwards to purchasing.',
+					},
+				},
+				{
+					'@type': 'Question',
+					name: 'What schema should a manufacturer use?',
+					acceptedAnswer: {
+						'@type': 'Answer',
+						text: 'Organization with a full address and hasCertification for each active registration, Product or Service for what you actually sell, and QuantitativeValue for numeric specs like tolerances, envelope sizes, and run quantities. Certification markup matters most here, because it maps directly onto the constraint the buyer is filtering by.',
+					},
+				},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`AI SEO for Manufacturers and Industrial Suppliers | ${SITE_TITLE}`}
+			description="Industrial SEO for manufacturers, job shops, and suppliers. Get shortlisted when engineers and procurement teams ask AI for capability, tolerance, and certification matches."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Figtree', system-ui, -apple-system, sans-serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Figtree', system-ui, -apple-system, sans-serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+
+			.svc-figure { margin: var(--space-6) 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); overflow: hidden; }
+			.svc-figure svg { display: block; width: 100%; height: auto; }
+			.svc-figure figcaption { padding: 0.75rem 1rem; border-top: 1px solid var(--line); font-size: 0.85rem; line-height: 1.55; font-style: italic; color: var(--ink-muted); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">AI SEO for manufacturing</span>
+					<h1>AI SEO for Manufacturers and Industrial Suppliers</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						A design engineer with a print in front of them does not browse ten supplier websites anymore. They describe the part, the material, the tolerance, and the certification they need, and an AI hands back a shortlist of four suppliers. Your capability data decides whether you are on that list. Most manufacturers keep theirs locked inside a PDF brochure, where no model can read it.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Request a quote</a>
+					</div>
+				</div>
+			</section>
+
+			<figure class="svc-figure" aria-labelledby="svc-figure-caption">
+				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How manufacturers get shortlisted by AI: capability pages, machine-readable spec tables, certification pages, and directory citations feed AI engines that return a supplier shortlist">
+					<rect width="1080" height="360" fill="rgb(246,245,240)" />
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.06"><line x1="0" y1="48" x2="1080" y2="48" /><line x1="0" y1="312" x2="1080" y2="312" /></g>
+					<text x="48" y="32" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">INPUT SIGNALS</text>
+					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">AI SYNTHESIS</text>
+					<text x="1032" y="32" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(184,85,46)">CITED OUTCOME</text>
+					<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
+						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Capability + process pages</text></g>
+						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Spec tables in HTML</text></g>
+						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Certifications (AS9100, IATF)</text></g>
+						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Directory + RFQ citations</text></g>
+					</g>
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.2" fill="none">
+						<path d="M 288 100 C 360 100, 380 178, 440 178" /><path d="M 288 152 C 360 152, 380 178, 440 178" /><path d="M 288 204 C 360 204, 380 178, 440 178" /><path d="M 288 256 C 360 256, 380 178, 440 178" />
+					</g>
+					<g transform="translate(440 130)">
+						<rect width="200" height="100" fill="rgb(14,17,22)" rx="6" />
+						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">AI ENGINES</text>
+						<text x="100" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">ChatGPT · Perplexity</text>
+						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">Claude · AI Overviews</text>
+					</g>
+					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+						<path d="M 640 180 C 700 180, 760 180, 820 180" />
+						<polyline points="810,174 820,180 810,186" />
+					</g>
+					<g transform="translate(820 110)">
+						<rect width="212" height="140" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="6" />
+						<circle cx="32" cy="38" r="18" fill="rgb(184,85,46)" />
+						<text x="32" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="rgb(250,250,247)">01</text>
+						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">On the supplier shortlist</text>
+						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">for 5-axis AS9100 machining</text>
+						<rect x="20" y="76" width="172" height="6" rx="1" fill="rgb(14,17,22)" fill-opacity="0.75" />
+						<rect x="20" y="88" width="140" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="98" width="156" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="108" width="120" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+					</g>
+					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Figtree, system-ui, sans-serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Procurement asks AI for a supplier that matches the spec. Only machine-readable capability data makes the shortlist.</text>
+				</svg>
+			</figure>
+
+			<section class="svc-section">
+				<h2>Supplier discovery stopped being a search and became a shortlist</h2>
+				<p>Industrial buying never ran on head terms. It runs on specs: a material, a process, a tolerance band, a certification, a lead time. Those queries were always too specific for a keyword strategy, which is exactly why AI answer engines are so good at them. The engine reads your capability data, matches it against the constraint, and names four suppliers. There is no page two to fall back on.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Queries are constraint-shaped</strong><span>"Who can do 5-axis machining on Inconel 718 with AS9100 and 200-piece runs?" is now a single prompt. It used to be three phone calls.</span></div>
+					<div class="outcome"><strong>Certifications work as hard filters</strong><span>AI systems treat ISO 9001, AS9100D, IATF 16949, and ITAR registration as pass or fail conditions. If yours are named only inside a scanned certificate PDF, you fail silently.</span></div>
+					<div class="outcome"><strong>Directories no longer stand between you and the buyer</strong><span>Thomasnet and GlobalSpec profiles are now one citation source among many. The engine reads them alongside your site, and your site is the part you control.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for manufacturers</h2>
+				<p>Three services built around how engineers and procurement teams actually specify, shortlist, and issue an RFQ.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>Industrial Visibility Audit</h3>
+								<p>We run the prompts your buyers run. Process, material, tolerance, certification, and lead-time combinations, across ChatGPT, Perplexity, Claude, and Google AI Overviews, and we record which suppliers get named and why. Then we trace it back to the capability data on your site that either supports or blocks a match.</p>
+								<ul><li>AI shortlist testing across your real capability set</li><li>Competitor supplier-shortlist analysis</li><li>Capability and spec data machine-readability review</li><li>Certification and compliance page audit</li><li>Directory profile consistency (Thomasnet, GlobalSpec, IQS)</li><li>Product, Organization, and <a href="/seo/schema-markup/">schema</a> gap review</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Capability and Spec Content Build</h3>
+								<p>The implementation work that turns a brochure site into a source an answer engine can quote. One page per process, per material, per industry served, with the numbers on the page as HTML rather than trapped in a downloadable PDF.</p>
+								<ul><li>Process pages per capability with real tolerance and envelope data</li><li>Material-specific pages (alloys, polymers, composites)</li><li>Spec and part-number tables in crawlable HTML</li><li>Certification pages with scope, registrar, and expiry</li><li>Industry-served pages tied to actual qualified work</li><li>RFQ-intent pages that answer lead time, MOQ, and tooling questions</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing Industrial AI SEO</h3>
+								<p>Monthly work to hold the shortlist position as competitors publish, certifications renew, and answer engines re-crawl. Includes the engineering-audience content that earns citations rather than clicks.</p>
+								<ul><li>Monthly capability and application content</li><li>Technical explainers written for engineers, not buyers</li><li>AI citation monitoring by capability and competitor</li><li>Directory and NAP consistency maintenance</li><li>Tradeshow and product-launch content cycles</li><li>Quarterly shortlist re-testing and reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why this is the cheapest window manufacturers will get</h2>
+				<p>Industrial sites are, on average, the least optimized category on the web for machine reading. That is not an insult, it is an opportunity. The bar to become the best-structured supplier in your niche is low, and the buyer's decision has moved to exactly the layer where structure wins.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Spec queries have almost no competition</strong><span>Nobody is fighting over "PEEK injection molding minimum order quantity" the way they fight over "contract manufacturer." The specific query is the one attached to a real RFQ.</span></div>
+					<div class="outcome"><strong>One capability page pays for years</strong><span>A process page with honest tolerances and envelope limits keeps qualifying inbound work long after it is published, and it filters out the quotes you never wanted.</span></div>
+					<div class="outcome"><strong>Your PDFs are the fix</strong><span>Most manufacturers already have the data. It sits in spec sheets, capability brochures, and quality manuals. Moving it into HTML is the single highest-return job on the list.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a quote for manufacturing SEO</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>We will run live prompts for your top capabilities, show you which suppliers get named instead of you, and outline what it takes to change that.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your processes, certifications, and the work you want more of. We will reply with a tailored proposal.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="Manufacturing SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift Manufacturing SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Company / website</label>
+							<input id="q-company" type="text" name="company" autocomplete="organization" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+									<option value="Industrial Visibility Audit">Industrial Visibility Audit</option>
+									<option value="Capability and Spec Content Build">Capability and Spec Content Build</option>
+									<option value="Ongoing Industrial AI SEO">Ongoing Industrial AI SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your capabilities and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Processes, materials, certifications, typical run sizes, and the kind of RFQs you want more of."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>Manufacturing SEO FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much does manufacturing SEO cost?</h3>
+						<p>Manufacturing and industrial SEO typically runs $3,000 to $12,000 per month depending on the number of processes and materials you cover, how many plants or divisions need their own pages, and how much of your capability data still has to be rebuilt from PDFs. One-time audits start lower.</p>
+					</li>
+					<li>
+						<h3>How long before we see RFQs from it?</h3>
+						<p>Spec-level and long-tail capability queries usually start producing inbound inside four to eight months, because competition on them is thin. Broad category terms like "contract manufacturer" take a year or more and are worth far less than they look. AI citation visibility often moves faster than rankings, since answer engines re-evaluate sources more frequently than Google re-ranks them.</p>
+					</li>
+					<li>
+						<h3>Do we still need Thomasnet and GlobalSpec?</h3>
+						<p>Keep them, but stop treating them as the strategy. Directory profiles are useful as corroborating citations: an AI engine that sees the same capability claim on your site, in your directory profile, and in a trade publication treats it as more reliable. What has changed is that the directory is no longer the gatekeeper. The buyer never has to visit it.</p>
+					</li>
+					<li>
+						<h3>Should spec sheets stay as PDF downloads?</h3>
+						<p>Publish the data as HTML first and offer the PDF as a companion. Models can extract text from many PDFs, but tables inside scanned or image-based PDFs are effectively invisible, and gated downloads are invisible to everything. The tolerance table on the page is what gets quoted. The PDF is what the engineer forwards to purchasing.</p>
+					</li>
+					<li>
+						<h3>What schema should a manufacturer use?</h3>
+						<p>Organization with a full address and hasCertification for each active registration, Product or Service for what you actually sell, and QuantitativeValue for numeric specs like tolerances, envelope sizes, and run quantities. <a href="/seo/schema-markup/">Certification markup</a> matters most here, because it maps directly onto the constraint the buyer is filtering by.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>

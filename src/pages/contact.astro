@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SITE_EMAIL, ORG_ADDRESS } from '../consts';
 
 const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
 const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
@@ -57,6 +57,10 @@ const structuredData = {
 			.form-status.error { display: block; color: #b91c1c; }
 			.lead-proof { margin-top: var(--space-5); font-size: 0.9rem; color: var(--ink-muted); }
 			.lead-proof a { color: var(--signal-deep); font-weight: 600; }
+			.lead-office { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--line); font-style: normal; font-size: 0.85rem; line-height: 1.65; color: var(--ink-muted); }
+			.lead-office-label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(var(--ink), 0.75); margin-bottom: var(--space-2); }
+			.lead-office a { color: var(--signal-deep); font-weight: 600; }
+			.lead-office-note { display: block; margin-top: var(--space-2); font-size: 0.8rem; color: rgba(var(--ink), 0.55); }
 			@media (max-width: 760px) { .lead-grid, .lead-what { grid-template-columns: 1fr; } }
 		</style>
 	</head>
@@ -101,6 +105,13 @@ const structuredData = {
 					<a class="btn btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
 					<a class="btn btn-secondary" href="/sample-seo-audit/">See a sample audit &rarr;</a>
 					<p class="lead-proof">Curious what you get? The <a href="/sample-seo-audit/">sample report</a> shows the depth of a full audit, and our <a href="/ai-seo-services/">AI SEO services</a> cover what comes after.</p>
+					<address class="lead-office">
+						<span class="lead-office-label">Registered office</span>
+						{ORG_ADDRESS.street}<br />
+						{ORG_ADDRESS.locality}, {ORG_ADDRESS.region} {ORG_ADDRESS.postalCode}, {ORG_ADDRESS.countryName}<br />
+						<a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>
+						<span class="lead-office-note">Work is remote and clients are worldwide. Calls run across US, UK, and India hours.</span>
+					</address>
 				</div>
 			</div>
 		</main>

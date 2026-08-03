@@ -35,6 +35,20 @@ export const SITE_KEYWORDS = [
 export const SITE_LOGO = `${SITE_URL}/icon-512.png`;
 export const SITE_EMAIL = 'hello@aiseoshift.com';
 
+// Registered office. Used for Organization schema, footer NAP, and contact page.
+// This is an entity/trust signal, not a local-SEO play: we work with clients worldwide
+// and deliberately do not run city landing pages.
+export const ORG_ADDRESS = {
+	street: 'B2-21, 3rd Floor, Vikrant Khand',
+	locality: 'Gomti Nagar, Lucknow',
+	region: 'Uttar Pradesh',
+	postalCode: '226010',
+	country: 'IN',
+	countryName: 'India',
+};
+export const ORG_ADDRESS_LINE = `${ORG_ADDRESS.street}, ${ORG_ADDRESS.locality}, ${ORG_ADDRESS.region} ${ORG_ADDRESS.postalCode}, ${ORG_ADDRESS.countryName}`;
+export const ORG_AREA_SERVED = ['US', 'GB', 'CA', 'AU', 'IN', 'AE', 'SG'];
+
 export const SITE_SAME_AS = [
 	'https://bsky.app/profile/aiseoshift.bsky.social',
 	'https://aiseoshift.tumblr.com',
