@@ -1,0 +1,93 @@
+---
+title: "Google Ships Gemini 3.6 Flash, 3.5 Flash-Lite, and a Locked-Down Cybersecurity Model"
+description: "Google released three new Gemini Flash models on July 21, 2026, cheaper and faster than the last generation, with one gated to governments only."
+deck: On July 21, 2026, Google shipped Gemini 3.6 Flash, Gemini 3.5 Flash-Lite, and a restricted security model called Gemini 3.5 Flash Cyber. All three are built for cheap, fast, high-volume agent work, not headline reasoning.
+pubDate: 2026-07-21
+category: Tooling
+tags:
+  - Google
+  - Gemini
+  - AI Models
+  - AI Agents
+  - Google DeepMind
+  - Cybersecurity
+author: Shashank Dubey
+featured: false
+draft: false
+---
+
+On July 21, 2026, Google released three new models under the Gemini name: Gemini 3.6 Flash, Gemini 3.5 Flash-Lite, and Gemini 3.5 Flash Cyber. None of them is the company's flagship. All three sit in the Flash tier, the fast and cheap end of the Gemini lineup, and Google is positioning them squarely as infrastructure for agentic workloads rather than as a new best-in-class reasoning model.
+
+Tulsee Doshi, senior director of product management for Gemini, wrote the [announcement on Google's official blog](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/). The release lands with Gemini 3.5 Pro, Google's next flagship model, still not broadly shipped after several delays. That timing is not incidental.
+
+## TL;DR
+
+Google launched three Flash-tier models on July 21, 2026: Gemini 3.6 Flash ($1.50/$7.50 per million input/output tokens, 1M-token context, 17% fewer output tokens than 3.5 Flash, stronger on coding and computer-use benchmarks), Gemini 3.5 Flash-Lite ($0.30/$2.50 per million tokens, 350 output tokens per second, now rolling out inside Google Search for agentic queries), and Gemini 3.5 Flash Cyber (a vulnerability-hunting model built on 3.5 Flash, restricted to governments and trusted partners through a CodeMender pilot). None of them replaces Gemini 3.5 Pro, which has slipped its release multiple times since a planned June 2026 launch. Google is leaning harder on Flash while Pro remains stuck.
+
+## What was announced
+
+**Gemini 3.6 Flash** is the general-purpose upgrade in the group.
+
+- 1 million-token context window, 64,000-token output cap
+- Knowledge cutoff moved to March 2026, up from January 2025 on Gemini 3.5 Flash
+- Accepts text, image, video, audio, and PDF input
+- Pricing: $1.50 per million input tokens, $7.50 per million output tokens
+- Uses about 17% fewer output tokens than 3.5 Flash on the same work, per the Artificial Analysis Index
+- Runs around 280 output tokens per second
+- Benchmarks Google cites: 76.2% on Terminal-Bench 2.1, 83.6% on MCP Atlas, 84.2% on CharXiv Reasoning, 49% on DeepSWE (up from 37% for 3.5 Flash), 63.9% on MLE-Bench (up from 49.7%), and 83.0% on OSWorld-Verified computer-use tasks (up from 78.4%)
+- Available now in Google AI Studio, Android Studio, Google Antigravity, the Gemini Enterprise Agent Platform, and the Gemini app
+
+Artificial Analysis separately measured an 18% drop in average task cost, and Google's own materials point to token savings as steep as 65% on long-horizon agentic coding runs. That's the actual pitch here: not a smarter model so much as a cheaper one to run in a loop thousands of times a day.
+
+**Gemini 3.5 Flash-Lite** is the volume tier.
+
+Fastest model in the 3.5 family at roughly 350 output tokens per second. Priced at $0.30 per million input tokens and $2.50 per million output tokens, well under half of 3.6 Flash's rate. It beats the previous 3.1 Flash-Lite on agentic and coding evaluations by a wide margin and, on some benchmarks, edges out the original Gemini 3 Flash despite being the cheaper, lighter model. On SWE-Bench Pro it scores 54.2% against Gemini 3 Flash's 49.6%. Flash-Lite ships with built-in computer-use tool support and is already rolling out inside Google Search to handle agentic search queries, the ones where the engine has to take several steps rather than return a single answer.
+
+**Gemini 3.5 Flash Cyber** is the odd one out, and the name is not a marketing flourish. It's a security-specific variant of 3.5 Flash, fine-tuned to find, validate, and patch software vulnerabilities. Google built it as a lighter, cheaper alternative to the large frontier models that have historically been thrown at this kind of work, and it posts competitive results on the CyberGym benchmark using multi-agent orchestration rather than one enormous model doing everything.
+
+Access is the real story with this one. Flash Cyber is not on Google AI Studio next to the other two. It's gated to a limited pilot for governments and trusted partners, distributed through Google's CodeMender program. You cannot sign up and get an API key today. Google is treating automated vulnerability discovery and patching as something to hand out carefully, not something to ship broadly on day one.
+
+Google also says it added stronger Frontier Safety safeguards across the release, specifically around CBRN and cyber-offense misuse domains, which lines up with why Cyber is walled off while the other two are wide open.
+
+## Why the timing matters
+
+Gemini 3.5 Pro has not had an easy run. It missed an original June 2026 target, and by multiple accounts DeepMind scrapped the 2.5 Pro base it had been building on after hitting real ceilings in multi-step math reasoning and SVG scene generation. Google reportedly retrained on new coding data in late June and the results underwhelmed. As of this Flash launch, Pro still had not shipped broadly.
+
+So Google shipped its workhorse tier instead.
+
+That's not spin. It's a legible strategy. If your flagship model is behind schedule, the fastest way to keep developers building on your platform is to make the tier under it faster, cheaper, and good enough for the jobs that don't need frontier reasoning. Most agent pipelines don't call a flagship model for every step anyway. They call a cheap model in a loop, thousands of times, and save the expensive model for the handful of steps that actually need it.
+
+This is also where the rest of the industry has landed. OpenAI shipped GPT-5.6 on July 9, split into three named tiers: Sol at the top, Terra in the middle, and Luna at the bottom, priced at launch around $5/$30, $2.50/$15, and $1/$6 per million tokens respectively before OpenAI cut Luna and Terra's prices later that month. Anthropic runs the same shape with Opus, Sonnet, and Haiku, Haiku 4.5 priced at $1/$5 per million tokens for exactly the high-volume, low-latency work Gemini Flash is chasing.
+
+Three companies, three names, the same underlying bet: agentic workflows spend most of their tokens on cheap steps, so the cheap tier is where the pricing war actually happens. Nobody is fighting over who has the best $30-per-million-token model anymore. They're fighting over who has the best $1-per-million-token model, because that's the one running in the background all day.
+
+One more thing worth flagging for anyone tracking how content gets surfaced to users: Flash-Lite is now doing agentic work directly inside Google Search. When a model that cheap is handling multi-step search queries at scale, the pages that get pulled into those steps are the pages structured clearly enough for a fast, lightweight model to parse without much reasoning overhead. That's a different bar than writing for a slow, expensive model that can work through ambiguity.
+
+Google also teased Gemini 4 alongside this release without giving a date, which is its own signal about where Pro fits in the roadmap.
+
+## Frequently asked questions
+
+**When did Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber launch?**
+Google released all three on July 21, 2026, announced on the company's official blog by Tulsee Doshi, senior director of product management for Gemini.
+
+**How much do the new Gemini Flash models cost?**
+Gemini 3.6 Flash is $1.50 per million input tokens and $7.50 per million output tokens. Gemini 3.5 Flash-Lite is $0.30 per million input tokens and $2.50 per million output tokens. Pricing for Gemini 3.5 Flash Cyber has not been published since it's not generally available.
+
+**Can I use Gemini 3.5 Flash Cyber?**
+Not unless you're a government agency or one of Google's trusted partners. It's distributed through a limited CodeMender pilot, not through Google AI Studio or the public API.
+
+**Is this the same as the Gemini 3.5 Pro release?**
+No. Gemini 3.5 Pro is a separate, larger flagship model that has been delayed multiple times since a planned June 2026 launch and had not shipped broadly as of this Flash release. The two are different tiers on different timelines.
+
+**What's actually new in Gemini 3.6 Flash versus 3.5 Flash?**
+A 1M-token context window carried over, a knowledge cutoff moved to March 2026, roughly 17% fewer output tokens for the same task, and measurable gains on coding, long-context, and computer-use benchmarks, including a jump from 78.4% to 83.0% on OSWorld-Verified.
+
+## Primary sources and further reading
+
+- [Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/) - Google's official announcement, authored by Tulsee Doshi
+- [Introducing Gemini 3.5 Flash Cyber](https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/) - Google DeepMind's dedicated post on the security-focused model and the CodeMender pilot
+- [Google launches Gemini 3.6 Flash and 3.5 Flash-Lite, teases Gemini 4](https://9to5google.com/2026/07/21/gemini-3-6-flash-launch/) - 9to5Google's launch-day coverage
+- [Google's Gemini 3.6 Flash model cuts AI agent token costs by up to 65% on long horizon engineering tasks, and 3.5 Pro is on the way](https://venturebeat.com/technology/googles-gemini-3-6-flash-model-cuts-ai-agent-token-costs-by-up-to-65-on-long-horizon-engineering-tasks-and-3-5-pro-is-on-the-way) - VentureBeat on agentic cost savings and the Pro context
+- [Google launches Gemini 3.6 Flash and a cybersecurity model with 17% fewer output tokens](https://gcn.com/google-launches-gemini-flash-cybersecurity-model/19924/) - GCN's coverage focused on the Flash Cyber model
+- [Gemini 3.5 Pro delays due to coding performance, upgraded Flash model in testing](https://9to5google.com/2026/07/16/gemini-3-5-pro-delays/) - 9to5Google on why Gemini 3.5 Pro slipped
+- [OpenAI Releases GPT-5.6 (Sol, Terra, Luna): A Three-Tier Model Family](https://www.marktechpost.com/2026/07/09/openai-releases-gpt-5-6-a-three-tier-model-family-with-programmatic-tool-calling/) - MarkTechPost on OpenAI's competing tiered release

@@ -1,0 +1,84 @@
+---
+title: "DeepSeek Ships V4-Flash-0731, and It Beats Its Own Flagship on Benchmarks"
+description: "DeepSeek's new V4-Flash-0731 costs $0.14/$0.28 per million tokens and beats the larger V4-Pro on every published agentic benchmark."
+deck: DeepSeek released DeepSeek-V4-Flash-0731 on July 31, 2026, pricing it at $0.14 per million input tokens and $0.28 per million output tokens. The smaller, cheaper model now beats DeepSeek's own flagship V4-Pro on every agentic benchmark the company has published.
+pubDate: 2026-07-31
+category: Tooling
+tags:
+  - DeepSeek
+  - AI Models
+  - Open Weights
+  - AI Pricing
+  - Agentic AI
+author: Shashank Dubey
+featured: false
+draft: false
+---
+
+On July 31, 2026, DeepSeek released [DeepSeek-V4-Flash-0731](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731), moving the model out of preview and into a public API beta. The weights went up on Hugging Face under an MIT license the same day. Pricing landed at $0.14 per million input tokens and $0.28 per million output tokens, cheap even by the standards of a market that has spent 2026 racing prices toward zero.
+
+The bigger story isn't the price. It's that the smaller model now beats DeepSeek's own bigger one.
+
+## TL;DR
+
+DeepSeek-V4-Flash-0731 is a 284-billion-parameter mixture-of-experts model (304 billion including its DSpark speculative-decoding module) with 13 billion parameters active per token and a 1-million-token context window. It's a retrained version of April's V4-Flash preview, not a new architecture, but the retraining focused hard on agentic tool use and coding, and it shows: the model now beats DeepSeek's larger 1.6-trillion-parameter V4-Pro (Preview) on every agentic benchmark the company has published, including a jump from 61.8 to 82.7 on Terminal Bench 2.1. Pricing is $0.14 per million input tokens ($0.0028 on a cache hit) and $0.28 per million output tokens, roughly a third of V4-Pro's output rate. It arrives eleven days after DeepSeek's V4 family reached general availability, in the middle of an open-weight price war that also saw OpenAI cut GPT-5.6 Luna's price 80% the day before.
+
+## What was released
+
+The core numbers, pulled from DeepSeek's own model card and independent coverage:
+
+- **Architecture.** A mixture-of-experts model with 284 billion total parameters (304 billion counting the DSpark speculative-decoding module), 13 billion active per token. Each MoE layer runs 1 shared expert plus 256 routed experts, and 6 routed experts fire per forward pass. Pretraining ran on more than 32 trillion tokens.
+- **Context window.** 1 million tokens, with DeepSeek recommending up to 384K tokens of output at high or max reasoning effort.
+- **License.** MIT, fully open weights, no gating, commercial deployment permitted. Self-hosting takes roughly 110GB of combined memory at 3-bit quantization, or a 4x GB300 node for full precision.
+- **Pricing.** $0.14 per million input tokens on a cache miss, $0.0028 per million on a cache hit (a 98% discount for repeated context), and $0.28 per million output tokens. The API beta ships with a 2,500-request concurrency cap.
+- **What actually changed.** DeepSeek is upfront that this isn't a new base model. It's April's V4-Flash preview run through a heavier post-training pass aimed at coding, agentic tool use, and reasoning. Same weights lineage, materially different behavior.
+
+The benchmark gains are the headline. Terminal Bench 2.1, a test of complex command-line agent work, went from 61.8 on the preview to 82.7 on the 0731 build, ahead of DeepSeek's own V4-Pro (Preview) at 72.1 and closing in on Claude Opus 4.8's 85.0. NL2Repo climbed from 38.5 to 54.2. Cybergym went from 52.7 to 76.7. DSBench-FullStack, an internal full-stack coding test, jumped from 37.0 to 68.7. DeepSeek also reports 79% on SWE-bench Verified.
+
+Worth flagging: the DeepSWE score (54.4, up from 7.3) runs on DeepSeek's own evaluation harness, which the company says it will publish "soon." Until then, nobody outside DeepSeek can rerun that number. DSBench-FullStack and DSBench-Hard are internal test sets too. Directionally useful, not independently verifiable yet.
+
+Simon Willison, who tested the model through OpenRouter, called it possibly "the best value-per-intelligence model out there" right now, noting it ranks ahead of the much larger MiniMax M3 (428B parameters) on Artificial Analysis's intelligence-versus-cost chart. He also found the default reasoning setting underwhelming and had to push reasoning effort to "high" before results improved, a reminder that flash-tier pricing sometimes comes with a configuration tax.
+
+## Why it matters: the flagship just got beaten by its own budget sibling
+
+DeepSeek's V4 family left preview and hit general availability on July 20, 2026, eleven days before this release. V4-Pro is the big one: 1.6 trillion total parameters, 49 billion active. It's the model DeepSeek built to compete with Claude Opus and GPT-5.6 Sol head-on.
+
+V4-Flash-0731 is a fifth the size and beats it anyway, on every agentic benchmark DeepSeek has published so far. V4-Pro's own stable release still hasn't shipped. DeepSeek's July 31 changelog closes with a one-line promise that it's coming "soon."
+
+That's an odd position for a company to be in. Its cheap model is currently outperforming its expensive one on the exact workloads (agentic coding, tool use, terminal tasks) that are supposed to justify paying more.
+
+Zoom out and this fits a pattern that's defined Chinese open-weight labs through 2026: undercut on price, then close the capability gap fast enough that the price stops looking like the trade-off it used to be. Qwen's lineup runs from $0.05 per million tokens on the Flash tier up to $1.30 on 3.6 Max Preview. GLM-5.2 prices under a third of Kimi K3. Kimi K3 itself broke from the pattern and priced at $3/$15 per million tokens, roughly matching Anthropic's Sonnet tier, which made it the outlier everyone argued about the week it launched.
+
+DeepSeek, meanwhile, keeps landing near the floor. Fourteen cents per million input tokens is a price Western frontier labs simply aren't matching on anything close to comparable capability.
+
+Which is why OpenAI's move the day before this release is worth noting. On July 30, GPT-5.6 Luna, OpenAI's cheapest 5.6-tier model, had its price cut 80%, from $1/$6 per million tokens down to $0.20/$1.20. That's still roughly 1.4 times DeepSeek's input rate and more than four times its output rate. A frontier lab cutting a flagship-family model's price by four-fifths in three weeks isn't a routine adjustment. It's a response to pricing pressure that open-weight competitors are visibly applying.
+
+None of this is charity. Cheap, capable models change what's economically viable to build on top of an LLM. Products that generate or verify large volumes of AI-written or AI-summarized answers, the kind that increasingly shape what shows up in ChatGPT, Perplexity, and AI Overviews, get materially cheaper to run when the per-token cost of a competent model drops this far. That doesn't change what makes content citable. It changes how many companies can afford to build the infrastructure that surfaces it.
+
+## Frequently asked questions
+
+**When did DeepSeek release V4-Flash-0731?**
+July 31, 2026. DeepSeek moved the official V4-Flash API into public beta the same day and published the model weights on Hugging Face under an MIT license.
+
+**How much does DeepSeek-V4-Flash-0731 cost?**
+$0.14 per million input tokens on a cache miss, $0.0028 per million on a cache hit, and $0.28 per million output tokens.
+
+**Is DeepSeek-V4-Flash-0731 open weight?**
+Yes. The weights are published on Hugging Face under an MIT license, ungated, with commercial deployment permitted. Self-hosting needs roughly 110GB of combined memory at 3-bit quantization, or a 4x GB300 node for full precision.
+
+**Does it really beat DeepSeek's own flagship model?**
+On the agentic benchmarks DeepSeek has published, yes. V4-Flash-0731 outscores the much larger V4-Pro (Preview) on Terminal Bench 2.1, NL2Repo, and Cybergym, among others, despite running at roughly a third of V4-Pro's output price. Some of the internal benchmark numbers (DeepSWE, DSBench) rely on DeepSeek's own unreleased evaluation harness and haven't been independently verified yet.
+
+**How does it compare to GPT-5.6 or Qwen?**
+It's substantially cheaper than every OpenAI GPT-5.6 tier, including Luna after OpenAI's 80% price cut on July 30. Against Chinese open-weight rivals, it undercuts Kimi K3 (priced near Anthropic's Sonnet tier) and sits close to Qwen's cheapest Flash pricing while offering a much longer context window.
+
+## Primary sources and further reading
+
+- [DeepSeek-V4-Flash-0731 model card](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731) - official Hugging Face release with architecture and benchmark details
+- [DeepSeek-V4-Flash-0731: DeepSeek's new open MoE model](https://datanorth.ai/news/deepseek-releases-deepseek-v4-flash-0731) - architecture, licensing, and pricing breakdown
+- [DeepSeek Upgrades DeepSeek-V4-Flash-0731 with Major Agentic and Coding Gains](https://www.marktechpost.com/2026/07/31/deepseek-upgrades-deepseek-v4-flash-0731-with-major-agentic-and-coding-gains/) - MarkTechPost's technical summary with benchmark tables
+- [deepseek-ai/DeepSeek-V4-Flash-0731](https://simonwillison.net/2026/Jul/31/deepseek-v4-flash-0731/) - Simon Willison's hands-on notes and value-for-money assessment
+- [DeepSeek V4 Flash 0731 Launches Public Beta with Price Held at $0.14](https://xenospectrum.com/en/deepseek-v4-flash-0731-pricing/) - pricing and concurrency details
+- [DeepSeek Retrained V4-Flash Beats Its Flagship Pro on Nine Agent Benchmarks](https://www.techtimes.com/articles/322513/20260731/deepseek-retrained-v4-flash-beats-its-flagship-pro-nine-agent-benchmarks.htm) - full benchmark table versus V4-Pro (Preview)
+- [OpenAI Just Cut GPT-5.6 Luna's Price by 80 Percent](https://finance.yahoo.com/technology/ai/articles/openai-just-cut-gpt-5-013753910.html) - context on the competing July 30 GPT-5.6 Luna price cut
+- [Kimi K3, Qwen 3.8, and a Week That Reset the Open-Weight Frontier](https://www.dsebastien.net/kimi-k3-qwen-3-8-and-a-week-that-reset-the-open-weight-frontier/) - broader context on Chinese open-weight pricing in mid-2026

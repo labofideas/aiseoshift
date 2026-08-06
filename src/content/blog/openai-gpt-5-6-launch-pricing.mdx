@@ -1,0 +1,100 @@
+---
+title: "GPT-5.6 Launched Under a Government Gate. Three Weeks Later, Luna Got 80% Cheaper"
+description: "OpenAI's GPT-5.6 cleared a customer-by-customer US government review before its July 9 launch, then Luna's price dropped 80% on July 30."
+deck: OpenAI split GPT-5.6 into three tiers, Sol, Terra, and Luna, after a government-gated rollout. Three weeks later it cut Luna's price by 80%, a blunt signal about where AI pricing is headed.
+pubDate: 2026-07-30
+category: Tooling
+tags:
+  - OpenAI
+  - GPT-5.6
+  - AI Pricing
+  - AI Models
+  - ChatGPT
+  - AI Regulation
+author: Shashank Dubey
+featured: false
+draft: false
+---
+
+On July 9, 2026, OpenAI opened GPT-5.6 to the public, but only after clearing something no frontier model launch had gone through before: a customer-by-customer review by the US government. The company shipped the model as three separate tiers, Sol, Terra, and Luna, each aimed at a different budget and a different job.
+
+Three weeks later, on July 30, OpenAI cut the price of the cheapest tier by 80%. Luna's input rate dropped from $1 to $0.20 per million tokens. That is the kind of number that changes what "run this at scale" actually costs. The launch and the price cut are one story: a model that had to prove itself cleared for release, then had to prove itself cheap enough to matter.
+
+## TL;DR
+
+GPT-5.6 launched July 9, 2026 as three tiers: Sol (flagship reasoning and agentic work), Terra (balanced mid-tier), and Luna (cheap, fast, high-volume). It is the first frontier OpenAI model released only after the US government approved access one customer at a time during a restricted preview, tied to a Trump-administration executive order on AI model review and heightened after Anthropic's Mythos model reportedly showed autonomous exploit development. About twenty organizations got in during that gated window before the July 9 public rollout. Launch pricing, per million input/output tokens: Sol $5/$30, Terra $2.50/$15, Luna $1/$6. On July 30, OpenAI cut Luna 80% to $0.20/$1.20 and Terra 20% to $2/$12, while Sol held at $5/$30 and gained a faster inference mode instead. OpenAI credited efficiency work, including having Sol help rewrite parts of its own inference stack, though the timing lines up with cheap open-weight models (DeepSeek, Zhipu's GLM, Alibaba's Qwen) pressuring prices across the market.
+
+## The GPT-5.6 launch and the government review
+
+The restricted phase started well before the public date. During an internal Q&A on June 26, 2026, Sam Altman told staff that GPT-5.6 would ship first in a gated form, with the US government approving access on what he called a "customer by customer basis." Company names had to be submitted before access was granted. Roughly twenty organizations made it through that initial round.
+
+- **Which agencies were involved.** The Office of the National Cyber Director and the Office of Science and Technology Policy ran point. Commerce Secretary Howard Lutnick reportedly intervened directly, pushing OpenAI against moving ahead without broader sign-off.
+- **Why now.** The review sits inside a Trump-administration executive order calling for review of new frontier models, with cybersecurity as the explicit focus. Coverage links the timing to Anthropic's "Mythos" model demonstrations, which reportedly showed the ability to autonomously develop browser exploits, an outcome that put regulators on edge about the whole class of frontier releases, not just OpenAI's.
+
+The gated phase ran under two weeks. Altman had told staff he expected a broader release "a couple of weeks later," and the July 9 public launch landed almost exactly on that schedule.
+
+Altman was blunt that OpenAI does not want this to become the template. "We've made clear to the US government that this is not our preferred long-term model, and will work with them and others in industry to achieve a more sustainable approach for future releases," he said, according to reporting on the internal Q&A. Read that however you like. Either a company protecting its release cadence, or a company that got a preview of regulated AI launches and did not care for it.
+
+## The Sol, Terra, Luna tier split
+
+All three GPT-5.6 models share the same underlying specs: a 1-million-token context window, up to 128,000 output tokens per request, and a February 16, 2026 knowledge cutoff. OpenAI has described the split as three "durable capability tiers that can advance on their own cadence," meaning Terra can get smarter without turning into Sol, and Luna can get faster without turning into Terra.
+
+**Sol** is the flagship, built for complex reasoning, agentic workflows, computer use, and browsing. On SWE-Bench Pro it scores 64.6%, up from GPT-5.5's 59.4%. On Agents' Last Exam, a benchmark spanning 55 professional fields, Sol posted 53.6, beating Anthropic's Claude Fable 5 by 13.1 points. Fable 5 still leads on raw coding: 80% on SWE-Bench Pro against Sol's 64.6%. Nobody wins everything.
+
+**Terra** is the mid-tier, and closer to Sol than the price gap suggests. It scores 63.4% on SWE-Bench Pro, within a point of Sol, while undercutting GPT-5.5's price and matching or beating it on most major benchmarks. For a lot of production workloads, Terra is the model that actually gets used.
+
+**Luna** is the small, fast, cheap one. It sometimes falls behind GPT-5.5 on the hardest tasks, but clears it on Agents' Last Exam, HealthBench Professional, and DeepSWE, at a fraction of the cost. Built for classification, routing, and high-volume drafting, where speed and unit cost matter more than the last few points of reasoning quality.
+
+A support pipeline might run Luna for intent detection and routing, Terra for drafting the actual response, Sol only for escalations that need real reasoning. That is the design intent behind shipping three separately priced tiers instead of one model with a dial.
+
+## The July 30 price cut
+
+Three weeks after launch, OpenAI moved again. Here is the pricing before and after, per million tokens:
+
+| Model | Before (input/output) | After (input/output) | Change |
+|---|---|---|---|
+| Sol | $5 / $30 | $5 / $30 | Unchanged, gained a Fast mode: 2.5x the speed for 2x the cost |
+| Terra | $2.50 / $15 | $2 / $12 | Roughly 20% cheaper |
+| Luna | $1 / $6 | $0.20 / $1.20 | Roughly 80% cheaper |
+
+OpenAI's stated reason is efficiency, and a fairly unusual version of it: the company says it used GPT-5.6 Sol, running inside its Codex coding agent, to analyze production traffic, rewrite GPU kernels, improve routing heuristics, and optimize the speculative decoding pipeline that serves these models. It attributes about 20% lower serving costs to the kernel work and roughly 15% better token-generation efficiency to the decoding improvements. In plain terms, OpenAI says the model helped make itself cheaper to run.
+
+Worth taking seriously, and worth a little skepticism too. The cut landed right as a wave of cheap open-weight models, DeepSeek's V4 line, Zhipu's GLM-5.2 (priced around $1.20/$4.10), and Alibaba's Qwen family, started showing up on the same pricing tables customers use to compare Luna against everything else. Efficiency gains and competitive pressure are not mutually exclusive. They rarely are.
+
+## Why it matters
+
+Luna's new $0.20 input rate undercuts Anthropic's Claude Haiku 4.5, priced at $1/$5, by roughly 5x on input and about 4x on output. Terra's new $2/$12 comes in under Claude Sonnet 5's standard $3/$15. That is not a minor gap. It is the kind of spread that makes a procurement team rerun its cost model.
+
+The bigger pattern is what OpenAI chose not to touch. Sol's price stayed exactly where it was; the company added speed instead of cutting cost at the top, while slashing the bottom tier by four fifths. Defend margin where reasoning is genuinely scarce, race to the floor where it isn't. Expect Anthropic and Google to answer on their own budget tiers before long. That is how this cycle has gone all year.
+
+The tiering itself, not just the price cut, is the more durable story. Routing routine work down to a cheap model and saving reasoning budget for the fraction of tasks that actually need it used to be something teams engineered around a single model's settings. Now it is explicit product design: three models, three price points, three declared jobs.
+
+For anyone generating content, summaries, or structured answers at real volume, the arithmetic just got friendlier. A job that cost $6 per million output tokens on Luna in July now costs $1.20. That does not change what a piece of writing needs to actually be good, but it does mean more of the mechanical layer of AI-assisted content, first-pass drafts, bulk classification, structured extraction, gets cheap enough to run at a scale that was not economical a month ago.
+
+## Frequently asked questions
+
+**What is GPT-5.6 and how is it different from GPT-5.5?**
+OpenAI's frontier model family, launched July 9, 2026 as three tiers: Sol (flagship), Terra (balanced mid-tier), and Luna (cheap, fast). All three share a 1-million-token context window and 128,000 max output tokens. Sol and Terra beat GPT-5.5 on most benchmarks; Terra does it at roughly half the price.
+
+**Why did GPT-5.6 need government approval before launch?**
+OpenAI restricted early access to about twenty organizations, each individually approved by the US government, ahead of the public July 9 release. The review followed a Trump-administration executive order on frontier model review and came shortly after Anthropic's Mythos model reportedly demonstrated the ability to autonomously develop browser exploits.
+
+**How much cheaper is GPT-5.6 Luna after the July 30 price cut?**
+About 80% cheaper: from $1 input / $6 output per million tokens to $0.20 / $1.20. Terra dropped about 20%, from $2.50/$15 to $2/$12. Sol's price did not change.
+
+**Which GPT-5.6 tier should I actually use?**
+Luna for high-volume, low-complexity work: classification, routing, first-pass drafts. Terra as the practical default for most production tasks. Sol for the harder slice, complex reasoning, agentic workflows, computer use, where the extra cost earns its keep.
+
+**Is GPT-5.6 Sol the best model available right now?**
+Depends what you're measuring. Sol leads Claude Fable 5 on Agents' Last Exam by 13.1 points, but Fable 5 still leads Sol on SWE-Bench Pro, 80% versus 64.6%. Neither wins across the board, which is normal at this stage of the race.
+
+## Primary sources and further reading
+
+- [GPT-5.6: Frontier intelligence that scales with your ambition](https://openai.com/index/gpt-5-6/) - OpenAI's official launch announcement
+- [Advancing the price-performance frontier with GPT-5.6](https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/) - OpenAI's official July 30 pricing announcement
+- [OpenAI's GPT 5.6 rollout now requires US government approval on a "customer by customer basis"](https://the-decoder.com/openais-gpt-5-6-rollout-now-requires-us-government-approval-on-a-customer-by-customer-basis/) - the-decoder on the gated rollout, agencies involved, and Altman's internal Q&A comments
+- [OpenAI will initially only release ChatGPT 5.6 to government-approved customers](https://www.engadget.com/2202129/openai-will-initially-only-release-chatgpt-5-6-to-government-approved-customers/) - Engadget on the restricted early-access phase
+- [The new GPT-5.6 family: Luna, Terra, Sol](https://simonwillison.net/2026/Jul/9/gpt-5-6/) - Simon Willison's technical breakdown, including benchmark comparisons against Claude Fable 5
+- [GPT-5.6 Pricing: Before and After July 30, 2026](https://www.orcarouter.ai/blog/openai-api-price-cut-gpt-5-6) - exact before/after pricing tables and competitor comparisons
+- [AI price wars: OpenAI cuts GPT-5.6 Luna prices by 80% as model competition shifts toward cost](https://venturebeat.com/technology/ai-price-wars-openai-cuts-gpt-5-6-luna-prices-by-80-as-model-competition-shifts-toward-cost) - VentureBeat on the competitive context behind the cut
+- [OpenAI to release GPT-5.6 Sol, Terra and Luna on July 9](https://www.neowin.net/news/openai-to-release-gpt-56-sol-terra-and-luna-on-july-9/) - Neowin on the confirmed launch date

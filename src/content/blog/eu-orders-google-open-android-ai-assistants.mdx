@@ -1,0 +1,107 @@
+---
+title: "EU Orders Google to Open Android to Rival AI Assistants and Share Search Data"
+description: "The European Commission ordered Google to open 11 Android features to rival AI assistants and share search data, citing the Digital Markets Act."
+deck: On July 16, 2026 the European Commission adopted two binding Digital Markets Act decisions forcing Google to let rivals like ChatGPT and Claude plug into Android the way Gemini does, and to hand competing search engines a slice of its query data.
+pubDate: 2026-07-16
+category: Research
+tags:
+  - Google
+  - Android
+  - EU Regulation
+  - Antitrust
+  - Digital Markets Act
+  - AI Assistants
+author: Shashank Dubey
+featured: false
+draft: false
+---
+
+The European Commission told Google on July 16, 2026 that it has to let competing AI assistants use Android the same way Gemini does, and that it has to start sharing anonymized Google Search data with rival search engines and AI chatbots that offer search. Two separate binding decisions, same day, same target.
+
+Google has until July 2027 (the next major Android release, with a hard deadline of August 1, 2027) to make the Android changes. Search data sharing starts in January 2027. Google is already objecting loudly.
+
+## TL;DR
+
+The European Commission issued two DMA "specification decisions" against Alphabet on July 16, 2026: one under Article 6(7) forcing Google to open 11 Android features (voice activation, on-screen context, cross-app actions, background execution, and access to on-device Gemini Nano models, among others) to rival AI assistants like ChatGPT, Claude, and Perplexity on equivalent terms to Gemini; the other under Article 6(11) forcing Google to share anonymized Search query, click, ranking, and impression data with competing search engines and AI chatbots that offer search functionality. Android changes are due by Android 18, no later than August 1, 2027 (one narrow feature, concurrent hotword detection, is pushed to Android 19 / August 2028). Search data sharing starts January 2027. Google's Kent Walker called the decisions a threat to "vital privacy and security guardrails," while the Commission's Henna Virkkunen framed them as necessary to "support innovation and diversity" in AI assistants and search. Non-compliance carries fines up to 10% of Alphabet's global annual turnover, 20% for repeat violations.
+
+## What the order requires
+
+Two decisions, two legal bases, both under the DMA's gatekeeper obligations that already apply to Google as a designated "core platform service" provider.
+
+**Android AI interoperability (Case DMA.100220, Article 6(7) DMA).** Google has to give rival AI assistants free, effective access to 11 Android features on terms equivalent to what its own services get. Based on the Commission's specification proceedings, these cover:
+
+- **Voice activation.** Users pick a default assistant (ChatGPT, Claude, Perplexity, whatever) and invoke it with a wake word the same way "Hey Google" works today.
+- **On-screen context and cross-app actions.** A third-party assistant can read what's on screen and act inside other apps, not just answer inside its own app window, so it can book a taxi, draft a reply, or pull up a location the way Gemini currently does.
+- **Background execution.** Rival assistants can run tasks without staying in the foreground.
+- **On-device model access.** Google's Gemini Nano models, previously reserved for Gemini or offered to rivals on worse terms, become available on the same footing.
+
+Most of this is due with the next major Android release, Android 18, and no later than August 1, 2027. One capability, concurrent always-on hotword detection (so two assistants could both listen for their own wake word at once), is deferred to Android 19, due by August 1, 2028.
+
+**Search data sharing (Case DMA.100209, Article 6(11) DMA).** This obligation isn't new, Google has been under some version of it since March 2024, but the Commission ruled Google's existing compliance was too narrow and too aggressively anonymized to be useful. The new decision requires:
+
+- Sharing of queries, click data, rankings, and impressions/views from both organic and paid results on Google.com.
+- A "multi-layered" anonymization method built with input from internal and external privacy experts, meant to satisfy both the DMA and GDPR.
+- Fair, reasonable, and non-discriminatory pricing and access terms for eligible third parties, which explicitly includes AI chatbots that provide search functionality, not just traditional search engines.
+- Data sharing to begin by January 2027.
+
+Both decisions apply specifically inside the EU. Around 60% of EU Android users are affected by the interoperability rules, per the Commission's own figures.
+
+## Why this happened now
+
+Not a new fight. Google has been a designated gatekeeper under the DMA since 2023 for both Android and Google Search, and the search-data-sharing obligation under Article 6(11) already existed on paper. What changed is enforcement teeth.
+
+The Commission opened the current specification proceedings on January 27, 2026, telling Google its earlier compliance attempts didn't cut it. By April 16 it had sent Google preliminary findings and draft measures. July 16 is where that process landed: binding decisions, not more back-and-forth.
+
+The bigger context: AI assistants are the next front in a fight the Commission already fought over search and app stores. Gemini sits inside stock Android at the OS level. Rivals have lived as ordinary apps, competing for install and default-assistant status without the system hooks Google reserves for itself. The Commission's read is that this is the same self-preferencing problem the DMA was built to stop, moved one layer up the stack.
+
+Henna Virkkunen, the Commission's Executive Vice-President for Tech Sovereignty, put it this way: "With today's measures, we want to support innovation and diversity in the European Union, enabling fair competition in the markets of AI assistant for Android devices and search engines."
+
+## Google's response
+
+Sharp, and fast. Kent Walker, Google and Alphabet's President of Global Affairs, said the decisions "risk undermining vital privacy and security guardrails for millions of Europeans" and argued the Commission "discount[ed] extensive evidence of user harm."
+
+Walker's specific objections:
+
+- On search data: sharing exposes Europeans' private searches "without adequate anonymisation of the data and without user knowledge or consent."
+- On Android: "AI assistants already safely access Android's capabilities, with phone makers playing a key role in vetting them," and the new ruling "threatens device security by granting external apps sensitive and powerful device permissions without these safeguards."
+
+Google also published a blog post from its Europe policy team arguing the DMA "should not undercut security & privacy for Europeans," a line it has used in prior DMA fights over sideloading and default apps too.
+
+The Commission's counter is built into the decisions themselves: mandated privacy, device-integrity, and security protections, plus pre-sharing risk assessments. Whether that satisfies EU courts if Google appeals, and it has appealed nearly every major DMA decision against it, is still open.
+
+## Who benefits, and what it means for search
+
+OpenAI, Anthropic, and Perplexity are the obvious winners on the Android side. If Google implements this as ordered, EU users could set ChatGPT, Claude, or Perplexity as their default voice assistant with Gemini's current system-level reach, not a bolted-on app that can't see the screen or act across other apps.
+
+Microsoft's interest is on the search side. Bing has spent two decades as a distant second to Google Search, partly because Google's scale advantage in query and click data compounds itself: more usage produces better ranking signals, which produces more usage. Article 6(11) data sharing targets that flywheel directly. Whether anonymized data at arm's length actually dents the advantage is a separate question from whether the obligation now exists.
+
+Worth watching past the antitrust headline: if rival assistants get real Android distribution and competing search products get a genuine data injection, the answer engines your content needs to show up in stop being a two-horse race between Google's AI Overviews and ChatGPT's own index. More assistants with real reach means more places where brand and content visibility gets decided.
+
+## Frequently asked questions
+
+**What is the legal basis for the order?**
+The Digital Markets Act: Article 6(7) for interoperability (Case DMA.100220, Android) and Article 6(11) for data sharing (Case DMA.100209, search). Google has been a designated DMA gatekeeper for both Android and Search since 2023. These are enforcement "specification decisions" spelling out exactly how Google must comply, issued after the Commission found Google's earlier compliance attempts insufficient.
+
+**Which AI companies benefit from this ruling?**
+OpenAI, Anthropic, and Perplexity are best positioned to gain deeper Android integration for ChatGPT, Claude, and Perplexity respectively. Microsoft stands to benefit on the search-data side, since better access to Google's query and click data could help Bing close its ranking-signal gap.
+
+**When exactly does Google have to comply?**
+Search data sharing starts January 2027. Android interoperability is due with Android 18, no later than August 1, 2027, except for concurrent hotword detection, which is deferred to Android 19 and August 1, 2028.
+
+**What happens if Google doesn't comply?**
+The DMA allows fines up to 10% of Alphabet's total worldwide annual turnover, rising to 20% for repeat infringements. The Commission can also impose periodic penalty payments to force ongoing compliance.
+
+**Will Google appeal?**
+Not confirmed yet, but likely. Google has appealed nearly every major DMA decision against it so far, and Kent Walker's statement reads like the opening argument for one.
+
+## Primary sources and further reading
+
+- [Commission provides guidance to Google for AI interoperability on Android and sharing of Google Search data under the Digital Markets Act](https://digital-markets-act.ec.europa.eu/commission-provides-guidance-google-ai-interoperability-android-and-sharing-google-search-data-under-2026-07-16_en) - the European Commission's own DMA case page for the July 16, 2026 decisions
+- [Commission provides guidance to Google for AI interoperability on Android and sharing of Google Search data under the Digital Markets Act](https://digital-strategy.ec.europa.eu/en/news/commission-provides-guidance-google-ai-interoperability-android-and-sharing-google-search-data) - the Commission's Shaping Europe's Digital Future news release, includes the Virkkunen quote
+- [Alphabet specification proceedings - Interoperability for AI services](https://digital-markets-act.ec.europa.eu/developer-portal/interoperability/alphabet-specification-proceedings-interoperability-ai-services_en) - Commission developer portal page on Case DMA.100220 (Article 6(7))
+- [Alphabet specification proceedings - Sharing of Google Search data](https://digital-markets-act.ec.europa.eu/developer-portal/data-access/alphabet-specification-proceedings-sharing-google-search-data_en) - Commission developer portal page on Case DMA.100209 (Article 6(11))
+- [EU orders Google to open Android to rival AI features](https://dig.watch/updates/eu-orders-google-to-open-android-ai-features) - Digital Watch Observatory summary of both decisions
+- [EU Orders Google to Open Android and Search to AI Rivals](https://winbuzzer.com/2026/07/17/eu-orders-google-to-open-android-and-search-to-rivals-xcxwbn/) - Winbuzzer's detailed breakdown, including the 11-feature list and compliance dates
+- [The DMA should not undercut security & privacy for Europeans](https://blog.google/company-news/inside-google/around-the-globe/google-europe/the-dma-should-not-undercut-security-privacy-for-europeans/) - Google's own blog post responding to the decisions
+- [Rival AI assistants could soon gain full access to Android features](https://www.androidauthority.com/eu-android-ai-google-search-mandates-3688186/) - Android Authority's coverage of the Android-side requirements
+- [EU Orders Google to Share Search Data, Open Android to Rival AI Starting January Next Year](https://finance.biggo.com/news/3c53291d-4018-4047-947a-b503744a05f0) - BigGo Finance on the compliance timeline

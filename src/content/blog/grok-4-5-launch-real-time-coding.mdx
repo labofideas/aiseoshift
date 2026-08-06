@@ -1,0 +1,91 @@
+---
+title: "Grok 4.5 Lands as xAI's Coding-First Flagship, Built Alongside Cursor"
+description: "xAI, now rebranded SpaceXAI, launched Grok 4.5 on July 8, 2026, a coding- and agent-focused flagship trained on real Cursor developer sessions."
+deck: The launch lands two days after xAI's brand folded into SpaceXAI, pairs the new model with a fresh $60 billion Cursor deal, and stakes its claim on price and speed rather than a raw benchmark crown.
+pubDate: 2026-07-08
+category: Tooling
+tags:
+  - xAI
+  - Grok
+  - AI Models
+  - Coding Tools
+  - SpaceXAI
+author: Shashank Dubey
+featured: false
+draft: false
+---
+
+xAI shipped [Grok 4.5](https://x.ai/news/grok-4-5) on July 8, 2026, calling it the company's most capable model to date and pointing the marketing squarely at coding, agentic tool use, and knowledge work rather than chat. It is also the first Grok release to carry the company's new name. Two days earlier, on July 6, the xAI account on X switched over to [@SpaceXAI](https://en.wikipedia.org/wiki/SpaceXAI), the final visible step in a merger that folded xAI into SpaceX earlier in the year.
+
+The timing is not a coincidence. Grok 4.5 is also the first model trained jointly with [Cursor](https://techcrunch.com/2026/06/16/spacex-to-acquire-cursor-for-60b-in-stock-days-after-blockbuster-ipo/), the coding assistant SpaceX agreed to acquire for $60 billion in stock on June 16, a deal expected to close in the third quarter. xAI is folding a model lab, a coding tool, and a compute buildout (Colossus) into one stack, and Grok 4.5 is the first product to show what that combination looks like.
+
+## TL;DR
+
+Grok 4.5 launched July 8, 2026, replacing Grok 4.3 as xAI's flagship and marking the company's first release under the SpaceXAI name. It is a mixture-of-experts model trained in part on real developer sessions from Cursor, with xAI emphasizing coding accuracy, agentic tool calling, and token efficiency over a straight benchmark-leaderboard win. Reported scores put it at 29.0% on SWE Marathon (versus Claude Opus 4.8's 26.0%) and 83.3% on Terminal-Bench 2.1, and Snorkel's GDPVal+ professional-task suite has it beating both GPT-5.5 and Opus 4.8 on mean pass rate. It runs at $2 per million input tokens and $6 per million output tokens, roughly 60-75% cheaper than Opus 4.8 and GPT-5.5 on a per-token basis, though its 500,000-token context window is actually smaller than Grok 4.3's 1M. Full access currently sits behind SuperGrok Heavy ($300/month), with standard SuperGrok and X Premium+ rolling out access in stages. Elon Musk framed it plainly: "Grok 4.5 is the best value for money AI."
+
+## What was announced
+
+The headline claims, drawn from xAI's own post and the early independent write-ups:
+
+- **A coding- and agent-first flagship.** xAI is not pitching Grok 4.5 as a smarter chatbot. The pitch is a model built for software engineering workflows: writing and fixing code, running multi-step agent tasks, and calling tools reliably across long sessions.
+- **Trained with Cursor, on real developer data.** This is the actual news. Grok 4.5 is described as the first model jointly trained with Cursor, using data drawn from real developer sessions rather than synthetic coding benchmarks alone.
+- **A new training method for long agent runs.** xAI says it introduced asynchronous learning that lets multi-hour agentic training runs proceed in parallel with the rest of model training, which the company credits for the model holding coherence across longer, tool-heavy tasks.
+- **Serving speed.** Grok 4.5 is reportedly served at around 80 tokens per second, with xAI claiming roughly double the token efficiency of rival models on comparable tasks (where a competitor might burn 200,000 tokens finishing a task, xAI says Grok 4.5 does it in about 100,000).
+- **A smaller context window than its predecessor.** Grok 4.5 ships with a 500,000-token context, about 1,000 pages of text. Grok 4.3, the model it replaces as flagship, ran a 1M-token window. That's a real trade-off, not an upgrade across the board.
+
+The most-cited figures come from three evaluations. On SWE Marathon, a long-horizon engineering benchmark, Grok 4.5 posted 29.0% against Claude Opus 4.8's 26.0%. On Terminal-Bench 2.1, it hit 83.3%. On Snorkel's GDPVal+ suite, which tests professional, non-coding knowledge work, its 29% mean pass rate edged out GPT-5.5's 22% and Opus 4.8's 21%.
+
+Independent verification is still catching up. Read vendor-adjacent benchmarks this early as directional, not final.
+
+## What's actually new versus Grok 4
+
+Grok 4 and Grok 4.3 were reasoning-forward models competing mainly on cost and raw capability. Grok 4.5 is a narrower bet: it leads with software engineering and agent reliability, backed by a training partnership with an actual coding tool company instead of general web and code-corpus training alone.
+
+The real-time, live-search capability that's been Grok's signature since it launched inside X, reading the platform's live post firehose for breaking events and social context, carries forward into 4.5 rather than arriving new with it. What's new is the coding and agent story. Reporting that frames Grok 4.5 as strong on "real-time and coding" is really describing an existing strength paired with a genuinely new one.
+
+Worth distinguishing: Grok Build, xAI's agentic coding CLI, launched separately back in May 2026 and runs up to eight parallel coding agents against a local codebase. Grok 4.5 is the model. Grok Build is one of the surfaces it now runs inside, alongside Cursor and the developer API.
+
+## Availability
+
+Grok 4.5 is reachable through three paths right now: the xAI developer API, Grok Build, and Cursor itself.
+
+On the consumer side, access is uneven. SuperGrok Heavy at $300/month (a $99/month promotional rate has circulated) has confirmed full access, including the highest rate limits. Standard SuperGrok at $30/month or $300/year, and X Premium+ at $40/month, are both receiving Grok 4.5 in stages rather than all at once. API pricing runs $2 per million input tokens and $6 per million output, with cached input around $0.30. Full rate comparisons against the rest of the lineup are in our [Grok pricing breakdown](/blog/grok-pricing-2026).
+
+## Why it matters
+
+The competitive framing here is unusually blunt, mostly because Musk made it that way. On launch day he described Grok 4.5 as "roughly comparable to Opus 4.7, but much faster" and "more token-efficient and lower cost," then followed up with a flatter claim: "Grok 4.5 is the best value for money AI."
+
+That's a different pitch than "we built the smartest model." It's a price-and-speed argument for teams running high-volume coding and agent workloads, where Opus 4.8 and GPT-5.5 remain ahead on the hardest reasoning and long-context tasks but cost multiples more per token. One developer's summary, circulating in early coverage: "Opus 4.8 at 2x the speed at a much cheaper price point."
+
+Musk has also signaled the company isn't slowing down to enjoy the launch. Reports point to a Grok 4.6 release roughly two weeks out and a 4.7 a month after that. Grok 4.5 looks like a checkpoint, not a destination.
+
+One more thing worth flagging for anyone watching AI search visibility: assistants that summarize and cite sources (Grok included, given its live X access) increasingly run on models built for agentic tool use, not just Q&A. Content structured to be pulled into a tool-calling workflow will have an edge as that shift continues.
+
+## Frequently asked questions
+
+**When did Grok 4.5 launch?**
+July 8, 2026. It's the first Grok model released under the SpaceXAI name, following the brand's July 6 switch from xAI.
+
+**What's different about Grok 4.5 compared to Grok 4.3?**
+It's the first Grok model trained jointly with Cursor on real developer session data, with a specific focus on coding accuracy and long agentic task runs. It trades a smaller context window (500K tokens versus Grok 4.3's 1M) for reported gains in coding benchmarks and token efficiency.
+
+**How does Grok 4.5 compare to GPT-5.5 and Claude Opus 4.8?**
+Early third-party benchmarks put it ahead of both on SWE Marathon and Snorkel's GDPVal+ suite, and its API pricing undercuts both by a wide margin. Opus 4.8 and GPT-5.5 still hold an edge on the hardest long-context reasoning work in some evaluations. Treat any single-benchmark "best model" claim skeptically this early.
+
+**Is Grok 4.5 available to everyone?**
+Not fully, yet. SuperGrok Heavy subscribers ($300/month) have confirmed full access. Standard SuperGrok and X Premium+ subscribers are getting access in stages. The API is open to anyone with an xAI developer key.
+
+**Is Grok 4.5 the same thing as Grok Build?**
+No. Grok Build is xAI's coding-agent CLI, launched separately back in May 2026. Grok 4.5 is the underlying model, and it now powers Grok Build, Cursor, and the developer API rather than being a product on its own.
+
+## Primary sources and further reading
+
+- [Introducing Grok 4.5](https://x.ai/news/grok-4-5) - xAI/SpaceXAI's official announcement
+- [SpaceXAI Releases Grok 4.5, a Cursor-Trained Model for Coding, Agentic Tasks, and Knowledge Work](https://www.marktechpost.com/2026/07/08/spacexai-releases-grok-4-5/) - MarkTechPost's launch-day writeup with training and pricing details
+- [Grok 4.5 Benchmarks: What xAI Published, and How to Read Them](https://apidog.com/blog/grok-4-5-benchmarks/) - SWE Marathon and Terminal-Bench 2.1 scores
+- [Grok 4.5 Testing Results: How SpaceXAI's New Model Performs on Real Professional Work](https://snorkel.ai/blog/grok-4-5-testing-results-how-spacexais-new-model-performs-on-real-professional-work/) - Snorkel AI's GDPVal+ comparison against GPT-5.5 and Opus 4.8
+- [SpaceX to Acquire Cursor for $60B in Stock](https://techcrunch.com/2026/06/16/spacex-to-acquire-cursor-for-60b-in-stock-days-after-blockbuster-ipo/) - TechCrunch on the Cursor acquisition behind Grok 4.5's training data
+- [SpaceXAI](https://en.wikipedia.org/wiki/SpaceXAI) - background on the July 6 xAI-to-SpaceXAI rebrand
+- [Elon Musk Pulls No Punches With AI Rivals as Grok 4.5 Debuts](https://www.thestreet.com/technology/elon-musk-tells-ai-rivals-grok-45-cheaper-good-enough) - TheStreet on Musk's launch-day comparisons to Opus and GPT
+- [Musk Signals Rapid Grok Rollout: 4.6 in Two Weeks, 4.7 a Month Later](https://www.roic.ai/news/musk-signals-rapid-grok-rollout-46-in-two-weeks-47-a-month-later-07-28-2026) - Roic News on xAI's post-launch release cadence
+- [Elon Musk's xAI Launches 'Grok Build,' a Coding Agent](https://www.eweek.com/news/xai-grok-build-coding-agent/) - eWeek on the separate Grok Build CLI product that now runs on Grok 4.5

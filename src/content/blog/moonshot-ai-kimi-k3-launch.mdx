@@ -1,0 +1,94 @@
+---
+title: "Moonshot AI Launches Kimi K3, Then Open-Sources the Weights 11 Days Later"
+description: "Moonshot AI shipped Kimi K3 on July 16, 2026, a 2.8-trillion-parameter model, then released the full open weights on July 27."
+deck: Moonshot AI launched Kimi K3 as its new flagship on July 16, 2026, and briefly rattled markets in the process. Eleven days later it did something OpenAI, Anthropic, and Google have never done with a frontier model: it gave the weights away.
+pubDate: 2026-07-16
+category: Tooling
+tags:
+  - Moonshot AI
+  - Kimi K3
+  - Open Weights
+  - AI Models
+  - Open Source AI
+  - Mixture of Experts
+author: Shashank Dubey
+featured: false
+draft: false
+---
+
+Moonshot AI launched Kimi K3 on July 16, 2026. The Beijing lab called it a successor to the Kimi K2 line, and by the numbers alone it is the largest open-weight model anyone has shipped: 2.8 trillion total parameters, with only 104 billion active on any given token thanks to a mixture-of-experts design. [Bloomberg reported](https://www.bloomberg.com/news/articles/2026-07-17/china-s-powerful-new-moonshot-ai-model-closes-gap-with-us-rivals) that the release briefly unsettled markets and put pressure on shares of rival Chinese AI firms.
+
+Then, on July 27, Moonshot did the part that actually changes the competitive picture. It published the full weights on Hugging Face under a custom license, letting anyone download, self-host, and modify a model Moonshot itself was pitching as competitive with Claude and GPT-class systems. That is the story here in two beats: a flagship launch that closed distance on the US labs, followed by a release decision that most of the industry still refuses to make.
+
+## TL;DR
+
+Moonshot AI launched Kimi K3 on July 16, 2026, a 2.8-trillion-parameter mixture-of-experts model (104B active parameters) with a 1-million-token context window, native multimodal input, and a new attention architecture Moonshot calls Kimi Delta Attention. Moonshot's own benchmarks placed K3 behind Claude Fable 5 and GPT-5.6 Sol on overall capability but ahead of Claude Opus 4.8 and GPT-5.5 on several coding and agent tasks, with roughly 2.5x better scaling efficiency than K2. On July 27, Moonshot followed through on a commitment to publish the full model weights on [Hugging Face](https://huggingface.co/moonshotai/Kimi-K3) under a Modified MIT license, making K3 the largest open-weight model released to date. The launch rattled markets and pressured shares of Chinese AI rivals MiniMax and Zhipu, and it arrived months ahead of when analysts expected a Chinese lab to reach this tier.
+
+## What was announced
+
+K3 shipped first through Moonshot's own surfaces: Kimi.com, Kimi Work, Kimi Code, and the Moonshot API. The weights were not public on day one. Moonshot instead committed publicly to releasing them within the following two weeks, a promise it kept on July 27.
+
+The architecture is where most of the actual news lives:
+
+- **2.8 trillion total parameters, 104 billion active per token.** A mixture-of-experts model with 896 experts, 16 activated per token plus 2 shared experts, arranged across 93 layers.
+- **New attention stack.** Moonshot introduced Kimi Delta Attention (KDA) combined with Gated Multi-head Latent Attention (MLA) and what it calls Attention Residuals, replacing the attention design from K2.
+- **1,048,576-token context window**, roughly 1 million tokens, with native multimodal input across text, images, and video through a 401-million-parameter vision encoder called MoonViT-V2.
+- **MXFP4 weights with MXFP8 activations**, trained with quantization-aware training from the supervised fine-tuning stage onward, which is part of how Moonshot gets a 2.8T model to run efficiently at inference.
+- **Built for long coding and agent sessions.** Moonshot pitched K3 explicitly around navigating large repositories, running extended tool-use loops, and operating with minimal human oversight during multi-step coding tasks.
+
+On benchmarks, Moonshot's own writeup put K3 in the top three of its comparison set: trailing Claude Fable 5 and GPT-5.6 Sol on overall capability, by Moonshot's own admission, but beating Claude Opus 4.8 and GPT-5.5 on a number of coding and agent benchmarks. [TechCrunch noted](https://techcrunch.com/2026/07/16/moonshots-upcoming-kimi-3-is-expected-to-close-the-gap-with-anthropics-opus-4-8/) that sources close to the release expected K3 to perform at or above Opus 4.8, a model that until this year sat several tiers above anything Chinese labs were shipping.
+
+That timing matters more than the raw scores. [Fortune reported](https://fortune.com/2026/07/16/moonshots-kimi-k3-pushes-chinese-ai-into-fable-level-territory/) that analysts had not expected a Chinese developer to reach Fable-class territory until early 2027. K3 got there in July 2026.
+
+Pricing undercuts the US frontier labs by a wide margin: $3 per million input tokens and $15 per million output on Moonshot's API, with cache-hit input priced at $0.30 per million. Fortune put Claude Fable's output pricing around $50 per million tokens, more than three times K3's rate. K3 isn't the cheapest model in its own neighborhood, though. GLM-5.2 runs $4.40 per million output tokens and DeepSeek V4 sits at $0.87.
+
+## The open weights release
+
+Eleven days after launch, Moonshot did what it said it would. On July 27, 2026, it published the complete Kimi K3 weights to [Hugging Face](https://huggingface.co/moonshotai/Kimi-K3), safetensors shards and all, under a license Moonshot calls the Kimi K3 License, described in coverage as a Modified MIT license.
+
+The modification is narrow. [MarkTechPost's breakdown](https://www.marktechpost.com/2026/07/18/kimi-k3-vs-deepseek-v4-pro-vs-glm-5-2-open-trillion-scale-moe-models-compared-on-benchmarks-license-and-serving-cost/) of the license terms describes a single attribution clause that only triggers once a downstream product built on K3 crosses 100 million monthly active users. Below that threshold, it behaves like plain MIT: free commercial use, fine-tuning, redistribution, no royalties.
+
+That is the real 2.8-trillion-parameter model, not a distilled sibling, sitting on Hugging Face for anyone to pull down. The MXFP4-quantized weights alone run to roughly 594GB, and community quantizations, Unsloth's GGUF builds among the first, followed within days to make self-hosting practical on smaller hardware.
+
+An enterprise with data-residency requirements, a lab building a fine-tune, or a competitor's engineering team can now run a model Moonshot claims beats Opus 4.8 on parts of its own benchmark suite, on infrastructure they control. No API call to Moonshot required after the download.
+
+## Why open-weighting a flagship actually matters
+
+Every major closed lab treats its best model as the product. OpenAI does not publish GPT weights. Anthropic does not publish Claude weights. Google does not publish Gemini weights. The business model depends on the API being the only door in.
+
+Moonshot just put its best model's front door on Hugging Face.
+
+That is a different competitive bet than what DeepSeek and Qwen (Alibaba) have been running. DeepSeek has built its reputation on being the cost leader, with V4 Pro's MIT-licensed weights available from day one and pricing that undercuts nearly everyone. Qwen has leaned on breadth, shipping a wide family of model sizes under Apache 2.0. K3 is neither of those plays. It is Moonshot open-weighting the actual flagship, at full scale, days after positioning it against Claude and GPT in its own marketing.
+
+The response from the rest of the open-weight field was immediate. Alibaba previewed an update to Qwen within days of the K3 launch, claiming its own model ranked behind only Claude Fable 5. Whether or not that specific claim holds up under independent testing, the sequencing tells you something: a Chinese open-weight release is now enough to force a competitor's hand within the same week.
+
+There's a real-world adoption signal too. Reporting on SpaceX's roughly $60 billion acquisition of the coding startup Cursor surfaced that Cursor had built parts of its product on a Kimi model. Thinking Machines Lab, the startup founded by former OpenAI CTO Mira Murati, used Kimi while building its Inkling tool. DoorDash and Coinbase have both said they use Kimi internally. None of that required open weights. But it shows companies outside China were already choosing Kimi models before the license terms got more permissive.
+
+One paragraph on what this means for search: an open-weight flagship widens who can build the tools that cite and summarize your content. Every fine-tune, every self-hosted agent, every regional deployment of K3 is another surface your site's content needs to be legible to, not just Moonshot's own Kimi app.
+
+## Frequently asked questions
+
+**What is Kimi K3?**
+Moonshot AI's flagship model, launched July 16, 2026, as the successor to Kimi K2. It's a 2.8-trillion-parameter mixture-of-experts model with 104 billion active parameters per token, a 1-million-token context window, and native text, image, and video input.
+
+**When were the Kimi K3 weights released, and where?**
+July 27, 2026, on [Hugging Face](https://huggingface.co/moonshotai/Kimi-K3), under a Modified MIT license Moonshot calls the Kimi K3 License.
+
+**Is Kimi K3 free to use commercially?**
+Yes, below one threshold. The open weights can be self-hosted and used commercially without royalties. The license's one attribution requirement only applies once a product built on K3 exceeds 100 million monthly active users, per MarkTechPost's reporting.
+
+**How does Kimi K3 compare to Claude and GPT?**
+Moonshot's own benchmarks put K3 behind Claude Fable 5 and GPT-5.6 Sol on overall capability, but ahead of Claude Opus 4.8 and GPT-5.5 on several coding and agent-focused tests. Independent, third-party verification of the specific numbers was still limited at launch.
+
+**How does Kimi K3 compare to DeepSeek and Qwen on openness?**
+DeepSeek's V4 Pro ships under plain MIT with unrestricted commercial use from day one. Qwen ships under Apache 2.0. K3's Modified MIT license lands in similar territory below the 100-million-user threshold, though DeepSeek is still the cheaper option on API pricing.
+
+## Primary sources and further reading
+
+- [Moonshot's Kimi K3 Launch Shakes AI Rivals as $60 Billion Cursor Deal Highlights Adoption](https://finance.yahoo.com/technology/ai/articles/moonshots-kimi-k3-launch-shakes-124223269.html) - Yahoo Finance on market reaction, Cursor's Kimi-based build, and adoption by DoorDash, Coinbase, and Thinking Machines Lab
+- [Moonshot Unveils Kimi K3 AI Model, Narrowing Gap With US Rivals](https://www.bloomberg.com/news/articles/2026-07-17/china-s-powerful-new-moonshot-ai-model-closes-gap-with-us-rivals) - Bloomberg on the launch and its market impact
+- [Moonshot's upcoming Kimi 3 is expected to close the gap with Anthropic's Opus 4.8](https://techcrunch.com/2026/07/16/moonshots-upcoming-kimi-3-is-expected-to-close-the-gap-with-anthropics-opus-4-8/) - TechCrunch on pre-launch expectations and Moonshot's funding round
+- [Moonshot's Kimi K3 pushes Chinese AI into Fable-level territory](https://fortune.com/2026/07/16/moonshots-kimi-k3-pushes-chinese-ai-into-fable-level-territory/) - Fortune on benchmark positioning, pricing, and analyst expectations
+- [moonshotai/Kimi-K3 on Hugging Face](https://huggingface.co/moonshotai/Kimi-K3) - Official model card with architecture specs and license
+- [Kimi K3 Tech Blog: Open Frontier Intelligence](https://www.kimi.com/blog/kimi-k3) - Moonshot's own technical writeup of the K3 architecture and benchmark results
+- [Kimi K3 vs DeepSeek V4 Pro vs GLM-5.2: Open Trillion-Scale MoE Models Compared on Benchmarks, License, and Serving Cost](https://www.marktechpost.com/2026/07/18/kimi-k3-vs-deepseek-v4-pro-vs-glm-5-2-open-trillion-scale-moe-models-compared-on-benchmarks-license-and-serving-cost/) - MarkTechPost on license terms and comparative benchmarks

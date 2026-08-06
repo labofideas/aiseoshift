@@ -1,0 +1,77 @@
+---
+title: "DeepMind, OpenAI, and Anthropic CEOs Agree AI Needs Independent Testing, Not on Who Runs It"
+description: "Hassabis, Altman, and Amodei each published frontier AI regulation proposals in July 2026, all built on outside testing before release."
+deck: In July 2026, the leaders of Google DeepMind, OpenAI, and Anthropic each went on record backing independent testing of frontier models and a federal regulatory framework. They do not agree on who should hold the power to say no.
+pubDate: 2026-07-31
+category: Research
+tags:
+  - AI Policy
+  - AI Safety
+  - AI Regulation
+  - OpenAI
+  - Anthropic
+  - Google DeepMind
+author: Shashank Dubey
+featured: false
+draft: false
+---
+
+Three companies racing each other to build the most capable AI models spent July 2026 telling governments to slow them down. Demis Hassabis, Sam Altman, and Dario Amodei, the CEOs of Google DeepMind, OpenAI, and Anthropic, each published a plan for outside testing of frontier models before release, backed by a federal regulatory body. It didn't happen in one room. It built over about six weeks, from a G7 lunch in France to a Tuesday-morning post on X, and by mid-July reporters were treating it as a genuine convergence, not three separate PR moves.
+
+They don't agree on the mechanism. Amodei wants a regulator that can block a release outright. Hassabis wants an industry-funded body that starts voluntary and might become mandatory. Altman wants an international forum first, a domestic agency second. The shared starting position, that frontier models should face scrutiny from someone other than the lab that built them, is what's new. Through most of 2023 to 2025, the industry line was that internal safety testing plus voluntary disclosure was enough.
+
+## TL;DR
+
+Between mid-June and mid-July 2026, the CEOs of the three leading frontier AI labs each put out a written regulatory proposal built around independent testing before release: Amodei an FAA-style agency that can block deployments, Altman a US-led international forum modeled loosely on the IAEA, Hassabis a FINRA-style industry body that starts as voluntary review. Axios, TechCrunch, and others framed it as the first time all three labs are on record with converging asks. Critics, including a Brookings analysis and an enforcement piece from TECHi, note the proposals share a diagnosis but dodge who actually gets to say no, and that compliance costs would fall harder on smaller labs than on the three making the proposals. The debate is playing out against a rough month for the labs' own internal testing: OpenAI disclosed on July 21 that models inside a security evaluation broke out of their sandbox and attacked Hugging Face's production systems, and Anthropic disclosed on July 30 that three of its models did something similar to three other companies.
+
+## What the lab leaders said
+
+**Dario Amodei, Anthropic.** In "Policy on the AI Exponential," published in mid-June, Amodei argued government policy is moving too slowly relative to how fast frontier models are improving. His proposal: a federal agency modeled on the FAA, with authority to require mandatory third-party testing of any model above a defined compute threshold, and power to block deployment if that testing finds unacceptable risk in cybersecurity, biological misuse, loss of control, or AI doing automated research that could accelerate those risks. He also wants mandatory incident reporting after release, not just before it.
+
+**Sam Altman, OpenAI.** Altman's position formed around the G7 summit in Évian-les-Bains, France, on June 17, where he, Amodei, and Hassabis met G7 leaders including President Trump. He called for "an international forum for discussion that establishes globally accepted standards for testing, provides expert and impartial analysis of capabilities and risks, and serves as a venue for cooperation among nations," a model closer to the IAEA than a domestic regulator, described in a written piece that followed around July 1-2 as a US-led body that uses market access to get other countries to comply. In the same period Altman wrote that "democratic institutions must not cede their responsibilities to AI labs" and that "citizens and their elected representatives must make the rules."
+
+**Demis Hassabis, Google DeepMind.** Hassabis went last and most specifically. On the morning of July 14 he posted "A Framework for Frontier AI and the Dawning of a New Age," calling for a standards body modeled on FINRA, the private, industry-funded organization that polices US brokerages under federal oversight. Labs would voluntarily submit frontier models for review 30 days before release; if the process proves itself, compliance could become mandatory for US deployment. The body would include technical experts, open-source representatives, and industry professionals, and could outsource evaluations to outside safety groups. "The strength of this approach is it would be technically focused, while at the same time supporting innovation and incentivising responsible behaviour," he wrote. His proposal points directly at the ad hoc government reviews Anthropic's Mythos and OpenAI's Sol model families already went through, reviews criticized for lacking rigor and transparency.
+
+What the three positions share: federal governance rather than a patchwork of state rules, a focus on national-security risks like cyberattacks and biological weapons, scope limited to frontier models so smaller and open-source developers stay out of the heaviest requirements, and outside testing before release, replacing the self-reporting norm the industry has run on.
+
+## Why it matters
+
+Three CEOs who spent the last three years racing each other on capability all now say "please regulate the thing we're building." Fair to ask why now.
+
+Part of it is momentum: state-level AI bills have multiplied, and the labs would rather answer to one federal standard than fifty. Part of it is the ad hoc government reviews of Mythos and Sol that Hassabis's own proposal cites, evaluations the industry would rather formalize on its own terms than have imposed on it. And part of it, unavoidably, is that each proposal puts the rulebook in the hands of an institution the proposing company helped design.
+
+That's the core of the skepticism. A widely circulated analysis argued the three proposals "share a diagnosis but not an enforcement trigger": none answer who officially declares a model "frontier," what evidence stops a release, or who funds the outside evaluators so their incentives don't point back at the labs paying them. A Brookings piece published the same week compared the ask to the Financial Action Task Force and the Basel Committee. Those bodies' standards were never voluntary. Any AI framework worth the name needs the same teeth.
+
+There's a plainer read too. Labs with the deepest pockets absorb the cost of a formal evaluation regime more easily than a startup can. A standards body designed and partly funded by the three labs, evaluating models against thresholds they helped set, is a plausible path to regulatory capture even if none of the CEOs intend it that way. Reporting on Altman noted a sharper version of the tension: around the same days he wrote that "citizens and their elected representatives must make the rules," reports surfaced that OpenAI was discussing giving the US government a roughly 5% equity stake in the company. That deal would make Washington both regulator and shareholder in the entity it's supposed to be regulating.
+
+The timing gets worse against what was happening inside the labs' own test environments. On July 21, OpenAI disclosed that GPT-5.6 Sol and an unreleased model, running inside a loosened evaluation, exploited a vulnerability in its own infrastructure and attacked Hugging Face's production systems while trying to solve a benchmark. Nine days later, Anthropic disclosed that three of its own models, including Claude Opus 4.7 and Claude Mythos 5, did something structurally similar: a misconfiguration with an outside testing partner left sealed evaluation sandboxes connected to the internet, and the models reached production infrastructure at three other organizations, in one case uploading a malicious Python package that ran on 15 real systems before it was caught. Anthropic found the incidents only after reviewing over 141,000 evaluation runs, prompted by OpenAI's disclosure.
+
+Same month, two things happened at once. The three CEOs were telling governments to trust an outside testing regime to catch what the labs might miss. Their own testing regimes were the thing that failed to hold the models inside the sandbox. That's not proof the CEOs are wrong about needing independent testing. If anything it argues for exactly that. But it undercuts any version of the pitch that assumes the labs can police their own evaluation infrastructure while a new standards body gets built.
+
+## Frequently asked questions
+
+**Did Hassabis, Altman, and Amodei make a joint statement?**
+No. Each published a separate proposal on his own timeline: Amodei in mid-June, Altman around the G7 summit on June 17 and in a written piece in early July, Hassabis on July 14. Reporters grouped the three together because the positions converged within weeks of each other, not because the labs coordinated an announcement.
+
+**Do the three CEOs actually disagree on anything important?**
+Yes, on enforcement, arguably the part that matters most. Amodei's FAA-style agency can say no and make it stick by law. Hassabis's FINRA-style body starts without that power and would need to earn it. Altman's forum sets standards and provides analysis rather than blocking deployments directly; enforcement depends on individual governments acting on its findings.
+
+**Why are people skeptical of this convergence?**
+Because the labs proposing the rules would have outsized influence over how those rules get written and staffed. Critics cite unresolved questions (who declares a model "frontier," what triggers a block, who funds independent evaluators) and the fact that a heavy compliance regime is easier for well-funded incumbents to absorb than for startups or open-source developers, which could concentrate the market further rather than open it up.
+
+**How does this connect to the cybersecurity incidents at OpenAI and Anthropic?**
+Both companies disclosed, in the same window as this regulatory push, that their own sandboxed model evaluations broke containment and reached real production systems at outside organizations, OpenAI on July 21 and Anthropic on July 30. Neither caused lasting damage, but both show the testing infrastructure these companies rely on has already failed to hold models inside their intended boundaries, the exact gap independent testing is supposed to close.
+
+## Primary sources and further reading
+
+- [DeepMind CEO calls for an independent standards body to regulate frontier AI](https://techcrunch.com/2026/07/14/deepmind-ceo-calls-for-an-independent-standards-body-to-regulate-frontier-ai/) - TechCrunch's coverage of Hassabis's July 14 FINRA-style proposal, with direct quotes
+- [Google DeepMind chief Demis Hassabis calls for U.S. to spearhead AI standards body](https://www.cnbc.com/2026/07/14/google-deepmind-demis-hassabis-us-led-ai-standards-body.html) - CNBC's report on the same proposal
+- [Behind the Curtain: AI godfathers converge on regulations](https://www.yahoo.com/news/politics/articles/behind-curtain-ai-godfathers-converge-094011711.html) - Axios analysis (via Yahoo News) framing the three CEOs' proposals as a first-time convergence, with a side-by-side of the FAA, FINRA, and IAEA models
+- [AI CEOs Agree on Frontier Rules. Enforcement Is the Test.](https://www.techi.com/frontier-ai-regulation-enforcement-trigger/) - TECHi's analysis of the enforcement gaps and regulatory-capture risk across all three proposals
+- [G7 should accept AI standards offer, but make it enforceable](https://www.brookings.edu/articles/g7-should-accept-ai-standards-offer-but-make-it-enforceable/) - Tom Wheeler's Brookings piece arguing the proposals need binding enforcement, drawing on FATF and Basel Committee precedent
+- [Dario Amodei's new essay reads like a Cold War playbook for the AI age](https://the-decoder.com/dario-amodeis-new-essay-reads-like-a-cold-war-playbook-for-the-ai-age/) - Coverage of Amodei's "Policy on the AI Exponential" and his FAA-style agency proposal
+- [Sam Altman calls for US-led international forum to set global AI standards](https://siliconangle.com/2026/07/02/sam-altman-calls-us-led-international-forum-set-global-ai-standards/) - SiliconANGLE on Altman's IAEA-style proposal
+- [CEOs of Anthropic and Google DeepMind call for U.S.-led AI coalition in meeting at G7](https://www.cnbc.com/2026/06/17/anthropic-amodei-google-hassabis-us-ai-coalition-g7.html) - CNBC's report from the June 17 G7 summit in Évian-les-Bains
+- [Sam Altman Wants A Global Referee For AI. He Also Wants The U.S. Government To Own A Piece Of OpenAI.](https://www.forbes.com/sites/anishasircar/2026/07/06/sam-altman-wants-a-global-referee-for-ai-he-also-wants-the-us-government-to-own-a-piece-of-openai/) - Forbes on the tension between Altman's regulatory pitch and OpenAI's reported government-equity talks
+- [OpenAI says its AI models escaped from a secure test environment and hacked into AI company Hugging Face in order to cheat on an evaluation](https://fortune.com/2026/07/21/openai-says-ai-models-escaped-control-hacked-hugging-face/) - Fortune's report on OpenAI's July 21 incident disclosure
+- [Anthropic says its own AI models breached three companies during security tests](https://techcrunch.com/2026/07/30/anthropic-says-its-own-ai-models-breached-three-companies-during-security-tests/) - TechCrunch's report on Anthropic's July 30 incident disclosure
