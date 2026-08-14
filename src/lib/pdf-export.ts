@@ -15,14 +15,34 @@ export interface PdfExportOptions {
 // and the stylesheet itself loads fine. Baking each node's already-resolved
 // computed style onto its clone sidesteps the clone's CSS engine entirely: every
 // value here came from the real, correctly-themed page.
+//
+// Only a curated property list is copied, not the full ~300-entry computed
+// style — copying everything for every node in a large report took long enough
+// that navigator.userActivation expired before pdf.save() ran, so Chrome
+// silently dropped the download (no error, no file). This list covers what
+// actually affects a card/table-based report's appearance.
+const BAKED_PROPS = [
+	'color', 'background-color', 'background-image', 'background-size', 'background-position',
+	'border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color',
+	'border-top-width', 'border-right-width', 'border-bottom-width', 'border-left-width',
+	'border-top-style', 'border-right-style', 'border-bottom-style', 'border-left-style',
+	'border-radius', 'box-shadow', 'outline-color',
+	'font-family', 'font-size', 'font-weight', 'font-style', 'line-height', 'letter-spacing', 'text-align', 'text-decoration-line',
+	'display', 'flex-direction', 'flex-wrap', 'justify-content', 'align-items', 'gap', 'grid-template-columns',
+	'width', 'height', 'min-width', 'min-height', 'max-width',
+	'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+	'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+	'fill', 'stroke', 'stroke-width', 'opacity',
+];
+
 function bakeComputedStyles(original: Element, clone: Element) {
 	const computed = getComputedStyle(original);
 	let cssText = '';
-	for (let i = 0; i < computed.length; i++) {
-		const prop = computed.item(i);
-		cssText += `${prop}:${computed.getPropertyValue(prop)};`;
+	for (const prop of BAKED_PROPS) {
+		const value = computed.getPropertyValue(prop);
+		if (value) cssText += `${prop}:${value};`;
 	}
-	(clone as HTMLElement).style.cssText = cssText;
+	(clone as HTMLElement).style.cssText += cssText;
 
 	const originalChildren = original.children;
 	const cloneChildren = clone.children;
