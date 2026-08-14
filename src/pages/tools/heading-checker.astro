@@ -239,6 +239,25 @@ const toolSchema = {
 			.hc-report { display: none; }
 			.hc-report.visible { display: block; }
 
+			.hc-report-toolbar { display: none; justify-content: flex-end; margin-top: 1.5rem; }
+			.hc-report-toolbar.visible { display: flex; }
+			.hc-btn-download {
+				background: transparent;
+				border: 1.5px solid var(--hc-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 1.1rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				color: var(--hc-ink-3);
+				font-weight: 600;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+			.hc-btn-download:hover { background: var(--hc-paper); }
+			.hc-btn-download:disabled { opacity: 0.55; cursor: default; }
+
 			.hc-stat-bar {
 				background: var(--hc-white);
 				border-bottom: 1px solid var(--hc-border);
@@ -876,11 +895,16 @@ const toolSchema = {
 				</div>
 			</div>
 
+			<div class="hc-report-toolbar" id="report-toolbar">
+				<button class="hc-btn-download" id="download-pdf-btn" type="button">⬇ Download PDF</button>
+			</div>
 			<section class="hc-report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
+			import { exportReportToPdf } from '../../lib/pdf-export';
+
 			type Node = {
 				tag: string;
 				level: number;
@@ -898,9 +922,12 @@ const toolSchema = {
 			const keywordInput = document.getElementById('keyword-input') as HTMLInputElement;
 			const statusEl = document.getElementById('tool-status')!;
 			const reportEl = document.getElementById('report')!;
+			const reportToolbar = document.getElementById('report-toolbar')!;
+			const downloadBtn = document.getElementById('download-pdf-btn') as HTMLButtonElement;
 			const optFlagKw = document.getElementById('opt-flag-kw') as HTMLInputElement;
 			const optChars = document.getElementById('opt-chars') as HTMLInputElement;
 			let activeTab: 'url' | 'html' = 'url';
+			let lastSource = '';
 
 			tabBtns.forEach((b) => b.addEventListener('click', () => {
 				tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
@@ -1346,8 +1373,23 @@ const toolSchema = {
 
 				reportEl.innerHTML = html;
 				reportEl.classList.add('visible');
+				reportToolbar.classList.add('visible');
 				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
+
+			downloadBtn.addEventListener('click', async () => {
+				downloadBtn.disabled = true;
+				const original = downloadBtn.textContent;
+				downloadBtn.textContent = 'Generating…';
+				try {
+					await exportReportToPdf({ reportEl, toolName: 'Heading Structure Checker', source: lastSource, filenamePrefix: 'heading-checker' });
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Could not generate PDF.', true);
+				} finally {
+					downloadBtn.disabled = false;
+					downloadBtn.textContent = original;
+				}
+			});
 
 			async function run() {
 				analyzeBtns.forEach((b) => b.disabled = true);
@@ -1364,10 +1406,12 @@ const toolSchema = {
 						source = 'Pasted HTML';
 					}
 					setStatus('');
+					lastSource = source;
 					render(analyze(html, keywordInput.value.trim()), source);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
 					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+					reportToolbar.classList.remove('visible');
 				} finally { analyzeBtns.forEach((b) => b.disabled = false); }
 			}
 
@@ -1377,6 +1421,7 @@ const toolSchema = {
 			clearBtns.forEach((b) => b.addEventListener('click', () => {
 				urlInput.value = ''; htmlInput.value = ''; keywordInput.value = '';
 				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
+				reportToolbar.classList.remove('visible');
 			}));
 		</script>
 	</body>

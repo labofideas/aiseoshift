@@ -62,11 +62,16 @@ const toolSchema = {
 				<div class="tool-status" id="tool-status" role="status" aria-live="polite"></div>
 			</div>
 
+			<div class="report-toolbar" id="report-toolbar">
+				<button class="btn-secondary" id="download-pdf-btn" type="button">⬇ Download PDF</button>
+			</div>
 			<section class="report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
+			import { exportReportToPdf } from '../../lib/pdf-export';
+
 			type Tier = 'good' | 'fair' | 'poor';
 			type Issue = { label: string; status: 'pass' | 'warn' | 'fail'; detail: string; weight: number; category: string };
 
@@ -78,7 +83,10 @@ const toolSchema = {
 			const clearBtn = document.getElementById('clear-btn') as HTMLButtonElement;
 			const statusEl = document.getElementById('tool-status')!;
 			const reportEl = document.getElementById('report')!;
+			const reportToolbar = document.getElementById('report-toolbar')!;
+			const downloadBtn = document.getElementById('download-pdf-btn') as HTMLButtonElement;
 			let activeTab: 'url' | 'html' = 'url';
+			let lastSource = '';
 
 			tabBtns.forEach((b) =>
 				b.addEventListener('click', () => {
@@ -383,8 +391,23 @@ const toolSchema = {
 
 				reportEl.innerHTML = html;
 				reportEl.classList.add('visible');
+				reportToolbar.classList.add('visible');
 				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
+
+			downloadBtn.addEventListener('click', async () => {
+				downloadBtn.disabled = true;
+				const original = downloadBtn.textContent;
+				downloadBtn.textContent = 'Generating…';
+				try {
+					await exportReportToPdf({ reportEl, toolName: 'AI SEO Checker', source: lastSource, filenamePrefix: 'seo-checker' });
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Could not generate PDF.', true);
+				} finally {
+					downloadBtn.disabled = false;
+					downloadBtn.textContent = original;
+				}
+			});
 
 			async function run() {
 				analyzeBtn.disabled = true;
@@ -404,10 +427,12 @@ const toolSchema = {
 						source = 'Pasted HTML';
 					}
 					setStatus('');
+					lastSource = source;
 					render(analyze(html), source);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
 					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+					reportToolbar.classList.remove('visible');
 				} finally {
 					analyzeBtn.disabled = false;
 				}
@@ -418,6 +443,7 @@ const toolSchema = {
 			clearBtn.addEventListener('click', () => {
 				urlInput.value = ''; htmlInput.value = '';
 				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
+				reportToolbar.classList.remove('visible');
 			});
 		</script>
 	</body>

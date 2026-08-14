@@ -20,6 +20,8 @@
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
     "astro": "^6.0.4",
+    "html2canvas-pro": "^2.3.8",
+    "jspdf": "^4.2.1",
     "rehype-external-links": "^3.0.0",
     "sharp": "^0.34.3"
   },

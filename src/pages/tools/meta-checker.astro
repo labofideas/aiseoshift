@@ -214,6 +214,25 @@ const toolSchema = {
 			.mt-report { display: none; }
 			.mt-report.visible { display: block; }
 
+			.mt-report-toolbar { display: none; justify-content: flex-end; margin-top: 1.5rem; }
+			.mt-report-toolbar.visible { display: flex; }
+			.mt-btn-download {
+				background: transparent;
+				border: 1.5px solid var(--mt-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 1.1rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				color: var(--mt-ink-3);
+				font-weight: 600;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+			.mt-btn-download:hover { background: var(--mt-paper); }
+			.mt-btn-download:disabled { opacity: 0.55; cursor: default; }
+
 			.mt-layout {
 				width: min(1100px, calc(100% - 2rem));
 				margin: 0 auto;
@@ -690,11 +709,16 @@ const toolSchema = {
 				</div>
 			</div>
 
+			<div class="mt-report-toolbar" id="report-toolbar">
+				<button class="mt-btn-download" id="download-pdf-btn" type="button">⬇ Download PDF</button>
+			</div>
 			<section class="mt-report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
+			import { exportReportToPdf } from '../../lib/pdf-export';
+
 			type Severity = 'pass' | 'fail' | 'warn' | 'miss' | 'info';
 			type MetaRow = { name: string; value: string; status: Severity; pillText: string; isCode?: boolean };
 
@@ -704,7 +728,10 @@ const toolSchema = {
 			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
 			const statusEl = document.getElementById('tool-status')!;
 			const reportEl = document.getElementById('report')!;
+			const reportToolbar = document.getElementById('report-toolbar')!;
+			const downloadBtn = document.getElementById('download-pdf-btn') as HTMLButtonElement;
 			let activeTab: 'url' | 'html' = 'url';
+			let lastSource = '';
 
 			tabBtns.forEach((b) => b.addEventListener('click', () => {
 				tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
@@ -1061,8 +1088,23 @@ const toolSchema = {
 
 				reportEl.innerHTML = html;
 				reportEl.classList.add('visible');
+				reportToolbar.classList.add('visible');
 				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
+
+			downloadBtn.addEventListener('click', async () => {
+				downloadBtn.disabled = true;
+				const original = downloadBtn.textContent;
+				downloadBtn.textContent = 'Generating…';
+				try {
+					await exportReportToPdf({ reportEl, toolName: 'Meta Tag Checker', source: lastSource, filenamePrefix: 'meta-checker' });
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Could not generate PDF.', true);
+				} finally {
+					downloadBtn.disabled = false;
+					downloadBtn.textContent = original;
+				}
+			});
 
 			async function run() {
 				analyzeBtns.forEach((b) => b.disabled = true);
@@ -1079,10 +1121,12 @@ const toolSchema = {
 						source = 'Pasted HTML';
 					}
 					setStatus('');
+					lastSource = source;
 					render(analyze(html), source);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
 					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+					reportToolbar.classList.remove('visible');
 				} finally { analyzeBtns.forEach((b) => b.disabled = false); }
 			}
 
@@ -1091,6 +1135,7 @@ const toolSchema = {
 			clearBtns.forEach((b) => b.addEventListener('click', () => {
 				urlInput.value = ''; htmlInput.value = '';
 				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
+				reportToolbar.classList.remove('visible');
 			}));
 		</script>
 	</body>

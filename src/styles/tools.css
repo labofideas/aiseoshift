@@ -194,6 +194,19 @@
 }
 .report.visible { display: block; }
 
+.report-toolbar {
+	display: none;
+	justify-content: flex-end;
+	margin-top: 1.5rem;
+}
+.report-toolbar.visible { display: flex; }
+.report-toolbar .btn-secondary {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+}
+.report-toolbar .btn-secondary:disabled { opacity: 0.6; cursor: default; }
+
 /* HERO panel */
 .report-hero {
 	display: grid;

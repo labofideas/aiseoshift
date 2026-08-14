@@ -88,6 +88,25 @@ const toolSchema = {
 			.ic-report { display: none; }
 			.ic-report.visible { display: block; }
 
+			.ic-report-toolbar { display: none; justify-content: flex-end; margin-top: 1.5rem; }
+			.ic-report-toolbar.visible { display: flex; }
+			.ic-btn-download {
+				background: transparent;
+				border: 1.5px solid var(--ic-border-2);
+				border-radius: 9px;
+				padding: 0.65rem 1.1rem;
+				font-family: inherit;
+				font-size: 0.88rem;
+				color: var(--ic-ink-3);
+				font-weight: 600;
+				cursor: pointer;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+			.ic-btn-download:hover { background: var(--ic-paper); }
+			.ic-btn-download:disabled { opacity: 0.55; cursor: default; }
+
 			.ic-stat-bar { background: var(--ic-white); border-bottom: 1px solid var(--ic-border); border-top: 1px solid var(--ic-border); }
 			.ic-stat-inner { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; }
 			.ic-stat-tile { padding: 1rem 0.9rem; border-right: 1px solid var(--ic-border); }
@@ -342,11 +361,16 @@ const toolSchema = {
 				</div>
 			</div>
 
+			<div class="ic-report-toolbar" id="report-toolbar">
+				<button class="ic-btn-download" id="download-pdf-btn" type="button">⬇ Download PDF</button>
+			</div>
 			<section class="ic-report" id="report" aria-live="polite"></section>
 		</main>
 		<Footer />
 
 		<script>
+			import { exportReportToPdf } from '../../lib/pdf-export';
+
 			type Tier = 'good' | 'fair' | 'poor';
 			type ImageRow = {
 				src: string;
@@ -364,7 +388,10 @@ const toolSchema = {
 			const htmlInput = document.getElementById('html-input') as HTMLTextAreaElement;
 			const statusEl = document.getElementById('tool-status')!;
 			const reportEl = document.getElementById('report')!;
+			const reportToolbar = document.getElementById('report-toolbar')!;
+			const downloadBtn = document.getElementById('download-pdf-btn') as HTMLButtonElement;
 			let activeTab: 'url' | 'html' = 'url';
+			let lastSource = '';
 
 			tabBtns.forEach((b) =>
 				b.addEventListener('click', () => {
@@ -743,8 +770,23 @@ const toolSchema = {
 
 				reportEl.innerHTML = html;
 				reportEl.classList.add('visible');
+				reportToolbar.classList.add('visible');
 				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
+
+			downloadBtn.addEventListener('click', async () => {
+				downloadBtn.disabled = true;
+				const original = downloadBtn.textContent;
+				downloadBtn.textContent = 'Generating…';
+				try {
+					await exportReportToPdf({ reportEl, toolName: 'Image SEO Checker', source: lastSource, filenamePrefix: 'image-checker' });
+				} catch (err) {
+					setStatus(err instanceof Error ? err.message : 'Could not generate PDF.', true);
+				} finally {
+					downloadBtn.disabled = false;
+					downloadBtn.textContent = original;
+				}
+			});
 
 			async function run() {
 				analyzeBtns.forEach((b) => b.disabled = true);
@@ -761,10 +803,12 @@ const toolSchema = {
 						source = 'Pasted HTML';
 					}
 					setStatus('');
+					lastSource = source;
 					render(analyze(html, source), source);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
 					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
+					reportToolbar.classList.remove('visible');
 				} finally { analyzeBtns.forEach((b) => b.disabled = false); }
 			}
 
@@ -773,6 +817,7 @@ const toolSchema = {
 			clearBtns.forEach((b) => b.addEventListener('click', () => {
 				urlInput.value = ''; htmlInput.value = '';
 				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
+				reportToolbar.classList.remove('visible');
 			}));
 		</script>
 	</body>
