@@ -8,6 +8,30 @@ export interface PdfExportOptions {
 	filenamePrefix: string;
 }
 
+// html2canvas-pro renders from a cloned document, and on production this site's
+// design tokens (--mt-paper: rgb(var(--paper)), color-mix(), etc.) don't reliably
+// re-resolve inside that clone's own stylesheet cascade — the clone comes back
+// with no backgrounds/borders/colors even though the live page renders correctly
+// and the stylesheet itself loads fine. Baking each node's already-resolved
+// computed style onto its clone sidesteps the clone's CSS engine entirely: every
+// value here came from the real, correctly-themed page.
+function bakeComputedStyles(original: Element, clone: Element) {
+	const computed = getComputedStyle(original);
+	let cssText = '';
+	for (let i = 0; i < computed.length; i++) {
+		const prop = computed.item(i);
+		cssText += `${prop}:${computed.getPropertyValue(prop)};`;
+	}
+	(clone as HTMLElement).style.cssText = cssText;
+
+	const originalChildren = original.children;
+	const cloneChildren = clone.children;
+	const len = Math.min(originalChildren.length, cloneChildren.length);
+	for (let i = 0; i < len; i++) {
+		bakeComputedStyles(originalChildren[i], cloneChildren[i]);
+	}
+}
+
 function safeSlug(source: string): string {
 	const cleaned = source
 		.replace(/^https?:\/\//, '')
@@ -23,13 +47,31 @@ function safeSlug(source: string): string {
 // layout per tool — each tool's report shape differs enough that this stays in
 // sync automatically as report markup changes.
 export async function exportReportToPdf({ reportEl, toolName, source, filenamePrefix }: PdfExportOptions): Promise<void> {
-	const bodyBg = getComputedStyle(document.body).backgroundColor;
-	const canvas = await html2canvas(reportEl, {
-		backgroundColor: bodyBg && bodyBg !== 'rgba(0, 0, 0, 0)' ? bodyBg : '#ffffff',
-		scale: Math.min(2, (window.devicePixelRatio || 1) * 1.5),
-		useCORS: true,
-		logging: false,
-	});
+	// Force light theme for the capture: html2canvas clones the DOM into a
+	// detached iframe, and [data-theme="dark"]-scoped custom properties don't
+	// reliably survive that clone — the last attempt captured dark text on a
+	// dark background. Exporting always in light mode also keeps the PDF
+	// consistent and printable regardless of the visitor's current theme.
+	const root = document.documentElement;
+	const previousTheme = root.getAttribute('data-theme');
+	root.setAttribute('data-theme', 'light');
+	await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+	let canvas: HTMLCanvasElement;
+	try {
+		canvas = await html2canvas(reportEl, {
+			backgroundColor: '#ffffff',
+			scale: Math.min(2, (window.devicePixelRatio || 1) * 1.5),
+			useCORS: true,
+			logging: false,
+			onclone: (_doc, clonedEl) => {
+				bakeComputedStyles(reportEl, clonedEl);
+			},
+		});
+	} finally {
+		if (previousTheme === null) root.removeAttribute('data-theme');
+		else root.setAttribute('data-theme', previousTheme);
+	}
 
 	const pdf = new jsPDF({ unit: 'pt', format: 'a4', compress: true });
 	const pageW = pdf.internal.pageSize.getWidth();
