@@ -903,7 +903,7 @@ const toolSchema = {
 		<Footer />
 
 		<script>
-			import { exportReportToPdf } from '../../lib/pdf-export';
+			import { createPdfReport } from '../../lib/pdf-export';
 
 			type Node = {
 				tag: string;
@@ -928,6 +928,7 @@ const toolSchema = {
 			const optChars = document.getElementById('opt-chars') as HTMLInputElement;
 			let activeTab: 'url' | 'html' = 'url';
 			let lastSource = '';
+			let lastResult: ReturnType<typeof analyze> | null = null;
 
 			tabBtns.forEach((b) => b.addEventListener('click', () => {
 				tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
@@ -1377,17 +1378,60 @@ const toolSchema = {
 				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
-			downloadBtn.addEventListener('click', async () => {
-				downloadBtn.disabled = true;
-				const original = downloadBtn.textContent;
-				downloadBtn.textContent = 'Generating…';
+			downloadBtn.addEventListener('click', () => {
+				if (!lastResult) return;
 				try {
-					await exportReportToPdf({ reportEl, toolName: 'Heading Structure Checker', source: lastSource, filenamePrefix: 'heading-checker' });
+					const data = lastResult;
+					const focusKw = keywordInput.value.trim();
+					const issuesItems = buildIssues(data, focusKw);
+					const doc = createPdfReport('Heading Structure Checker', lastSource);
+
+					doc.addSectionTitle('Heading Overview');
+					const levelMeta = [
+						{ tag: 'H1', label: 'Page title', count: data.counts.H1 },
+						{ tag: 'H2', label: 'Sections', count: data.counts.H2 },
+						{ tag: 'H3', label: 'Sub-sections', count: data.counts.H3 },
+						{ tag: 'H4', label: 'Sub-topics', count: data.counts.H4 },
+						{ tag: 'H5', label: 'Detail', count: data.counts.H5 },
+						{ tag: 'H6', label: 'Fine detail', count: data.counts.H6 },
+					];
+					doc.addTable(
+						['Level', 'Role', 'Count'],
+						levelMeta.map((l) => [l.tag, l.label, String(l.count)]),
+						{ columnWidths: [60, 300, 60] },
+					);
+					doc.addSpace(8);
+
+					doc.addSectionTitle('Issues Overview', `${data.errors} errors · ${data.warnings} warnings`);
+					doc.addChecklist(issuesItems.map((i) => ({ label: i.title, status: i.icon, detail: i.detail })));
+					doc.addSpace(8);
+
+					if (data.nodes.length) {
+						doc.addSectionTitle('All Headings', `${data.total} total`);
+						doc.addTable(
+							['#', 'Tag', 'Heading text', 'Chars', 'Status'],
+							data.nodes.map((n, i) => {
+								const status: 'fail' | 'warn' | 'pass' = n.flags.includes('skip') || n.flags.includes('empty')
+									? 'fail'
+									: n.flags.includes('long') || n.flags.includes('dup') || n.flags.includes('nokw')
+										? 'warn'
+										: 'pass';
+								const statusLabel = n.flags.includes('skip') ? 'Skipped level' : n.flags.includes('empty') ? 'Empty' : n.flags.includes('long') ? 'Too long' : n.flags.includes('dup') ? 'Duplicate' : n.flags.includes('nokw') ? 'No keyword' : 'Good';
+								return [String(i + 1), n.tag, n.text, String(n.chars), { content: statusLabel, status }];
+							}),
+							{ columnWidths: [24, 40, 280, 50, 90] },
+						);
+						doc.addSpace(8);
+					}
+
+					if (data.recos.length) {
+						doc.addSectionTitle('Recommendations', `${data.recos.length} issue${data.recos.length === 1 ? '' : 's'}`);
+						doc.addChecklist(data.recos.map((r) => ({ label: r.title, status: r.sev, detail: r.detail })));
+					}
+
+					doc.save('heading-checker', lastSource);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Could not generate PDF.', true);
-				} finally {
-					downloadBtn.disabled = false;
-					downloadBtn.textContent = original;
 				}
 			});
 
@@ -1407,7 +1451,8 @@ const toolSchema = {
 					}
 					setStatus('');
 					lastSource = source;
-					render(analyze(html, keywordInput.value.trim()), source);
+					lastResult = analyze(html, keywordInput.value.trim());
+					render(lastResult, source);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
 					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
@@ -1422,6 +1467,7 @@ const toolSchema = {
 				urlInput.value = ''; htmlInput.value = ''; keywordInput.value = '';
 				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
 				reportToolbar.classList.remove('visible');
+				lastResult = null;
 			}));
 		</script>
 	</body>

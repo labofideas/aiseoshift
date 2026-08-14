@@ -70,7 +70,7 @@ const toolSchema = {
 		<Footer />
 
 		<script>
-			import { exportReportToPdf } from '../../lib/pdf-export';
+			import { createPdfReport } from '../../lib/pdf-export';
 
 			type Tier = 'good' | 'fair' | 'poor';
 			type Issue = { label: string; status: 'pass' | 'warn' | 'fail'; detail: string; weight: number; category: string };
@@ -86,6 +86,7 @@ const toolSchema = {
 			const reportToolbar = document.getElementById('report-toolbar')!;
 			const downloadBtn = document.getElementById('download-pdf-btn') as HTMLButtonElement;
 			let activeTab: 'url' | 'html' = 'url';
+			let lastResult: ReturnType<typeof analyze> | null = null;
 			let lastSource = '';
 
 			tabBtns.forEach((b) =>
@@ -395,17 +396,53 @@ const toolSchema = {
 				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
-			downloadBtn.addEventListener('click', async () => {
-				downloadBtn.disabled = true;
-				const original = downloadBtn.textContent;
-				downloadBtn.textContent = 'Generating…';
+			downloadBtn.addEventListener('click', () => {
+				if (!lastResult) return;
 				try {
-					await exportReportToPdf({ reportEl, toolName: 'AI SEO Checker', source: lastSource, filenamePrefix: 'seo-checker' });
+					const { overall, catScores, issues, counts, summary } = lastResult;
+					const tier = tierFor(overall);
+					const tierLabel = { good: 'Good', fair: 'Needs work', poor: 'Poor' }[tier];
+					const doc = createPdfReport('AI SEO Checker', lastSource);
+					doc.addScoreSummary({
+						score: overall,
+						scoreLabel: tierLabel,
+						summary: `Scored ${overall}/100 (${tierLabel})${counts.fails > 0 ? ` — ${counts.fails} critical fix${counts.fails === 1 ? '' : 'es'}` : ''}${counts.warns > 0 ? ` and ${counts.warns} warning${counts.warns === 1 ? '' : 's'}` : ''}.`,
+						chips: [
+							counts.fails > 0 ? `${counts.fails} failing` : '',
+							counts.warns > 0 ? `${counts.warns} warnings` : '',
+							counts.passes > 0 ? `${counts.passes} passing` : '',
+							`${summary.wc.toLocaleString()} words`,
+							`${summary.imgs} image${summary.imgs === 1 ? '' : 's'}`,
+							`${summary.links} link${summary.links === 1 ? '' : 's'}`,
+						].filter(Boolean),
+					});
+					doc.addCategoryGrid(catScores.map((c) => ({ name: c.name, score: c.score })));
+
+					const toFix = [...issues]
+						.filter((i) => i.status !== 'pass')
+						.sort((a, b) => {
+							const r = { fail: 0, warn: 1, pass: 2 } as const;
+							return r[a.status] - r[b.status] || b.weight - a.weight;
+						});
+					if (toFix.length) {
+						doc.addSectionTitle('Prioritized fixes', `${toFix.length} to fix`);
+						doc.addTable(
+							['Check', 'Detail', 'Category'],
+							toFix.map((i) => [{ content: i.label, status: i.status }, i.detail, i.category]),
+							{ columnWidths: [120, 260, 100] },
+						);
+					}
+
+					const passing = issues.filter((i) => i.status === 'pass');
+					if (passing.length) {
+						doc.addSpace(6);
+						doc.addSectionTitle('Passing checks', `${passing.length} passed`);
+						doc.addChecklist(passing.map((i) => ({ label: i.label, status: 'pass' as const, detail: i.detail })));
+					}
+
+					doc.save('seo-checker', lastSource);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Could not generate PDF.', true);
-				} finally {
-					downloadBtn.disabled = false;
-					downloadBtn.textContent = original;
 				}
 			});
 
@@ -428,7 +465,8 @@ const toolSchema = {
 					}
 					setStatus('');
 					lastSource = source;
-					render(analyze(html), source);
+					lastResult = analyze(html);
+					render(lastResult, source);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
 					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
@@ -444,6 +482,7 @@ const toolSchema = {
 				urlInput.value = ''; htmlInput.value = '';
 				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
 				reportToolbar.classList.remove('visible');
+				lastResult = null;
 			});
 		</script>
 	</body>

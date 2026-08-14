@@ -1,177 +1,271 @@
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas-pro';
+import autoTable, { type RowInput } from 'jspdf-autotable';
 
-export interface PdfExportOptions {
-	reportEl: HTMLElement;
-	toolName: string;
-	source: string;
-	filenamePrefix: string;
+// Typeset PDF built directly from each tool's report data, rather than
+// screenshotting the rendered DOM. An earlier html2canvas-based version kept
+// failing in different ways on production: this site's CSS custom-property
+// chains didn't resolve inside html2canvas's cloned document (unstyled/
+// dark-on-dark output), then baking computed styles to work around that was
+// slow enough to blow past the browser's user-activation window (download
+// silently dropped), and even after fixing that the capture came back
+// incomplete on a long report. Real jsPDF text/tables sidestep all of it:
+// selectable text, small files, and no dependency on how a screenshot
+// library happens to clone or paint the page.
+
+export type Status = 'pass' | 'warn' | 'fail' | 'miss' | 'info';
+
+const STATUS_COLOR: Record<Status, [number, number, number]> = {
+	pass: [21, 128, 82],
+	warn: [180, 108, 24],
+	fail: [190, 40, 40],
+	miss: [110, 118, 130],
+	info: [70, 110, 170],
+};
+
+const STATUS_LABEL: Record<Status, string> = {
+	pass: 'Good',
+	warn: 'Warning',
+	fail: 'Fail',
+	miss: 'N/A',
+	info: 'Info',
+};
+
+const PAGE_MARGIN = 32;
+const HEADER_H = 58;
+const FOOTER_H = 22;
+
+export interface Cell {
+	content: string;
+	status?: Status;
+}
+export type RowCell = string | Cell;
+
+export interface PdfReportBuilder {
+	pdf: jsPDF;
+	cursorY: number;
+	addSpace(h?: number): void;
+	addScoreSummary(opts: { score: number; scoreLabel: string; summary: string; chips: string[] }): void;
+	addCategoryGrid(categories: { name: string; score: number }[]): void;
+	addSectionTitle(title: string, badge?: string): void;
+	addTable(head: string[], rows: RowCell[][], opts?: { columnWidths?: number[] }): void;
+	addChecklist(items: { label: string; status: Status; detail: string }[]): void;
+	save(filenamePrefix: string, source: string): void;
 }
 
-// html2canvas-pro renders from a cloned document, and on production this site's
-// design tokens (--mt-paper: rgb(var(--paper)), color-mix(), etc.) don't reliably
-// re-resolve inside that clone's own stylesheet cascade — the clone comes back
-// with no backgrounds/borders/colors even though the live page renders correctly
-// and the stylesheet itself loads fine. Baking each node's already-resolved
-// computed style onto its clone sidesteps the clone's CSS engine entirely: every
-// value here came from the real, correctly-themed page.
-//
-// Only a curated property list is copied, not the full ~300-entry computed
-// style — copying everything for every node in a large report took long enough
-// that navigator.userActivation expired before pdf.save() ran, so Chrome
-// silently dropped the download (no error, no file). This list covers what
-// actually affects a card/table-based report's appearance.
-const BAKED_PROPS = [
-	'color', 'background-color', 'background-image', 'background-size', 'background-position',
-	'border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color',
-	'border-top-width', 'border-right-width', 'border-bottom-width', 'border-left-width',
-	'border-top-style', 'border-right-style', 'border-bottom-style', 'border-left-style',
-	'border-radius', 'box-shadow', 'outline-color',
-	'font-family', 'font-size', 'font-weight', 'font-style', 'line-height', 'letter-spacing', 'text-align', 'text-decoration-line',
-	'display', 'flex-direction', 'flex-wrap', 'justify-content', 'align-items', 'gap', 'grid-template-columns',
-	'width', 'height', 'min-width', 'min-height', 'max-width',
-	'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
-	'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
-	'fill', 'stroke', 'stroke-width', 'opacity',
-];
-
-// Two passes on purpose: reading getComputedStyle() on a live node and then
-// immediately writing style.cssText on another node, repeated per node down
-// the tree, is a textbook layout-thrashing pattern — each write can force the
-// next read to flush a synchronous reflow first. On this report's node count
-// that took 45+ seconds and hung the page. Collecting every value first (all
-// reads, no writes) and applying them in a second pass (all writes, no reads)
-// avoids the read/write interleaving entirely.
-function collectComputedStyles(original: Element, out: string[]): void {
-	const computed = getComputedStyle(original);
-	let cssText = '';
-	for (const prop of BAKED_PROPS) {
-		const value = computed.getPropertyValue(prop);
-		if (value) cssText += `${prop}:${value};`;
-	}
-	out.push(cssText);
-	const children = original.children;
-	for (let i = 0; i < children.length; i++) {
-		collectComputedStyles(children[i], out);
-	}
+function tierColor(score: number): [number, number, number] {
+	if (score >= 80) return STATUS_COLOR.pass;
+	if (score >= 55) return STATUS_COLOR.warn;
+	return STATUS_COLOR.fail;
 }
 
-function applyBakedStyles(clone: Element, cssTexts: string[], cursor: { i: number }): void {
-	(clone as HTMLElement).style.cssText += cssTexts[cursor.i++];
-	const children = clone.children;
-	for (let i = 0; i < children.length; i++) {
-		applyBakedStyles(children[i], cssTexts, cursor);
-	}
+function truncate(text: string, max: number): string {
+	return text.length > max ? text.slice(0, max - 1) + '…' : text;
 }
 
-function bakeComputedStyles(original: Element, clone: Element) {
-	const cssTexts: string[] = [];
-	collectComputedStyles(original, cssTexts);
-	applyBakedStyles(clone, cssTexts, { i: 0 });
-}
-
-function safeSlug(source: string): string {
-	const cleaned = source
-		.replace(/^https?:\/\//, '')
-		.replace(/[^a-z0-9]+/gi, '-')
-		.replace(/(^-|-$)/g, '')
-		.toLowerCase()
-		.slice(0, 60);
-	return cleaned || 'report';
-}
-
-// Renders the live, already-styled report DOM to a canvas and slices it across
-// A4 pages with a branded header/footer, instead of hand-building a parallel PDF
-// layout per tool — each tool's report shape differs enough that this stays in
-// sync automatically as report markup changes.
-export async function exportReportToPdf({ reportEl, toolName, source, filenamePrefix }: PdfExportOptions): Promise<void> {
-	// Force light theme for the capture: html2canvas clones the DOM into a
-	// detached iframe, and [data-theme="dark"]-scoped custom properties don't
-	// reliably survive that clone — the last attempt captured dark text on a
-	// dark background. Exporting always in light mode also keeps the PDF
-	// consistent and printable regardless of the visitor's current theme.
-	const root = document.documentElement;
-	const previousTheme = root.getAttribute('data-theme');
-	root.setAttribute('data-theme', 'light');
-	await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-
-	let canvas: HTMLCanvasElement;
-	try {
-		canvas = await html2canvas(reportEl, {
-			backgroundColor: '#ffffff',
-			scale: Math.min(2, (window.devicePixelRatio || 1) * 1.5),
-			useCORS: true,
-			logging: false,
-			onclone: (_doc, clonedEl) => {
-				bakeComputedStyles(reportEl, clonedEl);
-			},
-		});
-	} finally {
-		if (previousTheme === null) root.removeAttribute('data-theme');
-		else root.setAttribute('data-theme', previousTheme);
-	}
-
+export function createPdfReport(toolName: string, source: string): PdfReportBuilder {
 	const pdf = new jsPDF({ unit: 'pt', format: 'a4', compress: true });
 	const pageW = pdf.internal.pageSize.getWidth();
 	const pageH = pdf.internal.pageSize.getHeight();
-	const margin = 28;
-	const headerH = 58;
-	const footerH = 24;
-	const contentW = pageW - margin * 2;
-	const contentH = pageH - headerH - footerH - margin;
-
-	const pxPerPt = canvas.width / contentW;
-	const sliceHeightPx = Math.max(1, Math.floor(contentH * pxPerPt));
-	const totalSlices = Math.max(1, Math.ceil(canvas.height / sliceHeightPx));
-
+	const contentW = pageW - PAGE_MARGIN * 2;
 	const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-	function drawHeader(pageNum: number, totalPages: number) {
+	let headerDrawnOnPage = 0;
+
+	function drawHeader() {
 		pdf.setFillColor(17, 24, 39);
-		pdf.rect(0, 0, pageW, headerH, 'F');
+		pdf.rect(0, 0, pageW, HEADER_H, 'F');
 		pdf.setTextColor(255, 255, 255);
 		pdf.setFont('helvetica', 'bold');
 		pdf.setFontSize(14);
-		pdf.text('AISEOShift', margin, 24);
+		pdf.text('AISEOShift', PAGE_MARGIN, 24);
 		pdf.setFont('helvetica', 'normal');
 		pdf.setFontSize(10);
-		pdf.text(toolName, margin, 40);
+		pdf.text(toolName, PAGE_MARGIN, 40);
 		pdf.setFontSize(8);
 		pdf.setTextColor(203, 213, 225);
-		const truncSource = source.length > 75 ? source.slice(0, 75) + '…' : source;
-		pdf.text(truncSource, margin, 52);
+		pdf.text(truncate(source, 85), PAGE_MARGIN, 52);
 		pdf.setFontSize(8);
 		pdf.setTextColor(255, 255, 255);
-		pdf.text(dateStr, pageW - margin, 24, { align: 'right' });
-		if (totalPages > 1) {
-			pdf.text(`Page ${pageNum} of ${totalPages}`, pageW - margin, 40, { align: 'right' });
-		}
+		pdf.text(dateStr, pageW - PAGE_MARGIN, 24, { align: 'right' });
 	}
 
 	function drawFooter() {
 		pdf.setFontSize(7.5);
 		pdf.setTextColor(148, 163, 184);
-		pdf.text('Generated by AISEOShift · aiseoshift.com', margin, pageH - 10);
+		pdf.text('Generated by AISEOShift · aiseoshift.com', PAGE_MARGIN, pageH - 10);
+		pdf.text(`Page ${pdf.internal.pages.length - 1}`, pageW - PAGE_MARGIN, pageH - 10, { align: 'right' });
 	}
 
-	for (let i = 0; i < totalSlices; i++) {
-		if (i > 0) pdf.addPage();
-		const sy = i * sliceHeightPx;
-		const sh = Math.min(sliceHeightPx, canvas.height - sy);
-
-		const sliceCanvas = document.createElement('canvas');
-		sliceCanvas.width = canvas.width;
-		sliceCanvas.height = sh;
-		const ctx = sliceCanvas.getContext('2d')!;
-		ctx.drawImage(canvas, 0, sy, canvas.width, sh, 0, 0, canvas.width, sh);
-		const imgData = sliceCanvas.toDataURL('image/png');
-
-		drawHeader(i + 1, totalSlices);
-		const imgH = (sh / canvas.width) * contentW;
-		pdf.addImage(imgData, 'PNG', margin, headerH + 8, contentW, imgH);
-		drawFooter();
+	function ensureHeader() {
+		const page = pdf.internal.pages.length - 1;
+		if (page !== headerDrawnOnPage) {
+			drawHeader();
+			drawFooter();
+			headerDrawnOnPage = page;
+		}
 	}
 
-	const filename = `${filenamePrefix}-${safeSlug(source)}-${new Date().toISOString().slice(0, 10)}.pdf`;
-	pdf.save(filename);
+	ensureHeader();
+	const state = { cursorY: HEADER_H + 20 };
+
+	function newPageIfNeeded(h: number) {
+		if (state.cursorY + h > pageH - FOOTER_H - 12) {
+			pdf.addPage();
+			state.cursorY = HEADER_H + 20;
+		}
+		ensureHeader();
+	}
+
+	function statusDot(x: number, y: number, status: Status) {
+		pdf.setFillColor(...STATUS_COLOR[status]);
+		pdf.circle(x, y, 3, 'F');
+	}
+
+	const builder: PdfReportBuilder = {
+		pdf,
+		get cursorY() {
+			return state.cursorY;
+		},
+		set cursorY(v: number) {
+			state.cursorY = v;
+		},
+		addSpace(h = 12) {
+			state.cursorY += h;
+		},
+		addScoreSummary({ score, scoreLabel, summary, chips }) {
+			newPageIfNeeded(76);
+			const color = tierColor(score);
+			pdf.setFont('helvetica', 'bold');
+			pdf.setFontSize(30);
+			pdf.setTextColor(...color);
+			pdf.text(String(score), PAGE_MARGIN, state.cursorY + 24);
+			pdf.setFontSize(9);
+			pdf.setFont('helvetica', 'normal');
+			pdf.setTextColor(...color);
+			pdf.text(scoreLabel, PAGE_MARGIN, state.cursorY + 38);
+
+			pdf.setFontSize(10);
+			pdf.setTextColor(30, 30, 30);
+			const summaryLines = pdf.splitTextToSize(summary, contentW - 90);
+			pdf.text(summaryLines, PAGE_MARGIN + 80, state.cursorY + 10);
+
+			let chipY = state.cursorY + 10 + summaryLines.length * 13 + 12;
+			let chipX = PAGE_MARGIN + 80;
+			pdf.setFontSize(8);
+			for (const chip of chips) {
+				const w = pdf.getTextWidth(chip) + 12;
+				if (chipX + w > pageW - PAGE_MARGIN) {
+					chipX = PAGE_MARGIN + 80;
+					chipY += 16;
+				}
+				pdf.setDrawColor(200, 200, 200);
+				pdf.setFillColor(245, 245, 245);
+				pdf.roundedRect(chipX, chipY - 10, w, 14, 6, 6, 'FD');
+				pdf.setTextColor(80, 80, 80);
+				pdf.text(chip, chipX + 6, chipY);
+				chipX += w + 6;
+			}
+			state.cursorY = Math.max(state.cursorY + 76, chipY + 16);
+		},
+		addCategoryGrid(categories) {
+			const cols = Math.min(5, categories.length);
+			if (cols === 0) return;
+			const gap = 8;
+			const cardW = (contentW - gap * (cols - 1)) / cols;
+			const cardH = 40;
+			newPageIfNeeded(cardH + 10);
+			categories.forEach((cat, i) => {
+				const col = i % cols;
+				const row = Math.floor(i / cols);
+				const x = PAGE_MARGIN + col * (cardW + gap);
+				const y = state.cursorY + row * (cardH + gap);
+				const color = tierColor(cat.score);
+				pdf.setDrawColor(225, 225, 225);
+				pdf.setFillColor(250, 248, 244);
+				pdf.roundedRect(x, y, cardW, cardH, 4, 4, 'FD');
+				pdf.setFontSize(7);
+				pdf.setTextColor(120, 120, 120);
+				pdf.text(truncate(cat.name, 22), x + 8, y + 14);
+				pdf.setFontSize(15);
+				pdf.setFont('helvetica', 'bold');
+				pdf.setTextColor(...color);
+				pdf.text(String(cat.score), x + 8, y + 32);
+				pdf.setFont('helvetica', 'normal');
+			});
+			const rows = Math.ceil(categories.length / cols);
+			state.cursorY += rows * (cardH + gap) + 6;
+		},
+		addSectionTitle(title, badge) {
+			newPageIfNeeded(26);
+			pdf.setFont('helvetica', 'bold');
+			pdf.setFontSize(11);
+			pdf.setTextColor(20, 20, 20);
+			pdf.text(title, PAGE_MARGIN, state.cursorY + 10);
+			if (badge) {
+				pdf.setFontSize(7.5);
+				pdf.setFont('helvetica', 'normal');
+				const w = pdf.getTextWidth(badge) + 12;
+				pdf.setFillColor(235, 245, 238);
+				pdf.roundedRect(pageW - PAGE_MARGIN - w, state.cursorY, w, 14, 6, 6, 'F');
+				pdf.setTextColor(40, 110, 70);
+				pdf.text(badge, pageW - PAGE_MARGIN - w + 6, state.cursorY + 10);
+			}
+			state.cursorY += 20;
+		},
+		addTable(head, rows, opts) {
+			const body: RowInput[] = rows.map((row) =>
+				row.map((cell) => {
+					if (typeof cell === 'string') return cell;
+					const styles = cell.status ? { textColor: STATUS_COLOR[cell.status] } : undefined;
+					return { content: cell.content, styles };
+				}),
+			);
+			autoTable(pdf, {
+				head: [head],
+				body,
+				startY: state.cursorY,
+				margin: { left: PAGE_MARGIN, right: PAGE_MARGIN, top: HEADER_H + 16, bottom: FOOTER_H + 14 },
+				styles: { fontSize: 8, cellPadding: 5, overflow: 'linebreak', textColor: [40, 40, 40] },
+				headStyles: { fillColor: [245, 240, 232], textColor: [60, 60, 60], fontStyle: 'bold', fontSize: 8 },
+				alternateRowStyles: { fillColor: [251, 249, 246] },
+				columnStyles: opts?.columnWidths
+					? Object.fromEntries(opts.columnWidths.map((w, i) => [i, { cellWidth: w }]))
+					: undefined,
+				didDrawPage: () => {
+					ensureHeader();
+				},
+			});
+			state.cursorY = (pdf as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 16;
+		},
+		addChecklist(items) {
+			for (const item of items) {
+				const detailLines = pdf.splitTextToSize(item.detail, contentW - 24);
+				const h = 14 + detailLines.length * 11 + 6;
+				newPageIfNeeded(h);
+				statusDot(PAGE_MARGIN + 3, state.cursorY - 2, item.status);
+				pdf.setFont('helvetica', 'bold');
+				pdf.setFontSize(9);
+				pdf.setTextColor(20, 20, 20);
+				pdf.text(item.label, PAGE_MARGIN + 12, state.cursorY + 2);
+				pdf.setFont('helvetica', 'normal');
+				pdf.setFontSize(8.5);
+				pdf.setTextColor(90, 90, 90);
+				pdf.text(detailLines, PAGE_MARGIN + 12, state.cursorY + 14);
+				state.cursorY += h;
+			}
+		},
+		save(filenamePrefix, src) {
+			const safeSlug =
+				src
+					.replace(/^https?:\/\//, '')
+					.replace(/[^a-z0-9]+/gi, '-')
+					.replace(/(^-|-$)/g, '')
+					.toLowerCase()
+					.slice(0, 60) || 'report';
+			const filename = `${filenamePrefix}-${safeSlug}-${new Date().toISOString().slice(0, 10)}.pdf`;
+			pdf.save(filename);
+		},
+	};
+
+	return builder;
 }

@@ -369,7 +369,7 @@ const toolSchema = {
 		<Footer />
 
 		<script>
-			import { exportReportToPdf } from '../../lib/pdf-export';
+			import { createPdfReport } from '../../lib/pdf-export';
 
 			type Tier = 'good' | 'fair' | 'poor';
 			type ImageRow = {
@@ -392,6 +392,7 @@ const toolSchema = {
 			const downloadBtn = document.getElementById('download-pdf-btn') as HTMLButtonElement;
 			let activeTab: 'url' | 'html' = 'url';
 			let lastSource = '';
+			let lastResult: ReturnType<typeof analyze> | null = null;
 
 			tabBtns.forEach((b) =>
 				b.addEventListener('click', () => {
@@ -774,17 +775,45 @@ const toolSchema = {
 				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
-			downloadBtn.addEventListener('click', async () => {
-				downloadBtn.disabled = true;
-				const original = downloadBtn.textContent;
-				downloadBtn.textContent = 'Generating…';
+			downloadBtn.addEventListener('click', () => {
+				if (!lastResult) return;
 				try {
-					await exportReportToPdf({ reportEl, toolName: 'Image SEO Checker', source: lastSource, filenamePrefix: 'image-checker' });
+					const { total, images, stats, score } = lastResult;
+					const tier = tierFor(score);
+					const tierLabel = { good: 'Good', fair: 'Needs work', poor: 'Poor' }[tier];
+					const doc = createPdfReport('Image SEO Checker', lastSource);
+					doc.addScoreSummary({
+						score,
+						scoreLabel: tierLabel,
+						summary: `Scored ${score}/100 (${tierLabel}) across ${total} image${total === 1 ? '' : 's'}.`,
+						chips: [
+							`${total} total`,
+							stats.noAlt > 0 ? `${stats.noAlt} missing alt` : '',
+							stats.noDim > 0 ? `${stats.noDim} no dimensions` : '',
+							stats.noLazy > 0 ? `${stats.noLazy} not lazy-loaded` : '',
+							stats.nonModern > 0 ? `${stats.nonModern} legacy format` : '',
+						].filter(Boolean),
+					});
+
+					if (images.length) {
+						doc.addSectionTitle('Images', `${images.length} found`);
+						doc.addTable(
+							['#', 'Source', 'Alt text', 'Dimensions', 'Lazy', 'Format'],
+							images.map((img, i) => [
+								String(i + 1),
+								img.src.length > 60 ? img.src.slice(0, 60) + '…' : img.src,
+								{ content: img.alt ? 'Yes' : 'Missing', status: img.alt ? 'pass' : 'fail' },
+								{ content: img.dim ? 'Set' : 'Missing', status: img.dim ? 'pass' : 'warn' },
+								{ content: img.isFirst ? 'N/A (first)' : img.lazy ? 'Yes' : 'No', status: img.isFirst ? 'miss' : img.lazy ? 'pass' : 'warn' },
+								{ content: img.format || '?', status: img.modern ? 'pass' : 'warn' },
+							]),
+							{ columnWidths: [24, 210, 70, 70, 70, 60] },
+						);
+					}
+
+					doc.save('image-checker', lastSource);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Could not generate PDF.', true);
-				} finally {
-					downloadBtn.disabled = false;
-					downloadBtn.textContent = original;
 				}
 			});
 
@@ -804,7 +833,8 @@ const toolSchema = {
 					}
 					setStatus('');
 					lastSource = source;
-					render(analyze(html, source), source);
+					lastResult = analyze(html, source);
+					render(lastResult, source);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
 					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
@@ -818,6 +848,7 @@ const toolSchema = {
 				urlInput.value = ''; htmlInput.value = '';
 				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
 				reportToolbar.classList.remove('visible');
+				lastResult = null;
 			}));
 		</script>
 	</body>

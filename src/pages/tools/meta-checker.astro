@@ -717,7 +717,7 @@ const toolSchema = {
 		<Footer />
 
 		<script>
-			import { exportReportToPdf } from '../../lib/pdf-export';
+			import { createPdfReport } from '../../lib/pdf-export';
 
 			type Severity = 'pass' | 'fail' | 'warn' | 'miss' | 'info';
 			type MetaRow = { name: string; value: string; status: Severity; pillText: string; isCode?: boolean };
@@ -732,6 +732,7 @@ const toolSchema = {
 			const downloadBtn = document.getElementById('download-pdf-btn') as HTMLButtonElement;
 			let activeTab: 'url' | 'html' = 'url';
 			let lastSource = '';
+			let lastResult: ReturnType<typeof analyze> | null = null;
 
 			tabBtns.forEach((b) => b.addEventListener('click', () => {
 				tabBtns.forEach((x) => x.setAttribute('aria-selected', String(x === b)));
@@ -1092,17 +1093,56 @@ const toolSchema = {
 				reportEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 
-			downloadBtn.addEventListener('click', async () => {
-				downloadBtn.disabled = true;
-				const original = downloadBtn.textContent;
-				downloadBtn.textContent = 'Generating…';
+			downloadBtn.addEventListener('click', () => {
+				if (!lastResult) return;
 				try {
-					await exportReportToPdf({ reportEl, toolName: 'Meta Tag Checker', source: lastSource, filenamePrefix: 'meta-checker' });
+					const { score, fails, warns, miss, passes, essential, og, tw, tech, robotsChecks, recos } = lastResult;
+					const t = tier(score);
+					const label = tierLabel(t);
+					const doc = createPdfReport('Meta Tag Checker', lastSource);
+					doc.addScoreSummary({
+						score,
+						scoreLabel: label,
+						summary: `Scored ${score}/100 (${label}).`,
+						chips: [
+							fails > 0 ? `${fails} failing` : '',
+							warns > 0 ? `${warns} warnings` : '',
+							miss > 0 ? `${miss} not set` : '',
+							`${passes} good`,
+						].filter(Boolean),
+					});
+
+					const metaTable = (title: string, rows: typeof essential) => {
+						if (!rows.length) return;
+						const allPass = rows.every((r) => r.status === 'pass' || r.status === 'miss');
+						doc.addSectionTitle(title, allPass ? 'All passing' : undefined);
+						doc.addTable(
+							['Tag', 'Value', 'Status'],
+							rows.map((r) => [r.name, r.value, { content: r.pillText.replace(/^[✓✕⚠—ℹ]\s*/, ''), status: r.status }]),
+							{ columnWidths: [110, 300, 70] },
+						);
+						doc.addSpace(8);
+					};
+
+					metaTable('Essential Meta Tags', essential);
+					metaTable('Open Graph Tags', og);
+					metaTable('Twitter / X Card Tags', tw);
+					metaTable('Technical Meta Tags', tech);
+
+					if (robotsChecks.length) {
+						doc.addSectionTitle('Robots & Indexing');
+						doc.addChecklist(robotsChecks.map((r) => ({ label: r.label, status: r.pass ? ('pass' as const) : ('fail' as const), detail: r.detail })));
+						doc.addSpace(8);
+					}
+
+					if (recos.length) {
+						doc.addSectionTitle('Recommendations', `${recos.length} issue${recos.length === 1 ? '' : 's'}`);
+						doc.addChecklist(recos.map((r) => ({ label: r.title, status: r.sev, detail: r.detail })));
+					}
+
+					doc.save('meta-checker', lastSource);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Could not generate PDF.', true);
-				} finally {
-					downloadBtn.disabled = false;
-					downloadBtn.textContent = original;
 				}
 			});
 
@@ -1122,7 +1162,8 @@ const toolSchema = {
 					}
 					setStatus('');
 					lastSource = source;
-					render(analyze(html), source);
+					lastResult = analyze(html);
+					render(lastResult, source);
 				} catch (err) {
 					setStatus(err instanceof Error ? err.message : 'Something went wrong.', true);
 					reportEl.classList.remove('visible'); reportEl.innerHTML = '';
@@ -1136,6 +1177,7 @@ const toolSchema = {
 				urlInput.value = ''; htmlInput.value = '';
 				reportEl.innerHTML = ''; reportEl.classList.remove('visible'); setStatus('');
 				reportToolbar.classList.remove('visible');
+				lastResult = null;
 			}));
 		</script>
 	</body>
