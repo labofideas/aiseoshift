@@ -35,21 +35,39 @@ const BAKED_PROPS = [
 	'fill', 'stroke', 'stroke-width', 'opacity',
 ];
 
-function bakeComputedStyles(original: Element, clone: Element) {
+// Two passes on purpose: reading getComputedStyle() on a live node and then
+// immediately writing style.cssText on another node, repeated per node down
+// the tree, is a textbook layout-thrashing pattern — each write can force the
+// next read to flush a synchronous reflow first. On this report's node count
+// that took 45+ seconds and hung the page. Collecting every value first (all
+// reads, no writes) and applying them in a second pass (all writes, no reads)
+// avoids the read/write interleaving entirely.
+function collectComputedStyles(original: Element, out: string[]): void {
 	const computed = getComputedStyle(original);
 	let cssText = '';
 	for (const prop of BAKED_PROPS) {
 		const value = computed.getPropertyValue(prop);
 		if (value) cssText += `${prop}:${value};`;
 	}
-	(clone as HTMLElement).style.cssText += cssText;
-
-	const originalChildren = original.children;
-	const cloneChildren = clone.children;
-	const len = Math.min(originalChildren.length, cloneChildren.length);
-	for (let i = 0; i < len; i++) {
-		bakeComputedStyles(originalChildren[i], cloneChildren[i]);
+	out.push(cssText);
+	const children = original.children;
+	for (let i = 0; i < children.length; i++) {
+		collectComputedStyles(children[i], out);
 	}
+}
+
+function applyBakedStyles(clone: Element, cssTexts: string[], cursor: { i: number }): void {
+	(clone as HTMLElement).style.cssText += cssTexts[cursor.i++];
+	const children = clone.children;
+	for (let i = 0; i < children.length; i++) {
+		applyBakedStyles(children[i], cssTexts, cursor);
+	}
+}
+
+function bakeComputedStyles(original: Element, clone: Element) {
+	const cssTexts: string[] = [];
+	collectComputedStyles(original, cssTexts);
+	applyBakedStyles(clone, cssTexts, { i: 0 });
 }
 
 function safeSlug(source: string): string {
