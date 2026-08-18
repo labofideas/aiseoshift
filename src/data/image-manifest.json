@@ -1745,5 +1745,17 @@
 			"width": 1200,
 			"height": 675
 		}
+	},
+	"websites-better-than-doomscrolling": {
+		"hero": {
+			"src": "/images/posts/websites-better-than-doomscrolling-hero.svg",
+			"alt": "Editorial diagram titled 10 Websites Better Than Another Hour of Doomscrolling, showing four groups: rabbit holes, long reads, playful discovery, and daily wonder",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/websites-better-than-doomscrolling",
+			"width": 1200,
+			"height": 675
+		}
 	}
 }
