@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
@@ -14,142 +15,39 @@ import {
 const canonical = new URL('/glossary/', SITE_URL).toString();
 const pubDate = new Date('2026-05-26');
 
-type Term = {
-	id: string;
-	term: string;
-	abbreviation?: string;
-	definition: string;
-	link?: string;
-};
+// In-depth term pages (content collection), each rendered as its own subpage.
+const deepTerms = (await getCollection('glossary', ({ data }) => !data.draft)).sort((a, b) =>
+	a.data.term.localeCompare(b.data.term)
+);
 
-// Editorial order: alphabetical by primary term
-const terms: Term[] = [
-	{
-		id: 'aeo',
-		term: 'Answer Engine Optimization',
-		abbreviation: 'AEO',
-		definition:
-			'The practice of structuring web content so AI answer engines like ChatGPT, Claude, and Perplexity can extract, trust, and cite it inside their generated answers. AEO sits alongside classical SEO (for ranking) and GEO (for generative search).',
-		link: '/aeo/',
-	},
-	{
-		id: 'ai-citation',
-		term: 'AI Citation',
-		definition:
-			'A reference, link, or attribution that an AI answer engine emits when it uses your content to generate an answer. AI citations replace traditional clicks as the unit of value in AEO. Engines that cite explicitly include ChatGPT Search, Perplexity, and Claude.',
-		link: '/seo/ai-citation-building/',
-	},
-	{
-		id: 'ai-mode',
-		term: 'AI Mode',
-		definition:
-			'Google’s conversational AI search experience launched at I/O 2025 and expanded throughout 2026. AI Mode runs multiple parallel searches, applies filters, and compresses retrieval into a synthesized answer with citations. The successor to the classical Google Search box for many query types.',
-	},
-	{
-		id: 'ai-overviews',
-		term: 'AI Overviews',
-		definition:
-			'Google’s AI-synthesized answer boxes that appear above classical organic results for an increasing share of queries. AI Overviews predominantly pull from pages that already rank in the top 10-20 organic results, then synthesize a summary with attributed source links.',
-		link: '/seo/ai-search-optimization/',
-	},
-	{
-		id: 'ai-seo-shift',
-		term: 'AI SEO Shift',
-		definition:
-			'The structural move from optimizing for blue-link rankings to optimizing for AI answer citations. Coined by AISEOShift, the term describes the combined discipline of classical SEO + AEO + GEO that brands need in 2026 as AI assistants mediate a growing share of search.',
-		link: '/ai-seo-shift/',
-	},
-	{
-		id: 'e-e-a-t',
-		term: 'E-E-A-T',
-		definition:
-			'Experience, Expertise, Authoritativeness, and Trustworthiness. Google’s framework for evaluating content quality, expanded from E-A-T in 2022 to add Experience. AI engines weight E-E-A-T signals heavily when selecting sources to cite, especially for high-trust verticals (medical, legal, financial).',
-		link: '/seo/eeat/',
-	},
-	{
-		id: 'featured-snippet',
-		term: 'Featured Snippet',
-		definition:
-			'A direct answer extracted by Google from a ranking page and shown at the top of the results, usually as a paragraph, list, or table. Featured snippets are the classical-SEO predecessor to AI Overviews: same lifting mechanic, fewer engines doing it.',
-	},
-	{
-		id: 'geo',
-		term: 'Generative Engine Optimization',
-		abbreviation: 'GEO',
-		definition:
-			'The practice of optimizing web content so generative AI search experiences — Google AI Overviews, Gemini, Search Generative Experience — synthesize answers from your content. Where AEO is about earning a citation, GEO is about being the substrate the generative engine builds its answer from.',
-		link: '/geo/',
-	},
-	{
-		id: 'hyperlocal-seo',
-		term: 'Hyperlocal SEO',
-		definition:
-			'Optimization at the neighborhood and street level, not the city level. In 2026 hyperlocal SEO is the discipline of being the business an AI assistant cites when it answers a constraint-rich local query like "dentist that takes Aetna, open after 6pm, near Logan Square."',
-		link: '/blog/hyperlocal-seo-2026-ai-local-discovery/',
-	},
-	{
-		id: 'knowledge-graph',
-		term: 'Knowledge Graph',
-		definition:
-			'Google’s structured database of entities (people, places, organizations, concepts) and their relationships. The Knowledge Graph powers the entity panels you see on Google Search and is a core input to how AI search systems verify identity and authority for citation.',
-	},
-	{
-		id: 'llms-txt',
-		term: 'llms.txt',
-		definition:
-			'A plain-text file at /llms.txt that lists the most important pages on a site with one-line descriptions, formatted for AI consumers. Functions as the AI-citation equivalent of robots.txt or sitemap.xml. Proposed by llmstxt.org in 2024 and adopted by Yoast, Rank Math, and a growing number of publishers.',
-		link: '/llms.txt',
-	},
-	{
-		id: 'map-pack',
-		term: 'Map Pack',
-		definition:
-			'Google’s local-results block showing three nearby businesses with a map, also called the Local 3-Pack. Historically the dominant local-discovery surface; in 2026 increasingly compressed into AI Mode and Gemini recommendations that surface 1-3 results instead of a ranked list.',
-	},
-	{
-		id: 'schema-markup',
-		term: 'Schema Markup',
-		definition:
-			'Structured-data annotations (usually JSON-LD) that describe a page’s content in a machine-readable vocabulary. Common types: Organization, Person, Article, FAQPage, HowTo, LocalBusiness, DefinedTerm. AI engines preferentially cite pages with rich schema because it eliminates parsing ambiguity.',
-		link: '/seo/schema-markup/',
-	},
-	{
-		id: 'speakable',
-		term: 'Speakable Schema',
-		definition:
-			'A schema.org type (SpeakableSpecification) that marks specific page sections as appropriate for voice or audio reading by AI assistants. Useful for TL;DR blocks and definition paragraphs — signals to Google Assistant and similar systems which content to read aloud.',
-	},
-	{
-		id: 'topic-cluster',
-		term: 'Topic Cluster',
-		definition:
-			'A pillar page (broad topic) interlinked with multiple supporting articles (subtopics) all covering the same entity from different angles. Topic clusters signal topical authority to both Google and AI engines, and are the canonical content architecture for AEO and GEO at scale.',
-		link: '/seo/content-strategy/',
-	},
-	{
-		id: 'zero-click',
-		term: 'Zero-Click Search',
-		definition:
-			'A search that ends without a click to any external website because the user got the answer directly inside the search results (featured snippet, AI Overview, Knowledge Panel). Roughly 65% of Google searches were zero-click as of 2024, a number AI Overviews has continued to push higher.',
-	},
-];
+const catId = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+// Group terms by category for the hub layout, categories sorted alphabetically.
+const termsByCategory = [
+	...deepTerms.reduce((map, t) => {
+		const list = map.get(t.data.category) ?? [];
+		list.push(t);
+		map.set(t.data.category, list);
+		return map;
+	}, new Map<string, typeof deepTerms>()),
+].sort((a, b) => a[0].localeCompare(b[0]));
 
 const definedTermSetSchema = {
 	'@context': 'https://schema.org',
 	'@type': 'DefinedTermSet',
 	'@id': `${canonical}#glossary`,
-	name: 'AI SEO Glossary',
+	name: 'SEO and Digital Marketing Glossary',
 	url: canonical,
 	description:
-		'A concise glossary of the terms that matter for AI search in 2026: AEO, GEO, AI Overviews, schema markup, E-E-A-T, llms.txt, and more.',
-	hasDefinedTerm: terms.map((t) => ({
+		'Definitions of the SEO and digital marketing terms every practitioner should know, from backlinks and Core Web Vitals to AEO, GEO, and AI Overviews.',
+	hasDefinedTerm: deepTerms.map((t) => ({
 		'@type': 'DefinedTerm',
 		'@id': `${canonical}#${t.id}`,
-		name: t.term,
-		...(t.abbreviation ? { alternateName: t.abbreviation } : {}),
-		description: t.definition,
+		name: t.data.term,
+		...(t.data.abbreviation ? { alternateName: t.data.abbreviation } : {}),
+		description: t.data.summary,
 		inDefinedTermSet: { '@id': `${canonical}#glossary` },
-		...(t.link ? { url: new URL(t.link, SITE_URL).toString() } : {}),
+		url: new URL(`/glossary/${t.id}/`, SITE_URL).toString(),
 	})),
 };
 
@@ -183,8 +81,8 @@ const articleSchema = {
 <html lang="en">
 	<head>
 		<BaseHead
-			title={`AI SEO Glossary: AEO, GEO, AI Overviews and More | ${SITE_TITLE}`}
-			description="Concise definitions of the 16 terms that matter for AI search in 2026 — AEO, GEO, AI Overviews, schema, E-E-A-T, llms.txt, and more. Built for fast extraction by AI answer engines."
+			title={`SEO and Digital Marketing Glossary | ${SITE_TITLE}`}
+			description="Clear definitions of the SEO and digital marketing terms every practitioner should know, from backlinks and Core Web Vitals to AEO, GEO, and AI Overviews. In-depth term guides plus quick definitions."
 			canonical={canonical}
 			ogType="article"
 			publishedTime={pubDate.toISOString()}
@@ -259,6 +157,97 @@ const articleSchema = {
 				border-color: var(--signal);
 			}
 
+			.glossary-deep {
+				padding: var(--space-6) 0;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.glossary-deep-head h2 {
+				font-size: clamp(1.5rem, 2.6vw, 2rem);
+				letter-spacing: -0.02em;
+				font-weight: 600;
+				margin: 0;
+			}
+
+			.glossary-deep-head p {
+				margin: var(--space-2) 0 var(--space-5);
+				color: rgba(var(--ink), 0.72);
+				font-size: 1rem;
+				max-width: var(--measure);
+			}
+
+			.glossary-deep-grid {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+				gap: var(--space-4);
+			}
+
+			.glossary-deep-grid a {
+				display: flex;
+				flex-direction: column;
+				gap: 0.35rem;
+				height: 100%;
+				padding: var(--space-4);
+				border: 1px solid var(--line-strong);
+				border-radius: 8px;
+				background: rgb(var(--paper));
+				text-decoration: none;
+				color: rgb(var(--ink));
+				transition: border-color 0.15s ease;
+			}
+
+			.glossary-deep-grid a:hover {
+				border-color: var(--signal);
+			}
+
+			.glossary-deep-cat {
+				font-size: 0.68rem;
+				font-weight: 700;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--signal-deep);
+			}
+
+			.glossary-deep-term {
+				font-family: 'Iowan Old Style', Georgia, serif;
+				font-size: 1.15rem;
+				font-weight: 600;
+				letter-spacing: -0.015em;
+			}
+
+			.glossary-deep-abbr {
+				font-style: italic;
+				font-weight: 400;
+				color: var(--ink-muted);
+			}
+
+			.glossary-deep-sum {
+				font-size: 0.88rem;
+				line-height: 1.5;
+				color: rgba(var(--ink), 0.72);
+			}
+
+			.glossary-cat {
+				padding: var(--space-6) 0;
+				border-bottom: 1px solid var(--line);
+			}
+
+			.glossary-cat:last-of-type {
+				border-bottom: none;
+			}
+
+			.glossary-cat-head {
+				font-size: 0.78rem;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+				margin: 0 0 var(--space-4);
+				scroll-margin-top: 5rem;
+			}
+
 			.glossary-list {
 				margin: 0;
 				padding: 0;
@@ -284,7 +273,7 @@ const articleSchema = {
 			}
 
 			.glossary-term {
-				font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+				font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
 				font-size: clamp(1.4rem, 2.4vw, 1.95rem);
 				font-weight: 600;
 				letter-spacing: -0.022em;
@@ -297,7 +286,7 @@ const articleSchema = {
 			.glossary-abbr {
 				display: block;
 				margin-top: var(--space-2);
-				font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+				font-family: 'Iowan Old Style', Georgia, serif;
 				font-style: italic;
 				font-weight: 400;
 				font-size: 0.95rem;
@@ -379,13 +368,14 @@ const articleSchema = {
 			<section class="glossary-hero">
 				<div>
 					<p class="kicker">AISEOShift · Reference</p>
-					<h1>AI SEO Glossary.</h1>
+					<h1>SEO and Marketing Glossary.</h1>
 				</div>
 				<div class="glossary-hero-lede">
 					<p>
-						Concise definitions of the 16 terms that matter most for AI search in 2026.
-						Each entry is short on purpose — built to be quoted verbatim by AI answer engines
-						and to give human readers a fast mental model.
+						The terms every SEO and digital marketer should know, from classical
+						fundamentals to the vocabulary of AI search. In-depth guides explain the
+						core terms on their own pages, and quick definitions cover the rest,
+						written to be quoted verbatim by AI answer engines.
 					</p>
 					<a class="glossary-author" href={AUTHOR_PROFILE_URL} rel="author">
 						<img src={AUTHOR_IMAGE} alt={AUTHOR_NAME} width="40" height="40" />
@@ -397,30 +387,27 @@ const articleSchema = {
 				</div>
 			</section>
 
-			<nav class="glossary-index" aria-label="Glossary index">
-				{terms.map((t) => (
-					<a href={`#${t.id}`}>{t.abbreviation ?? t.term}</a>
+			<nav class="glossary-index" aria-label="Glossary categories">
+				{termsByCategory.map(([cat]) => (
+					<a href={`#${catId(cat)}`}>{cat}</a>
 				))}
 			</nav>
 
-			<ol class="glossary-list">
-				{terms.map((t) => (
-					<li id={t.id}>
-						<div class="glossary-row">
-							<div>
-								<h2 class="glossary-term">{t.term}</h2>
-								{t.abbreviation && <span class="glossary-abbr">{t.abbreviation}</span>}
-							</div>
-							<div>
-								<p class="glossary-def">{t.definition}</p>
-								{t.link && (
-									<a class="glossary-more" href={t.link}>Read the full coverage &rarr;</a>
-								)}
-							</div>
-						</div>
-					</li>
-				))}
-			</ol>
+			{termsByCategory.map(([cat, items]) => (
+				<section class="glossary-cat" id={catId(cat)}>
+					<h2 class="glossary-cat-head">{cat}</h2>
+					<ul class="glossary-deep-grid">
+						{items.map((t) => (
+							<li>
+								<a href={`/glossary/${t.id}/`}>
+									<span class="glossary-deep-term">{t.data.term}{t.data.abbreviation && <span class="glossary-deep-abbr"> ({t.data.abbreviation})</span>}</span>
+									<span class="glossary-deep-sum">{t.data.summary}</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			))}
 		</main>
 		<Footer />
 	</body>

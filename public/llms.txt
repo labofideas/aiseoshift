@@ -1,0 +1,53 @@
+# AISEOShift
+
+> AISEOShift covers the shift from blue-link SEO to AI search visibility: Answer Engine Optimization (AEO), Generative Engine Optimization (GEO), AI Overviews, citations, schema, and the practical playbooks brands and agencies use to get cited by ChatGPT, Claude, Perplexity, Google AI Mode, and Gemini.
+
+Author: Shashank Dubey, founder of Wbcom Designs and lead writer at AISEOShift. All content is written for practitioners and grounded in how AI answer engines select and cite sources.
+
+## Start here
+
+- [The AI SEO Shift](https://aiseoshift.com/ai-seo-shift/): the pillar explaining the move from rankings to AI answer citations, combining classical SEO, AEO, and GEO.
+- [What Is AI Visibility?](https://aiseoshift.com/blog/what-is-ai-visibility/): definition of AI visibility and why it is the new measure of search success.
+- [Answer Engine Optimization (AEO)](https://aiseoshift.com/aeo/): structuring content so AI answer engines extract, trust, and cite it.
+- [Generative Engine Optimization (GEO)](https://aiseoshift.com/geo/): being the source generative AI search builds its answers from.
+
+## Measurement
+
+- [How to Measure AI Visibility](https://aiseoshift.com/blog/how-to-measure-ai-visibility/): the metrics, framework, and cadence for AI search performance.
+- [AEO KPIs and Metrics](https://aiseoshift.com/blog/aeo-kpis-metrics-ai-visibility/): citation rate, share of voice, zero-click impression share, brand entity strength, platform coverage.
+- [How to Get Cited by AI Search Systems](https://aiseoshift.com/blog/how-to-get-cited-by-ai-search-systems/): the content and authority signals that earn citations.
+
+## Platform-specific SEO
+
+- [ChatGPT SEO](https://aiseoshift.com/chatgpt-seo/)
+- [Perplexity SEO](https://aiseoshift.com/perplexity-seo/)
+- [Claude SEO](https://aiseoshift.com/claude-seo/)
+- [Gemini SEO](https://aiseoshift.com/gemini-seo/)
+- [Google AI Overviews SEO](https://aiseoshift.com/ai-overviews-seo/)
+- [Google AI Mode SEO](https://aiseoshift.com/ai-mode-seo/)
+- [Bing SEO](https://aiseoshift.com/bing-seo/)
+- [Microsoft Copilot SEO](https://aiseoshift.com/copilot-seo/)
+
+## Reference
+
+- [SEO and Marketing Glossary](https://aiseoshift.com/glossary/): definitions of the SEO and digital marketing terms practitioners need, with in-depth term pages.
+- [Schema Markup for AI Visibility](https://aiseoshift.com/seo/schema-markup/): the structured data that makes content machine-readable and citable.
+- [E-E-A-T in the AI Era](https://aiseoshift.com/seo/eeat/): experience, expertise, authoritativeness, and trust as AI citation signals.
+- [The complete SEO guide](https://aiseoshift.com/seo/): foundational SEO for the AI search era.
+
+## Tool guides
+
+- [Best AI Tools, curated and compared](https://aiseoshift.com/best-ai-tools/): the directory of AISEOShift tool guides across SEO, writing, media, and business.
+- [Best AI Visibility Tools](https://aiseoshift.com/blog/best-ai-visibility-tools-2026/)
+- [Best AI SEO Tools](https://aiseoshift.com/blog/best-ai-seo-tools/)
+- [Best AI Keyword Research Tools](https://aiseoshift.com/blog/best-ai-keyword-research-tools/)
+
+## Industry playbooks
+
+- [AI SEO by Industry](https://aiseoshift.com/ai-seo-by-industry/): playbooks for winning AI search visibility in specific verticals.
+- [AI SEO Services](https://aiseoshift.com/ai-seo-services/): audits, authority building, and retainers for brands and agencies.
+
+## Optional
+
+- [Latest coverage](https://aiseoshift.com/blog): all articles on AI SEO, AEO, GEO, and AI search.
+- [About](https://aiseoshift.com/about): who is behind AISEOShift.

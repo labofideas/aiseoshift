@@ -1,0 +1,308 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import {
+	SITE_TITLE,
+	SITE_URL,
+	AUTHOR_PROFILE_URL,
+	AUTHOR_NAME,
+	AUTHOR_IMAGE,
+	AUTHOR_ROLE,
+} from '../../consts';
+
+export async function getStaticPaths() {
+	const entries = await getCollection('glossary', ({ data }) => !data.draft);
+	return entries.map((entry) => ({
+		params: { slug: entry.id },
+		props: { entry, all: entries },
+	}));
+}
+
+const { entry, all } = Astro.props;
+const { Content } = await render(entry);
+const { term, abbreviation, category, summary, related, pubDate, updatedDate } = entry.data;
+
+const canonical = new URL(`/glossary/${entry.id}/`, SITE_URL).toString();
+const glossaryUrl = new URL('/glossary/', SITE_URL).toString();
+const published = pubDate.toISOString();
+const modified = (updatedDate ?? pubDate).toISOString();
+
+// Resolve related terms that exist in the collection
+const relatedEntries = (related ?? [])
+	.map((slug) => all.find((e) => e.id === slug))
+	.filter((e): e is (typeof all)[number] => Boolean(e));
+
+const definedTermSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'DefinedTerm',
+	'@id': `${canonical}#term`,
+	name: term,
+	...(abbreviation ? { alternateName: abbreviation } : {}),
+	description: summary,
+	url: canonical,
+	inDefinedTermSet: {
+		'@type': 'DefinedTermSet',
+		'@id': `${glossaryUrl}#glossary`,
+		name: 'Digital Marketing and SEO Glossary',
+		url: glossaryUrl,
+	},
+};
+
+const breadcrumbSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'BreadcrumbList',
+	itemListElement: [
+		{ '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+		{ '@type': 'ListItem', position: 2, name: 'Glossary', item: glossaryUrl },
+		{ '@type': 'ListItem', position: 3, name: term, item: canonical },
+	],
+};
+
+const articleSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Article',
+	'@id': `${canonical}#article`,
+	headline: `${term}${abbreviation ? ` (${abbreviation})` : ''}: definition and how it works`,
+	description: summary,
+	url: canonical,
+	mainEntityOfPage: canonical,
+	datePublished: published,
+	dateModified: modified,
+	author: { '@id': `${SITE_URL}/#person` },
+	publisher: { '@id': `${SITE_URL}/#organization` },
+	isPartOf: { '@id': `${SITE_URL}/#website` },
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`${term}${abbreviation ? ` (${abbreviation})` : ''}: Definition | ${SITE_TITLE}`}
+			description={summary}
+			canonical={canonical}
+			ogType="article"
+			publishedTime={published}
+			modifiedTime={modified}
+			structuredData={[articleSchema, definedTermSchema, breadcrumbSchema]}
+		/>
+		<style>
+			.term-page {
+				width: min(820px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: var(--space-6) 0 var(--space-9);
+			}
+
+			.term-crumbs {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.8rem;
+				color: var(--ink-muted);
+				padding: var(--space-5) 0 var(--space-5);
+			}
+
+			.term-crumbs a {
+				color: var(--ink-muted);
+				text-decoration: none;
+			}
+
+			.term-crumbs a:hover {
+				color: var(--signal-deep);
+			}
+
+			.term-crumbs [aria-current] {
+				color: rgb(var(--ink));
+				font-weight: 600;
+			}
+
+			.term-cat {
+				font-size: 0.72rem;
+				font-weight: 700;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: var(--signal-deep);
+				margin: 0;
+			}
+
+			.term-page h1 {
+				font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+				line-height: 1.02;
+				letter-spacing: -0.03em;
+				font-weight: 600;
+				margin: var(--space-3) 0 0;
+			}
+
+			.term-abbr {
+				font-style: italic;
+				font-weight: 400;
+				color: var(--signal-deep);
+			}
+
+			.term-summary {
+				font-size: 1.2rem;
+				line-height: 1.55;
+				color: rgba(var(--ink), 0.82);
+				margin: var(--space-4) 0 0;
+				max-width: var(--measure);
+			}
+
+			.term-author {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.7rem;
+				margin: var(--space-5) 0 0;
+				text-decoration: none;
+				color: rgb(var(--ink));
+			}
+
+			.term-author img {
+				width: 38px;
+				height: 38px;
+				border-radius: 50%;
+				border: 1px solid var(--line-strong);
+			}
+
+			.term-author-text {
+				display: inline-flex;
+				flex-direction: column;
+				line-height: 1.25;
+				font-size: 0.82rem;
+			}
+
+			.term-author-name { font-weight: 700; }
+			.term-author-role { color: var(--ink-muted); font-size: 0.72rem; }
+
+			.term-body {
+				margin: var(--space-7) 0 0;
+				border-top: 1px solid var(--line);
+				padding-top: var(--space-6);
+			}
+
+			.term-body :global(h2) {
+				font-size: 1.5rem;
+				letter-spacing: -0.02em;
+				margin: var(--space-6) 0 var(--space-3);
+			}
+
+			.term-body :global(h3) {
+				font-size: 1.15rem;
+				margin: var(--space-5) 0 var(--space-2);
+			}
+
+			.term-body :global(p),
+			.term-body :global(li) {
+				font-size: 1.05rem;
+				line-height: 1.7;
+				color: rgba(var(--ink), 0.86);
+			}
+
+			.term-body :global(p) { margin: 0 0 var(--space-4); }
+			.term-body :global(ul),
+			.term-body :global(ol) { margin: 0 0 var(--space-4) 1.2rem; }
+			.term-body :global(li) { margin: 0 0 var(--space-2); }
+			.term-body :global(a) { font-weight: 600; }
+
+			.term-related {
+				margin: var(--space-8) 0 0;
+				border-top: 1px solid var(--line);
+				padding-top: var(--space-5);
+			}
+
+			.term-related h2 {
+				font-size: 0.78rem;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--ink-muted);
+				margin: 0 0 var(--space-4);
+			}
+
+			.term-related-grid {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem 0.6rem;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.term-related-grid a {
+				display: inline-flex;
+				padding: 0.45rem 0.9rem;
+				border-radius: 999px;
+				border: 1px solid var(--line-strong);
+				background: rgb(var(--paper));
+				color: rgb(var(--ink));
+				text-decoration: none;
+				font-size: 0.85rem;
+				font-weight: 600;
+				line-height: 1;
+			}
+
+			.term-related-grid a:hover {
+				color: var(--signal-deep);
+				border-color: var(--signal);
+			}
+
+			.term-back {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				margin: var(--space-7) 0 0;
+				font-size: 0.9rem;
+				font-weight: 600;
+				text-decoration: none;
+				color: rgb(var(--ink));
+				border-bottom: 1px solid var(--line-strong);
+				padding-bottom: 2px;
+			}
+
+			.term-back:hover { color: var(--signal-deep); border-color: var(--signal); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="term-page">
+			<nav class="term-crumbs" aria-label="Breadcrumb">
+				<a href="/">Home</a>
+				<span aria-hidden="true">/</span>
+				<a href="/glossary/">Glossary</a>
+				<span aria-hidden="true">/</span>
+				<span aria-current="page">{term}</span>
+			</nav>
+
+			<p class="term-cat">{category}</p>
+			<h1>{term}{abbreviation && <span class="term-abbr"> ({abbreviation})</span>}</h1>
+			<p class="term-summary">{summary}</p>
+
+			<a class="term-author" href={AUTHOR_PROFILE_URL} rel="author">
+				<img src={AUTHOR_IMAGE} alt={AUTHOR_NAME} width="38" height="38" />
+				<span class="term-author-text">
+					<span class="term-author-name">By {AUTHOR_NAME}</span>
+					<span class="term-author-role">{AUTHOR_ROLE}</span>
+				</span>
+			</a>
+
+			<article class="term-body">
+				<Content />
+			</article>
+
+			{relatedEntries.length > 0 && (
+				<section class="term-related">
+					<h2>Related terms</h2>
+					<ul class="term-related-grid">
+						{relatedEntries.map((e) => (
+							<li><a href={`/glossary/${e.id}/`}>{e.data.term}</a></li>
+						))}
+					</ul>
+				</section>
+			)}
+
+			<a class="term-back" href="/glossary/">&larr; All glossary terms</a>
+		</main>
+		<Footer />
+	</body>
+</html>
