@@ -1,5 +1,4 @@
 ---
-import { ORG_ADDRESS, SITE_EMAIL } from '../consts';
 const today = new Date();
 ---
 
@@ -12,13 +11,6 @@ const today = new Date();
 			<p class="footer-tagline">
 				Reporting on how search, AI answers, and authority systems are changing in real time.
 			</p>
-			<address class="footer-nap">
-				<span class="footer-nap-label">AISEOShift</span>
-				{ORG_ADDRESS.street}<br />
-				{ORG_ADDRESS.locality}, {ORG_ADDRESS.region} {ORG_ADDRESS.postalCode}, {ORG_ADDRESS.countryName}<br />
-				<a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>
-				<span class="footer-nap-served">Working with clients worldwide.</span>
-			</address>
 			<ul class="footer-social">
 				<li>
 					<a href="https://bsky.app/profile/aiseoshift.bsky.social" target="_blank" rel="noopener noreferrer">
@@ -79,8 +71,8 @@ const today = new Date();
 				<li><a href="/blog">Latest Coverage</a></li>
 				<li><a href="/seo">SEO Guide</a></li>
 				<li><a href="/ai-seo-services">AI SEO Services</a></li>
-				<li><a href="/ai-seo-consultant">AI SEO Consultant</a></li>
-				<li><a href="/pricing">Pricing</a></li>
+				<li><a href="/ai-seo-by-industry">AI SEO by Industry</a></li>
+				<li><a href="/best-ai-tools">Best AI Tools</a></li>
 				<li><a href="/glossary">Glossary</a></li>
 				<li><a href="/newsletter">Newsletter</a></li>
 				<li><a href="/about">About</a></li>
@@ -157,7 +149,7 @@ const today = new Date();
 
 	.footer-mark {
 		margin: 0;
-		font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+		font-family: 'Georgia', 'Iowan Old Style', serif;
 		font-size: 1.6rem;
 		font-weight: 700;
 		letter-spacing: -0.01em;
@@ -170,39 +162,6 @@ const today = new Date();
 		line-height: 1.6;
 		color: rgba(var(--ink), 0.65);
 		max-width: 26ch;
-	}
-
-	/* Registered office (NAP) */
-	.footer-nap {
-		margin: 1rem 0 0;
-		font-style: normal;
-		font-size: 0.8125rem;
-		line-height: 1.65;
-		color: rgba(var(--ink), 0.6);
-		max-width: 30ch;
-	}
-
-	.footer-nap-label {
-		display: block;
-		font-weight: 700;
-		color: rgba(var(--ink), 0.8);
-	}
-
-	.footer-nap a {
-		color: inherit;
-		text-decoration: underline;
-		text-underline-offset: 2px;
-	}
-
-	.footer-nap a:hover {
-		color: rgb(var(--ink));
-	}
-
-	.footer-nap-served {
-		display: block;
-		margin-top: 0.35rem;
-		font-size: 0.75rem;
-		color: rgba(var(--ink), 0.5);
 	}
 
 	/* Social links */
