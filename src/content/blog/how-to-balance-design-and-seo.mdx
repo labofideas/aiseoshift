@@ -1,0 +1,113 @@
+---
+title: "How Do You Balance Design and SEO?"
+description: Design and SEO only conflict when one team works without the other. Balance them by treating crawlable content, real text, speed, and structure as design constraints from the first wireframe.
+deck: The fight is a myth built on bad timing. Design and SEO clash when SEO shows up after launch. Bring it in at the wireframe and there is nothing to balance.
+pubDate: 2026-07-29
+category: Playbooks
+tags:
+  - web design
+  - technical SEO
+  - Core Web Vitals
+  - UX
+author: Shashank Dubey
+featured: false
+---
+
+You balance design and SEO by making search requirements part of the design brief from the start, not a cleanup pass after launch. The two only conflict when they happen in the wrong order: a beautiful site gets built, then SEO tries to retrofit crawlable text, headings, speed, and structure into finished visuals. Bring both together at the wireframe stage and the conflict mostly vanishes, because real content, fast loading, and clear hierarchy are good design and good SEO at the same time.
+
+There is no tradeoff between a site that looks good and a site that gets found. There is only a sequencing problem.
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Where design and SEO overlap: real text instead of text baked into images, fast-loading visuals, clear heading hierarchy, and crawlable navigation all serve both goals.">
+	<rect width="800" height="300" fill="rgb(246,245,240)" />
+	<text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">WHERE DESIGN AND SEO AGREE</text>
+	<circle cx="300" cy="175" r="95" fill="rgb(14,17,22)" fill-opacity="0.07" stroke="rgb(14,17,22)" stroke-opacity="0.2" />
+	<circle cx="500" cy="175" r="95" fill="rgb(184,85,46)" fill-opacity="0.12" stroke="rgb(184,85,46)" stroke-opacity="0.4" />
+	<text x="235" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(14,17,22)">Design</text>
+	<text x="565" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="rgb(184,85,46)">SEO</text>
+	<g font-family="system-ui, sans-serif" font-size="10" fill="rgb(14,17,22)" text-anchor="middle">
+		<text x="400" y="140">Real text, not text-in-images</text>
+		<text x="400" y="165">Fast-loading visuals</text>
+		<text x="400" y="190">Clear heading hierarchy</text>
+		<text x="400" y="215">Crawlable navigation</text>
+	</g>
+	<text x="400" y="288" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">The overlap is bigger than the conflict. Build there.</text>
+</svg>
+</figure>
+
+## Where the friction actually comes from
+
+The classic clashes are real, but small and solvable.
+
+A giant hero image that pushes all the text below the fold. Headings styled for looks instead of structured as an outline. Beautiful typography baked into images a crawler cannot read. A slick animation library that tanks the load time. An infinite-scroll or JavaScript navigation that search engines struggle to follow.
+
+Every one of these is a case of design choosing form without knowing the search cost. None of them requires ugly design to fix. They require a designer who knows the constraint.
+
+## The rules that keep both happy
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Five shared rules: keep text as real text, use headings as structure, compress and size images, keep navigation crawlable, and protect load speed.">
+	<rect width="800" height="240" fill="rgb(246,245,240)" />
+	<text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">FIVE RULES BOTH SIDES SHARE</text>
+	<g font-family="system-ui, sans-serif" fill="rgb(14,17,22)">
+		<g transform="translate(40 52)"><rect width="230" height="80" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" /><text x="14" y="30" font-size="11" font-weight="700" fill="rgb(184,85,46)">Text stays text</text><text x="14" y="52" font-size="10" fill-opacity="0.7">Never bake copy into</text><text x="14" y="67" font-size="10" fill-opacity="0.7">an image.</text></g>
+		<g transform="translate(285 52)"><rect width="230" height="80" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" /><text x="14" y="30" font-size="11" font-weight="700" fill="rgb(184,85,46)">Headings = structure</text><text x="14" y="52" font-size="10" fill-opacity="0.7">Style freely, but keep</text><text x="14" y="67" font-size="10" fill-opacity="0.7">the H1-H2-H3 outline.</text></g>
+		<g transform="translate(530 52)"><rect width="230" height="80" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" /><text x="14" y="30" font-size="11" font-weight="700" fill="rgb(184,85,46)">Images sized right</text><text x="14" y="52" font-size="10" fill-opacity="0.7">Compressed, modern</text><text x="14" y="67" font-size="10" fill-opacity="0.7">formats, real alt text.</text></g>
+		<g transform="translate(155 142)"><rect width="230" height="80" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" /><text x="14" y="30" font-size="11" font-weight="700" fill="rgb(184,85,46)">Navigation crawlable</text><text x="14" y="52" font-size="10" fill-opacity="0.7">Real links a crawler</text><text x="14" y="67" font-size="10" fill-opacity="0.7">can follow.</text></g>
+		<g transform="translate(415 142)"><rect width="230" height="80" rx="6" fill="rgb(14,17,22)" /><text x="14" y="30" font-size="11" font-weight="700" fill="rgb(184,85,46)">Guard the speed</text><text x="14" y="52" font-size="10" fill="rgb(250,250,247)" fill-opacity="0.72">Beauty that loads slow</text><text x="14" y="67" font-size="10" fill="rgb(250,250,247)" fill-opacity="0.72">costs rankings.</text></g>
+	</g>
+</svg>
+</figure>
+
+Keep copy as selectable text, never as pixels in a graphic. Let headings be styled however the design wants, as long as the underlying H1 to H3 order still reads as a logical outline. Compress and correctly size every image, and give the meaningful ones real alt text. Make sure navigation uses links a crawler can follow. And protect load speed, because [Core Web Vitals feed both user experience and rankings](/blog/core-web-vitals-ai-search/), which means a fast site is the one design goal SEO will never argue with.
+
+The deeper technical side of this, rendering, crawlability, and speed, is in [technical SEO](/seo/technical-seo/), and the placement rules that keep a good-looking page readable are in [on-page SEO](/seo/on-page-seo/).
+
+Stop treating them as opponents. Put an SEO in the room at the wireframe and there is nothing left to balance.
+
+## FAQs
+
+### Does good design hurt SEO?
+
+No. Good design and SEO conflict only when SEO is added after a site is already built, forcing awkward retrofits. When search requirements, crawlable text, clear heading structure, fast loading, and followable navigation, are part of the design brief from the start, a site can be both beautiful and highly visible with no tradeoff.
+
+### Why do designers and SEOs clash?
+
+Usually over timing, not goals. Designers make choices, a hero image that buries text, typography baked into graphics, heavy animations, without knowing the search cost, and SEO tries to fix them after launch. Bringing SEO in at the wireframe stage turns those clashes into shared constraints everyone designs around from the beginning.
+
+### What design choices hurt SEO the most?
+
+Text baked into images instead of real text, headings styled without a logical structure, oversized uncompressed images that slow the page, and JavaScript navigation a crawler cannot follow. Each is fixable without compromising the visual design; it just needs to be caught at the design stage rather than after launch.
+
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does good design hurt SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Good design and SEO conflict only when SEO is added after a site is already built, forcing awkward retrofits. When search requirements, crawlable text, clear heading structure, fast loading, and followable navigation, are part of the design brief from the start, a site can be both beautiful and highly visible with no tradeoff."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do designers and SEOs clash?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually over timing, not goals. Designers make choices, a hero image that buries text, typography baked into graphics, heavy animations, without knowing the search cost, and SEO tries to fix them after launch. Bringing SEO in at the wireframe stage turns those clashes into shared constraints everyone designs around from the beginning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What design choices hurt SEO the most?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Text baked into images instead of real text, headings styled without a logical structure, oversized uncompressed images that slow the page, and JavaScript navigation a crawler cannot follow. Each is fixable without compromising the visual design; it just needs to be caught at the design stage rather than after launch."
+      }
+    }
+  ]
+}
+`}</script>
