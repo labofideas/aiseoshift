@@ -1,0 +1,362 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+
+const CALENDLY_URL = 'https://calendly.com/shashank19/15min';
+const WEB3FORMS_ACCESS_KEY = 'd165756b-c4fc-484f-9914-97af89d0421e';
+
+const structuredData = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Service',
+		provider: { '@type': 'Organization', name: SITE_TITLE },
+		areaServed: 'Worldwide',
+		serviceType: 'WordPress SEO Services',
+		description:
+			'WordPress SEO services combining technical fixes at the plugin and theme level with AI visibility work, for sites that need to rank in Google and get cited in ChatGPT, Perplexity, Claude, and AI Overviews.',
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: [
+			{
+				'@type': 'Question',
+				name: 'How much do WordPress SEO services cost?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'A WordPress SEO and AI visibility audit runs $1,200 to $4,500 depending on site size, plugin count, and how many categories need prompt testing. Implementation and ongoing WordPress SEO run $1,500 to $7,000 per month based on scope. Everything is quoted after a look at your actual install, not a generic tier.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Which WordPress SEO plugin should I use?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Rank Math for the strongest free tier, Yoast SEO if you want the largest support ecosystem, AIOSEO for WooCommerce-heavy stores. Run exactly one. Two SEO plugins on the same install fight over the same meta boxes, the same schema output, and the same sitemap, and that conflict costs you more than either plugin gives back. Full comparison is in the plugin guide.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Do you build or redesign WordPress sites too, or only SEO?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Both, through Wbcom Designs, which has built WordPress products and sites for ten years. That matters here because most WordPress SEO problems are not content problems, they are page-builder markup, plugin conflicts, and theme decisions made before SEO was in the room. Fixing the visibility problem sometimes means fixing the build.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Is WordPress SEO different from AI SEO for WordPress sites?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'Not as different as agencies selling both separately would like you to believe. Clean markup, working schema, and fast pages are the same foundation Google and AI answer engines both need to parse a page correctly. What changes is the target: content structured to be quoted directly, not just crawled, and schema that gives an AI system enough to answer without visiting the page a second time.',
+				},
+			},
+			{
+				'@type': 'Question',
+				name: 'Does WordPress 7 change how WordPress SEO works?',
+				acceptedAnswer: {
+					'@type': 'Answer',
+					text: 'It changes what is possible, not what is required. WordPress 7 Armstrong shipped native AI infrastructure in core, which means AI-assisted content is about to flood into sites that have never had an editorial or technical SEO standard. The sites that benefit are the ones with clean information architecture and schema already in place before that content arrives. The ones without it will publish AI-generated pages into a foundation that was already leaking authority.',
+				},
+			},
+		],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`WordPress SEO Services | ${SITE_TITLE}`}
+			description="WordPress SEO services that fix the plugin conflicts, Core Web Vitals, and schema gaps a generic audit misses, then build the content structure Google and AI answer engines both need."
+			structuredData={structuredData}
+		/>
+		<style>
+			.svc-page { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+
+			.svc-hero { padding: var(--space-7) 0 var(--space-8); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: end; }
+			.svc-kicker { display: inline-flex; padding: 0; color: var(--ink-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.svc-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.03em; font-weight: 600; margin: var(--space-4) 0 0; max-width: 16ch; }
+			.svc-hero-lede p { font-size: 1.1rem; line-height: 1.6; color: rgba(var(--ink), 0.78); max-width: var(--measure); margin: 0; }
+
+			.svc-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
+			.svc-btn { display: inline-flex; align-items: center; padding: 0.85rem 1.4rem; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+			.svc-btn-primary { background: rgb(var(--ink)); color: rgb(var(--paper)); }
+			.svc-btn-primary:hover { background: var(--signal-deep); }
+			.svc-btn-secondary { background: transparent; color: rgb(var(--ink)); border: 1px solid var(--line-strong); }
+			.svc-btn-secondary:hover { border-color: rgb(var(--ink)); }
+
+			.svc-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+			.svc-section h2 { font-size: clamp(1.85rem, 3vw, 2.6rem); line-height: 1.15; letter-spacing: -0.024em; font-weight: 600; margin: 0 0 var(--space-5); max-width: 18ch; }
+			.svc-section > p { font-size: 1.05rem; line-height: 1.65; color: rgba(var(--ink), 0.82); max-width: var(--measure); margin: 0 0 var(--space-6); }
+
+			.svc-list { list-style: none; margin: 0; padding: 0; }
+			.svc-list li { margin: 0; }
+			.svc-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-6); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.svc-list li:last-child .svc-row { border-bottom: 1px solid var(--line); }
+			.svc-row-num { font-family: 'Figtree', system-ui, -apple-system, sans-serif; font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--ink-muted); }
+			.svc-row h3 { font-size: 1.3rem; line-height: 1.2; margin: 0 0 var(--space-2); letter-spacing: -0.018em; font-weight: 600; }
+			.svc-row p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-muted); margin: 0 0 var(--space-3); max-width: 52ch; }
+			.svc-row ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+			.svc-row ul li { font-size: 0.82rem; color: var(--ink-muted); }
+			.svc-row ul li + li::before { content: '·'; margin-right: var(--space-3); color: var(--line-strong); }
+
+			.outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; }
+			.outcome { padding-top: var(--space-4); border-top: 1px solid var(--line-strong); }
+			.outcome strong { display: block; font-family: 'Figtree', system-ui, -apple-system, sans-serif; font-style: italic; font-weight: 400; font-size: 1.15rem; color: rgb(var(--ink)); margin-bottom: var(--space-3); }
+			.outcome span { font-size: 0.95rem; color: var(--ink-muted); line-height: 1.55; }
+
+			.contact-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-7); margin: var(--space-5) 0 0; align-items: start; }
+			@media (max-width: 860px) { .svc-hero, .outcomes, .contact-block { grid-template-columns: 1fr; } .svc-row { grid-template-columns: 1fr; gap: var(--space-3); } }
+
+			.contact-card { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+			.contact-card h3 { font-size: 1.25rem; margin: 0 0 var(--space-3); letter-spacing: -0.015em; font-weight: 600; }
+			.contact-card > p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); margin: 0 0 var(--space-5); }
+			.contact-form { display: flex; flex-direction: column; gap: var(--space-3); }
+			.contact-form label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; color: rgba(var(--ink), 0.85); text-transform: uppercase; }
+			.contact-form .req { color: var(--signal-deep); margin-left: 0.15rem; }
+			.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--signal); outline-offset: 1px; border-color: rgb(var(--ink)); }
+			.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 0.7rem 0.8rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; background: rgb(var(--paper)); color: rgb(var(--ink)); box-sizing: border-box; }
+			.contact-form textarea { min-height: 120px; resize: vertical; }
+			.contact-form button { margin-top: var(--space-3); padding: 0.85rem 1rem; background: rgb(var(--ink)); color: rgb(var(--paper)); font-weight: 600; font-size: 0.95rem; border: none; border-radius: var(--radius-sm); cursor: pointer; }
+			.contact-form button:hover { background: var(--signal-deep); }
+			.form-status { margin-top: var(--space-3); font-size: 0.9rem; display: none; }
+			.form-status.success { display: block; color: #047857; }
+			.form-status.error { display: block; color: #b91c1c; }
+
+			.faq-list { margin: 0; padding: 0; list-style: none; }
+			.faq-list li { padding: var(--space-5) 0; border-top: 1px solid var(--line); }
+			.faq-list li:last-child { border-bottom: 1px solid var(--line); }
+			.faq-list h3 { font-size: 1.1rem; margin: 0 0 var(--space-2); letter-spacing: -0.012em; font-weight: 600; }
+			.faq-list p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--ink-muted); max-width: 56ch; }
+
+			.svc-figure { margin: var(--space-6) 0 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); overflow: hidden; }
+			.svc-figure svg { display: block; width: 100%; height: auto; }
+			.svc-figure figcaption { padding: 0.75rem 1rem; border-top: 1px solid var(--line); font-size: 0.85rem; line-height: 1.55; font-style: italic; color: var(--ink-muted); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="svc-page">
+			<section class="svc-hero">
+				<div>
+					<span class="svc-kicker">WordPress SEO</span>
+					<h1>WordPress SEO Services</h1>
+				</div>
+				<div class="svc-hero-lede">
+					<p>
+						Most WordPress SEO problems are not content problems. They are two SEO plugins fighting over the same meta box, a page builder outputting div soup where a heading should be, image sizes nobody has touched since 2021, and schema that was set once and never checked against what the page actually says now. A generic audit lists these as line items. Fixing them means knowing WordPress from the plugin conflict up, which is the part most SEO agencies skip and most WordPress developers were never asked to think about as an SEO problem.
+					</p>
+					<div class="svc-cta-row">
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Book a 15-min call &rarr;</a>
+						<a class="svc-btn svc-btn-secondary" href="#quote">Get a free audit</a>
+					</div>
+				</div>
+			</section>
+
+			<figure class="svc-figure" aria-labelledby="svc-figure-caption">
+				<svg viewBox="0 0 1080 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WordPress SEO signals feeding both Google and AI answer engines: plugin and theme audit, Core Web Vitals fixes, schema built into templates, and content structured for citation, flowing into a cited outcome in both Google and AI search">
+					<rect width="1080" height="360" fill="rgb(246,245,240)" />
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.06"><line x1="0" y1="48" x2="1080" y2="48" /><line x1="0" y1="312" x2="1080" y2="312" /></g>
+					<text x="48" y="32" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">WORDPRESS LAYER</text>
+					<text x="540" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">GOOGLE + AI SYNTHESIS</text>
+					<text x="1032" y="32" text-anchor="end" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(184,85,46)">CITED OUTCOME</text>
+					<g font-family="system-ui, sans-serif" font-size="13" fill="rgb(14,17,22)">
+						<g transform="translate(48 80)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Plugin + theme conflict audit</text></g>
+						<g transform="translate(48 132)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Core Web Vitals fixes</text></g>
+						<g transform="translate(48 184)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Schema built into templates</text></g>
+						<g transform="translate(48 236)"><rect width="240" height="40" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" rx="4" /><text x="16" y="26" font-weight="600">Content structured for citation</text></g>
+					</g>
+					<g stroke="rgb(14,17,22)" stroke-opacity="0.2" fill="none">
+						<path d="M 288 100 C 360 100, 380 178, 440 178" /><path d="M 288 152 C 360 152, 380 178, 440 178" /><path d="M 288 204 C 360 204, 380 178, 440 178" /><path d="M 288 256 C 360 256, 380 178, 440 178" />
+					</g>
+					<g transform="translate(440 130)">
+						<rect width="200" height="100" fill="rgb(14,17,22)" rx="6" />
+						<text x="100" y="42" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" letter-spacing="2" fill="rgb(250,250,247)" fill-opacity="0.6">GOOGLE + AI</text>
+						<text x="100" y="68" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">Search · AI Overviews</text>
+						<text x="100" y="86" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(250,250,247)">ChatGPT · Perplexity · Claude</text>
+					</g>
+					<g stroke="rgb(184,85,46)" stroke-width="1.5" fill="none" stroke-linecap="round">
+						<path d="M 640 180 C 700 180, 760 180, 820 180" />
+						<polyline points="810,174 820,180 810,186" />
+					</g>
+					<g transform="translate(820 110)">
+						<rect width="212" height="140" fill="rgb(250,250,247)" stroke="rgb(184,85,46)" stroke-width="1.5" rx="6" />
+						<circle cx="32" cy="38" r="18" fill="rgb(184,85,46)" />
+						<text x="32" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="rgb(250,250,247)">01</text>
+						<text x="62" y="36" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="rgb(14,17,22)">Ranked and cited</text>
+						<text x="62" y="54" font-family="system-ui, sans-serif" font-size="11" fill="rgb(14,17,22)" fill-opacity="0.6">on the stack you already run</text>
+						<rect x="20" y="76" width="172" height="6" rx="1" fill="rgb(14,17,22)" fill-opacity="0.75" />
+						<rect x="20" y="88" width="140" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="98" width="156" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+						<rect x="20" y="108" width="120" height="4" rx="1" fill="rgb(14,17,22)" fill-opacity="0.35" />
+					</g>
+					<text id="svc-figure-caption" x="540" y="340" text-anchor="middle" font-family="Figtree, system-ui, sans-serif" font-style="italic" font-size="13" fill="rgb(14,17,22)" fill-opacity="0.7">Same foundation, two audiences. Clean WordPress markup is what Google crawls and what an AI system quotes.</text>
+				</svg>
+			</figure>
+
+			<section class="svc-section">
+				<h2>The problem is usually the install, not the content</h2>
+				<p>
+					A WordPress site accumulates SEO debt the way any actively maintained system does: one plugin at a time, one theme update at a time, one "quick fix" that never got revisited. By the time someone notices rankings sliding, the causes are rarely one thing.
+				</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>Plugin stacking cancels itself out</strong><span>Two SEO plugins, a page builder with its own meta box, and a caching plugin all writing conflicting title tags, canonical URLs, or schema. Nobody notices until Search Console flags duplicate content.</span></div>
+					<div class="outcome"><strong>Page builders bury the outline</strong><span>Elementor and similar tools happily let an editor make a paragraph look like a heading, or nest six divs where an `&lt;h2&gt;` should sit. It reads fine to a human. It reads as a flat, headingless wall to a crawler.</span></div>
+					<div class="outcome"><strong>Core Web Vitals rot silently</strong><span>Every new plugin adds a script. Every theme update adds a font. Nobody benchmarks load time again until a migration or algorithm update makes the slow-creep damage visible all at once.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>What we do for WordPress SEO</h2>
+				<p>Three phases, and the same person handling the diagnosis and the implementation, because on WordPress those two things are rarely separable.</p>
+				<ol class="svc-list">
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">01</span>
+							<div>
+								<h3>WordPress SEO &amp; AI Visibility Audit</h3>
+								<p>A full pass through your install, not just your content: plugin and theme conflicts, redirect chains left over from old migrations, Core Web Vitals, and how your pages actually render to a crawler versus how they look in the editor. Paired with a citation check across Google AI Overviews, ChatGPT, Perplexity, and Claude for your priority queries.</p>
+								<ul><li>Plugin and theme conflict audit</li><li>Core Web Vitals and hosting review</li><li><a href="/seo/schema-markup/">Schema</a> audit against Rank Math, Yoast, or AIOSEO output</li><li>Page builder markup and heading structure review</li><li>AI citation check across major answer engines</li><li>Prioritized fix list ranked by effort and impact</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">02</span>
+							<div>
+								<h3>Technical Fixes &amp; Implementation</h3>
+								<p>The part most audits hand off to someone else. We fix it directly: resolve plugin conflicts, rebuild templates so headings and schema come from the theme instead of an editor's memory, clean up redirect chains, and get Core Web Vitals back under control without ripping out the site your team already knows how to use.</p>
+								<ul><li>Plugin conflict resolution and consolidation</li><li>Core Web Vitals fixes at the theme and hosting level</li><li>Schema wired into templates, not re-typed per page</li><li>Redirect and internal link cleanup</li><li>Page builder markup remediation</li></ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="svc-row">
+							<span class="svc-row-num">03</span>
+							<div>
+								<h3>Ongoing WordPress SEO</h3>
+								<p>Monthly support that keeps the fixes from decaying the way they got broken in the first place: one plugin update at a time. Content, technical monitoring, and AI citation tracking under one retainer.</p>
+								<ul><li>Monthly technical health check</li><li>Content built for both ranking and citation</li><li>Plugin update monitoring for SEO-breaking changes</li><li>AI citation tracking and monthly reporting</li></ul>
+							</div>
+						</div>
+					</li>
+				</ol>
+			</section>
+
+			<section class="svc-section">
+				<h2>Why this needs someone who knows WordPress, not just SEO</h2>
+				<p>Wbcom Designs has built WordPress products and client sites for ten years. That is the actual argument for hiring us over a generic SEO agency for a WordPress-specific problem.</p>
+				<div class="outcomes">
+					<div class="outcome"><strong>We can read a plugin conflict, not just report it</strong><span>Knowing that two plugins are both writing canonical tags is one thing. Knowing which one to keep, and why the other one exists on your site in the first place, is a different skill.</span></div>
+					<div class="outcome"><strong>Fixes ship in your stack, not a rebuild</strong><span>Core Web Vitals and schema problems get fixed in your theme and your plugin config. We do not default to "replace your site" because that is the only lever we have.</span></div>
+					<div class="outcome"><strong>The AI SEO layer is native, not bolted on</strong><span>This is the same team that runs AISEOShift. Answer-engine visibility work is not a rebrand of a generic SEO package, it is what the rest of this site is built around.</span></div>
+				</div>
+			</section>
+
+			<section class="svc-section" id="quote">
+				<h2>Get a free WordPress SEO audit</h2>
+				<p>Book a free 15-minute strategy call or send a quote request below. We respond within one business day.</p>
+				<div class="contact-block">
+					<div class="contact-card">
+						<h3>Book a strategy call</h3>
+						<p>Send your URL beforehand and we will pull up your Core Web Vitals and a quick plugin scan live, then talk about what is actually worth fixing first.</p>
+						<a class="svc-btn svc-btn-primary" href={CALENDLY_URL} target="_blank" rel="noopener">Open Calendly &rarr;</a>
+					</div>
+					<div class="contact-card">
+						<h3 id="quote-form-heading">Request a quote by form</h3>
+						<p>Tell us about your site and what prompted the look. We will reply with a tailored proposal.</p>
+						<form class="contact-form" id="quote-form" aria-labelledby="quote-form-heading">
+							<input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+							<input type="hidden" name="subject" value="WordPress SEO quote request from aiseoshift.com" />
+							<input type="hidden" name="from_name" value="AISEOShift WordPress SEO Quote Form" />
+							<input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+							<label for="q-name">Name <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-name" type="text" name="name" required aria-required="true" autocomplete="name" />
+							<label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+							<input id="q-email" type="email" name="email" required aria-required="true" autocomplete="email" />
+							<label for="q-company">Website URL</label>
+							<input id="q-company" type="text" name="company" autocomplete="url" placeholder="https://" />
+							<label for="q-service">Service interested in <span class="req" aria-hidden="true">*</span></label>
+							<select id="q-service" name="service" required aria-required="true">
+								<option value="">Select a service…</option>
+								<option value="WordPress SEO & AI Visibility Audit">WordPress SEO &amp; AI Visibility Audit</option>
+								<option value="Technical Fixes & Implementation">Technical Fixes &amp; Implementation</option>
+								<option value="Ongoing WordPress SEO">Ongoing WordPress SEO</option>
+								<option value="Not sure yet">Not sure yet</option>
+							</select>
+							<label for="q-message">Tell us about your site and goals <span class="req" aria-hidden="true">*</span></label>
+							<textarea id="q-message" name="message" required aria-required="true" placeholder="Which SEO plugin you run, roughly how many pages, and what prompted you to look into this now."></textarea>
+							<button type="submit">Send quote request</button>
+							<div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<section class="svc-section">
+				<h2>WordPress SEO FAQs</h2>
+				<ul class="faq-list">
+					<li>
+						<h3>How much do WordPress SEO services cost?</h3>
+						<p>A WordPress SEO and AI visibility audit runs $1,200 to $4,500 depending on site size, plugin count, and how many categories need prompt testing. Implementation and ongoing WordPress SEO run $1,500 to $7,000 per month based on scope. Everything is quoted after a look at your actual install, not a generic tier.</p>
+					</li>
+					<li>
+						<h3>Which WordPress SEO plugin should I use?</h3>
+						<p>Rank Math for the strongest free tier, Yoast SEO if you want the largest support ecosystem, AIOSEO for WooCommerce-heavy stores. Run exactly one. Two SEO plugins on the same install fight over the same meta boxes, the same schema output, and the same sitemap, and that conflict costs you more than either plugin gives back. Full comparison is in the <a href="/blog/best-wordpress-seo-plugins/">plugin guide</a>.</p>
+					</li>
+					<li>
+						<h3>Do you build or redesign WordPress sites too, or only SEO?</h3>
+						<p>Both, through Wbcom Designs, which has built WordPress products and sites for ten years. That matters here because most WordPress SEO problems are not content problems, they are page-builder markup, plugin conflicts, and theme decisions made before SEO was in the room. Fixing the visibility problem sometimes means fixing the build.</p>
+					</li>
+					<li>
+						<h3>Is WordPress SEO different from AI SEO for WordPress sites?</h3>
+						<p>Not as different as agencies selling both separately would like you to believe. Clean markup, working <a href="/seo/schema-markup/">schema</a>, and fast pages are the same foundation Google and AI answer engines both need to parse a page correctly. What changes is the target: content structured to be quoted directly, not just crawled.</p>
+					</li>
+					<li>
+						<h3>Does WordPress 7 change how WordPress SEO works?</h3>
+						<p>It changes what is possible, not what is required. <a href="/blog/wordpress-7-ai-release/">WordPress 7 Armstrong shipped native AI infrastructure in core</a>, which means AI-assisted content is about to flood into sites that have never had an editorial or technical SEO standard. The sites that benefit are the ones with clean information architecture and schema already in place before that content arrives.</p>
+					</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<script is:inline>
+			(function () {
+				const form = document.getElementById('quote-form');
+				const status = document.getElementById('form-status');
+				if (!form || !status) return;
+				form.addEventListener('submit', async function (e) {
+					e.preventDefault();
+					status.className = 'form-status';
+					status.textContent = '';
+					const accessKey = form.querySelector('input[name="access_key"]').value;
+					if (!accessKey || accessKey === 'REPLACE_WITH_WEB3FORMS_KEY') {
+						status.className = 'form-status error';
+						status.textContent = 'Form not configured yet. Email hello@aiseoshift.com directly.';
+						return;
+					}
+					const formData = new FormData(form);
+					try {
+						const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { Accept: 'application/json' }, body: formData });
+						const data = await res.json();
+						if (data.success) {
+							status.className = 'form-status success';
+							status.textContent = 'Thanks! We received your request and will reply within one business day.';
+							form.reset();
+						} else {
+							status.className = 'form-status error';
+							status.textContent = 'Something went wrong. Please email hello@aiseoshift.com directly.';
+						}
+					} catch {
+						status.className = 'form-status error';
+						status.textContent = 'Network error. Please try again or email hello@aiseoshift.com directly.';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
