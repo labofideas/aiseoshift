@@ -1,0 +1,148 @@
+---
+title: "Building a GSC Reporting Agent with Claude Code: Full Walkthrough"
+description: "Turn a raw Search Console export into a diagnosis in minutes. Full walkthrough of a Claude Code GSC reporting agent, with the real analysis it produced."
+deck: "Search Console shows you a traffic drop. It won't tell you when it started, which pages caused it, or whether the cause is technical or algorithmic. This is the reporting agent that does that job, demonstrated on our own export, cliff-edge collapse and all."
+pubDate: 2026-09-08
+category: Tooling
+tags:
+  - Claude Code
+  - Google Search Console
+  - SEO automation
+  - reporting
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "Do I need the API or an MCP server to start?"
+    a: "No. The plain CSV export from the Performance report is enough for a full diagnosis. Move to an MCP server when you want recurring reports or follow-up queries beyond the exported window."
+  - q: "Is this safe? Can the agent change anything in Search Console?"
+    a: "The CSV workflow is read-only by definition. MCP servers vary. Most are read-focused, but some include URL-submission tools. Grant the service account Restricted permission in GSC if you want a hard guarantee."
+  - q: "What does this cost?"
+    a: "The GSC API is free. Claude Code usage is billed on your Claude plan; a diagnosis session like the one in this post is a normal interactive session, not a large batch job."
+  - q: "How is this different from Looker Studio dashboards?"
+    a: "Looker Studio visualizes; it doesn't investigate. The value here is the interrogation loop: the agent reads every row, cross-references tabs, and tests hypotheses, like fetching robots.txt, that no dashboard can."
+  - q: "Can it detect a Google penalty?"
+    a: "It can detect the signature of one: a step-function drop with technical causes ruled out. It will tell you to check the Manual Actions report, but it cannot see the penalty itself."
+  - q: "How often should I run it?"
+    a: "Monthly for stable sites. Weekly if you're mid-recovery or mid-migration, where catching a break in the daily series early actually changes what you do."
+---
+
+Search Console will show you a traffic drop. It will not tell you *when exactly* it started, *which* pages caused it, or whether the cause is technical, algorithmic, or self-inflicted. You get a line chart and 1,000 rows of queries, and the diagnosis is your job.
+
+This post walks through building a reporting agent that does that job with Claude Code. It is not hypothetical: everything below comes from running this exact workflow on this site's own GSC export in September 2026, where the agent found a cliff-edge collapse we describe with real numbers. You can reproduce the whole thing in under an hour.
+
+## Why an agent beats staring at the GSC UI
+
+The Performance report is built for browsing, not diagnosis. Three problems in practice:
+
+1. **The UI averages away the story.** A 3-month view of our property showed "30 clicks, 9.7K impressions." Unremarkable, until you look at the daily series and see that roughly 95% of those impressions happened in the first 18 days.
+2. **Cross-referencing is manual.** The question "which pages earn impressions but never clicks, and at what position?" requires you to flip between the Pages and Queries tabs and keep numbers in your head.
+3. **Patterns hide in row 400.** Duplicate URL variants, query cannibalization, and near-identical query families don't show up unless you read the entire table. Nobody reads the entire table.
+
+An agent reads the entire table. That's the whole pitch.
+
+## Two ways to feed GSC data to Claude Code
+
+| Approach | Setup time | Data freshness | Best for |
+|---|---|---|---|
+| CSV export → Claude Code | 2 minutes | Snapshot at export time | One-off diagnosis, monthly reports |
+| GSC MCP server | 20–30 minutes | Live API queries | Recurring monitoring, multi-property work |
+
+### Option 1: the CSV export (start here)
+
+In Search Console: **Performance → Export → Download CSV**. You get a zip with `Chart.csv` (the daily series), `Queries.csv`, `Pages.csv`, `Countries.csv`, `Devices.csv`, and `Filters.csv`. Unzip it anywhere, open a terminal in that folder, run `claude`, and point it at the files.
+
+No API keys, no OAuth consent screens. For a single-property monthly review, this is genuinely all you need.
+
+### Option 2: a GSC MCP server (for recurring use)
+
+Several open-source MCP servers wrap the official Search Console API. Three that are active as of September 2026:
+
+- [AminForou/mcp-gsc](https://github.com/AminForou/mcp-gsc) supports both OAuth and service-account auth, and works with Claude Desktop and Claude Code.
+- [surendranb/google-search-console-mcp](https://github.com/surendranb/google-search-console-mcp) is service-account based, configured via a `GSC_SITE_URL` environment variable.
+- [Shin-sibainu/google-search-console-mcp-server](https://github.com/Shin-sibainu/google-search-console-mcp-server) includes search analytics, sitemap info, and URL inspection tools.
+
+The setup pattern is the same for all of them: create a Google Cloud service account, grant it access to your property in Search Console (Settings → Users and permissions), download the JSON key, and register the server. Each repo's README has the exact command; the general shape is:
+
+```bash
+claude mcp add gsc -- npx -y <the-server-package>
+# then set GOOGLE_APPLICATION_CREDENTIALS to your service-account key path
+```
+
+The advantage over CSV is that the agent can ask follow-up questions against the API. Different date ranges, search-type filters, page-level query breakdowns, instead of being limited to what you exported. If you're picking between more tools than this, our [guide to SEO MCP servers](/blog/best-seo-mcp-servers-github/) covers the wider field.
+
+## The prompts: a reproducible diagnosis workflow
+
+Here is the sequence we ran, essentially verbatim. Each step is one prompt to Claude Code with the export folder in scope.
+
+**Step 1, orientation:**
+
+```
+Read all CSVs in this GSC export folder. Give me the topline:
+total clicks, impressions, CTR, average position, and date range.
+Then tell me the single most important thing in this data.
+```
+
+**Step 2, find the inflection point:**
+
+```
+Plot the daily impressions from Chart.csv as a table of weekly
+averages. Identify any date where the trend breaks sharply, and
+quantify the before/after difference.
+```
+
+**Step 3, segment the damage:**
+
+```
+From Pages.csv: list pages with 50+ impressions and zero clicks,
+sorted by impressions, with their average positions. Separately,
+list every page that earned at least 1 click. What separates the
+two groups?
+```
+
+**Step 4, rule out technical causes:**
+
+```
+Check whether this site is currently indexable: fetch robots.txt,
+check the homepage HTTP status, and look for meta robots or
+X-Robots-Tag noindex directives.
+```
+
+**Step 5, synthesis:**
+
+```
+Given all of the above: what's your diagnosis, what would you
+prune, and what would you write next? Be specific about URLs.
+```
+
+## What the agent actually found (real output)
+
+Running this on our own export produced a diagnosis in about ten minutes that we had missed for weeks.
+
+**The cliff date.** Daily impressions ran 100–900/day from June 7–24, peaking at 901 on June 17, then dropped to under 25/day from June 25 onward. A roughly 98% overnight collapse that never recovered. The 3-month UI view had smoothed this into a gentle-looking decline. The daily series made it unambiguous: a step function, not a fade.
+
+**The technical rule-out.** The agent fetched `robots.txt` (fine: Cloudflare content signals with `search=yes`), confirmed the homepage returned HTTP 200, and found `meta name="robots" content="index,follow"`. That eliminated the "accidental noindex" hypothesis in one step and pointed the diagnosis at a Google-side revaluation, with timing consistent with a core update rollout.
+
+**The zero-click impression sinks.** Three pages held the most impressions on the property with nothing to show for them: one programmatic page with 1,154 impressions at position 71, a similar one with 758 impressions at position 69, and a free tool page with 601 impressions at position 75. Zero clicks between them. Meanwhile the pages that *did* earn clicks (a Google Trends data analysis at position 7, an MCP server roundup at position 11) were specific, first-hand pieces. The agent's prune list wrote itself.
+
+**The duplicate URL variants.** Buried in the Pages table: the same posts appearing as separate rows with and without trailing slashes, plus stray `http://` and `www.` variants, each splitting impression data. Our best-performing post was actually stronger than it looked because its clicks were divided across two URL rows. That's a canonicalization fix nobody spots by skimming the UI.
+
+**The geographic mismatch.** From Countries.csv: 6,944 of roughly 9,700 impressions came from the US at a 0.07% CTR and position 54. Being shown and not chosen. Useful context for content positioning.
+
+## Turning it into a recurring report
+
+Once the prompts work, freeze them. Two options.
+
+**A CLAUDE.md playbook.** Drop the five prompts above into a `CLAUDE.md` in your reports folder as a named procedure ("monthly GSC review"). Each month, export the CSV, run `claude`, and say "run the monthly GSC review." Same analysis, zero prompt drift.
+
+**A slash-command skill.** Claude Code supports custom skills: a `gsc-review` skill that takes the export path, runs the sequence, and writes a dated markdown report. Pair it with an MCP server and you don't even need the export step. This is the pattern we'd fold into a broader [AI SEO audit](/blog/ai-seo-audit-guide/) cadence.
+
+Either way, the report should end with decisions, not charts: pages to prune, pages to refresh, pages to write. A report that ends in a graph is a report nobody acts on. The same principle sits behind [treating agents as workflow systems rather than chat toys](/blog/seo-ai-agents/).
+
+## Where the agent needs you
+
+Honesty section. The agent is very good at *finding* patterns and mediocre at *weighing* them.
+
+- **It can't see Google's side.** Our diagnosis ("quality revaluation, consistent with a core update") is inference from timing and footprint. Confirming a manual action still requires a human opening Search Console's Manual Actions report. The CSV export doesn't include it.
+- **Prune lists need editorial judgment.** The agent flags zero-click pages; it doesn't know which ones are strategically necessary (a pricing page, a services page) despite weak search performance.
+- **Sixteen months of context beats three.** The export covers the window you export. Big-picture judgments ("was June's level itself inflated?") need longer API pulls, which is an argument for the MCP route once you're past the first diagnosis. The [changes to Search Console in the AI era](/blog/google-search-console-ai-era-guide/) also mean new report types, like generative AI performance, that the classic export doesn't carry yet.
+- **Small numbers, loud conclusions.** On low-traffic properties, daily position averages swing wildly on a handful of impressions. The agent will happily narrate noise if you let it; ask it to state sample sizes alongside every claim.

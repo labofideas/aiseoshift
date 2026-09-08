@@ -1,67 +1,78 @@
 ---
 title: "Google Gemini Pricing in 2026: Every Model and Plan Explained"
-description: "A complete guide to Google Gemini pricing in 2026: API token rates for Gemini 3.5 Flash, 3.1 Pro, 3 Flash, and 2.5 Flash-Lite, plus Google AI Plus, Pro, and"
+description: "Google Gemini pricing in 2026: API rates for the new 3.6, 3.7, and 3.8 Flash, Gemini 3.5 Flash, 3.1 Pro, and Flash-Lite, plus Google AI Plus, Pro, and Ultra."
 deck: "Every Gemini model rate from Flash-Lite to Pro, the consumer AI plans, and where Gemini wins on price-performance."
 pubDate: 2026-06-10
-updatedDate: 2026-06-10
+updatedDate: 2026-09-08
 category: "Tooling"
 tags: ["gemini", "pricing", "ai-models", "google"]
 faqs:
   - q: "How much does the Gemini API cost in 2026?"
-    a: "Per million tokens (input/output): Gemini 3.5 Flash is about $1.50/$9.00, Gemini 3.1 Pro is about $2/$12 (rising to $4/$18 above 200K tokens), Gemini 3 Flash is $0.50/$3, and Gemini 2.5 Flash-Lite is the cheapest at $0.10/$0.40."
+    a: "Per million tokens (input/output): the new Gemini 3.6, 3.7, and 3.8 Flash are all $0.75/$3.75 (promotional through Dec 31, 2026), Gemini 3.5 Flash is $1.50/$9.00, 3.5 Flash-Lite is $0.30/$2.50, Gemini 3.1 Pro is $2/$12 under 200K tokens, and Gemini 2.5 Flash-Lite is the cheapest paid option at $0.10/$0.40."
   - q: "What is the cheapest Gemini model?"
-    a: "Gemini 2.5 Flash-Lite at $0.10 input / $0.40 output per million tokens is the most cost-efficient option, ideal for high-volume, simple tasks."
+    a: "Paid: Gemini 2.5 Flash-Lite at $0.10 input / $0.40 output per million tokens. But most Flash models, including the new 3.8 Flash, have a rate-limited free API tier, which is the real floor."
+  - q: "Does the Gemini API have a free tier in 2026?"
+    a: "Yes. Most Flash models offer free input and output on a rate-limited tier; Google may use free-tier content to improve its products. Gemini 3.1 Pro has no free tier."
   - q: "How much are the Google AI consumer plans?"
-    a: "Google AI Plus is about $7.99/month, Google AI Pro is about $19.99/month, and Google AI Ultra was repriced in 2026, with an entry tier around $99.99/month and a top tier up to about $200/month."
+    a: "Google AI Plus is $4.99/month in the US (cut from $7.99 in June 2026, now with 400 GB storage), Google AI Pro is $19.99/month, and Google AI Ultra costs $100/month for the 5x tier or $200/month for 20x."
 ---
 
 Google sells Gemini several ways: a developer API with multiple model tiers, and consumer Google AI plans. This guide pulls the 2026 numbers together.
 
-Everything here is current as of June 10, 2026. Confirm against Google's official pages before budgeting; the price map changed notably at Google I/O 2026.
+Last checked: September 8, 2026, against Google's official pricing pages. Confirm before budgeting; the price map has changed twice since Google I/O 2026.
 
 ![Gemini output price per 1M tokens by model](/images/posts/gemini-pricing-2026-infographic.webp)
 
 ## Gemini API pricing by model
 
-Rates are per million tokens, input/output.
+Rates are per million tokens, input/output, standard tier.
 
-| Model | Input ($/M) | Output ($/M) | Notes |
-|---|---|---|---|
-| Gemini 3.5 Flash | $1.50 | $9.00 | Latest Flash (May 2026); strong price-performance |
-| Gemini 3.1 Pro | $2.00 | $12.00 | $4/$18 above 200K tokens |
-| Gemini 3 Flash | $0.50 | $3.00 | Budget workhorse |
-| Gemini 2.5 Flash-Lite | $0.10 | $0.40 | Cheapest; high-volume tasks |
+| Model | Input ($/M) | Output ($/M) | Free tier | Notes |
+|---|---|---|---|---|
+| Gemini 3.8 Flash | $0.75 | $3.75 | Yes | Newest; promo price through Dec 31, 2026 |
+| Gemini 3.7 Flash | $0.75 | $3.75 | Yes | Batch: $0.375/$1.875 |
+| Gemini 3.6 Flash | $0.75 | $3.75 | Yes | |
+| Gemini 3.5 Flash | $1.50 | $9.00 | Yes | Prior Flash generation |
+| Gemini 3.5 Flash-Lite | $0.30 | $2.50 | Yes | |
+| Gemini 3.1 Pro (preview) | $2.00 | $12.00 | No | Higher rates above 200K tokens |
+| Gemini 2.5 Flash-Lite | $0.10 | $0.40 | Yes | Cheapest paid Gemini |
 
-The family follows a consistent shape: **Pro** for capability, **Flash** for speed and balance, and **Flash-Lite** for cost efficiency, plus specialized variants for computer use, deep reasoning, and image generation. Note the tiered pricing on Gemini 3.1 Pro: prompts above 200K tokens cost more, so long-context work needs budgeting.
+The story since June: Google shipped **three new Flash generations (3.6, 3.7, 3.8), all priced at $0.75/$3.75, half the price of Gemini 3.5 Flash.** The rate is explicitly promotional "through December 31, 2026," so budget for a possible increase in January.
 
-Gemini's strengths are price-performance at the Flash tiers and deep integration with Google Workspace and tools. Gemini 3.5 Flash in particular is a strong pick for bulk content work, and Gemini 3.1 Pro scores well on science benchmarks (around 94% GPQA).
+One correction worth flagging: the $0.10/$0.40 floor belongs to **2.5** Flash-Lite. The 3.5 generation's Flash-Lite is listed at $0.30/$2.50. And the old "Gemini 3 Flash at $0.50/$3.00" row no longer appears on Google's pricing page at all.
+
+**The free API tier remains the most generous in the industry.** Nearly every Flash model can be called at $0, rate-limited, if you accept that Google may use the content to improve its products. For prototyping, nothing from OpenAI, Anthropic, or xAI matches it. Note the tiered pricing on Gemini 3.1 Pro: prompts above 200K tokens cost more, so long-context work needs budgeting.
 
 ## Google AI consumer plans
 
 | Plan | Price | Notes |
 |---|---|---|
-| Google AI Plus | ~$7.99/mo | Entry consumer tier |
-| Google AI Pro | ~$19.99/mo | Flagship access for individuals |
-| Google AI Ultra | ~$99.99/mo (entry) | Repriced in 2026; ~5x Pro limits, 20 TB storage |
-| Google AI Ultra (top) | ~$200/mo | Up to 20x Pro limits, full tool and video suite |
+| Free | $0 | Gemini 3.6 Flash, limited 3.1 Pro access |
+| Google AI Plus | $4.99/mo | Price cut from $7.99 in June 2026; 2x usage, 400 GB storage |
+| Google AI Pro | $19.99/mo | 4x usage, 5 TB, YouTube Premium Lite, $10/mo Cloud credits |
+| Google AI Ultra (5x) | $100/mo | 20 TB storage |
+| Google AI Ultra (20x) | $200/mo | Cut from $250 |
 
-Google cut Ultra pricing sharply in 2026, so the top tier that once sat at around $250/month is now lower. Verify the current tiers, since Google has been adjusting them.
+Google confirmed the two Ultra tiers at $100 and $200 flat on its own blog, and cut AI Plus to $4.99 while doubling its storage to 400 GB (reported by Engadget and TechCrunch when the June change shipped). At five dollars, Plus is aimed squarely at ChatGPT Go.
 
 ## Which Gemini option should you pick?
 
-For developers, default to Gemini 3 Flash or 3.5 Flash for most work, drop to Flash-Lite for high-volume simple tasks, and reserve Gemini 3.1 Pro for jobs that need its reasoning, watching the 200K-token price step. For consumers, AI Pro covers most needs, and Ultra is for power users who want the full Google tool and video suite.
+For developers, default to the new 3.6-3.8 Flash generation at $0.75/$3.75 for most work, drop to 2.5 Flash-Lite for high-volume simple tasks, and reserve Gemini 3.1 Pro for jobs that need its reasoning, watching the 200K-token price step. For consumers, AI Pro covers most needs; Plus at $4.99 is the cheapest paid AI subscription from any major provider.
 
 ## FAQ
 
 **How much does the Gemini API cost in 2026?**
-Gemini 3.5 Flash ~$1.50/$9, Gemini 3.1 Pro ~$2/$12 ($4/$18 above 200K), Gemini 3 Flash $0.50/$3, Gemini 2.5 Flash-Lite $0.10/$0.40.
+New 3.6-3.8 Flash $0.75/$3.75 (promo through Dec 31, 2026), 3.5 Flash $1.50/$9, 3.5 Flash-Lite $0.30/$2.50, 3.1 Pro $2/$12 under 200K, 2.5 Flash-Lite $0.10/$0.40.
 
 **What is the cheapest Gemini model?**
-Gemini 2.5 Flash-Lite at $0.10/$0.40 per million tokens.
+Paid: Gemini 2.5 Flash-Lite at $0.10/$0.40. The rate-limited free tier on most Flash models is the real floor.
+
+**Does the Gemini API have a free tier?**
+Yes, on most Flash models including 3.8 Flash; Google may use free-tier content to improve its products. Gemini 3.1 Pro has no free tier.
 
 **How much are the Google AI plans?**
-AI Plus ~$7.99, AI Pro ~$19.99, AI Ultra repriced in 2026 (entry ~$99.99, top up to ~$200).
+AI Plus $4.99, AI Pro $19.99, AI Ultra $100 (5x) or $200 (20x).
 
 This page is part of our full [AI model pricing and comparison guide](/blog/claude-models-openai-codex-pricing-2026). See also [Claude pricing](/blog/claude-pricing-2026), [OpenAI GPT pricing](/blog/openai-gpt-pricing-2026), and [Grok pricing](/blog/grok-pricing-2026), or jump to [the cheapest AI model](/blog/cheapest-ai-model-2026). For optimizing for Google's AI surfaces, see our [Gemini SEO guide](/gemini-seo/).
 
-Verify against the official [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) page.
+Verify against the official [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) page and [Google's AI plans post](https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/).

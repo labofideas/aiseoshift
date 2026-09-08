@@ -1,9 +1,9 @@
 ---
-title: "11 Best SEO MCP Servers on GitHub: Connect AI Assistants to Your SEO Workflow"
-description: "A curated list of the 11 best SEO-focused MCP servers on GitHub. Connect Claude, Cursor, or any AI assistant to Google Search Console, Ahrefs, PageSpeed"
-deck: "MCP (Model Context Protocol) lets AI assistants talk directly to SEO tools. These 11 open-source GitHub repos connect Claude, Cursor, and other AI tools to keyword research, backlink analysis, schema validation, and site auditing, no manual copy-pasting required."
+title: "14 Best SEO MCP Servers in 2026: Official Vendor MCPs + GitHub Picks"
+description: "The best SEO MCP servers in 2026: official Ahrefs, SE Ranking, and DataForSEO MCPs plus 11 GitHub projects. What each exposes, setup, and honest limits."
+deck: "When this guide first ran in May, every SEO MCP server worth using was a community project on GitHub. The landscape has flipped: Ahrefs, SE Ranking, and DataForSEO now ship official servers. Here is the fully updated list, official vs. community, with setup notes and honest limitations for each."
 pubDate: 2026-05-23
-updatedDate: 2026-08-03
+updatedDate: 2026-09-08
 category: Tooling
 tags:
   - MCP servers
@@ -13,272 +13,201 @@ tags:
   - AI tools
 author: Shashank Dubey
 featured: false
+faqs:
+  - q: "What is an MCP server in SEO?"
+    a: "A small program implementing the Model Context Protocol that lets an AI assistant like Claude query live SEO data sources such as Search Console, Ahrefs, or a crawler, instead of relying on pasted exports."
+  - q: "Are SEO MCP servers free?"
+    a: "The community GitHub servers are free, though underlying API costs may apply. Official vendor MCPs follow the vendor: Ahrefs includes its MCP with every paid plan, SE Ranking requires an API add-on, and DataForSEO bills per call."
+  - q: "Do I need to be a developer to use them?"
+    a: "For hosted servers like Ahrefs', no. Setup is one command or a Connectors click. Local servers like mcp-gsc need comfort with API keys and a config file. If you can set up GA4, you can do this."
+  - q: "Which MCP server is best for AI search visibility?"
+    a: "SE Ranking's. It is currently the only one on this list exposing citation and visibility data for ChatGPT, Gemini, Perplexity, AI Overviews, and AI Mode."
+  - q: "Can MCP servers change my site or accounts?"
+    a: "Most here are read-only, and SE Ranking's is explicitly so. The WordPress server in mcp-integrations can write content, so keep human review between the agent and the publish button."
+  - q: "Should I use Claude Code or Claude Desktop with these?"
+    a: "Both speak MCP. Claude Code suits repeatable, scriptable workflows; Desktop suits conversational analysis. We use Code for anything we run more than once."
 ---
 
-MCP (Model Context Protocol) is the open standard that lets AI assistants connect to external tools and data sources. Instead of copy-pasting data between your SEO tools and ChatGPT or Claude, an MCP server feeds the data directly into the AI, enabling natural language SEO analysis, automated audits, and AI-powered reporting.
+When we first published this guide in May 2026, every SEO MCP server worth using was a community project on GitHub. Four months later, the landscape has flipped: **Ahrefs, SE Ranking, and DataForSEO now ship official MCP servers**, and the smart setup in late 2026 combines one official vendor MCP with two or three focused community servers.
 
-The SEO MCP ecosystem on GitHub has exploded in 2026. These are the 11 best repos that connect AI assistants to real SEO workflows, from Google Search Console data to schema validation to full site audits.
+This is the fully updated list. What each server connects to, what it actually exposes, how hard setup is, and where each one falls short. We use several of these daily to run this site.
 
-## What is an MCP server?
+If you're new to the concept: an MCP (Model Context Protocol) server is a bridge that lets an AI assistant like Claude query a live data source (your Search Console, your rank tracker, your crawler) instead of working from pasted CSVs. Connect one and "check which pages lost impressions this week" becomes a single prompt instead of an export-filter-paste ritual. For a deeper look at how AI tools interact with your content, see our guide on [LLM crawler optimization](/blog/llm-crawler-optimization/).
 
-If you are new to MCP: it is a protocol that lets AI tools (Claude Desktop, Claude Code, Cursor, Gemini CLI, Codex CLI) communicate with external services through a standardized interface. An MCP server is a small program that exposes specific capabilities, like "fetch keyword data" or "validate schema markup", that the AI can call during a conversation.
+## The short version
 
-You install an MCP server locally, point your AI tool to it, and then you can say things like "analyze the backlink profile of aiseoshift.com" or "check this page's schema markup" directly in your AI conversation. The MCP server handles the API calls and returns structured data the AI can reason about.
+- **Have a paid Ahrefs plan?** Install the official Ahrefs MCP first. It's included with every paid tier and takes one command.
+- **On SE Ranking?** Their MCP adds something nobody else has: AI search visibility data (ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode) alongside classic rankings.
+- **No paid tools?** Start with `mcp-gsc` for Search Console plus a PageSpeed server. Both are free.
+- **Building agent pipelines?** DataForSEO's official server is the pay-per-use workhorse.
 
-For a deeper look at how AI tools interact with your content, see our guide on [LLM crawler optimization](/blog/llm-crawler-optimization/).
+## Official vendor MCP servers
 
-## 1. claude-seo, The most comprehensive SEO skill
+### 1. Ahrefs MCP (official): best if you already pay for Ahrefs
 
-**Repo:** [github.com/AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo)
+- **Repo:** [github.com/ahrefs/ahrefs-mcp-server](https://github.com/ahrefs/ahrefs-mcp-server)
+- **Type:** Hosted remote MCP. Nothing to install or run locally.
 
-This is the most complete SEO toolkit for Claude. It bundles 25 sub-skills and 18 sub-agents covering:
+The biggest MCP news since our last update. Ahrefs open-sourced its server and hosts it at `api.ahrefs.com/mcp/mcp`, and it's **included with every paid plan, Lite through Enterprise, with no separate API subscription**. That pricing decision alone makes it the default recommendation for most SEOs.
 
-- Technical SEO auditing
-- [E-E-A-T analysis](/blog/eeat-in-the-ai-era/)
-- [Schema markup](/blog/schema-markup-for-ai-visibility/) validation and generation
-- GEO and [AEO optimization](/blog/what-is-answer-engine-optimization/)
-- Backlink analysis
-- Local SEO and Google Maps intelligence
-- Semantic clustering and [topic cluster](/blog/build-a-topic-cluster/) planning
-- E-commerce SEO
-- International SEO
-- PDF and Excel report generation
+Coverage is wide: Site Explorer, Keywords Explorer, Rank Tracker, GSC Insights, Brand Radar, Site Audit, Web Analytics, Content Explorer, AI Content Helper, and even Google Business Profile monitoring via GBP Monitor.
 
-It integrates with official Ahrefs and Semrush MCP servers, plus community servers for Google Search Console, PageSpeed Insights, and DataForSEO. If you only install one SEO MCP server, this is the one.
+Setup in Claude Code is one line (from the [official docs](https://docs.ahrefs.com/en/mcp/docs/claude-code)):
 
-**Best for:** SEO professionals who want a single, comprehensive AI-powered SEO workflow covering every discipline.
+```bash
+claude mcp add ahrefs https://api.ahrefs.com/mcp/mcp -t http
+```
 
-## 2. mcp-gsc, Google Search Console in your AI
+**Best for:** competitor comparisons, backlink prospecting, diagnosing organic performance drops without leaving your terminal.
 
-**Repo:** [github.com/AminForou/mcp-gsc](https://github.com/AminForou/mcp-gsc)
+**Honest limitation:** it reads your Ahrefs data; it doesn't replace Ahrefs' UI for deep manual digging, and heavy agentic use still consumes your plan's data rows.
 
-This MCP server connects Google Search Console directly to your AI assistant. Instead of logging into GSC, exporting CSVs, and uploading them to ChatGPT, you just ask questions in natural language:
+### 2. SE Ranking MCP: the only one with AI search visibility data
 
-- "Which queries gained the most impressions this month?"
-- "Show me pages with high impressions but low CTR"
-- "Compare this week's performance to last week"
-- "Which pages lost rankings in the last 30 days?"
+- **Docs:** [seranking.com/blog/claude-code-for-seo](https://seranking.com/blog/claude-code-for-seo/)
+- **Type:** Official, connects via Claude Connectors or MCP config
 
-Works with Claude Desktop, Cursor, Codex CLI, Gemini CLI, and any MCP-compatible client. Requires Google Search Console API access.
+SE Ranking's MCP combines classic SEO data (rankings, backlinks, keyword research, competitive analysis) with the thing no other server on this list offers: **visibility data across ChatGPT, Gemini, Perplexity, AI Overviews, and AI Mode**. If your reporting includes "are we cited in AI answers," this is currently the only MCP route to that data.
 
-**Best for:** SEOs who want to analyze Search Console data conversationally without manual exports. Essential for [measuring AI visibility](/blog/how-to-measure-ai-visibility/).
+Setup takes about 10 minutes and requires an SE Ranking plan with the API add-on, or a standalone API subscription. SE Ranking documents three workflows: writer-ready content briefs (they claim 3–4 hours of research compressed to under 10 minutes), competitive AI-visibility reports across LLM engines, and scripted backlink analysis with client-ready deck output.
 
-## 3. se-ranking-mcp, Live SEO and GEO data in AI chats
+**Best for:** agencies reporting on AI search visibility alongside rankings.
 
-**Repo:** [github.com/TeamDay-AI/se-ranking-mcp](https://github.com/TeamDay-AI/se-ranking-mcp)
+**Honest limitation:** read-only (queries only, no account modifications), and the API add-on is an extra cost on top of your plan.
 
-This MCP exposes SE Ranking's full data stack, including SEO and AI search data, to your AI assistant. It lets you:
+### 3. DataForSEO MCP (official): pay-per-use data for pipelines
 
-- Research keywords and analyze competitors
-- Check and monitor backlinks
-- Extract domain traffic and ranking insights
-- Run site audits and on-page checks
-- Track AI search visibility and brand mentions
-- Manage projects and rank tracking
+- **Repo:** [github.com/dataforseo/mcp-server-typescript](https://github.com/dataforseo/mcp-server-typescript)
 
-Works with Claude (web, Desktop, Code), Cursor, Codex, VS Code, Windsurf, Zed, Gemini CLI, and ChatGPT custom connectors.
+DataForSEO's official TypeScript server exposes their SERP, keyword research, backlink, and on-page APIs. There's no monthly seat. You pay per API call, which makes it the natural choice for **scheduled agent jobs** where a subscription tool would be wasted on intermittent use.
 
-**Best for:** Agencies and in-house SEO teams that want live SEO and AI-search data from one connection.
+**Best for:** programmatic SERP checks, bulk keyword data inside agent workflows.
 
-## 4. pagespeed-mcp-server, PageSpeed Insights via AI
+**Honest limitation:** costs scale with usage, and an over-eager agent loop can burn credits fast. Set spending alerts before you let an agent run unattended.
 
-**Repo:** [github.com/sofianbettayeb/pagespeed-mcp-server](https://github.com/sofianbettayeb/pagespeed-mcp-server)
+## Community GitHub servers
 
-Zero-configuration MCP server that connects Google PageSpeed Insights API to your AI assistant. It provides:
+The projects below are community-built. Quality is generally good, but check the repo's recent commits before trusting one in a client workflow.
 
-- Full Lighthouse audit data (performance, accessibility, best practices, SEO scores)
-- Core Web Vitals (LCP, FID, CLS, INP)
-- Technical SEO validation (title, meta description, canonical, hreflang, OG tags, Twitter Cards, JSON-LD)
-- Sitemap and robots.txt validation
-- Speed optimization recommendations
+### 4. mcp-gsc: free Search Console access (install this first)
 
-Ask Claude "audit the performance of aiseoshift.com" and get a complete PageSpeed report with actionable recommendations, all in the conversation.
+- **Repo:** [github.com/AminForou/mcp-gsc](https://github.com/AminForou/mcp-gsc)
 
-**Best for:** Developers and SEOs who want performance and technical SEO audits without leaving their AI workflow.
+Connects Claude to Google Search Console: performance queries, page-level data, sitemap and indexing checks. Since GSC's own interface still caps and samples exports, asking Claude to pull and segment the data directly is genuinely faster. This is the server we use most. Our monthly traffic audits for this site run through it.
 
-## 5. seo-research-mcp, Free Ahrefs-powered research
+**Best for:** everyone. It's free and GSC is the ground truth.
 
-**Repo:** [github.com/egebese/seo-research-mcp](https://github.com/egebese/seo-research-mcp)
+**Honest limitation:** Google API quota limits apply, and setup requires creating a Google Cloud service account, which makes it the fiddliest install on this list.
 
-A free SEO research tool powered by Ahrefs data. No Ahrefs subscription required, it uses Ahrefs' free API endpoints to provide:
+### 5. claude-seo: the broad toolkit
 
-- Backlink analysis (referring domains, anchor text distribution)
-- Keyword research (search volume, difficulty, related keywords)
-- Traffic estimation for any domain
-- Competitor comparison
+- **Repo:** [github.com/AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo)
 
-This is the best option for teams that want Ahrefs-quality data inside their AI workflow without paying for a full Ahrefs subscription.
+The most complete general-purpose SEO toolkit for Claude, with 25 sub-skills spanning audits, on-page analysis, and content checks.
 
-**Best for:** Budget-conscious SEOs who want backlink and keyword data directly in Claude or Cursor.
+**Best for:** one-install breadth when you don't want five separate servers.
 
-## 6. dataforseo-mcp-server, Enterprise-grade SEO data
+**Honest limitation:** breadth over depth. Vendor MCPs beat it wherever they overlap.
 
-**Repo:** [github.com/dataforseo/mcp-server-typescript](https://github.com/dataforseo/mcp-server-typescript)
+### 6. Bing Webmaster MCP: the other search engine's ground truth (new)
 
-The official DataForSEO MCP server, built by the DataForSEO team. DataForSEO provides API access to SERP data, keyword research, backlink analysis, and on-page SEO data at scale. This MCP server exposes all of those capabilities to AI assistants.
+- **Repo:** [github.com/isiahw1/mcp-server-bing-webmaster](https://github.com/isiahw1/mcp-server-bing-webmaster)
 
-Key capabilities:
-- SERP analysis for any keyword (including AI Overview detection)
-- Keyword research with volume, CPC, and competition data
-- Backlink profile analysis
-- On-page SEO audit
-- Domain ranking and visibility data
+40+ tools over the Bing Webmaster API: traffic analysis, crawl diagnostics, URL submission, sitemap management, keyword research, link analysis. With Copilot answering from Bing's index, Bing data stopped being optional. If you optimize for Copilot visibility, this is where you verify indexing.
 
-Requires a DataForSEO API key (paid, with free trial credits).
+**Best for:** Copilot-era Bing coverage next to your GSC data.
 
-**Best for:** Agencies and enterprise teams that need production-grade SEO data at scale through their AI tools.
+**Honest limitation:** community-maintained, and the Bing API itself is less consistent than Google's.
 
-## 7. advanced-seo-mcp, Schema and technical validation
+### 7. mcp-integrations bundle: Bing + WordPress + Clarity + Cloudflare (new)
 
-**Repo:** [github.com/halilertekin/advanced-seo-mcp](https://github.com/halilertekin/advanced-seo-mcp)
+- **Repo:** [github.com/urdigitalau/mcp-integrations](https://github.com/urdigitalau/mcp-integrations)
 
-Focused on technical SEO validation, this MCP server specializes in:
+One repo bundling four servers: Bing Webmaster Tools, WordPress, Microsoft Clarity, and Cloudflare Analytics. The WordPress server is the sleeper. An agent that reads GSC, then drafts the fix directly into WordPress, closes the loop most stacks leave open.
 
-- JSON-LD [schema markup](/blog/schema-markup-for-ai-visibility/) validation against schema.org specs
-- Structured data testing (Article, FAQ, HowTo, BreadcrumbList, Organization)
-- Meta tag analysis
-- Canonical URL validation
-- robots.txt and sitemap verification
+**Best for:** WordPress sites wanting analyze-and-act in one config.
 
-Ask Claude "validate the schema markup on this page" and get a detailed report of what is correct, what is missing, and what needs fixing, with code suggestions.
+**Honest limitation:** jack-of-all-trades depth; each bundled server is thinner than its dedicated equivalent.
 
-**Best for:** Technical SEOs who need schema validation and structured data auditing inside their AI workflow.
+### 8. pagespeed-mcp-server: Core Web Vitals on tap
 
-## 8. seo-mcp-server, Full SEO analysis server
+- **Repo:** [github.com/sofianbettayeb/pagespeed-mcp-server](https://github.com/sofianbettayeb/pagespeed-mcp-server)
 
-**Repo:** [github.com/Docker-Hunterpedia/seo-mcp-server](https://github.com/Docker-Hunterpedia/seo-mcp-server)
+Wraps the PageSpeed Insights API for performance and technical checks. (Alternative: [ruslanlap/pagespeed-insights-mcp](https://github.com/ruslanlap/pagespeed-insights-mcp), a similar wrapper tuned for Claude.)
 
-A comprehensive SEO validation and analysis server that gives AI assistants professional-grade audit capabilities:
+**Best for:** batch CWV checks across URL lists.
 
-- On-page SEO scoring
-- Content quality analysis
-- Internal linking structure evaluation
-- Image optimization checks
-- Mobile-friendliness assessment
-- Page speed indicators
+**Honest limitation:** it's the PSI API with an MCP face. Same rate limits, same lab-data caveats.
 
-This server is designed to empower AI assistants with the same checks that professional SEO tools provide, but accessible through natural language conversation.
+### 9. seo-research-mcp: free backlink and keyword lookups
 
-**Best for:** Teams that want a self-hosted, all-in-one SEO audit server connected to their AI assistant.
+- **Repo:** [github.com/egebese/seo-research-mcp](https://github.com/egebese/seo-research-mcp)
 
-## 9. pagespeed-insights-mcp, Performance analysis for Claude
+Free Ahrefs-powered backlink and keyword data without an Ahrefs subscription.
 
-**Repo:** [github.com/ruslanlap/pagespeed-insights-mcp](https://github.com/ruslanlap/pagespeed-insights-mcp)
+**Best for:** quick lookups on a zero budget.
 
-Another PageSpeed Insights MCP server with a slightly different approach, this one is specifically optimized for Claude and focuses on actionable performance analysis. It translates raw Lighthouse data into prioritized recommendations that Claude can explain in plain language.
+**Honest limitation:** free data sources are limited and can break. Don't build client reporting on it.
 
-Ask "what is slowing down my homepage?" and get specific, prioritized fixes rather than raw metric dumps.
+### 10. screaming-frog-mcp: talk to your crawls
 
-**Best for:** Non-technical site owners who want performance insights explained in plain language through Claude.
+- **Repo:** [github.com/bzsasson/screaming-frog-mcp](https://github.com/bzsasson/screaming-frog-mcp)
 
-## 10. screaming-frog-mcp, Crawl data in your AI
+Drives Screaming Frog crawls and lets Claude interrogate the results. "List every page with a missing canonical over 3 clicks deep" becomes a prompt instead of a filter chain.
 
-**Repo:** [github.com/bzsasson/screaming-frog-mcp](https://github.com/bzsasson/screaming-frog-mcp)
+**Best for:** technical SEOs who live in Screaming Frog.
 
-This MCP server gives Claude programmatic access to Screaming Frog SEO Spider, the industry-standard site crawler. It can:
+**Honest limitation:** requires a licensed Screaming Frog install running locally.
 
-- Initiate and manage site crawls
-- Export crawl data (broken links, redirects, duplicate content, thin pages)
-- Analyze crawl results conversationally
-- Manage crawl storage and configurations
+### 11. advanced-seo-mcp: schema validation
 
-Requires Screaming Frog installed locally. The MCP server acts as a bridge between the crawler and your AI assistant.
+- **Repo:** [github.com/halilertekin/advanced-seo-mcp](https://github.com/halilertekin/advanced-seo-mcp)
 
-**Best for:** Technical SEOs who already use Screaming Frog and want to query crawl data through Claude instead of the Screaming Frog UI.
+Focused on structured data: validate schema, spot markup gaps. Pairs well with our [schema-for-AI-search series](/blog/event-schema-for-ai-search/).
 
-## 11. seo-insights-mcp-server, Backlinks, keywords, and traffic
+**Best for:** sites where schema drives AI citations.
 
-**Repo:** [github.com/mrgoonie/seo-insights-mcp-server](https://github.com/mrgoonie/seo-insights-mcp-server)
+**Honest limitation:** narrow by design.
 
-A TypeScript MCP server that provides a clean interface for three core SEO functions:
+### 12. seo-mcp-server: on-page scoring
 
-- Backlink analysis (profile overview, new/lost links, anchor distribution)
-- Keyword research (volume, difficulty, SERP features, related terms)
-- Traffic analysis (estimated traffic, top pages, traffic trends)
+- **Repo:** [github.com/Docker-Hunterpedia/seo-mcp-server](https://github.com/Docker-Hunterpedia/seo-mcp-server)
 
-Includes CLI support for standalone use and an extensible architecture for adding new data sources. Well-documented and actively maintained.
+On-page analysis and scoring for individual URLs.
 
-**Best for:** Developers who want a clean, extensible MCP server for core SEO data functions.
+### 13. seo-insights-mcp-server: backlinks, keywords, traffic
+
+- **Repo:** [github.com/mrgoonie/seo-insights-mcp-server](https://github.com/mrgoonie/seo-insights-mcp-server)
+
+General backlink, keyword, and traffic analysis. A lighter free alternative when the vendor MCPs are out of budget.
+
+### 14. Your own GSC + custom server
+
+The dark-horse option: MCP servers are small programs. If you have a developer (or Claude Code itself), a custom server over your own stack (GSC + GA4 + your CRM) often beats any off-the-shelf pick. That's how our [AI SEO dashboard](/blog/ai-seo-dashboard-setup/) works.
 
 ## Comparison table
 
-| # | MCP Server | GitHub Stars | Focus | Free | Language | AI Clients | Rating |
-|---|---|---|---|---|---|---|---|
-| 1 | claude-seo | 6.6K+ | Full SEO suite (25 skills) | Yes | Python | Claude Code | 5/5 |
-| 2 | mcp-gsc | 860+ | Google Search Console | Yes | Python | Claude, Cursor, Gemini | 5/5 |
-| 3 | se-ranking-mcp | 0 (new) | SEO + AI search visibility (160+ tools) | Plan required (14-day trial) | TypeScript | Claude, Cursor, Codex, Gemini, ChatGPT | 4/5 |
-| 4 | pagespeed-mcp-server | 200+ | PageSpeed + technical SEO | Yes | TypeScript | Claude, Cursor | 4.5/5 |
-| 5 | seo-research-mcp | 400+ | Ahrefs data (free) | Yes | TypeScript | Claude, Cursor | 4.5/5 |
-| 6 | dataforseo-mcp-server | 150+ | Enterprise SERP + keyword data | API key | TypeScript | Claude, Cursor | 4/5 |
-| 7 | advanced-seo-mcp | 100+ | Schema + technical validation | Yes | TypeScript | Claude, Cursor | 4/5 |
-| 8 | seo-mcp-server | 80+ | On-page SEO analysis | Yes | TypeScript | Claude, Cursor | 3.5/5 |
-| 9 | pagespeed-insights-mcp | 90+ | Performance analysis | Yes | TypeScript | Claude | 3.5/5 |
-| 10 | screaming-frog-mcp | 70+ | Site crawling via SF | SF license | Python | Claude | 4/5 |
-| 11 | seo-insights-mcp-server | 120+ | Backlinks + keywords + traffic | Yes | TypeScript | Claude, Cursor | 3.5/5 |
+| Server | Type | Cost | Data | Setup | Best for |
+|---|---|---|---|---|---|
+| Ahrefs MCP | Official, hosted | Included in paid plans | Backlinks, keywords, rankings, audits | One command | Ahrefs subscribers |
+| SE Ranking MCP | Official | Plan + API add-on | Rankings + AI search visibility | ~10 min | AI visibility reporting |
+| DataForSEO MCP | Official | Pay per call | SERP, keywords, backlinks | Moderate | Agent pipelines |
+| mcp-gsc | Community | Free | Search Console | Fiddly (GCP account) | Everyone |
+| claude-seo | Community | Free | 25 general SEO skills | Easy | Breadth on a budget |
+| Bing Webmaster MCP | Community | Free | Bing index + traffic | Moderate | Copilot visibility |
+| mcp-integrations | Community | Free | Bing, WP, Clarity, Cloudflare | Moderate | WordPress stacks |
+| pagespeed-mcp-server | Community | Free | Core Web Vitals | Easy | Performance checks |
+| screaming-frog-mcp | Community | SF license | Crawl data | Moderate | Technical audits |
+| seo-research-mcp | Community | Free | Backlinks, keywords | Easy | Zero-budget lookups |
 
-**Rating criteria:** Assessed on feature depth, documentation quality, maintenance activity, community adoption, and ease of setup. 5/5 = essential for most SEOs. 3.5/5 = solid tool for specific use cases.
+## Which should you install first?
 
-## How to install an MCP server
+**The minimum stack (free):** `mcp-gsc` + a PageSpeed server. Ground truth plus performance, $0.
 
-Most SEO MCP servers follow the same installation pattern:
+**The professional stack:** official Ahrefs MCP (or SE Ranking if AI visibility reporting matters) + `mcp-gsc` + `screaming-frog-mcp`. This covers off-site, ground truth, and technical. It's the setup we'd rebuild first if our config was wiped tomorrow.
 
-**For Claude Desktop / Claude Code:**
+**The pipeline stack:** DataForSEO + `mcp-gsc` + the WordPress server from `mcp-integrations`, feeding a scheduled Claude Code job. See our guide to [SEO AI agents](/blog/seo-ai-agents/) for what that unlocks.
 
-1. Clone the repo: `git clone https://github.com/repo-name/mcp-server.git`
-2. Install dependencies: `npm install` (or as specified in README)
-3. Add the server to your Claude config (usually `~/.claude/settings.json` or Claude Desktop settings)
-4. Restart Claude, the new SEO tools appear automatically
+Don't install all fourteen. Every connected server adds tool definitions to your assistant's context, and past five or six servers, tool selection gets noticeably worse. Pick per job.
 
-**For Cursor:**
-
-1. Open Cursor Settings → MCP Servers
-2. Add the server path and configuration
-3. The AI can now access the SEO tools during coding sessions
-
-Each repo's README includes specific setup instructions. Most servers take under 5 minutes to install.
-
-## Which MCP servers should you install?
-
-**Minimum viable SEO stack:**
-- **mcp-gsc** (Search Console data) + **seo-research-mcp** (free Ahrefs data), covers the two most essential data sources for free.
-
-**Professional SEO stack:**
-- **claude-seo** (comprehensive skills) + **mcp-gsc** (Search Console) + **pagespeed-mcp-server** (performance) + **advanced-seo-mcp** (schema validation)
-
-**Agency / enterprise stack:**
-- **claude-seo** + **dataforseo-mcp-server** (enterprise data) + **screaming-frog-mcp** (crawling) + **mcp-gsc** (Search Console)
-
-## Why MCP servers matter for AI SEO
-
-MCP servers represent the [AI SEO shift](/ai-seo-shift/) in practice. Instead of manually checking tools, exporting data, and feeding it to AI, the AI accesses the data directly and reasons about it in context.
-
-This changes SEO workflows in three ways:
-
-1. **Conversational auditing.** "What are the top 5 SEO issues on my homepage?" replaces clicking through 10 different tool dashboards.
-2. **Automated monitoring.** MCP servers can run on schedules, feeding continuous data to AI agents that flag issues proactively.
-3. **Integrated optimization.** When Claude Code has access to SEO data via MCP, it can optimize your code and content simultaneously, checking [schema markup](/blog/schema-markup-for-ai-visibility/), [page structure](/blog/how-to-structure-pages-ai-extraction/), and performance in the same session where it writes your code.
-
-The SEO professionals who adopt MCP servers in 2026 will have a significant productivity advantage over those still switching between tabs and exporting CSVs.
-
-## Frequently asked questions
-
-### What is MCP in the context of SEO?
-
-MCP (Model Context Protocol) is an open standard that lets AI assistants like Claude, Cursor, and Gemini connect to external tools and data sources. For SEO, MCP servers connect your AI to Google Search Console, keyword research tools, backlink analyzers, and site auditing tools, so you can do SEO analysis through natural language conversation.
-
-### Are SEO MCP servers free?
-
-Most are free and open source. Some connect to paid APIs (DataForSEO, Ahrefs premium) that require subscriptions, but the MCP servers themselves are free. Several repos like seo-research-mcp use free API endpoints, giving you useful data at zero cost.
-
-### Do I need to be a developer to use MCP servers?
-
-Basic command-line comfort helps (cloning repos, running npm install), but you do not need to write code. Most servers install in under 5 minutes and then work through natural language, you just talk to Claude normally and it uses the MCP tools automatically.
-
-## Related reading
-
-- [The AI SEO Shift: the complete guide](/ai-seo-shift/)
-- [LLM crawler optimization](/blog/llm-crawler-optimization/)
-- [Best AI coding tools 2026](/blog/best-ai-coding-tools-2026/)
-- [Schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/)
-- [Best AI visibility tools 2026](/blog/best-ai-visibility-tools-2026/)
-- [How to measure AI visibility](/blog/how-to-measure-ai-visibility/)
+For the head-to-head between the two flagship vendor options (and when a raw API script beats both), we've split that into its own comparison: [Ahrefs MCP vs SE Ranking MCP vs raw API](/blog/ahrefs-mcp-vs-seranking-mcp-vs-api/).

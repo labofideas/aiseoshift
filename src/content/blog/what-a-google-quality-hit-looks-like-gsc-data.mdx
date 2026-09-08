@@ -1,0 +1,114 @@
+---
+title: "What a Google Quality Hit Actually Looks Like: Our Own Search Console Data"
+description: "Our impressions fell 98% overnight on June 25. Here's the real Search Console data, what we ruled out, what we think happened, and the recovery plan we're running."
+deck: "Almost every traffic-drop recovery article is written by an agency about an anonymous client, with the embarrassing details sanded off. This one is about us. The real numbers, the real cause, and the rebuild plan, published while still in the hole."
+pubDate: 2026-09-08
+category: Research
+tags:
+  - Google traffic drop
+  - scaled content abuse
+  - core update recovery
+  - Search Console
+  - case study
+author: Shashank Dubey
+featured: true
+faqs:
+  - q: "Can impressions really drop 98% in one day without a manual action?"
+    a: "Yes. Site-level algorithmic classifications from quality and spam systems can apply or lift in a step function during or after an update rollout. A manual action is one possible cause of a cliff, not the only one. Check the Manual Actions report in Search Console to distinguish them."
+  - q: "Does a cliff-shaped drop mean the site was deindexed?"
+    a: "Not necessarily. Our pages remained indexed and technically crawlable throughout; they just stopped being shown. Deindexing removes pages from the index, while a quality reclassification leaves them indexed but suppresses their visibility. Check coverage in GSC and site: behavior before assuming either."
+  - q: "How long does recovery from a quality reclassification take?"
+    a: "Realistically, at least one full core-update cycle after you've substantively fixed the problem, often months. Sites that prune aggressively and change their publishing pattern have documented recoveries. Sites that only add better content on top of the old footprint mostly haven't."
+  - q: "Should you delete or noindex low-quality pages during recovery?"
+    a: "Delete (with a 410, or a redirect to a genuinely relevant page) what has no value; noindex what has user value but shouldn't represent you in search. What matters to a site-level classifier is that the crawlable footprint changes materially. A handful of removals won't move it."
+  - q: "Is it worth continuing to publish during a suppression?"
+    a: "Yes, but only content that would survive your own audit, and at a modest cadence. New URLs inherit the site-level state, so their performance will understate their quality until the classification lifts. Publishing is for the post-recovery site you're building, not for this quarter's traffic."
+---
+
+On June 23, 2026, this site earned 662 impressions in Google Search. On June 25, it earned 12.
+
+Not a dip. Not a wobble. A 98% collapse in 48 hours, and two and a half months later, it has not recovered. This post is the full post-mortem, with our real Search Console numbers, because almost every "traffic drop recovery" article you'll find is written by an agency about an anonymous client, with the embarrassing details sanded off. Ours are all here.
+
+If your impressions just fell off a cliff, this is what the pattern looks like from the inside, what we ruled out, what the data says caused it, and the recovery plan we're actually running. It's a diagnosis-and-plan post, not a victory lap. We'll publish the follow-up when we have recovery data, whichever way it goes.
+
+## The shape of the collapse
+
+Here's the daily impression data from our Search Console export (web search, last 3 months):
+
+| Period | Daily impressions | Avg. position | What was happening |
+|---|---|---|---|
+| June 7–14 | 141 → 570 → rising | 31–56 | Google testing the site broadly |
+| June 15–23 | 612–901/day (peak: 901 on June 17) | 48–55 | Maximum visibility |
+| **June 24** | **113** | 48 | The drop begins |
+| **June 25** | **12** | 41 | Floor |
+| June 25 – Sept 6 | 1–25/day, usually under 10 | erratic (2–94) | Flatline, 2.5 months and counting |
+
+Three things about this shape matter for anyone pattern-matching their own drop.
+
+**It was a step function, not a slide.** Seasonal decline, content decay, and lost rankings all look like slopes. A one-day, roughly 98% impressions collapse means a switch flipped: a site-level classification, a manual action, or a technical block. Nothing else moves that fast.
+
+**Positions went erratic, not uniformly worse.** After June 25 our average position bounces between 2 and 94 day to day. That's not "we rank worse." That's "we barely appear at all," so a handful of stray impressions swing the average wildly. Small denominators, noisy averages.
+
+**The rise predicted the fall.** Look at the first two weeks: impressions climbed fast while average position sat around 45–55 and CTR sat near zero. Google was testing hundreds of our pages on page 4 through 6 and finding that nobody ever chose us. In hindsight, that was the audition. We failed it.
+
+## What we ruled out first
+
+Before blaming an algorithm, we checked the boring explanations. You should too, in this order:
+
+1. **Indexing blocks.** Homepage returns HTTP 200. Meta robots says `index,follow`. robots.txt allows search crawlers (we use Cloudflare's Content Signals to restrict AI training, but `search=yes` is explicit). Not a technical block.
+2. **Site down during the window.** No outage on or around June 24–25.
+3. **Security or hack.** No injected pages, no strange queries in the export. The query list is all on-topic.
+
+That leaves Google-side revaluation. One check we'd tell every reader to run before anything else: **Search Console → Security & Manual Actions → Manual actions.** A drop this severe and this fast is consistent with either an algorithmic reclassification or a manual action, and the recovery paths differ completely. Do not skip this check.
+
+## What the data says actually caused it
+
+This is the uncomfortable part, and it's the reason this post exists. When we audited what Google had been showing during those two high-visibility weeks, the pattern was impossible to miss.
+
+**The pages that earned the most impressions earned zero clicks, and they were permutations.** Our top pages by impressions:
+
+| Page | Impressions | Clicks | Avg. position |
+|---|---|---|---|
+| /blog/ai-mode-seo-checking-software/ | 1,154 | 0 | 71 |
+| /copilot-seo/ | 758 | 0 | 69 |
+| /tools/keyword-density/ | 601 | 0 | 75 |
+| /blog/ai-seo-tools-visibility-optimization/ | 493 | 0 | 56 |
+| /blog/ai-translators/ | 471 | 0 | 62 |
+
+The query report is worse. Whole families of near-identical queries: "ai mode seo checker," "ai mode seo checkers," "ai mode seo checking tool," "ai mode seo checking tools," "ai mode seo checking software," "ai mode seo tracking software." Each with 40–150 impressions, all at position 60–90, all with zero clicks. Then the same family again with "copilot" swapped in.
+
+That's not a keyword strategy. That's a footprint. Google's systems are explicitly built to detect content produced at scale to cover keyword permutations, and our own export reads like a training example for that classifier.
+
+**Meanwhile, the pages that earned actual clicks were the opposite kind of content:**
+
+| Page | Clicks | Avg. position |
+|---|---|---|
+| /blog/google-trends-ai-fanout-data/ (original data analysis) | 8 | ~7 |
+| Homepage | 6 | 13 |
+| /blog/best-seo-mcp-servers-github/ (hands-on tooling) | 2 | 11 |
+
+A set of specific, genuinely useful pages also held top-3 positions on small volume: NAP consistency for AI local SEO (position 1.9), our AI citation rate research (1.9), defensive SEO for brand narrative (1.8), AI SEO for startups (2.4).
+
+The verdict the data forces on us: **the site could rank. Google's classic systems liked our specific, first-hand content. But the permutation layer stapled on top of it poisoned the whole domain.** The timing (our test window ran through late June, weeks after the [May 2026 core update](/blog/google-may-2026-core-update/) began rolling out) is consistent with a site-level quality reclassification, though Google publishes rollout windows, not per-site verdicts, so we're naming the pattern, not the exact system.
+
+## The recovery plan we're running
+
+We're treating this as a rebuild, not a tweak. Four workstreams, in order.
+
+**1. Prune before publish.** The site sheds its permutation pages: the `[engine] seo [checker/software/tool/tracker]` family and the thin `[niche] AI SEO` templates that never earned a click. Consolidate the few with genuine substance, remove or noindex the rest. Adding good content on top of a bad footprint doesn't work; the site-level classification applies to everything, including the new stuff.
+
+**2. Fix URL hygiene.** Our export shows the same posts collecting impressions on multiple URL variants: with and without trailing slashes, plus stray http and www versions. Every one of those splits signals. Site-wide 301s to a single canonical form, self-referencing canonicals, one URL per post.
+
+**3. Publish only what the data endorsed.** Original data analysis, hands-on tooling walkthroughs, and direct answers to specific questions. Those three content types earned every single one of our clicks. Capped at 2–3 posts a week, because publishing velocity is itself part of the scaled-content footprint. Our notes on [structuring posts for AI citation](/blog/perfect-blog-post-structure-ai-citation/) describe the format we're standardizing on.
+
+**4. Measure the recovery honestly.** Weekly log of impressions, indexed page count, and the new [generative AI performance report](/blog/google-search-console-ai-performance-report/) baseline. If nothing moves within a full core-update cycle after the prune, we'll say so in the follow-up.
+
+## What we'd tell you to do with your own cliff
+
+- **Date the drop precisely** (daily export, not the default chart). A step function means classification, action, or block; a slope means competition or decay. The fix depends entirely on which one you have.
+- **Check manual actions before theorizing.** Thirty seconds, completely different playbook.
+- **Rule out technical causes with curl, not memory.** Status code, meta robots, robots.txt, canonical. Verified on the live site, today.
+- **Audit your zero-click impressions.** Pages that got shown hundreds of times and chosen never are Google telling you what it tested and rejected. That list is your prune list.
+- **Find what still earns clicks.** Whatever survived is your rebuild blueprint. Ours was small, specific, and data-driven. Yours will be whatever your audience actually chose when given the option.
+
+*This is part 1: diagnosis and plan, published while still in the hole. Part 2 will show the same charts after the prune, whatever they look like.*

@@ -1,127 +1,117 @@
 ---
 title: "Google Search Console Finally Has an AI Performance Report. Here Is What It Shows and What to Do With It."
-description: "Google launched dedicated AI performance reports in Search Console on June 3, covering AI Overviews, AI Mode, and Discover."
-deck: "What the new AI impressions report shows, what it still hides, and how to put impression-only data to work in your workflow."
+description: "GSC's generative AI performance report is live for every site worldwide. What it actually shows, what's still missing, and a weekly routine to use it."
+deck: "The generative AI report finished rolling out worldwide on August 31. Most coverage stops at what it shows. The useful part is what it hides, and the workflow that gets value out of impression-only data anyway."
 pubDate: 2026-06-06
+updatedDate: 2026-09-08
 category: Research
 tags: ["google-search-console", "ai-overviews", "ai-mode", "seo-tools", "seo-news"]
+author: "Shashank Dubey"
+faqs:
+  - q: "Where is the generative AI report in Search Console?"
+    a: "Open the Performance section of Search Console. The generative AI data appears as its own view alongside the standard Web search type. It is available on all properties worldwide as of August 31, 2026, with no opt-in required."
+  - q: "Does the GSC generative AI report show clicks?"
+    a: "No. As of September 2026 it reports impressions only, broken down by page, country, device, and date. Clicks, CTR, and query data are not included. Clicks from AI features still land blended into your regular performance report totals."
+  - q: "Can I see which queries triggered my AI Overview impressions?"
+    a: "Not directly. The report has no query dimension. The practical workaround is to cross-reference your top AI-impression pages with those pages' query lists in the regular performance report."
+  - q: "How are impressions counted in the generative AI report?"
+    a: "An impression is counted each time a link to your site appears in a generative AI feature. If two of your URLs appear in the same AI answer, the chart total counts one impression for the site, not two. With a URL filter applied, counting switches to per-URL."
+  - q: "Can I block my site from AI Overviews without leaving Google Search?"
+    a: "Yes. Google introduced a Search Console control in 2026 that removes your content from AI features while keeping it in classic blue-link results. For most publishers it is the wrong move, but it exists, and it is a real strategic option for the first time."
+  - q: "Is an AI impression worth anything if nobody clicks?"
+    a: "It is worth brand presence at the moment of answer, which increasingly is the whole search interaction. Users who see your brand cited in AI answers search for you by name more often. Measure it as awareness, not traffic."
 ---
 
-Since Google AI Overviews launched in 2024, publishers and SEOs have been working blind. Your content might be appearing in AI-generated answers for thousands of queries every day, or it might not appear at all. There was no way to know. All AI traffic was folded into the regular Search performance report with no way to separate it out.
+For two years, SEOs asked the same question: how much of my visibility is happening inside AI Overviews and AI Mode? Until this summer, Google's answer was a shrug. AI impressions were folded invisibly into the regular performance report, and you could not separate them.
 
-That changed on June 3, 2026. Google launched dedicated generative AI performance reports in Search Console, giving site owners the first real visibility into how their content performs inside AI features. And alongside the report, Google quietly announced something even more significant: a toggle that lets you block your content from AI features entirely, without affecting your regular search rankings.
+That changed. On June 3, 2026, Google [announced dedicated generative AI performance reports](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports) in Search Console, and by August 31 the rollout reached every property worldwide. If you own a site, the report is sitting in your Search Console right now.
 
-Here is everything confirmed about both.
+This post covers what the report measures, the three things it still refuses to tell you, and a weekly routine for using it anyway.
 
 ## What the AI performance report shows
 
-The new report lives inside Search Console as a separate section from the standard Performance report. It covers two surfaces:
+The report covers two surfaces:
 
-**Generative AI performance (Search)** -- your impressions inside AI Overviews and AI Mode on Google Search.
+**Generative AI performance (Search)**: your impressions inside AI Overviews and AI Mode on Google Search.
 
-**Generative AI performance (Discover)** -- your impressions inside AI features in Google Discover.
+**Generative AI performance (Discover)**: your impressions inside AI features in Google Discover.
 
-Within each report, you can break data down by:
+Within each, four familiar dimensions:
 
-- **Pages** -- which URLs on your site are appearing inside AI features
-- **Countries** -- which markets your AI visibility is strongest in
-- **Devices** -- desktop vs mobile AI feature appearances (Search report only)
-- **Dates** -- hourly, daily, weekly, and monthly granularity
+| Dimension | Detail |
+|---|---|
+| Page | Which URLs earned impressions inside AI features |
+| Country | Where those impressions happened |
+| Device | Desktop, mobile, tablet (Search report) |
+| Date | From hourly granularity up to monthly views |
 
-## What it does not show (yet)
+The page-level breakdown is the useful one. It tells you which of your pages Google's AI systems consider quotable. That is a different bar, and arguably a more demanding one, than which pages rank. A page can sit at position 8 in classic results and never appear in an AI Overview, or appear in AI Overviews for queries where it does not crack the classic top 10 at all.
 
-This is the important caveat. The first version of the report is impressions-only. There are no clicks, no CTR, no average position, and no query data.
-
-That means you can see that a URL appeared in an AI feature but you cannot see:
-- What query triggered the AI feature
-- Whether the user clicked through to your page
-- Where in the AI answer your page was cited
-- How many impressions came from AI Overviews versus AI Mode separately
-
-The absence of query data is the most limiting gap. In the standard Performance report, query data tells you exactly what people were searching when they saw your content. Without it in the AI report, you know your page is appearing in AI features but you do not know in what context.
-
-Google has said it is working with publishers to understand what additional metrics will be most useful and will introduce more data over time. The query data omission is likely a privacy and technical challenge, not a permanent limitation.
+The hourly granularity matters more than it looks. AI Overview presence is volatile. Google adds and removes the feature per-query constantly, and an hourly view lets you catch when a query you care about gains or loses its AI Overview. A daily rollup smooths that away.
 
 ## How impressions are counted
 
-This matters more than it sounds. In the AI performance report, impressions work slightly differently from the standard report:
+This matters more than it sounds, because the counting rules differ from the standard report:
 
-- An impression is counted each time a link to your site appeared in a generative AI feature, regardless of whether the user saw it or clicked it
-- If two URLs from your site appeared in the same AI answer, that counts as **one impression** in the chart total (not two)
-- If you apply a URL filter, the chart switches to counting by URL rather than by property
-- The most recent data may show as a dotted line -- this means it is still being collected and may update within a few hours
+- An impression is counted each time a link to your site appeared in a generative AI feature, whether or not the user saw or clicked it
+- If two URLs from your site appeared in the same AI answer, that counts as **one impression** in the chart total, not two
+- Apply a URL filter and the chart switches to counting per-URL rather than per-property
+- The most recent data may show as a dotted line, meaning it is still being collected and can update within hours
 
-Understanding the one-impression-per-site rule is important for interpreting your numbers. A site with very high AI impression counts likely has multiple pages being sampled in individual AI answers.
+The one-impression-per-site rule changes how you read big numbers. A property with very high AI impression counts likely has multiple pages being sampled across individual answers, and the per-page view understates the property total.
 
-## A practical example: reading your AI performance data
+## The three things it hides
 
-Imagine you run a marketing agency and you see this in your AI performance report:
+The report shows impressions only. Three data points are missing, and each absence changes how you should read the numbers.
 
-- 12,000 impressions over the last 30 days
-- Top page: `/blog/ai-seo-tools-visibility-optimization` with 3,400 impressions
-- Second page: `/ai-overviews-seo` with 2,100 impressions
-- Lowest performing page in the report: `/services` with 80 impressions
+### 1. No clicks or CTR
 
-What does this tell you?
+You can see that your page appeared in AI features 5,000 times. You cannot see whether a single person clicked through. Google has not committed to a timeline for adding click data.
 
-Your blog content is being cited in AI features far more than your service pages. This is common -- AI engines prefer informational content as sources over commercial service pages. The 80 impressions on `/services` tells you your service page is appearing occasionally in AI features but rarely.
+This is the report's biggest limitation, because impressions inside an AI answer are not like impressions in classic results. In an AI Overview, your page may be one of several collapsed citations behind the answer. Visibility, with no realistic chance of a visit.
 
-What you cannot tell yet: whether those 12,000 impressions are driving any traffic to your site, or whether users are reading the AI answer and not clicking through. That zero-click question remains unanswered until Google adds click data.
+Treat AI impressions as a citation metric, not a traffic metric. We cover the estimation workarounds in [how to estimate AI Mode clicks when GSC won't tell you](/blog/how-to-estimate-ai-mode-clicks/) and the broader measurement stack in [measuring AI visibility](/blog/how-to-measure-ai-visibility/).
 
-## The bigger story: AI blocking controls
+### 2. No queries
 
-Announced alongside the report is a new toggle inside Search Console that lets site owners block their content from appearing in AI features.
+The regular performance report tells you which searches triggered your impressions. The generative AI report does not. You know which page appeared in AI features, but not for what question.
 
-This is significant. Until now, if you wanted to opt out of Google AI Overviews or AI Mode, your only option was robots.txt or meta tags that could also affect your regular search rankings. Google is now offering a dedicated opt-out that:
+That gap kills the most natural optimization loop: find queries where you are cited, strengthen those pages, find near-miss queries, close the gap. For now, the closest substitute is cross-referencing. Take your top AI-impression pages, pull their query lists from the regular report, and assume overlap. Imprecise, but it is the only move available.
 
-- Removes your content from AI Overviews, AI Mode, and AI features in Discover
-- Does not affect your visibility in regular blue-link search results
-- Is managed directly inside Search Console
+Google has said it is working with publishers on which additional metrics would be most useful, so the query omission looks like a privacy and engineering problem rather than a permanent decision. Plan for the current report, not the promised one.
 
-The context here matters. Google introduced this following a UK regulatory order requiring it to give publishers more control over how their content is used in AI features. The toggle is currently rolling out to UK site owners first and takes effect June 17, 2026. Global rollout does not yet have a confirmed date.
+### 3. No clean split between AI surfaces
 
-## Should you use the opt-out toggle?
+AI Overviews and AI Mode are different surfaces with very different behavior, and blended totals muddy the signal. The report structure has already shifted once since the June launch, so watch how Google evolves the breakdowns.
 
-This is genuinely a strategic decision, not a technical one. Here is how to think about it:
+## The first comparison worth running
 
-**Reasons to stay opted in (most sites):**
+The single most useful thing to do with this report on day one: put your top pages by classic impressions next to your top pages by AI impressions.
 
-AI features are not going away. Opting out means your competitors who stay in will appear in AI answers on queries where you previously appeared. Your impressions disappear but the query volume does not.
+They will not be the same list.
 
-For content-focused sites, AI citation builds brand authority and drives some direct traffic even at lower CTR than blue links. Being cited in AI Overviews is increasingly how new audiences discover content brands.
+Google's AI systems and Google's classic ranker make different choices about the same content. A page can rank top 10 in blue links and never get cited, while a mid-ranking page becomes a regular AI citation because one section answers a question cleanly. That delta is the report's value right now. It is the first first-party evidence of what Google's generative systems actually trust on your domain, page by page.
 
-**Reasons to consider opting out:**
+Expect the familiar informational-over-commercial skew too. Blog content gets cited in AI features far more than service pages. If your commercial pages show near-zero AI impressions, that is normal, not a defect.
 
-News publishers and media sites with subscription models are most likely to benefit from opting out. If your content's value is in the full read and AI Overviews are delivering the key information without a click, opting out protects that traffic.
+## The blocking control
 
-Sites in YMYL categories (health, legal, financial) where AI engines may be citing specific advice out of context have a legitimate reason to opt out while they build better structured content.
+Alongside the reports, Google added something with more strategic weight: [a control that lets site owners block their content from AI features](https://blog.google/products-and-platforms/products/search/new-controls-website-owners/) without leaving classic search. AI Overviews, AI Mode, and generative AI in Discover, switched off for your site if you choose.
 
-**The honest answer for most businesses:** Stay in, use the impression data to understand where you are appearing, and optimize for citation rather than fighting against it.
+The origin story matters. Google introduced the control after a UK regulatory order requiring more publisher control over content used in AI features, with UK site owners getting it first from June 17, 2026 before wider rollout.
 
-## How to use the report in your workflow
+For most sites, blocking is the wrong call. Pages cited in AI Overviews earn measurably more organic clicks than uncited competitors, and opting out surrenders the surface to whoever stays in. Subscription publishers and some YMYL sites have a genuine case. We wrote the full decision framework in [how to block your site from Google's AI features, and whether you should](/blog/block-site-from-google-ai-features/).
 
-Since the report only shows impressions right now, the most useful thing you can do with it is:
+## A weekly routine that uses the report properly
 
-**Identify your highest-performing pages for AI citations.** The pages with the most AI impressions are your current citation anchors. Protect them by keeping them updated, well-structured, and schema-rich. These are the pages AI engines already trust.
+Fifteen minutes, once a week:
 
-**Identify the gap between AI impressions and regular search traffic.** If a page has high AI impressions but low clicks in the standard Performance report, you have a zero-click page -- AI is citing it but users are not clicking through. Consider whether a stronger call to action or a more specific page focus would convert AI impressions into clicks.
+1. **Log total AI impressions** for the property. One number, one row in a sheet. You are building the trendline Google will not show you retroactively.
+2. **Pull top 10 pages by AI impressions.** Flag anything that entered or left the list versus last week.
+3. **Cross-reference each new entrant** against the regular report's queries for that page. Note the likely triggering queries.
+4. **Check the ratio** of AI impressions to classic impressions. A rising ratio with flat clicks is the signature of [zero-click drift](/blog/zero-click-search-strategy/). That is your early warning to strengthen presence inside the answer, through citations and branding, rather than chasing clicks it can no longer send.
+5. **Feed page-level winners back into your content plan.** Whatever structure your AI-cited pages share, do more of it. In our own classic-search data, the pages that earn clicks are consistently data-first posts with early, direct answers, the same pattern the research on [AI visibility KPIs](/blog/aeo-kpis-metrics-ai-visibility/) keeps pointing to.
 
-**Track trends over time.** Even without query data, a page going from 200 AI impressions per month to 2,000 in a three-month period is a signal that content optimization or a structural change worked. The date dimension lets you correlate changes to outcomes.
+Pair this with GA4 referral data for the click side of the story. Our [GA4 for AI SEO tracking guide](/blog/ga4-for-ai-seo-tracking/) covers that setup.
 
-**Find pages with no AI impressions.** Your highest-traffic pages in regular search should also be appearing in AI features if they are well-optimized. A page with strong blue-link traffic and zero AI impressions has a citation gap worth investigating.
-
-## What to expect next
-
-The AI performance report is explicitly described by Google as a first version. Based on what publishers and SEOs have been asking for since AI Overviews launched, the most likely additions in future versions:
-
-- Query data (what people were searching when your page appeared)
-- Click data (how many people clicked through from AI features)
-- Separate breakdown for AI Overviews versus AI Mode
-- Position data (where in the AI answer your content appeared)
-- Comparison view against regular search performance for the same pages
-
-For now, treat the impression data as a directional signal. It tells you whether your AI SEO work is moving the needle, even if it cannot yet tell you the full story.
-
-To set up your AI SEO monitoring infrastructure alongside the new GSC report, see [how AI search monitoring improves your SEO strategy](/blog/how-ai-search-monitoring-improves-seo-strategy) and [best AI Mode SEO tracking tools](/blog/best-ai-mode-seo-tracking-tools). For the optimization work that drives those impressions higher, see [AI Overviews SEO](/ai-overviews-seo) and [AI Mode SEO](/ai-mode-seo).
-
-Sources: [Google Search Central Blog](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports), [Google Support -- Generative AI performance report (Search)](https://support.google.com/webmasters/answer/16984139), [Search Engine Land](https://searchengineland.com/google-search-console-ai-performance-reports-and-controls-to-block-your-content-in-ai-responses-479298), [Search Engine Roundtable](https://www.seroundtable.com/google-ai-performance-report-blocking-controls-41443.html), [SemRush Blog](https://www.semrush.com/blog/google-adds-ai-performance-reports/)
+Next in this series: our own recovery data. [What a Google quality hit actually looks like in Search Console](/blog/what-a-google-quality-hit-looks-like-gsc-data/), charted from this site's export.

@@ -1,67 +1,82 @@
 ---
 title: "xAI Grok Pricing in 2026: Every Model and Plan Explained"
-description: "A complete guide to xAI Grok pricing in 2026: API token rates for Grok 4.3, Grok 4.1 Fast, and Grok 4 Heavy, plus SuperGrok, X Premium+, and Grok Business"
-deck: "Every Grok model rate, the SuperGrok and Heavy plans, and why Grok leads the field on raw cost-efficiency."
+description: "xAI Grok pricing in 2026: API token rates for grok-4.6, grok-4.5, grok-4.3, and grok-build, plus SuperGrok, SuperGrok Plus, X Premium+, and Grok Business."
+deck: "Every Grok model rate, the SuperGrok tiers, and the long-context surcharge that changes the cost math."
 pubDate: 2026-06-10
-updatedDate: 2026-06-10
+updatedDate: 2026-09-08
 category: "Tooling"
 tags: ["grok", "pricing", "ai-models", "xai"]
 faqs:
   - q: "How much does the Grok API cost in 2026?"
-    a: "Per million tokens (input/output): Grok 4.3 is $1.25/$2.50, and Grok 4.1 Fast is $0.20/$0.50 with a 2M-token context. Grok is generally the cheapest of the major frontier-class APIs."
+    a: "Per million tokens (input/output): grok-4.6 and grok-4.5 are $2/$6 under 200K tokens of context, doubling to $4/$12 above that. grok-4.3 is $1.25/$2.50 with a 1M context window, and the coding-oriented grok-build-0.1 is the cheapest at $1/$2."
   - q: "What is the cheapest Grok model?"
-    a: "Grok 4.1 Fast at $0.20 input / $0.50 output per million tokens is the cheapest, and it carries the largest context window in the lineup at 2M tokens."
-  - q: "How much are the Grok consumer plans?"
-    a: "SuperGrok Lite is $10/month, SuperGrok is $30/month ($300/year), X Premium+ is $40/month, and SuperGrok Heavy is $300/month. Grok Business is $30/user/month for teams."
+    a: "grok-build-0.1 at $1 input / $2 output per million tokens. Among the general-purpose models, grok-4.3 at $1.25/$2.50 with a full 1M context window is the best value."
+  - q: "How much is SuperGrok per month?"
+    a: "SuperGrok Lite is $10/month, SuperGrok is $30/month ($300/year), the newer SuperGrok Plus is $100/month ($1,000/year), and SuperGrok Heavy is $300/month. X Premium+ bundles Grok with X features at $40/month, and Grok Business is $30/user/month."
+  - q: "Does Grok have a free tier?"
+    a: "Yes. Rate-limited Grok access on grok.com and X is free; xAI does not publish exact free-tier message limits, and they change often."
 ---
 
-xAI's Grok has positioned itself as the cost-efficiency leader among frontier-class models. This guide covers the 2026 API rates and consumer plans.
+xAI's Grok has positioned itself as a cost-efficiency leader among frontier-class models. This guide covers the 2026 API rates and consumer plans.
 
-Everything here is current as of June 10, 2026. Confirm against xAI's official pages before budgeting.
+Last checked: September 8, 2026, against docs.x.ai for API rates. Consumer plan prices are cross-checked against multiple pricing trackers; confirm on x.ai before budgeting.
 
 ![Grok output price per 1M tokens by model](/images/posts/grok-pricing-2026-infographic.webp)
 
 ## Grok API pricing by model
 
-Rates are per million tokens, input/output.
+Rates are per million tokens, input/output. The lineup now uses tiered context pricing: rates double once your prompt context exceeds 200K tokens.
 
-| Model | Input ($/M) | Output ($/M) | Context | Notes |
-|---|---|---|---|---|
-| Grok 4.3 | $1.25 | $2.50 | 1M | Reasoning-first flagship (Apr 2026) |
-| Grok 4.1 Fast | $0.20 | $0.50 | 2M | Cheapest rate, largest context |
-| Grok 4 Heavy | varies | varies | 256k | Multi-agent, highest benchmarks |
+| Model | Context | Input under 200K | Output under 200K | Input 200K+ | Output 200K+ |
+|---|---|---|---|---|---|
+| grok-4.6 | 500K | $2.00 | $6.00 | $4.00 | $12.00 |
+| grok-4.5 | 500K | $2.00 | $6.00 | $4.00 | $12.00 |
+| grok-4.3 | 1M | $1.25 | $2.50 | $2.50 | $5.00 |
+| grok-4.20 (reasoning / multi-agent) | 1M | $1.25 | $2.50 | $2.50 | $5.00 |
+| grok-build-0.1 | 256K | $1.00 | $2.00 | $2.00 | $4.00 |
 
-**Grok 4.3** is xAI's flagship, a reasoning-first model at a strikingly low $1.25/$2.50, with cached input around $0.20. **Grok 4.1 Fast** is the budget champion of the entire market at $0.20/$0.50, and it carries a 2M-token context, the largest in this comparison. **Grok 4 Heavy** is the multi-agent, parallel-compute model with the highest in-house benchmarks, aimed at the hardest problems.
+**grok-4.6 at $2/$6** matches Claude Sonnet 5's input price with a 500K context window. Watch the tiered pricing though: past 200K tokens of context, the rate doubles to $4/$12, which matters for long-document and agent workloads.
 
-The headline takeaway: on raw price per token, Grok undercuts Claude, GPT, and Gemini across the board, which makes it compelling for cost-sensitive, high-volume workloads, especially where a very large context helps.
+**grok-4.3** remains the value pick at $1.25/$2.50 with a full 1M context window, and the new coding-oriented **grok-build-0.1** is the cheapest xAI model at $1/$2, priced to compete with Haiku 4.5 and GPT-5.6 Luna for high-volume automation.
+
+### Older model pricing
+
+Earlier versions of this page listed Grok 4.1 Fast at $0.20/$0.50 with a 2M context and a "Grok 4 Heavy" API row. Neither appears on xAI's current model list; if your workload depends on 4.1 Fast, confirm availability and current rates on docs.x.ai directly.
 
 ## Grok consumer and team plans
 
 | Plan | Price | Notes |
 |---|---|---|
-| SuperGrok Lite | $10/mo | Entry tier; Grok Imagine + one agent |
-| SuperGrok | $30/mo ($300/yr) | Cheapest path to full Grok |
+| Free | $0 | Rate-limited Grok on grok.com and X |
+| SuperGrok Lite | $10/mo | Entry tier |
+| SuperGrok | $30/mo ($300/yr) | Standard full-access tier |
 | X Premium+ | $40/mo | Bundles Grok with X platform perks |
-| SuperGrok Heavy | $300/mo | Full access including Grok 4.3 / Heavy |
+| SuperGrok Plus | $100/mo ($1,000/yr) | New mid-tier since June; higher limits, priority access |
+| SuperGrok Heavy | $300/mo | Top tier, most compute |
 | Grok Business | $30/user/mo | Team billing, admin controls |
+
+The change since June is **SuperGrok Plus at $100/month**, a new tier that landed in August between SuperGrok ($30) and Heavy ($300). It exists for people who kept running out of usage on the $30 plan but could not justify a jump to $300. xAI's site blocks automated checks, so these consumer prices are sourced from pricing trackers checked September 8, 2026; verify on x.ai before you subscribe.
 
 ## Which Grok option should you pick?
 
-For developers, Grok 4.1 Fast is hard to beat on cost for high-volume or large-context work, with Grok 4.3 when you need stronger reasoning, still at a low price. For consumers, SuperGrok at $30/month is the standard full-access tier; X Premium+ makes sense if you already want the X perks; Heavy is for power users who need the top model and the most compute.
+For developers, grok-4.3 is hard to beat on cost for large-context work, with grok-4.6 when you need the current flagship, still cheap by frontier standards under 200K context. For consumers, SuperGrok at $30/month remains the standard tier; Plus at $100 is for heavy daily users; X Premium+ makes sense if you already want the X perks.
 
-The trade-off to weigh is capability: Grok's coding-benchmark scores trail the leaders (its SWE-bench numbers vary widely by scaffold), so if your workload is hard coding, compare against Claude and GPT before committing on price alone.
+The trade-off to weigh is capability: Grok's coding-benchmark scores trail the leaders (its SWE-bench numbers vary widely by scaffold), so if your workload is hard coding, compare against Claude and GPT before committing on price alone. And factor the 200K surcharge into any agent workload estimate; long-running agents blow past that threshold routinely.
 
 ## FAQ
 
 **How much does the Grok API cost in 2026?**
-Grok 4.3 $1.25/$2.50, Grok 4.1 Fast $0.20/$0.50 (2M context).
+grok-4.6 and 4.5 at $2/$6 under 200K context ($4/$12 above), grok-4.3 at $1.25/$2.50 (1M context), grok-build-0.1 at $1/$2.
 
 **What is the cheapest Grok model?**
-Grok 4.1 Fast at $0.20/$0.50 per million tokens, also the largest context at 2M.
+grok-build-0.1 at $1/$2 per million tokens; grok-4.3 is the best general-purpose value.
 
 **How much are the Grok plans?**
-SuperGrok Lite $10, SuperGrok $30 ($300/yr), X Premium+ $40, SuperGrok Heavy $300, Grok Business $30/user.
+SuperGrok Lite $10, SuperGrok $30 ($300/yr), SuperGrok Plus $100 ($1,000/yr), X Premium+ $40, SuperGrok Heavy $300, Grok Business $30/user.
+
+**Does Grok have a free tier?**
+Yes, rate-limited on grok.com and X; exact limits are unpublished and change often.
 
 This page is part of our full [AI model pricing and comparison guide](/blog/claude-models-openai-codex-pricing-2026). See also [Claude pricing](/blog/claude-pricing-2026), [OpenAI GPT pricing](/blog/openai-gpt-pricing-2026), and [Gemini pricing](/blog/gemini-pricing-2026), or jump to [the cheapest AI model](/blog/cheapest-ai-model-2026).
 
-Verify against the official [xAI API pricing](https://x.ai/api) and [Grok models](https://docs.x.ai/developers/models) pages.
+Verify against the official [xAI API models and pricing](https://docs.x.ai/docs/models) page and [x.ai](https://x.ai) for consumer plans.

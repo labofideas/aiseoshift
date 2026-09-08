@@ -1,0 +1,108 @@
+---
+title: "How to Block Your Site from Google's AI Features (and Whether You Should)"
+description: "Google's new Search Console toggle lets you opt out of AI Overviews and AI Mode. Every blocking method, what each actually does, and when opting out makes sense."
+deck: "As of August 31, 2026 there is a real opt-out from Google's AI answers, and it lives in Search Console. Whether you should flip it is a different question. Every blocking mechanism that exists right now, what each one actually controls, and a decision framework by site type."
+pubDate: 2026-09-08
+category: Strategy
+tags:
+  - AI Overviews
+  - Google Search Console
+  - robots.txt
+  - Content Signals
+  - zero-click search
+author: Shashank Dubey
+faqs:
+  - q: "How do I block my site from Google AI Overviews?"
+    a: "Use the generative AI opt-out in Google Search Console, available to all verified sites worldwide since August 31, 2026. It removes your site from AI Overviews, AI Mode, and AI Overviews in Discover entirely. It is site-wide only; for per-page control, use nosnippet or data-nosnippet instead."
+  - q: "Does opting out of AI Overviews hurt my Google rankings?"
+    a: "Google states the opt-out will not be used as a ranking signal outside generative AI features, so your regular blue-link rankings are unaffected. You do lose all impressions, citations, and traffic from AI surfaces. Seer Interactive's data shows cited brands earn about 35% more organic clicks than uncited ones."
+  - q: "Does blocking Google-Extended remove me from AI Overviews?"
+    a: "No. Google-Extended only controls Gemini model training and grounding in Gemini apps. AI Overviews and AI Mode use standard Google Search indexing, which is why the dedicated Search Console opt-out was introduced in 2026."
+  - q: "What are Content Signals in robots.txt?"
+    a: "Content Signals are a Cloudflare-introduced robots.txt syntax that declares how crawlers may use your content: search indexing, AI training, or AI input. They are a machine-readable statement of rights, not an enforcement mechanism; compliance is voluntary."
+  - q: "Can I block AI Overviews on some pages but not others?"
+    a: "Not with the Search Console toggle, which is all-or-nothing. Per-page control requires snippet directives: nosnippet removes a page's text from AI answers entirely, and data-nosnippet excludes specific HTML sections. Both also affect your snippets in regular search results."
+  - q: "If I opt out, does the AI Overview disappear for my keywords?"
+    a: "No. The AI answer still appears for the query; Google builds it from other sites' content instead. Opting out removes you from the answer. It doesn't remove the answer from the results page."
+---
+
+For two years, site owners had a complaint Google couldn't answer: "Your AI summarizes my content, keeps the click, and I never agreed to any of it." As of August 31, 2026, that's no longer true. There is now a real opt-out, and it lives in Search Console.
+
+Whether you should flip it is a different question. The data says opting out costs most sites more than it protects. But "most sites" isn't your site, so this post covers every blocking mechanism that exists in September 2026: what each one actually controls, what it doesn't, and a decision framework by site type. We run one of these controls on this site ourselves, and I'll show you exactly what it does.
+
+## The new Search Console control: a true AI opt-out
+
+Announced June 3, 2026 and [rolled out to all websites worldwide on August 31, 2026](https://blog.google/products-and-platforms/products/search/new-controls-website-owners/), the new Search Console setting lets verified site owners decide, in Google's words, "if they want their site to appear in and help ground responses in our generative AI Search features (like AI Overviews, AI Mode or AI Overviews in Discover)."
+
+Three things make this control different from everything that came before it:
+
+1. **It's surface-level, not crawler-level.** You're not blocking a bot; you're telling Google's search systems not to use your indexed content in generative answers. Regular crawling and indexing continue untouched.
+2. **It's complete.** "Sites that opt out will not receive traffic or impressions from our generative AI features." No citations, no links, no grounding.
+3. **It's explicitly not a ranking signal.** Google states the control "will not be used as a ranking signal for search results outside of these generative AI Search features." Your blue-link rankings stay put. (You're trusting Google's word on that, but it's a written, public commitment, which is more than the old workarounds ever had.)
+
+The catch: it's binary and site-wide. There's no per-page or per-directory version. If you want your blog in AI answers but your premium research out of them, this toggle can't do that. You'll need the snippet controls below.
+
+## Every blocking method compared
+
+| Method | Blocks AI Overviews / AI Mode? | Blocks AI training? | Granularity | Affects regular search? |
+|---|---|---|---|---|
+| Search Console opt-out toggle | Yes, fully | No | Whole site | No (Google's stated policy) |
+| `Google-Extended` in robots.txt | No | Yes (Gemini training + grounding in Gemini apps) | Path-level | No |
+| `nosnippet` | Yes (removes text from AI answers) | No | Per page | Yes, kills your snippet in blue links too |
+| `data-nosnippet` | Partially (excludes marked sections) | No | Per HTML section | Same sections excluded from snippets |
+| `max-snippet` | Limits usable text | No | Per page | Truncates blue-link snippets |
+| Content Signals (robots.txt) | No (it's a declaration, not enforcement) | Declares intent | Path-level | No |
+| Blocking Googlebot | Yes | Yes | Path-level | Yes, you leave the index entirely |
+
+Three of these deserve a closer look, because they're the ones people get wrong.
+
+### Google-Extended doesn't do what most people think
+
+`Google-Extended` is a robots.txt token controlling whether your content trains Gemini models and grounds answers in Gemini apps. It has **never** controlled AI Overviews or AI Mode. Those are search features, fed by ordinary Googlebot crawling. Thousands of publishers blocked Google-Extended in 2023 to 2025 believing they'd opted out of AI search, and kept appearing in AI Overviews the whole time. If that's you, the new Search Console toggle is the control you actually wanted. Our [robots.txt for AI crawlers guide](/blog/robots-txt-for-ai-crawlers/) maps every Google token to what it really governs.
+
+### Snippet controls: the only per-page option
+
+Before the toggle, `nosnippet`, `data-nosnippet`, and `max-snippet` were the only levers, because Google honors snippet directives in generative responses. They still matter, because they're the only **granular** option: wrap your proprietary data tables in `data-nosnippet` and Google's AI can't quote them, while the rest of the page stays eligible. The cost is symmetrical. Whatever you hide from AI answers, you also hide from regular search snippets. There is no "AI-only" snippet directive.
+
+### Content Signals: declaration, not enforcement
+
+Here's the first-person example. This site's robots.txt carries Cloudflare's managed Content Signals block:
+
+```
+User-agent: *
+Content-Signal: search=yes,ai-train=no,use=reference
+```
+
+Translated: index us for search, don't train models on us, and when AI systems consume our content, use it as a cited reference rather than wholesale. Cloudflare frames these signals as an express reservation of rights under Article 4 of the EU Copyright Directive. Legal groundwork, not a technical wall. No AI crawler is *forced* to honor it.
+
+We keep it because it costs nothing, states our position on training in a machine-readable way, and, unlike a hard block, doesn't sacrifice the AI-search visibility we're actively optimizing for. If you want the same setup, Cloudflare can manage it on any proxied site, or you can write the lines by hand.
+
+## Should you actually opt out?
+
+Now the strategy question. The best available data says citations are worth real traffic: Seer Interactive's study of 25.1 million impressions found brands cited in AI Overviews earned **35% more organic clicks** than brands absent from them ([covered by Search Engine Land](https://searchengineland.com/google-ai-overviews-drive-drop-organic-paid-ctr-464212)). The same research shows why people are tempted to leave: queries with AI Overviews saw organic CTR fall 61% overall.
+
+Both things are true. AI Overviews shrink the pie, and being cited is how you keep your slice. Opting out doesn't restore the old pie; the AI answer still appears, built from your competitors instead. We covered that dynamic in [the death of blue links](/blog/death-of-blue-links-ai-search/).
+
+**Opting out makes sense when:**
+
+- **Your content's value is the content itself.** Paywalled journalism, proprietary research, premium data. If an AI summary substitutes for a subscription, grounding Google's answers is direct cannibalization.
+- **Licensing is your negotiating position.** You can't sell access to content you're giving away through AI answers. Opting out is your bargaining chip.
+- **You've measured substitution.** If your gen-AI impressions are high while clicks on those same pages collapsed, the answers are replacing your visits and you have the receipts.
+
+**Staying in makes sense when:**
+
+- **You monetize attention, not access.** Blogs, SaaS marketing, ecommerce, local services, affiliates: every AI surface is discovery. This site stays in for exactly this reason. For a brand competing on AI-search expertise, being cited *is* the product demo.
+- **Brand visibility drives your funnel.** Zero-click exposure still builds recall and branded demand, the argument we laid out in [zero-click search strategy](/blog/zero-click-search-strategy/). You can't earn that opted out.
+- **Reputation defense matters.** If AI engines will answer questions about your brand either way, you want your own pages grounding those answers. See [controlling your AI brand narrative](/blog/defensive-seo-control-ai-brand-narrative/).
+
+**The middle path** most publishers should consider before the nuclear toggle: stay opted in site-wide, and use `data-nosnippet` on the specific assets (pricing tables, research findings, tool output) whose full text you don't want quoted.
+
+## How to verify your block is actually working
+
+Whichever method you choose, don't assume. Check. Each mechanism has its own confirmation signal:
+
+- **Search Console toggle:** watch the generative AI performance report. Impressions from AI features should fall to zero within days of opting out. If they don't, the setting didn't take or you toggled a different property than you think.
+- **Snippet directives:** run a query your page ranks for in AI Mode and in a normal SERP. A `nosnippet` page can still be *linked* in results, but no text from it should be quoted anywhere. Spot-check the specific `data-nosnippet` sections by searching for their exact phrases.
+- **robots.txt changes:** fetch `yourdomain.com/robots.txt` from a clean session (not a cached CDN copy) and confirm the live file carries your directives. On Cloudflare-proxied sites, the managed Content Signals block is injected at the edge. Your origin file won't show it, which confuses people during audits.
+
+Recheck after any CDN, plugin, or SEO-tool migration. Snippet directives in particular have a habit of being stripped by page builders that rewrite meta tags.

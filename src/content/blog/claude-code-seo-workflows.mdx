@@ -1,0 +1,151 @@
+---
+title: "Claude Code SEO Workflows That Actually Save Time (Tested)"
+description: "Six tested Claude Code workflows for SEO: GSC triage, prune lists, internal links, briefs, schema, plus an honest list of where it wastes your time."
+deck: "Every workflow here has been run for real on this site or its data, including the one that diagnosed our own traffic collapse. And there's a section at the end about where Claude Code wastes time, because that list is just as real."
+pubDate: 2026-09-08
+category: Tooling
+tags:
+  - Claude Code
+  - SEO automation
+  - AI SEO
+  - workflows
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "Do I need Claude Code specifically, or does any AI chat work?"
+    a: "The chat interface can analyze one pasted file. These workflows depend on filesystem access, shell commands, and multi-step loops. That's the agent part. Cursor and other agentic tools can run similar loops; the prompts transfer."
+  - q: "Which workflows are safe to run unattended?"
+    a: "Internal-link mapping and robots/canonical checks: they're read-only and mechanical. GSC triage, prune lists, and brief generation produce judgments you should review. Nothing here should auto-publish or auto-delete anything."
+  - q: "Does this replace an SEO tool subscription?"
+    a: "No. It replaces the hours between your tools: the cross-referencing, triaging, and report-writing. Your rank tracker and crawler still do their jobs, and many now connect directly via MCP servers."
+  - q: "What data do these workflows need at minimum?"
+    a: "A GSC CSV export gets you triage, prune lists, and briefs. A domain name gets you schema and crawl checks. Internal-link mapping needs content access via a markdown folder or WP-CLI on your server."
+  - q: "Won't Google penalize AI-assisted SEO work?"
+    a: "Google's stated position targets scaled, low-value content, not tooling. Analysis, auditing, link mapping, and validation are invisible to Google; only what you publish is visible. That's why we recommend the analysis workflows and warn against the article-writing one."
+  - q: "How do I make the outputs consistent month to month?"
+    a: "Freeze prompts in a CLAUDE.md file or a custom skill and reuse them verbatim. Consistency comes from frozen prompts, not from the model."
+---
+
+Most "AI for SEO" content is written by people who ran one prompt, liked the vibe, and published a listicle. This post is different in one specific way: every workflow below has been run for real on this site or its data, including the one that diagnosed our own traffic collapse. And there's a section at the end about where Claude Code *wastes* time, because that list is just as real.
+
+Claude Code is a terminal agent: it reads files, runs commands, and edits things, in a loop, until a task is done. That makes it suited to a specific class of SEO work: **jobs that are tedious because of volume, not because they're hard**. Reading 900 query rows. Checking 300 URLs. Cross-referencing two exports. Here are six of those jobs.
+
+## The six workflows at a glance
+
+| # | Workflow | Input | Output | Human review needed |
+|---|---|---|---|---|
+| 1 | GSC export triage | Performance CSV export | Diagnosis + action list | Medium: verify conclusions |
+| 2 | Prune-list building | GSC data + URL inventory | Keep/refresh/prune table | High: strategic calls |
+| 3 | Internal-link mapping | Content folder or sitemap | Orphan pages + link suggestions | Low: mechanical |
+| 4 | Brief generation from query data | Queries.csv | Content briefs with real phrasing | Medium: angle selection |
+| 5 | Schema generation + validation | A URL or page draft | JSON-LD + validation result | Low: test before shipping |
+| 6 | Robots/canonicalization checks | Domain | Pass/fail findings | Low: mechanical |
+
+### 1. GSC export triage
+
+The workhorse. Export your Performance report, unzip, run Claude Code in the folder:
+
+```
+Read every CSV in this folder. Find the story: inflection points
+in the daily data, pages with impressions but no clicks, query
+families that overlap, URL duplicates. End with a ranked list of
+actions, not a summary.
+```
+
+When we ran this on our own export, it found a step-function collapse (600–900 impressions a day to under 25, overnight on June 24–25) that the 3-month UI chart had visually smoothed away. Then it fetched our robots.txt and homepage headers to rule out a technical cause before blaming Google. That before/after, *from CSV to tested diagnosis without leaving the session*, is the thing a dashboard can't do.
+
+The full setup, including MCP-server options for live API access, is in our [GSC reporting agent walkthrough](/blog/gsc-reporting-agent-claude-code/).
+
+**Where it fails:** small properties. With a few hundred impressions, daily averages are noise, and the agent will narrate noise with confidence if you don't ask for sample sizes.
+
+### 2. Content audit and prune-list building
+
+After a quality-related traffic drop, the job is deciding what to cut. That means crossing three datasets: what Google shows (GSC), what you have (URL inventory), and what each page actually says (the content). Claude Code can hold all three:
+
+```
+Here's Pages.csv from GSC and sitemap.xml. Build a table of every
+URL with: impressions, clicks, avg position, and a category:
+KEEP (earns clicks or ranks top 10), REFRESH (impressions, no
+clicks, position 11-30), PRUNE-CANDIDATE (everything else).
+Flag any URL patterns that look programmatically generated.
+```
+
+On our data this surfaced the exact pattern that likely triggered the drop: families of near-identical permutation pages ("engine + SEO tool / checker / software / tracker") holding thousands of combined impressions at positions 60–90 with zero clicks, while the handful of specific, first-hand posts ranked top 10. The agent grouped the permutations by template automatically. Forty rows collapsed into three patterns.
+
+**Where it fails:** the final call. A services page with bad search metrics might be your best converter. The agent builds the evidence table; a human signs the demolition order. Pair this with a structured [AI SEO audit process](/blog/ai-seo-audit-guide/) rather than treating the output as a to-do list.
+
+### 3. Internal-link mapping
+
+If your content lives as markdown (headless setups, static sites) or you can export it, this one is almost pure win:
+
+```
+Scan all posts in ./content. Build: (a) a list of orphan posts
+with fewer than 2 internal inbound links, (b) for each orphan,
+3 posts that mention its topic and the exact sentence where a
+link would fit naturally. Don't suggest links from tag/archive pages.
+```
+
+Because the agent greps actual sentences, its suggestions come with anchor context instead of "these pages are related." On a WordPress site without markdown export, the same job works from a WP-CLI dump (`wp post list --post_type=post --fields=ID,post_name,post_title --format=csv` plus `wp post get` per candidate). Slower, still hands-off.
+
+**Where it fails:** it over-suggests. Cap it ("maximum 3 new links per post") or you'll get link-stuffed paragraphs. This is also the workflow to run *after* [refreshing old content](/blog/how-to-refresh-old-seo-content/), since refreshed posts are the natural place to add links.
+
+### 4. Content briefs from real query data
+
+Generic AI briefs are keyword soup. The fix is grounding them in your own Queries.csv, which contains real human phrasing you'd never invent:
+
+```
+From Queries.csv, find question-form and long-tail queries where
+we get impressions but rank below position 15. Cluster them by
+intent. For the top cluster, write a brief: working title, the
+exact queries to answer (verbatim), H2 outline, and what
+first-hand data or testing we'd need for this to be citable.
+```
+
+The "verbatim queries" instruction matters. Our export contained gems like *"is there a tool that shows me exactly which sources ai uses to answer"*: a full sentence a human typed, sitting at position 44. That's a brief, an H2, and an FAQ answer in one row, and no keyword tool phrases it that way.
+
+The "what first-hand data would we need" line is the anti-slop clause. It forces every brief toward something an AI content farm can't produce, which matters more than ever in AI search. See our notes on [what makes agents useful rather than noisy](/blog/seo-ai-agents/).
+
+**Where it fails:** angle selection. The agent clusters queries correctly but can't know which cluster matches your authority. Ten minutes of human judgment on top.
+
+### 5. Schema markup generation and validation
+
+Claude Code writing JSON-LD is unremarkable. The workflow win is the loop: generate, then *verify* in the same session.
+
+```
+Fetch https://example.com/blog/some-post/. Generate Article +
+FAQPage JSON-LD from its actual content (no invented fields).
+Then validate: check required properties against schema.org and
+Google's documented requirements for each type, and list anything
+that's a guess rather than extracted from the page.
+```
+
+The "no invented fields" and "list anything that's a guess" clauses are the whole trick. Unconstrained, models will cheerfully hallucinate `aggregateRating` values, which is exactly the kind of markup that earns a manual action. Constrained, the output is markup you can paste after one pass through Google's Rich Results Test.
+
+**Where it fails:** validation is only as good as the check you ask for. The agent's schema.org knowledge is strong, but Google's eligibility rules change; final validation belongs in Google's own tools.
+
+### 6. Robots, canonicals, and crawl-facing checks
+
+Five-minute sanity checks, batched:
+
+```
+For https://example.com: fetch robots.txt and flag anything that
+blocks major crawlers or AI crawlers. Check the homepage and 5
+sample post URLs for: HTTP status, redirect chains, meta robots,
+canonical tags, and whether trailing-slash / www / http variants
+all resolve to one canonical URL.
+```
+
+This is the workflow that caught our duplicate-URL problem: the same posts collecting impressions separately with and without trailing slashes, splitting their metrics across rows. One `curl -sIL` per variant. It's a pattern a human checks once and forgets to re-check forever. An agent re-checks it every time, identically.
+
+**Where it fails:** rendering. `curl` doesn't execute JavaScript, so client-side-injected tags need a headless browser step. Ask for one explicitly if your stack renders meta tags in JS.
+
+## Where Claude Code wastes your time
+
+The candor section. Four real failure modes:
+
+- **Writing finished articles.** It produces competent, structurally perfect posts that read like everyone else's competent, structurally perfect posts. In an era where Google is actively revaluing scaled AI content (we have the impression graph to prove it), this is negative-value work. Use it for briefs, data, and editing; keep the first-hand substance human.
+- **Research without grounding.** Asked open questions ("what are the best keywords for X?"), it speculates fluently. Every workflow above works *because* it starts from your files and your data. No input files, no workflow.
+- **Re-answering instead of re-using.** If you'll run a job monthly, freeze the prompts in a `CLAUDE.md` or a custom skill. Re-improvising the prompt each time produces subtly different reports and burns the time you saved.
+- **Rabbit holes.** Agents chase interesting tangents. Ours once spent a detour analyzing country-level CTR that changed no decision. End prompts with "end with a ranked action list" to force convergence. (Model choice matters less than prompt discipline here, though if you're curious how the current models compare on technical work, we keep a [coding-model comparison](/blog/best-ai-model-for-coding-2026/) updated.)
+
+If you're choosing which data sources to wire in before any of this, start with our [MCP servers roundup](/blog/best-seo-mcp-servers-github/).

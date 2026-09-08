@@ -1,0 +1,140 @@
+---
+title: "How to Estimate AI Mode Clicks When Google Search Console Won't Tell You"
+description: "GSC's new generative AI report shows impressions only, no clicks, CTR, or queries. Here are four practical methods to estimate your AI Mode traffic anyway."
+deck: "Search Console's generative AI report finally shows how often you appear in AI Overviews and AI Mode, but it ships without clicks, CTR, or query data. Four estimation methods get you a defensible click number anyway. Here they are, in the order worth running them."
+pubDate: 2026-09-08
+category: Playbooks
+tags:
+  - AI Mode
+  - Google Search Console
+  - AI SEO measurement
+  - GA4
+author: Shashank Dubey
+faqs:
+  - q: "Can Google Search Console track AI Mode clicks directly?"
+    a: "No. As of September 2026, the generative AI performance report shows impressions only, broken down by page, country, device, and date. Clicks from AI features are included in your overall performance report totals but are not labeled, so they can't be isolated directly."
+  - q: "How do I see AI Mode data in Search Console?"
+    a: "Open the Performance section and look for the generative AI report, rolled out worldwide on August 31, 2026. It groups AI Overviews, AI Mode, and generative AI features in Discover, with date granularity from hourly to monthly."
+  - q: "Do AI Mode visits show up in Google Analytics?"
+    a: "Yes, but not labeled. Clicks from AI Mode and AI Overviews arrive as standard google organic sessions with no distinct referrer, which is why estimation requires cross-referencing GA4 landing-page sessions against GSC web-search clicks."
+  - q: "What's a realistic CTR for AI Overview citations?"
+    a: "Seer Interactive's analysis of 25.1 million impressions found organic CTR on queries with AI Overviews averaged 0.61%, compared to 1.76% for queries without them. Cited brands did meaningfully better than uncited ones, earning 35% more organic clicks."
+  - q: "Are generative AI impressions new impressions added to my totals?"
+    a: "No. Google confirmed AI impressions were already included in the overall performance report. The new report breaks them out; adding the two reports together double-counts."
+  - q: "Does query data exist anywhere for AI Mode?"
+    a: "Not in Search Console. The generative AI report ships without query data entirely. Third-party AI visibility trackers infer prompts by sampling AI engines directly, but nothing first-party maps your AI impressions to the questions that triggered them yet."
+---
+
+Google finally gave us dedicated AI reporting in Search Console, then left out the one column everyone wanted.
+
+The [Search Generative AI performance reports](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports) launched on June 3, 2026 (UK first, then [worldwide as of August 31, 2026](https://blog.google/products-and-platforms/products/search/new-controls-website-owners/)). They show how often your pages appear in AI Overviews, AI Mode, and generative AI features in Discover. What they don't show: clicks, CTR, or the queries that triggered those appearances.
+
+So you can now prove you're *visible* in AI Mode. You still can't prove it's worth anything.
+
+This post covers what the report actually gives you, and four estimation methods that get you a defensible click number anyway, including the exact workflow I'd run this week, in order, with the failure modes of each method stated plainly.
+
+## What the generative AI report shows (and the gap)
+
+Before estimating anything, know precisely what you have to work with.
+
+| Dimension | Available in gen-AI report? | Notes |
+|---|---|---|
+| Impressions | Yes | The only metric provided |
+| Clicks | No | Bundled into the overall performance report, unlabeled |
+| CTR | No | Can't compute without clicks |
+| Queries | No | The biggest gap for content planning |
+| Page | Yes | Which URLs appeared in AI answers |
+| Country | Yes | Geographic split of AI visibility |
+| Device | Yes (Search only) | Not available for Discover |
+| Date | Yes | Hourly to monthly granularity |
+| Surface | Yes | AI Overviews, AI Mode, Discover gen-AI, reported as a group of AI features |
+
+One detail that trips people up: these impressions are **not new data**. Google confirmed AI impressions were already counted inside your overall performance report. The new report just breaks them out. If you add gen-AI impressions to "regular" impressions, you'll double-count. I walked through the report itself in more detail in [our GSC AI performance report guide](/blog/google-search-console-ai-performance-report/).
+
+The click data exists. Google has it, and clicks from AI features flow into your *overall* performance report totals. It's just not labeled. That's the crack every estimation method below works through.
+
+## Method 1: Subtract your way to an AI click ceiling
+
+**What it does:** Uses the overall report vs. the search-type filters to bound how many of your clicks could be coming from AI surfaces.
+
+Because AI impressions and clicks are folded into the overall totals, you can approach the number by subtraction:
+
+1. Open the overall performance report for a date range (last 28 days).
+2. Note total clicks and impressions.
+3. Open the generative AI report for the same range. Note AI impressions.
+4. Compute your **AI impression share**: AI impressions divided by total impressions.
+5. Apply a discounted CTR assumption to that share. AI surfaces click through far worse than blue links. Seer Interactive's study of 25.1 million impressions found organic CTR on queries with AI Overviews averaged 0.61%, versus 1.76% without ([Search Engine Land's coverage](https://searchengineland.com/google-ai-overviews-drive-drop-organic-paid-ctr-464212)).
+
+So a workable estimate is:
+
+```
+Estimated AI clicks ≈ AI impressions × 0.5–0.8%
+(use the low end if you're rarely cited, the high end if you're a named citation)
+```
+
+**Worked example from this site:** aiseoshift.com's last-90-day export shows roughly 9,700 total impressions. If the gen-AI report attributed, say, 2,000 of those to AI features, the estimate would be 2,000 × 0.61%, so about **12 clicks**. A ceiling, not a promise.
+
+**Limitation:** You're borrowing an industry-average CTR, not measuring your own. Treat the output as an order of magnitude, not a KPI. It answers "is AI Mode sending me dozens of clicks or basically none?" which, honestly, is the decision-relevant question.
+
+## Method 2: GA4 landing-page cross-reference
+
+**What it does:** Finds sessions that GSC's web-search data can't explain.
+
+AI Mode clicks arrive as ordinary `google / organic` sessions in GA4; there's no separate referrer. But you can triangulate:
+
+1. In GA4, pull organic Google sessions by landing page for the last 28 days.
+2. In GSC, pull web-search clicks by page for the same window.
+3. Flag pages where **GA4 organic sessions meaningfully exceed GSC web clicks** (beyond the normal 10–20% discrepancy the two systems always have from timezone, sampling, and consent-mode gaps).
+4. Cross-check the flagged pages against the gen-AI report's page list. A page with high AI impressions *and* an unexplained session surplus is very likely earning AI Mode clicks.
+
+We covered the GA4 setup side, channel groups, landing-page exploration, and annotation habits included, in [GA4 for AI SEO tracking](/blog/ga4-for-ai-seo-tracking/).
+
+**Limitation:** The GA4/GSC discrepancy is noisy at low volumes. Below about 100 sessions per page per month, the noise swamps the signal. Run it on your top 20 pages only.
+
+## Method 3: Hourly impression patterns
+
+**What it does:** Uses the gen-AI report's hourly granularity, the one genuinely new capability it shipped with, to identify *when* AI surfaces show you, then looks for matching session bumps.
+
+AI Mode usage skews toward research-heavy periods (working hours, weekday evenings). If your gen-AI impressions spike 2 to 4pm on weekdays:
+
+1. Export hourly gen-AI impressions for two weeks.
+2. Export hourly GA4 organic sessions for the same pages.
+3. Look for correlated movement that *doesn't* appear in your web-search click curve.
+
+Correlation across enough days is evidence those AI impressions convert to visits.
+
+**Limitation:** This is the most labor-intensive method and only works with steady traffic. It's best used to *confirm* a suspicion from Method 2, not to generate the estimate on its own.
+
+## Method 4: Branded search lift as a proxy
+
+**What it does:** Measures the second-order effect. People who saw you in an AI answer, didn't click, and searched your brand later.
+
+This matters because most AI exposure never produces a click at all; the value shows up as brand recall. That's the core argument of [zero-click strategy](/blog/zero-click-search-strategy/), and it's measurable:
+
+1. In GSC, filter queries containing your brand name. Chart weekly branded impressions for 6 months.
+2. Overlay your gen-AI impression trend from the new report.
+3. A sustained branded-query rise that begins after your AI visibility rises, with no campaign, PR, or social spike to explain it, is attributable lift.
+
+Seer's research found brands actually cited in AI Overviews earned **35% more organic clicks** than brands absent from them, so visibility does route demand back to you. Some of it travels through this branded path.
+
+**Limitation:** Attribution here is circumstantial by nature. Control for anything else that touched brand demand in the window (launches, newsletters, a viral post).
+
+## The workflow to run this week
+
+Day one (30 minutes): Method 1. Get your AI impression share and the ceiling estimate. If AI impressions are under about 5% of your total, stop here. Your estimation effort is worth more elsewhere.
+
+Day two (1 hour): Method 2 on your top 20 pages. Flag surplus pages, cross-reference against the gen-AI report's page list.
+
+Ongoing (10 minutes a week): Log AI impressions, estimated clicks, and branded impressions in a sheet, weekly. Method 4 only works if you have the trendline six months from now. Fold the numbers into the broader scorecard from [how to measure AI visibility](/blog/how-to-measure-ai-visibility/).
+
+Skip Method 3 unless a specific page's surplus demands an explanation.
+
+## What to do with the estimate
+
+Two honest outcomes:
+
+**The number is tiny.** For most sites in 2026, it will be. That's a finding, not a failure. It tells you AI Mode is a visibility channel rather than a traffic channel, and your KPIs should shift toward impression share and citation presence rather than clicks. Set expectations with stakeholders accordingly.
+
+**The number is real.** Then you know which pages earn it (Method 2 told you), and those page formats, usually direct-answer structures with data or tools, are what you replicate.
+
+Either way you've replaced "Google won't tell us" with a number you can defend, refresh monthly, and act on.

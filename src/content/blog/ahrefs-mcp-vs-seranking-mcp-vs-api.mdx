@@ -1,0 +1,106 @@
+---
+title: "Ahrefs MCP vs SE Ranking MCP vs Raw API: What Should You Connect to Claude?"
+description: "Ahrefs MCP, SE Ranking MCP, or raw API calls: which should you connect to Claude? Data coverage, real costs, setup, and scenario-based picks."
+deck: "Three ways to get live SEO data into Claude, and they solve different problems. Ahrefs' MCP is the lowest-friction option, SE Ranking's is the only route to AI search visibility data, and a raw API script still wins anything scheduled. Here's how to pick."
+pubDate: 2026-09-08
+category: Tooling
+tags:
+  - MCP servers
+  - Ahrefs
+  - SE Ranking
+  - AI SEO
+  - SEO tools
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "Is the Ahrefs MCP really free?"
+    a: "There's no separate charge. It's included with every paid Ahrefs plan, Lite through Enterprise, and hosted by Ahrefs. You still need a paid Ahrefs subscription, and usage draws on your plan's data limits."
+  - q: "Does SE Ranking's MCP work without the API add-on?"
+    a: "No. You need an SE Ranking plan with the API add-on enabled, or a standalone API subscription."
+  - q: "Can I connect both Ahrefs and SE Ranking MCPs at once?"
+    a: "Yes, MCP clients handle multiple servers. Just note every connected server adds tool definitions to context; past five or six, tool selection degrades. Connect what the current job needs."
+  - q: "When is a raw API script better than an MCP?"
+    a: "Whenever the task is scheduled, must be methodologically identical run-to-run, or touches thousands of URLs. Explore with MCP; freeze repeated work into scripts."
+  - q: "Do these work outside Claude?"
+    a: "Yes. MCP is an open protocol, and other MCP-compatible clients can use the same servers. The vendor docs focus on Claude Code and Claude Desktop."
+  - q: "Which gives better AI-visibility data?"
+    a: "SE Ranking, and it's not close: engine-level visibility for ChatGPT, Gemini, Perplexity, AI Overviews, and AI Mode. Ahrefs' Brand Radar overlaps partially."
+---
+
+Three ways to get live SEO data into Claude, and they solve different problems. The official **Ahrefs MCP** is the lowest-friction option if you already pay for Ahrefs. **SE Ranking's MCP** is the only one that brings AI search visibility data (ChatGPT, Gemini, Perplexity, AI Overviews, AI Mode) into the conversation. And **raw API calls** through a script still beat both for anything scheduled, repeated, or budget-sensitive.
+
+We've connected all three routes while building the workflows behind this site. Here's the honest comparison, ending with a recommendation by scenario.
+
+*New to MCP? Start with our [guide to SEO MCP servers](/blog/best-seo-mcp-servers-github/). This post assumes you know what a server is and want to pick one.*
+
+## The 60-second answer
+
+| | Ahrefs MCP | SE Ranking MCP | Raw API + script |
+|---|---|---|---|
+| **Extra cost over your plan** | None, included in every paid plan | API add-on (or standalone API sub) | Per-call (DataForSEO) or included quota |
+| **Setup** | One command, hosted | ~10 minutes, Connectors or config | Hours, you write the code |
+| **Unique strength** | Backlink index + breadth of tools | AI search visibility data | Determinism, scheduling, cost control |
+| **Runs unattended?** | Not really, conversational | Not really, conversational | Yes, cron it |
+| **Best user** | Ahrefs subscribers doing ad-hoc analysis | Agencies reporting AI visibility | Teams building pipelines |
+
+## Ahrefs MCP: breadth with zero extra cost
+
+Ahrefs made the aggressive move: its official MCP server ([ahrefs/ahrefs-mcp-server](https://github.com/ahrefs/ahrefs-mcp-server)) is **hosted at `api.ahrefs.com/mcp/mcp` and included with every paid plan, Lite through Enterprise**. No separate API subscription, which historically was the expensive part of programmatic Ahrefs access.
+
+Setup in Claude Code, per the [official docs](https://docs.ahrefs.com/en/mcp/docs/claude-code):
+
+```bash
+claude mcp add ahrefs https://api.ahrefs.com/mcp/mcp -t http
+```
+
+Because it's hosted, there's nothing to run locally and nothing to update. Coverage spans Site Explorer, Keywords Explorer, Rank Tracker, GSC Insights, Brand Radar, Site Audit, Web Analytics, Content Explorer, AI Content Helper, reporting tools, and GBP Monitor for local.
+
+**Where it wins.** Ad-hoc analysis conversations: "compare our backlink velocity against these three competitors and flag which of their referring domains we could realistically get." That's a five-tool orchestration Claude handles in one prompt.
+
+**Where it loses.** Two places. First, AI search visibility: Ahrefs has Brand Radar, but SE Ranking's MCP exposes engine-by-engine citation data more directly. Second, unattended automation: MCP tool calls happen inside an assistant session, so "email me a report every Monday" wants a scheduled script, not a chat.
+
+## SE Ranking MCP: the AI visibility angle
+
+SE Ranking's MCP ([documented here](https://seranking.com/blog/claude-code-for-seo/)) covers classic SEO data (rankings, backlinks, keyword research, competitive analysis) plus the differentiator: **visibility across ChatGPT, Gemini, Perplexity, AI Overviews, and AI Mode**.
+
+That matters because clients have started asking "do AI tools mention us?" and almost nothing in the MCP ecosystem can answer it. Most teams still don't track AI citations in any structured way. AirOps' 2026 State of AI Search research found 62% of agencies lack centralized AI-visibility tracking. If your deliverables include it, this is currently the only MCP route, and an easy differentiator.
+
+Setup takes about ten minutes via Connectors, with no config file editing, but requires an SE Ranking plan **with the API add-on** or a standalone API subscription. SE Ranking's own documented workflows: content briefs with keyword gaps and SERP analysis (they claim 3–4 hours compressed to under 10 minutes), competitive AI-visibility reports, and generated backlink-analysis scripts with client-deck output.
+
+**Where it wins.** AI visibility reporting, and brief generation for content teams on SE Ranking's keyword data.
+
+**Where it loses.** The API add-on is a real extra cost, the MCP is read-only (no writing back to projects), and for pure backlink depth, Ahrefs' index is the stronger foundation. Same trade-off as in our [Semrush vs Ahrefs comparison](/blog/semrush-vs-ahrefs-ai-seo/): pick by which data you'll actually query weekly.
+
+## Raw API + a script: still the right call more often than MCP fans admit
+
+The unfashionable option. Before MCP, we all wrote scripts against SEO APIs, and three cases still favor that.
+
+**1. Scheduled work.** A weekly position report shouldn't need you to open Claude and ask. A 50-line script hitting the API on cron, writing to a sheet, emailing on threshold breach: that's infrastructure, and MCP is the wrong shape for it. (Middle path: have Claude Code *write* the script once, then run it forever free of AI involvement.)
+
+**2. Determinism.** An MCP-driven analysis can take a slightly different path each run. Different tool calls, different framing. Fine for exploration; wrong for month-over-month client reporting where methodology must be identical. Scripts don't improvise.
+
+**3. Cost control at volume.** Checking 5,000 URLs against an API inside an assistant conversation burns tokens narrating work a for-loop does silently. With pay-per-call sources like DataForSEO, a script is also the only way to bound spend precisely.
+
+**Where raw API loses:** everything exploratory. You will not write a script per ad-hoc question; with MCP you just ask. The two aren't rivals so much as layers. Explore via MCP, then freeze anything you'll repeat into a script. That's the architecture behind our [AI SEO dashboard setup](/blog/ai-seo-dashboard-setup/).
+
+## The real cost math
+
+The MCP itself is rarely the cost. The stack is:
+
+- **Claude access.** Claude Code needs a Pro plan plus API usage, or a Max plan for heavier use.
+- **Data access.** Ahrefs: included in your existing plan, effectively zero marginal cost. SE Ranking: plan + API add-on. Raw API: per-call, bounded, but a runaway agent loop can burn a month's credits in an afternoon. Set alerts.
+- **Your time.** Hosted MCPs: minutes. Local servers: an evening. A robust script: a day, once, then it's free forever.
+
+So for an existing Ahrefs subscriber the cheapest route is the Ahrefs MCP, then a script, then SE Ranking's MCP. For an SE Ranking agency the order flips.
+
+## Recommendations by scenario
+
+**Solo consultant, already on Ahrefs.** Ahrefs MCP, full stop. Zero extra cost, one-command setup, covers audits through link prospecting. Add a free GSC server for ground truth and skip scripting until something becomes weekly.
+
+**Agency reporting to clients.** SE Ranking MCP if AI visibility is in your deliverables. It's the differentiated line item competitors can't easily match. But move recurring monthly reports to scripts for methodological consistency; keep the MCP for exploration and one-off client questions.
+
+**In-house team with developer support.** Raw API for the pipeline (rank tracking, monitoring, alerting on cron), plus whichever vendor MCP matches your existing subscription for ad-hoc analysis. In-house teams answer the same deep questions repeatedly on the same site, which is exactly the shape scripts serve best. If you're heading toward autonomous workflows, our [SEO AI agents guide](/blog/seo-ai-agents/) covers the orchestration layer.
+
+**No budget.** None of the above: free GSC MCP + free PageSpeed MCP, per the zero-budget stack in our [MCP servers roundup](/blog/best-seo-mcp-servers-github/). Your own Search Console data answers more questions than most people ever ask it.
+
+For the wider tracking landscape beyond these two vendors, see our [AI analytics tools comparison](/blog/best-ai-analytics-tools-seo/).

@@ -1,0 +1,113 @@
+---
+title: "How to Track Your AI Citations: A Setup Guide That Takes One Afternoon"
+description: "A practical system for tracking AI citations across Google AI Overviews, AI Mode, ChatGPT, and Perplexity. Free GSC baseline, query set, and logging sheet."
+deck: "Most teams know AI citations matter. Very few actually log them. You can build a tracking system in one afternoon with Search Console and a spreadsheet, built around the queries that matter to your business. The full setup, plus how to read the data at 30, 60, and 90 days."
+pubDate: 2026-09-08
+category: Playbooks
+tags:
+  - AI citations
+  - AI visibility tracking
+  - Perplexity
+  - ChatGPT
+  - measurement
+author: Shashank Dubey
+faqs:
+  - q: "How often should I check my AI citations?"
+    a: "Weekly. Daily checking overreacts to volatility that self-corrects; monthly checking misses the cause-and-effect window between content changes and citation changes. Automated tools can run daily, but read the results weekly."
+  - q: "Can Google Search Console show which queries triggered my AI impressions?"
+    a: "No. As of September 2026 the generative AI report shows impressions by page, country, and device only. No queries, clicks, or CTR. Your manual query set is how you fill that gap."
+  - q: "Do ChatGPT and Perplexity citations show up anywhere in analytics?"
+    a: "Only as referral traffic when someone clicks through; look for chatgpt.com and perplexity.ai referrers in GA4. The citation itself, appearing in a source list, leaves no trace in your analytics, which is why manual logging exists."
+  - q: "What's a good citation rate?"
+    a: "There's no published benchmark worth trusting; rates vary wildly by niche and query intent. Use your own week-one number as the baseline and measure direction. Doubling a 6% rate is a real result regardless of what anyone else's rate is."
+  - q: "Should I track mentions without links?"
+    a: "Yes, in a separate column. Unlinked mentions signal that AI engines associate your brand with the topic, often the precursor to linked citations, and they influence buyers who never click anything."
+---
+
+In AirOps' 2026 State of AI Search report, 88% of marketers said AI search engines like ChatGPT and Perplexity are now primary discovery channels. In the same survey, 62% of agencies admitted they have no centralized way to track AI visibility. Most teams know citations matter. Very few actually log them.
+
+The gap exists because AI citation tracking feels like it needs a platform, a budget, and a data pipeline. It doesn't. You can build a tracking system in one afternoon with Google Search Console and a spreadsheet, and it will tell you more than most dashboards, because it's built around the queries that matter to *your* business.
+
+This guide walks through the full setup: what counts as a citation, the free GSC baseline, a manual weekly protocol, and how to read the data after 30, 60, and 90 days.
+
+## What counts as an AI citation
+
+Before you track anything, define the unit you're counting. "Citation" means different things on different surfaces:
+
+| Surface | What a citation looks like | Where to see it |
+|---|---|---|
+| Google AI Overviews | Your URL in the link cards or inline source links inside the AI answer | Live SERP; GSC (bundled) |
+| Google AI Mode | Your URL in the response's link cards or carousel | Live AI Mode session; GSC generative AI report (impressions) |
+| ChatGPT (with browsing) | Your domain in the "Sources" list of an answer | Manual query only |
+| Perplexity | Numbered source reference on the answer | Manual query only |
+| Copilot / Gemini | Linked source chips under or inside the answer | Manual query only |
+
+Two distinctions worth preserving in your log:
+
+- **Citation vs. mention.** A citation links to your URL. A mention names your brand without a link. Both matter, since mentions build the brand-recognition loop that leads to future citations, but log them separately.
+- **Cited vs. paraphrased.** Sometimes an AI answer clearly draws from your content without crediting it. You can't count what isn't shown, so track only visible citations and mentions. The rest is noise you can't act on.
+
+## Step 1: the free baseline, GSC's generative AI report
+
+In June 2026 Google added [dedicated generative AI performance reports to Search Console](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports), and by the end of August the rollout reached all properties worldwide. This is the only first-party data source for AI visibility, so it's your baseline.
+
+What it gives you: impressions inside generative AI surfaces (AI Overviews, AI Mode, and generative AI features in Discover), broken down by page, country, and device, with date granularity from hourly to monthly.
+
+What it doesn't give you yet: clicks, CTR, or queries. You can see that your pages appeared inside AI experiences; you cannot see what prompt triggered them or whether anyone clicked.
+
+Set it up in five minutes: open Search Console, go to Performance, open the generative AI report, note your current weekly impression level per page, and record that number in your tracking sheet as the baseline. That's the trend line everything else hangs off. For how these impressions fit into a broader measurement stack, see our guide to [measuring AI visibility](/blog/how-to-measure-ai-visibility/).
+
+## Step 2: build your query set
+
+Manual checking only works if you test the same queries every week. Ad-hoc prompting produces anecdotes, not trends.
+
+Build a set of 20 to 30 queries in four buckets:
+
+1. **Money queries (8 to 10).** The questions a buyer asks right before choosing someone like you. Not your keywords, the *questions*. "Best X for use case", "how much does this service cost", "product A vs product B".
+2. **Authority queries (5 to 8).** Questions in your topic area where being cited builds credibility even if the searcher isn't a buyer yet.
+3. **Brand queries (3 to 5).** "What is your brand", "your brand review", "your brand alternatives". These tell you what AI engines currently believe about you.
+4. **Competitor queries (5).** Queries where a competitor is currently cited and you aren't. These become your content roadmap. Our breakdown of [how sites earn their first citation](/blog/how-to-get-first-ai-citation/) covers what to do once you've found the gap.
+
+Write the queries exactly as a person would ask them, in natural language. AI surfaces are conversational; "ai crm small business" and "what's the best AI CRM for a five-person team?" produce different answers.
+
+## Step 3: the weekly protocol
+
+Once a week, same day, same time block (30 to 45 minutes):
+
+1. Run each query in Google (check for an AI Overview), AI Mode, ChatGPT, and Perplexity. Use a clean browser profile or incognito plus logged-out sessions where possible, because personalization skews results.
+2. For each query and surface, record: were you cited, were you mentioned, which URL, at what position among the sources, and who else was cited.
+3. Log it. Don't screenshot-and-forget; screenshots without a log are decoration.
+
+### The tracking sheet
+
+Copy these columns into a spreadsheet, one row per query per surface per week:
+
+```
+date | query | bucket | surface | cited (y/n) | mentioned (y/n) |
+cited_url | citation_position | competitors_cited | answer_summary | notes
+```
+
+Add a second tab that summarizes weekly totals:
+
+```
+week | citation_rate (% of query×surface checks with a citation) |
+mention_rate | gsc_genai_impressions | new_citations | lost_citations
+```
+
+Citation rate is your headline number. If you check 25 queries across 4 surfaces (100 checks) and get cited 12 times, that's a 12% citation rate. Watch the direction, not the absolute value. These surfaces are volatile week to week, which is exactly why single-day spot checks lie to you. Our [AEO KPIs guide](/blog/aeo-kpis-metrics-ai-visibility/) covers how to roll this into client-facing reporting.
+
+## Step 4: paid tools, when and whether
+
+Commercial AI-visibility trackers automate the query protocol at scale: hundreds of prompts, daily runs, competitor share-of-voice. SE Ranking, Semrush, and a growing field of dedicated AI-visibility platforms all ship some version of this now. Feature sets change monthly, so evaluate against your query list rather than the marketing page.
+
+The honest rule: **paid tools make sense when your query set outgrows an afternoon.** If you're tracking one site and 25 queries, the manual protocol is better, because you read the actual answers, which is where the strategic insight lives. If you're an agency tracking ten clients, automate the collection and keep the human time for interpretation.
+
+## Reading the data: 30 / 60 / 90 days
+
+**At 30 days** you have four data points per query. That's enough to spot *stable* citations (cited 3 to 4 weeks running: protect those pages) versus *flickering* ones (cited once, gone: usually a passage-quality problem, not an authority problem).
+
+**At 60 days** you can correlate. Did the page you rewrote in week 3 start getting cited in week 6? AI surfaces re-crawl and re-ground faster than classic rankings move, so content changes show up quicker than you're used to.
+
+**At 90 days** you have a real trend line: citation rate direction, share of voice against the competitors you logged, and, cross-referenced with the GSC generative AI report, whether impression growth tracks your citation growth. This is also when zero-click reality becomes visible. You'll see citations that never produce sessions, which is a positioning asset even without the visit. We covered how to think about that value in our [zero-click search strategy](/blog/zero-click-search-strategy/).
+
+For benchmarks on what kinds of pages earn citations at all, our [AI citation rate research](/blog/ai-citation-rate-research-2026/) breaks down the patterns we've found across content types.
