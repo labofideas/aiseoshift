@@ -21,3 +21,12 @@
 /blog/ai-seo-for-real-estate-agents-2026   /blog/ai-seo-for-real-estate-agents/  301
 /blog/best-surfer-seo-alternatives-2026/  /blog/best-surfer-seo-alternatives/  301
 /blog/best-surfer-seo-alternatives-2026   /blog/best-surfer-seo-alternatives/  301
+
+# Trailing-slash / protocol duplicates found splitting impressions in GSC (2026-09-08 audit)
+/blog/google-trends-ai-fanout-data   /blog/google-trends-ai-fanout-data/   301
+/blog/best-ai-seo-agencies   /blog/best-ai-seo-agencies/   301
+/blog/cbd-ai-seo   /blog/cbd-ai-seo/   301
+/blog/grok-pricing-2026   /blog/grok-pricing-2026/   301
+/blog/how-ai-search-monitoring-improves-seo-strategy   /blog/how-ai-search-monitoring-improves-seo-strategy/   301
+/ai-seo-tools   /ai-seo-tools/   301
+/copilot-seo   /copilot-seo/   301

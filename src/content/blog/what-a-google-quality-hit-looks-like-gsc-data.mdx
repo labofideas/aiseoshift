@@ -14,7 +14,7 @@ author: Shashank Dubey
 featured: true
 faqs:
   - q: "Can impressions really drop 98% in one day without a manual action?"
-    a: "Yes. Site-level algorithmic classifications from quality and spam systems can apply or lift in a step function during or after an update rollout. A manual action is one possible cause of a cliff, not the only one. Check the Manual Actions report in Search Console to distinguish them."
+    a: "Yes. Site-level algorithmic classifications from quality and spam systems can apply or lift in a step function during or after an update rollout. We checked our own Manual Actions report and it came back clean, no issues detected, which confirms this was algorithmic, not a manual review."
   - q: "Does a cliff-shaped drop mean the site was deindexed?"
     a: "Not necessarily. Our pages remained indexed and technically crawlable throughout; they just stopped being shown. Deindexing removes pages from the index, while a quality reclassification leaves them indexed but suppresses their visibility. Check coverage in GSC and site: behavior before assuming either."
   - q: "How long does recovery from a quality reclassification take?"
@@ -60,6 +60,8 @@ Before blaming an algorithm, we checked the boring explanations. You should too,
 3. **Security or hack.** No injected pages, no strange queries in the export. The query list is all on-topic.
 
 That leaves Google-side revaluation. One check we'd tell every reader to run before anything else: **Search Console → Security & Manual Actions → Manual actions.** A drop this severe and this fast is consistent with either an algorithmic reclassification or a manual action, and the recovery paths differ completely. Do not skip this check.
+
+We ran it. Clean: "No issues detected." No manual action, no manual reviewer flagged this site. That points the diagnosis firmly at an algorithmic, site-level quality reclassification, the kind our own scaled-content footprint would trigger without any human ever looking at the site. It also means the fix is entirely in our hands: no reconsideration request to file, no waiting on a review. Prune the footprint, fix the URL hygiene, and let the next crawl and reassessment do their work.
 
 ## What the data says actually caused it
 
