@@ -1,20 +1,32 @@
 {
-	"compatibility_date": "2026-05-16",
-	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "aiseoshift",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
-	},
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "aiseoshift-claps",
-			"database_id": "438a2fc7-c6c6-4be3-a35f-783e813b53c3"
-		}
-	],
-	"observability": {
-		"enabled": true
-	}
+  "compatibility_date": "2026-05-16",
+  "compatibility_flags": [
+    "global_fetch_strictly_public"
+  ],
+  "name": "aiseoshift",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "aiseoshift-claps",
+      "database_id": "438a2fc7-c6c6-4be3-a35f-783e813b53c3"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "ratelimits": [
+    {
+      "name": "TOOL_RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 20,
+        "period": 60
+      }
+    }
+  ]
 }

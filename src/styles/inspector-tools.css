@@ -1,0 +1,46 @@
+.inspector { width:min(1180px,calc(100% - 2rem)); margin:auto; padding:2rem 0 4rem; }
+.inspector-heading { max-width:850px; padding:1rem 0 2rem; }
+.inspector-back { color:rgb(var(--ink-muted)); font-size:.85rem; }
+.inspector-eyebrow { color:var(--signal-deep); text-transform:uppercase; letter-spacing:.14em; font-size:.72rem; font-weight:700; margin:1.8rem 0 .6rem; }
+.inspector h1 { font-family:'Figtree',sans-serif; font-size:clamp(2rem,4.5vw,3.4rem); letter-spacing:-.04em; line-height:1.1; margin:0 0 1rem; }
+.inspector-lede { max-width:65ch; font-size:1.08rem; color:rgb(var(--ink-muted)); }
+.inspector-workspace { display:grid; grid-template-columns:minmax(270px,360px) minmax(0,1fr); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+.inspector-input { background:rgba(var(--paper-strong),.6); padding:1.5rem; border-right:1px solid var(--line); }
+.inspector label { display:block; margin:1rem 0 .4rem; font-size:.85rem; font-weight:700; }
+.inspector label:first-child { margin-top:0; }
+.inspector input,.inspector select,.inspector textarea { box-sizing:border-box; width:100%; border:1px solid var(--line); border-radius:6px; padding:.75rem; font:inherit; font-size:.9rem; background:rgb(var(--paper)); color:rgb(var(--ink)); }
+.inspector select { margin-bottom:1.2rem; }
+.inspector textarea { font: .8rem/1.6 monospace; resize:vertical; }
+.inspector-help,.inspector-source { font-size:.8rem; line-height:1.6; color:rgb(var(--ink-muted)); overflow-wrap:anywhere; }
+.inspector-actions { display:flex; gap:.6rem; flex-wrap:wrap; }
+.inspector button { border:1px solid var(--signal-deep); background:var(--signal-deep); color:#fff; border-radius:6px; padding:.7rem 1rem; font:inherit; font-size:.85rem; font-weight:700; cursor:pointer; }
+.inspector button.secondary { border-color:var(--line); color:rgb(var(--ink)); background:transparent; }
+.inspector button.text-button { color:var(--signal-deep); background:none; border:0; text-decoration:underline; padding:.8rem 0; }
+.inspector button:disabled { opacity:.55; cursor:wait; }
+.inspector :is(button,input,select,textarea,a,summary):focus-visible { outline:2px solid var(--signal); outline-offset:3px; }
+.inspector-output { min-width:0; padding:1.5rem; }
+.inspector-empty { min-height:310px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:1rem; }
+.inspector-symbol { font:1.7rem monospace; color:var(--signal-deep); margin-bottom:1rem; }
+.inspector-empty h2 { font-size:1.5rem; margin:0 0 .75rem; }
+.inspector-empty p { color:rgb(var(--ink-muted)); max-width:42ch; }
+.inspector [hidden] { display:none !important; }
+.inspector-result-head { display:flex; gap:1rem; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+.inspector h2 { font-size:1.35rem; }
+.inspector h3 { font-size:1.05rem; margin:1.4rem 0 .7rem; }
+.inspector-summary { display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0; }
+.inspector-chip { border:1px solid var(--line); padding:.35rem .65rem; border-radius:4px; font-size:.8rem; overflow-wrap:anywhere; }
+.inspector-item { border-top:1px solid var(--line); padding:.85rem 0; overflow-wrap:anywhere; }
+.inspector-item strong { display:block; }
+.inspector-item p { margin:.3rem 0; font-size:.88rem; }
+.inspector-item small { font-size:.75rem; color:rgb(var(--ink-muted)); }
+.inspector .error { color:#a42828; }
+[data-theme="dark"] .inspector .error { color:#ffaaaa; }
+.inspector .warning { border-left:3px solid var(--signal); padding-left:.75rem; }
+.inspector details { border:1px solid var(--line); border-radius:6px; padding:.85rem; margin:.75rem 0; }
+.inspector summary { cursor:pointer; font-weight:700; overflow-wrap:anywhere; }
+.inspector pre { max-height:350px; overflow:auto; padding:.8rem; background:rgba(var(--ink),.04); font:.75rem/1.6 monospace; }
+.inspector details ul { padding-left:1.1rem; font-size:.85rem; }
+.inspector-notes { max-width:78ch; padding:2rem 0 0; }
+.inspector-notes p { color:rgb(var(--ink-muted)); font-size:.95rem; }
+#scan-status { min-height:1.5em; font-size:.85rem; }
+@media(max-width:760px) { .inspector-workspace { grid-template-columns:1fr; } .inspector-input { border-right:0; border-bottom:1px solid var(--line); } .inspector-output,.inspector-input { padding:1rem; } .inspector-empty { min-height:180px; padding:0; } }

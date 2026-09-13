@@ -1,0 +1,12 @@
+---
+import InspectorTool from '../../layouts/InspectorTool.astro';
+---
+<InspectorTool title="Website Technology Detector" description="Find public clues about a website's platform, frameworks, and analytics. For WordPress sites, inspect detected themes and plugins." slug="website-technology-checker" kind="technology">
+  <h2>How does website detection work?</h2>
+  <p>The detector checks generator tags, script and stylesheet paths, distinctive HTML elements, and selected response headers. Each match includes its evidence. A detected asset is a clue, not proof of the website's entire technology stack.</p>
+  <h2>Can it find every WordPress plugin?</h2>
+  <p>No. It reports plugins that leave identifiable assets on the scanned page. Admin-only plugins, hidden asset paths, cached pages, and plugins used elsewhere on the site can be missed. An empty list means no plugins were detected, not that none are installed.</p>
+  <p>Theme names come from asset directories and, when accessible, the theme stylesheet header. Child and parent themes may both appear. Renamed or bundled assets can prevent identification. Versions and author details are only shown when the stylesheet declares them.</p>
+  <p>Pasted HTML is analyzed locally. URL scans may also read up to four discovered public theme stylesheets. Sites that block automated requests can be checked by pasting their source. JavaScript is not rendered.</p>
+  <p>Checking structured data? Use the <a href="/tools/schema-markup-validator/">Schema Markup Tester</a>.</p>
+</InspectorTool>

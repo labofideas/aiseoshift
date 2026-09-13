@@ -1,0 +1,12 @@
+---
+import InspectorTool from '../../layouts/InspectorTool.astro';
+---
+<InspectorTool title="Schema Markup Tester" description="Check JSON-LD from a page or pasted code. Inspect schema types and get clear explanations of syntax errors and property warnings." slug="schema-markup-validator" kind="schema">
+  <h2>What this test checks</h2>
+  <p>The tester reads JSON-LD blocks, including arrays and @graph objects. It checks JSON syntax, common JSON-LD structure, and type and property names against a bundled Schema.org vocabulary. Property usage and selected value checks are warnings, because Schema.org allows flexible values.</p>
+  <p>Microdata and RDFa are detected but not validated. Custom or mixed JSON-LD contexts are reported without vocabulary validation. This is a source-code check, not a full JSON-LD processor or a test of Google's rich-result eligibility.</p>
+  <p>Vocabulary derived from <a href="https://schema.org/">Schema.org</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>. The tool uses a reduced snapshot of type and property definitions.</p>
+  <h2>Does valid schema guarantee a rich result?</h2>
+  <p>No. Google applies feature-specific requirements and content policies. Even correctly marked-up pages may not receive rich results. Verify important pages with the <a href="https://validator.schema.org/" target="_blank" rel="noopener noreferrer">Schema.org validator</a> and <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener noreferrer">Google Rich Results Test</a>.</p>
+  <p>Need to inspect how a site was built? Use the <a href="/tools/website-technology-checker/">Website Technology Detector</a>.</p>
+</InspectorTool>

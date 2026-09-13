@@ -1,0 +1,68 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_URL } from '../consts';
+import '../styles/inspector-tools.css';
+interface Props { title: string; description: string; slug: string; kind: 'schema' | 'technology' }
+const { title, description, slug, kind } = Astro.props;
+const schema = kind === 'schema';
+const structuredData = {
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: title,
+  url: `${SITE_URL}/tools/${slug}/`, applicationCategory: 'DeveloperApplication', operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, provider: { '@id': `${SITE_URL}/#organization` },
+};
+---
+<!doctype html>
+<html lang="en">
+  <head><BaseHead title={`Free ${title} | ${SITE_TITLE}`} description={description} structuredData={structuredData} /></head>
+  <body>
+    <Header />
+    <main id="main-content" class="inspector" data-tool={kind}>
+      <header class="inspector-heading">
+        <a class="inspector-back" href="/ai-seo-tools/">← All AI SEO tools</a>
+        <p class="inspector-eyebrow">{schema ? 'Structured data' : 'Website inspection'}</p>
+        <h1>{title}</h1><p class="inspector-lede">{description}</p>
+      </header>
+      <div class="inspector-workspace">
+        <section class="inspector-input" aria-label="Scan input">
+          <form id="scan-form">
+            <label for="input-mode">Check using</label>
+            <select id="input-mode"><option value="url">Website URL</option><option value="paste">{schema ? 'Paste JSON-LD or HTML' : 'Paste page HTML'}</option></select>
+            <div id="url-panel">
+              <label for="scan-url">Page URL</label>
+              <input id="scan-url" type="text" inputmode="url" autocomplete="url" placeholder="https://example.com" aria-describedby="scan-scope" maxlength="2048" />
+            </div>
+            <div id="paste-panel" hidden>
+              <label for="scan-code">{schema ? 'JSON-LD or page source' : 'Page source HTML'}</label>
+              <textarea id="scan-code" rows="12" spellcheck="false" placeholder={schema ? '{"@context":"https://schema.org","@type":"Article"}' : '<!doctype html>…'}></textarea>
+            </div>
+            <p id="scan-scope" class="inspector-help">URL scans read public source HTML. JavaScript is not rendered. Pasted code is analyzed in your browser.</p>
+            <div class="inspector-actions"><button id="scan-run" type="submit">{schema ? 'Test schema' : 'Detect technology'}</button><button id="scan-clear" type="button" class="secondary">Clear</button></div>
+            <button id="scan-example" type="button" class="text-button">Try an example</button>
+            <p id="scan-status" role="status" aria-live="polite"></p>
+          </form>
+          <noscript><p>Enable JavaScript to use this tool.</p></noscript>
+        </section>
+        <section class="inspector-output" aria-label="Scan results" aria-busy="false">
+          <div id="scan-empty" class="inspector-empty">
+            <span class="inspector-symbol" aria-hidden="true">{schema ? '{ @type }' : '&lt;/&gt;'}</span>
+            <h2>{schema ? 'See what your markup says.' : 'Find the clues in the page.'}</h2>
+            <p>{schema ? 'Test a URL or paste code to see schema types, syntax errors, and property warnings.' : 'See detected platforms and public technology signals. WordPress results include visible theme and plugin assets.'}</p>
+          </div>
+          <div id="scan-results" hidden>
+            <div class="inspector-result-head"><h2>Results</h2><button id="scan-download" class="secondary" type="button">Download report</button></div>
+            <p id="scan-source" class="inspector-source"></p>
+            <div id="scan-report"></div>
+          </div>
+        </section>
+      </div>
+      <section class="inspector-notes"><slot /></section>
+    </main>
+    <Footer />
+    <script>
+      import { initInspector } from '../lib/tools/inspector-client';
+      initInspector();
+    </script>
+  </body>
+</html>

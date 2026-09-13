@@ -12,7 +12,9 @@
     "astro": "astro",
     "images:fetch": "node ./scripts/fetch-editorial-images.mjs",
     "generate-types": "wrangler types",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "test:inspectors": "node scripts/test-inspector-tools.mjs",
+    "test:inspectors:ui": "node scripts/test-inspector-ui.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.1",
