@@ -1757,5 +1757,41 @@
 			"width": 1200,
 			"height": 675
 		}
+	},
+	"information-gain-optimization": {
+		"hero": {
+			"src": "/images/posts/information-gain-optimization-hero.svg",
+			"alt": "Diagram showing marketing copy as duplicated and low information gain, versus docs and schema as unduplicated and high information gain",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/information-gain-optimization",
+			"width": 1200,
+			"height": 675
+		}
+	},
+	"google-ai-contribution-pilot": {
+		"hero": {
+			"src": "/images/posts/google-ai-contribution-pilot-hero.svg",
+			"alt": "Flow diagram showing content used in an AI answer, Google scoring its value, and a payout appearing in Search Console",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/google-ai-contribution-pilot",
+			"width": 1200,
+			"height": 675
+		}
+	},
+	"google-ranking-volatility-september-4-reversal": {
+		"hero": {
+			"src": "/images/posts/google-ranking-volatility-september-4-reversal-hero.svg",
+			"alt": "Timeline showing a ranking drop on September 4, no Google confirmation, and a reversal on September 13",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "AISEOShift",
+			"sourceUrl": "https://aiseoshift.com/blog/google-ranking-volatility-september-4-reversal",
+			"width": 1200,
+			"height": 675
+		}
 	}
 }
