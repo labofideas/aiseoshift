@@ -1,0 +1,146 @@
+---
+title: "What Is Information Gain Optimization (IGO)?"
+description: "Google is quietly leaning on product schema and technical documentation instead of rewritten marketing copy. IGO is the practice of writing content that survives that shift."
+deck: "The same fifty words about your product exist on your homepage, your competitor's homepage, and four directories. Your docs and your schema are the only places that information is not duplicated. That is where the signal is moving."
+pubDate: 2026-09-14
+category: Strategy
+tags:
+  - information gain
+  - structured data
+  - product schema
+  - technical SEO
+  - AI visibility
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "What is Information Gain Optimization (IGO)?"
+    a: "IGO is the practice of structuring content so it contributes information a search or answer engine has not already seen elsewhere, rather than restating what every competitor page already says. In practice that means writing to your product schema and technical documentation directly, since those are the places genuinely novel, verifiable facts tend to live, instead of writing marketing copy that paraphrases the same category claims as everyone else."
+  - q: "Is information gain a confirmed Google ranking factor?"
+    a: "Google has not confirmed it operates in production. What is confirmed is the patent: Google filed for a 'contextual estimation of link information gain' system in 2018 and it was granted in June 2024. The patent describes scoring a document by how much new information it adds beyond what a user has already read on a topic. Google's usual pattern is that patented ideas from its own research teams often do surface in some form in live ranking systems, so most SEOs treat it as directionally real even without direct confirmation."
+  - q: "Why does product schema matter more than homepage copy for AI visibility?"
+    a: "Schema states facts as structured data rather than prose, so an engine can extract a price, a spec, or a certification without interpreting ambiguous marketing language. Homepage copy is also the most duplicated writing on the internet, since most companies in a category describe their product the same way. Schema and documentation are usually the only place a specific, unduplicated fact about your product actually lives, which is exactly what an information-gain-style system is built to reward."
+  - q: "Does adding schema markup guarantee more AI citations?"
+    a: "No. Schema only helps if the fact it describes also appears in the visible, rendered content on the page. Google has been explicit that markup which does not match what a user or crawler can see on the page counts as spammy structured data and can hurt rather than help. Schema is a description of the page's facts, not a substitute for having facts on the page."
+---
+
+Type the same product question into an AI Overview six months apart and the citations change. Not because the product changed. Because the source Google trusted for the answer changed, and increasingly, that source is not the homepage.
+
+It's the documentation page. The changelog. The JSON-LD block nobody on the marketing team has looked at since a developer shipped it eighteen months ago.
+
+That shift has a name forming around it in SEO circles: Information Gain Optimization, or IGO. It is not a Google product. There is no dashboard for it. But the pattern behind the name is real, and it explains something that has been quietly true for a while: Google is reading your documentation and your product schema, not just your marketing pages, and it is treating them as more trustworthy.
+
+## The patent behind the phrase
+
+Start with what is actually confirmed, because most of what gets written about "information gain" isn't.
+
+In 2018, Google filed a patent titled [Contextual Estimation of Link Information Gain](https://www.searchenginejournal.com/googles-information-gain-patent-for-ranking-web-pages/524464/). It was granted in June 2024. The core idea: score a document not just on relevance, but on how much new information it contributes beyond what a searcher has already encountered elsewhere on the same topic. Two pages can answer the same query equally well and still get scored differently, because one repeats what the searcher already read three tabs ago and the other adds something they hadn't seen.
+
+Google has never confirmed this runs in production search. It also never confirmed PageRank's exact current weighting, or a dozen other things everyone in this industry builds strategy around anyway. The pattern with Google patents from its own research groups is that they tend to show up in some form, later, quieter than the filing suggested. Treat it as directionally true. Don't treat it as documented fact, because it isn't one yet.
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two pages answering the same query score differently under information gain: a page repeating category-standard claims scores low, a page with a spec table, a first-hand test result, or a schema-backed fact the user has not seen elsewhere scores high.">
+	<rect width="800" height="300" fill="rgb(246,245,240)" />
+	<text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">SAME QUERY, DIFFERENT INFORMATION GAIN SCORE</text>
+	<g font-family="system-ui, sans-serif" fill="rgb(14,17,22)">
+		<rect x="40" y="56" width="340" height="210" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" />
+		<text x="60" y="86" font-size="13" font-weight="700">Homepage copy</text>
+		<text x="60" y="114" font-size="11" fill-opacity="0.72">"Fast, reliable, and secure</text>
+		<text x="60" y="132" font-size="11" fill-opacity="0.72">platform trusted by teams</text>
+		<text x="60" y="150" font-size="11" fill-opacity="0.72">worldwide."</text>
+		<text x="60" y="180" font-size="11" fill-opacity="0.6">Same claim as 40 other</text>
+		<text x="60" y="198" font-size="11" fill-opacity="0.6">vendors in the category.</text>
+		<rect x="60" y="218" width="120" height="26" rx="3" fill="rgb(184,85,46)" fill-opacity="0.18" />
+		<text x="120" y="235" text-anchor="middle" font-size="11" font-weight="700" fill="rgb(184,85,46)">Low gain</text>
+
+		<rect x="420" y="56" width="340" height="210" rx="6" fill="rgb(14,17,22)" />
+		<text x="440" y="86" font-size="13" font-weight="700" fill="rgb(250,250,247)">Docs / schema</text>
+		<text x="440" y="114" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.78">p99 latency: 340ms at</text>
+		<text x="440" y="132" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.78">10k concurrent, tested</text>
+		<text x="440" y="150" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.78">against dataset X.</text>
+		<text x="440" y="180" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.6">Specific, verifiable,</text>
+		<text x="440" y="198" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.6">not published elsewhere.</text>
+		<rect x="440" y="218" width="130" height="26" rx="3" fill="rgb(184,85,46)" />
+		<text x="505" y="235" text-anchor="middle" font-size="11" font-weight="700" fill="rgb(250,250,247)">High gain</text>
+	</g>
+</svg>
+</figure>
+
+## Why docs and schema specifically
+
+Here's the part that isn't speculative at all: Google's own guidance for AI features and structured data explains why documentation and schema behave differently from ordinary marketing pages, and it comes down to duplication and extractability.
+
+**Marketing copy is the most duplicated writing on the internet.** Every SaaS company in a category describes itself as fast, secure, and easy to use. Every mattress brand talks about pressure relief and cooling. An information-gain-style system, applied to a query in that category, sees the same fifty words with the serial numbers filed off on forty different domains. None of those forty pages contributes anything the system hasn't already scored.
+
+Documentation doesn't have that problem. A changelog entry, an API rate limit, a tolerance spec, a pricing tier breakdown, these are specific to you. Nobody else can publish your rate limits, because they're not true of anybody else's product. The information is inherently non-duplicated, which is exactly the property an information gain score is built to reward.
+
+**Schema removes the interpretation step.** [Google's structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) is explicit that markup states facts in a vocabulary the system doesn't have to infer from prose. A page that says "starting at $49" in a sentence buried in paragraph four is a fact a model has to extract. A `priceSpecification` field with the same number is a fact the model reads directly, with a confidence level prose can't match.
+
+That distinction matters more now than it did two years ago, because AI Overviews and other answer engines are grounding responses in structured, verifiable claims wherever they can find them, and citing the source that made verification easiest. [Google has said as much about AI features in Search](https://developers.google.com/search/docs/appearance/ai-features): the intent is to surface links that help people explore further, which only works if the system can confirm what a page actually claims.
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Content parity requirement: schema data that matches the visible page content is trusted and eligible for citation, schema data with no matching visible content is flagged as spammy structured data.">
+	<rect width="800" height="260" fill="rgb(246,245,240)" />
+	<text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">SCHEMA NEEDS A VISIBLE MATCH</text>
+	<g font-family="system-ui, sans-serif" fill="rgb(14,17,22)">
+		<g transform="translate(40 56)">
+			<rect width="330" height="170" rx="6" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.15" />
+			<text x="18" y="32" font-size="13" font-weight="700" fill="rgb(184,85,46)">Schema = visible content</text>
+			<text x="18" y="62" font-size="11" fill-opacity="0.75">JSON-LD says: "AS9100D certified"</text>
+			<text x="18" y="82" font-size="11" fill-opacity="0.75">Page body says: "AS9100D certified"</text>
+			<text x="18" y="114" font-size="11" font-weight="700">Trusted, citation-eligible</text>
+		</g>
+		<g transform="translate(430 56)">
+			<rect width="330" height="170" rx="6" fill="rgb(14,17,22)" />
+			<text x="18" y="32" font-size="13" font-weight="700" fill="rgb(184,85,46)">Schema ≠ visible content</text>
+			<text x="18" y="62" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.78">JSON-LD says: "4.9 star rating"</text>
+			<text x="18" y="82" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.78">Page body: no rating shown</text>
+			<text x="18" y="114" font-size="11" font-weight="700" fill="rgb(250,250,247)">Flagged as spammy structured data</text>
+		</g>
+	</g>
+</svg>
+</figure>
+
+## What Google is actually reading, in practice
+
+A few concrete places this shows up:
+
+- **Product schema on ecommerce and SaaS pages.** Price, availability, identifiers like GTIN or SKU, and technical specs written into `Product` or `SoftwareApplication` markup get pulled into comparison-style answers before the page's own sales copy does, because the structured version is unambiguous.
+- **API and developer documentation.** Rate limits, endpoint behavior, error codes. Nobody paraphrases these into a homepage, so docs are frequently the only place the fact exists at all, which makes them the default citation when the query is technical.
+- **Certification and compliance data.** Registrar, scope, expiry date. Hard filters like AS9100 or SOC 2 behave like schema properties even when they're not marked up as such, because the fact is binary and checkable.
+- **Changelogs and release notes.** Genuinely new information by definition. A changelog entry from last week has zero duplication risk anywhere else on the web.
+
+Notice what these have in common. None of them were written by a marketing team trying to sound persuasive. They were written by someone documenting what is actually true, for an audience that would notice if it wasn't.
+
+## The mistake most sites are making
+
+Most companies have this backwards. The homepage gets six rounds of copywriting revision. The docs get written once by an engineer who was asked to "just get something up" and haven't been touched since.
+
+That allocation of effort made sense when a human read the homepage first and only clicked into docs if they needed detail. It stops making sense the moment the thing reading your site first is a model deciding which source to cite, and the model finds more extractable, less duplicated information in the docs than in the copy that was supposed to sell the product.
+
+The fix isn't to abandon marketing copy. It's to stop treating documentation and schema as the boring back office of your content and start treating them as a competitive surface, because right now almost nobody is optimizing them and that won't stay true for long.
+
+## Applying IGO without breaking your site
+
+A short, practical version:
+
+1. **Audit your homepage for category-standard claims.** Anything that could appear on a competitor's site verbatim, "secure," "scalable," "trusted by thousands," is contributing close to zero information gain. Either back it with a number or cut it.
+2. **Push real specs into visible page content, not just PDFs or gated brochures.** A fact a crawler can't read doesn't exist for this purpose. [Duplicate, unindexed, or hidden content](/blog/why-duplicate-content-hurts-seo/) creates the same dilution problem information gain is trying to solve, just from the other direction.
+3. **Mark up what's already true with the correct schema type**, and use [a real generator or hand-written JSON-LD](/blog/best-schema-markup-generator-tools/) rather than a plugin default that guesses at fields.
+4. **Keep visible content and schema in lockstep.** Every property in your markup needs a matching, human-readable statement on the page. This is the single most common way schema effort gets wasted.
+5. **Let your documentation be found.** Internal links from your blog and product pages into docs, a sitemap that includes the docs subdomain, and headings that state the fact plainly instead of burying it in prose.
+
+None of this requires new content. Most of it is unlocking information you already have and have been keeping in the wrong format.
+
+## The bigger shift
+
+Information Gain Optimization isn't really a new discipline. It's a name for something [Generative Engine Optimization](/blog/what-is-generative-engine-optimization-geo/) has been pointing at from a different angle: the sources that win in an AI-mediated search environment are the ones offering something to extract, not something to read.
+
+Marketing copy was written to persuade a human who had time to be persuaded. Documentation and schema were written to be correct for a reader who had no patience for persuasion. It turns out the second kind of writing is exactly what the machines showed up wanting. That's not a coincidence worth explaining away. It's a brief, useful window to go fix your docs before everyone else notices too.
+
+## Related reading
+
+- [Schema markup for AI visibility: a practical guide](/blog/schema-markup-for-ai-visibility/)
+- [What is Generative Engine Optimization (GEO)?](/blog/what-is-generative-engine-optimization-geo/)
+- [Why duplicate content hurts SEO](/blog/why-duplicate-content-hurts-seo/)
+- [Product schema for AI search](/blog/product-schema-for-ai-search/)
+- [Best schema markup generator tools](/blog/best-schema-markup-generator-tools/)
