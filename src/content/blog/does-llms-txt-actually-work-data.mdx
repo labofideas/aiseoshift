@@ -1,0 +1,73 @@
+---
+title: "Does llms.txt Actually Get You Cited? The Data Says No"
+description: "Three independent studies covering 300,000+ domains find no measurable link between having an llms.txt file and getting cited by ChatGPT, Perplexity, or Gemini. Here is what the file is actually good for."
+deck: "Google has said outright it does not use llms.txt. Ahrefs found 97% of published files got zero traffic. The file still has a real job, just not the one it got famous for."
+pubDate: 2026-09-17
+category: Strategy
+tags:
+  - llms-txt
+  - AI crawlers
+  - technical SEO
+  - AEO
+author: "Shashank Dubey"
+featured: false
+faqs:
+  - q: "Does llms.txt improve AI search citations?"
+    a: "No measurable evidence supports that claim as of September 2026. SE Ranking analyzed roughly 300,000 domains and found no correlation between having an llms.txt file and AI citation frequency. Ahrefs separately found that 97% of published llms.txt files received zero traffic in May 2026. Google has stated publicly that it does not use the file and has no plans to."
+  - q: "What is llms.txt actually good for?"
+    a: "Coding agents and IDE tools such as Cursor, Windsurf, Claude Code, GitHub Copilot, Cline, and Aider look for /llms.txt or /llms-full.txt when pointed at a documentation site, and use it to navigate the docs faster. That is the use case with real, observed traffic. General-purpose AI search citation is not."
+  - q: "Should I still publish an llms.txt file?"
+    a: "If you run a developer-facing product with real documentation, yes, because coding agents genuinely use it and the cost is low. If you run a marketing site, ecommerce store, or content site with no docs for an agent to navigate, publishing one is unlikely to move any AI visibility metric, and your time is better spent on the content itself."
+  - q: "How many websites have an llms.txt file in 2026?"
+    a: "As of June 2026, 8.7% of the top 1,000 websites globally publish one, up from 7.5% in early May. Among sites that were actually reachable in that same study, the figure was 15.8%. Adoption is real and growing, but still a minority practice concentrated in developer tooling and SaaS."
+---
+
+Google has said, on the record, that it does not use llms.txt and has no plans to. Not "we're evaluating it." Not "unconfirmed." A flat no, from the company running the search engine most of this hype was aimed at.
+
+That should have ended the conversation. It didn't.
+
+Three separate studies, covering more than 300,000 domains between them, come to the same conclusion from three different directions. SE Ranking checked roughly 300,000 sites and found zero correlation between having an llms.txt file and how often a domain gets cited in AI answers. Ahrefs pulled 137,000 sites and found that 97% of published llms.txt files got no traffic at all in May 2026. Not low traffic. Zero.
+
+If you've read [our piece on information gain optimization](/blog/information-gain-optimization/), you already know the pattern here. A real, patent-backed signal exists somewhere in the system. A cottage industry forms around a much simpler, easier-to-sell version of that signal. The simple version gets marketed hard. The evidence for the simple version doesn't show up.
+
+## What llms.txt actually is
+
+A plain text file at the root of your domain, `yoursite.com/llms.txt`, written in Markdown, meant to give an AI system a curated map of your most important pages. The idea, proposed in 2024, was straightforward: robots.txt tells crawlers what they can't access, llms.txt tells them what matters most.
+
+[Our implementation guide](/blog/llms-txt-implementation-guide/) covers the format if you want to build one anyway. That's not this article. This one is about whether building it does what people think it does.
+
+## Where it actually works
+
+Coding agents read it. Cursor, Windsurf, Claude Code, GitHub Copilot, Cline, Aider, when one of these tools is pointed at a documentation site, several of them check for `/llms.txt` or `/llms-full.txt` and use it to navigate faster than crawling the whole doc tree.
+
+That's real. It's also narrow. It applies to developer tools and API documentation, read by developer-facing agents, for a task that is fundamentally about navigation, not citation.
+
+Nobody built a marketing narrative around "helps Cursor find your docs faster." They built one around "gets you cited by ChatGPT." Those are different claims, and only one of them has evidence behind it.
+
+## Where the hype came from
+
+Part of it is Rank Math. The WordPress SEO plugin added llms.txt generation as a 2026 feature, and it markets the feature next to language about AI crawler visibility, which reads to a lot of site owners as "publish this and AI search engines will find you." The feature does what it says. Generating a file isn't the same thing as that file changing anything downstream.
+
+Part of it is simpler than that. AI search is scary and new, llms.txt is a five-minute fix, and five-minute fixes for scary new problems get shared fast regardless of whether anyone checked if they work.
+
+## The adoption numbers, and what they mean
+
+As of June 2026, 8.7% of the world's top 1,000 sites have an llms.txt file. That's up from 7.5% in early May, so adoption is genuinely climbing. Among sites that were reachable and checkable in that same study, 15.8% had one, which tells you the sites bothering to publish skew toward the technically capable end of the web.
+
+That's a minority practice growing at a normal pace for a new, mostly-unproven spec. It is not the "everyone is doing this, you're falling behind" story that gets repeated in a lot of AI SEO content.
+
+## Why "just in case" is bad advice here specifically
+
+Somewhere in every discussion of llms.txt, someone says the cost is basically zero, so why not publish one just in case.
+
+The file itself, sure. Writing a Markdown list of your top pages costs almost nothing. The actual cost is attention. Every hour spent building an llms.txt file and every dollar spent on a tool that auto-generates one is an hour and a dollar not spent on the things that do have evidence behind them: content depth, structured data that matches your visible page content, and the kind of first-hand, non-duplicated information [IGO](/blog/information-gain-optimization/) is actually about.
+
+"Just in case" only makes sense when the downside of skipping it is real and the upside of doing it is unclear. Here the upside for citation isn't unclear. It's measured, at scale, at zero.
+
+## Who should actually build one
+
+Run a developer product with real documentation, an API, a CLI, an SDK? Build the file. Coding agents genuinely use it, your engineering time is the audience, and [the format guide](/blog/llms-txt-implementation-guide/) will get you there in under an hour.
+
+Run a marketing site, an ecommerce store, a local business site, a content publication with no docs tree for an agent to navigate? Skip it. There's nothing there for the one audience that's actually reading the file, and no evidence it does anything for the audience everyone thinks it's for.
+
+The honest version of the advice nobody wants to hear: this file has a job. It's just a smaller, more specific job than the one it got famous for.
