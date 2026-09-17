@@ -1,0 +1,96 @@
+---
+title: "Google Stopped Scoring Core Web Vitals Page by Page in March 2026"
+description: "The March 2026 core update moved Core Web Vitals to a site-wide aggregation model. A handful of slow pages can now drag down a domain's entire standing. The 2.0 second LCP number every blog repeats is not confirmed anywhere official."
+deck: "Every SEO blog is running the same 2.0 second LCP figure this year. Google's own documentation still says 2.5. The change that actually matters is a different one, and almost nobody is writing about it correctly."
+pubDate: 2026-09-17
+category: Research
+tags:
+  - Core Web Vitals
+  - technical SEO
+  - Google algorithm update
+  - page performance
+author: "Shashank Dubey"
+featured: false
+faqs:
+  - q: "Did Google lower the LCP threshold from 2.5 seconds to 2.0 seconds in 2026?"
+    a: "Not according to Google. Web.dev's own article defining Core Web Vitals thresholds still lists 2.5 seconds as the 'good' bar for Largest Contentful Paint, unchanged. A number of SEO trackers and blogs reported a 2.0 second threshold tied to the March 2026 core update, and that figure has been repeated widely enough to look confirmed. It is not confirmed. Treat 2.0 seconds as a practical bar some sites are being held to in ranking behavior, not an official published standard."
+  - q: "What actually changed with Core Web Vitals in the March 2026 update?"
+    a: "The best-supported change is a shift from page-by-page scoring to site-level aggregation. Google now appears to weigh Core Web Vitals performance across a domain as a whole rather than in isolation per URL, so a cluster of slow template pages can affect how the rest of the site performs in rankings, not just the slow pages themselves."
+  - q: "How do I check if my site is affected by site-level Core Web Vitals aggregation?"
+    a: "Pull your full Core Web Vitals report in Search Console rather than spot-checking a handful of pages, and look at the pass rate across your whole URL set, not just your homepage or top landing pages. A site with a high percentage of failing pages on a shared template, pagination, tag archives, or filtered category pages is the profile most likely to be dragged down as a whole under this model."
+  - q: "Are LCP, INP, and CLS weighted equally now?"
+    a: "That is reported by several SEO trackers alongside the aggregation change, with INP said to now carry the same weight as LCP rather than less. Google has not published a ranking factor weighting for Core Web Vitals at any point, official or otherwise, so this claim sits in the same category as the 2.0 second figure: plausible, repeated, and not verifiable against a primary source."
+---
+
+Type "core web vitals 2026 update" into Google and you'll get a dozen posts stating, flatly, that the LCP threshold dropped from 2.5 seconds to 2.0. Not one of them links to where Google said that. Because Google didn't.
+
+Go check yourself. [Web.dev's own article on how the thresholds were defined](https://web.dev/articles/defining-core-web-vitals-thresholds) still lists 2.5 seconds as "good" for Largest Contentful Paint. No update note. No revision date suggesting a change. The number that's been copy-pasted across the SEO blog ecosystem all year isn't in Google's own documentation.
+
+That doesn't mean nothing changed in March 2026. Something did. It's just not the thing most of these posts lead with.
+
+## What's actually confirmed versus what's just repeated
+
+Here's the split, plainly:
+
+**Repeated everywhere, confirmed nowhere:** the LCP "good" threshold moved from 2.5s to 2.0s. Also repeated: LCP, INP, and CLS are now weighted equally in ranking, where INP used to carry less weight. Neither of these appears in Google's Search Central documentation or web.dev. They're attributed, when attributed at all, to "internal analysis" or unnamed tracking data. Treat both as plausible industry observation, not policy.
+
+**Actually supported by independent measurement:** Core Web Vitals stopped being scored strictly page by page. Multiple SEO trackers, working independently of each other, describe the same pattern following the March 2026 core update: Google now appears to weigh performance across an entire domain rather than treating each URL as its own isolated case.
+
+That second one is the real story. And it's the one getting buried under the more quotable 2.0 second number.
+
+## Why site-level scoring is the bigger deal
+
+A page-by-page model has a clean mental model. Your product page is fast, it gets credit for being fast. Your blog archive is slow, it eats the penalty alone. Fix the slow thing, the slow thing improves. Everything else stays exactly where it was.
+
+Site-level aggregation breaks that isolation.
+
+If the reporting on this holds, a domain where a meaningful chunk of pages fail LCP now drags on the standing of pages that individually pass every metric cleanly. Your fast product pages don't get to just be fast anymore. They inherit some of the drag from your slow tag archives, your unoptimized filtered category pages, your paginated listings nobody ever bothered to audit because they never ranked for anything important on their own.
+
+Nobody built their site architecture around that risk, because until this year it wasn't one.
+
+## Where this actually bites
+
+Three patterns show up more than any others when this kind of aggregation gets applied:
+
+Templated pages at scale. A directory site, a real estate listings page, an ecommerce category grid, anything generating hundreds or thousands of near-identical URLs off one template. If that template has a layout shift problem or a bloated hero image, it's not ten slow pages. It's every page built from it.
+
+Pagination and filters. `/blog/page/14/`, `?color=blue&size=large`, faceted navigation on ecommerce. These pages rarely get individual performance attention because nobody thinks of them as "real" pages worth optimizing. Under a site-level model, that neglect stops being free.
+
+Old content nobody revisits. A five-year-old blog post built on a since-abandoned theme version, still indexed, still technically live, still counted. Fast new pages don't erase a slow old archive from the aggregate.
+
+## What to actually check
+
+Skip the temptation to spot-check your homepage and call it done. That tells you almost nothing about site-level standing.
+
+Pull your full Core Web Vitals report in Search Console. Not the summary card. The URL-group breakdown. Look for the percentage of pages in "needs improvement" or "poor," and pay specific attention to which templates those pages come from. One bad template shared across 2,000 URLs is a bigger liability under this model than one uniquely bad page ever was.
+
+If you run a WordPress site with tag or date archives indexed, check those first. They're disproportionately likely to be running default themes, unoptimized featured images, and zero caching attention, because nobody treated them as pages that mattered. They still count toward the aggregate now.
+
+## Why Google would even do this
+
+Page-by-page scoring was easy to game in a specific way. Build one showcase landing page, tune it obsessively, get it fast enough to pass every metric, and point your best backlinks at it. Meanwhile the other four thousand pages on the domain, the ones actually generating your organic traffic, could sit in "poor" territory indefinitely without touching that one page's standing.
+
+Site-level aggregation closes that gap. It stops rewarding a domain for optimizing its front door while leaving the rest of the house unfinished. That's consistent with the direction Google has pushed for years: judge the site's actual user experience, not the one page built to impress a crawler.
+
+It also fits a pattern beyond Core Web Vitals specifically. Google has been increasingly willing to treat a site as one entity rather than a loose collection of independent URLs when something at scale looks off, thin content clusters, doorway pages, low-quality programmatic pages. Site-level performance scoring reads as the same instinct applied to speed instead of content quality.
+
+## A short audit before you touch any code
+
+Three checks, in order, before you spend a single hour optimizing anything:
+
+1. **Pull the URL-level Core Web Vitals breakdown in Search Console**, not the top-line summary. Sort by page group. You're hunting for the biggest cluster of "poor" or "needs improvement" URLs sharing one template, not the single worst individual page.
+2. **Identify what that cluster has in common.** Same theme file, same plugin injecting a render-blocking script, same oversized hero image pulled from a shared header component. Fixing the shared cause fixes hundreds of pages in one edit; fixing individual pages one at a time doesn't scale against an aggregation model.
+3. **Check whether your indexed archive pages are inflating the bad cluster.** Tag pages, date archives, low-value paginated pages. If they're indexed and they're slow, they're now part of your aggregate whether anyone ever visits them or not. [Noindexing thin or duplicate page types](/blog/why-duplicate-content-hurts-seo/) removes them from the pool entirely, which is a faster win than trying to speed up pages nobody needed indexed in the first place.
+
+None of this requires guessing at Google's exact formula. It requires finding your worst template and fixing it once, instead of chasing the specific decimal point some blog post claims is the new bar.
+
+## The honest bottom line
+
+Whether the specific numbers are 2.5 or 2.0 seconds matters less than most posts about this are making it sound. The actual behavior change, if the tracking data holds up, is structural: your site's Core Web Vitals standing is no longer the sum of independent page scores. It's closer to an average that your worst templates can pull down.
+
+Fix the thresholds you can verify. LCP under 2.5 seconds, INP under 200 milliseconds, CLS under 0.1, straight from Google's own numbers, no dispute there. Then go find the templates generating your worst pages at scale, because that's the part of this update actually worth losing sleep over.
+
+## Related reading
+
+- [Core Web Vitals and AI search: how page performance affects citations](/blog/core-web-vitals-ai-search-2026/)
+- [What is Information Gain Optimization (IGO)?](/blog/information-gain-optimization/)
