@@ -1,0 +1,70 @@
+---
+title: "Reddit v. Perplexity: What the Scraping Lawsuit Actually Tests"
+description: "Reddit alleges Perplexity used scraping firms to bypass its blocks and cite Reddit content anyway. The legal theory is narrower than most coverage suggests, and it has nothing to do with robots.txt."
+deck: "The lawsuit isn't about whether Perplexity can cite Reddit. It's about whether paying someone else to get around a technical block counts as circumvention under a law written for DVDs."
+pubDate: 2026-09-17
+category: Research
+tags:
+  - Perplexity
+  - Reddit
+  - AI citations
+  - data scraping
+  - legal
+  - AI search news
+author: "Shashank Dubey"
+featured: false
+faqs:
+  - q: "What is Reddit actually suing Perplexity for?"
+    a: "Reddit filed suit in the Southern District of New York (case 1:25-cv-08713, Judge Paul A. Engelmayer) against Perplexity and three data-scraping intermediaries, Oxylabs, AWMProxy, and SerpApi. The core legal theory is a DMCA Section 1201 anti-circumvention claim, not ordinary copyright infringement. Reddit alleges the scraping firms used masked bot identities to get around its technical access controls, and that Perplexity was a paying customer of that supply chain."
+  - q: "Has Perplexity admitted to training on Reddit data?"
+    a: "No. Perplexity denies it, and says its product only summarizes and cites public Reddit discussions the way a search engine would. Reddit's complaint alleges Perplexity's own citation volume from Reddit increased roughly 40x after Reddit sent a cease-and-desist letter, which Reddit points to as evidence the access continued through intermediaries rather than stopping."
+  - q: "Has a judge ruled on the case yet?"
+    a: "Not as of this writing. Perplexity and SerpApi moved to dismiss in March 2026, Reddit filed its opposition in April, and the court heard close to three hours of oral argument on June 30, 2026. A meaningful chunk of that argument was about whether Reddit has legal standing to sue on behalf of its users at all, a separate question from whether the scraping happened."
+  - q: "Does blocking AI crawlers with robots.txt protect a site from this kind of scraping?"
+    a: "Not against the supply chain this case describes. Robots.txt is a voluntary instruction that compliant crawlers choose to honor. The firms named in Reddit's complaint are accused of masking bot identity specifically to avoid detection, which is a different threat model than an AI company's crawler politely reading a disallow rule. If the allegations are true, the block was never seen in the first place."
+---
+
+Reddit built its blocking case on a law written for DVDs.
+
+That's not a knock. It might be the smartest available option. The Digital Millennium Copyright Act's anti-circumvention provision, Section 1201, was designed to stop people from breaking encryption on discs and cable boxes. Reddit's lawsuit against Perplexity is trying to get a federal court to say that using disguised scraping bots to get around a website's access controls is the same kind of act. Nobody has fully tested that theory against an AI answer engine before.
+
+## What's actually alleged
+
+The complaint, filed in the Southern District of New York and assigned to Judge Paul A. Engelmayer, names Perplexity plus three data-scraping firms: Oxylabs, AWMProxy, and SerpApi. Reddit's claim isn't "Perplexity read our website." It's more specific than that. Reddit says these firms disguised the identity of their scraping bots to get past Reddit's technical defenses, and that Perplexity was a customer of that operation, buying access it had been told, in writing, it didn't have.
+
+The cease-and-desist detail is the sharpest fact in the filing. Reddit alleges that after it sent Perplexity a formal notice to stop, Perplexity's citation of Reddit content in its answers went up by a factor of 40. Read uncharitably, that's evidence the block didn't work and the access kept flowing through a different door. Read the way Perplexity reads it, increased citation is just a normal product outcome that has nothing to do with how the underlying data was sourced.
+
+Perplexity's public position is narrower than "we didn't do anything." It's "we don't train on this." The company says its product summarizes and cites public Reddit threads, the same function a search engine performs, and that summarizing isn't the same act as training a model on scraped text. That's a real distinction. It's also not the distinction the lawsuit turns on. The DMCA claim is about the access method, not what happened to the data afterward.
+
+## Why the legal theory matters more than the headline
+
+Most coverage of this case reads it as "Reddit sues Perplexity over data." That framing makes it sound like every other AI training-data lawsuit filed in the last two years. It isn't, structurally.
+
+A copyright claim asks whether copying happened and whether it was fair use. An anti-circumvention claim asks something narrower and, in some ways, easier to prove: was there a technical access control, and was it circumvented. Reddit doesn't have to win an argument about whether AI summarization of forum posts is transformative. It has to show a lock existed and someone picked it, on purpose, using tools built for picking locks.
+
+That's a genuinely different bar. It's also why close to three hours of the June 30 oral argument reportedly focused on something that sounds procedural but isn't: whether Reddit even has standing to sue on behalf of its users' posts in the first place. If a court finds Reddit lacks that authority, the circumvention theory never gets tested on its merits. The case could die on a threshold question that has nothing to do with scraping.
+
+No ruling has landed as of this writing. Treat every claim above as allegation, not adjudicated fact, until one does.
+
+## The part that should worry site owners more than the lawsuit itself
+
+Here's the uncomfortable structural fact this case surfaces, independent of who wins: robots.txt is a request, not a lock.
+
+A crawler that respects robots.txt does so voluntarily. Nothing about the protocol prevents a determined operator from ignoring it, and nothing about a disallow rule detects or blocks a bot that's actively trying not to be detected. If Reddit's allegations are accurate, that's exactly what happened here: a scraping operation built specifically to look like something other than what it was, sold as a service to a company that wanted the data without the friction of asking directly.
+
+That means the honest answer to "does blocking AI crawlers protect me" is: against a cooperative crawler, yes. Against an adversarial scraping supply chain built to route around detection, a text file is not a technical control, it's a polite sign. The companies with real power here aren't the ones editing robots.txt. They're the ones like Reddit with server logs detailed enough to notice a citation volume spike and trace it to a cease-and-desist violation, and legal budgets large enough to test a novel DMCA theory in federal court over it.
+
+Most sites have neither. Which is the actual takeaway. Legal deterrence at this scale is a tool for platforms with Reddit's data value and Reddit's resources. For everyone else, the more useful lesson from [how Perplexity selects citations](/blog/how-perplexity-selects-citations/) is that being cited accurately and being scraped without consent are two different problems, and only one of them has a lawsuit-shaped solution.
+
+## What to actually do with this
+
+If you run a site and you're wondering whether this changes anything for you: probably not directly, unless your content is valuable enough at scale to be worth a scraping firm's infrastructure investment, and worth your own legal spend to chase. What it does change is how much faith to put in access-control theater. A robots.txt entry, a basic bot-detection rule, a Cloudflare challenge, these stop casual and compliant traffic. None of them are what this lawsuit is actually about, because none of them stop an operator who has already decided to disguise their identity to get past you.
+
+If you want your content cited accurately rather than scraped anonymously, the more productive question isn't "how do I block AI crawlers." It's "how do I make legitimate citation the easy path," which is a different problem covered in [how to rank in Perplexity AI](/blog/how-to-rank-in-perplexity-ai/) and in [how ChatGPT, Perplexity, and Google cite differently](/blog/how-chatgpt-perplexity-google-cite-differently/). Locking the door matters less than making sure the people coming through it are the ones you actually want.
+
+## Related reading
+
+- [How Perplexity selects citations](/blog/how-perplexity-selects-citations/)
+- [How to rank in Perplexity AI](/blog/how-to-rank-in-perplexity-ai/)
+- [How ChatGPT, Perplexity, and Google cite differently](/blog/how-chatgpt-perplexity-google-cite-differently/)
+- [Best web scraping proxy tools 2026](/blog/best-web-scraping-proxy-tools-2026/)
