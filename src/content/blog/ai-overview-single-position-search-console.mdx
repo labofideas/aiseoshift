@@ -1,0 +1,80 @@
+---
+title: "Search Console Counts Every AI Overview Link as One Position. Here's What That Actually Means."
+description: Google's own Search Console documentation says an AI Overview occupies a single position, and every link inside it inherits that same number. Most people reading their AI Overview data have no idea, and it quietly wrecks position-based conclusions.
+deck: Your link could be the first citation or the last one buried behind a tap to expand, and Search Console reports the exact same position either way. That changes what "average position" is even telling you.
+pubDate: 2026-09-25
+category: Playbooks
+tags:
+  - Google Search Console
+  - AI Overviews
+  - SEO measurement
+  - position tracking
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: Does every link in an AI Overview really get the same position in Search Console?
+    a: Yes. Google's Search Console Help documentation states it directly, an AI Overview occupies a single position in search results, and all links in the AI Overview are assigned that same position. Google's John Mueller has confirmed the same thing separately, describing an AI Overview as counting as one block for position purposes, regardless of where inside it a given link actually sits.
+  - q: If my URL appears in both an AI Overview and the regular blue links, does it count as two impressions?
+    a: No. Mueller has clarified that when the same URL shows up in both an AI Overview and the classic organic results for the same query, Search Console counts it as a single impression, not two. The two appearances do not stack.
+  - q: Does this position quirk apply to clicks too, or only position?
+    a: Clicks and impressions are counted separately from position, and both follow their own standard rules. Clicking a link inside an AI Overview counts as a click, and standard impression rules apply to whether it counts as an impression. It is specifically the position metric that collapses every link in the block down to one shared number.
+---
+
+Someone shares a screenshot of Search Console's help docs and it goes semi-viral because nobody knew it. That is what happened this week with a fact that has actually been sitting in Google's documentation since 2025: an AI Overview counts as one position, and every link inside it shares that position, no matter where in the block it sits.
+
+It is real. It is also not new. And that combination is exactly why it is worth writing down properly.
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Classic organic results assign each of ten links its own position, one through ten. An AI Overview is different: it occupies a single position, and every link inside it, whether cited first or buried behind an expand tap, inherits that same one number.">
+	<rect width="800" height="300" fill="rgb(246,245,240)" />
+	<text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">TEN POSITIONS VS. ONE BLOCK</text>
+	<g font-family="system-ui, sans-serif" fill="rgb(14,17,22)">
+		<text x="40" y="62" font-size="11" font-weight="700" fill-opacity="0.6">Classic organic results</text>
+		<g fill-opacity="0.85">
+			<rect x="40" y="74" width="66" height="28" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.2" /><text x="52" y="93" font-size="10">Pos 1</text>
+			<rect x="114" y="74" width="66" height="28" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.2" /><text x="126" y="93" font-size="10">Pos 2</text>
+			<rect x="188" y="74" width="66" height="28" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.2" /><text x="200" y="93" font-size="10">Pos 3</text>
+			<rect x="262" y="74" width="66" height="28" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.2" /><text x="274" y="93" font-size="10">Pos 4</text>
+			<rect x="336" y="74" width="66" height="28" rx="4" fill="rgb(250,250,247)" stroke="rgb(14,17,22)" stroke-opacity="0.2" /><text x="348" y="93" font-size="10">Pos 5</text>
+		</g>
+		<text x="40" y="128" font-size="10" fill-opacity="0.55">Each link earns and reports its own number.</text>
+		<text x="40" y="176" font-size="11" font-weight="700" fill="rgb(184,85,46)">AI Overview block</text>
+		<rect x="40" y="188" width="362" height="86" rx="6" fill="rgb(14,17,22)" />
+		<text x="58" y="212" font-size="10.5" fill="rgb(250,250,247)" fill-opacity="0.9">Cited first</text>
+		<text x="58" y="230" font-size="10.5" fill="rgb(250,250,247)" fill-opacity="0.9">Cited third</text>
+		<text x="58" y="248" font-size="10.5" fill="rgb(250,250,247)" fill-opacity="0.9">Behind "show more"</text>
+		<rect x="300" y="200" width="86" height="60" rx="4" fill="rgb(184,85,46)" fill-opacity="0.85" /><text x="313" y="235" font-size="14" font-weight="700" fill="rgb(250,250,247)">Pos X</text>
+		<text x="40" y="292" font-size="10" fill-opacity="0.55">All three links, one shared number, regardless of order inside the block.</text>
+	</g>
+</svg>
+</figure>
+
+## What the documentation actually says
+
+Search Console's help page on impressions, position, and clicks lays out three rules for AI Overviews specifically. Clicking a link to an external page in the AI Overview counts as a click. Standard impression rules apply. And then the one that catches people off guard: "An AI Overview occupies a single position in search results, and all links in the AI Overview are assigned that same position."
+
+Read that twice. It does not say your link's position within the AI Overview. It says the AI Overview's position, full stop, and every link inside inherits it.
+
+Google's John Mueller has said the same thing in his own words, outside the docs: "Basically an AIO counts as a block, so it's all one position. It can be first position, if the block is shown first, but I don't know if AIO is always shown first." That last clause matters too. The block's position can move around the page from query to query. What stays fixed is that whatever number the block lands on, every link inside it gets stamped with that same number.
+
+## Why "average position" stops meaning what you think
+
+Average position has always been a proxy for "how prominent was my link, on average." For classic blue links that proxy holds up reasonably well. Position 2 usually beats position 8.
+
+Inside an AI Overview, the proxy breaks. Your link might be the very first citation a user sees, the kind of placement that would earn genuine trust and clicks. Or it might be the fourth of four sources, tucked behind a "show more" tap almost nobody presses. Search Console cannot tell you which. Both situations report identically.
+
+That means a dashboard showing "average position 3.2 in AI Overviews" is telling you something real about where the block itself tends to sit on the page. It is telling you nothing about how prominently your specific link is cited relative to the other sources next to it.
+
+## A related quirk worth knowing at the same time
+
+There is a second, closely related clarification from Mueller worth pairing with this one. When the same URL appears both inside an AI Overview and in the regular organic results for the same query, Search Console does not double-count it as two impressions. It counts once. If you have been eyeballing impression totals expecting AI Overview visibility to stack cleanly on top of your organic numbers, it does not always work that way for a URL doing double duty on both surfaces.
+
+Both quirks point at the same underlying truth. Search Console's AI Overview reporting borrows the vocabulary of the classic Performance report, position, impressions, clicks, but the surface underneath those words behaves differently enough that the old intuitions do not transfer cleanly.
+
+## What to actually do with this
+
+Stop treating AI Overview average position as a citation-prominence metric. It is not one. Use it only to understand roughly where the AI Overview block tends to appear on the page for your queries, not where your link sits within it.
+
+Lean on the dimensions Search Console actually gives you cleanly instead: which pages get cited, which queries trigger those citations, and how impressions and clicks trend over time for those pages. That page-level and query-level data is real and actionable. The [generative AI performance report](/blog/google-search-console-ai-performance-report/) is the place to read it, and the broader [tracking playbook for AI Overview citations](/blog/google-search-console-ai-visibility/) covers how to build a routine around it. If you are also watching the click side of this data, [AI clicks in Search Console](/blog/ai-clicks-search-console/) is the companion piece.
+
+One number that looks precise is not the same thing as one number that is meaningful. The AI Overview position figure is the first one, dressed up to look like the second.
