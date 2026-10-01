@@ -1793,5 +1793,14 @@
 			"width": 1200,
 			"height": 675
 		}
+	},
+	"best-chatgpt-alternatives": {
+		"hero": {
+			"src": "/images/posts/best-chatgpt-alternatives-hero.webp",
+			"alt": "Best ChatGPT alternatives in 2026 comparison graphic featuring Claude, Gemini, Perplexity, and Copilot",
+			"width": 1200,
+			"height": 675,
+			"bytes": 39714
+		}
 	}
 }
