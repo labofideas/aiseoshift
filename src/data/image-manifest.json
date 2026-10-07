@@ -1829,5 +1829,59 @@
 			"height": 675,
 			"bytes": 22614
 		}
+	},
+	"facebook-ads-strategies-after-meta-update": {
+		"hero": {
+			"src": "/images/posts/facebook-ads-strategies-after-meta-update-hero.webp",
+			"alt": "10 Facebook ads strategies after Meta's latest updates: creative is now your targeting",
+			"width": 1200,
+			"height": 675,
+			"bytes": 25280
+		}
+	},
+	"best-meta-ads-courses": {
+		"hero": {
+			"src": "/images/posts/best-meta-ads-courses-hero.webp",
+			"alt": "Best Meta ads courses in 2026 to learn Facebook and Instagram ads",
+			"width": 1200,
+			"height": 675,
+			"bytes": 24718
+		}
+	},
+	"best-ai-video-ad-generators": {
+		"hero": {
+			"src": "/images/posts/best-ai-video-ad-generators-hero.webp",
+			"alt": "Best AI video ad generators in 2026 for Meta, TikTok and YouTube ads",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22288
+		}
+	},
+	"best-trending-product-research-tools": {
+		"hero": {
+			"src": "/images/posts/best-trending-product-research-tools-hero.webp",
+			"alt": "Best trending product research tools in 2026 for ecommerce sellers",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23482
+		}
+	},
+	"chatgpt-merchant-setup": {
+		"hero": {
+			"src": "/images/posts/chatgpt-merchant-setup-hero.webp",
+			"alt": "ChatGPT merchant setup: how to get your products into ChatGPT shopping",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23178
+		}
+	},
+	"full-funnel-performance-marketing-system": {
+		"hero": {
+			"src": "/images/posts/full-funnel-performance-marketing-system-hero.webp",
+			"alt": "How to build a full-funnel performance marketing system",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23888
+		}
 	}
 }

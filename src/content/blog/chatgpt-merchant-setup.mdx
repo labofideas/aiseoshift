@@ -1,0 +1,140 @@
+---
+title: "ChatGPT Merchant Setup: How to Get Your Products Into ChatGPT Shopping (2026 Guide)"
+description: How to set up your store for ChatGPT shopping in 2026, step by step. Submitting a product feed, the Agentic Commerce Protocol for in-chat checkout, fees, ChatGPT ads, and how to get your products recommended.
+deck: There is no single "ChatGPT Merchant Center" yet. There is a product feed, a checkout protocol and a separate ads program. Here is how each one works and which you actually need.
+pubDate: 2026-10-07
+category: Playbooks
+tags:
+  - ChatGPT
+  - ChatGPT shopping
+  - ecommerce
+  - agentic commerce
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "Is there a ChatGPT Merchant Center?"
+    a: "Not under that name. OpenAI runs a merchant program where stores apply at chatgpt.com/merchants and submit a product feed so their products can appear in ChatGPT shopping results. Checkout inside ChatGPT runs on a separate open standard, the Agentic Commerce Protocol, and paid placement is a separate ChatGPT ads program."
+  - q: "Does it cost money to list products in ChatGPT?"
+    a: "Appearing in ChatGPT's organic shopping results is free, and OpenAI says those results are not ads and are ranked on relevance. For purchases completed through in-chat checkout, OpenAI has been widely reported to charge merchants a 4% fee on top of normal payment processing. ChatGPT ads are a separate paid program."
+  - q: "Can Shopify stores sell on ChatGPT?"
+    a: "Yes. Shopify and Etsy were the first platforms connected to ChatGPT shopping, and Shopify also has an app for running ChatGPT ads. Stores on other platforms such as WooCommerce, BigCommerce or Salesforce Commerce Cloud can submit a product feed directly, and BigCommerce and Salesforce have announced Agentic Commerce Protocol support."
+  - q: "How does ChatGPT decide which products to show?"
+    a: "OpenAI says shopping results are organic and based on relevance, not payment. In practice, products with complete and accurate feeds, clear structured data on product pages, strong reviews and consistent descriptions across the web are more likely to be recommended. Because ChatGPT's web search draws on Bing, being indexed on Bing also helps."
+  - q: "Who handles returns and refunds for ChatGPT orders?"
+    a: "You do. OpenAI is not the merchant of record. Your store processes the payment through its own payment provider, accepts or declines the order, ships it, and handles returns, refunds and disputes under your own policies."
+---
+
+Getting your products into ChatGPT shopping in 2026 comes down to three separate pieces. First, apply as a merchant at chatgpt.com/merchants and submit a product feed so ChatGPT can recommend your products in its organic shopping results. Second, if you want people to buy without leaving the chat, integrate the Agentic Commerce Protocol (ACP) that OpenAI built with Stripe. Third, if you want paid placement, use the separate ChatGPT ads program. Most stores should start with the feed, because it is free and it is what puts your products in front of shoppers.
+
+There is no single dashboard called "ChatGPT Merchant Center" the way there is a Google Merchant Center. People search for it because the job is similar. The setup is just split across a feed, a protocol and an ads product.
+
+![The three parts of selling on ChatGPT: product feed, checkout protocol and ads](/images/posts/chatgpt-merchant-setup-parts.webp)
+
+## Why bother with ChatGPT shopping
+
+ChatGPT has more than a billion weekly users, and a growing share of them ask it what to buy. When someone asks for "the best running shoes for flat feet under $150," ChatGPT answers with specific products, and your store is either in that answer or not.
+
+Shopping answers also cite far more sources than ordinary ChatGPT answers, often dozens per product question. That gives smaller brands more room to appear than a single Google results page does.
+
+## Step 1: Get your product data right first
+
+Whatever route you take, ChatGPT can only recommend what it understands. Before you apply anywhere:
+
+- **Product pages with structured data.** Add Schema.org Product markup with name, brand, price, currency, availability, GTIN or SKU, images and review ratings. Our guide to [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) covers the details.
+- **Clear policies.** Published shipping, returns and privacy pages with working links. OpenAI's own production checklist tests that your terms and privacy links work.
+- **Bing indexing.** ChatGPT's web search draws on Bing, so verify your site in Bing Webmaster Tools and consider submitting your catalog to Microsoft Merchant Center too. See [how ChatGPT search selects its sources](/blog/how-chatgpt-search-selects-sources/).
+- **Reviews.** Ratings and review volume, on your site and on third-party sites, are among the signals that shape which products AI assistants recommend.
+
+## Step 2: Apply and submit your product feed
+
+### If you sell on Shopify or Etsy
+
+Shopify and Etsy were the first platforms connected to ChatGPT shopping. Check your platform's admin for ChatGPT or agentic commerce settings and make sure your catalog is eligible and complete, because your platform may handle the feed for you.
+
+### If you use another platform or a custom store
+
+Stores on WooCommerce, BigCommerce, Magento, Salesforce Commerce Cloud or custom stacks can apply directly:
+
+1. **Apply at chatgpt.com/merchants** with your company and store details.
+2. **Prepare your feed** as a CSV or JSON file following OpenAI's product feed specification. Include accurate price and availability, product identifiers, titles, descriptions, images and links. Richer data, such as reviews and extra images, helps.
+3. **Submit a sample feed** for validation and fix any errors it reports.
+4. **Keep it fresh.** Refresh the full feed at least daily, and push price and stock changes as they happen so ChatGPT never shows an out-of-stock item or a stale price.
+5. **Keep product IDs stable.** Changing IDs can make products look new and lose their history.
+
+BigCommerce has shipped Agentic Commerce Protocol support, and Salesforce announced it with Stripe. WooCommerce has no native support yet, so WooCommerce stores currently need a plugin or custom work.
+
+## Step 3: Decide whether you need in-chat checkout
+
+The Agentic Commerce Protocol is an open standard, launched by OpenAI and Stripe on September 29, 2025, that lets a buyer complete a purchase inside ChatGPT. OpenAI launched it as Instant Checkout, first with Etsy sellers and then with Shopify merchants.
+
+**A note on status.** Several industry outlets reported in March 2026 that OpenAI narrowed the Instant Checkout rollout and shifted its focus to product discovery, with purchases completing on the merchant's own site. OpenAI's developer documentation still describes the full checkout integration as the live path for merchants. If in-chat checkout matters to your plans, confirm its current availability for your category with OpenAI during your application before you build.
+
+### How ACP checkout works
+
+If you go ahead, here is what the integration involves, based on OpenAI's developer documentation:
+
+- **Checkout endpoints.** ChatGPT calls your endpoints to create and update a checkout session. You validate the buyer's details and return shipping options and tax.
+- **Delegated payment.** Payment credentials are passed to your payment provider through a delegated payment flow. Stripe's Shared Payment Token was the first compatible implementation, so Stripe merchants have the shortest path.
+- **Order webhooks.** You send order-created and order-updated events back, signed so they can be verified.
+- **You stay the merchant of record.** You process payment, accept or decline orders, ship, and handle returns and disputes.
+
+### The production checklist
+
+Before going live, OpenAI requires sandbox testing of the full flow, including:
+
+- Creating checkout sessions with and without a shipping address, and recalculating shipping and tax.
+- Successful payment and completed orders, plus correct signed webhooks.
+- Error handling for missing fields, out-of-stock items and declined payments, with the right HTTP status codes.
+- Idempotency, so a repeated request does not create a duplicate order.
+- Working terms of service and privacy policy links.
+- Allowlisting OpenAI's published IP ranges, and serving over TLS 1.2 or higher.
+
+Because you handle card payments, your PCI compliance scope can grow, and OpenAI may ask for an Attestation of Compliance before granting production access. Budget developer time accordingly.
+
+### Fees
+
+Listing and organic shopping results are free. For purchases completed through in-chat checkout, OpenAI has been widely reported to charge a 4% fee per order, on top of your normal payment processing fees. OpenAI says the fee does not affect how products are ranked.
+
+## Step 4 (optional): ChatGPT ads
+
+Paid placement is a separate program. ChatGPT began showing ads in the US in February 2026, opened a self-serve ads platform in May, and in September a ChatGPT ads app arrived in the Shopify App Store, according to industry coverage. OpenAI says organic shopping results remain unsponsored, so ads sit alongside them rather than buying a higher organic position.
+
+If you already have a strong feed and want more reach on high-value products, ads are worth a test. If your feed and product data are weak, fix those first. Ads will not rescue thin listings.
+
+## How to get your products recommended more often
+
+OpenAI says shopping results are ranked on relevance, not payment. In practice, these are the levers:
+
+1. **Complete, accurate feed data.** Every field filled, prices and stock always current.
+2. **Specific titles and descriptions.** Say who the product is for and what it does: "waterproof trail running shoe for wide feet," not "Model X Pro."
+3. **Reviews everywhere.** On your site, on marketplaces and on review sites that AI engines cite.
+4. **Third-party mentions.** Comparison articles, buyer guides and Reddit threads shape which products ChatGPT knows to recommend. Our guide to [where AI engines pull citations from](/blog/where-ai-engines-pull-citations/) explains which sources matter.
+5. **Consistent facts.** The same price, specs and claims across your site, your feed and third-party listings.
+
+Then measure it. Track how often ChatGPT recommends your products for your key buying questions with one of the tools in our [ChatGPT rank tracker guide](/blog/best-chatgpt-rank-tracker/).
+
+## Common setup mistakes
+
+**Stale prices and stock.** The fastest way to lose trust with shoppers and with the system.
+
+**Missing identifiers.** Products without GTINs or stable IDs are harder to match and compare.
+
+**No returns or shipping policy.** Shoppers and the checkout checklist both need them.
+
+**Building checkout before the feed.** Discovery comes first. Checkout only helps once your products are being recommended.
+
+## The bottom line
+
+Start with the free part: clean product data, structured data on your pages, and a product feed submitted through chatgpt.com/merchants. Shopify and Etsy sellers should check what their platform already handles. Build Agentic Commerce Protocol checkout only once you have confirmed its current availability for your store and have developer time for the certification checklist. Test ChatGPT ads last.
+
+For the bigger picture of AI agents that shop on behalf of users, see [agentic commerce optimization](/blog/what-is-agentic-commerce-optimization/) and our comparison of [OpenAI dots, Meta Muse, Grok Bot and Gemini Spark](/blog/dots-vs-muse-vs-grok-bot-vs-gemini-spark/).
+
+## References
+
+- [OpenAI commerce developer docs: key concepts](https://developers.openai.com/commerce/guides/key-concepts)
+- [OpenAI commerce developer docs: production checklist](https://developers.openai.com/commerce/guides/production)
+- [Agentic Commerce Protocol](https://www.agenticcommerce.dev/)
+- [Agentic Commerce Protocol on GitHub](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol)
+- [Stripe and OpenAI launch Instant Checkout, Stripe](https://stripe.com/newsroom/news/stripe-openai-instant-checkout)
+- [Stripe docs: Agentic Commerce Protocol](https://docs.stripe.com/agentic-commerce/acp)
+- [Instant Checkout, OpenAI Help Center](https://help.openai.com/en/articles/12440090-instant-checkout)
