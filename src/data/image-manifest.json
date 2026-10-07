@@ -1802,5 +1802,14 @@
 			"height": 675,
 			"bytes": 39714
 		}
+	},
+	"dots-vs-muse-vs-grok-bot-vs-gemini-spark": {
+		"hero": {
+			"src": "/images/posts/dots-vs-muse-vs-grok-bot-vs-gemini-spark-hero.webp",
+			"alt": "OpenAI dots, Meta Muse, Grok Bot and Gemini Spark compared: four always-on AI agents with their own computer",
+			"width": 1200,
+			"height": 675,
+			"bytes": 27350
+		}
 	}
 }
