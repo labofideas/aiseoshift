@@ -1811,5 +1811,14 @@
 			"height": 675,
 			"bytes": 27350
 		}
+	},
+	"best-chatgpt-rank-tracker": {
+		"hero": {
+			"src": "/images/posts/best-chatgpt-rank-tracker-hero.webp",
+			"alt": "Best ChatGPT rank trackers in 2026: tools that track mentions, citations and position in ChatGPT answers",
+			"width": 1200,
+			"height": 675,
+			"bytes": 26864
+		}
 	}
 }
