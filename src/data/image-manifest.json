@@ -1820,5 +1820,14 @@
 			"height": 675,
 			"bytes": 26864
 		}
+	},
+	"ai-overview-tracking-tools": {
+		"hero": {
+			"src": "/images/posts/ai-overview-tracking-tools-hero.webp",
+			"alt": "Google AI Overview tracking tools compared: tools that show whether your page is cited in AI Overviews",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22614
+		}
 	}
 }
