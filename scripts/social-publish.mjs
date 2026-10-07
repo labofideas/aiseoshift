@@ -158,7 +158,21 @@ function unquote(s) {
 
 // ---------- OG image extraction ----------
 
-async function fetchOgImage(pageUrl) {
+// "Deploy Site" only builds; Cloudflare deploys separately and can lag a few minutes,
+// so poll until the new page is live instead of posting a card with no image.
+async function fetchOgImage(pageUrl, attempts = 20, delayMs = 30000) {
+	for (let i = 1; i <= attempts; i++) {
+		const og = await tryFetchOgImage(pageUrl);
+		if (og || DRY_RUN) return og;
+		if (i < attempts) {
+			console.log(`  Page not live yet (attempt ${i}/${attempts}), retrying in ${delayMs / 1000}s`);
+			await new Promise((r) => setTimeout(r, delayMs));
+		}
+	}
+	return null;
+}
+
+async function tryFetchOgImage(pageUrl) {
 	try {
 		const res = await fetch(pageUrl, { headers: { 'user-agent': 'aiseoshift-social-publish/1.0' } });
 		if (!res.ok) return null;
