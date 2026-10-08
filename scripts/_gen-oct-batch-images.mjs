@@ -214,6 +214,17 @@ const posts = [
       { t: 'Text', sub: 'ON SCREEN', lines: ['Bold, under 10', 'words, inside the', 'safe area'], foot: ['For sound-off viewers'] },
     ], 'Test hooks by swapping only the opening of a proven ad. Judge on hook rate and cost per result.')],
   },
+  {
+    slug: 'best-open-source-seo-tools',
+    hero: { kicker: 'OPEN SOURCE SEO, 2026', l1: 'Own your', l2: 'SEO stack', sub: '14 free, self-hosted open source SEO tools' },
+    alt: 'Best open source SEO tools and platforms in 2026',
+    inline: ['stack', cards('A FREE OPEN SOURCE SEO STACK', 'One maintained tool for each job', [
+      { t: 'Rankings', sub: 'TRACK POSITIONS', lines: ['Daily keyword', 'positions with', 'a scraping API'], foot: ['SerpBear'] },
+      { t: 'Audits', sub: 'CRAWL AND FIX', lines: ['Broken links,', 'redirects, speed,', 'Core Web Vitals'], foot: ['SEOnaut, SiteOne,', 'Unlighthouse'] },
+      { t: 'Analytics', sub: 'MEASURE VISITS', lines: ['Privacy-friendly', 'traffic and', 'conversions'], foot: ['Matomo, Plausible,', 'Umami'] },
+      { t: 'On-site', sub: 'CMS PLUGINS', lines: ['Titles, sitemaps,', 'canonicals,', 'schema'], foot: ['The SEO Framework,', 'Yoast'] },
+    ], 'Open source cannot replace backlink and keyword volume data. Keep Search Console and one paid source.')],
+  },
 ];
 
 const manifest = JSON.parse(readFileSync(MANIFEST, 'utf8'));

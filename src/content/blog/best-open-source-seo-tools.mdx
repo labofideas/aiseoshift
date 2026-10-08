@@ -1,0 +1,230 @@
+---
+title: "Best Open Source SEO Tools and Platforms in 2026: 14 Free, Self-Hosted Picks"
+description: The best open source SEO tools in 2026 for rank tracking, site audits, analytics and WordPress SEO, including SerpBear, SEOnaut, SiteOne Crawler, Unlighthouse, Matomo, Plausible, Umami and advertools. Licenses, maintenance status and how to run each.
+deck: "There is no open source Semrush. There is something more useful: a set of free, well-maintained tools you can own outright, one for each job."
+pubDate: 2026-10-08
+category: Tooling
+tags:
+  - open source
+  - SEO tools
+  - self-hosted
+  - technical SEO
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "What is the best open source SEO tool?"
+    a: "It depends on the job. SerpBear is the best open source rank tracker, SEOnaut and SiteOne Crawler are the best site auditors, Unlighthouse runs Google Lighthouse across a whole site, Matomo, Plausible and Umami are the leading open source analytics platforms, and advertools is the best open source SEO library for Python users."
+  - q: "Is there an open source alternative to Semrush or Ahrefs?"
+    a: "Not a single one. Semrush and Ahrefs are built on huge proprietary crawls of the web, backlink indexes and keyword databases that no open source project maintains. You can replace parts of them, such as rank tracking, site audits and analytics, with open source tools, but backlink and keyword volume data still require a paid source or Google Search Console."
+  - q: "Are open source SEO tools really free?"
+    a: "The software is free, but running it is not always. Self-hosted tools need a server, typically a few dollars a month for small sites. Rank trackers such as SerpBear also need a search results scraping service, some of which have free tiers and others charge per request."
+  - q: "Do I need technical skills to use open source SEO tools?"
+    a: "Some, yes. WordPress plugins like Yoast SEO and The SEO Framework install like any plugin. Desktop and command-line tools like SiteOne Crawler and Unlighthouse need basic comfort with a terminal. Server tools like SerpBear, SEOnaut, Matomo and Plausible are usually deployed with Docker."
+  - q: "Which open source SEO tools should I avoid?"
+    a: "Avoid projects that are no longer maintained, because they break as search engines and browsers change and may have unpatched security issues. As of October 2026, Serposcope is archived, and Greenflare and SEO Panel have had no code changes in about three years."
+---
+
+The best open source SEO tools in 2026 are SerpBear for rank tracking, SEOnaut and SiteOne Crawler for site audits, Unlighthouse and Google Lighthouse for performance and Core Web Vitals, Matomo, Plausible or Umami for analytics, advertools for Python-based SEO analysis, and The SEO Framework or Yoast SEO for WordPress. Every tool on this list is genuinely open source and was actively maintained as of October 2026.
+
+One honest note first: there is no open source equivalent to Semrush or Ahrefs. Those platforms run on enormous proprietary databases of backlinks, keywords and search volumes that no open source project maintains. What open source does well is the work you can run on your own site: tracking, crawling, auditing, measuring and fixing. For many teams, that covers most of the day-to-day.
+
+![An open source SEO stack: rank tracking, site audits, analytics and CMS plugins](/images/posts/best-open-source-seo-tools-stack.webp)
+
+## Why use open source SEO tools
+
+- **No subscription.** You pay for hosting, if anything.
+- **You own the data.** Rankings, crawl results and analytics stay on your server.
+- **Privacy.** Self-hosted analytics avoids sending visitor data to third parties.
+- **Automation.** Command-line tools and libraries slot into scripts, CI pipelines and AI workflows.
+- **No seat limits.** Add your whole team or every client.
+
+The trade-off is setup time and maintenance. Pick tools with active development, because SEO tools that stop updating break as Google and browsers change.
+
+## The 14 tools at a glance
+
+GitHub stars and last activity checked October 8, 2026.
+
+| Tool | Job | License | GitHub stars | How you run it |
+|---|---|---|---|---|
+| SerpBear | Rank tracking | MIT | about 2,100 | Docker, plus a scraping API |
+| SEOnaut | Site audit | MIT | about 800 | Docker Compose |
+| SiteOne Crawler | Site audit, multi-purpose | MIT | about 940 | Single binary (Windows, macOS, Linux) |
+| Unlighthouse | Site-wide Lighthouse | MIT | about 4,900 | npx or Docker |
+| Google Lighthouse | Page performance and SEO | Apache-2.0 | about 30,900 | Chrome DevTools, CLI, CI |
+| python-seo-analyzer | Quick SEO checks | BSD-style | about 1,500 | pip package |
+| advertools | SEO data analysis in Python | MIT | about 1,500 | pip package |
+| Matomo | Analytics | GPL-3.0 | about 21,900 | Docker or PHP hosting |
+| Plausible CE | Privacy-first analytics | AGPL-3.0 | about 29,300 | Docker Compose |
+| Umami | Lightweight analytics | MIT | about 39,200 | Docker or Node |
+| Yoast SEO | WordPress SEO | GPL | about 2,000 | WordPress plugin |
+| The SEO Framework | WordPress SEO | GPL-3.0 | about 480 | WordPress plugin |
+| Rank Math | WordPress SEO | GPL-3.0 | about 130 (mirror) | WordPress plugin |
+| Slim SEO | WordPress SEO | GPL-3.0 | about 90 | WordPress plugin |
+
+## Rank tracking
+
+### 1. SerpBear
+
+SerpBear is the most polished open source rank tracker: a clean dashboard that tracks your keyword positions in Google over time, with competitor tracking and email reports. It is MIT licensed, built with Next.js and runs in Docker.
+
+To fetch rankings it connects to a search results scraping service such as ScrapingRobot, SerpApi or ScrapingAnt. Some have free tiers big enough for a small keyword list; larger lists cost money per request.
+
+**Strength:** easy to use and actively maintained.
+**Weakness:** depends on an outside scraping service, so cost and reliability are partly out of your hands.
+
+For tracking visibility in AI answers rather than Google rankings, open source options are still thin. See our guide to [AI visibility tools](/blog/best-ai-visibility-tools-2026/).
+
+## Site crawling and audits
+
+### 2. SEOnaut
+
+SEOnaut is a self-hosted site crawler and auditor written in Go. Point it at a site and it reports issues such as broken links, redirect chains, missing titles and descriptions, duplicate content and indexing problems, organized by project in a web dashboard. It needs no external API.
+
+**Strength:** a self-contained, web-based audit tool you can share with a team.
+**Weakness:** a smaller community than commercial crawlers.
+
+### 3. SiteOne Crawler
+
+SiteOne Crawler is a fast, single-binary crawler for Windows, macOS and Linux that checks SEO, security headers, accessibility and performance in one pass and produces a shareable HTML report. It can also generate sitemaps and offline copies of a site. It is written in Rust, MIT licensed and very actively developed.
+
+**Strength:** no dependencies, broad audit coverage, frequent updates.
+**Weakness:** command-line first, which suits technical users more than beginners.
+
+### 4. Unlighthouse
+
+Unlighthouse runs Google Lighthouse against every page of your site, not just one, and shows the results in a live dashboard: performance, Core Web Vitals, accessibility, best practices and SEO scores per page. Run it with a single npx command or Docker.
+
+**Strength:** the easiest way to find your slowest and weakest pages across a whole site.
+**Weakness:** heavy on large sites, since it runs a headless browser for each page.
+
+### 5. Google Lighthouse
+
+Lighthouse is Google's own open source auditing tool, built into Chrome DevTools and available as a command-line tool and Node package. It scores a page on performance, accessibility, best practices and SEO, with specific fixes.
+
+**Strength:** the reference standard, maintained by Google.
+**Weakness:** one page at a time by default. Pair it with Unlighthouse for full sites.
+
+See our guide to [Core Web Vitals and AI search](/blog/core-web-vitals-ai-search-2026/) for what to do with the results.
+
+### 6. python-seo-analyzer
+
+A lightweight Python tool that crawls a site or sitemap and reports common on-page issues, with JSON output that is easy to feed into scripts or CI checks. Install with pip.
+
+**Strength:** quick, scriptable checks.
+**Weakness:** much shallower than a full crawler.
+
+## SEO data analysis
+
+### 7. advertools
+
+advertools is a Python library for technical SEO and data work: crawling sites, parsing robots.txt and sitemaps, analyzing server logs, working with SERP data and building keyword lists. It is popular with technical SEOs who work in notebooks.
+
+**Strength:** enormous flexibility for analysis and automation.
+**Weakness:** code only, no interface.
+
+## Analytics
+
+Rankings and audits tell you what search engines see. Analytics tells you what visitors do. These three are the leading open source alternatives to Google Analytics. Pair any of them with Google Search Console, which is free and remains the only source of Google's own search query data.
+
+### 8. Matomo
+
+Matomo is the most complete open source analytics platform, with goals, funnels, heatmaps and A/B testing, and it can import data and run on your own server. Licensed GPL-3.0.
+
+**Strength:** closest to Google Analytics in depth.
+**Weakness:** heavier to host and scale than the lighter options.
+
+### 9. Plausible Community Edition
+
+Plausible is privacy-first, cookie-free analytics with a simple one-page dashboard, and its Community Edition can be self-hosted with Docker. Licensed AGPL-3.0.
+
+**Strength:** lightweight and easy to read.
+**Weakness:** the self-hosted edition has fewer features than Plausible's paid cloud version.
+
+### 10. Umami
+
+Umami is simple, fast analytics under the permissive MIT license, deployable with Docker or Node and a Postgres or MySQL database. It is one of the most popular open source analytics projects on GitHub.
+
+**Strength:** the simplest to deploy and the most permissive license.
+**Weakness:** fewer advanced features than Matomo.
+
+## WordPress SEO plugins
+
+All four are GPL licensed, like WordPress itself. They handle titles, meta descriptions, sitemaps, canonical tags and structured data. Pick one; never run two at once.
+
+### 11. Yoast SEO
+
+The most widely used WordPress SEO plugin, with mature sitemap, schema and readability tools. The free version is fully usable, with upgrade prompts for Premium.
+
+### 12. The SEO Framework
+
+Lightweight and fast, with sensible defaults, no ads and no upsell nagging in the dashboard. A favorite of developers and agencies.
+
+### 13. Rank Math
+
+The richest free feature set of the WordPress plugins, including schema types, redirections and 404 monitoring. Some features connect to a Rank Math account, which the plugin discloses.
+
+### 14. Slim SEO
+
+Deliberately minimal: it handles the essentials automatically with almost no settings. Best for people who want SEO basics done without configuring anything.
+
+Our guide to [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) covers what structured data to add with any of them.
+
+## Bonus: open source MCP servers for SEO
+
+If you work with AI assistants, several small open source MCP servers connect Claude and other assistants to Google Search Console, so you can ask questions about your search data in plain language. None has large adoption yet, so review the code before granting access to a real property. Our list of the [best SEO MCP servers](/blog/best-seo-mcp-servers-github/) covers the options in detail.
+
+## Projects to skip
+
+These still appear in older "open source SEO" lists, but they are no longer maintained as of October 2026:
+
+- **Serposcope:** the Java rank tracker's GitHub repository is archived, with no updates since January 2024.
+- **Greenflare:** the Python desktop crawler has had no code changes since mid-2023.
+- **SEO Panel:** the PHP all-in-one suite has had no code changes since 2023.
+
+Unmaintained tools break as search engines change and may carry unpatched security issues. Use the active alternatives above.
+
+## A free open source SEO stack
+
+For a small business or a single site:
+
+1. **Google Search Console** for search queries and indexing (free, not open source, essential).
+2. **Umami or Plausible** for privacy-friendly analytics.
+3. **SiteOne Crawler or SEOnaut** for a monthly technical audit.
+4. **Unlighthouse** once a quarter for performance across the site.
+5. **SerpBear** with a free-tier scraping API for your top 50 keywords.
+6. **The SEO Framework or Yoast** if you run WordPress.
+
+For agencies and technical teams, add **advertools** for analysis and automation, and **Matomo** if clients need deeper analytics.
+
+## What open source cannot replace
+
+Be clear about the gaps before you cancel paid tools:
+
+- **Backlink data.** No open source project crawls the web for links at scale.
+- **Keyword volumes and difficulty.** These come from proprietary datasets.
+- **Competitor traffic estimates.** Same problem.
+- **AI search visibility.** Tracking how ChatGPT, Gemini and Perplexity mention your brand is mostly a paid category today.
+
+Many teams run an open source stack for daily work and keep one paid tool for backlinks and keyword research. That is usually the best value. See our [best AI SEO tools](/blog/best-ai-seo-tools/) for paid options.
+
+## The bottom line
+
+Open source will not give you one platform that does everything, but it gives you excellent, free tools for rank tracking, auditing, analytics and on-site SEO, with your data on your own server. Stick to projects that are actively maintained, start with the stack above, and add a paid tool only for the data open source cannot provide.
+
+## References
+
+- [SerpBear on GitHub](https://github.com/towfiqi/serpbear)
+- [SEOnaut on GitHub](https://github.com/StJudeWasHere/seonaut)
+- [SiteOne Crawler on GitHub](https://github.com/janreges/siteone-crawler)
+- [Unlighthouse on GitHub](https://github.com/harlan-zw/unlighthouse)
+- [Google Lighthouse on GitHub](https://github.com/GoogleChrome/lighthouse)
+- [python-seo-analyzer on GitHub](https://github.com/sethblack/python-seo-analyzer)
+- [advertools on GitHub](https://github.com/eliasdabbas/advertools)
+- [Matomo on GitHub](https://github.com/matomo-org/matomo)
+- [Plausible Analytics on GitHub](https://github.com/plausible/analytics)
+- [Umami on GitHub](https://github.com/umami-software/umami)
+- [Yoast SEO on GitHub](https://github.com/Yoast/wordpress-seo)
+- [The SEO Framework on GitHub](https://github.com/sybrew/the-seo-framework)
+- [Rank Math on GitHub](https://github.com/rankmath/seo-by-rank-math)
+- [Slim SEO on GitHub](https://github.com/elightup/slim-seo)
+- [Serposcope on GitHub (archived)](https://github.com/serphacker/serposcope)
