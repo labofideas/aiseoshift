@@ -1,4 +1,4 @@
-// Hero + inline graphics for the 2026-10-07 marketing batch. Run: node scripts/_gen-oct-batch-images.mjs
+// Hero + inline graphics for the October 2026 marketing posts. Run: node scripts/_gen-oct-batch-images.mjs [slug-filter]
 import { readFileSync, writeFileSync, statSync } from 'node:fs';
 import sharp from 'sharp';
 
@@ -67,6 +67,22 @@ function picker(kicker, title, head, rows, note) {
       <text x="714" y="${yy + 44}" font-family="${SERIF}" font-size="25" font-weight="700" fill="${CREAM}">${esc(pick)}</text>`;
     }).join('');
   return frame(H, kicker, title, body, note);
+}
+
+
+function flip() {
+  const H = 640, pill = (cx, y, label, dark) => `<rect x="${cx - 110}" y="${y}" width="220" height="56" rx="28" fill="${dark ? NAVY : CREAM}" stroke="${NAVY}" stroke-width="3"/>
+    <text x="${cx}" y="${y + 37}" text-anchor="middle" font-family="${SANS}" font-size="22" font-weight="700" fill="${dark ? CREAM : NAVY}">${label}</text>`;
+  const ad = (x, y) => `<rect x="${x - 40}" y="${y}" width="80" height="50" rx="8" fill="${RUST}"/><text x="${x}" y="${y + 33}" text-anchor="middle" font-family="${SANS}" font-size="20" font-weight="700" fill="${CREAM}">Ad</text>`;
+  const L = 330, R = 870;
+  const line = (x1, y1, x2, y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${NAVY}" stroke-width="3"/>`;
+  const before = `<text x="${L}" y="205" text-anchor="middle" font-family="${SANS}" font-size="17" font-weight="700" letter-spacing="3" fill="${GRAY}">BEFORE: AUDIENCE FIRST</text>
+    ${pill(L, 230, 'Targeting', false)}${line(L, 286, L, 316)}${pill(L, 316, 'Audience', false)}${line(L, 372, L, 400)}${line(L - 130, 400, L + 130, 400)}
+    ${[L - 130, L, L + 130].map((x) => line(x, 400, x, 425) + ad(x, 425)).join('')}`;
+  const after = `<text x="${R}" y="205" text-anchor="middle" font-family="${SANS}" font-size="17" font-weight="700" letter-spacing="3" fill="${RUST}">ANDROMEDA: CREATIVE FIRST</text>
+    ${[R - 130, R, R + 130].map((x) => ad(x, 230) + line(x, 280, x, 305)).join('')}${line(R - 130, 305, R + 130, 305)}${line(R, 305, R, 330)}
+    ${pill(R, 330, 'Reads the ad', true)}${line(R, 386, R, 416)}${pill(R, 416, 'Finds the audience', false)}`;
+  return frame(H, 'META ANDROMEDA', 'The order flipped', `<line x1="600" y1="190" x2="600" y2="${H - 90}" stroke="${RUST}" stroke-width="1" opacity="0.4"/>${before}${after}`, 'You no longer pick the audience for an ad. The ad helps Meta find its audience.');
 }
 
 function funnel() {
@@ -146,13 +162,66 @@ const posts = [
     alt: 'How to build a full-funnel performance marketing system',
     inline: ['funnel', funnel()],
   },
+  {
+    slug: 'competitor-facebook-tiktok-ad-spy-tools',
+    hero: { kicker: 'COMPETITOR AD RESEARCH, 2026', l1: 'See every ad', l2: 'your rivals run', sub: 'Free and paid tools for Facebook and TikTok ads' },
+    alt: 'Best tools to monitor competitor Facebook and TikTok ads in 2026',
+    inline: ['tiers', cards('WAYS TO MONITOR COMPETITOR ADS', 'Start free, pay for history and alerts', [
+      { t: 'Free libraries', sub: 'START HERE', lines: ['Every active Meta ad,', 'top TikTok ads, EU', 'reach and targeting'], foot: ['Meta Ad Library,', 'TikTok Creative Center'] },
+      { t: 'Spy tools', sub: 'SEARCH AND HISTORY', lines: ['Search many brands,', 'keep ads after they', 'stop, filter by run time'], foot: ['BigSpy, Minea,', 'PiPiAds, AdSpy'] },
+      { t: 'Tracking platforms', sub: 'ALERTS AND SWIPE FILES', lines: ['Follow competitors,', 'get alerts, save and', 'brief with your team'], foot: ['Foreplay, Atria'] },
+    ], 'The best free signal: ads still running after 30, 60 or 90 days are usually working.')],
+  },
+  {
+    slug: 'meta-andromeda-update-creative-targeting',
+    hero: { kicker: 'META ANDROMEDA, 2026', l1: 'Creative is', l2: 'the new targeting', sub: 'What Meta Andromeda is and how to build ads for it' },
+    alt: 'What is Meta Andromeda: why creative is the new targeting in 2026',
+    inline: ['flip', flip()],
+    extra: ['matrix', cards('THE CREATIVE DIVERSITY MATRIX', 'Change what a viewer notices in two seconds', [
+      { t: 'Persona', sub: 'WHO IS IT FOR', lines: ['Expert or founder', 'Beginner or skeptic', 'Age, job, life stage', '3 to 5 distinct buyers'], foot: [] },
+      { t: 'Angle', sub: 'WHY THEY BUY', lines: ['Social proof', 'Problem and solution', 'Demonstration', 'Comparison or offer'], foot: [] },
+      { t: 'Format', sub: 'HOW IT LOOKS', lines: ['UGC-style video', 'Founder to camera', 'Static or carousel', 'Product demo'], foot: [] },
+    ], 'A new persona or angle is a new concept. A new headline on the same video is not.')],
+  },
+  {
+    slug: 'how-to-make-high-performing-ad-creative',
+    hero: { kicker: 'AD CREATIVE, 2026', l1: 'Make ads that', l2: 'find their buyers', sub: 'How to make high-performing ad creative' },
+    alt: 'How to make high-performing ad creative for your campaigns',
+    inline: ['anatomy', cards('ANATOMY OF A HIGH-PERFORMING AD', 'Four jobs, in this order', [
+      { t: 'Hook', sub: '0 TO 3 SECONDS', lines: ['Stop the right', 'person and show', 'it is for them'], foot: ['Problem, result,', 'call-out'] },
+      { t: 'Promise', sub: 'ONE OUTCOME', lines: ['One specific', 'result that', 'matters to them'], foot: ['Not three', 'benefits'] },
+      { t: 'Proof', sub: 'WHY BELIEVE IT', lines: ['Demo, reviews,', 'numbers, expert,', 'guarantee'], foot: ['Specific beats', 'clever'] },
+      { t: 'Action', sub: 'WHAT NEXT', lines: ['One clear step', 'and a reason', 'to act now'], foot: ['Match the', 'landing page'] },
+    ], 'Native to the platform, captioned for sound-off, different enough to count as its own concept.')],
+  },
+  {
+    slug: 'how-to-write-ad-copy',
+    hero: { kicker: 'AD COPYWRITING, 2026', l1: 'Write ad copy', l2: 'that converts', sub: 'Frameworks, limits and examples for Meta, Google and TikTok' },
+    alt: 'How to write ad copy that converts for Meta, Google and TikTok ads',
+    inline: ['frameworks', cards('THREE AD COPY FRAMEWORKS', 'Scaffolding, not rules', [
+      { t: 'PAS', sub: 'MOST RELIABLE', lines: ['Problem', 'Agitate', 'Solution'], foot: ['Starts where the', 'reader already is'] },
+      { t: 'AIDA', sub: 'NEEDS EXPLAINING', lines: ['Attention', 'Interest', 'Desire, Action'], foot: ['For products that', 'need context'] },
+      { t: 'Before-After-Bridge', sub: 'TRANSFORMATIONS', lines: ['Life before', 'Life after', 'Your product'], foot: ['For visible', 'change'] },
+    ], 'Use the customer\'s own words. Keep the key message inside the first 125 characters on Meta.')],
+  },
+  {
+    slug: 'how-to-write-ad-hooks',
+    hero: { kicker: 'AD HOOKS, 2026', l1: 'Stop the scroll', l2: 'in three seconds', sub: '15 ad hook formulas with examples' },
+    alt: 'How to write ad hooks that stop the scroll: 15 formulas with examples',
+    inline: ['layers', cards('THE THREE LAYERS OF A HOOK', 'Visual, spoken and text, all at once', [
+      { t: 'Visual', sub: 'FIRST FRAME', lines: ['Movement, a face,', 'the product in', 'action, a result'], foot: ['Proves the line'] },
+      { t: 'Spoken', sub: 'FIRST LINE', lines: ['One sentence,', 'about 3 seconds,', 'in customer words'], foot: ['Says who it is for'] },
+      { t: 'Text', sub: 'ON SCREEN', lines: ['Bold, under 10', 'words, inside the', 'safe area'], foot: ['For sound-off viewers'] },
+    ], 'Test hooks by swapping only the opening of a proven ad. Judge on hook rate and cost per result.')],
+  },
 ];
 
 const manifest = JSON.parse(readFileSync(MANIFEST, 'utf8'));
-for (const p of posts) {
+const only = process.argv[2];
+for (const p of posts.filter((x) => !only || x.slug.includes(only))) {
   const heroPath = `${OUT}/${p.slug}-hero.webp`;
   await sharp(Buffer.from(hero(p.hero))).webp({ quality: 88 }).toFile(heroPath);
-  await sharp(Buffer.from(p.inline[1])).webp({ quality: 90 }).toFile(`${OUT}/${p.slug}-${p.inline[0]}.webp`);
+  for (const [name, svg] of [p.inline, p.extra].filter(Boolean)) await sharp(Buffer.from(svg)).webp({ quality: 90 }).toFile(`${OUT}/${p.slug}-${name}.webp`);
   manifest[p.slug] = { ...(manifest[p.slug] || {}), hero: { src: `/images/posts/${p.slug}-hero.webp`, alt: p.alt, width: 1200, height: 675, bytes: statSync(heroPath).size } };
   console.log('ok', p.slug);
 }

@@ -1883,5 +1883,50 @@
 			"height": 675,
 			"bytes": 23888
 		}
+	},
+	"competitor-facebook-tiktok-ad-spy-tools": {
+		"hero": {
+			"src": "/images/posts/competitor-facebook-tiktok-ad-spy-tools-hero.webp",
+			"alt": "Best tools to monitor competitor Facebook and TikTok ads in 2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22880
+		}
+	},
+	"meta-andromeda-update-creative-targeting": {
+		"hero": {
+			"src": "/images/posts/meta-andromeda-update-creative-targeting-hero.webp",
+			"alt": "What is Meta Andromeda: why creative is the new targeting in 2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23302
+		}
+	},
+	"how-to-make-high-performing-ad-creative": {
+		"hero": {
+			"src": "/images/posts/how-to-make-high-performing-ad-creative-hero.webp",
+			"alt": "How to make high-performing ad creative for your campaigns",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21988
+		}
+	},
+	"how-to-write-ad-copy": {
+		"hero": {
+			"src": "/images/posts/how-to-write-ad-copy-hero.webp",
+			"alt": "How to write ad copy that converts for Meta, Google and TikTok ads",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23220
+		}
+	},
+	"how-to-write-ad-hooks": {
+		"hero": {
+			"src": "/images/posts/how-to-write-ad-hooks-hero.webp",
+			"alt": "How to write ad hooks that stop the scroll: 15 formulas with examples",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21130
+		}
 	}
 }
