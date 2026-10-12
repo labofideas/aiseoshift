@@ -1,0 +1,117 @@
+---
+title: "Lookalike Audiences in 2026: How They Work Now"
+description: "Lookalike audiences explained for 2026: how Meta builds them from a seed, why Advantage+ changed their role, and where they still help on Google and TikTok."
+deck: "Lookalike audiences didn't disappear. They got quieter, feeding automated systems instead of sitting as the targeting decision you made yourself."
+pubDate: 2026-12-24
+category: Playbooks
+tags:
+  - Paid social
+  - lookalike audiences
+  - Meta ads
+  - Advantage+
+  - audience targeting
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "How do lookalike audiences work on Meta?"
+    a: "You give Meta a seed audience, such as past purchasers or pixel visitors. Meta's documentation requires a minimum of 100 people in that seed, and recommends 200 or more for conversion-based lookalikes, then trains a model to find people elsewhere with similar characteristics, sized by a similarity ratio you set between 1 percent and 20 percent of the target country's population."
+  - q: "Are lookalike audiences still useful now that Advantage+ exists?"
+    a: "Yes, but their role shifted. Meta's Andromeda retrieval system and Advantage+ campaigns treat audience inputs, including lookalikes, more as signals that help the system find people than as a hard-walled targeting fence. A well-built lookalike still gives Meta's automation a stronger starting point than no audience input at all."
+  - q: "What makes a good seed audience for a lookalike?"
+    a: "Quality and recency matter more than size, within reason. Meta's own documentation notes that more converters produce a better predictive model, recommending 200 or more members who converted for campaign-based lookalikes. A seed of genuine purchasers built in the last few months outperforms a stale list of anyone who ever visited your site."
+  - q: "Does Google still offer lookalike-style audiences?"
+    a: "Not under that name. Google's current documentation covers audience expansion, which looks for people similar to an existing segment, and optimized targeting, which finds people likely to convert based on real-time campaign data. Google's own help center distinguishes the two: audience expansion mirrors the old lookalike idea, optimized targeting is closer to Meta's automated audience-finding."
+  - q: "Do TikTok ads have a lookalike audience feature?"
+    a: "TikTok Ads Manager offers a lookalike-style audience tool built from a source audience, following broadly the same seed-and-expand logic as Meta and Google. Seed size limits and expansion settings change often, so check TikTok's current Ads Manager documentation before building a campaign around exact parameters."
+---
+
+A lookalike audience is a group of new people an ad platform finds for you based on their similarity to an existing audience you supply, called the seed. Meta builds them from a minimum seed of 100 people, Google's modern equivalent is called audience expansion, and TikTok offers its own version inside Ads Manager. What changed going into 2026 isn't whether lookalikes work. It's how much control you have over them once automated systems like Meta's Advantage+ campaigns sit between your audience input and who actually sees the ad.
+
+> **Key takeaways**
+>
+> - Meta requires a minimum 100-person seed audience for a lookalike, and recommends 200 or more converters for campaign-based lookalikes, built from up to 180 days of conversion history.
+> - Meta's lookalike ratio runs from 1 percent (tightest match) to 20 percent (broadest reach) of the target country's population.
+> - Advantage+ campaigns and Meta's Andromeda retrieval system treat audience inputs, lookalikes included, as signals that guide automated targeting rather than a hard-walled audience fence.
+> - Google doesn't call anything a "lookalike" anymore. Audience expansion is the closest equivalent; optimized targeting is a separate, more automated feature.
+> - Seed quality (real converters, recent activity) matters more than seed size once you're past Meta's minimum.
+
+## How lookalike audiences work on Meta
+
+![Diagram showing a seed audience feeding a Meta lookalike model to produce a similar audience](/images/posts/lookalike-audiences-inline.webp)
+
+Meta's developer documentation lays out the mechanics plainly: you supply "several sets of people as 'seeds,'" and Meta's system "builds an audience of similar people." For a seed built from existing custom audience data, Meta requires a minimum of 100 people. For a campaign conversion lookalike, built directly from your ad account's conversion history, Meta's documentation notes that "more converters result in a better predictive model," and recommends 200 or more members who actually converted. That version can pull up to 180 days of past conversion data, treating the people who converted on your campaigns and ad sets as its training examples.
+
+Once you've picked a seed, you set how broad the match should be, between a 1 percent and 20 percent range of the target country's population, in 1 percent increments. Meta frames the two common presets as a tradeoff: a tighter "Similarity" setting around the top 1 percent gives smaller reach and closer matching, while a "Greater Reach" setting around the top 5 percent trades some precision for scale. You can also set a custom range, like 1 percent to 2 percent, to build a lookalike from a specific slice rather than the closest possible match.
+
+## What changed with Advantage+
+
+The mechanics above still exist, as of this writing, exactly as documented. What's different is the context lookalikes operate in. Meta's broader shift toward automated, AI-driven ad delivery, through its Andromeda retrieval system and Advantage+ campaign types, treats targeting inputs generally as signals the system weighs rather than fences it respects absolutely. We cover this shift in detail, including how creative itself became a targeting signal, in [what Meta Andromeda changed about creative and targeting](/blog/meta-andromeda-update-creative-targeting/).
+
+The practical effect for lookalikes specifically: in a standard, non-Advantage+ ad set, a lookalike still functions as a defined audience the way it always has. Inside an Advantage+ Sales or Advantage+ campaign, Meta's documentation for Advantage+ campaigns describes audience inputs as suggestions the system can expand beyond, rather than a strict boundary. A lookalike built from real purchasers is still a stronger input than no audience signal at all, or a vague interest list, because it tells the system something concrete about who actually buys. It just no longer guarantees the campaign only shows ads to people inside that lookalike's exact boundary.
+
+That distinction matters for how you judge whether a lookalike "worked." If you're running Advantage+ with a lookalike as a custom audience input, don't expect delivery to stay confined to that audience the way older campaign types did. Judge it on results, not on whether Ads Manager reports every impression landed strictly inside the lookalike you built.
+
+## Seed quality matters more than seed size
+
+Past the minimum Meta requires, the biggest lever on lookalike quality isn't size, it's how well the seed represents a real buyer.
+
+- **Recency beats volume.** A seed of last quarter's actual purchasers outperforms a seed of every site visitor from the past two years, even if the older list is larger.
+- **Purchasers beat visitors.** If you have purchase data, use it as the seed instead of general site traffic or page views. Meta's own guidance on campaign conversion lookalikes exists specifically because conversion-based seeds model more useful behavior than top-of-funnel visits.
+- **Segment by value when you can.** A lookalike built from your highest-value customers, not just any customer, tends to find people closer to that same buying pattern, rather than averaging across everyone who ever bought anything.
+
+| Seed source | Typical match quality | Best used for |
+|---|---|---|
+| High-value purchasers (top 20% by order value) | Strongest | Finding similar high-intent, high-spend buyers |
+| All purchasers, recent (last 90-180 days) | Strong | General prospecting with proven buyer signal |
+| Email list of engaged subscribers | Moderate | Reaching people similar to your warmest non-buyers |
+| General site visitors | Weakest | Only when no better seed exists yet |
+
+## Where lookalikes still earn their keep
+
+Lookalikes haven't become useless. They're most worth building when:
+
+- **You're prospecting cold, with no retargeting pool to draw from yet**, and need Meta's system to start somewhere more specific than a broad interest guess.
+- **You have real conversion volume to seed from.** A thin seed of 100 to 200 people is the legal minimum, not the recommended starting point; the model gets meaningfully better with more.
+- **You're testing a new product or market** where you want the system anchored to an existing buyer profile rather than starting from nothing.
+
+They're less necessary when you're already running Advantage+ with clean conversion data flowing in, since the automated system is drawing similar signal from your pixel and Conversions API data directly. In that setup, a lookalike is one more useful input among several, not the single lever carrying the targeting strategy. If results still look off once a lookalike-seeded Advantage+ campaign is live, rule out basic delivery problems first; our guide to [Facebook ads not delivering](/blog/facebook-ads-not-delivering/) covers the account-level issues that get mistaken for an audience problem.
+
+## Google and TikTok: different names, similar idea
+
+Google retired the "similar audiences" branding; its current audience documentation covers two related but distinct features. Google's own help center describes audience expansion as looking "for more people similar to your existing audience segment," which is the closest direct equivalent to a lookalike. Optimized targeting is described separately, as looking "for additional conversions by targeting people most likely to convert, based on real-time campaign conversion data," which behaves more like Meta's automated, signal-driven approach than a classic seed-and-expand lookalike. If you're running [Google Demand Gen campaigns](/blog/google-demand-gen-campaigns/), check which of the two, or both, your campaign type actually supports before assuming "lookalike" maps cleanly onto a single Google feature.
+
+TikTok Ads Manager includes its own lookalike-style audience tool, built from a source audience the same general way Meta's version works. TikTok's own documentation was unreachable while researching this piece, so treat any specific mechanics, minimum seed size, ratio ranges, as something to confirm directly in TikTok's current Ads Manager documentation before building a campaign around exact numbers. If a lookalike-seeded campaign on TikTok underperforms, work through [TikTok ads best practices](/blog/tiktok-ads-best-practices/) on account structure and creative before assuming the audience itself is the problem.
+
+| Platform | Current feature name | Core mechanic |
+|---|---|---|
+| Meta | Lookalike Audience | Seed (100+ people) expanded by a 1-20% similarity ratio |
+| Google Ads | Audience expansion / optimized targeting | Expansion from a segment, or automated real-time conversion targeting |
+| TikTok | Lookalike Audience (Ads Manager) | Source-audience based expansion; confirm current specifics directly |
+
+## A worked hypothetical: picking a seed
+
+Say you run a $70 pour-over coffee subscription with 18 months of order history. You've got three candidate seeds sitting in your account: a general email list of 40,000 people who signed up for a discount code, a list of 3,200 actual purchasers from the last 180 days, and a smaller list of 600 subscribers who've stayed on the subscription for six months or more, your actual best customers.
+
+The email list is the biggest, and the most tempting to use because the minimum seed requirement is trivially met. But most of those 40,000 people never bought anything. A lookalike built from them finds people who look like someone willing to hand over an email for a discount, not someone who pays $70 a month for coffee on a subscription.
+
+The 600-person loyal subscriber list is the smallest, but every single person in it did the exact thing you want more people to do: subscribe and stay subscribed. It clears Meta's 100-person minimum with room to spare, and if conversion volume allows, the 3,200-person recent purchaser list gives the model more examples to train on while staying closer to real buying behavior than the email list does. In practice, testing both the 600-person and 3,200-person seeds against each other, rather than defaulting to the biggest list available, is what tells you which one this specific business responds to. Size alone doesn't answer that question.
+
+## Common mistakes with lookalikes
+
+- **Using the biggest available list as the seed**, instead of the most relevant one. Bigger isn't better if the list doesn't represent real buyers.
+- **Building a lookalike once and never refreshing it.** Conversion-based lookalikes pull from a rolling window of past data; a seed built a year ago on a small business's early customers may look nothing like who actually buys now.
+- **Stacking narrow interest targeting on top of a lookalike inside Advantage+.** This usually shrinks the pool the system can work with rather than sharpening it, fighting against how the automated system is designed to find people.
+- **Treating a 1% lookalike as always better than a 5% or 10% version.** Tighter isn't automatically better; it trades reach for precision, and the right tradeoff depends on how much volume the campaign actually needs to spend its budget efficiently.
+- **Ignoring geography.** A lookalike ratio is calculated against the target country's population, so the same 1% setting produces a very different absolute audience size in a small country versus a large one.
+
+## The bottom line
+
+Lookalike audiences still work the way Meta's documentation describes them: a seed, a similarity ratio, and a model trained to find more people like the seed. What changed is the layer sitting on top. Inside Advantage+ campaigns, a lookalike is a strong signal feeding an automated system, not a sealed audience boundary. Build your seed from real, recent, high-value buyers rather than general traffic, and judge results by what the campaign actually produces rather than by whether delivery stayed strictly inside the audience you drew.
+
+If you're deciding how much of your prospecting budget should lean on lookalikes versus broader automated delivery, that's really the same question as how you're building and testing creative for [an Andromeda-era account](/blog/meta-andromeda-update-creative-targeting/), since the two levers, audience input and creative variety, now work together rather than one simply targeting the other.
+
+## References
+
+- [Lookalike Audiences, Meta for Developers](https://developers.facebook.com/documentation/ads-commerce/marketing-api/audiences/guides/lookalike-audiences)
+- [About optimized targeting, Google Ads Help](https://support.google.com/google-ads/answer/10537509)
+- [Meta Andromeda: Supercharging Advantage+ automation, Engineering at Meta](https://engineering.fb.com/2024/12/02/production-engineering/meta-andromeda-advantage-automation-next-gen-personalized-ads-retrieval-engine/)

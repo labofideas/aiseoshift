@@ -2196,5 +2196,140 @@
 			"height": 675,
 			"bytes": 21570
 		}
+	},
+	"abandoned-cart-email": {
+		"hero": {
+			"src": "/images/posts/abandoned-cart-email-hero.webp",
+			"alt": "Illustration of a shopping cart with three email icons showing a recovery timeline",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21598
+		}
+	},
+	"brand-awareness-campaign": {
+		"hero": {
+			"src": "/images/posts/brand-awareness-campaign-hero.webp",
+			"alt": "Illustration of a megaphone broadcasting brand awareness across social, video and TV channels",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22152
+		}
+	},
+	"email-segmentation": {
+		"hero": {
+			"src": "/images/posts/email-segmentation-hero.webp",
+			"alt": "Illustration of an email list splitting into labeled segments based on behavior and lifecycle stage",
+			"width": 1200,
+			"height": 675,
+			"bytes": 25020
+		}
+	},
+	"google-ads-quality-score": {
+		"hero": {
+			"src": "/images/posts/google-ads-quality-score-hero.webp",
+			"alt": "Hero graphic for a guide to Google Ads Quality Score and its three components",
+			"width": 1200,
+			"height": 675,
+			"bytes": 17140
+		}
+	},
+	"how-to-improve-conversion-rate": {
+		"hero": {
+			"src": "/images/posts/how-to-improve-conversion-rate-hero.webp",
+			"alt": "Conversion rate optimization process: research, hypothesis, ICE score, test, read the result",
+			"width": 1200,
+			"height": 675,
+			"bytes": 26800
+		}
+	},
+	"linkedin-marketing-strategy": {
+		"hero": {
+			"src": "/images/posts/linkedin-marketing-strategy-hero.webp",
+			"alt": "Illustration of a LinkedIn feed showing a person's post reaching further than a company page post",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21916
+		}
+	},
+	"lookalike-audiences": {
+		"hero": {
+			"src": "/images/posts/lookalike-audiences-hero.webp",
+			"alt": "Hero graphic for a 2026 guide to lookalike audiences across ad platforms",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21544
+		}
+	},
+	"ltv-cac-ratio": {
+		"hero": {
+			"src": "/images/posts/ltv-cac-ratio-hero.webp",
+			"alt": "Hero graphic for a guide to the LTV to CAC ratio formula and benchmark",
+			"width": 1200,
+			"height": 675,
+			"bytes": 18874
+		}
+	},
+	"marketing-budget-allocation": {
+		"hero": {
+			"src": "/images/posts/marketing-budget-allocation-hero.webp",
+			"alt": "Marketing budget split into total, funnel stage, test ratio and reallocation steps",
+			"width": 1200,
+			"height": 675,
+			"bytes": 25526
+		}
+	},
+	"performance-max-campaigns": {
+		"hero": {
+			"src": "/images/posts/performance-max-campaigns-hero.webp",
+			"alt": "Performance Max campaign diagram: asset groups, audience signals, product feed and reporting",
+			"width": 1200,
+			"height": 675,
+			"bytes": 25726
+		}
+	},
+	"server-side-tracking": {
+		"hero": {
+			"src": "/images/posts/server-side-tracking-hero.webp",
+			"alt": "Hero graphic for a 2026 guide to server-side tracking setup and cost",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22916
+		}
+	},
+	"ugc-ads": {
+		"hero": {
+			"src": "/images/posts/ugc-ads-hero.webp",
+			"alt": "Four UGC ad format icons: testimonial, unboxing, problem and solution, day in the life",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22956
+		}
+	},
+	"how-much-do-tiktok-ads-cost": {
+		"hero": {
+			"src": "/images/posts/how-much-do-tiktok-ads-cost-hero.webp",
+			"alt": "Breakdown of TikTok ad costs including minimum budgets, CPM ranges and creator fees",
+			"width": 1200,
+			"height": 675,
+			"bytes": 28596
+		}
+	},
+	"meta-pixel-setup": {
+		"hero": {
+			"src": "/images/posts/meta-pixel-setup-hero.webp",
+			"alt": "Step by step diagram for installing and testing the Meta Pixel",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23344
+		}
+	},
+	"tiktok-gmv-max": {
+		"hero": {
+			"src": "/images/posts/tiktok-gmv-max-hero.webp",
+			"alt": "Diagram explaining how TikTok GMV Max automates TikTok Shop ad campaigns",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23352
+		}
 	}
 }
