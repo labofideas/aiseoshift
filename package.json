@@ -14,7 +14,8 @@
     "generate-types": "wrangler types",
     "deploy": "npm run build && wrangler deploy",
     "test:inspectors": "node scripts/test-inspector-tools.mjs",
-    "test:inspectors:ui": "node scripts/test-inspector-ui.mjs"
+    "test:inspectors:ui": "node scripts/test-inspector-ui.mjs",
+    "postbuild": "node scripts/check-jsonld.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.1",
