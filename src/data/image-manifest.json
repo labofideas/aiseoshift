@@ -1872,5 +1872,113 @@
 			"height": 675,
 			"bytes": 19118
 		}
+	},
+	"black-friday-marketing-ideas": {
+		"hero": {
+			"src": "/images/posts/black-friday-marketing-ideas-hero.webp",
+			"alt": "Black Friday 2026 marketing planning timeline hero graphic",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20916
+		}
+	},
+	"cold-email-templates": {
+		"hero": {
+			"src": "/images/posts/cold-email-templates-hero.webp",
+			"alt": "Hero graphic for cold email templates guide showing the anatomy of a cold email",
+			"width": 1200,
+			"height": 675,
+			"bytes": 18918
+		}
+	},
+	"marketing-kpis": {
+		"hero": {
+			"src": "/images/posts/marketing-kpis-hero.webp",
+			"alt": "Hero graphic for marketing KPIs guide showing funnel stages and key metrics",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22230
+		}
+	},
+	"marketing-mix-modeling": {
+		"hero": {
+			"src": "/images/posts/marketing-mix-modeling-hero.webp",
+			"alt": "Marketing mix modeling hero graphic comparing measurement methods",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22380
+		}
+	},
+	"micro-influencers": {
+		"hero": {
+			"src": "/images/posts/micro-influencers-hero.webp",
+			"alt": "Micro influencers hero graphic showing follower tiers and engagement",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21168
+		}
+	},
+	"product-launch-plan": {
+		"hero": {
+			"src": "/images/posts/product-launch-plan-hero.webp",
+			"alt": "Hero graphic for product launch plan guide showing a three-phase launch timeline",
+			"width": 1200,
+			"height": 675,
+			"bytes": 18206
+		}
+	},
+	"tiktok-spark-ads": {
+		"hero": {
+			"src": "/images/posts/tiktok-spark-ads-hero.webp",
+			"alt": "Hero graphic for TikTok Spark Ads guide showing the creator authorization code flow",
+			"width": 1200,
+			"height": 675,
+			"bytes": 16888
+		}
+	},
+	"ugc-creator": {
+		"hero": {
+			"src": "/images/posts/ugc-creator-hero.webp",
+			"alt": "UGC creator hero graphic showing content creation for brand ads",
+			"width": 1200,
+			"height": 675,
+			"bytes": 25088
+		}
+	},
+	"email-marketing-for-small-business": {
+		"hero": {
+			"src": "/images/posts/email-marketing-for-small-business-hero.webp",
+			"alt": "Email marketing setup steps for a small business: platform, list, automations and send cadence",
+			"width": 1200,
+			"height": 675,
+			"bytes": 24670
+		}
+	},
+	"klaviyo-vs-mailchimp": {
+		"hero": {
+			"src": "/images/posts/klaviyo-vs-mailchimp-hero.webp",
+			"alt": "Klaviyo vs Mailchimp comparison covering pricing, SMS, automation and ecommerce features",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21226
+		}
+	},
+	"marketing-plan-template": {
+		"hero": {
+			"src": "/images/posts/marketing-plan-template-hero.webp",
+			"alt": "Marketing plan template with situation, goals, audience, channels, budget and KPI sections",
+			"width": 1200,
+			"height": 675,
+			"bytes": 24424
+		}
+	},
+	"what-is-a-good-roas": {
+		"hero": {
+			"src": "/images/posts/what-is-a-good-roas-hero.webp",
+			"alt": "Break-even ROAS formula and worked example showing how profit margin changes a good ROAS",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20668
+		}
 	}
 }
