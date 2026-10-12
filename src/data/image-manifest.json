@@ -1980,5 +1980,113 @@
 			"height": 675,
 			"bytes": 20668
 		}
+	},
+	"ad-creative-testing": {
+		"hero": {
+			"src": "/images/posts/ad-creative-testing-hero.webp",
+			"alt": "Hero graphic for a 2026 ad creative testing framework for Meta and TikTok",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20546
+		}
+	},
+	"checkout-optimization": {
+		"hero": {
+			"src": "/images/posts/checkout-optimization-hero.webp",
+			"alt": "Checkout optimization hero graphic showing a checkout flow with friction points highlighted",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21120
+		}
+	},
+	"creative-fatigue": {
+		"hero": {
+			"src": "/images/posts/creative-fatigue-hero.webp",
+			"alt": "Chart showing ad frequency rising while CTR falls and CPA climbs over several weeks",
+			"width": 1200,
+			"height": 675,
+			"bytes": 17264
+		}
+	},
+	"google-ads-vs-facebook-ads": {
+		"hero": {
+			"src": "/images/posts/google-ads-vs-facebook-ads-hero.webp",
+			"alt": "Split funnel diagram comparing Google Search capturing existing demand against Facebook Ads creating new demand",
+			"width": 1200,
+			"height": 675,
+			"bytes": 24248
+		}
+	},
+	"google-demand-gen-campaigns": {
+		"hero": {
+			"src": "/images/posts/google-demand-gen-campaigns-hero.webp",
+			"alt": "Illustration of a Google Demand Gen campaign spanning YouTube, Shorts, Discover and Gmail",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20414
+		}
+	},
+	"how-to-find-influencers": {
+		"hero": {
+			"src": "/images/posts/how-to-find-influencers-hero.webp",
+			"alt": "Flowchart showing how to go from a hashtag search to a vetted creator shortlist",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21730
+		}
+	},
+	"incrementality-testing": {
+		"hero": {
+			"src": "/images/posts/incrementality-testing-hero.webp",
+			"alt": "Diagram comparing an exposed ad group against a holdout control group to measure incremental lift",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22550
+		}
+	},
+	"influencer-marketing-for-small-business": {
+		"hero": {
+			"src": "/images/posts/influencer-marketing-for-small-business-hero.webp",
+			"alt": "Small business influencer marketing hero graphic showing a storefront connected to nano creator profiles",
+			"width": 1200,
+			"height": 675,
+			"bytes": 27164
+		}
+	},
+	"loyalty-program-ideas": {
+		"hero": {
+			"src": "/images/posts/loyalty-program-ideas-hero.webp",
+			"alt": "Six types of ecommerce loyalty programs compared side by side",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23370
+		}
+	},
+	"meta-conversions-api": {
+		"hero": {
+			"src": "/images/posts/meta-conversions-api-hero.webp",
+			"alt": "Meta Conversions API hero graphic showing server-side event data flowing to Meta alongside browser pixel data",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21764
+		}
+	},
+	"referral-program-ideas": {
+		"hero": {
+			"src": "/images/posts/referral-program-ideas-hero.webp",
+			"alt": "Referral program ideas hero graphic showing two people exchanging a reward icon",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20158
+		}
+	},
+	"youtube-shorts-ads": {
+		"hero": {
+			"src": "/images/posts/youtube-shorts-ads-hero.webp",
+			"alt": "Flowchart of five Google Ads campaign types funneling into the YouTube Shorts placement",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20196
+		}
 	}
 }
