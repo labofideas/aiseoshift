@@ -32,3 +32,45 @@
 /blog/how-ai-search-monitoring-improves-seo-strategy   /blog/how-ai-search-monitoring-improves-seo-strategy/   301
 /ai-seo-tools   /ai-seo-tools/   301
 /copilot-seo   /copilot-seo/   301
+
+# 2026-10-12 merged duplicate posts
+/blog/best-ai-writing-tools-for-seo/  /blog/best-ai-writing-tools/  301
+/blog/best-ai-writing-tools-for-seo   /blog/best-ai-writing-tools/  301
+/blog/google-may-2026-core-update-ai-seo-impact/  /blog/google-may-2026-core-update/  301
+/blog/google-may-2026-core-update-ai-seo-impact   /blog/google-may-2026-core-update/  301
+/blog/ecommerce-product-schema-ai-search/  /blog/product-schema-for-ai-search/  301
+/blog/ecommerce-product-schema-ai-search   /blog/product-schema-for-ai-search/  301
+/blog/howto-schema-ai-seo/  /blog/howto-schema-for-ai-search/  301
+/blog/howto-schema-ai-seo   /blog/howto-schema-for-ai-search/  301
+/blog/will-ai-replace-seo/  /blog/will-ai-replace-seo-jobs/  301
+/blog/will-ai-replace-seo   /blog/will-ai-replace-seo-jobs/  301
+/blog/ai-seo-roi/  /blog/roi-of-ai-seo/  301
+/blog/ai-seo-roi   /blog/roi-of-ai-seo/  301
+
+# 2026-10-12 removed off-topic posts (related ones redirected, the rest 404)
+/blog/best-sites-to-buy-instagram-likes/  /blog/best-ai-social-media-tools/  301
+/blog/best-sites-to-buy-instagram-likes   /blog/best-ai-social-media-tools/  301
+/blog/best-free-instagram-photo-downloader-tools/  /blog/best-ai-social-media-tools/  301
+/blog/best-free-instagram-photo-downloader-tools   /blog/best-ai-social-media-tools/  301
+
+# 2026-10-12 fix URLs Google reports as 404
+/authors/  /authors/shashank-dubey/  301
+/authors   /authors/shashank-dubey/  301
+/blog/best-google-indexing-tools-2026/  /blog/best-google-indexing-tools/  301
+/blog/best-google-indexing-tools-2026   /blog/best-google-indexing-tools/  301
+/blog/category/  /blog/  301
+/blog/category   /blog/  301
+/seo/local-seo/  /blog/local-seo-checklist-2026/  301
+/seo/local-seo   /blog/local-seo-checklist-2026/  301
+/blog/ai-seo-shift/  /ai-seo-shift/  301
+/blog/ai-seo-shift   /ai-seo-shift/  301
+/blog/faqpage-schema-for-ai-search/  /blog/faq-schema-ai-seo/  301
+/blog/faqpage-schema-for-ai-search   /blog/faq-schema-ai-seo/  301
+/ai-citation-study-what-gets-cited-2026/  /blog/ai-citation-study-what-gets-cited-2026/  301
+/ai-citation-study-what-gets-cited-2026   /blog/ai-citation-study-what-gets-cited-2026/  301
+
+# 2026-10-12 real 301s for Astro.redirect pages (Google saw them as noindex meta-refresh pages)
+/tools/  /ai-seo-tools/  301
+/tools   /ai-seo-tools/  301
+/seo-services/  /ai-seo-services/  301
+/seo-services   /ai-seo-services/  301
