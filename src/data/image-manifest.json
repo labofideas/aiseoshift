@@ -2088,5 +2088,113 @@
 			"height": 675,
 			"bytes": 20196
 		}
+	},
+	"customer-acquisition-cost": {
+		"hero": {
+			"src": "/images/posts/customer-acquisition-cost-hero.webp",
+			"alt": "Customer acquisition cost formula and payback period hero image",
+			"width": 1200,
+			"height": 675,
+			"bytes": 22814
+		}
+	},
+	"customer-retention-strategies": {
+		"hero": {
+			"src": "/images/posts/customer-retention-strategies-hero.webp",
+			"alt": "Illustration of customer retention stages from onboarding to win-back",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21056
+		}
+	},
+	"ecommerce-conversion-rate": {
+		"hero": {
+			"src": "/images/posts/ecommerce-conversion-rate-hero.webp",
+			"alt": "Illustration of an ecommerce conversion funnel narrowing from site sessions down to completed orders",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21132
+		}
+	},
+	"email-deliverability": {
+		"hero": {
+			"src": "/images/posts/email-deliverability-hero.webp",
+			"alt": "Illustration of an email passing through SPF, DKIM and DMARC authentication checks before reaching an inbox",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20684
+		}
+	},
+	"email-marketing-best-practices": {
+		"hero": {
+			"src": "/images/posts/email-marketing-best-practices-hero.webp",
+			"alt": "Illustration of an email template labeled with subject line, preview text, one call to action, and unsubscribe link zones",
+			"width": 1200,
+			"height": 675,
+			"bytes": 18348
+		}
+	},
+	"facebook-ads-not-delivering": {
+		"hero": {
+			"src": "/images/posts/facebook-ads-not-delivering-hero.webp",
+			"alt": "Facebook Ads Manager delivery status troubleshooting guide hero image",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21478
+		}
+	},
+	"landing-page-best-practices": {
+		"hero": {
+			"src": "/images/posts/landing-page-best-practices-hero.webp",
+			"alt": "Illustration of a landing page anatomy with headline, hero, proof, form and call to action labeled",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23458
+		}
+	},
+	"marketing-attribution": {
+		"hero": {
+			"src": "/images/posts/marketing-attribution-hero.webp",
+			"alt": "Illustration of marketing attribution models splitting credit across touchpoints",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21168
+		}
+	},
+	"social-media-marketing-for-small-business": {
+		"hero": {
+			"src": "/images/posts/social-media-marketing-for-small-business-hero.webp",
+			"alt": "Illustration of a weekly social media content calendar with content pillars and a batching session",
+			"width": 1200,
+			"height": 675,
+			"bytes": 24728
+		}
+	},
+	"tiktok-ad-library": {
+		"hero": {
+			"src": "/images/posts/tiktok-ad-library-hero.webp",
+			"alt": "Illustration comparing TikTok Creative Center's Top Ads feed with the Commercial Content Library ad transparency tool",
+			"width": 1200,
+			"height": 675,
+			"bytes": 19368
+		}
+	},
+	"tiktok-ads-best-practices": {
+		"hero": {
+			"src": "/images/posts/tiktok-ads-best-practices-hero.webp",
+			"alt": "TikTok ads best practices guide hero image covering creative and Smart+",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20924
+		}
+	},
+	"welcome-email-sequence": {
+		"hero": {
+			"src": "/images/posts/welcome-email-sequence-hero.webp",
+			"alt": "Welcome email sequence five-email timeline hero image",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21570
+		}
 	}
 }
