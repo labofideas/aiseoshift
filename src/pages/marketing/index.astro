@@ -1,0 +1,141 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { marketingHubs } from '../../data/marketing-hubs';
+import { SITE_TITLE, SITE_URL } from '../../consts';
+
+const now = new Date();
+const allPosts = await getCollection('blog', ({ data }) => !data.draft && data.pubDate <= now);
+const hubs = marketingHubs.map((h) => ({ ...h, count: allPosts.filter((p) => p.data.tags.includes(h.tag)).length }));
+const description = 'Marketing guides for marketers: paid social, ad creative, creator marketing, measurement, email and retention, and strategy.';
+const canonicalUrl = `${SITE_URL}/marketing/`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Marketing | ${SITE_TITLE}`} description={description} canonical={canonicalUrl} />
+		<style>
+			.archive {
+				width: min(1200px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2rem 0 4rem;
+			}
+
+			.archive-header {
+				margin-bottom: 2rem;
+				max-width: 56rem;
+				padding: 1.6rem 1.8rem;
+				border-radius: 2rem;
+				border: 1px solid rgba(var(--ink), 0.1);
+				background: var(--panel);
+				box-shadow: var(--shadow-soft);
+			}
+
+			.breadcrumbs {
+				font-size: 0.78rem;
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				color: rgba(var(--ink), 0.7);
+				margin: 0 0 0.75rem;
+			}
+
+			.breadcrumbs a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.breadcrumbs a:hover { color: var(--signal-deep); }
+
+			.archive-grid {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1rem;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			.archive-card {
+				padding: 1.5rem;
+				border: 1px solid rgba(var(--ink), 0.1);
+				border-radius: 1.75rem;
+				background: var(--panel);
+				box-shadow: var(--shadow-tight);
+			}
+
+			.archive-card a {
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.archive-card:hover { transform: translateY(-3px); }
+
+			.archive-card h2 {
+				font-size: 1.45rem;
+				margin-bottom: 0.75rem;
+			}
+
+			.archive-thumb {
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				object-fit: cover;
+				border-radius: 1.25rem;
+				margin-bottom: 1rem;
+			}
+
+			.archive-card p { margin-bottom: 0.75rem; }
+
+			.meta {
+				color: rgba(var(--ink), 0.68);
+				font-size: 0.84rem;
+			}
+
+			.category {
+				font-size: 0.68rem;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				font-weight: 700;
+				color: var(--signal-deep);
+			}
+
+			@media (max-width: 900px) {
+				.archive-grid { grid-template-columns: 1fr; }
+			}
+
+			.hub-intro p { max-width: 46rem; }
+
+			.hub-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+
+			.hub-nav a { display: inline-block; padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid rgba(var(--ink), 0.15); text-decoration: none; color: inherit; font-size: 0.85rem; }
+
+			.hub-nav a[aria-current='page'] { border-color: var(--signal-deep); color: var(--signal-deep); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="archive">
+			<header class="archive-header hub-intro">
+				<p class="breadcrumbs"><a href="/">Home</a> / Marketing</p>
+				<h1>Marketing</h1>
+				<p>{description} Pick a topic to see every guide in it.</p>
+			</header>
+			<ul class="archive-grid">
+				{
+					hubs.map((h) => (
+						<li class="archive-card">
+							<a href={`/marketing/${h.slug}/`}>
+								<p class="category">{h.count} guides</p>
+								<h2>{h.title}</h2>
+								<p>{h.description}</p>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
