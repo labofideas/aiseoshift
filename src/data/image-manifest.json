@@ -158,14 +158,10 @@
 	"what-is-generative-engine-optimization-geo": {
 		"hero": {
 			"src": "/images/posts/what-is-generative-engine-optimization-geo-hero.webp",
-			"alt": "Abstract network visual representing generative search systems",
-			"photographer": "Google DeepMind",
-			"photographerUrl": "https://www.pexels.com/@googledeepmind",
-			"sourceName": "Pexels",
-			"sourceUrl": "https://www.pexels.com/photo/an-artist-s-illustration-of-artificial-intelligence-ai-this-image-was-inspired-neural-networks-used-in-deep-learning-it-was-created-by-novoto-studio-as-part-of-the-visualising-ai-proje-17483871/",
+			"alt": "Illustration of web pages flowing through retrieval, synthesis, and citation stages inside an AI search engine",
 			"width": 1200,
 			"height": 675,
-			"bytes": 27608
+			"bytes": 22698
 		},
 		"inline": [
 			{
@@ -2330,6 +2326,87 @@
 			"width": 1200,
 			"height": 675,
 			"bytes": 23352
+		}
+	},
+	"seo-terms-2026": {
+		"hero": {
+			"src": "/images/posts/seo-terms-2026-hero.webp",
+			"alt": "10 SEO terms every marketer should know in 2026",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21062
+		}
+	},
+	"crawl-budget": {
+		"hero": {
+			"src": "/images/posts/crawl-budget-hero.webp",
+			"alt": "Crawl capacity limit and crawl demand combining into a site's crawl budget",
+			"width": 1200,
+			"height": 675,
+			"bytes": 14446
+		}
+	},
+	"entity-salience": {
+		"hero": {
+			"src": "/images/posts/entity-salience-hero.webp",
+			"alt": "Illustration of a document with its main entity highlighted and scored on a 0 to 1 salience scale",
+			"width": 1200,
+			"height": 675,
+			"bytes": 15972
+		}
+	},
+	"google-chunking-passage-ranking": {
+		"hero": {
+			"src": "/images/posts/google-chunking-passage-ranking-hero.webp",
+			"alt": "Hero graphic for a 2026 guide to Google passage ranking and chunking for AI Overviews",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20500
+		}
+	},
+	"index-bloat": {
+		"hero": {
+			"src": "/images/posts/index-bloat-hero.webp",
+			"alt": "Gap between a small set of valuable pages and a much larger set of indexed pages, illustrating index bloat",
+			"width": 1200,
+			"height": 675,
+			"bytes": 14726
+		}
+	},
+	"keyword-cannibalization": {
+		"hero": {
+			"src": "/images/posts/keyword-cannibalization-hero.webp",
+			"alt": "Two website pages competing for the same search query, illustrating keyword cannibalization",
+			"width": 1200,
+			"height": 675,
+			"bytes": 20662
+		}
+	},
+	"query-fan-out": {
+		"hero": {
+			"src": "/images/posts/query-fan-out-hero.webp",
+			"alt": "Hero graphic for a 2026 explainer on Google's query fan-out technique in AI Mode",
+			"width": 1200,
+			"height": 675,
+			"bytes": 17530
+		}
+	},
+	"site-reputation-abuse": {
+		"hero": {
+			"src": "/images/posts/site-reputation-abuse-hero.webp",
+			"alt": "Hero graphic for a 2026 explainer on Google's site reputation abuse spam policy",
+			"width": 1200,
+			"height": 675,
+			"bytes": 23548
+		}
+	},
+	"striking-distance-keywords": {
+		"hero": {
+			"src": "/images/posts/striking-distance-keywords-hero.webp",
+			"alt": "Illustration of a search results page two query crossing a line into page one rankings",
+			"width": 1200,
+			"height": 675,
+			"bytes": 21868
 		}
 	}
 }

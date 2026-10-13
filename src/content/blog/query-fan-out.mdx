@@ -1,0 +1,123 @@
+---
+title: "Query Fan-Out: How Google's AI Mode Actually Searches"
+description: "Query fan-out is the technique AI Mode and AI Overviews use to split one question into many searches. Here's how it works and how to optimize for it."
+deck: "You type one question. Google runs ten. Query fan-out explains why AI Mode cites sources a normal search never would, and why optimizing for it looks different from optimizing for a blue link."
+pubDate: 2026-10-19
+category: Playbooks
+tags:
+  - SEO terms
+  - AI Mode
+  - query fan-out
+  - AI search
+  - AEO
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "What is query fan-out in Google Search?"
+    a: "Query fan-out is the technique Google's AI Mode and AI Overviews use to answer a question by breaking it into multiple sub-queries and running them simultaneously, then synthesizing the results into one response. Google describes it directly in its own developer documentation for AI features in Search."
+  - q: "How many searches does AI Mode actually run for one question?"
+    a: "Google has not published an exact number for standard AI Mode, saying only that it issues 'a multitude' of queries. For Deep Search, a more exhaustive mode, Google says it can issue hundreds of searches on a single question."
+  - q: "Does query fan-out mean I need new markup or an AI text file?"
+    a: "No. Google's documentation says explicitly that there are no additional requirements to appear in AI Overviews or AI Mode beyond standard SEO, and that you don't need new machine-readable files or markup to be eligible."
+  - q: "Can I see which sub-queries fan-out generated for a given question?"
+    a: "Not directly and not reliably. Google doesn't expose the sub-query list in a dashboard. The closest proxy is testing AI Mode yourself with your target questions and reading which pages and sections it cites, then reverse-engineering what it likely searched for."
+  - q: "Is query fan-out the reason Google Trends data looks strange in 2026?"
+    a: "It's the leading explanation SEOs have converged on. Fan-out sub-queries appear to be counted alongside genuine human searches in some Trends data, which would explain simultaneous, unexplained spikes across unrelated terms."
+---
+import SeoTermsSeries from '../../components/SeoTermsSeries.astro';
+
+
+Query fan-out is the technique Google's AI Mode and AI Overviews use to answer a question by splitting it into several smaller searches, running them at once, and stitching the results into a single response with citations. Google names it directly in its own documentation. It's not a rumor or an SEO theory, it's how the system is built.
+
+> **Key takeaways**
+>
+> - Query fan-out means one user question becomes several background searches, each one matched to a different sub-topic, source, or angle.
+> - Google confirms the technique by name in its AI features documentation, and says Deep Search can issue hundreds of sub-queries for a single question.
+> - You can't target a specific sub-query. You optimize by covering the full cluster of sub-questions a topic implies, on one page or across a linked set.
+> - Comparison, pricing, and alternatives content get pulled into fan-out answers disproportionately, because those are exactly the sub-queries a synthesizing system needs to fill in.
+> - Being present only on your own site isn't enough. Fan-out pulls from forums, review sites, and docs, so your information needs to exist in places other than your homepage too.
+
+![Query fan-out: one question splits into multiple sub-queries that get synthesized into one AI answer](/images/posts/query-fan-out-inline.webp)
+
+## What's actually happening when you ask AI Mode a question
+
+Type a normal search into Google and the system does roughly one thing: match your query against an index, rank the results, show you ten blue links. One query, one search.
+
+AI Mode and AI Overviews don't work that way. Google's own documentation for AI features in Search states it plainly: "Both AI Overviews and AI Mode may use a 'query fan-out' technique, issuing multiple related searches across subtopics and data sources, to develop a response." One question goes in. Several searches happen behind the scenes, each one aimed at a different piece of the answer. The results come back, get read, and get synthesized into a single response with linked sources.
+
+Google's May 2025 announcement of the AI Mode expansion put it even more directly: "AI Mode uses our query fan-out technique, breaking down your question into subtopics and issuing a multitude of queries simultaneously on your behalf." For a more exhaustive feature called Deep Search, the same post says the technique gets "taken to the next level," issuing "hundreds of searches" and reasoning across the results before producing what Google calls "an expert-level fully-cited report in just minutes."
+
+That's the mechanical difference worth sitting with. A normal search is one race with one set of competitors. A fan-out query is several races running in parallel, each one feeding a different slice of the eventual answer, and your page either shows up in the races relevant to it or it doesn't show up at all.
+
+## Why this changes what "ranking" means
+
+Ask AI Mode something like "best running shoes for flat feet under $150." Under the old single-query model, that's one search, matched against pages that cover that exact phrase or something close to it.
+
+Under fan-out, that question plausibly splits into something like: what is overpronation and why does it matter for flat feet, which specific shoe models are recommended for stability, what do those models cost right now, how do they compare to each other, and what do real buyers say about durability. Five or six searches, each one hitting a different kind of source: a podiatry explainer for the first, a running shoe review site for the second and third, a retailer page for pricing, a forum thread for the last one.
+
+No single page wins all of those. The page that wins the most sub-queries, or the one sub-query most central to the final answer, is the one that gets cited most prominently. A page that tries to be everything to everyone, generically, often loses to several narrower pages that each answer one piece cleanly.
+
+This is the same mechanism behind [how Google chunks and ranks individual passages](/blog/google-chunking-passage-ranking/), just one level up. Passage ranking decides which section of a page answers a specific question. Query fan-out decides which questions get asked in the first place, and then goes looking for the best passage to answer each one.
+
+## Why this matters more in 2026 than it did a year ago
+
+AI Mode stopped being a Labs experiment and became a default surface people actually use for research and buying questions, which means fan-out isn't a side case anymore, it's the normal path for a growing share of commercial queries. Every "best X for Y" and "X vs Y" search is a candidate for fan-out treatment, and those are exactly the queries that drive purchase decisions.
+
+The second reason is more uncomfortable. Fan-out answers get built from whatever sources happen to answer each sub-query best, including sources you don't control. If you ignore this, the answer about your product or category still gets written, just without your input shaping it. A competitor's comparison page, a stale forum thread, or a review aggregator fills the gap instead. Showing up isn't optional in the way ranking for a long-tail keyword used to be optional. It's closer to: either you're in the citation set, or someone else's version of your category is.
+
+## How to check whether fan-out is already citing you
+
+There's no dashboard that lists sub-queries, so checking means testing directly:
+
+1. **Open AI Mode and type the real questions your buyers ask**, not just your target keyword. Include comparison and pricing phrasing, since those sub-queries get generated constantly.
+2. **Read the citations, not just the answer text.** Note which domains and which specific pages get linked for each part of the response.
+3. **Repeat with 8-10 question variants** across the same topic, since fan-out behavior isn't identical run to run.
+4. **Cross-check against Search Console.** If a page gets cited in AI Mode but shows almost no impressions for the related query cluster in Search Console, that's a sign the citation is coming from a sub-query you haven't deliberately targeted, which is useful information either way.
+5. **Note where you're absent.** If none of your pages show up for a sub-query you'd expect to own, like pricing or a direct comparison, that's your actual content gap, not a ranking problem you can fix by changing a title tag.
+
+## How to optimize for a technique you can't see directly
+
+You can't target a specific sub-query, because Google doesn't publish the list and it isn't fixed, it's generated dynamically per question. What you can do is make your content hard to skip when the system goes looking.
+
+**Cover the full sub-question cluster, not just the head term.** Before you write, list every sub-question a reasonable person would have about your topic: definition, cost, comparison, alternatives, common mistakes, edge cases. Either answer all of them on one comprehensive page with clearly labeled sections, or build a small cluster of pages that each own one sub-question and link to each other. Both work. What doesn't work is a page that answers only the head question and leaves the rest to competitors.
+
+**Give comparison, pricing, and alternatives their own clearly headed sections.** These are the sub-queries fan-out reaches for most often, because they're the ones a synthesizing system struggles to answer from a single generic page. A dedicated "X vs Y" section or a pricing table with a clear "as of [month, year]" date is exactly the kind of extractable, specific content a fan-out sub-query is built to find.
+
+**Don't assume your own site is where the sub-query lands.** Fan-out pulls from whatever source answers that specific sub-question best, which is frequently a forum thread, a review aggregator, or a competitor's comparison page, not your homepage. If a sub-query is "what do real users say about reliability," and your product has no presence on Reddit, G2, or Trustpilot, that sub-query gets answered by someone else, about you or around you, without your input in it at all.
+
+**Measure through citations and impressions, not rank position.** AI Mode and AI Overview visibility doesn't show up as a normal ranking position. Track it by testing your own target questions directly in AI Mode and logging which of your pages or sections get cited, cross-referenced against Search Console impressions on those queries. For the mechanics of Overview-specific tracking, see [how to track AI Overview visibility](/blog/ai-overview-tracking-tools/).
+
+## A worked hypothetical
+
+Say you run a mid-size SaaS company selling project management software, and you want to show up when someone asks AI Mode "what's the best project management tool for a 10-person agency."
+
+Fan-out plausibly breaks that into: what features matter for a small agency (task tracking, client billing, time tracking), which tools are commonly recommended for that size team, what those tools cost at that scale, how do the top two or three compare directly, and what do actual agency owners say about switching costs.
+
+Your homepage answers none of those specifically; it answers "what is our product" in general terms. A dedicated page titled "project management software for agencies under 15 people," structured with an H2 on required features, an H2 with a direct comparison table against two named competitors, and a pricing section dated to the current month, is positioned to win at least two or three of those sub-queries outright. The homepage was never in those races to begin with.
+
+## Query fan-out at a glance
+
+| Aspect | Traditional search | Query fan-out (AI Mode / AI Overviews) |
+|---|---|---|
+| Searches run per question | One | Several to "a multitude," hundreds for Deep Search |
+| What competes | Whole pages, ranked against each other | Individual passages, each matched to a sub-query |
+| Best content shape | One strong, comprehensive page | A page or cluster covering the full sub-question set |
+| High-value content types | General authority, backlinks | Comparisons, pricing, alternatives, specific specs |
+| How you measure visibility | Rank position, 1-10 | Citation presence across your target questions |
+| New markup required | Standard SEO | None confirmed; Google says no new files or markup needed |
+
+<SeoTermsSeries />
+
+## The bottom line
+
+Query fan-out is Google telling you, in its own documentation, exactly how AI Mode decides what to search for. It isn't a black box theory, it's a named technique with a public description. The practical shift is small to state and genuinely hard to execute: stop writing one page that answers one question well, and start making sure every sub-question a topic implies has a clean, specific, dated answer somewhere the system can find, whether that's your site, a comparison page, or a third-party forum you actually show up in.
+
+The sites that will struggle here are the ones that only ever wrote the homepage version of their story. The ones that win are the ones that already wrote the pricing page, the comparison page, and the "vs" page, because fan-out was always going to go looking for exactly those.
+
+For more on the surfaces this applies to, see [how AI Mode changes SEO](/blog/google-ai-mode-what-seos-need-to-know/) and [how to optimize for Google AI Overviews](/blog/how-to-optimize-for-google-ai-overviews/).
+
+## References
+
+- [AI features in Search, Google Search Central](https://developers.google.com/search/docs/appearance/ai-features)
+- [Try new ways to search with AI Mode in Search Labs, Google Blog, May 20, 2025](https://blog.google/products/search/google-search-ai-mode-update/)
+- [Google Trends is breaking: AI fan-out queries are inflating search data](/blog/google-trends-ai-fanout-data/)

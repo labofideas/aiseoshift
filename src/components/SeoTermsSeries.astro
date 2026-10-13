@@ -1,0 +1,30 @@
+---
+// "10 SEO terms" series box. Renders only once the hub post is published, so scheduled posts never link to a 404.
+import { getEntry } from 'astro:content';
+
+const hub = await getEntry('blog', 'seo-terms-2026');
+const live = hub && !hub.data.draft && hub.data.pubDate <= new Date();
+---
+
+{
+	live && (
+		<aside class="series-box" aria-label="Series">
+			<p>
+				Part of our series <a href="/blog/seo-terms-2026/">10 SEO Terms Every Marketer Should Know in 2026</a>. See all ten terms, each explained simply with one action.
+			</p>
+		</aside>
+	)
+}
+
+<style>
+	.series-box {
+		margin: 2rem 0;
+		padding: 1rem 1.25rem;
+		border-inline-start: 4px solid var(--signal-deep);
+		border-radius: 0.75rem;
+		background: var(--panel);
+	}
+	.series-box p {
+		margin: 0;
+	}
+</style>

@@ -1,0 +1,129 @@
+---
+title: "Entity Salience: What It Means and How to Improve It"
+description: "Entity salience scores how central a person, place, or thing is to a piece of text, on a 0-1 scale. Here's what it measures and how to write for it."
+deck: "A score between 0 and 1 that says how central something is to a page. Not a confirmed ranking factor, but a real signal worth understanding."
+pubDate: 2026-10-18
+category: Playbooks
+tags:
+  - SEO terms
+  - entity SEO
+  - natural language processing
+  - structured data
+  - content writing
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "What is entity salience?"
+    a: "Entity salience is a score, from 0 to 1, that measures how central a specific entity (a person, place, organization, or thing) is to a piece of text as a whole. It comes from natural language processing, most visibly from Google Cloud's Natural Language API, where every entity it identifies in a text gets a salience value alongside its name and type."
+  - q: "Is entity salience a confirmed Google Search ranking factor?"
+    a: "No, and nobody should say otherwise. Google Cloud's Natural Language API is a developer tool, not a stated part of the Search ranking algorithm, and Google has not confirmed that Search uses this exact scoring method. SEOs treat it as a useful proxy for 'does this page clearly establish what it's about' rather than as a lever you can pull directly."
+  - q: "How do I test a page for entity salience?"
+    a: "Paste the page's text into a tool built on Google Cloud's Natural Language API, or call the API directly with a short script, and look at the entities list. Each entity returned includes a salience score between 0 and 1. If your main topic isn't the highest-scoring entity, or scores close to several unrelated entities, that's a sign the page's focus is diluted."
+  - q: "Does adding a name or keyword more times increase its salience score?"
+    a: "Not reliably, and stuffing a term in repeatedly can make a page read worse without a predictable salience benefit. The signals that influence salience are about structural prominence, where a term appears (title, opening sentences, headings) and how it relates to other entities in the text, not raw frequency."
+  - q: "What's the difference between entity salience and entity SEO?"
+    a: "Entity salience is a specific, measurable score describing one document. Entity SEO is the broader practice of building a consistent, recognizable entity for your brand across the web, through schema, directories, and consistent naming. Salience is one diagnostic you can use inside that broader entity SEO work."
+---
+import SeoTermsSeries from '../../components/SeoTermsSeries.astro';
+
+
+Entity salience is a score between 0 and 1 that measures how central a specific entity, a person, company, place, or named thing, is to a piece of text as a whole. The concept comes from Google Cloud's Natural Language API, which assigns every entity it detects in a document a salience value alongside its name, type, and mentions.
+
+It is worth saying plainly before anything else: this is an NLP concept from a developer API, not a confirmed Google Search ranking factor. Treat it as a useful lens for checking whether your content clearly establishes what it's about, not as a dial you can turn to move rankings directly.
+
+> **Key takeaways**
+>
+> - Entity salience is a 0-1 score from Google Cloud's Natural Language API that shows how central an entity is to a text, visible in the API's example output for entity analysis.
+> - It is an NLP concept, not a stated Google Search ranking signal. Nobody outside Google has confirmed Search uses this exact metric.
+> - You can test any page's entity salience with the Natural Language API, either through a short script or a tool built on top of it.
+> - Salience responds to structural prominence (where a term appears) more than to raw repetition, so stuffing a keyword doesn't reliably raise it.
+> - Writing practices that tend to raise salience: naming the main entity early, using it in headings, keeping naming consistent, and surrounding it with genuinely related entities.
+
+![A document outline with the main topic highlighted at the top and a 0 to 1 salience scale showing related entities scored below it](/images/posts/entity-salience-inline.webp)
+
+## What salience actually measures
+
+Google Cloud's [Natural Language API documentation on entity analysis](https://cloud.google.com/natural-language/docs/analyzing-entities) shows salience as one of the fields returned for every entity the API detects in a document, alongside the entity's name, its type (PERSON, ORGANIZATION, LOCATION, and so on), and where it's mentioned in the text. In the API's own example responses, a prominent entity shows a salience value well above zero, while a passing mention of something tangential scores at or near zero. The [basics documentation](https://cloud.google.com/natural-language/docs/basics) confirms the same pattern in its entity analysis examples: salience values sit between 0 and 1, with higher numbers attached to entities that carry more weight in the text.
+
+Neither document spells out the exact formula behind the number, which is typical for Google's NLP tooling, the API tells you the output, not the internal math. What you can observe directly, by running your own text through it, is that salience behaves like a measure of centrality: the entity your text is actually about tends to score highest, and entities that show up once in a supporting sentence score low.
+
+That makes it useful as a proxy question: if you ran your homepage or your top landing page through this analysis, would the entity you intend to be the subject of the page actually come out on top? If a secondary or unrelated entity scores higher, that's a sign the page's focus is less clear than you think it is, regardless of what the title says.
+
+## Why this matters in 2026, including for AI search
+
+Entity salience itself isn't a Google Search ranking signal Google has confirmed. What's real, and adjacent to it, is that the broader shift toward [entity-based understanding](/blog/entity-seo-knowledge-graph/) keeps showing up across search and AI systems in ways that reward the same underlying writing habits salience happens to measure.
+
+AI answer engines, when they synthesize a response from a page, need to identify what the page is actually about before they can decide whether to use it as a source. A page where the intended subject is buried under three other equally prominent entities is harder for any system, human or machine, to confidently attribute. This is the same failure mode salience scoring exposes: diffuse focus reads as diffuse to a reader and to a model.
+
+The honest framing matters here. You are not optimizing a ranking factor called "entity salience." You're using a free diagnostic that happens to reflect the same clarity-of-topic question that entity-based retrieval, AI citation, and plain old readability all care about. The tool is borrowed from NLP research, not from Google's Search ranking documentation, and that distinction is worth keeping straight when you explain this to a client or a boss.
+
+## Entity salience vs. entity SEO
+
+These two terms get used almost interchangeably, and they shouldn't be. Entity salience is a specific, measurable score describing one document, the output of one API call against one piece of text. Entity SEO is the much broader practice of building a consistent, recognizable entity for your brand across the entire web: claimed profiles, [a knowledge graph presence](/blog/entity-seo-knowledge-graph/), consistent naming on every platform that mentions you, and schema that ties it all together.
+
+Salience is a diagnostic you can run inside that broader work. It tells you whether one page clearly establishes its subject. It says nothing about whether Wikidata, your Google Business Profile, and your LinkedIn page agree on what your brand is, which is the actual substance of entity SEO. Confusing the two leads to the common mistake of treating a salience score as the whole job, when it's really a narrow check on one piece of one page.
+
+## Why a diluted page shows up elsewhere too
+
+A page that scores poorly on entity salience usually has a tell you'd catch without running any API call: it also tends to underperform in rankings, because the same unclear focus that confuses an NLP parser confuses a search algorithm's relevance matching. If you're working through a list of [striking distance keywords](/blog/striking-distance-keywords/) stuck just outside page one, a quick salience check on the underlying page is a fast way to rule in, or rule out, unclear topical focus as part of the problem before you spend time on backlinks or technical fixes that won't address it.
+
+The same applies to [semantic understanding of a new site](/blog/semantic-seo-new-website-ranking/) that hasn't built up authority yet. Early on, before you have much external signal to lean on, how clearly each page establishes its subject carries more relative weight, simply because you have less else working in your favor.
+
+## How to test a page with the Natural Language API
+
+1. **Get access to the API.** It's part of Google Cloud, so you'll need a Google Cloud project with the Natural Language API enabled. There's a free tier for low usage.
+2. **Pull the plain text of the page you want to test.** Strip out navigation, footer boilerplate, and anything that isn't the actual body content, or the analysis will score your nav menu's entities alongside your actual topic.
+3. **Send the text to the `analyzeEntities` method**, either with a short script using Google's client libraries, or through a tool that wraps the API if you don't want to write code.
+4. **Look at the entities list in the response.** Each one has a name, a type, and a salience score.
+5. **Check whether your intended main topic is the top-scoring entity.** If it is, and by a reasonable margin over the next entity, the page reads as focused. If your brand name, a tangential example, or an unrelated proper noun outscores your actual subject, that's the signal to rewrite.
+6. **Re-run after edits.** This is a cheap enough check that you can treat it like a spell-checker pass before publishing anything you want to be clearly "about" one thing.
+
+## Writing practices that tend to raise salience
+
+**Name the main entity early.** If the page is about a specific product, person, or concept, say so in the opening sentence or two, not after two paragraphs of scene-setting. Salience responds to where a term appears, and the beginning of a document carries more weight than a passing mention three sections down.
+
+**Use it in headings, not just body text.** An entity that appears in H2s and H3s, in addition to paragraphs, tends to read as more structurally central, both to the API's scoring and to an actual human skimming the page.
+
+**Keep naming consistent.** If your main entity is "Acme Project Tracker," don't alternate between that, "our tool," "the platform," and an informal nickname throughout the piece. Inconsistent naming can fragment what should be one entity into something the parser treats as several weaker references instead of one strong one.
+
+**Surround it with genuinely related entities, not padding.** A page about a specific software product that also mentions its actual integrations, its real category, and its named competitors tends to read as more coherent than one stuffed with generic adjacents. This connects to the same logic behind [building topical authority](/blog/how-to-build-topic-authority/): related, specific context strengthens the main entity rather than diluting it, while vague filler does the opposite.
+
+**Mark it up with `about` and `mentions` in schema.** If you're already using `Article` or similar structured data, the `about` property should name your primary entity, and `mentions` can list secondary ones. This doesn't change the Natural Language API's score on your page, since schema markup and the visible text are evaluated separately, but it does give search and AI systems a second, explicit signal pointing at the same entity your writing already establishes.
+
+## A worked example
+
+Say you publish a page about a specific project management feature, "automatic task reassignment," for a SaaS product called TaskFlow.
+
+Draft one opens with three paragraphs about general productivity trends, mentions "workflow automation" repeatedly, name-drops two competitor tools for comparison, and only gets to "automatic task reassignment" in paragraph four. Run that through entity analysis and you'd expect "workflow automation" or one of the competitor names to come back with a salience score close to, or higher than, your actual feature.
+
+Draft two opens with: "TaskFlow's automatic task reassignment moves overdue tasks to available team members without manual intervention." The feature name appears in the first sentence, again in the H2 that follows, and the surrounding paragraphs stay focused on how it behaves rather than drifting into general productivity commentary.
+
+| | Draft one | Draft two |
+| --- | --- | --- |
+| Main entity named in sentence 1 | No | Yes |
+| Main entity in headings | No | Yes |
+| Competing entities present | Yes, prominently | Minimal, only where relevant |
+| Expected salience pattern | Diffuse, competing entities score close together | One entity scores clearly highest |
+| Reader takeaway | Unclear what the page is actually about | Clear from the first sentence |
+
+Draft two is the version worth publishing, and not only because of what a salience check would show. It's simply a clearer piece of writing, which is the actual point, the score is a diagnostic for something you should be able to tell by reading it too.
+
+<SeoTermsSeries />
+
+## The bottom line
+
+Entity salience is a real, measurable concept from Google's own NLP tooling, scored 0 to 1, and it's a genuinely useful way to check whether a page establishes a clear subject. It is not a confirmed Google Search ranking factor, and treating it like one overstates what anyone outside Google actually knows. Use it as a free diagnostic: name your main entity early, keep it in your headings, keep the naming consistent, and surround it with real related context instead of padding. Do that, and the salience score tends to follow, along with the kind of clarity that helps with AI citation and plain readability regardless of what any single metric says.
+
+## Related reading
+
+This post is part of a series on SEO terms worth knowing in 2026:
+
+- [What is keyword cannibalization?](/blog/keyword-cannibalization/)
+- [What is index bloat?](/blog/index-bloat/)
+- [What is crawl budget?](/blog/crawl-budget/)
+- [Striking distance keywords: find and fix them in GSC](/blog/striking-distance-keywords/)
+
+## References
+
+- [Google Cloud Natural Language API: Analyzing entities](https://cloud.google.com/natural-language/docs/analyzing-entities)
+- [Google Cloud Natural Language API: Basics](https://cloud.google.com/natural-language/docs/basics)

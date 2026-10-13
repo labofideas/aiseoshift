@@ -20,6 +20,27 @@ function flip() {
   return frame(H, 'META ANDROMEDA', 'The order flipped', `<line x1="600" y1="190" x2="600" y2="${H - 90}" stroke="${RUST}" stroke-width="1" opacity="0.4"/>${before}${after}`, 'You no longer pick the audience for an ad. The ad helps Meta find its audience.');
 }
 
+
+function termGrid() {
+  const groups = [
+    ['HOW AI AND GOOGLE CHOOSE', [['GEO', 'Get cited, not just ranked'], ['Query fan-out', 'One question, many searches'], ['Information gain', 'Add what others lack'], ['Passage ranking', 'One section can rank'], ['Entity salience', 'Be clear what it is about']]],
+    ['WHAT HOLDS SITES BACK', [['Striking distance', 'Positions 11 to 20'], ['Cannibalization', 'Your pages compete'], ['Index bloat', 'Junk URLs indexed'], ['Crawl budget', 'Googlebot time wasted'], ['Reputation abuse', 'Rented domain trust']]],
+  ];
+  const top = 205, W = 204, gap = 15, H = 655;
+  const body = groups.map(([label, items], g) => {
+    const y = top + g * 200;
+    return `<text x="60" y="${y}" font-family="${SANS}" font-size="16" font-weight="700" letter-spacing="2" fill="${GRAY}">${label}</text>` +
+      items.map(([t, d], i) => {
+        const x = 60 + i * (W + gap), dark = g === 1;
+        return `<rect x="${x}" y="${y + 18}" width="${W}" height="140" rx="12" fill="${NAVY}" fill-opacity="${dark ? 1 : 0.05}"/>
+        <text x="${x + 18}" y="${y + 52}" font-family="${SANS}" font-size="16" font-weight="700" fill="${RUST}">${g * 5 + i + 1}</text>
+        <text x="${x + 18}" y="${y + 90}" font-family="${SERIF}" font-size="18" font-weight="700" fill="${dark ? CREAM : NAVY}">${t}</text>
+        <text x="${x + 18}" y="${y + 124}" font-family="${SANS}" font-size="14" fill="${dark ? CREAMD : GRAY}">${d}</text>`;
+      }).join('');
+  }).join('');
+  return frame(H, '10 SEO TERMS FOR 2026', 'Five decide what shows, five hold you back', body, 'Each term links to a full guide. Start with striking distance and cannibalization.');
+}
+
 function funnel() {
   const stages = [
     ['Awareness', 'Reach new buyers', 'Reach, CPM, new visitors'],
@@ -159,6 +180,12 @@ const posts = [
       { t: 'Analytics', sub: 'MEASURE VISITS', lines: ['Privacy-friendly', 'traffic and', 'conversions'], foot: ['Matomo, Plausible,', 'Umami'] },
       { t: 'On-site', sub: 'CMS PLUGINS', lines: ['Titles, sitemaps,', 'canonicals,', 'schema'], foot: ['The SEO Framework,', 'Yoast'] },
     ], 'Open source cannot replace backlink and keyword volume data. Keep Search Console and one paid source.')],
+  },
+  {
+    slug: 'seo-terms-2026',
+    hero: { kicker: 'SEO TERMS, 2026', l1: '10 SEO terms', l2: 'worth knowing', sub: 'Explained simply, with one action for each' },
+    alt: '10 SEO terms every marketer should know in 2026',
+    inline: ['grid', termGrid()],
   },
 ];
 
