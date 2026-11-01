@@ -2417,5 +2417,14 @@
 			"height": 720,
 			"bytes": 41840
 		}
+	},
+	"best-cold-email-software": {
+		"hero": {
+			"src": "/images/posts/best-cold-email-software-hero.webp",
+			"alt": "Headline reading Best Cold Email Software in 2026 beside a checklist of SPF and DKIM, DMARC, one-click unsubscribe, spam rate under 0.3 percent and warm-up",
+			"width": 1280,
+			"height": 720,
+			"bytes": 35542
+		}
 	}
 }
