@@ -2426,5 +2426,14 @@
 			"height": 720,
 			"bytes": 38500
 		}
+	},
+	"b2b-outreach-tools": {
+		"hero": {
+			"src": "/images/posts/b2b-outreach-tools-hero.webp",
+			"alt": "Graphic reading Best B2B Outreach Tools in 2026 with a table showing which of lemlist, La Growth Machine, Expandi, Waalaxy, Instantly and Smartlead send email, LinkedIn and calls",
+			"width": 1280,
+			"height": 720,
+			"bytes": 33904
+		}
 	}
 }
