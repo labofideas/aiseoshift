@@ -2408,5 +2408,14 @@
 			"height": 675,
 			"bytes": 21868
 		}
+	},
+	"ai-lead-generation-tools": {
+		"hero": {
+			"src": "/images/posts/ai-lead-generation-tools-hero.webp",
+			"alt": "Ranked shortlist graphic reading Best AI Lead Gen Tools in 2026, listing Apollo, Clay, Instantly, Smartlead, HubSpot and lemlist",
+			"width": 1280,
+			"height": 720,
+			"bytes": 41840
+		}
 	}
 }
