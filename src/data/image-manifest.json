@@ -2417,5 +2417,14 @@
 			"height": 720,
 			"bytes": 41840
 		}
+	},
+	"ai-market-research-tools": {
+		"hero": {
+			"src": "/images/posts/ai-market-research-tools-hero.webp",
+			"alt": "Ranked graphic reading Best AI Market Research Tools in 2026, listing Perplexity, SurveyMonkey, Attest, Outset, Qualtrics and Similarweb by research job",
+			"width": 1280,
+			"height": 720,
+			"bytes": 38500
+		}
 	}
 }
