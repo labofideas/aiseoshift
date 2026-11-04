@@ -2435,5 +2435,23 @@
 			"height": 720,
 			"bytes": 33904
 		}
+	},
+	"design-com-vs-canva-vs-looka": {
+		"hero": {
+			"src": "/images/posts/design-com-vs-canva-vs-looka-hero.webp",
+			"alt": "Six Design.com logo concepts for Pixel Web Studio built from pixel patterns, a cloud and an apple",
+			"width": 916,
+			"height": 493,
+			"bytes": 27554
+		}
+	},
+	"design-com-logo-maker-review": {
+		"hero": {
+			"src": "/images/posts/design-com-logo-maker-review-hero.webp",
+			"alt": "Six Healthy Smoothie logo concepts on the Design.com results page",
+			"width": 1130,
+			"height": 612,
+			"bytes": 37238
+		}
 	}
 }
