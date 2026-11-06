@@ -2505,5 +2505,18 @@
 			"height": 720,
 			"bytes": 37722
 		}
+	},
+	"ai-agent-for-customer-service": {
+		"hero": {
+			"src": "/images/posts/ai-agent-for-customer-service-hero.webp",
+			"alt": "Choosing one AI agent for customer service in 2027: pick, test and measure steps beside a dial",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 36054
+		}
 	}
 }

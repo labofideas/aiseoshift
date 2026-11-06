@@ -1,0 +1,404 @@
+---
+title: "AI Agent for Customer Service in 2027: Pick, Test, Measure"
+description: "How to choose, test and measure one AI agent for customer service in 2027: a rollout playbook, a ten-vendor shortlist and the resolution definitions you pay for."
+deck: The hard part is not picking a vendor. It is agreeing, before launch, on what counts as a resolved ticket, because that definition is the metric, the invoice and the argument you will have in six months.
+pubDate: 2026-11-07
+category: AI Agents
+tags:
+  - AI Agents
+  - Customer Service
+  - AI Support Agents
+  - AI Visibility
+author: Shashank Dubey
+featured: false
+draft: false
+faqs:
+  - q: "How do I choose one AI agent for customer service?"
+    a: "Write down the job first: which contact types, which channels, which systems it must change. Then define a resolution, shortlist vendors that publish how they count one and ship pre-launch simulation, and pilot on one narrow slice of traffic. On our rubric Fin scores highest at 22 of 25, but the right pick depends on your helpdesk."
+  - q: "What counts as a resolved conversation?"
+    a: "It depends on the vendor, and the definition is also the billing unit. Fin counts a conversation resolved if the customer confirms the answer or leaves without asking for more, and reverses it if they return. Zendesk counts messaging resolutions after 2 hours by default, email after 72 hours, and any escalation to a human voids it."
+  - q: "How long does it take to deploy an AI customer service agent?"
+    a: "Vendors claim minutes to a month: Fin says under an hour to set up, Crescendo says 30 days to go live, and Yellow.ai cites a customer that launched in six weeks. None of these include the time to fix your knowledge base. Plan on a staged rollout by customer segment, not a switch-over day."
+  - q: "How many test cases do I need before launch?"
+    a: "Fin's guidance suggests a focused set of 50 to 100 cases, mixing core, edge, adversarial and multi-language scenarios, with pass thresholds such as 90 percent accuracy and under 2 percent unsupported claims. Those are one vendor's suggestions, not a standard, so set your own and add every production failure to the suite."
+  - q: "What does an AI customer service agent cost?"
+    a: "Published prices in November 2026 are $0.99 per outcome for Fin, $1.50 to $2.00 per automated resolution for Zendesk, and $0.99 per resolution above 500 free per month for Yellow.ai. Sierra, Decagon, Parloa, Gladly, Netomi and Crescendo publish no figure. Gartner's median cost per contact is $1.84 for self-service and $13.50 for assisted channels."
+  - q: "Do I have to tell customers they are talking to an AI?"
+    a: "In the EU, Article 50(1) of the AI Act requires that people be told they are interacting with an AI system unless it is obvious, and an annotated copy says it applies from 2 August 2026. California's bot law offers a safe harbor for a clear disclosure when a bot is used to influence a sale. This is not legal advice."
+  - q: "Can a company be held responsible for what its chatbot says?"
+    a: "Yes. In Moffatt v Air Canada, a 2024 tribunal decision, Air Canada was held responsible for its chatbot's incorrect bereavement fare advice and ordered to pay a total of $812.02. Law firm summaries quote the tribunal rejecting the idea that the chatbot was a separate legal entity. It is a small claims ruling, not binding elsewhere."
+---
+
+To choose an AI agent for customer service, define a resolution first, shortlist vendors that publish how they count one, test with simulated conversations, and pilot on a narrow slice of traffic. On our rubric Fin, Zendesk and Yellow.ai score highest, followed by Sierra, Parloa, Decagon, Crescendo, Genesys, Gladly and Netomi.
+
+## Key takeaways
+
+- One agent, one job. Teams that try to automate every contact type at launch are the ones that cannot say afterward what worked.
+- The resolution definition is the metric and the bill. Fin counts silence as a resolution and reverses it if the customer returns. Zendesk waits 2 hours on messaging and 72 on email. Most others publish no definition.
+- Returns are the exception. Gartner found only 24 percent of service leaders showed positive financial returns from AI, and predicts over 40 percent of agentic AI projects will be scrapped by the end of 2027.
+- Pre-launch simulation is now standard. Fin, Sierra, Decagon, Parloa and Crescendo all ship it. If a vendor cannot show you a test suite, you are the test suite.
+- Customers still want a person. 87 percent say a route to a human is essential, so escalation design is part of the product, not an apology.
+
+## What changed in 2026
+
+A year ago the pitch was resolution rate. Now it is evidence.
+
+Gartner's July 2026 release, built on 3,566 customers and 1,303 senior leaders, found that [only 24 percent of service and support leaders showed positive financial returns](https://www.gartner.com/en/newsroom/press-releases/2026-07-08-gartner-survey-finds-customers-are-three-times-more-likely-to-use-third-party-genai-than-company-provided-chatbots-for-customer-service) across their AI use cases, even though service leaders put a median 12 percent of their 2025 budget into AI, the highest of ten functions. The same release found company chatbot use has been statistically flat since 2022 while third-party GenAI use in service nearly doubled in a year. Gartner's Eric Keller put it bluntly: many company chatbots are still designed mainly to answer questions.
+
+The vendors responded with tooling. Fin announced Evals and Releases in August 2026, which run simulated conversations before launch and let you publish a change to everyone or to a test group first. Sierra, Decagon and Parloa describe simulation suites that rerun on every update. Testing before launch used to be a service engagement. It is now a product feature.
+
+And ownership shifted. Salesforce completed its acquisition of Fin in September, and Zendesk bought Forethought in March. Our [platform comparison](/blog/ai-agents-for-customer-service/) covers what that means for roadmaps. For this post, the point is practical: if you pick a vendor, ask who owns it in two years.
+
+## What "one agent" means
+
+Pick the smallest unit you can own. An agent here means a single customer-facing system with a defined scope, on defined channels, with a named owner who reads its failures every week.
+
+It is not a chatbot. A chatbot matches a question to a script or an article. It is not agent assist either, where a human still sends the message. If that second job is your need, our guide to [AI agents for customer support](/blog/ai-agents-for-customer-support/) ranks the copilot side. And it is not a company-wide AI program. The wider category is covered in [AI agents for business](/blog/ai-agents-for-business/).
+
+An agent in this sense does three things: it reads the request, it consults your knowledge or systems, and it either finishes the task or hands the conversation to a person with context. How well it does the third thing decides most of your customer experience.
+
+## The numbers worth planning around
+
+Every figure below was read on its source page in November 2026.
+
+**The baseline you must beat.** Gartner's 2024 survey of 5,728 customers found [only 14 percent of issues were fully resolved in self-service](https://www.gartner.com/en/newsroom/press-releases/2024-08-19-gartner-survey-finds-only-14-percent-of-customer-service-issues-are-fully-resolved-in-self-service), 36 percent for issues customers called very simple. In 45 percent of failures customers said the company did not understand their goal. That is pre-LLM-agent data, so treat it as a floor, not a forecast.
+
+**The cost baseline.** A Gartner Insights abstract from February 2024 states the [median cost per contact is $1.84 for self-service and $13.50 for assisted channels](https://www.gartner.com/en/documents/5164231). The abstract does not give a sample or a cost definition. Set it against list prices of $0.99 to $2.00 per resolution and the saving is plain, but only if the resolution is real. Gartner also forecasts that generative AI cost per resolution will exceed $3 by 2030, from a January 2026 release we cited in our platform post.
+
+**The failure rate.** In a June 2025 prediction, Gartner said [over 40 percent of agentic AI projects will be canceled by the end of 2027](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) because of rising costs, unclear business value or inadequate risk controls. It also says only about 130 of the thousands of agentic AI vendors are genuine. The underlying poll had 3,412 webinar attendees and the page says it is not representative, and the prediction covers all industries, not only service.
+
+**The human path.** Gartner's August 2026 release found [87 percent of customers say a route to a human agent is essential](https://www.gartner.com/en/newsroom/press-releases/2026-08-04-gartner-survey-finds-87-percent-of-customers-say-companies-using-genai-for-customer-service-must-provide-access-to-a-human-agent0) when a company uses GenAI for service. It advises leaders not to use GenAI as a mandatory first step for every issue, and warns that repeated dead ends make customers less likely to use the tool again.
+
+**A vendor-run data point.** An answering-service vendor, AnswerConnect, commissioned OnePoll to survey 6,000 consumers in the US, UK and Canada in April 2026. It reported [85 percent would rather speak to a real person](https://www.answerconnect.com/blog/?p=14673), up from 83 percent in October 2025. The sponsor sells human answering and the page gives no margin of error, so read the direction, not the decimals.
+
+**Earlier signals.** Qualtrics XM Institute's survey of more than 20,000 consumers found AI customer service fails at almost four times the rate of AI for other tasks, with nearly one in five seeing no benefit. Gartner's February 2026 prediction that half of companies that cut service staff for AI will rehire by 2027 appeared in our platform post.
+
+The pattern: the baseline is poor, the economics are attractive, the failure rate is high, and customers have not given up on people. A good rollout plans for all four.
+
+## The playbook
+
+Seven steps. Steps one to four come before you pick a vendor or sign anything.
+
+### Step 1: Define the job
+
+List your top ten contact reasons by volume. Mark each as informational (where is my order), transactional (change my address), or judgment-heavy (dispute a charge). Start with informational contacts that already have a correct, current article. Skip anything with legal, medical or financial-advice risk.
+
+Name the channels. Voice is a different project from chat. Name the systems the agent must read or change. An agent that can only talk is a smarter FAQ.
+
+### Step 2: Define a resolution
+
+This is the step teams skip, and it is where money goes.
+
+Vendors disagree. Fin's [documentation](https://www.intercom.com/help/en/articles/8205718-best-practices-for-using-fin-ai-agent) counts a conversation as resolved after its last answer if the customer confirms it was satisfactory or leaves without asking for more. Follow-up questions or a request for a person mean it is not resolved, and if the customer returns, even in a later billing period, the resolution is deducted.
+
+Zendesk's [automated resolution](https://z3n-90312.zendesk.com/hc/en-us/articles/4873238907551-About-automated-resolutions-for-AI-agents) is counted per conversation. On Advanced messaging, it requires the AI agent to handle the conversation and pass an LLM verification step, evaluated 2 hours after the first message by default, configurable up to 72 hours. For email, it is 72 hours. Any escalation to a human removes eligibility. We read a Zendesk-hosted copy of that help article, not the one on support.zendesk.com.
+
+Yellow.ai bills per resolution but publishes no definition. Sierra, Decagon, Parloa, Gladly, Crescendo, Netomi and Genesys give none on the pages we opened. Parloa's value calculator takes an AI containment rate as an input, which is a different quantity: containment means no transfer to a human, and a contained customer can still have an unsolved problem.
+
+So the same bot can post a different number depending on whether silence counts as success. Our recommendation, not a sourced rule: track a stricter internal metric next to the vendor's, such as no repeat contact within seven days plus a satisfaction score on AI-handled conversations. Then reconcile the two every month.
+
+### Step 3: Set the economics
+
+Decide the formula before launch. Gartner's finding that only 24 percent show positive returns is the reason. A workable formula: cost per AI resolution (price plus platform and content-maintenance cost) against cost per human contact, adjusted for the share of AI conversations that later become human contacts. If you cannot compute your own cost per contact today, the $1.84 and $13.50 medians are a placeholder, not a goal.
+
+Expect savings to show up as absorbed volume rather than headcount. Gartner's December 2025 survey found only 20 percent of leaders had cut agent staffing because of AI.
+
+### Step 4: Shortlist with the rubric
+
+Use the rubric below. Rescore with your own weights. If you run Zendesk or Intercom today, start with your own vendor's agent, since switching helpdesks to get an agent is a different, bigger project.
+
+### Step 5: Test before customers do
+
+Run simulations. Per Fin's [learning article](https://fin.ai/learn/how-to-test-ai-agent-before-deployment), define "ready" before testing, build a focused set of 50 to 100 high-signal cases, and mix them: 40 to 50 percent core, 20 to 30 percent edge, 15 to 20 percent adversarial and 10 to 15 percent multi-language or ambiguous. It suggests thresholds such as 90 percent accuracy on core workflows, zero policy violations and a hallucination rate under 2 percent. Those are one vendor's suggestions. Use them as a starting draft and set your own.
+
+Two rules from the same article are worth copying. Test tool failures in a sandbox, and check that the agent does not claim a refund succeeded when the API returned an error. And rerun the full suite whenever an article, procedure or model changes, then weekly after launch, adding every production failure to it.
+
+### Step 6: Roll out in stages
+
+Fin's [rollout guidance](https://www.intercom.com/help/en/articles/7837527-test-fin-ai-agent-before-rolling-it-out-to-customers) suggests staging by customer segment so you can supervise closely: exclude VIPs through a custom attribute, start with self-serve or free-plan customers, combine filters such as new users in one region, limit to logged-in users, one product area, or one page. Start with a teammate-only audience that rates a shared set of questions. Note that live testing is billed per resolution.
+
+Write escalation rules down. Fin's article lists mandatory triggers such as chargebacks, suspected fraud, account takeover, legal threats and requests for personal data beyond need, and says that if they are not documented they are not enforceable. Check that the human receives the full conversation context. Gartner's advice agrees: attempt resolution only when confidence is high and keep a clear path to a person.
+
+### Step 7: Measure weekly, review monthly
+
+Weekly: read a sample of resolved and escalated conversations, look at topic trends, and fix the content gaps they reveal. Monthly: reconcile the vendor's resolution count with your stricter metric, and recompute cost per resolution. Quarterly: decide whether to widen scope. Do not widen until the current slice is stable.
+
+## How we ranked them
+
+This ranking is based on vendor documentation, vendor pricing pages and published analyst commentary, opened in November 2026. We did not run hands-on tests, and no vendor gave us anything. It scores how well each product supports the playbook, not how good its answers are. That limits what we can say about answer quality.
+
+Each product scores 1 to 5 on five criteria, for a maximum of 25.
+
+| Criterion | What earns a 5 | What earns a 1 |
+|---|---|---|
+| Resolution definition | A published rule for what counts, with a reversal policy | No definition on the pages we opened |
+| Pre-launch testing | Documented simulation, regression and staged release | Preview only, or nothing described |
+| Price clarity | Published unit price and a clear billing rule | Demo, quote or referral only |
+| Escalation and governance | Documented triggers, human approval boundaries, named certifications | Controls implied |
+| Evidence | Named customers with numbers and a stated method | Logos or unattributed percentages |
+
+Ties break on resolution definition, then testing. One disclosure: Anthropic's Claude helped draft this article. It does not appear on this list, so there is no conflict on the ranking itself.
+
+This ordering differs from our platform comparison on purpose. That post asks which agent is strongest. This one asks which agent is easiest to buy, test and hold accountable.
+
+## The 10 agents, ranked
+
+### 1. Fin (formerly Intercom)
+
+**Score: 22 of 25** (definition 5, testing 5, price 4, governance 5, evidence 3).
+
+Fin is a customer agent across chat, email, voice, Slack and social channels. It works with Intercom and, per its [site](https://fin.ai/), with other helpdesks. It learns from a content library of help articles, internal content, PDFs and web pages, with targeting by plan, location or brand.
+
+Who it suits: teams that want a published definition, a published price and built-in testing.
+
+Pricing as published on Intercom in November 2026: $0.99 per outcome, with a minimum monthly commitment whose amount is not stated.
+
+Why it ranks first for a rollout. It publishes the resolution rule, including reversal. Evals and Releases, announced on [Fin's blog](https://fin.ai/blog/announcing-evals-and-releases) in August 2026, run multi-turn simulated conversations scored by deterministic checks and an LLM judge, where one failed criterion fails the simulation. A release can go to everyone or run as an experiment against the current setup, with one-step rollback. Monitors check live conversations against quality standards. Handoff is configurable, with automatic handoff on topics such as self-harm, minors and high-risk medical, legal or financial advice.
+
+Real limits. Assumed resolutions flatter the rate, since a customer who gives up counts. The Salesforce ownership question is open. The vendor-reported 76 percent average is a ceiling, not a forecast. We found no named customer with numbers in the pages we opened for this post.
+
+Use case: a team on another helpdesk limits Fin to logged-in, free-plan customers, simulates 100 cases, then widens by segment.
+
+Verdict: the most complete package for a first deployment. Ask in writing what the Salesforce deal changes.
+
+### 2. Zendesk AI agents
+
+**Score: 18 of 25** (definition 5, testing 3, price 4, governance 3, evidence 3).
+
+Zendesk's [AI agents](https://www.zendesk.com/service/ai/ai-agents/) run on messaging, email and voice. Its help documentation describes starting from knowledge sources in minutes, then adding generative procedures, scripted dialogues and API integrations. Testing in Admin Center does not count toward billing.
+
+Who it suits: Zendesk shops, full stop.
+
+Pricing as published in November 2026: $1.50 per automated resolution on a commitment, $2.00 pay as you go. The older bot builder and Essentials AI agents are retired after December 10, 2026, per Zendesk's documentation.
+
+The best-documented definition on the list. The tradeoff is that the definition is strict in one useful way, since any escalation to a human voids the resolution, and lenient in another, since a quiet customer can count after the timer.
+
+Real limits. We found no simulation suite described on the pages we opened, and the help article lists no analytics metrics. The company's own customer quote claims 66 percent automation and $14,000 monthly savings from one retailer, which is a vendor page and not a method.
+
+Use case: turn on email automated resolutions for one brand first, because the 72-hour window makes the numbers slow but clean.
+
+Verdict: if you are on Zendesk, pricing and definition are clear enough to pilot. Bring your own test suite.
+
+### 3. Yellow.ai
+
+**Score: 15 of 25** (definition 1, testing 3, price 5, governance 4, evidence 2).
+
+Yellow.ai is an enterprise agentic platform for customer and employee experience across voice, chat and email, with a natural-language Agent Builder, a conversational knowledge base using agentic RAG, an AI Copilot that previews and debugs agents, an Automated Testing product, and an Analyze module that reviews conversations and generates knowledge articles. Its [homepage](https://yellow.ai/) lists HIPAA, ISO 27001, ISO 27701, SOC 2 Type II and PCI-DSS v4.0.1.
+
+Who it suits: regulated enterprises in banking, healthcare and utilities, and teams that want a low-cost trial.
+
+Pricing as published on [Yellow.ai](https://yellow.ai/pricing/) in November 2026: a free plan with 500 resolutions per month included, then $0.99 per resolution, one AI agent, and enterprise pricing on request. The page does not define a resolution, and the free-plan table was partly garbled when we fetched it.
+
+Standout: the only entry on the list with a published free tier, so you can run a real pilot before any contract.
+
+Real limits. No resolution definition, which matters more because it bills per resolution. The company says a customer, VIPDesk, launched a chat in six weeks and automates more than 70 percent of interactions. That is a vendor claim with no method.
+
+Use case: use the free allotment to run one contact type for a month and compare the vendor's count with yours.
+
+Verdict: the cheapest honest experiment, with the definition gap you must close yourself.
+
+### 4. Sierra
+
+**Score: 14 of 25** (definition 1, testing 5, price 1, governance 4, evidence 3).
+
+Sierra builds enterprise conversational agents across chat, SMS, WhatsApp, email and voice. Its [simulations post](https://sierra.ai/blog/simulations-the-secret-behind-every-great-agent), published in August 2025, describes mock personas that vary language, comfort with technology and tone, graded by a separate AI judge on goal reached, procedure and brand adherence, accuracy. Simulations persist and rerun on every update, CX teams can require passing them before publishing a journey change, and developers can gate releases in GitHub Actions. Test cases are generated at agent creation from your procedures, knowledge base and coaching transcripts.
+
+Who it suits: large consumer brands with an engineering partner.
+
+Pricing: outcome-based, with no figure published.
+
+Real limits. The company says customers run more than 35,000 tests daily and report resolution rates of up to 90 percent and satisfaction above 4.5 of 5. That is a vendor claim, and "up to" is a ceiling. No resolution definition on the page. Named customers such as CLEAR, Rocket Mortgage, SiriusXM and Minted appear without quantified results.
+
+Use case: require a passing simulation run before any change to a returns journey goes live.
+
+Verdict: the strongest testing story among the independents, with the least pricing and definition transparency.
+
+### 5. Parloa
+
+**Score: 14 of 25** (definition 1, testing 5, price 2, governance 4, evidence 2).
+
+Parloa is a voice-first enterprise platform. Its [Performance Lab](https://www.parloa.com/platform/performance-lab/) generates test coverage from the agent's configuration, tests every intent, tool call and agent-to-agent handoff individually, blends historical transcripts with synthetic tests across scenarios, languages and channels, and keeps generated simulations as drafts until a human reviews them. A/B runs put two versions through identical tests, and fixes traced to the prompt level apply only with approval.
+
+Who it suits: contact centers moving phone traffic to an agent.
+
+Pricing: usage-based, voice per minute and chat per interaction, with no numbers published.
+
+Real limits. The homepage gives no go-live timeline, and "in days, not weeks" refers to improvement speed. A 70 percent lower cost per contact claim has no attribution. The Performance Lab page lists one customer result, a 90 percent reduction in switchboard workload at BarmeniaGothaer, without a method.
+
+Use case: A/B an updated greeting flow against the live version using the same test set before changing anything.
+
+Verdict: the best human-review-in-the-loop testing design on the list. For voice, it earns the shortlist.
+
+### 6. Decagon
+
+**Score: 13 of 25** (definition 1, testing 5, price 1, governance 3, evidence 3).
+
+Decagon's [Simulations](https://decagon.ai/blog/decagon-simulations), announced in September 2025, build test cases from historical transcripts where the AI or humans struggled, generate personas and intents from failure modes, run batches and return pass or fail with a trace of the decision path. They cover procedure selection, knowledge retrieval, guardrails, escalation, frustrated users and voice conditions such as accents and noise. The vendor advises running them before go-live, after launch, and before major knowledge or procedure updates. Always-on QA and A/B experiments appear on the homepage without timelines.
+
+Who it suits: digital brands that will test aggressively.
+
+Pricing: not published. Demo only.
+
+Real limits. The customer figures on its homepage come with no resolution or deflection definition: Chime 70 percent chat and voice resolution, Duolingo 80 percent deflection, Oura 3x satisfaction. They are customer-reported on a vendor page.
+
+Use case: seed the first test set with the conversations your human team found hardest.
+
+Verdict: seeding tests from real failures is the right instinct. Get the definition behind each customer number before you rely on it.
+
+### 7. Crescendo
+
+**Score: 12 of 25** (definition 1, testing 4, price 1, governance 4, evidence 2).
+
+Crescendo is an AI-native service platform for retail, connected devices and health and wellness. Its [site](https://www.crescendo.ai/) describes a Concierge agent across voice, chat, email and text that hands unresolved issues to a person with the full thread, a Quality Agent that scores every conversation without sampling, a Simulation Agent that runs changes against a thousand customer days before customers see them, and a Safe Action Framework deciding which actions need human approval. It lists SOC 2 Type II, HIPAA, ISO 27001 and GDPR.
+
+Who it suits: retail and device brands willing to replace their helpdesk and QA tooling, not just add an agent.
+
+Pricing: not published. The site claims 30 days to go live and under 30 minutes for back-end integrations.
+
+Real limits. Its tagline is resolution, not deflection, but no definition is given, and a 70 percent figure has no method. It replaces more of your stack than an add-on does, which is a bigger change to carry out.
+
+Use case: a retailer pilots one product line, with the Quality Agent scoring every conversation against policy.
+
+Verdict: strong design ideas, young evidence. Treat the 30-day claim as a negotiation point.
+
+### 8. Genesys Cloud AI Studio
+
+**Score: 10 of 25** (definition 1, testing 2, price 3, governance 3, evidence 1).
+
+Genesys describes AI Studio in [its help center](https://help.genesys.cloud/articles/about-ai-studio/) as a centralized workbench to build, manage and deploy AI-powered customer experiences, with agentic virtual agents, AI Guides that turn business instructions into agents, preview before deploying, and governance controls. The article marked agentic virtual agents "coming soon" when we fetched it, so check availability on the day you buy.
+
+Who it suits: teams that already run Genesys Cloud.
+
+Pricing as published in [AI token billing documentation](https://help.genesys.cloud/articles/ai-token-billing/): AI Experience tokens, with a voice bot at 17 minutes per unit, 250 free units a month for named-user orgs and 350 for concurrent, and overage billed in arrears. The article's example uses $1 per unit and calls rates representative. Its own worked example is internally inconsistent, so ask for a written calculation.
+
+Real limits. Testing is limited to preview in what we read. No resolution definition and no customer results on the pages we opened. Marketing pages returned errors.
+
+Use case: a Genesys shop keeps one telephony platform and pilots a virtual agent on a single queue.
+
+Verdict: a platform feature, not a stand-alone pick. If you are on Genesys, ask for the testing and metrics story in writing.
+
+### 9. Gladly
+
+**Score: 9 of 25** (definition 1, testing 2, price 1, governance 3, evidence 2).
+
+[Gladly](https://www.gladly.ai/) focuses on retail and direct-to-consumer brands, with an AI and commerce assistant, voice AI, customer memory across channels, smart routing, and observability and reporting. Tory Burch, UGG, Nordstrom, Ulta Beauty and Crate and Barrel are named on the homepage.
+
+Who it suits: retail brands that treat support as part of sales.
+
+Pricing: not published.
+
+Real limits. The "up within hours" claim has no method, and no testing process or resolution definition is described. Vendor figures include Rothy's cutting conversation times 33 percent while holding 93 percent satisfaction, and aggregate claims of 19 percent higher conversion and $34 higher average order, all without methodology. The retail-trained positioning is marketing, though it may be the point if you sell products.
+
+Use case: a retailer uses the agent for pre-purchase questions and measures cart recovery against a control.
+
+Verdict: sensible for retail, weak on the buyer's checklist. Ask for the test tooling.
+
+### 10. Netomi
+
+**Score: 7 of 25** (definition 1, testing 1, price 1, governance 3, evidence 1).
+
+[Netomi](https://www.netomi.com/) is an enterprise agentic platform for chat, email and voice that pairs deterministic controls with probabilistic reasoning, so enterprises can set hard limits. SiliconANGLE reported on April 30, 2026 that it raised $110 million led by Accenture Ventures, naming customers such as Delta, United, MetLife and DraftKings in a company announcement.
+
+Who it suits: very large enterprises that can engage on its terms.
+
+Pricing: not published. The homepage says new engagements are by referral.
+
+Real limits. The homepage lists no features, testing, analytics or resolution definition, and no certifications beyond a link to a security page. The company says its deployments have had no failures or broken guardrails, which we could not verify. You cannot self-evaluate it.
+
+Use case: none we can cite with numbers from pages we opened.
+
+Verdict: the score reflects what a buyer can check, not what the product can do. If you are an enterprise with a referral, ask for the playbook items in writing.
+
+## Side by side
+
+| Rank | Agent | Score | Published price | Resolution defined | Simulation tooling |
+|---|---|---|---|---|---|
+| 1 | Fin | 22 | $0.99 per outcome | Yes, with reversal | Yes |
+| 2 | Zendesk AI agents | 18 | $1.50 to $2.00 per resolution | Yes, by channel | Test mode only |
+| 3 | Yellow.ai | 15 | $0.99 above 500 free | No | Automated Testing listed |
+| 4 | Sierra | 14 | None | No | Yes |
+| 5 | Parloa | 14 | None | No | Yes |
+| 6 | Decagon | 13 | None | No | Yes |
+| 7 | Crescendo | 12 | None | No | Simulation Agent |
+| 8 | Genesys AI Studio | 10 | AI tokens | No | Preview |
+| 9 | Gladly | 9 | None | No | Not described |
+| 10 | Netomi | 7 | None | No | Not described |
+
+Two observations. Only two vendors on the list tell you what a resolution is, and they are the two that publish a price per resolution, apart from Yellow.ai. And all five vendors with real simulation tooling are independent or newly acquired, which suggests testing is where startups are competing hardest.
+
+## How a service agent changes who gets found and cited
+
+Your help center is now two products. It is the grounding source for your agent and a page set that outside assistants can read.
+
+Fin's [documentation](https://www.intercom.com/help/en/articles/7120684-fin-ai-agent-explained) says it learns from help articles, internal content, PDFs and web pages, with audience targeting by plan, location or brand. Zendesk agents answer from knowledge sources. In Gartner's 2024 survey, 43 percent of failed self-service attempts were because customers could not find relevant content. So the same library determines the agent's accuracy and the customer's success.
+
+Meanwhile customers go around you. Gartner's July 2026 release found customers are about three times more likely to use third-party GenAI than a company chatbot in their latest service interaction, and the August release found 58 percent of GenAI users (74 percent in B2B) had it complete a task on their behalf. Neither release discusses content visibility. The step from those numbers to "publish clear policies" is our inference, and we found no study measuring how often assistants cite help-center pages.
+
+What we would do, in order of cost:
+
+1. Put refunds, shipping, cancellations and warranty terms on public pages with dates, not only in the widget.
+2. Give every article an owner and a review date before the agent reads it.
+3. Use structured data where it fits. See our guides to [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) and [FAQ schema](/blog/faq-schema-ai-seo/).
+4. Track what assistants say about your policies, per [how to measure AI visibility](/blog/how-to-measure-ai-visibility/).
+
+## Governance and risk
+
+**Your chatbot's words are yours.** In Moffatt v Air Canada (2024 BCCRT 149), decided February 14, 2024, a website chatbot told a customer he could claim a bereavement fare retroactively, while a linked policy page said otherwise. Per law firm summaries by [DWW](https://www.dww.com/articles/bc-tribunal-finds-air-canada-liable-for-inaccurate-advice-given-by-website-chatbot) and [McCarthy Tetrault](https://www.mccarthy.ca/en/insights/blogs/techlex/moffatt-v-air-canada-misrepresentation-ai-chatbot), the tribunal held Air Canada responsible for all the information on its website, said it did not take reasonable care to ensure its chatbot was accurate, rejected the argument that the chatbot was a separate legal entity, and ordered a total of $812.02. We read the summaries, not the decision, because CanLII returned an error. It is a small claims tribunal decision and does not bind other courts, but the reasoning is the argument your customers will make.
+
+**Disclose.** Article 50(1) of the EU AI Act, per an [annotated copy](https://artificialintelligenceact.eu/article/50/), requires AI systems that interact directly with people to be designed so they are informed they are dealing with an AI, unless that is obvious, and the page says it applies from 2 August 2026. A July 2026 amending regulation on EUR-Lex gives some generative systems until 2 December 2026 for machine-readable marking under Article 50(2). In the parts we read, we found no change to Article 50(1), but we read only part, so confirm on the official text. California's [bot disclosure law](https://codes.findlaw.com/ca/business-and-professions-code/bpc-sect-17941/) is narrower. It targets bots used to mislead people about their artificial identity to incentivize a sale or influence an election, and offers a safe harbor for clear and conspicuous disclosure. None of this is legal advice.
+
+**Avoid doom loops.** The CFPB's report on [chatbots in consumer finance](https://www.consumerfinance.gov/data-research/research-reports/chatbots-in-consumer-finance/chatbots-in-consumer-finance/) names doom loops, where customers cannot reach a person, as a risk. It is finance-specific but the lesson is general.
+
+**Watch the cost.** Per-resolution pricing rewards the vendor for counting more resolutions. Per-seat pricing rewards no one in particular. Ask for a sample of billed conversations every month and review them.
+
+**Assign an owner.** Every failure is a content problem, a logic problem or a scope problem. Someone has to read them weekly.
+
+## 2027 outlook
+
+Resolution definitions will be negotiated, not assumed. Buyers who ask for the rule in writing and a monthly sample of billed conversations will pay less for the same agent.
+
+Simulation will stop being a differentiator by midyear, because buyers will expect it. The next gap will be whether the vendor lets you export your test suite and move it.
+
+Support teams will spend more time on knowledge than on tickets. It is the least glamorous part of the project and the one that decides the result.
+
+And the 24 percent will likely not move much on its own. The difference between a positive return and none is rarely the model. It is scope, definition, content and ownership.
+
+## Frequently asked questions
+
+### How do I choose one AI agent for customer service?
+
+Write down the job first: which contact types, which channels, which systems it must change. Then define a resolution, shortlist vendors that publish how they count one and ship pre-launch simulation, and pilot on one narrow slice of traffic. On our rubric Fin scores highest at 22 of 25, but the right pick depends on your helpdesk.
+
+### What counts as a resolved conversation?
+
+It depends on the vendor, and the definition is also the billing unit. Fin counts a conversation resolved if the customer confirms the answer or leaves without asking for more, and reverses it if they return. Zendesk counts messaging resolutions after 2 hours by default, email after 72 hours, and any escalation to a human voids it.
+
+### How long does it take to deploy an AI customer service agent?
+
+Vendors claim minutes to a month: Fin says under an hour to set up, Crescendo says 30 days to go live, and Yellow.ai cites a customer that launched in six weeks. None of these include the time to fix your knowledge base. Plan on a staged rollout by customer segment, not a switch-over day.
+
+### How many test cases do I need before launch?
+
+Fin's guidance suggests a focused set of 50 to 100 cases, mixing core, edge, adversarial and multi-language scenarios, with pass thresholds such as 90 percent accuracy and under 2 percent unsupported claims. Those are one vendor's suggestions, not a standard, so set your own and add every production failure to the suite.
+
+### What does an AI customer service agent cost?
+
+Published prices in November 2026 are $0.99 per outcome for Fin, $1.50 to $2.00 per automated resolution for Zendesk, and $0.99 per resolution above 500 free per month for Yellow.ai. Sierra, Decagon, Parloa, Gladly, Netomi and Crescendo publish no figure. Gartner's median cost per contact is $1.84 for self-service and $13.50 for assisted channels.
+
+### Do I have to tell customers they are talking to an AI?
+
+In the EU, Article 50(1) of the AI Act requires that people be told they are interacting with an AI system unless it is obvious, and an annotated copy says it applies from 2 August 2026. California's bot law offers a safe harbor for a clear disclosure when a bot is used to influence a sale. This is not legal advice.
+
+### Can a company be held responsible for what its chatbot says?
+
+Yes. In Moffatt v Air Canada, a 2024 tribunal decision, Air Canada was held responsible for its chatbot's incorrect bereavement fare advice and ordered to pay a total of $812.02. Law firm summaries quote the tribunal rejecting the idea that the chatbot was a separate legal entity. It is a small claims ruling, not binding elsewhere.
+
+## Sources
+
+All opened in November 2026. Vendor pages describe vendor-reported claims. Gartner pages were read through the publisher's mirror host and are linked at their canonical addresses.
+
+- Gartner, [GenAI and third-party use](https://www.gartner.com/en/newsroom/press-releases/2026-07-08-gartner-survey-finds-customers-are-three-times-more-likely-to-use-third-party-genai-than-company-provided-chatbots-for-customer-service) (Jul 2026), [87 percent want a human](https://www.gartner.com/en/newsroom/press-releases/2026-08-04-gartner-survey-finds-87-percent-of-customers-say-companies-using-genai-for-customer-service-must-provide-access-to-a-human-agent0) (Aug 2026), [14 percent self-service](https://www.gartner.com/en/newsroom/press-releases/2024-08-19-gartner-survey-finds-only-14-percent-of-customer-service-issues-are-fully-resolved-in-self-service) (Aug 2024), [agentic AI cancellations](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) (Jun 2025), [cost per contact](https://www.gartner.com/en/documents/5164231) (Feb 2024)
+- AnswerConnect, [consumer preference survey](https://www.answerconnect.com/blog/?p=14673) (vendor-run)
+- Regulation and law: [EU AI Act Article 50](https://artificialintelligenceact.eu/article/50/) (unofficial annotated copy), [California Business and Professions Code 17941](https://codes.findlaw.com/ca/business-and-professions-code/bpc-sect-17941/) (FindLaw copy), [DWW on Moffatt v Air Canada](https://www.dww.com/articles/bc-tribunal-finds-air-canada-liable-for-inaccurate-advice-given-by-website-chatbot), [McCarthy Tetrault on Moffatt](https://www.mccarthy.ca/en/insights/blogs/techlex/moffatt-v-air-canada-misrepresentation-ai-chatbot), [CFPB, Chatbots in consumer finance](https://www.consumerfinance.gov/data-research/research-reports/chatbots-in-consumer-finance/chatbots-in-consumer-finance/)
+- SiliconANGLE, [Netomi raises $110M](https://siliconangle.com/2026/04/30/netomi-banks-110m-embed-agentic-ai-deeper-enterprise-customer-service)
+- Vendor pages: [Fin](https://fin.ai/), [Fin Evals and Releases](https://fin.ai/blog/announcing-evals-and-releases), [Fin testing guide](https://fin.ai/learn/how-to-test-ai-agent-before-deployment), [Fin explained](https://www.intercom.com/help/en/articles/7120684-fin-ai-agent-explained), [Fin best practices](https://www.intercom.com/help/en/articles/8205718-best-practices-for-using-fin-ai-agent), [Fin rollout guidance](https://www.intercom.com/help/en/articles/7837527-test-fin-ai-agent-before-rolling-it-out-to-customers), [Zendesk AI agents](https://www.zendesk.com/service/ai/ai-agents/), [Zendesk automated resolutions](https://z3n-90312.zendesk.com/hc/en-us/articles/4873238907551-About-automated-resolutions-for-AI-agents), [Yellow.ai](https://yellow.ai/), [Yellow.ai pricing](https://yellow.ai/pricing/), [Sierra simulations](https://sierra.ai/blog/simulations-the-secret-behind-every-great-agent), [Parloa Performance Lab](https://www.parloa.com/platform/performance-lab/), [Decagon Simulations](https://decagon.ai/blog/decagon-simulations), [Crescendo](https://www.crescendo.ai/), [Genesys AI Studio](https://help.genesys.cloud/articles/about-ai-studio/), [Genesys token billing](https://help.genesys.cloud/articles/ai-token-billing/), [Gladly](https://www.gladly.ai/), [Netomi](https://www.netomi.com/)
