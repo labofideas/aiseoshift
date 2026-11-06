@@ -2479,5 +2479,18 @@
 			"height": 720,
 			"bytes": 36734
 		}
+	},
+	"ai-agents-for-hr": {
+		"hero": {
+			"src": "/images/posts/ai-agents-for-hr-hero.webp",
+			"alt": "Ten best AI agents for HR in 2027: an orange hexagon agent at the top of an org chart on a navy background",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 30252
+		}
 	}
 }
