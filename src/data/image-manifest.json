@@ -2570,5 +2570,18 @@
 			"height": 720,
 			"bytes": 38266
 		}
+	},
+	"ai-agent-for-marketing": {
+		"hero": {
+			"src": "/images/posts/ai-agent-for-marketing-hero.webp",
+			"alt": "Hub with five connected nodes beside the headline AI agents for marketing, 2027",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 34716
+		}
 	}
 }

@@ -54,6 +54,7 @@ Author: Shashank Dubey, founder of Wbcom Designs and lead writer at AISEOShift. 
 - [Best AI Agents for Finance in 2027: Ranked on Controls](https://aiseoshift.com/blog/ai-agents-for-finance/): ten finance agents ranked on audit controls, metric definitions and price clarity, with regulatory gaps.
 - [Best AI Sales Agents in 2027: Ranked on Evidence](https://aiseoshift.com/blog/ai-agents-for-sales/): ten AI sales agents ranked on documented controls, compliance statements, metric definitions and published prices, with CAN-SPAM, calling-consent and AI-search buyer research context.
 - [Best AI Agents for Insurance in 2027: Ranked on Oversight](https://aiseoshift.com/blog/ai-agents-for-insurance/): ten underwriting, claims and policy servicing agents scored on audit controls, metric definitions and NAIC readiness, plus AI-search and regulation notes.
+- [Best AI Agents for Marketing in 2027: Ranked](https://aiseoshift.com/blog/ai-agent-for-marketing/): ten AI marketing agents ranked on autonomy, price clarity, job coverage, evidence and oversight, across content, AI search, social, email and ads.
 
 ## Industry playbooks
 
