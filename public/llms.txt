@@ -48,6 +48,7 @@ Author: Shashank Dubey, founder of Wbcom Designs and lead writer at AISEOShift. 
 - [Best AI Agents for Business in 2027](https://aiseoshift.com/blog/ai-agents-for-business/): ten platforms ranked on governance, price clarity, integrations, evidence and breadth.
 - [Best AI Agents for Customer Service in 2027](https://aiseoshift.com/blog/ai-agents-for-customer-service/): ten support agents scored on price clarity, governance, evidence and handoff controls.
 - [Best AI Agents for HR in 2027](https://aiseoshift.com/blog/ai-agents-for-hr/): ten hiring and employee-service agents ranked on bias disclosure, price clarity and human oversight.
+- [Best AI Agents for Automation in 2027](https://aiseoshift.com/blog/ai-agents-for-automation/): ten automation platforms ranked on cost predictability, control, governance, integration reach and evidence.
 
 ## Industry playbooks
 

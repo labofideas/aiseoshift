@@ -2492,5 +2492,18 @@
 			"height": 720,
 			"bytes": 30252
 		}
+	},
+	"ai-agents-for-automation": {
+		"hero": {
+			"src": "/images/posts/ai-agents-for-automation-hero.webp",
+			"alt": "Best AI agents for automation in 2027: a left-to-right workflow of nodes ending in a check mark on an orange background",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 37722
+		}
 	}
 }
