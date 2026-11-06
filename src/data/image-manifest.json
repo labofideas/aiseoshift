@@ -2531,5 +2531,18 @@
 			"height": 720,
 			"bytes": 42644
 		}
+	},
+	"ai-agents-for-finance": {
+		"hero": {
+			"src": "/images/posts/ai-agents-for-finance-hero.webp",
+			"alt": "Best AI agents for finance in 2027: rising bar chart on a navy field, ranked on controls",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 34580
+		}
 	}
 }

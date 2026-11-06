@@ -1,0 +1,408 @@
+---
+title: "Best AI Agents for Finance in 2027: Ranked on Controls"
+description: "Ten AI agents for finance teams in 2027, ranked on controls, metric definitions and price clarity, with the regulatory gaps and vendor claims buyers should check."
+deck: Finance AI adoption is high and the returns are not. This ranking puts approval controls and metric definitions ahead of the demo, because in finance an undefined accuracy number is a liability.
+pubDate: 2026-11-07
+category: AI Agents
+tags:
+  - AI Agents
+  - Finance
+  - Accounts Payable
+  - AI Visibility
+author: Shashank Dubey
+featured: false
+draft: false
+faqs:
+  - q: "What are the best AI agents for finance in 2027?"
+    a: "On our controls-first rubric, BILL scores highest at 21 of 25, followed by Ramp, Microsoft's Dynamics 365 Finance reconciliation agent, Intuit, Stampli, HighRadius, Brex, Workday, Basis and Vic.ai. The right choice depends on your ERP, your invoice volume and how much audit trail your auditors expect."
+  - q: "Are AI finance agents accurate enough to trust with payments?"
+    a: "Not on vendor numbers alone. Ramp defines its 85 percent figure as accounting fields auto-coded and its 90 percent figure as recommendations accepted, which are not error rates. BILL's roughly 99 percent extraction accuracy is stated for tested conditions on common invoices with consistent layouts. Keep a human approval step and measure your own error rate."
+  - q: "How many finance teams use AI?"
+    a: "Gartner's survey of 183 finance leaders, fielded in May and June 2025, found 59 percent of finance functions use AI, up from 58 percent in 2024 and 37 percent in 2023. That counts any AI, not agents. Gartner's 2026 research says 71 percent of typical finance teams report low impact from their AI investments."
+  - q: "Does bank model risk guidance cover AI agents?"
+    a: "Not in the main US guidance. SR 26-2, issued in April 2026 by the Federal Reserve, OCC and FDIC, replaced SR 11-7 and says in footnote 3 that generative and agentic AI models are not within its scope. It applies mainly to banks over $30 billion in assets and is not enforceable. This is not legal advice."
+  - q: "Do AI agents change my SOX internal control obligations?"
+    a: "The primary source we opened, a 2005 SEC staff statement, says management must assess whether internal control over financial reporting is effective and says nothing about AI. The link to agents is our inference: an agent that codes, matches or approves is part of the control environment. Ask your auditors how they want it documented."
+  - q: "What is the biggest risk with AI finance agents?"
+    a: "Undefined metrics and missing audit trails, in our reading of vendor pages. Only some vendors document undo, exception logs or explicit permission, and most do not define terms like no-touch or automated. Fraud is the other risk: the FBI recorded $3.05 billion in business email compromise losses in 2025."
+  - q: "Is this financial advice?"
+    a: "No. This is an editorial comparison of software based on vendor documentation and public sources. It is not financial, accounting, tax or legal advice, and it does not recommend any product for your situation. Consult a qualified professional before changing financial controls."
+---
+
+The best AI agents for finance in 2027 are BILL, Ramp and Microsoft's Dynamics 365 Finance reconciliation agent, followed by Intuit, Stampli, HighRadius, Brex, Workday, Basis and Vic.ai. We ranked them on documented controls, defined metrics, price clarity and evidence. This is an editorial comparison, not financial, accounting or legal advice.
+
+## Key takeaways
+
+- Adoption is not the problem. Gartner found 59 percent of finance functions use AI, and also that 71 percent of typical finance teams report low impact from their AI investments.
+- Metric definitions separate the serious vendors from the rest. Ramp defines its headline numbers, and they measure fields coded and recommendations accepted, not errors. Most vendors on this list define nothing.
+- The main US bank model-risk guidance carves out agents. SR 26-2 says generative and agentic AI are not within its scope, so your governance has to come from somewhere else.
+- Controls vary more than features. Microsoft documents undo and an exception log, BILL documents a toggle and an audit log, and several vendors say only that humans stay in control.
+- Many "agents" are older machine learning with a new label. HighRadius lists 180-plus agents and names classic techniques in the same table, which fits Gartner's warning about agent washing.
+
+## What changed in 2026
+
+In 2025 the finance question was whether to try AI. In 2026 it became whether any of it paid back.
+
+Gartner's [May 2026 release](https://www.gartner.com/en/newsroom/press-releases/2026-05-28-gartner-says-cfos-must-stop-mistaking-finance-ai-deployment-for-value-creation) argued that CFOs must stop mistaking AI deployment for value creation. Its survey of 204 finance leaders, run in March 2026, found 66 percent of adopters cite productivity as a top benefit and 63 percent said 2025 implementation was slower than expected. Gartner's Marco Steecker said finance must not mistake activity for impact. A companion [keynote release](https://www.gartner.com/en/newsroom/press-releases/2026-05-27-gartner-says-cfos-risk-falling-behind-without-a-scalable-ai-strategy) says 84 percent of finance AI spend goes to individual productivity and process improvement, 16 percent to use cases that can materially change business outcomes, and 71 percent of typical teams report low impact. That page states no sample size or dates, so cite it as Gartner's statement, not as a survey.
+
+Intent is still strong. Deloitte's CFO Signals survey, 200 CFOs at North American companies with at least $1 billion in revenue, found [54 percent put integrating AI agents among their top finance priorities for 2026](https://www.deloitte.com/us/en/insights/topics/business-strategy-growth/4q-2025-cfo-signals-survey/). Priority is intent, not deployment, and the sample is large enterprises.
+
+The regulator side moved too, in a way most buyer guides missed. In April 2026 the Federal Reserve, OCC and FDIC issued SR 26-2, which replaced the model risk guidance everyone cited for fifteen years. We cover what it says in the governance section. The short version: it says agents are out of scope.
+
+## What counts as an AI agent in finance
+
+The label is stretched thin. Four things get called agents.
+
+**Extraction.** Reads an invoice or receipt and fills fields. This is OCR with a language model on top.
+
+**Recommendation.** Suggests a code, a match or an approve-or-review decision. A person accepts or overrides.
+
+**Action.** Posts an entry, sends a reminder, enters card details in a vendor portal, or reverses a transaction.
+
+**Monitoring.** Watches spend or transactions against policy and flags exceptions.
+
+Only the third group carries the control questions that matter most. If an agent can change the books or move money, ask who approved it, how to undo it and where the log lives. For the generic definition of agents versus chatbots and automation, see our guide to [AI agents for business](/blog/ai-agents-for-business/).
+
+## The market in numbers
+
+Every figure was read on its source page in November 2026.
+
+**Adoption.** Gartner's 2025 AI in Finance survey, 183 CFOs and senior finance leaders in May and June 2025, found [59 percent of finance functions use AI](https://www.gartner.com/en/newsroom/press-releases/2025-11-18-gartner-survey-shows-finance-ai-adoption-remains-steady-in-2025), against 58 percent in 2024 and 37 percent in 2023. Top use cases were knowledge management at 49 percent, accounts payable automation at 37 percent and error and anomaly detection at 34 percent. Ninety-one percent reported low or moderate impact initially. "Uses AI" is self-reported and includes any AI, not agents.
+
+**Value gap.** The 2026 releases above: 71 percent report low impact, and 62 percent of CFOs say fewer than a quarter of their AI initiatives deliver measurable benefits.
+
+**Cancellations.** Gartner predicted in June 2025 that [over 40 percent of agentic AI projects will be canceled by the end of 2027](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027), citing cost, unclear value and weak risk controls, and said only about 130 of thousands of agentic vendors are real. The poll behind it had 3,412 webinar attendees, and it covers all industries.
+
+**Model quality.** A January 2025 arXiv paper, [FinanceQA](https://arxiv.org/abs/2501.18062), found language models of that time failed about 60 percent of realistic analyst-style tasks. We read the abstract only, and newer models and tool-using agents may score differently. It is a reason to test, not a verdict.
+
+**Fraud.** The FBI's [2025 Internet Crime Report](https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf) records business email compromise losses of $3.05 billion across 24,768 complaints, up from $2.77 billion in 2024. It also records more than 22,000 complaints with AI-related information and adjusted losses above $893 million, and over $30 million in BEC losses involving AI. Those are criminals using AI against finance teams, not agent failures, and AI-linked BEC is a small share of the total. The data is complaint-based, not audited.
+
+**Audit view.** The PCAOB's July 2024 [staff spotlight](https://pcaobus.org/documents/generative-ai-spotlight.pdf) says firms expect generative AI to augment rather than replace humans in auditing and financial reporting, flags hallucinations as a risk, and notes some firms do not allow it in audit or attest procedures. It is staff views, not a rule, and it covers generative AI generally.
+
+**AP benchmarks.** APQC's benchmarking blog says top performers' AP costs are one-fifth those of the bottom quartile, and median performers pay about twice the top. The page is from 2018 and gives ratios only. We do not use the dollar figures that circulate, because they trace to secondary pages and conflict by edition.
+
+The pattern: AI is widespread, impact is thin, the risks are real, and the evidence about agents specifically is mostly vendor-supplied.
+
+## How we ranked them
+
+This ranking uses vendor documentation, pricing pages and public sources opened in November 2026. We did not test any product, and no vendor gave us anything. It scores what a buyer can verify, not how well each product works. That limits what we can say about accuracy.
+
+Each product scores 1 to 5 on five criteria, for a maximum of 25.
+
+| Criterion | What earns a 5 | What earns a 1 |
+|---|---|---|
+| Controls | Documented undo, audit log, permission gates or approval before action | "You stay in control" and nothing else |
+| Metric definitions | Headline numbers defined, with the conditions stated | Percentages with no definition |
+| Price clarity | Published plan prices and what each includes | Demo only |
+| Evidence | Named customers with checkable results | Logos and testimonials |
+| Scope clarity | A clear statement of what the agent does and does not do | Broad "autonomous finance" claims |
+
+Ties break on controls, then metric definitions. A high score does not mean the product is more accurate than a lower one. It means more of it can be checked.
+
+Two disclosures. Anthropic's Claude helped draft this article and does not appear on the list. And we have no commercial relationship with any vendor on it.
+
+## The 10 agents, ranked
+
+### 1. BILL
+
+**Score: 21 of 25** (controls 5, definitions 4, price 5, evidence 3, scope 4).
+
+BILL's AI, per its [AI page](https://www.bill.com/product/ai), covers accounts payable and spend. An invoice agent reads invoices, extracts fields and codes multi-line bills. Duplicate detection compares new bills with existing ones using vendor, invoice number, due date, amount and document data. Fraud protection looks for signals such as unusual transactions and changes to payee information. A W-9 agent emails vendors to collect and validate forms. On spend, it matches receipts and categorizes transactions. The page says no AR-specific agent is described.
+
+Who it suits: small and midsize businesses and their accountants. The page says the AI supports accountants and is not designed to replace them.
+
+Pricing as published on [BILL](https://www.bill.com/pricing) in November 2026: AP and AR plans at $49 (Essentials), $65 (Team) and $89 (Corporate) per user per month, with Enterprise custom. The invoice coding agent is not included in Essentials, while the W-9 agent is. Per-transaction fees apply on every plan, for example $0.59 for ACH and $1.99 for checks.
+
+Controls are the strongest on the list. The page says you review, edit or undo suggestions before finalizing a bill, and describes a toggle for AI capabilities and a complete audit log of every AI action.
+
+Metrics are partly defined. The page puts extraction accuracy at about 99 percent "under tested conditions," based on the top 20 percent of common bills and assuming consistent layouts. The W-9 figure of 95-plus accuracy uses a different footnoted definition, covering invoice date, number and amount. A 10 hours a week saved figure comes from a January 2026 BILL survey with no sample size.
+
+Real limits. Accuracy depends on invoice layout and data quality. The page publishes no dollar or transaction limits for AI actions and does not say which features ship in which plan beyond the two above.
+
+Use case: a small business turns on invoice coding, reviews every suggestion for a month, and keeps the audit log for its accountant.
+
+Verdict: the best mix of published prices, a documented audit log and conditions attached to its accuracy claim. It is a small-business tool, and the ranking says so.
+
+### 2. Ramp
+
+**Score: 19 of 25** (controls 3, definitions 5, price 4, evidence 3, scope 4).
+
+Ramp's AP agents, described in its [announcement](https://ramp.com/blog/ramp-ap-agents-announcement), code invoices line by line using payment and accounting history, run fraud checks, summarize vendor history and contract terms to recommend approve or review, and pay eligible bills by card. The page lists 60-plus fraud signals.
+
+Who it suits: finance teams already on Ramp. Auto-coding and approval recommendations are limited to Ramp Plus customers, with others on an early access waitlist.
+
+Pricing as published on [Ramp](https://ramp.com/pricing) in November 2026: Free at $0 per user per month, Plus at $15 per user per month plus a platform fee based on team size that the page does not state, and Enterprise on request. The flattened page text did not show which plan includes the AP agents.
+
+Ramp is the only vendor here that defines its headline numbers, in footnotes. "85 percent of accounting fields right the first time" means fields successfully auto-coded. "$1M-plus fraud identified" means bills flagged as fraudulent that users then deleted. "90 percent acceptance" on 90,000 recommendations means recommendations accepted. All are Ramp internal data from September 2025.
+
+Real limits. Those definitions are honest, and they also show the gap. Acceptance is not accuracy, because a person accepting a recommendation does not prove it was right, and flags that users deleted exclude fraud they missed. The page does not describe an audit trail. A 7.5 percent savings figure is undefined.
+
+Use case, from a Ramp customer quote on the vendor page: a controller says the books now close two days earlier.
+
+Verdict: the best-documented metrics, with a control model of recommend and a human decides. Ask for the audit log separately.
+
+### 3. Microsoft Dynamics 365 Finance (Account Reconciliation Agent)
+
+**Score: 18 of 25** (controls 5, definitions 4, price 2, evidence 2, scope 5).
+
+Microsoft's [documentation](https://learn.microsoft.com/dynamics365/finance/general-ledger/acct-rec-agent), updated September 8, 2026, describes an agent that evaluates general ledger reconciliation exceptions and recommends an action in the account reconciliation workspace. It handles two documented exception types, a voucher amount mismatch and pending accounting transferred to the general ledger. For a mismatch it might recommend creating a journal entry, and the user can accept it, reverse, link transactions or accept without change.
+
+Who it suits: Dynamics 365 Finance customers with a monthly reconciliation backlog.
+
+Status: the page is titled production ready preview and calls itself prerelease documentation subject to change. Microsoft's pricing page also labels it preview.
+
+Pricing: the Finance pricing page we opened was the India-region one, with per-user monthly prices in rupees, and says Finance Premium includes 1,000 Copilot Credits per user per month. We did not see US prices, so we give none.
+
+Controls are the most concrete in the field. Every exception is logged, the activity pane shows "Fix suggested by agent," each reconciled item has an undo that returns it to unmitigated, daily or monthly exception limits and alerts are configurable, and the agent does not run until settings are confirmed.
+
+Real limits, all documented. It handles only the two exception types. The suggested-action summary shows only for English (US) users. Microsoft may update the underlying model automatically, which means behavior can change under you.
+
+Use case: monthly reconciliation of the ledger against subledgers.
+
+Verdict: a narrow agent with unusually honest documentation. Scope clarity earns its score, and the preview label tells you to run it beside, not instead of, your current process.
+
+### 4. Intuit QuickBooks (Intuit Intelligence agents)
+
+**Score: 15 of 25** (controls 4, definitions 4, price 1, evidence 3, scope 3).
+
+Intuit's [July 2025 press release](https://investors.intuit.com/news-events/press-releases/detail/1258/) introduced agents inside QuickBooks: a Payments Agent that predicts late payments and sends reminders, an Accounting Agent for categorization and reconciliation help, a Finance Agent for reporting, KPI analysis and forecasting aimed at growing mid-market businesses, and a Customer Agent. A [community post](https://quickbooks.intuit.com/community/quickbooks-news-64/meet-your-dedicated-digital-teammates-intuit-ai-agents-164995) from November 2025 adds a Sales Tax Agent that checks returns for errors before filing. That post is user-forum hosted, not an official product page.
+
+Who it suits: QuickBooks Online customers. The US rollout began July 1, 2025.
+
+Pricing: not published in the release. We do not use a figure that appears only on a blog.
+
+Controls: the release says the customer is always in control, and the community post says an agent acts only after you give explicit permission. Human experts are available only with QuickBooks Live. No audit trail is described.
+
+Metrics are footnoted, which is good practice. Payments "5 days faster" compares Intuit Assist beta customers using AI-drafted reminders with standard reminders, January to August 2024. "Up to 12 hours a month" saved is a survey of customers on the AI bank feed as of April 2025.
+
+Real limits. Availability varies by product, additional terms and fees may apply, and the five-days figure is not available in QuickBooks Online Advanced.
+
+Use case: the Accounting Agent asks the owner or their accountant about an unclear bank transaction and updates the books.
+
+Verdict: the permission model is clear and the definitions are stated. Price is a mystery, and so is the audit trail.
+
+### 5. Stampli
+
+**Score: 14 of 25** (controls 4, definitions 2, price 1, evidence 3, scope 4).
+
+Stampli's [homepage](https://www.stampli.com/) says its AI, Billy, "codes, matches, and routes invoices with every question and decision attached." It performs "on average 89 percent of the work" across more than 2,700 ERP-aligned fields, tied to how each customer codes, routes, matches and approves. Vendor management uses self-service updates, with finance verifying sensitive changes.
+
+Who it suits: AP teams and controllers who want invoice conversation and approvals in one place.
+
+Pricing: not published. Demo or sales contact only.
+
+The control idea is good: every question and decision is attached to the invoice, which the page frames as a paper trail. That is closer to an audit log than most vendors offer, though the page does not describe a separate audit-log feature.
+
+Real limits. The 89 percent figure is an average with no stated method, and the page does not say how the remaining work is handled. Customer examples on the page are not tied to Billy specifically: one customer cut invoice processing from 28 days to 7, another runs AP across 71 locations with two people.
+
+Use case: an approver asks a question on an invoice, the answer stays attached, and the coding decision carries its history.
+
+Verdict: strong on traceability, silent on price. Ask what "work" means in the 89 percent.
+
+### 6. HighRadius
+
+**Score: 13 of 25** (controls 1, definitions 2, price 3, evidence 3, scope 4).
+
+[HighRadius](https://www.highradius.com/) pitches autonomous finance for order-to-cash, record-to-report, AP and treasury. Its page lists 180-plus AI agents across collections, cash application, deductions, credit, AP, treasury, close and consolidation, and names the technique behind each, such as random forest for payment matching and retrieval plus generative models for AP inbox capture. It also offers FreedaGPT, an assistant for the office of the CFO, and LiveCube for data analysis.
+
+Who it suits: mid-sized to large enterprises with high transaction volumes.
+
+Pricing as published: outcome-based, with no implementation fee until go-live and a gain share after, with the percentage left blank.
+
+Claims: 95 percent cash forecast accuracy, 95 percent auto-match, 90 percent invoice automation, 10 percent lower DSO, 30 percent faster close. The page says these are defined per client in mutually agreed success criteria, so they are targets, not benchmarks. Named results, such as 96 percent straight-through cash application at one cosmetics group and $33.4 million recovered at a bottler, are customer-reported on a vendor page.
+
+Real limits. We found no human-approval, audit-log or model governance description on the page. And the technique column shows many of the "agents" are classic machine learning models, which matters given Gartner's warning that most agentic vendors are not.
+
+Use case: an enterprise runs cash application through a model that matches payments to invoices, under success criteria agreed in writing.
+
+Verdict: the broadest catalog and the least control documentation. The outcome-based pricing is interesting, and you need that gain share percentage in writing.
+
+### 7. Brex
+
+**Score: 11 of 25** (controls 4, definitions 1, price 1, evidence 2, scope 3).
+
+Brex's [AI page](https://www.brex.com/platform/brex-ai) describes Brex Assistant for employees, an Audit Agent that monitors spend against internal processes and categorizes potential violations by risk, and a Review Agent that auto-approves low-risk expenses, escalates exceptions and follows up with non-compliant users. Agents are trained on the company's own policy and procedures.
+
+Who it suits: companies on Brex spend management.
+
+Pricing: not published on the page.
+
+Controls: admins can review agent actions and give feedback, and the FAQ says there are complete audit trails and that every automated action is transparent and reversible. Those are claims we could not test.
+
+Real limits. The page shows "99.7 percent GL coded," "99 percent automated" and "98 percent compliance rates" and defines none of them. Escalation thresholds are not shown. Customer logos appear without case studies. One outside source said Brex was acquired in 2026, which we could not confirm, so we do not state it.
+
+Use case, from the vendor's description: the Review Agent approves a low-risk expense and escalates an exception.
+
+Verdict: the right claims about reversibility, with no definitions behind the numbers. Ask to see the audit trail on a test account.
+
+### 8. Workday AI agents for finance
+
+**Score: 11 of 25** (controls 4, definitions 1, price 1, evidence 2, scope 3).
+
+Workday's [financial management page](https://www.workday.com/en-us/products/financial-management.html) lists an Accounting Agent and Self-Service Agent, with navigation items for Financial Audit Agent, Financial Test Suite, Contracts Agent and Procurement Agent. A [May 2025 press release](https://newsroom.workday.com/2025-05-19-Workday-Unveils-Next-Generation-of-Illuminate-Agents-to-Transform-HR-and-Finance-Operations) described a Document Driven Accounting Agent that extracts data from documents to automate billing, invoicing and accounting entries, with general availability planned for early 2026, plus contract agents. The current page no longer uses the Illuminate name, so we call these Workday AI agents.
+
+Who it suits: Workday Financials customers.
+
+Pricing: not published.
+
+Controls: the page says Workday embeds approvals, security, audit trails and configurable controls into business processes and that agents operate within your permissions and policies. The press release describes an Agent System of Record as a central command center, with no feature detail.
+
+Real limits. Customer figures on the page, including 99 percent billing accuracy at one restaurant group and 59 percent fewer ledger accounts at an insurer, carry no definitions and are not tied to a named agent. We could not confirm per-agent availability dates from a Workday page.
+
+Use case: supplier or customer documents turned into accounting entries by the document-driven agent.
+
+Verdict: credible governance language inside a platform you may already own. Confirm which agents are generally available today.
+
+### 9. Basis
+
+**Score: 10 of 25** (controls 3, definitions 1, price 1, evidence 2, scope 3).
+
+Basis, at [getbasis.ai](https://www.getbasis.ai/), makes agents for accounting firms and in-house accounting teams: tax return preparation from client intake to review-ready workpapers, month-end close for advisory clients, audit testing that cites evidence, and corporate accounting. Note that another company, basis.inc, is a different product. This one is firm-side tooling, not an in-house finance agent.
+
+Who it suits: CPA firms, from solo practices to large firms.
+
+Pricing: not published. Waitlist or demo.
+
+Controls: agents return completed deliverables for review, and audit workpapers cite evidence. We saw no permission or audit-trail detail and no SOC 2 mention on the page text.
+
+Real limits. CPA Practice Advisor, reporting in February 2026, said the company raised a $100 million Series B at a $1.15 billion valuation and reported that about 30 percent of the top 25 US accounting firms use it. Those are company claims relayed by a trade outlet. A testimonial says a return with dozens of K-1s fell from more than 100 prep hours to about 15 to 20, self-reported.
+
+Use case: preparing a partnership return with many K-1s for partner review.
+
+Verdict: relevant if you run a firm. If you run an in-house finance team, it is not your category.
+
+### 10. Vic.ai
+
+**Score: 10 of 25** (controls 2, definitions 1, price 1, evidence 2, scope 4).
+
+[Vic.ai](https://www.vic.ai/) is an AI platform for accounts payable, with invoice processing, PO matching, approvals, bill pay and a vendor portal, corporate expense management and analytics. It integrates with Sage Intacct, NetSuite, SAP S/4HANA, Microsoft Dynamics, Workday and Oracle Fusion through an open API.
+
+Who it suits: AP teams at mid-sized companies in freight, construction, manufacturing and retail, per its industry pages.
+
+Pricing: not published. Demo or tour only.
+
+Claims: 5x faster invoice processing, an 85 percent no-touch rate by month six, 99 percent accuracy without coding or setup, a seven-month payback. The page defines none of them and gives no sample or time period. "No-touch" is the label to ask about.
+
+Real limits. The page has an approvals product but no audit-trail or permission detail. Named case studies appear with quotes, not figures.
+
+Use case: an AP team routes invoices through coding and PO matching before approval.
+
+Verdict: a mature AP product with marketing numbers that deserve definitions. Ask what a no-touch invoice is and who audits it.
+
+## Side by side
+
+| Rank | Product | Score | Published price | Strongest documented control |
+|---|---|---|---|---|
+| 1 | BILL | 21 | $49 to $89 per user per month | Audit log, toggle, undo |
+| 2 | Ramp | 19 | Free, $15 per user plus platform fee | Recommend, human approves |
+| 3 | Microsoft Dynamics 365 Finance | 18 | Per user, rupee prices seen | Undo, exception log, limits |
+| 4 | Intuit QuickBooks | 15 | None | Explicit permission |
+| 5 | Stampli | 14 | None | Decisions attached to invoice |
+| 6 | HighRadius | 13 | Outcome-based, share not stated | None described |
+| 7 | Brex | 11 | None | Claimed audit trails, reversible |
+| 8 | Workday | 11 | None | Embedded approvals, audit trails |
+| 9 | Basis | 10 | None | Review before delivery |
+| 10 | Vic.ai | 10 | None | Approvals product |
+
+Two observations. The two vendors with the most checkable controls, BILL and Microsoft, are not the ones with the boldest accuracy claims. And only four of the ten publish any pricing, and for one of those, HighRadius, the number is blank.
+
+## How finance agents change who gets found and cited
+
+Finance buyers are not yet asking assistants to pick their AP vendor, as far as we can show. We found no primary study of how finance buyers use ChatGPT, Perplexity or Gemini to shortlist software, and we are not going to invent one.
+
+What exists is plumbing. Stripe and OpenAI's [Agentic Commerce Protocol](https://stripe.com/newsroom/news/stripe-openai-instant-checkout), announced September 29, 2025, lets an app start a purchase with a token scoped to a specific merchant and basket total, and is described as an open standard. Mastercard's [Agent Pay](https://newsroom.mastercard.com/news/press/2025/april/mastercard-unveils-agent-pay-pioneering-agentic-payments-technology-to-power-commerce-in-the-age-of-ai), announced in April 2025, says trusted agents must be registered and verified and that consumers control what an agent may buy. Visa's [Trusted Agent Protocol](https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21716.html), announced in October 2025 with Cloudflare, uses signed requests so merchants can tell approved agents from malicious bots.
+
+All three are consumer and merchant checkout, not B2B software buying, and none says how an agent chooses one seller over another. Our inference, labeled as such: identity and permission layers for agents will favor sellers that machine-readable catalogs and verified endpoints can reach.
+
+For a firm in this category, the practical steps are modest and cheap:
+
+1. Publish plain-text pricing, plan limits and integration lists. Agents can only quote what they can read.
+2. Mark up services and credentials accurately. Our guide to [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/) covers method, and the [accounting firm schema guide](/blog/accounting-firm-schema-markup-services-author/) covers one vertical.
+3. Check what assistants say about you, per [what is AI visibility](/blog/what-is-ai-visibility/).
+4. Read the wider shift in [agentic commerce optimization](/blog/what-is-agentic-commerce-optimization/) and in [Google's search agents](/blog/google-search-agents/).
+
+If you run an advisory or tax practice, our posts on [AI SEO for financial advisors](/blog/ai-seo-for-financial-advisors/) and [AI SEO for tax preparation services](/blog/ai-seo-for-tax-preparation-services/) go further.
+
+## How to choose
+
+Start from the control you need, not the feature you want.
+
+**You are a small business on QuickBooks or Xero.** Compare BILL, Intuit and Ramp on one question: can I undo an agent's action and see a log of it?
+
+**You run AP at a mid-sized company.** Compare Stampli, Vic.ai, Ramp and HighRadius on definitions. Ask each what no-touch, automated and accurate mean, and on what sample.
+
+**You run a Dynamics, Workday or other large ERP.** Start with your ERP vendor's agents. Microsoft's reconciliation agent shows what a narrow, documented agent looks like.
+
+**You run a spend program.** Brex and Ramp both put policy agents on card spend. Ask for the audit trail on a trial account.
+
+**You run an accounting firm.** Look at Basis, and test it on past returns with a partner reviewing every output.
+
+If you are choosing a different function, see our rankings for [customer service](/blog/ai-agents-for-customer-service/) and [HR](/blog/ai-agents-for-hr/).
+
+## Implementation, governance and risk
+
+**Know what the bank guidance says.** SR 26-2, "Revised Guidance on Model Risk Management," issued April 17, 2026 by the Board, OCC and FDIC, [supersedes and replaces SR 11-7](https://www.federalreserve.gov/supervisionreg/srletters/SR2602.pdf). It says it is most relevant to banking organizations with over $30 billion in total assets, and that it does not set enforceable standards, so non-compliance will not by itself draw supervisory criticism. Its footnote 3 says generative and agentic AI models are novel and rapidly evolving and are not within the scope of the guidance, while its principles apply to traditional statistical models and non-generative AI. A bank's own risk governance should guide controls for what is not covered. Vendor products stay in scope for validation and monitoring even without code access. We read the PDF. This is bank supervisory guidance, so it does not govern a non-bank company's use of an AP tool, but it matters if you are a bank, or sell to one.
+
+**Treat the agent as part of internal control.** The SEC staff statement we opened, dated May 16, 2005, says management must assess whether internal control over financial reporting is effective, and auditors must attest to that assessment. It predates AI. We found no SEC or PCAOB rule on AI for section 404. The link to agents is our inference: an agent that codes, matches or approves is part of the environment your auditors will test. The [PCAOB spotlight](https://pcaobus.org/documents/generative-ai-spotlight.pdf) is the closest source, and says human supervision and review of AI output stays important. Tell your auditors before you go live.
+
+**Know where the EU draws lines.** Annex III, point 5(b) of the EU AI Act, per an [unofficial annotated copy](https://artificialintelligenceact.eu/annex/3/), lists systems that evaluate the creditworthiness of natural persons or set a credit score as high-risk, with an exception for detecting financial fraud. It covers natural persons, so most business AP and AR agents sit outside it, and lending agents do not. We did not verify application dates or any delay under the Digital Omnibus, so we state none.
+
+**Broker-dealers.** FINRA's [Regulatory Notice 24-09](https://www.finra.org/rules-guidance/notices/24-09), from June 2024, says its rules are technology neutral, that supervision policies should address technology governance including model risk management, and that communications standards apply whether a person or a tool writes the content. It applies to member firms only.
+
+**Fraud.** Agents that pay bills or change vendor details are targets. The $3.05 billion BEC figure is the reason to keep human approval on payee changes. Ask each vendor how a changed bank account is verified. Stampli says finance verifies sensitive vendor changes, and BILL lists payee-change signals in its fraud protection.
+
+**Measure your own error rate.** Take a month of invoices, run them through the agent in suggestion mode, and count wrong codes, wrong matches and wrong approvals before you let it act. Vendor definitions of accuracy do not substitute.
+
+**Keep a human in the send path.** For anything that moves money or changes the ledger, require a person until the measured error rate is one you can defend to an auditor.
+
+None of this is legal, accounting or financial advice. Have your counsel and auditors review your own situation.
+
+## 2027 outlook
+
+Expect three things. Vendors will be asked for defined metrics in procurement, since Ramp has shown it can be done. Audit logs and undo will become table stakes, because auditors will ask. And the regulatory gap will get filled, probably with guidance for agents specifically, though we cannot say when.
+
+We also expect the 71 percent low-impact number to look worse before it improves. Gartner's point is that 84 percent of spend goes to personal productivity rather than outcomes. Agents that code invoices are productivity. Agents that change how a close runs or how cash is forecast are outcomes, and they are harder to buy.
+
+The sharp line: a number without a definition is not a result.
+
+## Frequently asked questions
+
+### What are the best AI agents for finance in 2027?
+
+On our controls-first rubric, BILL scores highest at 21 of 25, followed by Ramp, Microsoft's Dynamics 365 Finance reconciliation agent, Intuit, Stampli, HighRadius, Brex, Workday, Basis and Vic.ai. The right choice depends on your ERP, your invoice volume and how much audit trail your auditors expect.
+
+### Are AI finance agents accurate enough to trust with payments?
+
+Not on vendor numbers alone. Ramp defines its 85 percent figure as accounting fields auto-coded and its 90 percent figure as recommendations accepted, which are not error rates. BILL's roughly 99 percent extraction accuracy is stated for tested conditions on common invoices with consistent layouts. Keep a human approval step and measure your own error rate.
+
+### How many finance teams use AI?
+
+Gartner's survey of 183 finance leaders, fielded in May and June 2025, found 59 percent of finance functions use AI, up from 58 percent in 2024 and 37 percent in 2023. That counts any AI, not agents. Gartner's 2026 research says 71 percent of typical finance teams report low impact from their AI investments.
+
+### Does bank model risk guidance cover AI agents?
+
+Not in the main US guidance. SR 26-2, issued in April 2026 by the Federal Reserve, OCC and FDIC, replaced SR 11-7 and says in footnote 3 that generative and agentic AI models are not within its scope. It applies mainly to banks over $30 billion in assets and is not enforceable. This is not legal advice.
+
+### Do AI agents change my SOX internal control obligations?
+
+The primary source we opened, a 2005 SEC staff statement, says management must assess whether internal control over financial reporting is effective and says nothing about AI. The link to agents is our inference: an agent that codes, matches or approves is part of the control environment. Ask your auditors how they want it documented.
+
+### What is the biggest risk with AI finance agents?
+
+Undefined metrics and missing audit trails, in our reading of vendor pages. Only some vendors document undo, exception logs or explicit permission, and most do not define terms like no-touch or automated. Fraud is the other risk: the FBI recorded $3.05 billion in business email compromise losses in 2025.
+
+### Is this financial advice?
+
+No. This is an editorial comparison of software based on vendor documentation and public sources. It is not financial, accounting, tax or legal advice, and it does not recommend any product for your situation. Consult a qualified professional before changing financial controls.
+
+## Sources
+
+All opened in November 2026. Vendor pages describe vendor-reported claims. Gartner pages were read through the publisher's mirror host and are linked at their canonical addresses. This is not financial, accounting or legal advice.
+
+- Gartner, [AI in finance adoption](https://www.gartner.com/en/newsroom/press-releases/2025-11-18-gartner-survey-shows-finance-ai-adoption-remains-steady-in-2025) (Nov 2025), [deployment versus value](https://www.gartner.com/en/newsroom/press-releases/2026-05-28-gartner-says-cfos-must-stop-mistaking-finance-ai-deployment-for-value-creation) (May 2026), [scalable AI strategy](https://www.gartner.com/en/newsroom/press-releases/2026-05-27-gartner-says-cfos-risk-falling-behind-without-a-scalable-ai-strategy) (May 2026), [agentic AI cancellations](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) (Jun 2025)
+- Deloitte, [CFO Signals 4Q 2025](https://www.deloitte.com/us/en/insights/topics/business-strategy-growth/4q-2025-cfo-signals-survey/)
+- FBI, [2025 Internet Crime Report](https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf); PCAOB, [generative AI spotlight](https://pcaobus.org/documents/generative-ai-spotlight.pdf); APQC, [AP KPIs](https://www.apqc.org/blog/4-kpis-set-good-accounts-payable-organizations-apart); arXiv, [FinanceQA](https://arxiv.org/abs/2501.18062)
+- Regulation: Federal Reserve, [SR 26-2](https://www.federalreserve.gov/supervisionreg/srletters/SR2602.pdf); SEC, [2005 staff statement on internal control reporting](https://www.sec.gov/info/accountants/stafficreporting.htm); [EU AI Act Annex III](https://artificialintelligenceact.eu/annex/3/) (unofficial annotated copy); FINRA, [Regulatory Notice 24-09](https://www.finra.org/rules-guidance/notices/24-09)
+- Agentic payments: [Stripe and OpenAI](https://stripe.com/newsroom/news/stripe-openai-instant-checkout), [Mastercard Agent Pay](https://newsroom.mastercard.com/news/press/2025/april/mastercard-unveils-agent-pay-pioneering-agentic-payments-technology-to-power-commerce-in-the-age-of-ai), [Visa Trusted Agent Protocol](https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21716.html)
+- Vendor pages: [BILL AI](https://www.bill.com/product/ai), [BILL pricing](https://www.bill.com/pricing), [Ramp AP agents](https://ramp.com/blog/ramp-ap-agents-announcement), [Ramp pricing](https://ramp.com/pricing), [Microsoft reconciliation agent](https://learn.microsoft.com/dynamics365/finance/general-ledger/acct-rec-agent), [Microsoft Dynamics 365 Finance pricing](https://www.microsoft.com/dynamics-365/products/finance/pricing), [Intuit press release](https://investors.intuit.com/news-events/press-releases/detail/1258/), [Intuit agents community post](https://quickbooks.intuit.com/community/quickbooks-news-64/meet-your-dedicated-digital-teammates-intuit-ai-agents-164995), [Stampli](https://www.stampli.com/), [HighRadius](https://www.highradius.com/), [Brex AI](https://www.brex.com/platform/brex-ai), [Workday financial management](https://www.workday.com/en-us/products/financial-management.html), [Workday press release](https://newsroom.workday.com/2025-05-19-Workday-Unveils-Next-Generation-of-Illuminate-Agents-to-Transform-HR-and-Finance-Operations), [Basis](https://www.getbasis.ai/), [Vic.ai](https://www.vic.ai/)
+- Trade press: CPA Practice Advisor on Basis (Feb 2026), read at the publisher's site, no direct link kept
