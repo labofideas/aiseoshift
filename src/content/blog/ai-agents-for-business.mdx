@@ -1,0 +1,407 @@
+---
+title: "Best AI Agents for Business in 2027: 10 Platforms Ranked"
+description: "The best AI agents for business in 2027, ranked on governance, price clarity, integrations and evidence, plus how agents change who gets cited in AI answers."
+deck: Ten business agent platforms, scored on a rubric you can rerun yourself. Half of them will not tell you what they cost, and that matters more than most feature lists.
+pubDate: 2026-11-06
+category: AI Agents
+tags:
+  - AI Agents
+  - Enterprise AI
+  - AI Agent Platforms
+  - AI Visibility
+author: Shashank Dubey
+featured: false
+draft: false
+faqs:
+  - q: "What are the best AI agents for business?"
+    a: "On our rubric, Claude (Cowork and Managed Agents) and Gemini Enterprise score highest, followed by Lindy, Glean and Writer. The right pick depends on the job: Sierra and Decagon for customer service, Devin for software teams, Glean for enterprise search, Lindy and Relevance AI for operations teams that want to build their own agents."
+  - q: "What is the difference between an AI agent and a chatbot?"
+    a: "A chatbot answers. An agent acts: it plans several steps, calls tools in your systems, checks results and keeps going until the task is done or it needs approval. The line blurs because many chatbots now include agent features, so test whether the product can change data in a system of record, not just talk about it."
+  - q: "How much do AI agents for business cost?"
+    a: "It varies by model. Anthropic publishes Enterprise seats at US$20 per seat per month plus usage at API rates, and Managed Agents at $0.08 per session-hour plus tokens. Lindy publishes credit-based plans starting at $49.99 per month. Glean, Sierra, Decagon, Relevance AI and OpenAI Frontier do not publish prices, so you will be quoted. Prices as published in November 2026."
+  - q: "Are AI agents safe to use with company data?"
+    a: "They can be, with limits. Look for scoped agent identities, audit logs, human approval for external actions and clear data-retention terms. Anthropic's documentation says Managed Agents is not currently eligible for zero data retention or HIPAA coverage, which shows why you should read the data-handling page, not just the feature page."
+  - q: "Do AI agents replace workflow automation tools?"
+    a: "Not yet. Deterministic automation is cheaper and more predictable for fixed steps. Agents earn their cost where the path changes from case to case. Many teams run both, with the agent calling the automation as a tool."
+  - q: "How do AI business agents affect search visibility?"
+    a: "Two ways. Buyers increasingly arrive from AI answers, and Adobe reports that AI-referred retail visitors converted 60 percent better than other visitors in July 2026. Meanwhile, agents that research vendors read your public pricing and documentation pages, so a page that hides its numbers behind a form gives them nothing to quote."
+  - q: "Should a small business buy an enterprise agent platform?"
+    a: "Usually no. Enterprise platforms price for governance and scale you may not need. Start with a published-price tool, give it one narrow job with human approval on anything external, and measure before you widen it."
+  - q: "What will change for AI agents in 2027?"
+    a: "Expect more spending scrutiny and more governance requirements. KPMG found 74 percent of surveyed organizations now include cost reviews in AI approvals, and 25 percent are building multi-agent systems. Platforms with clear pricing and audit trails are better placed than those without."
+---
+
+The best AI agents for business in 2027 are Claude (Cowork and Managed Agents) and Gemini Enterprise for broad work, Glean and Writer for company knowledge, Sierra and Decagon for customer service, Devin for software teams, and Lindy and Relevance AI for operations teams that build their own. Our ranking rewards governance, published pricing and checkable evidence.
+
+## Key takeaways
+
+- Adoption is real, but depth is thin. KPMG's Q3 2026 survey found 62 percent of large US organizations building, deploying or developing agents, and only 25 percent working on multi-agent systems.
+- Price opacity is the norm. Of the ten platforms below, only three (Claude, Lindy, Devin) publish usable prices. Most of the rest say "contact sales" or "outcome-based".
+- Governance features differ more than model quality does. Agent identity, audit logs, spend limits and approval gates are what separate a pilot from something a security team will sign.
+- Vendor statistics are marketing until proven otherwise. We cite them as vendor-reported and score evidence quality separately.
+- Agents change discovery. Buyers and software now research vendors through AI answers, so your own pricing and documentation pages carry more weight than they used to.
+
+## What changed in 2026
+
+A year ago, "AI agent" mostly meant a demo. In 2026 it became a product category with a governance layer attached.
+
+Google made the clearest move. On April 23, 2026 it launched the [Gemini Enterprise Agent Platform](https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform) as the evolution of Vertex AI, and said future Vertex roadmap work would ship only through it. The launch post lists agent identity, a registry of approved agents and a gateway with prompt-injection protections. Those are control-plane features, not model features.
+
+OpenAI went the same direction with Frontier, which [Constellation Research described](https://www.constellationr.com/insights/news/openai-launches-openai-frontier-aims-be-ai-agent-orchestrator) as a platform to build, deploy and manage agents with shared context, onboarding, governance and security, available to a limited set of customers. Anthropic's [Managed Agents documentation](https://platform.claude.com/docs/en/managed-agents/overview) shows a hosted agent runtime still in beta, with a beta header dated April 2026.
+
+The pattern matters more than any single launch. Vendors stopped selling "an assistant" and started selling the place where you register, permission and monitor many assistants. That is an IT purchase now, not a team experiment.
+
+The skeptical reading is also worth stating. [Constellation's Larry Dignan](https://www.constellationr.com/insights/news/openai-launches-openai-frontier-aims-be-ai-agent-orchestrator) called Frontier "yet another agent builder and control tower tool" and expected CIOs to face a sprawl of orchestrators that sound alike. He is not wrong. Half of this list could be described the same way.
+
+## What an AI business agent actually is
+
+Four terms get mixed up in every vendor deck. Separate them before you compare anything.
+
+**Chatbot.** Answers questions in a conversation, usually from a knowledge base. It does not change your systems.
+
+**Copilot.** Sits inside one application and helps a person do the next step. A human drives.
+
+**Workflow automation.** Fixed, deterministic steps: when X happens, do Y. Cheap, auditable, and brittle when the input changes.
+
+**AI agent.** Takes a goal, plans steps, calls tools, checks what happened and continues, stopping for approval when a rule says so. Anthropic's Managed Agents documentation frames it as an agent (model, system prompt, tools, MCP servers, skills) running in an environment, as a session that you can steer or interrupt. That is a fair working definition.
+
+The test we use: can it change something in a system of record without a human typing the change? If yes, it is acting. If it only drafts text for you to paste, it is a copilot with better branding.
+
+This matters for risk. An agent that can act needs an identity, a permission set and a log. A chatbot needs a content review. Teams that buy an agent and govern it like a chatbot are the ones who end up in incident reviews.
+
+## The market in numbers
+
+All figures below come from sources we opened in November 2026. Where a number is vendor-reported, we say so.
+
+**Spend is concentrated in applications, and true agents are a minority.** Menlo Ventures put 2025 enterprise generative AI spend at [$37 billion, up from $11.5 billion in 2024](https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/). Only 16 percent of enterprise deployments qualified as true agents, meaning an LLM plans, acts, observes feedback and adapts. Agent platforms such as Agentforce, Writer and Glean captured $750 million, about 10 percent of horizontal AI spend. This is 2025 data, so read it as a baseline, not a current reading.
+
+**Building is accelerating.** KPMG's [Q3 2026 AI Pulse](https://kpmg.com/us/en/media/news/q3-ai-pulse-2026.html), fielded July 24 to August 25 among 314 leaders at companies with $1 billion or more in revenue, found 62 percent building, deploying or developing agents, up from 53 percent a quarter earlier. Multi-agent work jumped from 6 percent to 25 percent.
+
+**Companies are adding brakes.** The same KPMG survey found 74 percent include cost reviews in AI approvals (up from 61 percent), 70 percent run monitoring dashboards and 43 percent set usage or token budgets. Also, 49 percent have defined high-risk use cases where agents may not decide autonomously.
+
+**Governance confidence may be running ahead of governance work.** KPMG reports 73 percent of leaders are confident in their governance, up from 57 percent. In the same survey, the share building controls into agents alongside monitoring fell to 30 percent from 43 percent two quarters earlier. Those two trends do not fit together comfortably.
+
+**Capability is better but not reliable.** The [Stanford AI Index 2026](https://hai.stanford.edu/ai-index/2026-ai-index-report) reports agent success on the OSWorld computer-use benchmark rising from about 12 percent to about 66 percent, against a 72.35 percent human baseline, with agents still failing roughly one in three attempts on structured benchmarks. On SWE-bench Verified, a coding benchmark, performance rose from 60 percent to near 100 percent in a year.
+
+**Autonomy is already common.** [Deloitte's 2026 State of AI in the Enterprise](https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html), a survey of 3,500 senior leaders, found 40 percent let AI carry out decisions or actions without human approval at least to a moderate degree, while 23 percent say it is unclear who is accountable for a bad outcome.
+
+**Security costs are rising.** IBM's [2026 Cost of a Data Breach report](https://www.ibm.com/reports/data-breach) puts the global average breach at $4.99 million, a record, with AI-driven attacks up 56 percent. IBM also recommends identity-based access controls and tightly scoped permissions for AI agents.
+
+**Traffic from AI answers converts.** Adobe's July 2026 figures for US retail, [reported by Digital Commerce 360](https://www.digitalcommerce360.com/?p=1362047), show AI-referred traffic up 62 percent year over year, converting 60 percent better and generating 53 percent more revenue per visit than non-AI traffic. Growth has slowed sharply from the 393 percent year-over-year rise Adobe reported for [Q1 2026](https://techcrunch.com/2026/04/16/ai-traffic-to-us-retailers-rose-393-in-q1-and-its-boosting-their-revenue-too/).
+
+One caution on all of this: samples differ, definitions differ, and "adoption" can mean anything from a pilot to a production rollout. Treat each figure as a data point with its own footing, not as one consistent series.
+
+## How we ranked them
+
+We did not run hands-on tests. Everything below is based on vendor documentation, vendor pricing pages and published analyst commentary, opened in November 2026. That limits what we can say about real-world quality, and we flag it where it bites.
+
+Each platform gets 1 to 5 on five criteria, so the maximum is 25. The scores are editorial judgment from the sources, and you can rescore them with your own weights.
+
+| Criterion | What earns a 5 | What earns a 1 |
+|---|---|---|
+| Governance | Published agent identity, audit logs, approvals, spend controls, compliance detail | Little published beyond "secure" |
+| Price clarity | Public prices and a clear usage rule | Demo or quote only |
+| Integration reach | Large published connector count or open standards such as MCP | Narrow or unstated |
+| Evidence | Detailed docs, checkable claims, independent coverage | Marketing claims only, limited availability |
+| Breadth | Useful across many business functions | One function only |
+
+Two disclosures. Anthropic's Claude is on this list and helped draft this article, so check that entry against the table, not our word. And ties are broken by breadth, then evidence.
+
+## The 10 agents, ranked
+
+### 1. Claude (Cowork and Managed Agents)
+
+**Score: 21 of 25.**
+
+Anthropic sells two things that fit this list. Cowork is [an agent for non-coding knowledge work](https://claude.com/product/cowork): you give it a goal, it works across files and tools you choose and returns finished work. It runs scheduled tasks unattended, splits big projects into parallel parts and asks approval before deleting files. Managed Agents is the developer route, a hosted runtime with a cloud or self-hosted sandbox, MCP servers and scheduled deployments.
+
+Who it suits: teams that want an agent for research, documents and analysis now, and developers who want to build their own without writing the agent loop.
+
+Pricing is the clearest on this list. Per [Anthropic's pricing page](https://claude.com/pricing) in November 2026, Team standard seats start at $20 per seat per month billed annually, and Enterprise is $20 per seat per month billed annually with a 20-seat minimum, plus usage at API rates. Managed Agents adds [$0.08 per session-hour](https://platform.claude.com/docs/en/about-claude/pricing) on top of token costs.
+
+Real limits. Managed Agents is in beta and, per the documentation, not currently eligible for zero data retention or HIPAA coverage. Cowork uses usage limits faster than regular chat, and computer use is a research preview.
+
+Use case: a finance operations lead schedules a weekly Cowork task to reconcile exported reports and draft a variance summary, with deletions requiring approval.
+
+Verdict: the best mix of published price and published controls. The beta and data-retention limits keep it from a perfect score.
+
+### 2. Gemini Enterprise (with Agent Platform)
+
+**Score: 20 of 25.**
+
+Google's documentation describes [Gemini Enterprise](https://docs.cloud.google.com/gemini/enterprise/docs/overview) as an intranet search, AI assistant and agentic platform, with prebuilt connectors for Confluence, Jira, SharePoint and ServiceNow and an Agent Gallery of out-of-the-box agents. Developers build on the Agent Platform: Agent Studio for low-code, an Agent Development Kit for code, and the governance layer of identity, registry and gateway noted above. Its Model Garden lists more than 200 models, including Anthropic's.
+
+Who it suits: organizations already on Google Cloud or Workspace that want governance from the start.
+
+Pricing is edition-based. The [editions page](https://docs.cloud.google.com/gemini/enterprise/docs/editions) lists Business (1 to 500 users), Standard, Plus, Pay-as-you-go and Frontline (150 or more users), with no dollar amounts. Storage and indexing run [$5 per GiB per month](https://docs.cloud.google.com/gemini/enterprise/docs/quotas-and-overages). Google's [Workspace AI page](https://workspace.google.com/solutions/ai/) shows Business Standard at $14 per user per month with Gemini included, and says Enterprise requires contacting sales.
+
+Real limits. The no-code agent designer is listed as a preview. Quotas are tight on lower editions: Standard allows one agent creation per day per license, Plus allows ten.
+
+Use case: an HR team builds a no-code policy agent over its SharePoint library, with access limited to each employee's permissions.
+
+Verdict: the strongest governance story and the broadest fit. Seat prices are opaque, and the preview label on no-code agents is worth noting.
+
+### 3. Lindy
+
+**Score: 19 of 25.**
+
+Lindy sells no-code agents that run business tasks on schedules and triggers. Its [pricing page](https://www.lindy.ai/pricing) lists 40+ skills, 1,500+ integrations and MCP support. External actions such as sending an email require approval, while read-only lookups from approved sources do not.
+
+Who it suits: small and mid-size operations teams, and solo operators who want working agents without an engineering project.
+
+Pricing, as published in November 2026: Free at $0 with $50 in credits that last seven days; Team from $49.99 per month for 5,000 credits, scaling to $9,999.50 for 1,750,000 credits; Enterprise custom, adding HIPAA with a signed BAA, SSO and SCIM and audit logs. Credits do not roll over, and top-ups cost $10 per 1,000 credits.
+
+Real limits. Credit-based billing makes cost depend on how much work each run does, which the page puts at 2 to 250 credits for everyday asks and up to 2,500 for big builds. If credits run out, actions pause until the next cycle. We found no independent evidence on reliability.
+
+Use case: a recruiting coordinator has an agent draft candidate follow-ups from calendar events, with each send waiting for approval.
+
+Verdict: the best published price-to-reach ratio for smaller teams. Evidence on quality is thin.
+
+### 4. Glean
+
+**Score: 17 of 25.**
+
+Glean began as enterprise search and now sells agents on top of it. [Its site](https://www.glean.com) describes connecting knowledge across apps, understanding context, and taking action through automation and agents, with permission-aware access so people see only what they are allowed to see. It cites 275+ connected apps, and the [agents page](https://www.glean.com/product/agents) describes a builder for reasoning-based agents.
+
+Who it suits: mid-size and large companies with knowledge scattered across many tools.
+
+Pricing: not published. The [pricing page](https://www.glean.com/pricing) points to a demo request.
+
+Real limits. The statistics on its homepage, including 110 hours saved per user per year and 93 percent enterprise adoption in under two years, are vendor-reported and unaudited. Customer pages report agent counts of 3.4k+ at Zillow and 2.7k+ at Ericsson, which shows agent sprawl is already a real management problem.
+
+Use case: a support operations team builds an agent that pulls policy and ticket history together before an escalation.
+
+Verdict: a strong fit where the hard problem is finding things. Without prices or independent evidence it cannot score higher.
+
+### 5. Writer
+
+**Score: 17 of 25.**
+
+Writer's current pitch is [WRITER Agent](https://writer.com): multi-step work across systems built from Playbooks (reusable natural-language workflows), Skills, Projects and Connectors, with a Control Center for management. Governance detail is generous: audit logs exportable to SIEM, roles from your identity provider, BYOK encryption, data loss prevention guardrails and spend alerts.
+
+Who it suits: marketing, sales and support teams in regulated industries that want brand and compliance guardrails.
+
+Pricing: the [pricing page](https://writer.com/pricing/) lists Starter for up to five users with a 14-day trial, five Playbooks and three scheduled routines, billed per seat with fixed credit limits. Enterprise is by quote, with 100+ prebuilt agents in the Agent Library. Starter dollar amounts did not appear in the page text we read.
+
+Real limits. Starter accepts major credit and debit cards only. The 57 percent faster time-to-market at Vanguard is a vendor-reported figure.
+
+Use case: a brand team runs a compliance-check Playbook over campaign drafts before legal review.
+
+Verdict: the governance feature list is as complete as any here. Evidence is vendor-sourced.
+
+### 6. Devin
+
+**Score: 16 of 25.**
+
+Devin is the specialist: an [autonomous software engineer](https://devin.ai) that works until a pull request is ready, runs in its own virtual machine per session, and responds to @Devin mentions in Slack and Teams. It lists SOC 2, ISO 27001 and FedRAMP badges, plus audit logs, RBAC and SSO.
+
+Who it suits: engineering teams with a backlog of well-defined tasks.
+
+Pricing, as published in November 2026 on the [pricing page](https://devin.ai/pricing): Pro $20 per month, Max $200, Teams an $80 team fee plus $40 per full dev seat for up to 200 users, and Enterprise by quote. Paid plans include an allowance that refreshes daily and weekly, with extra usage at API pricing.
+
+Real limits. It covers software only. The "up to 60% less" cost claim is the vendor's, and the page gives no benchmark. Stanford's finding that SWE-bench performance rose from 60 percent to near 100 percent suggests the benchmark no longer separates tools well, so judge by your own repository.
+
+Use case: a team assigns Devin the dependency upgrades nobody wants, then reviews each pull request.
+
+Verdict: transparent pricing and clear scope. One function, so breadth is low.
+
+### 7. Relevance AI
+
+**Score: 16 of 25.**
+
+Relevance AI calls itself ["the home of the AI Workforce"](https://relevanceai.com/pricing). Its Enterprise plan lists unlimited agents, tools, users and projects, 2,000+ integrations, calling and meeting agents, agent evaluations, A/B testing, SSO, RBAC and audit logs.
+
+Who it suits: operations, sales and support teams that want to assemble agent workforces without code.
+
+Pricing: the page shows only Enterprise, with "Talk to sales". It mentions "Custom Vendor Credits" without amounts.
+
+Real limits. The page we read had no prices, no credit explanation and no published answers to its FAQ questions, so we could not verify cost mechanics. Evidence is a feature list.
+
+Use case: a sales ops team builds a lead-research agent that updates CRM records and hands qualified accounts to a person.
+
+Verdict: broad and well integrated, but the least transparent of the build-your-own tools.
+
+### 8. OpenAI Frontier
+
+**Score: 15 of 25.**
+
+Frontier is OpenAI's enterprise agent platform. Per Constellation's coverage of the announcement, it connects data warehouses, CRM, ERP and ticketing systems, works with third-party and custom agents, and includes evaluation tools. Cited flagship customers are HP, Intuit, Oracle, Uber and State Farm, with pilots at T-Mobile and Cisco, according to OpenAI.
+
+Who it suits: very large enterprises willing to work with a vendor's forward-deployed engineers.
+
+Pricing: not published. Availability was limited when covered. For builders, OpenAI's [documentation](https://developers.openai.com/api/docs/guides/agents) describes an Agents SDK that runs inside your application and a managed Agents API for long-running tasks. ChatGPT [lists](https://chatgpt.com/pricing/) Business plans as priced per user per month starting at two users, and Enterprise as contact sales.
+
+Real limits. OpenAI's own Frontier pages returned an access error to our fetch tool, so we relied on third-party coverage, and that limits the evidence score. Limited availability is itself a limit.
+
+Use case: a large insurer connects claims, CRM and ticketing data so agents share one view of a customer.
+
+Verdict: potentially the most ambitious, with the least verifiable detail today.
+
+### 9. Sierra
+
+**Score: 13 of 25.**
+
+Sierra [builds customer-service agents](https://sierra.ai) that run across chat, SMS, WhatsApp, email, voice and ChatGPT. Ghostwriter creates agents from SOPs, transcripts or a plain-English goal. Agent Studio, Explorer, Monitors and Experiments cover building, analysis and testing. It lists SOC 2, ISO 27001, ISO 42001, HIPAA, GDPR, PCI DSS and FedRAMP among its credentials.
+
+Who it suits: large consumer-facing companies with high conversation volume.
+
+Pricing: outcome-based, meaning you pay for value delivered, with no figures published.
+
+Real limits. The page carries no verified performance metrics. The numbers visible on it belong to illustrative dashboard mockups. Customer logos, including Rocket Mortgage, Gap and Uber, are not results.
+
+Use case: a retailer deploys one agent across web chat and voice that can process returns inside its order system.
+
+Verdict: a credible enterprise vendor that gives buyers little to check before a sales call.
+
+### 10. Decagon
+
+**Score: 12 of 25.**
+
+Decagon sells [AI customer-experience agents](https://decagon.ai) across voice, chat and email. Agent Operating Procedures define workflows in natural language, Experiments runs live A/B tests, and Watchtower provides always-on quality checks.
+
+Who it suits: customer service teams in financial services, travel, healthcare, retail, telecom and insurance.
+
+Pricing: not stated on the site we read. Our attempt to open a dedicated pricing page returned a not-found error.
+
+Real limits. The case-study numbers are vendor-reported: Chime 70 percent chat and voice resolution, Duolingo an 80 percent deflection rate, ClassPass a 95 percent cost reduction. Definitions of "resolution" and "deflection" differ between companies, so do not compare them.
+
+Use case: an airline lets an agent rebook disrupted passengers while a human approves refunds above a set amount.
+
+Verdict: well documented on features, silent on price, and its evidence is entirely self-reported.
+
+## Side by side
+
+| Platform | Best for | Pricing as published (Nov 2026) | Score |
+|---|---|---|---|
+| Claude | Knowledge work, builders | $20 per seat per month plus API-rate usage; $0.08 per session-hour | 21 |
+| Gemini Enterprise | Google-centric governance | Editions listed, seat prices by quote; storage $5 per GiB per month | 20 |
+| Lindy | Small ops teams | Team from $49.99 per month | 19 |
+| Glean | Company knowledge | Demo | 17 |
+| Writer | Regulated brand work | Starter per seat, Enterprise by quote | 17 |
+| Devin | Software teams | Pro $20 per month; Teams $80 plus $40 per seat | 16 |
+| Relevance AI | No-code agent workforces | Talk to sales | 16 |
+| OpenAI Frontier | Very large enterprises | Not published | 15 |
+| Sierra | Large-scale customer service | Outcome-based | 13 |
+| Decagon | Customer service | Not stated | 12 |
+
+The ranking rewards openness by design. If you weight breadth of customer references over price clarity, Sierra and Decagon move up. We would still ask both for a written pricing model before a pilot.
+
+## How agents change who gets found and cited
+
+This is the part most buyer guides skip, and it is the reason we cover agents on an AI search site.
+
+**Referral traffic from AI answers is smaller but better.** Adobe's retail data above shows growth slowing to 62 percent in July 2026 while conversion stayed 60 percent higher. That is one sector and one analytics vendor, so treat it as directional. If your category is not retail, test it on your own analytics before assuming it holds.
+
+**Agents read your public pages, and many pages give them nothing.** During this research, most of the ten vendor pricing pages yielded no usable price to our automated fetcher, and several primary sources, including OpenAI's Frontier pages and Gartner's press releases, refused automated access. An AI system compiling a vendor shortlist hits the same walls. The practical result is that it quotes whoever it can read: third-party reviews, analyst summaries, your competitor's published numbers. If your pricing sits behind a form, you are not in the comparison.
+
+**Crawling and referring are very unequal.** Cloudflare's [crawl-to-refer ratio](https://blog.cloudflare.com/ai-search-crawl-refer-ratio-on-radar) divides a platform's HTML page requests by the referrals it sends back. For the week of June 19 to 26, 2025 it reported 70,900 to 1 for Anthropic, and Cloudflare noted native apps do not send referrer headers, so web-only counts may overstate the ratio. That is old data, but it shows why crawl counts alone say little about visibility.
+
+**Vendors are putting agents inside the answer interfaces.** Sierra lists ChatGPT as a channel one agent can serve. Gemini Enterprise lists an agent marketplace and gallery. Lindy, Devin and Claude's Managed Agents support MCP. Being callable by an agent, through a documented tool interface, is becoming a distribution channel beside being linkable.
+
+What to do about it, in order of cost:
+
+1. Publish real prices or at least ranges, in plain HTML, not behind a form.
+2. Put specifications and limits in text, not images or PDFs only.
+3. Mark up the page with accurate structured data, and keep it consistent with what is visible. We cover the method in [schema markup for AI visibility](/blog/schema-markup-for-ai-visibility/).
+4. Track whether you are cited. [Best AI visibility tools](/blog/best-ai-visibility-tools-2026/) compares the trackers, and [how to get cited by AI search systems](/blog/how-to-get-cited-by-ai-search-systems/) covers the content signals.
+5. Read the broader shift in [Google's search agents](/blog/google-search-agents/) and [agentic commerce optimization](/blog/what-is-agentic-commerce-optimization/).
+
+## How to choose
+
+By company size.
+
+**Under 20 people.** Pick a published-price tool and one narrow job. Lindy or Claude Team fit here. Do not buy an enterprise platform for governance you cannot staff.
+
+**20 to 500 people.** You need approvals and audit logs, but probably not a control plane. Look at Claude Enterprise, Writer or Relevance AI, and get written pricing before a pilot.
+
+**Over 500 people.** Governance is the purchase. Gemini Enterprise, Glean, Writer and OpenAI Frontier compete on it, and the deciding factors will be which cloud and identity stack you already run.
+
+By job.
+
+- **Customer service:** Sierra or Decagon at scale. For smaller volume, see our [AI chatbots for websites](/blog/best-ai-chatbots-for-websites/) roundup.
+- **Sales operations:** Lindy or Relevance AI for build-your-own, and our [AI sales tools](/blog/best-ai-sales-tools-2026/) list for category-specific products.
+- **Software delivery:** Devin, compared with others in [best AI coding tools](/blog/best-ai-coding-tools-2026/).
+- **Search across company knowledge:** Glean or Gemini Enterprise.
+- **SEO and content operations:** start with [SEO AI agents](/blog/seo-ai-agents/) before buying anything general.
+
+Menlo found 76 percent of enterprise AI use cases were purchased, not built, in 2025. Buying is the default. The question is which parts you want to own.
+
+## Implementation, governance and risk
+
+Run the first deployment like a security review, not a launch.
+
+**Give every agent an identity and a scope.** One shared login for five agents makes any incident impossible to trace. Google's Agent Identity and OpenAI's scoped identities exist for this reason. IBM's advice is the same in plainer words: tightly scoped permissions, identity-based access.
+
+**Gate external actions.** Sending, paying, publishing and deleting should require approval until you have a track record. Lindy and Cowork both ship this as a default.
+
+**Define the no-autonomy list.** KPMG found 49 percent of leaders have named use cases where agents may not decide alone. Write yours before the pilot, not after the first mistake.
+
+**Expect hallucination and plan for the one in three.** Stanford's roughly one-in-three failure rate on structured benchmarks is not your failure rate, but it is a reason to measure yours. Log outcomes, sample them weekly, and keep the human path working.
+
+**Budget for variable cost.** Credits, session-hours and tokens all scale with activity. [Anthropic bills Managed Agents on tokens plus runtime](https://platform.claude.com/docs/en/about-claude/pricing). Lindy pauses actions when credits run out. Set caps first. KPMG found 43 percent of organizations already use usage or token budgets.
+
+**Check data retention before features.** The Managed Agents zero-retention and HIPAA limitation is a good example of a fact that sits on a different page from the feature list.
+
+**Know who is accountable.** Deloitte's 23 percent figure, leaders who say accountability for bad outcomes is unclear, should worry anyone signing a contract. Name an owner for each agent.
+
+## 2027 outlook
+
+Three predictions, all things we can see starting now.
+
+Pricing will converge on usage plus a seat. Anthropic, Lindy and Devin already publish that shape, and buyers will push the quote-only vendors toward it.
+
+Governance will become a purchase criterion in its own right. Spend reviews and token budgets are already in KPMG's numbers, and the control-plane launches from Google and OpenAI are betting on it.
+
+Discovery will split. People will keep clicking links, and agents acting for them will read pages, call tools and compare vendors without a click. Pages that are clear, current and machine-readable win both. Our earlier piece on [AI agent funding](/blog/ai-agent-startups-1-8-billion-july-2026/) tracks the money behind that shift, and the [AI Agents category](/blog/category/ai-agents/) will follow the rest.
+
+The sharp version: the winners will not be the agents with the cleverest demos. They will be the ones a security team can approve and a buyer can price on a Tuesday afternoon.
+
+## Frequently asked questions
+
+### What are the best AI agents for business?
+
+On our rubric, Claude (Cowork and Managed Agents) and Gemini Enterprise score highest, followed by Lindy, Glean and Writer. The right pick depends on the job: Sierra and Decagon for customer service, Devin for software teams, Glean for enterprise search, Lindy and Relevance AI for operations teams that want to build their own agents.
+
+### What is the difference between an AI agent and a chatbot?
+
+A chatbot answers. An agent acts: it plans several steps, calls tools in your systems, checks results and keeps going until the task is done or it needs approval. The line blurs because many chatbots now include agent features, so test whether the product can change data in a system of record, not just talk about it.
+
+### How much do AI agents for business cost?
+
+It varies by model. Anthropic publishes Enterprise seats at US$20 per seat per month plus usage at API rates, and Managed Agents at $0.08 per session-hour plus tokens. Lindy publishes credit-based plans starting at $49.99 per month. Glean, Sierra, Decagon, Relevance AI and OpenAI Frontier do not publish prices, so you will be quoted. Prices as published in November 2026.
+
+### Are AI agents safe to use with company data?
+
+They can be, with limits. Look for scoped agent identities, audit logs, human approval for external actions and clear data-retention terms. Anthropic's documentation says Managed Agents is not currently eligible for zero data retention or HIPAA coverage, which shows why you should read the data-handling page, not just the feature page.
+
+### Do AI agents replace workflow automation tools?
+
+Not yet. Deterministic automation is cheaper and more predictable for fixed steps. Agents earn their cost where the path changes from case to case. Many teams run both, with the agent calling the automation as a tool.
+
+### How do AI business agents affect search visibility?
+
+Two ways. Buyers increasingly arrive from AI answers, and Adobe reports that AI-referred retail visitors converted 60 percent better than other visitors in July 2026. Meanwhile, agents that research vendors read your public pricing and documentation pages, so a page that hides its numbers behind a form gives them nothing to quote.
+
+### Should a small business buy an enterprise agent platform?
+
+Usually no. Enterprise platforms price for governance and scale you may not need. Start with a published-price tool, give it one narrow job with human approval on anything external, and measure before you widen it.
+
+### What will change for AI agents in 2027?
+
+Expect more spending scrutiny and more governance requirements. KPMG found 74 percent of surveyed organizations now include cost reviews in AI approvals, and 25 percent are building multi-agent systems. Platforms with clear pricing and audit trails are better placed than those without.
+
+## Sources
+
+All opened in November 2026. Vendor pages describe vendor-reported claims.
+
+- Menlo Ventures, [2025: The State of Generative AI in the Enterprise](https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/)
+- KPMG, [Q3 2026 AI Pulse](https://kpmg.com/us/en/media/news/q3-ai-pulse-2026.html), September 24, 2026
+- Stanford HAI, [AI Index Report 2026](https://hai.stanford.edu/ai-index/2026-ai-index-report)
+- Deloitte, [The State of AI in the Enterprise](https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html)
+- IBM, [Cost of a Data Breach Report 2026](https://www.ibm.com/reports/data-breach)
+- Adobe data via [Digital Commerce 360](https://www.digitalcommerce360.com/?p=1362047) and [TechCrunch](https://techcrunch.com/2026/04/16/ai-traffic-to-us-retailers-rose-393-in-q1-and-its-boosting-their-revenue-too/)
+- Cloudflare, [AI crawl-to-refer ratio on Radar](https://blog.cloudflare.com/ai-search-crawl-refer-ratio-on-radar)
+- Google Cloud, [Agent Platform launch](https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform), [Gemini Enterprise docs](https://docs.cloud.google.com/gemini/enterprise/docs/editions)
+- Anthropic, [pricing](https://claude.com/pricing), [Cowork](https://claude.com/product/cowork), [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
+- Constellation Research, [OpenAI Frontier](https://www.constellationr.com/insights/news/openai-launches-openai-frontier-aims-be-ai-agent-orchestrator); OpenAI [agents docs](https://developers.openai.com/api/docs/guides/agents)
+- Vendor sites: [Lindy](https://www.lindy.ai/pricing), [Glean](https://www.glean.com), [Writer](https://writer.com/pricing/), [Devin](https://devin.ai/pricing), [Relevance AI](https://relevanceai.com/pricing), [Sierra](https://sierra.ai), [Decagon](https://decagon.ai)

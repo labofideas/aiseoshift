@@ -42,6 +42,11 @@ Author: Shashank Dubey, founder of Wbcom Designs and lead writer at AISEOShift. 
 - [Best AI SEO Tools](https://aiseoshift.com/blog/best-ai-seo-tools/)
 - [Best AI Keyword Research Tools](https://aiseoshift.com/blog/best-ai-keyword-research-tools/)
 
+## AI agents
+
+- [AI Agents category](https://aiseoshift.com/blog/category/ai-agents/): buyer guides and analysis of AI agents for business.
+- [Best AI Agents for Business in 2027](https://aiseoshift.com/blog/ai-agents-for-business/): ten platforms ranked on governance, price clarity, integrations, evidence and breadth.
+
 ## Industry playbooks
 
 - [AI SEO by Industry](https://aiseoshift.com/ai-seo-by-industry/): playbooks for winning AI search visibility in specific verticals.

@@ -11,7 +11,7 @@ const blog = defineCollection({
 			deck: z.string(),
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
-			category: z.enum(['Strategy', 'Research', 'Tooling', 'Playbooks']),
+			category: z.enum(['Strategy', 'Research', 'Tooling', 'Playbooks', 'AI Agents']),
 			tags: z.array(z.string()).min(2),
 			author: z.string().default('AISEOShift Editorial Desk'),
 			featured: z.boolean().default(false),

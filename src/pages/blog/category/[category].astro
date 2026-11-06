@@ -12,7 +12,7 @@ export const getStaticPaths = async () => {
 	const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 	const categories = [...new Set(allPosts.map((p) => p.data.category))];
 	return categories.map((cat) => ({
-		params: { category: cat.toLowerCase() },
+		params: { category: cat.toLowerCase().replace(/\s+/g, '-') },
 		props: {
 			categoryLabel: cat,
 			posts: sortPostsByDate(
@@ -23,13 +23,14 @@ export const getStaticPaths = async () => {
 };
 
 const { categoryLabel, posts } = Astro.props;
-const categorySlug = categoryLabel.toLowerCase();
+const categorySlug = categoryLabel.toLowerCase().replace(/\s+/g, '-');
 const canonicalUrl = `${SITE_URL}/blog/category/${categorySlug}/`;
 
 const categoryDescriptions: Record<string, string> = {
 	Strategy: 'Strategic frameworks for AI search visibility, AEO, GEO, and brand citation across ChatGPT, Perplexity, Google AI Overviews, and more.',
 	Research: 'Data-driven research and analysis on AI search trends, Google Search Console AI reports, ranking changes, and the evolving citation landscape.',
 	Playbooks: 'Step-by-step playbooks for earning AI citations, optimizing for answer engines, and building content systems that perform in AI-powered search.',
+	'AI Agents': 'Buyer guides and analysis of AI agents for business: which platforms work, what they cost, how they are governed, and how agents change who gets found and cited in AI answers.',
 	Tooling: 'Reviews and comparisons of AI SEO tools, citation trackers, visibility platforms, and the software stack for AI search optimization.',
 };
 

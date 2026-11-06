@@ -2453,5 +2453,18 @@
 			"height": 612,
 			"bytes": 37238
 		}
+	},
+	"ai-agents-for-business": {
+		"hero": {
+			"src": "/images/posts/ai-agents-for-business-hero.webp",
+			"alt": "Ten best AI agents for business in 2027: an orange hexagon agent node connected to four task nodes on a dark background",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 28392
+		}
 	}
 }
