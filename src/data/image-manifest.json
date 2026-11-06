@@ -2557,5 +2557,18 @@
 			"height": 720,
 			"bytes": 43988
 		}
+	},
+	"ai-agents-for-insurance": {
+		"hero": {
+			"src": "/images/posts/ai-agents-for-insurance-hero.webp",
+			"alt": "Teal shield with a gold check mark on an ivory background beside the headline AI agents for insurance 2027",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 38266
+		}
 	}
 }
