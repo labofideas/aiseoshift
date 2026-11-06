@@ -2518,5 +2518,18 @@
 			"height": 720,
 			"bytes": 36054
 		}
+	},
+	"ai-agents-for-customer-support": {
+		"hero": {
+			"src": "/images/posts/ai-agents-for-customer-support-hero.webp",
+			"alt": "Best AI agents for customer support in 2027: a headset agent beside an AI node, ranked",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 42644
+		}
 	}
 }

@@ -50,6 +50,7 @@ Author: Shashank Dubey, founder of Wbcom Designs and lead writer at AISEOShift. 
 - [Best AI Agents for HR in 2027](https://aiseoshift.com/blog/ai-agents-for-hr/): ten hiring and employee-service agents ranked on bias disclosure, price clarity and human oversight.
 - [Best AI Agents for Automation in 2027](https://aiseoshift.com/blog/ai-agents-for-automation/): ten automation platforms ranked on cost predictability, control, governance, integration reach and evidence.
 - [AI Agent for Customer Service in 2027: Pick, Test, Measure](https://aiseoshift.com/blog/ai-agent-for-customer-service/): a rollout playbook for choosing, testing and measuring one customer service agent, with ten vendors ranked.
+- [Best AI Agents for Customer Support in 2027: Ranked](https://aiseoshift.com/blog/ai-agents-for-customer-support/): ten agent-assist, QA and ticket tools ranked on price, controls and evidence.
 
 ## Industry playbooks
 
