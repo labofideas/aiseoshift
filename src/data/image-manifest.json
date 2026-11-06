@@ -2466,5 +2466,18 @@
 			"height": 720,
 			"bytes": 28392
 		}
+	},
+	"ai-agents-for-customer-service": {
+		"hero": {
+			"src": "/images/posts/ai-agents-for-customer-service-hero.webp",
+			"alt": "Best AI agents for customer service in 2027: chat bubbles and a resolved check mark beside an orange agent node",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 36734
+		}
 	}
 }
