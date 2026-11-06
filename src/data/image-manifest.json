@@ -2544,5 +2544,18 @@
 			"height": 720,
 			"bytes": 34580
 		}
+	},
+	"ai-agents-for-sales": {
+		"hero": {
+			"src": "/images/posts/ai-agents-for-sales-hero.webp",
+			"alt": "Dark green poster with concentric amber and teal rings and a 2027 badge, headline AI Sales Agents ranked on evidence",
+			"photographer": "",
+			"photographerUrl": "",
+			"sourceName": "",
+			"sourceUrl": "",
+			"width": 1280,
+			"height": 720,
+			"bytes": 43988
+		}
 	}
 }
