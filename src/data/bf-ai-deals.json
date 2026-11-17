@@ -1,0 +1,882 @@
+[
+	{
+		"name": "ChatGPT",
+		"category": "AI Chat Assistants",
+		"url": "https://chatgpt.com",
+		"description": "A general-purpose AI chatbot from OpenAI that answers questions, writes and edits text, generates images, and can browse the web or analyze files.",
+		"freePlan": true,
+		"regularPrice": "$8/mo (Go plan, US)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Claude",
+		"category": "AI Chat Assistants",
+		"url": "https://claude.ai",
+		"description": "An AI chatbot from Anthropic built for long-form writing, coding assistance, and multi-step reasoning tasks.",
+		"freePlan": true,
+		"regularPrice": "$17/mo billed yearly (Pro; $20/mo billed monthly)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Google Gemini",
+		"category": "AI Chat Assistants",
+		"url": "https://gemini.google.com",
+		"description": "Google's AI chatbot, integrated with Search, Gmail and Docs, offering chat, image generation and research tools.",
+		"freePlan": true,
+		"regularPrice": "$4.99/mo (Google AI Plus)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Perplexity",
+		"category": "AI Chat Assistants",
+		"url": "https://www.perplexity.ai",
+		"description": "An AI answer engine that generates responses with cited web sources, built for research and fact lookup.",
+		"freePlan": true,
+		"regularPrice": "$20/mo (Pro)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Microsoft Copilot",
+		"category": "AI Chat Assistants",
+		"url": "https://copilot.microsoft.com",
+		"description": "Microsoft's AI assistant built into Windows, Edge and Microsoft 365 apps for chat, writing and image help.",
+		"freePlan": true,
+		"regularPrice": "$9.99/mo (Microsoft 365 Personal, which bundles Copilot)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Grok",
+		"category": "AI Chat Assistants",
+		"url": "https://grok.com",
+		"description": "xAI's chatbot integrated with X, built around real-time information from X posts and fewer content restrictions than rivals.",
+		"freePlan": true,
+		"regularPrice": "$8/mo (Plus)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Poe",
+		"category": "AI Chat Assistants",
+		"url": "https://poe.com",
+		"description": "A platform by Quora that gives one subscription access to many different third-party AI chat and image models in one interface.",
+		"freePlan": true,
+		"regularPrice": "$4.99/mo (Starter)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Jasper",
+		"category": "AI Writing & Copywriting",
+		"url": "https://www.jasper.ai",
+		"description": "An AI writing platform for marketing teams that turns a brief into on-brand copy for ads, blogs and campaigns.",
+		"freePlan": false,
+		"regularPrice": "$59/mo billed yearly ($69/mo billed monthly, Pro)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Copy.ai",
+		"category": "AI Writing & Copywriting",
+		"url": "https://www.copy.ai",
+		"description": "An AI writing tool that has shifted from blog content toward sales and go-to-market copy such as outreach and landing pages.",
+		"freePlan": false,
+		"regularPrice": "$24/mo billed yearly (Chat plan; $29/mo billed monthly)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Writesonic",
+		"category": "AI Writing & Copywriting",
+		"url": "https://writesonic.com",
+		"description": "An AI content and SEO writing tool that generates articles, ads and brand-visibility content aimed at ranking in both Google and AI assistants.",
+		"freePlan": false,
+		"regularPrice": "$79/mo (Starter)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Grammarly",
+		"category": "AI Writing & Copywriting",
+		"url": "https://www.grammarly.com",
+		"description": "A writing assistant that checks grammar, spelling, tone and clarity, with AI generation and rewriting features in its paid tiers.",
+		"freePlan": true,
+		"regularPrice": "$12/mo billed yearly (Pro/Premium; $30/mo billed monthly)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "QuillBot",
+		"category": "AI Writing & Copywriting",
+		"url": "https://quillbot.com",
+		"description": "An AI paraphrasing and grammar tool that rewords sentences, checks grammar, and summarizes documents.",
+		"freePlan": true,
+		"regularPrice": "See pricing page",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Rytr",
+		"category": "AI Writing & Copywriting",
+		"url": "https://rytr.me",
+		"description": "A budget AI writing tool that generates short-form marketing, social and ad copy from simple prompts.",
+		"freePlan": true,
+		"regularPrice": "$9/mo (Lite)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Wordtune",
+		"category": "AI Writing & Copywriting",
+		"url": "https://www.wordtune.com",
+		"description": "An AI rewriting tool that rephrases sentences for tone and clarity and summarizes longer text.",
+		"freePlan": true,
+		"regularPrice": "$4.89/mo billed yearly (Advanced; shown discounted from $6.99/mo on site)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Midjourney",
+		"category": "AI Image Generation",
+		"url": "https://www.midjourney.com",
+		"description": "An AI image generator known for highly stylized, artistic output, used through Discord or its web app.",
+		"freePlan": false,
+		"regularPrice": "$10/mo (Basic)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Leonardo.ai",
+		"category": "AI Image Generation",
+		"url": "https://leonardo.ai",
+		"description": "An AI image generation platform offering custom-trained models aimed at game art and concept design.",
+		"freePlan": true,
+		"regularPrice": "See pricing page",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Ideogram",
+		"category": "AI Image Generation",
+		"url": "https://ideogram.ai",
+		"description": "An AI image generator that specializes in rendering accurate text and typography inside generated images.",
+		"freePlan": true,
+		"regularPrice": "$15/mo billed yearly (Plus; $20/mo billed monthly)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Adobe Firefly",
+		"category": "AI Image Generation",
+		"url": "https://www.adobe.com/products/firefly.html",
+		"description": "Adobe's generative AI tool for images, text effects and vector graphics, trained to be commercially safe to use.",
+		"freePlan": true,
+		"regularPrice": "$9.99/mo (Firefly Standard)",
+		"deal": {
+			"status": "confirmed",
+			"summary": "57% off Creative Cloud Pro (which bundles Firefly) for the first year, new customers only",
+			"code": null,
+			"ends": "2026-11-27",
+			"sourceUrl": "https://www.adobe.com/creativecloud/plans.html"
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Krea",
+		"category": "AI Image Generation",
+		"url": "https://www.krea.ai",
+		"description": "An AI creative suite for real-time image generation, upscaling and video editing aimed at designers.",
+		"freePlan": true,
+		"regularPrice": "$9/mo (Basic)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Recraft",
+		"category": "AI Image Generation",
+		"url": "https://www.recraft.ai",
+		"description": "An AI image generator geared toward vector graphics, icons and brand assets for designers.",
+		"freePlan": true,
+		"regularPrice": "$10/mo billed yearly (Basic; $12/mo billed monthly)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Runway",
+		"category": "AI Video",
+		"url": "https://runway.com",
+		"description": "An AI video generation and editing platform used by filmmakers for text-to-video, image-to-video and visual effects.",
+		"freePlan": true,
+		"regularPrice": "$12/mo billed yearly (Standard; $15/mo billed monthly)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Synthesia",
+		"category": "AI Video",
+		"url": "https://www.synthesia.io",
+		"description": "An AI avatar video platform that turns text scripts into videos with digital presenters in many languages.",
+		"freePlan": true,
+		"regularPrice": "$19/mo (Starter)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "HeyGen",
+		"category": "AI Video",
+		"url": "https://www.heygen.com",
+		"description": "An AI avatar video generator that creates presenter-style videos from text and can translate them into other languages.",
+		"freePlan": true,
+		"regularPrice": "$29/mo (Creator)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Pika",
+		"category": "AI Video",
+		"url": "https://pika.art",
+		"description": "An AI video generator for short, stylized text-to-video and image-to-video clips.",
+		"freePlan": true,
+		"regularPrice": "$8/mo billed yearly (Starter; $10/mo billed monthly)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Descript",
+		"category": "AI Video",
+		"url": "https://www.descript.com",
+		"description": "An AI-powered video and podcast editor that lets users edit video and audio by editing a text transcript.",
+		"freePlan": true,
+		"regularPrice": "$16/mo (Hobbyist)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "InVideo",
+		"category": "AI Video",
+		"url": "https://invideo.io",
+		"description": "An AI video editor that generates marketing and social videos from text prompts or templates.",
+		"freePlan": false,
+		"regularPrice": "$4/mo billed yearly (Basic; $9/mo billed monthly)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "OpusClip",
+		"category": "AI Video",
+		"url": "https://www.opus.pro",
+		"description": "An AI tool that turns long videos into short social-media clips, with auto-captioning and highlight detection.",
+		"freePlan": true,
+		"regularPrice": "$15/mo (Starter)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "ElevenLabs",
+		"category": "AI Voice & Audio",
+		"url": "https://elevenlabs.io/pricing",
+		"description": "A platform that generates realistic text-to-speech audio, clones voices, and provides speech-to-text and other audio AI tools via web app and API.",
+		"freePlan": true,
+		"regularPrice": "$5/mo (Starter, billed annually; $6/mo billed monthly)",
+		"deal": {
+			"status": "confirmed",
+			"summary": "Up to 55% off annual Creator/Pro plans",
+			"code": null,
+			"ends": "2026-12-01",
+			"sourceUrl": "https://elevenlabs.io/pricing"
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Murf AI",
+		"category": "AI Voice & Audio",
+		"url": "https://murf.ai/pricing",
+		"description": "A voice generation platform used mainly for video and e-learning voiceovers, offering text-to-speech, voice changing, and translation as pay-per-use or API pricing.",
+		"freePlan": true,
+		"regularPrice": "Pay as you go",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Speechify",
+		"category": "AI Voice & Audio",
+		"url": "https://speechify.com/pricing/",
+		"description": "A text-to-speech reading app that converts articles, documents, and books into spoken audio for listening on phones, browsers, and desktop.",
+		"freePlan": true,
+		"regularPrice": "$29/mo billed monthly ($139 billed yearly) - Premium",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Suno",
+		"category": "AI Voice & Audio",
+		"url": "https://suno.com/pricing",
+		"description": "An AI tool that generates full songs, including vocals, lyrics, and instrumentation, from a text prompt.",
+		"freePlan": true,
+		"regularPrice": "$8/mo billed annually ($96/year) - Pro",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Descript",
+		"category": "AI Voice & Audio",
+		"url": "https://www.descript.com/pricing",
+		"description": "An audio/video editing tool that lets users edit recordings by editing a text transcript, and includes an AI voice-cloning feature (Overdub) for correcting or generating narration.",
+		"freePlan": true,
+		"regularPrice": "$16/person/mo billed annually ($24/mo billed monthly) - Hobbyist",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Resemble AI",
+		"category": "AI Voice & Audio",
+		"url": "https://www.resemble.ai/pricing/",
+		"description": "A voice AI platform offering voice cloning, text-to-speech, and audio/video deepfake-detection tools for teams and developers.",
+		"freePlan": true,
+		"regularPrice": "$280/mo billed annually ($350/mo billed monthly) - Team",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Udio",
+		"category": "AI Voice & Audio",
+		"url": "https://www.udio.com/pricing",
+		"description": "An AI tool that creates original songs with vocals and instrumentation from text prompts.",
+		"freePlan": true,
+		"regularPrice": "$8/mo billed annually ($10/mo billed monthly) - Standard",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Canva",
+		"category": "AI Design & Presentations",
+		"url": "https://www.canva.com/pricing/",
+		"description": "An online design tool with AI-powered features (Magic Studio) for making graphics, presentations, videos, and documents from templates.",
+		"freePlan": true,
+		"regularPrice": "See pricing page",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Gamma",
+		"category": "AI Design & Presentations",
+		"url": "https://gamma.app/pricing",
+		"description": "An AI tool that generates and edits slide decks, documents, and simple webpages from a text prompt or outline.",
+		"freePlan": true,
+		"regularPrice": "See pricing page",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Beautiful.ai",
+		"category": "AI Design & Presentations",
+		"url": "https://www.beautiful.ai/pricing",
+		"description": "Presentation software that uses AI-driven templates and automatic slide layout to build and reformat decks as content is added.",
+		"freePlan": false,
+		"regularPrice": "$14.50/mo billed annually - Pro plan",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Pitch",
+		"category": "AI Design & Presentations",
+		"url": "https://pitch.com/pricing",
+		"description": "A collaborative presentation tool aimed at teams and startups, with AI-assisted slide generation and real-time co-editing.",
+		"freePlan": true,
+		"regularPrice": "€10/mo billed annually - Plus plan",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Framer",
+		"category": "AI Design & Presentations",
+		"url": "https://www.framer.com/pricing/",
+		"description": "A website builder that lets users design and publish responsive sites visually, with AI tools to generate layouts and copy.",
+		"freePlan": true,
+		"regularPrice": "$10/mo - Basic plan",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Uizard",
+		"category": "AI Design & Presentations",
+		"url": "https://uizard.io/pricing/",
+		"description": "An AI tool that turns text prompts, sketches, or screenshots into editable UI mockups and app or web design prototypes.",
+		"freePlan": true,
+		"regularPrice": "$12/mo billed annually - Pro plan",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Figma",
+		"category": "AI Design & Presentations",
+		"url": "https://www.figma.com/pricing/",
+		"description": "A collaborative interface design tool for creating UI/UX designs, prototypes, and diagrams, now with AI features for generating and editing designs.",
+		"freePlan": true,
+		"regularPrice": "$3/mo Collab seat (editor seats cost more)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Semrush",
+		"category": "AI SEO & Content Optimization",
+		"url": "https://www.semrush.com/",
+		"description": "An all-in-one SEO and marketing platform for keyword research, site audits, rank tracking, backlink analysis and AI search visibility monitoring.",
+		"freePlan": true,
+		"regularPrice": "$139/mo, or $117.33/mo billed yearly (SEO plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Ahrefs",
+		"category": "AI SEO & Content Optimization",
+		"url": "https://ahrefs.com/",
+		"description": "An SEO tool for backlink analysis, keyword research, site audits and competitor traffic tracking.",
+		"freePlan": true,
+		"regularPrice": "$29/mo billed yearly (Starter plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Surfer",
+		"category": "AI SEO & Content Optimization",
+		"url": "https://surfer.ai/",
+		"description": "A content optimization tool that scores drafts against top-ranking pages and tracks how content is cited in AI search answers.",
+		"freePlan": true,
+		"regularPrice": "$49/mo billed yearly (Discovery plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Frase",
+		"category": "AI SEO & Content Optimization",
+		"url": "https://www.frase.io/",
+		"description": "An AI content research and brief-writing tool that helps draft and optimize articles to rank on Google and get cited by AI answers.",
+		"freePlan": false,
+		"regularPrice": "$39/mo billed yearly (Starter plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "NeuronWriter",
+		"category": "AI SEO & Content Optimization",
+		"url": "https://www.neuronwriter.com/",
+		"description": "A content optimization tool that generates SEO briefs and content scores based on competitor and AI search analysis.",
+		"freePlan": false,
+		"regularPrice": "$23/mo (Bronze plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "SE Ranking",
+		"category": "AI SEO & Content Optimization",
+		"url": "https://seranking.com/",
+		"description": "An SEO platform for rank tracking, site audits, keyword research and AI-search visibility monitoring.",
+		"freePlan": false,
+		"regularPrice": "$103.20/mo billed yearly (Core plan)",
+		"deal": {
+			"status": "confirmed",
+			"summary": "20% off annual plans and eligible add-ons (stacks on top of the standing 20% annual-billing discount), applied automatically, no code needed",
+			"code": null,
+			"ends": "2026-12-04",
+			"sourceUrl": "https://seranking.com/black-friday.html"
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Clearscope",
+		"category": "AI SEO & Content Optimization",
+		"url": "https://www.clearscope.io/",
+		"description": "A content optimization platform that grades drafts against top search results and tracks a brand's visibility across Google and AI assistants.",
+		"freePlan": false,
+		"regularPrice": "$129/mo (Essentials plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "AdCreative.ai",
+		"category": "AI Marketing, Ads & Social",
+		"url": "https://www.adcreative.ai/",
+		"description": "Generates ad banners, ad copy, product photoshoots and video ads intended to outperform competitors' creative.",
+		"freePlan": false,
+		"regularPrice": "$39/mo (Starter plan)",
+		"deal": {
+			"status": "confirmed",
+			"summary": "50% off quarterly and yearly plans, plus double credits",
+			"code": null,
+			"ends": null,
+			"sourceUrl": "https://www.adcreative.ai/"
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Predis.ai",
+		"category": "AI Marketing, Ads & Social",
+		"url": "https://predis.ai/",
+		"description": "An AI tool that generates social media ads, short-form videos and UGC-style content from a product link or prompt.",
+		"freePlan": false,
+		"regularPrice": "$19/mo (Core plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Buffer",
+		"category": "AI Marketing, Ads & Social",
+		"url": "https://buffer.com/",
+		"description": "Schedules and publishes social media posts across platforms and provides analytics and AI-assisted caption writing.",
+		"freePlan": true,
+		"regularPrice": "$5/mo billed yearly (Essentials plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Hootsuite",
+		"category": "AI Marketing, Ads & Social",
+		"url": "https://www.hootsuite.com/",
+		"description": "A social media management platform for scheduling posts, AI content generation (OwlyWriter), unified inboxes and listening.",
+		"freePlan": false,
+		"regularPrice": "$99/mo per user billed yearly (Standard plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Anyword",
+		"category": "AI Marketing, Ads & Social",
+		"url": "https://www.anyword.com/",
+		"description": "An AI copywriting tool that generates marketing copy and scores variants by predicted performance before publishing.",
+		"freePlan": false,
+		"regularPrice": "$39/mo billed yearly (Starter plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Madgicx",
+		"category": "AI Marketing, Ads & Social",
+		"url": "https://madgicx.com/",
+		"description": "An ad management and optimization platform that automates and analyzes Facebook and Google ad campaigns for e-commerce brands.",
+		"freePlan": false,
+		"regularPrice": "$32/mo billed yearly (for ad spend under $1k)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	},
+	{
+		"name": "Ocoya",
+		"category": "AI Marketing, Ads & Social",
+		"url": "https://ocoya.com/",
+		"description": "An AI marketing copilot for scheduling social media posts, generating captions and writing SEO articles across channels.",
+		"freePlan": false,
+		"regularPrice": "$29/mo (Starter plan)",
+		"deal": {
+			"status": "not_announced",
+			"summary": null,
+			"code": null,
+			"ends": null,
+			"sourceUrl": null
+		},
+		"checkedOn": "2026-11-17"
+	}
+]

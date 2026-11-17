@@ -1,0 +1,55 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import DealSubmitForm from '../components/DealSubmitForm.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+import deals from '../data/bf-ai-deals.json';
+
+const categories = [...new Set(deals.map((d) => d.category))].sort();
+const listUrl = '/blog/best-ai-tools-black-friday-deals/';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'WebPage',
+	name: 'Submit your AI tool deal',
+	url: 'https://aiseoshift.com/submit-ai-deal/',
+	description: 'Send us a Black Friday or Cyber Monday deal on an AI tool. We check it on the vendor site and add it to our AI tool deals list.',
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`Submit Your AI Tool Deal | ${SITE_TITLE}`}
+			description="Run an AI tool with a Black Friday or Cyber Monday deal? Send it to us. We check every deal on the vendor's site before adding it to our list."
+			structuredData={structuredData}
+		/>
+		<style>
+			.submit-page { width: min(820px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
+			.submit-hero { margin-bottom: var(--space-6); }
+			.submit-kicker { color: var(--signal-deep); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+			.submit-hero h1 { margin: var(--space-2) 0 var(--space-3); }
+			.submit-hero p { color: rgb(var(--ink-muted)); }
+			.submit-hero a { color: var(--signal-deep); }
+			@media (max-width: 640px) { .submit-page { padding-top: var(--space-5); } }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main id="main-content" class="submit-page">
+			<section class="submit-hero">
+				<span class="submit-kicker">AI tool deals</span>
+				<h1>Submit your AI tool deal</h1>
+				<p>
+					Running a Black Friday or Cyber Monday offer on an AI tool? Tell us about it. We check it on your
+					site and add it to <a href={listUrl}>our list of AI tool deals</a>. Real offers only: no expired
+					codes and no standing annual-billing discounts.
+				</p>
+			</section>
+			<DealSubmitForm categories={categories} backUrl={listUrl} />
+		</main>
+		<Footer />
+	</body>
+</html>

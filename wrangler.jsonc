@@ -27,6 +27,20 @@
         "limit": 20,
         "period": 60
       }
+    },
+    {
+      "name": "DEAL_RATE_LIMITER",
+      "namespace_id": "1002",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    }
+  ],
+  "send_email": [
+    {
+      "name": "DEAL_EMAIL",
+      "destination_address": "shashank@wbcomdesigns.com"
     }
   ]
 }

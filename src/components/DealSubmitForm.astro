@@ -1,0 +1,150 @@
+---
+/**
+ * "Submit your deal" form. Posts to /api/submit-deal on aiseoshift.com, which
+ * emails the submission to the site owner. airankaudit.com uses a copy of this
+ * component with endpoint="https://aiseoshift.com/api/submit-deal".
+ */
+interface Props {
+	categories: string[];
+	endpoint?: string;
+	backUrl?: string;
+}
+const { categories, endpoint = '/api/submit-deal', backUrl = '/blog/best-ai-tools-black-friday-deals/' } = Astro.props;
+---
+
+<form class="deal-form" data-deal-form action={endpoint} method="post" novalidate>
+	<fieldset>
+		<legend>About the deal</legend>
+		<div class="deal-form-grid">
+			<label><span>Tool name <span class="req" aria-hidden="true">*</span></span>
+				<input name="tool" required maxlength="120" autocomplete="organization" />
+			</label>
+			<label><span>Tool website <span class="req" aria-hidden="true">*</span></span>
+				<input name="website" type="url" required maxlength="300" placeholder="https://" inputmode="url" />
+			</label>
+			<label><span>Category <span class="req" aria-hidden="true">*</span></span>
+				<select name="category" required>
+					<option value="">Choose a category</option>
+					{categories.map((c) => <option value={c}>{c}</option>)}
+					<option value="Other">Other</option>
+				</select>
+			</label>
+			<label><span>Regular price</span>
+				<input name="regular_price" maxlength="120" placeholder="e.g. $29/mo" />
+			</label>
+			<label class="deal-form-wide"><span>Deal details <span class="req" aria-hidden="true">*</span></span>
+				<textarea name="deal" required maxlength="1000" rows="3" placeholder="e.g. 50% off the annual Pro plan for new customers"></textarea>
+			</label>
+			<label><span>Coupon code</span>
+				<input name="code" maxlength="60" autocomplete="off" />
+			</label>
+			<label><span>Deal ends</span>
+				<input name="ends" type="date" />
+			</label>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>About you</legend>
+		<div class="deal-form-grid">
+			<label><span>Your name <span class="req" aria-hidden="true">*</span></span>
+				<input name="name" required maxlength="120" autocomplete="name" />
+			</label>
+			<label><span>Work email <span class="req" aria-hidden="true">*</span></span>
+				<input name="email" type="email" required maxlength="200" autocomplete="email" />
+			</label>
+			<label class="deal-form-wide"><span>Anything else we should know?</span>
+				<textarea name="notes" maxlength="2000" rows="3"></textarea>
+			</label>
+		</div>
+	</fieldset>
+
+	<div class="deal-form-hp" aria-hidden="true">
+		<label>Leave this empty <input name="company_url" tabindex="-1" autocomplete="off" /></label>
+	</div>
+	<input type="hidden" name="page" value={Astro.url.href} />
+
+	<p class="deal-form-note">We check every deal on the tool's own site before adding it. Nothing goes live automatically.</p>
+	<button type="submit">Submit deal</button>
+	<p class="deal-form-status" role="status" aria-live="polite" data-deal-status></p>
+</form>
+
+<div class="deal-form-done" hidden data-deal-done tabindex="-1">
+	<h2>Thanks, we got your deal</h2>
+	<p>We will check it on your site and add it to the list if it holds up. If we have questions, we will reply to the email you gave us.</p>
+	<p><a href={backUrl}>Back to the AI tool deals</a></p>
+</div>
+
+<script>
+	for (const form of document.querySelectorAll<HTMLFormElement>('[data-deal-form]')) {
+		const status = form.querySelector<HTMLElement>('[data-deal-status]')!;
+		const done = form.nextElementSibling as HTMLElement;
+		const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			status.className = 'deal-form-status';
+			if (!form.checkValidity()) {
+				const bad = form.querySelector<HTMLElement>(':invalid');
+				status.textContent = 'Please fill in the required fields marked with *.';
+				status.classList.add('is-error');
+				bad?.focus();
+				return;
+			}
+			button.disabled = true;
+			status.textContent = 'Sending...';
+			try {
+				const res = await fetch(form.action, {
+					method: 'POST',
+					headers: { 'content-type': 'application/json' },
+					body: JSON.stringify(Object.fromEntries(new FormData(form))),
+				});
+				const out = await res.json().catch(() => ({}));
+				if (!res.ok || !out.ok) throw new Error(out.error || 'Something went wrong. Please try again.');
+				form.hidden = true;
+				done.hidden = false;
+				done.focus();
+			} catch (err) {
+				status.textContent = (err as Error).message;
+				status.classList.add('is-error');
+				button.disabled = false;
+			}
+		});
+	}
+</script>
+
+<style>
+	.deal-form fieldset { border: 1px solid var(--line); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); margin: 0 0 var(--space-5); }
+	.deal-form legend { padding-inline: var(--space-2); font-weight: 700; }
+	.deal-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+	.deal-form-wide { grid-column: 1 / -1; }
+	.deal-form label { display: grid; gap: var(--space-1); font-size: 0.85rem; font-weight: 700; }
+	.deal-form .req { color: var(--signal-deep); }
+	.deal-form input, .deal-form select, .deal-form textarea {
+		width: 100%; box-sizing: border-box; padding: 0.65rem 0.8rem; font: inherit; font-size: 1rem; font-weight: 400;
+		color: rgb(var(--ink)); background: rgb(var(--paper)); border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+	}
+	.deal-form textarea { resize: vertical; }
+	.deal-form input:focus-visible, .deal-form select:focus-visible, .deal-form textarea:focus-visible, .deal-form button:focus-visible {
+		outline: 2px solid var(--signal); outline-offset: 2px;
+	}
+	.deal-form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+	.deal-form-note { font-size: 0.9rem; color: rgb(var(--ink-muted)); }
+	.deal-form button {
+		padding: 0.85rem 1.4rem; font: inherit; font-weight: 700; cursor: pointer;
+		color: #fff; background: var(--signal); border: 0; border-radius: var(--radius-sm);
+	}
+	.deal-form button:hover { background: var(--signal-deep); }
+	.deal-form button:disabled { opacity: 0.6; cursor: wait; }
+	.deal-form-status { min-height: 1.5em; font-size: 0.95rem; }
+	.deal-form-status.is-error { color: #b91c1c; }
+	:global([data-theme='dark']) .deal-form-status.is-error { color: #f87171; }
+	.deal-form-done a { color: var(--signal-deep); font-weight: 700; }
+	.deal-form-done { padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); }
+
+	@media (max-width: 640px) {
+		.deal-form fieldset { padding: var(--space-3) var(--space-4); }
+		.deal-form-grid { grid-template-columns: 1fr; }
+		.deal-form button { width: 100%; }
+	}
+</style>

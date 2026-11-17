@@ -1,0 +1,230 @@
+---
+/**
+ * Filterable AI tool deals list (Black Friday / Cyber Monday).
+ *
+ * Every tool is rendered server-side as plain HTML, so search engines and AI
+ * crawlers read the full list. The script only hides or shows rows.
+ *
+ * Data: src/data/bf-ai-deals.json. To refresh for a new year, edit that file
+ * (deal.status, deal.summary, checkedOn) and the post's title/dates. The URL
+ * stays the same.
+ *
+ * ponytail: client-side filter over ~100 rows. Fine up to a few hundred; past
+ * that, paginate or move filtering to the server.
+ */
+interface Deal {
+	name: string;
+	category: string;
+	url: string;
+	description: string;
+	freePlan: boolean;
+	regularPrice: string;
+	deal: {
+		status: 'confirmed' | 'not_announced';
+		summary: string | null;
+		code: string | null;
+		ends: string | null;
+		sourceUrl: string | null;
+	};
+	checkedOn: string;
+}
+
+interface Props {
+	deals: Deal[];
+	submitUrl?: string;
+}
+
+const { deals, submitUrl = '/submit-ai-deal/' } = Astro.props;
+
+// Confirmed deals first, then A-Z, so the useful rows are on top.
+const sorted = [...deals].sort(
+	(a, b) =>
+		Number(b.deal.status === 'confirmed') - Number(a.deal.status === 'confirmed') ||
+		a.name.localeCompare(b.name),
+);
+const categories = [...new Set(deals.map((d) => d.category))].sort();
+const confirmedCount = deals.filter((d) => d.deal.status === 'confirmed').length;
+
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const fmtDate = (iso: string) =>
+	new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const sentence = (s: string | null) => (s ? (/[.!?]$/.test(s) ? s : `${s}.`) : '');
+const cleanUrl = (u: string) => u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+---
+
+<section class="deals" aria-labelledby="deals-heading" data-deals>
+	<h2 id="deals-heading">All AI tool deals, by category</h2>
+	<p class="deals-intro">
+		{deals.length} tools across {categories.length} categories. {confirmedCount} have a confirmed deal right now.
+		Pick a category or search by name.
+	</p>
+
+	<div class="deals-controls">
+		<label class="deals-search">
+			<span>Search tools</span>
+			<input type="search" placeholder="e.g. video, ElevenLabs, SEO" data-deals-search autocomplete="off" />
+		</label>
+		<div class="deals-cats" role="group" aria-label="Filter by category">
+			<button type="button" class="deals-chip" aria-pressed="true" data-cat="all">All ({deals.length})</button>
+			{categories.map((c) => (
+				<button type="button" class="deals-chip" aria-pressed="false" data-cat={slug(c)}>
+					{c} ({deals.filter((d) => d.category === c).length})
+				</button>
+			))}
+		</div>
+		<label class="deals-toggle">
+			<input type="checkbox" data-deals-confirmed />
+			<span>Show confirmed deals only</span>
+		</label>
+	</div>
+
+	<p class="deals-count" aria-live="polite" data-deals-count>Showing all {deals.length} tools</p>
+
+	<ul class="deals-list">
+		{sorted.map((d) => (
+			<li
+				class="deal"
+				data-cat={slug(d.category)}
+				data-status={d.deal.status}
+				data-text={`${d.name} ${d.category} ${d.description}`.toLowerCase()}
+			>
+				<div class="deal-head">
+					<h3 class="deal-name">
+						<a href={d.url} rel="nofollow noopener" target="_blank">{d.name}</a>
+					</h3>
+					<span class="deal-cat">{d.category}</span>
+				</div>
+				<p class="deal-desc">{d.description}</p>
+				{d.deal.status === 'confirmed' ? (
+					<p class="deal-offer deal-offer--live">
+						<strong>Deal:</strong> {sentence(d.deal.summary)}
+						{d.deal.code && <> Code <code>{d.deal.code}</code>.</>}
+						{d.deal.ends && <> Ends {fmtDate(d.deal.ends)}.</>}
+					</p>
+				) : (
+					<p class="deal-offer">
+						<strong>Deal:</strong> Not announced yet. We check again before Black Friday.
+					</p>
+				)}
+				<dl class="deal-meta">
+					<div><dt>Regular price</dt><dd>{d.regularPrice}</dd></div>
+					<div><dt>Free plan</dt><dd>{d.freePlan ? 'Yes' : 'No'}</dd></div>
+					<div>
+						<dt>Checked</dt>
+						<dd>
+							{fmtDate(d.checkedOn)}
+							{d.deal.sourceUrl && <> on <a href={d.deal.sourceUrl} rel="nofollow noopener" target="_blank">{cleanUrl(d.deal.sourceUrl)}</a></>}
+						</dd>
+					</div>
+				</dl>
+			</li>
+		))}
+	</ul>
+
+	<p class="deals-empty" hidden data-deals-empty>
+		No tools match that search. Try another word, or <a href={submitUrl}>tell us about a deal we missed</a>.
+	</p>
+
+	<aside class="deals-submit">
+		<p><strong>Run an AI tool with a Black Friday deal?</strong> Send it to us and we will add it after checking it.</p>
+		<a class="deals-submit-btn" href={submitUrl}>Submit your deal</a>
+	</aside>
+</section>
+
+<script>
+	for (const root of document.querySelectorAll<HTMLElement>('[data-deals]')) {
+		const search = root.querySelector<HTMLInputElement>('[data-deals-search]')!;
+		const onlyConfirmed = root.querySelector<HTMLInputElement>('[data-deals-confirmed]')!;
+		const chips = [...root.querySelectorAll<HTMLButtonElement>('.deals-chip')];
+		const rows = [...root.querySelectorAll<HTMLElement>('.deal')];
+		const count = root.querySelector<HTMLElement>('[data-deals-count]')!;
+		const empty = root.querySelector<HTMLElement>('[data-deals-empty]')!;
+		let cat = new URLSearchParams(location.search).get('category') || 'all';
+
+		const apply = () => {
+			const q = search.value.trim().toLowerCase();
+			let shown = 0;
+			for (const r of rows) {
+				const ok =
+					(cat === 'all' || r.dataset.cat === cat) &&
+					(!onlyConfirmed.checked || r.dataset.status === 'confirmed') &&
+					(!q || r.dataset.text!.includes(q));
+				r.hidden = !ok;
+				if (ok) shown++;
+			}
+			for (const c of chips) c.setAttribute('aria-pressed', String(c.dataset.cat === cat));
+			count.textContent = shown === rows.length ? `Showing all ${rows.length} tools` : `Showing ${shown} of ${rows.length} tools`;
+			empty.hidden = shown > 0;
+		};
+
+		for (const c of chips) {
+			c.addEventListener('click', () => {
+				cat = c.dataset.cat!;
+				const u = new URL(location.href);
+				cat === 'all' ? u.searchParams.delete('category') : u.searchParams.set('category', cat);
+				history.replaceState(null, '', u);
+				apply();
+			});
+		}
+		search.addEventListener('input', apply);
+		onlyConfirmed.addEventListener('change', apply);
+		if (!chips.some((c) => c.dataset.cat === cat)) cat = 'all';
+		apply();
+	}
+</script>
+
+<style>
+	.deals { margin-block: var(--space-7); }
+	.deals-intro { color: rgb(var(--ink-muted)); }
+	.deals-controls {
+		display: grid; gap: var(--space-3);
+		padding: var(--space-4); margin-block: var(--space-4);
+		background: rgb(var(--paper-strong)); border: 1px solid var(--line); border-radius: var(--radius-md);
+	}
+	.deals-search { display: grid; gap: var(--space-1); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+	.deals-search input {
+		width: 100%; box-sizing: border-box; padding: 0.65rem 0.8rem; font: inherit; font-size: 1rem; text-transform: none; letter-spacing: 0;
+		color: rgb(var(--ink)); background: rgb(var(--paper)); border: 1px solid var(--line-strong); border-radius: var(--radius-sm);
+	}
+	.deals-cats { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+	.deals-chip {
+		padding: 0.4rem 0.75rem; font: inherit; font-size: 0.85rem; cursor: pointer;
+		color: rgb(var(--ink)); background: rgb(var(--paper)); border: 1px solid var(--line-strong); border-radius: 999px;
+	}
+	.deals-chip:hover { border-color: var(--signal); }
+	.deals-chip[aria-pressed='true'] { background: var(--signal); border-color: var(--signal); color: #fff; }
+	.deals-search input:focus-visible, .deals-chip:focus-visible, .deals-toggle input:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+	.deals-toggle { display: flex; align-items: center; gap: var(--space-2); font-size: 0.9rem; cursor: pointer; }
+	.deals-count { font-size: 0.9rem; color: rgb(var(--ink-muted)); }
+	.deals-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-4); }
+	.deal { padding: var(--space-4) var(--space-5); border: 1px solid var(--line); border-radius: var(--radius-md); background: rgb(var(--paper)); }
+	.deal-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2); }
+	.deal-name { margin: 0; font-size: 1.2rem; }
+	.deal-cat { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgb(var(--ink-muted)); }
+	.deal-desc { margin-block: var(--space-2); }
+	.deal-offer { margin-block: var(--space-2); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); background: rgb(var(--paper-strong)); font-size: 0.95rem; }
+	.deal-offer--live { border-inline-start: 3px solid var(--signal); }
+	.deal-meta { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin: var(--space-2) 0 0; font-size: 0.85rem; color: rgb(var(--ink-muted)); }
+	.deal-meta div { display: flex; gap: var(--space-1); }
+	.deal-meta dt { font-weight: 700; }
+	.deal-meta dt::after { content: ':'; }
+	.deal-meta dd { margin: 0; overflow-wrap: anywhere; }
+	.deals-empty { padding: var(--space-5); text-align: center; border: 1px dashed var(--line-strong); border-radius: var(--radius-md); }
+	.deals-submit {
+		display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3);
+		margin-top: var(--space-6); padding: var(--space-5); border-radius: var(--radius-md); background: rgb(var(--paper-strong)); border: 1px solid var(--line);
+	}
+	.deals-submit p { margin: 0; }
+	.deals-submit-btn {
+		display: inline-block; padding: 0.75rem 1.1rem; border-radius: var(--radius-sm);
+		background: var(--signal); color: #fff; font-weight: 700; text-decoration: none;
+	}
+	.deals-submit-btn:hover, .deals-submit-btn:focus-visible { background: var(--signal-deep); color: #fff; }
+
+	@media (max-width: 640px) {
+		.deals-controls { padding: var(--space-3); }
+		.deal { padding: var(--space-3) var(--space-4); }
+		.deal-meta { flex-direction: column; }
+		.deals-submit { flex-direction: column; align-items: stretch; text-align: center; }
+	}
+</style>
