@@ -8,6 +8,8 @@ import deals from '../data/bf-ai-deals.json';
 
 const categories = [...new Set(deals.map((d) => d.category))].sort();
 const listUrl = '/blog/best-ai-tools-black-friday-deals/';
+// YouTube-style social card, rendered by scripts/editorial-images/best-ai-tools-black-friday-deals/render.mjs
+const ogImage = { src: '/images/posts/best-ai-tools-black-friday-deals-submit.webp', width: 1600, height: 900, format: 'webp' } as ImageMetadata;
 
 const structuredData = {
 	'@context': 'https://schema.org',
@@ -25,6 +27,8 @@ const structuredData = {
 			title={`Submit Your AI Tool Deal | ${SITE_TITLE}`}
 			description="Run an AI tool with a Black Friday or Cyber Monday deal? Send it to us. We check every deal on the vendor's site before adding it to our list."
 			structuredData={structuredData}
+			image={ogImage}
+			imageAlt="Got an AI tool deal? Submit it to the AISEOShift Black Friday 2026 AI tool deals list. Free listing, every deal verified."
 		/>
 		<style>
 			.submit-page { width: min(820px, calc(100% - 2rem)); margin: 0 auto; padding: var(--space-7) 0 var(--space-9); }
