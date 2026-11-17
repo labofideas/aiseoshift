@@ -2456,16 +2456,34 @@
 	},
 	"google-november-2026-core-update": {
 		"hero": {
-			"src": "/images/posts/is-chatgpt-replacing-google-hero.webp",
-			"alt": "Google Search displayed on a laptop screen",
-			"photographer": "Pixabay",
-			"photographerUrl": "https://www.pexels.com/@pixabay",
-			"sourceName": "Pexels",
-			"sourceUrl": "https://www.pexels.com/photo/google-search-engine-on-macbook-pro-40185/",
-			"width": 1200,
-			"height": 675,
-			"bytes": 64892
+			"src": "/images/posts/google-november-2026-core-update-feature.webp",
+			"width": 1600,
+			"height": 900,
+			"bytes": 75686,
+			"alt": "Google November 2026 core update: launched November 10; rollout in progress as of November 17. What website and brand owners should do now."
 		},
-		"inline": []
+		"og": {
+			"src": "/images/posts/google-november-2026-core-update-feature.webp",
+			"width": 1600,
+			"height": 900,
+			"bytes": 75686,
+			"alt": "Google November 2026 core update: launched November 10; rollout in progress as of November 17. What website and brand owners should do now."
+		},
+		"inline": [
+			{
+				"src": "/images/posts/google-november-2026-core-update-monitor.webp",
+				"width": 1600,
+				"height": 1380,
+				"bytes": 148740,
+				"alt": "Six monitoring priorities: search impressions and clicks, queries and CTR, brand versus discovery, country and device, organic business outcomes, and technical health."
+			},
+			{
+				"src": "/images/posts/google-november-2026-core-update-timeline.webp",
+				"width": 1600,
+				"height": 1300,
+				"bytes": 147930,
+				"alt": "Action timeline: save a baseline during the rollout; fix confirmed problems immediately; assess impact at least a week after completion; prioritize improvements after finding a pattern."
+			}
+		]
 	}
 }
