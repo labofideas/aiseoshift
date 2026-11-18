@@ -2533,5 +2533,21 @@
 			"bytes": 53692,
 			"alt": "Search bar reading gta 6 release date above three source cards: 2025 and May 26, 2026 struck through as stale, November 19, 2026 marked current as of November 18."
 		}
+	},
+	"perplexity-source-limit-what-changed-for-ai-citations": {
+		"hero": {
+			"src": "/images/posts/perplexity-source-limit-what-changed-for-ai-citations-feature.webp",
+			"width": 1280,
+			"height": 720,
+			"bytes": 28378,
+			"alt": "Thumbnail reading 24 to 10 sources per answer, with a source list shrinking from 24 rows to 10 highlighted rows."
+		},
+		"og": {
+			"src": "/images/posts/perplexity-source-limit-what-changed-for-ai-citations-feature-og.jpg",
+			"width": 1200,
+			"height": 630,
+			"bytes": 53446,
+			"alt": "Thumbnail reading 24 to 10 sources per answer, with a source list shrinking from 24 rows to 10 highlighted rows."
+		}
 	}
 }

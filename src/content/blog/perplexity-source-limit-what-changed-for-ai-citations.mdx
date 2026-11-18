@@ -1,0 +1,207 @@
+---
+title: "Perplexity Cut Its Source List to 10: What Changed"
+description: "Meltwater says Perplexity began listing at most 10 sources around October 6, down from about 24. What the data shows, what is unverified, and what to check on your own site."
+deck: "One vendor report, one big number, and a lot of domains that lost their seat. Here is what the October 2026 data confirms, what it does not, and how to audit your own Perplexity citations this week."
+pubDate: 2026-11-18
+category: Research
+tags:
+  - Perplexity
+  - AI citations
+  - AI visibility
+  - Meltwater
+  - ChatGPT
+author: AISEOShift Editorial Desk
+featured: false
+faqs:
+  - q: "Did Perplexity cut the number of sources it shows per answer?"
+    a: "Meltwater says so. Its October 2026 AI search visibility report states that Perplexity began listing at most 10 sources around 6 October, down from about 24. Meltwater does not say whether Perplexity confirmed it or how the change was measured, and Perplexity's public API changelog has no entry about source counts for September to November 2026, as of Nov 2026. Treat it as a credible single-source observation."
+  - q: "Which domains lost the most Perplexity citations after the cut?"
+    a: "In Meltwater's tracked prompts, LinkedIn's Perplexity citations fell about 99 percent, Yahoo's fell about 30 percent, and Forbes lost about two-thirds of its Perplexity citations. Meltwater also reports Perplexity's Earned/News share falling from 39.2 percent to 29.5 percent between the first and second half of October. These figures describe Meltwater's prompt set, not Perplexity as a whole."
+  - q: "Did ChatGPT citations to news publishers drop by 90 percent after GPT-5.6?"
+    a: "Not confirmed here. A Search Engine Land article is reported to say so, but we could not open it (the site returned a 403 error to our fetch), so we cannot confirm its date, data source or wording. OpenAI's release notes were also unreachable. What we did open is a Search Engine Journal report from April 2026 showing ChatGPT citing fewer unique domains per response after a different model change."
+  - q: "Should I stop investing in Reddit or LinkedIn because of this?"
+    a: "No. Meltwater's own FAQ says its findings do not support cutting Reddit investment, and it describes LinkedIn's near-disappearance from Perplexity as a platform change to monitor before shifting B2B content plans. One engine's list length changed. Your audience, your other engines and your referral data should drive the decision."
+  - q: "How do I check whether my site is still cited in Perplexity?"
+    a: "Run a fixed set of 20 to 30 real customer questions in Perplexity on the same day each week, log which domains appear and in what position, and compare against your pre-October notes if you have them. Add perplexity.ai referral sessions in GA4 as a second signal. A citation tracker automates the sampling but does not replace checking a few answers by hand."
+  - q: "Does fewer sources mean AI search is sending less traffic?"
+    a: "The data we opened does not say. Meltwater measures citations, not clicks. Fewer listed sources could mean fewer chances to be clicked, but no click or referral figures were published in the report, so check your own GA4 referral sessions before drawing a conclusion."
+  - q: "What should I change on my pages if I lost citations?"
+    a: "Put a direct, self-contained answer near the top of the page, make it obvious who you are and what the page covers, keep dates and facts current, and earn mentions on third-party pages that Perplexity already trusts. None of these is new advice. A shorter source list simply raises the price of skipping them."
+  - q: "Is this a permanent change?"
+    a: "Unknown. Meltwater says it is too early to call the wider Earned/News decline a trend and says November data will show whether related shifts, such as the one it recorded in Gemini, are a new baseline. Perplexity has not announced a policy in anything we opened."
+---
+
+Perplexity appears to have shrunk its source list from about 24 to at most 10 in early October 2026. That is the one headline claim in this story that survived verification, and it rests on a single vendor report.
+
+The second claim going around, that ChatGPT stopped citing major news publishers after the GPT-5.6 rollout, is something we could not confirm. More on that below. First, the part we can stand behind.
+
+## Key takeaways
+
+- **Confirmed as reported, single source:** Meltwater's October 2026 report states that Perplexity began listing at most 10 sources around 6 October, down from about 24 ([Meltwater, published Nov 13, 2026](https://www.meltwater.com/en/blog/ai-search-visibility-report-october-2026), as of Nov 2026).
+- **Who moved:** In Meltwater's tracked prompts, LinkedIn lost about 99 percent of its Perplexity citations, Yahoo about 30 percent, and Forbes about two-thirds. Reddit's share on Perplexity rose from 0.9 to 1.4 percent.
+- **Not confirmed:** The "ChatGPT news citations fell up to 90 percent" claim. We could not open the Search Engine Land article and will not repeat numbers we have not read.
+- **Not announced:** Perplexity's public API changelog has no entry about source counts for September to November 2026, as of Nov 2026.
+- **What it means for you:** Fewer slots means a harder shortlist. Check your own citations before reacting.
+
+## What did Meltwater actually report?
+
+The source is Meltwater's "AI search visibility report for October 2026," written by Nathaniel Pallen, Senior Director of Product Management at Meltwater, and published November 13, 2026. It uses Meltwater's GenAI Lens tool across 120,000 prompts, 12.7 million answers and 88.6 million citations on eight AI platforms, as of Nov 2026.
+
+The Perplexity line is short. The report says Perplexity "began listing at most 10 sources around 6 October, down from about 24."
+
+Two things are worth noticing about that sentence.
+
+First, it is approximate on both ends. "Around 6 October." "About 24." Meltwater is describing what its tracking observed, not quoting a change log.
+
+Second, the report does not say whether Perplexity confirmed the change or how Meltwater established the two numbers. It is presented as an observed fact. I opened Perplexity's public API changelog and found no entry from September to November 2026 about citation counts or the number of sources shown. That changelog covers the API, so its silence proves nothing about the consumer app. It does mean there is no second source in the places I could check.
+
+So the honest label is: credible, specific, single-sourced.
+
+### The numbers attached to it
+
+Meltwater compares 1 to 15 October with 16 to 31 October. Because the Perplexity change landed inside the first half, the report itself warns that first-half comparisons "mix days from before and after it." The figures below are therefore blunt instruments.
+
+| Metric (Perplexity unless noted) | Meltwater's figure | Note |
+| --- | --- | --- |
+| Source list length | About 24 to at most 10, around 6 Oct | Approximate, single source |
+| Earned/News share of citations | 39.2% to 29.5% (down 9.7 points) | Meltwater attributes the overall Earned/News dip mostly to Perplexity |
+| Reddit share of citations | 0.9% to 1.4% | Rose "around 6 October, when its source lists were cut" |
+| LinkedIn citations | Down about 99% | LinkedIn's total across all platforms fell 7.4% |
+| Yahoo citations | Down about 30% | Still Perplexity's top source at 484,272 citations |
+| Forbes citations | Lost about two-thirds | Growth in Copilot offset the loss |
+
+*All figures from Meltwater, as of Nov 2026. They describe Meltwater's tracked prompts and reporting period.*
+
+Meltwater defines Earned/News as news and editorial outlets such as Yahoo and Forbes. Social covers YouTube, Reddit, Facebook, LinkedIn and Instagram. A "citation" is counted per source reference, grouped by registered domain.
+
+### What the report says about its own limits
+
+This part gets skipped in most summaries, so here it is plainly. Meltwater says the October prompt set is much wider than before (it grew from about 4,000 to 120,000 prompts), so the figures "are not comparable with previous months." It says the first-half versus second-half comparison is for this month only. Of a 4.3 point drop in Earned/News share, it attributes roughly 1.7 points to model mix and 2.6 points to within-model changes, mainly Perplexity. And it says "it is too early to call it a trend."
+
+Its closing caveat is the one to keep in your head: the findings "describe the tracked prompts and reporting period." They do not establish a universal ranking of trusted sources.
+
+## Why "24" and "10" need a second look
+
+Here is where I would slow down before repeating the headline.
+
+Our own earlier research says Perplexity in default mode typically cites three to six sources per response, reaching eight to ten on complex queries ([How Perplexity selects its citations](/blog/how-perplexity-selects-citations/)). That is a different number from 24. Both can be true if they measure different things.
+
+Meltwater says "listing" sources. A source list in the answer interface can be longer than the handful of numbered references a reader sees inline. Perplexity answers can show a sources panel with more entries than the footnotes in the text. Which of those Meltwater counted is not stated in the report.
+
+I did not test this myself for this article, so I will not tell you which interpretation is right. What I can say is that a cut from about 24 to 10 and a typical inline count of three to six are not contradictory, and that the useful version of the claim for your site is "the pool of domains Perplexity shows alongside an answer got smaller," not "Perplexity now cites 10 pages inline."
+
+That distinction matters when you audit your own visibility. Decide up front whether you are counting the sources list or the inline references, and count the same thing every time.
+
+## The ChatGPT claim: what we could and could not verify
+
+The brief behind this article included a second development: that ChatGPT citations to major news publishers dropped by up to 90 percent after the GPT-5.6 rollout on July 9, 2026, while Google rankings held steady, reported by Search Engine Land under a title suggesting the drops "look like unannounced Google core updates."
+
+I tried to open that article. The site returned a 403 error to every fetch from this session. I did not find a way around that which I was comfortable using, so I have not read the article. That means I cannot tell you its publish date, whose data it uses, what "up to 90 percent" refers to (which publishers, which prompts, which window), or how it separates ChatGPT's behavior from Google's.
+
+OpenAI's ChatGPT release notes also returned a 403. I did see multiple news outlets in search results dating a GPT-5.6 release to July 9, 2026, but I did not open a primary OpenAI page, so I am not building analysis on the model change.
+
+What I will say, and no more: the claim is unverified in this piece. If you have the Search Engine Land article open in your own browser, read its methodology before you quote its number.
+
+### Related data I did open
+
+Two pieces of context that I could read in full, neither of which is the 90 percent claim:
+
+- **Search Engine Journal, April 6, 2026 (Matt G. Southern):** Resoneo's analysis, using Meteoria visibility data and Oncrawl server logs across 27,000 comparable ChatGPT responses, found average unique domains per response fell from 19 to 15 after ChatGPT's early-March transition to GPT-5.3 Instant. That is roughly a 20 percent drop, not 90. The article stresses that the cause is Resoneo's interpretation, the sample comes from one tracking platform, and it is unclear whether the citation surface will keep narrowing ([source](https://www.searchenginejournal.com/chatgpt-search-is-citing-fewer-sites-data-shows/571219/), as of Nov 2026).
+- **Lily Ray, February 17, 2026:** In a deliberately small sample of 11 subfolders that lost organic traffic in Google's unconfirmed January 2026 update, AI citations fell an average of 22.5 percent, with ChatGPT down 27.8 percent but Perplexity down only 2.9 percent on average (and growing for 7 of the 11). The author flags the small sample and says the ChatGPT-to-Google link is not officially confirmed ([source](https://lilyraynyc.substack.com/p/are-citations-in-ai-search-affected), as of Nov 2026).
+
+Read together, those two pieces support a modest claim: AI engines change which sources they show when models or retrieval change, and the size and direction differ by engine. They do not support a number like 90 percent for anyone.
+
+## Meltwater saw a second shrink: Gemini
+
+One more item from the same report belongs here because it is about the same mechanism. Meltwater says that from 15 October, Gemini's answers fell from about 9.8 links to about 3.7, and total Gemini citations dropped 66 percent. Reddit citations in Gemini fell 88 percent, and Reddit's share went from 4.0 percent on 1 October to 1.1 percent on 31 October. The report says Gemini's change "took hold over a few days around 15 October," and that November data will show whether it is a new baseline.
+
+Same report, same caution: single source, tracked prompts, too early to call. But two engines trimming their lists within two weeks of each other is worth logging, even if it turns out to be coincidence.
+
+## What does a shorter list do to your odds?
+
+This section is my analysis, not Meltwater's. Label it as inference.
+
+If the maximum drops from about 24 to 10, the list keeps roughly 42 percent of its previous capacity. Slots do not disappear evenly. Three effects follow, in order of how confident I am.
+
+**The cutoff moves up the ranking.** Whatever Perplexity uses to order sources, a page that used to appear at position 14 now needs to be roughly a top-ten candidate. Marginal inclusions vanish first.
+
+**Pages with a reason to be kept survive.** Meltwater's Reddit line is the clearest hint: "When Perplexity cites fewer sources, Reddit is one it tends to keep." Reddit's share rose even as lists shrank. Meltwater does not say why. A reasonable reading is that sources with direct, specific, question-shaped answers are harder to cut than generic coverage, but that is a reading, not a finding.
+
+**Generic coverage is the vulnerable layer.** The domains that lost the most in Meltwater's data are large news and professional-network sites. Meltwater itself says Earned/News slipped mostly because of Perplexity's shorter lists. If your visibility was that of one more name in a long list of outlets, a long list was doing the work, and the list got shorter.
+
+A shortlist effect also compounds. Each engine already picks a different set of sources, which our citation research covered in [where AI engines pull their citations](/blog/where-ai-engines-pull-citations/). Shrink the list and the overlap between engines gets thinner, so a site that was cited a little everywhere can end up cited strongly nowhere.
+
+## How do you check your own citations?
+
+Do this before changing a single page. You need a baseline, and the shift in question happened six weeks ago.
+
+### 1. Manual prompt sampling
+
+Pick 20 to 30 questions that real customers ask and that your pages answer. Run each in Perplexity on the same day, in the same mode, logged out or in a clean session. Record three things per prompt: whether you appear, which position in the source list, and which competitors appear.
+
+Do it weekly. One run tells you almost nothing, because answers vary from run to run. Our [setup guide for tracking AI citations](/blog/how-to-track-ai-citations/) lays out a logging sheet and a weekly protocol that fits this exactly.
+
+Count one thing consistently. As noted above, the source list and the inline references are not the same number.
+
+### 2. Referral traffic in GA4
+
+In GA4, open Reports, then Acquisition, then Traffic acquisition, and filter sessions by source. Look for `perplexity.ai`, and check for `chatgpt.com` as well. Compare September with the weeks after 6 October.
+
+Two cautions. Referral data only counts people who clicked, so it misses the brand lift from being named in an answer. And a flat line is not proof of nothing happening, because small volumes swing wildly week to week. If your AI referrals are a few dozen sessions a month, do not read a trend into a ten-session change. The [GA4 setup guide](/blog/ga4-for-ai-seo-tracking/) covers a custom channel group that bundles these sources together.
+
+### 3. Citation trackers
+
+A tracker automates the sampling and keeps history, which is the part you cannot recreate after the fact. If you do not have one, start now so the next change is not invisible. The tradeoffs are covered in [best Perplexity rank tracker tools](/blog/best-perplexity-rank-tracker/). Tracker data still needs a spot check by hand, because the tools sample prompts too and can disagree with each other.
+
+## What should you change on the page?
+
+Nothing below is new. A smaller list does not change what earns a place, it makes skipping the basics cost more. Here is a checklist you can work through.
+
+| Area | What to do | How you will know it worked |
+| --- | --- | --- |
+| Answer-first pages | Put a direct 40 to 80 word answer under the heading that matches the question. Follow with evidence, not a preamble. | The answer paragraph quotes cleanly when you paste it into a prompt as a test |
+| Entity clarity | State who you are, what the page covers and who wrote it in plain text near the top. Keep the brand name, product name and author name identical across your site and profiles. | A prompt asking "what is [your brand]" returns a description that matches yours |
+| Freshness | Show a real last-updated date, and actually update the page when facts change. Do not bump dates on unchanged text. | The date and the facts in the AI answer match the live page |
+| Third-party corroboration | Earn mentions or descriptions on pages outside your domain that cover your category, such as industry directories, reputable reviews and community threads. | Your brand appears in sources other than your own site when you run the sampling prompts |
+| Format fit | Use real headings, short paragraphs, tables for comparisons, and named sources for every statistic. | Passages from your page appear in answers with minimal rewording |
+| Measurement | Fix your prompt set, mode and counting rule. Log changes to the setup itself. | Week-to-week comparisons survive a skeptical reader |
+
+The structure advice in [our breakdown of a citation-friendly blog post](/blog/perfect-blog-post-structure-ai-citation/) goes deeper on the first and fifth rows.
+
+On Meltwater's own advice list, the relevant points are close to this one: pages that "answer questions directly and show evidence stay useful," keep reference information about your brand accurate where Wikipedia and similar sources hold it, and track volume and share together with consistent prompts and windows. Meltwater also says not to rebuild strategy around Gemini's change before November data is in. I would extend that caution to Perplexity.
+
+## What not to conclude
+
+**Do not conclude that Perplexity changed its ranking.** The reported change is list length. Meltwater does not claim Perplexity changed how it scores pages.
+
+**Do not conclude that LinkedIn content is dead for AI.** A 99 percent fall on Perplexity in one report is dramatic, and Meltwater's own phrase is "a platform change to monitor." LinkedIn's total across all platforms fell 7.4 percent, not 99.
+
+**Do not conclude that Reddit is now the answer.** Reddit's Perplexity share rose from 0.9 to 1.4 percent. That is small in absolute terms. Meltwater's FAQ says the findings "do not support" reducing Reddit investment, which is a different statement from recommending more of it. Elsewhere in the same report, Reddit's Gemini citations fell 88 percent.
+
+**Do not conclude that ChatGPT dropped news publishers by 90 percent.** Not verified here. See above.
+
+**Do not conclude that traffic fell.** Nothing we opened measures clicks. Citations and visits are different outcomes.
+
+**Do not compare October's figures with earlier Meltwater reports.** The prompt set changed size, and Meltwater says so.
+
+**Do not treat a cut as permanent.** Search products revise these knobs. Perplexity has said nothing publicly in the pages I could open.
+
+## What to do this week
+
+1. Write down your 20 to 30 prompts. Run them in Perplexity today and save the output.
+2. Pull GA4 referral sessions for `perplexity.ai` and `chatgpt.com` for September, October and November to date.
+3. Mark the pages that used to earn citations and check whether they have a direct answer, a visible date and a clear author.
+4. Pick two or three pages and fix them. Do not rewrite a whole site on one vendor's chart.
+5. Re-run the same prompts in two weeks. That comparison is yours, and it is the only one that matters to your business.
+
+## Sources
+
+All pages below were opened for this article, as of Nov 2026, except where noted.
+
+- Meltwater, [AI search visibility report for October 2026](https://www.meltwater.com/en/blog/ai-search-visibility-report-october-2026), published Nov 13, 2026.
+- Search Engine Journal, [ChatGPT Search Is Citing Fewer Sites, Data Shows](https://www.searchenginejournal.com/chatgpt-search-is-citing-fewer-sites-data-shows/571219/), April 6, 2026.
+- Lily Ray, [Are Citations in AI Search Affected by Google Organic Visibility Changes?](https://lilyraynyc.substack.com/p/are-citations-in-ai-search-affected), February 17, 2026.
+- Perplexity, [API changelog](https://docs.perplexity.ai/changelog/changelog): no entry on source counts for September to November 2026.
+- Not opened (403 errors from this session): Search Engine Land's ChatGPT citation article and OpenAI's ChatGPT release notes.
+
+Related reading on this site: [how Perplexity selects citations](/blog/how-perplexity-selects-citations/), [how ChatGPT Search selects sources](/blog/how-chatgpt-search-selects-sources/), [how ChatGPT, Perplexity and Google cite differently](/blog/how-chatgpt-perplexity-google-cite-differently/), and our [Google November 2026 core update](/blog/google-november-2026-core-update/) explainer.
