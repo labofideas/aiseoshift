@@ -2517,5 +2517,21 @@
 			"bytes": 55327,
 			"alt": "Thumbnail reading Is that GTA 6 clip AI, with a magnifying glass and a checklist for spotting AI-generated GTA 6 videos."
 		}
+	},
+	"gta-6-release-date-ai-search-answers-stale-sources": {
+		"hero": {
+			"src": "/images/posts/gta-6-release-date-ai-search-answers-stale-sources-feature.webp",
+			"width": 1600,
+			"height": 900,
+			"bytes": 53692,
+			"alt": "Search bar reading gta 6 release date above three source cards: 2025 and May 26, 2026 struck through as stale, November 19, 2026 marked current as of November 18."
+		},
+		"og": {
+			"src": "/images/posts/gta-6-release-date-ai-search-answers-stale-sources-feature.webp",
+			"width": 1600,
+			"height": 900,
+			"bytes": 53692,
+			"alt": "Search bar reading gta 6 release date above three source cards: 2025 and May 26, 2026 struck through as stale, November 19, 2026 marked current as of November 18."
+		}
 	}
 }
