@@ -1,0 +1,226 @@
+---
+title: "Google AI Studio Build Now Sells Custom Domains"
+description: "Google AI Studio's Build mode can now attach a custom domain to a published app. What it costs, what Google's docs say, and the SEO checklist before you point a domain at it, as of November 2026."
+deck: "Two outlets reported the launch with opposite pricing. Google's own docs settle it, and they also reveal limits the coverage skipped. Here is what an AI-built app on your own domain means for indexing and AI visibility."
+pubDate: 2026-11-18
+category: Research
+tags:
+  - Google AI Studio
+  - Custom domains
+  - Technical SEO
+  - AI-generated apps
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "Are custom domains in Google AI Studio free?"
+    a: "No. Google's custom domains page says charges are billed to your Cloud Billing account: domain registration starting at $12.00 per year, plus a Cloud DNS managed zone starting at $2.40 per year ($0.20 per month) with query fees on top, as of November 2026. The free option is the ai.studio subdomain, which is available on both the Starter Tier and paid projects."
+  - q: "Can I use a domain I already own with AI Studio?"
+    a: "Not yet, according to Google's docs. Only domains purchased in AI Studio within the same Google Cloud project appear under Use a domain I own. Google says it plans to support transferring or connecting domains from external registrars in the future, as of November 2026."
+  - q: "Can the Starter Tier use a custom domain?"
+    a: "No. Google's docs say custom domains require a paid Google Cloud project with an active Cloud Billing account and are not available on the Starter Tier. Attaching a billing account upgrades the project, and after upgrading the account is no longer eligible for the Starter Tier."
+  - q: "Does a custom domain make an AI Studio app rank better?"
+    a: "I found no Google documentation that says so. A domain is a hostname and a brand signal, not a ranking input that Google has documented for AI Studio apps. What changes is control: you choose the canonical URL, verify the property in Search Console, and decide what gets indexed."
+  - q: "Will Google index an app built in AI Studio Build?"
+    a: "Google's docs do not address AI Studio apps specifically. Build creates a React frontend by default, and Google Search Central says Googlebot renders JavaScript but recommends server-side or pre-rendering because not all bots can run JavaScript. Check with the URL Inspection tool rather than assuming."
+  - q: "What happens to the ai.studio URL after I connect a domain?"
+    a: "It keeps working. Google says the app stays reachable at its ai.studio URL while setup completes and that after you move a domain, the previous app stays at its ai.studio URL. The docs do not say the ai.studio address redirects to your domain, so treat both hostnames as live and pick a canonical."
+  - q: "How long does connecting a domain take?"
+    a: "Google says DNS and SSL setup takes 15 to 30 minutes, and DNS changes can take longer to propagate. You also have 15 days to verify the registrant email or the registrar suspends the domain."
+  - q: "Should I block AI crawlers on an AI Studio app?"
+    a: "That depends on whether the app is meant to be found. Google-Extended is a robots.txt token that does not affect inclusion in Google Search, per Google's crawler documentation. Blocking it limits Gemini training and grounding use, not search indexing. Decide per app, and test that your robots.txt is actually served."
+---
+
+Google AI Studio's Build mode can now put a published app on a domain you buy from inside the Publish panel, and it is not free. Google's own documentation prices it at $12.00 a year and up for registration, plus $2.40 a year and up for DNS, and limits it to paid Google Cloud projects. Coverage on launch day said both "free" and "from $14.40 a year." The docs side with the second number.
+
+That is the news. The part that matters to anyone who cares about being found is smaller and stranger: an AI-generated app on its own hostname is a new kind of site, and the usual SEO assumptions about it are untested.
+
+I did not log in to AI Studio or buy a domain for this piece. Everything below comes from pages I opened on November 18, 2026, and where I could not open a source I say so.
+
+## Key takeaways
+
+- **Custom domains are paid.** Google's docs list domain registration from $12.00 per year and a Cloud DNS zone from $2.40 per year, billed to your Cloud Billing account, as of Nov 2026.
+- **Starter Tier is out.** Custom domains need a paid Google Cloud project. The free ai.studio subdomain works on both tiers.
+- **You can only attach domains bought in AI Studio.** External registrars are listed as a future plan, not a current feature.
+- **Two hostnames stay live.** The ai.studio URL keeps working beside your domain, so canonical choice is your job.
+- **Build defaults to React.** Google Search Central documents that client-side apps depend on a render step, and recommends server-side or pre-rendering.
+- **A domain is not a quality signal.** Google's spam policies target many pages generated "without adding value for users," whatever hostname they sit on.
+
+## What was announced, and what I could and could not open
+
+The announcement came from the official Google AI Studio account on X on November 17, 2026. I could not open that post: the page returned an HTTP 402 error to my fetch. So the announcement is cited here through secondary coverage, mainly [AlphaSignal](https://alphasignal.ai/news/google-ai-studio-lets-developers-ship-apps-under-custom-domains-for-free), whose page lists a publish time of November 17, 2026 and cites the X post as its first source.
+
+The earlier step is easier to pin down. On July 10, 2026, [Tony Reviews Things](https://www.tonyreviewsthings.com/google-ai-studio-custom-urls/) reported that AI Studio was giving each deployed app a free custom subdomain of the form your-own-url.ai.studio, quoting Logan Kilpatrick's post that day about "pretty URL's for deployed apps." I could not open the Yahoo Tech article that was also cited for that launch, because the fetch returned a 403, so the July date rests on that one outlet.
+
+I also could not open the [FourWeekMBA article](https://fourweekmba.com/ai-studio-build-now-sells-domains-from-14-40-a-year/). It sits behind a browser check that blocks automated fetches. Its headline price, $14.40, I only know from the URL. I mention it because that number turns out to be checkable elsewhere.
+
+Google's docs, which I could open, now describe custom domains in full. I cannot say what the deployment page said before today, so I will not claim it changed. I can say that as of November 18 it does cover them, which matters because some secondary coverage still reads as if the docs stop at subdomains.
+
+## What Build mode actually is
+
+Build is the vibe-coding surface inside Google AI Studio. Per [Google's Build documentation](https://aistudio.google.com/docs/aistudio-build-mode.md), you describe an app in natural language and AI Studio generates "the necessary code and files" with a live preview beside them.
+
+What it generates, as of Nov 2026:
+
+- **Web apps** (the default) get a full-stack setup: a web frontend, with React as the default, plus a Node.js server-side runtime for API calls, database connections and npm packages.
+- **Android apps** get a Kotlin and Jetpack Compose project that you can preview in a browser emulator.
+- The agent doing the work is called the Antigravity Agent, which Google describes as the core of the agent harness behind Build mode. It keeps project context and manages multiple files.
+- Server-side secrets are stored in a Secrets panel. For new web apps that use the Gemini API, Google says the key is configured as a server-side secret and "never included in client-side code."
+- You can add Firebase Firestore and Firebase Authentication, connect Google Workspace APIs, sync with GitHub, or export a ZIP.
+
+Which model writes the code? Google's Build and full-stack pages do not name one. They name the agent, not a model. I will not guess.
+
+Publishing is covered on a [separate page](https://aistudio.google.com/docs/aistudio-deploying.md). "When you publish an app, AI Studio hosts it on a managed, scalable Cloud Run service with a shareable URL." Two project tiers exist:
+
+- **Starter Tier**: eligible accounts publish up to 2 apps without a Google Cloud project or billing account, hosted in a single Cloud Run region. Google Workspace accounts and accounts with a current or past paid billing account are not eligible.
+- **Paid Google Cloud project**: a linked project with Cloud Billing enabled.
+
+Two limits worth knowing. Shared apps expose their code: Google says users you share an app with "can see its code and fork it." And security is shared: Google secures the Cloud Run infrastructure, while you own the app's code and dependencies, "including code and packages that AI Studio generates for you."
+
+## The pricing conflict, resolved
+
+Here is the disagreement as it appeared on launch day.
+
+| Source | Claim | Opened? |
+|---|---|---|
+| AlphaSignal, Nov 17, 2026 | Custom domains "for free"; "AI Studio does not charge a separate fee for attaching the domain"; registration "usually $10 to $15 per year" | Yes |
+| FourWeekMBA | Domains "from $14.40 a year" (from its URL) | No, blocked |
+| [Google, Custom domains in Google AI Studio](https://aistudio.google.com/docs/aistudio-custom-domains.md) | Registration from $12.00/year, Cloud DNS from $2.40/year ($0.20 per month per managed zone) plus query fees, paid projects only | Yes |
+
+Google's page is unambiguous. "Total cost combines the annual domain registration price and ongoing Cloud DNS hosting fees." Registration starts at $12.00 a year and varies by top-level domain, billed upfront for one year and renewing annually unless canceled. The DNS managed zone starts at $2.40 a year, billed monthly, plus query usage fees.
+
+Add them and you get $14.40. The same page's purchase walkthrough even shows a button reading "Purchase domain for $14.40+ /year." So the $14.40 figure in the FourWeekMBA headline matches Google's own example.
+
+AlphaSignal is half right and still misleading. It is true that AI Studio adds no separate attachment fee on top. But the domain itself costs money, Google bills it to your Cloud account, and domain purchases "are non-refundable once registered," per the docs. "Free" describes the ai.studio subdomain, not a domain of your own.
+
+AlphaSignal also describes entering a hostname you own and copying DNS records into your provider's panel. Google's docs describe a different flow for now. Under Limitations, "Only domains purchased in Google AI Studio within the same Google Cloud project appear under Use a domain I own," and connecting domains from external registrars is something Google "plan[s] to support" later. AlphaSignal's page metadata also cites a third-party site, not Google, for its $10 to $15 registration range.
+
+My read: the July free-subdomain story and the November custom-domain story are two features with two price tags, and the "free" framing blurs them.
+
+## How the purchase works, and where it can bite
+
+From Google's custom domains page, as of Nov 2026:
+
+- **Prerequisites**: a paid project with an active Cloud Billing account, Owner or Editor on the project (or a set of Cloud Domains, Cloud DNS and Cloud Run admin roles), and available domain registration quota. Quota varies by project history, and requests on newer projects go through manual review that takes 1 to 2 business days.
+- **Registrar**: AI Studio registers the domain through Cloud Domains. The registrant verification email comes from `no-reply@squarespace.com`, and you must verify within 15 days or the registrar suspends the domain.
+- **Setup time**: DNS and SSL provisioning takes 15 to 30 minutes, and DNS changes can take longer to propagate.
+- **One domain per app**: connecting a new domain replaces the old one.
+- **TLD and length**: only top-level domains that support private WHOIS protection appear in search, and names top out at 63 characters.
+- **Keep the DNS zone**: Google warns that if you remove the managed zone while the domain is connected, "visitors will not be able to reach your app."
+- **Regions**: Cloud Run domain mappings exist only in supported regions, so AI Studio may ask to redeploy your app in a supported one. The `run.app` service URL changes when that happens.
+- **Cancelling**: canceling the subscription stops renewal but does not delete the DNS zone. The $0.20 per month keeps billing until you delete the zone yourself.
+
+None of this is SEO yet. It is the plumbing that decides your hostname, and hostnames are where SEO starts.
+
+## What a custom domain changes for search
+
+Start with the sober version. I found no Google documentation that discusses how AI Studio apps rank or get indexed, on an ai.studio subdomain or on a custom domain. Anything claiming a ranking benefit from "your own domain" on this platform is a guess. What follows is what Google's general documentation says, applied to what AI Studio's docs say.
+
+### Two live hostnames means a canonical decision
+
+Google's docs say the ai.studio URL keeps working. The app "stays accessible at its ai.studio URL while setup completes," and when you swap a domain, "the previous app stays accessible at its ai.studio URL." They do not say the ai.studio address redirects to your custom domain.
+
+So assume two hostnames serve the same content until you test it.
+
+Google's [duplicate URL guidance](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) ranks the tools. A 301 redirect is "a strong signal that the target of the redirect should become canonical." A rel="canonical" link is also "a strong signal." A sitemap is "a weak signal." The page's own example, example.com/home versus home.example.com versus www.example.com, ends with: "use redirects to send traffic from the other URLs to your preferred URL." Use absolute URLs in canonical tags.
+
+Because Build gives you a Node.js server, you can write that redirect or tag yourself, or ask the agent to. I have not tested whether the agent does it cleanly. Whether you should is a different matter: if the ai.studio URL is only a preview link for a private tool, a canonical tag pointing at the custom domain is enough.
+
+### The render problem comes with React
+
+Build defaults to a React frontend. Google's [JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics) say Google processes JavaScript apps in three phases: crawling, rendering, indexing. Rendering waits on resources: "Once Google's resources allow, a headless Chromium renders the page and executes the JavaScript." Google "won't render JavaScript from blocked files or on blocked pages."
+
+Three more lines from that page matter for a generated app:
+
+- Links are discovered only if they are `<a>` elements with an href attribute.
+- Don't use URL fragments to load different content; Google "can't reliably resolve the URLs."
+- Client-side apps can produce soft 404s, and Google suggests redirecting to a URL that returns a real 404 or injecting a noindex tag on error pages.
+
+Google's page also recommends server-side or pre-rendering, noting that "not all bots can run JavaScript." That last clause is the AI-visibility problem in one sentence. I covered the crawler side in [JavaScript SEO for AI crawlers](/blog/javascript-seo-for-ai-crawlers/). A client-rendered app can be indexed by Google and still be near-empty to a bot that fetches HTML and stops.
+
+Does AI Studio's generated app do server-side rendering? Google's Build docs say it has a Node.js runtime. They do not say pages are rendered there. Open the page source of your own app and look.
+
+### Search Console: use a Domain property
+
+This is the real upside of owning the hostname. [Google's Search Console help](https://support.google.com/webmasters/answer/34592) says a Domain property "aggregates data for all subdomains, protocols, and subpaths" and requires DNS record verification. A URL-prefix property covers only URLs that begin with a given prefix, with protocol and subdomain matching exactly.
+
+You cannot verify a Domain property on ai.studio, because you do not own it. On your own domain you can. AI Studio creates the Cloud DNS managed zone in your project, so a TXT record would be added there. That last step is my inference from how the two Google pages fit together, not something Google's AI Studio docs describe, so test it before you rely on it. And do not delete the zone to "clean up."
+
+My broader piece on [Search Console in the AI era](/blog/google-search-console-ai-era-guide/) covers what to watch once the property exists.
+
+### robots.txt, sitemaps and AI crawlers
+
+Two facts from Google's [robots.txt introduction](https://developers.google.com/search/docs/crawling-indexing/robots/intro). Robots.txt "is not a mechanism for keeping a web page out of Google," since a blocked URL can still be indexed if other sites link to it. To keep a page out, use a noindex meta tag or response header.
+
+On AI-specific access, Google's [crawler documentation](https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers) describes Google-Extended as a standalone robots.txt token that "does not impact a site's inclusion in Google Search" and controls whether crawled content is used to train future Gemini models and for grounding in Gemini Apps. Blocking it is a training and grounding choice, not an indexing one.
+
+What I could not find in Google's AI Studio docs: whether you can serve your own robots.txt or sitemap.xml from a Build app. With a Node.js server it should be possible, but that is an inference. Put it on the test list below. For the mechanics, see [robots.txt for AI crawlers](/blog/robots-txt-for-ai-crawlers/) and [XML sitemaps for AI crawlers](/blog/xml-sitemaps-for-ai-crawlers/).
+
+### The thin-content risk is not about the domain
+
+Build can turn a one-line prompt into a working site. Google's [spam policies](https://developers.google.com/search/docs/essentials/spam-policies) define scaled content abuse as many pages generated "for the primary purpose of manipulating" search rankings, and list "using generative AI tools or other similar tools to generate many pages without adding value for users" among the examples. The policy has no separate AI section. It applies however the pages were produced.
+
+An AI Studio app that is a calculator or an internal tool is not that. A programmatic site with hundreds of near-identical generated pages on a $14.40 domain is the shape the policy describes. The domain does not shield it. It also does not condemn a useful app. The test Google states is value to users, and nothing in Build changes that. My notes on the other side of this, manipulating AI answers, are in [Google's AI answer manipulation spam rule](/blog/google-spam-policy-ai-manipulation/), and the timing sits next to the [November 2026 core update](/blog/google-november-2026-core-update/).
+
+## Checklist: before you point a domain at an AI Studio app
+
+| Check | Why | Source basis |
+|---|---|---|
+| Project is on a paid Google Cloud project with billing | Starter Tier cannot attach domains | Google custom domains page |
+| You are fine buying the domain inside AI Studio | External registrars are not supported yet | Google custom domains page |
+| Budget the full cost | $12.00+/year registration, $2.40+/year DNS, plus DNS query fees, non-refundable | Google custom domains page |
+| Verify the registrant email within 15 days | Otherwise the registrar suspends the domain | Google custom domains page |
+| Do not delete the Cloud DNS managed zone | Traffic stops reaching the app | Google custom domains page |
+| Decide the canonical hostname | ai.studio URL stays live beside the domain | Google duplicate URL guidance |
+| Add a 301 or rel=canonical from the non-preferred host | Redirects and canonical tags are strong signals | Google duplicate URL guidance |
+| View source and run URL Inspection on key pages | Client-side React apps depend on rendering | Google JavaScript SEO basics |
+| Use real `<a href>` links and History API routes, not fragments | Google discovers links only in that form | Google JavaScript SEO basics |
+| Return real 404s or noindex on error states | Avoids soft 404s in client-side apps | Google JavaScript SEO basics |
+| Add a Domain property in Search Console | Covers subdomains and protocols, needs DNS verification | Google Search Console help |
+| Confirm robots.txt and sitemap.xml are served | Robots.txt does not block indexing; noindex does | Google robots.txt introduction |
+| Choose your Google-Extended stance on purpose | It does not affect Search inclusion | Google crawler documentation |
+| Update dependencies and republish | Security is shared, including generated code | Google publish documentation |
+| Ask whether each page adds value | Scaled generated pages are in scope of the spam policy | Google spam policies |
+
+## What I left out, and why
+
+I did not compare AI Studio Build with other app builders. I did not open each vendor's own documentation for this piece, and a comparison built on reviews and recaps would be exactly the kind of thing this post argues against.
+
+I also left out what I could not verify. The July 10 date for ai.studio subdomains rests on one outlet. The FourWeekMBA article's body I never read. I did not check any list of supported Cloud Run regions, so I make no claim about which regions allow domain mappings.
+
+## What I would do
+
+If the app is a tool, say a calculator, a lead-gen widget, or a demo you want customers to trust, the $14.40 buys a brand-owned URL and a Search Console property. That is worth it. Verify rendering, set the canonical, and move on.
+
+If the plan is to publish content at scale on it, stop. The platform makes that cheap, and Google's policy language is about exactly that behavior. The bottleneck was never the domain.
+
+And if you want to be cited by AI assistants, treat view-source as the first test. An app that only exists after JavaScript runs is invisible to bots that do not run it.
+
+## FAQ
+
+**Are custom domains in Google AI Studio free?** No. Google's docs list registration from $12.00 per year and a Cloud DNS zone from $2.40 per year plus query fees, billed to your Cloud account, as of Nov 2026. The ai.studio subdomain is the free option.
+
+**Can I use a domain I already own?** Not currently. Only domains bought in AI Studio within the same Google Cloud project appear for reuse. Google says external registrar support is planned.
+
+**Can the Starter Tier use a custom domain?** No. Custom domains require a paid Google Cloud project with Cloud Billing, and attaching billing ends Starter Tier eligibility.
+
+**Does a custom domain improve rankings?** I found no Google documentation that says it does. It gives you control of canonical, Search Console verification and indexing choices.
+
+**Will Google index an AI Studio Build app?** Google's docs do not address it. React is the default frontend, and Google recommends server-side or pre-rendering for JavaScript apps. Test with URL Inspection.
+
+**What happens to the ai.studio URL?** It stays live, and Google does not say it redirects. Set your own canonical.
+
+**How long does setup take?** Google says 15 to 30 minutes for DNS and SSL, with propagation possibly longer, and 15 days to verify the registrant email.
+
+**Should I block AI crawlers?** Google-Extended does not affect Search inclusion. Block it only if you want to restrict Gemini training and grounding use.
+
+## Sources
+
+All pages below were opened on November 18, 2026 unless marked. Facts are as of Nov 2026.
+
+- [Google AI Studio docs: Custom domains](https://aistudio.google.com/docs/aistudio-custom-domains.md), [Publish your app](https://aistudio.google.com/docs/aistudio-deploying.md), [Build mode](https://aistudio.google.com/docs/aistudio-build-mode.md), [Full-stack apps](https://aistudio.google.com/docs/aistudio-fullstack.md)
+- [AlphaSignal, custom domains report](https://alphasignal.ai/news/google-ai-studio-lets-developers-ship-apps-under-custom-domains-for-free)
+- [Tony Reviews Things, free ai.studio URLs](https://www.tonyreviewsthings.com/google-ai-studio-custom-urls/)
+- [Google Search Central: JavaScript SEO basics](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics), [consolidate duplicate URLs](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls), [robots.txt introduction](https://developers.google.com/search/docs/crawling-indexing/robots/intro), [common crawlers](https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers), [spam policies](https://developers.google.com/search/docs/essentials/spam-policies)
+- [Search Console Help: property types](https://support.google.com/webmasters/answer/34592)
+
+Not opened: the [announcement on X](https://x.com/GoogleAIStudio/status/2122817812200555003) (HTTP 402), [FourWeekMBA](https://fourweekmba.com/ai-studio-build-now-sells-domains-from-14-40-a-year/) (browser check, 403), Yahoo Tech (403), and Google Cloud's Cloud DNS and Cloud Domains pricing pages (content truncated on fetch).
