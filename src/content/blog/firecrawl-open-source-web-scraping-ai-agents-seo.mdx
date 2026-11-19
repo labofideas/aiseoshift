@@ -1,0 +1,271 @@
+---
+title: "Firecrawl for SEOs: What It Is and How to Control It"
+description: "Firecrawl is an open-source web data layer for AI agents. What is new in November 2026, how SEOs use it, what its docs say about robots.txt and user agents, and what the AGPL license means for self-hosting."
+deck: "Firecrawl turns websites into markdown and structured data for agents. That helps your audits, and it also means your site is being read by tools you may never have approved. Here is what its own docs say, and what they leave out."
+pubDate: 2026-11-19
+category: Tooling
+tags:
+  - Firecrawl
+  - Web scraping
+  - AI agents
+  - AI crawlers
+  - robots.txt
+author: Shashank Dubey
+featured: false
+faqs:
+  - q: "What is Firecrawl?"
+    a: "Firecrawl is an open-source web data layer for AI agents. Its GitHub README lists Search, Scrape (markdown, JSON, screenshots), Interact, Agent, Crawl, Map and Batch Scrape as its core features, as of Nov 2026. It is available as a hosted cloud service and as a self-hostable server."
+  - q: "Does Firecrawl respect robots.txt?"
+    a: "Its docs say yes for crawling. The crawl page states that robots.txt is respected unless ignoreRobotsTxt is enabled, which it lists as Enterprise only, and the advanced scraping guide says Firecrawl reads robots.txt before it crawls a site. The docs I read do not say whether a single-URL scrape call applies the same check, as of Nov 2026."
+  - q: "What user agent token do I use to block Firecrawl in robots.txt?"
+    a: "Firecrawl's docs name FirecrawlAgent as the token it matches against robots.txt rules, and say it also uses rules written for the wildcard group. They add that you should not assume this token is also the User-Agent header on the fetch itself. For the local build, the docs say site owners can address it as FirecrawlLocal. Check your logs for what actually arrives."
+  - q: "Can I block Firecrawl by IP address?"
+    a: "Not reliably. The docs say Firecrawl does not use a fixed set of outbound IPs. The one IP address the docs list belongs to api.firecrawl.dev, and it is for customers who need to allow their own backend to call the API, not a list of scraper source addresses."
+  - q: "Is Firecrawl free?"
+    a: "Partly. Firecrawl's pricing page lists a Free plan at $0 with 1,000 credits per month and no credit card, as of Nov 2026. The README also describes Firecrawl Keyless, 1,000 free credits a month with no API key or signup. Paid plans start at $19 per month on the Hobby plan."
+  - q: "Is Firecrawl safe to self-host for commercial use under AGPL?"
+    a: "I am not a lawyer and this is not legal advice. The repo's license is the GNU Affero General Public License v3, with the SDKs and some UI components under MIT. Section 13 of the AGPL says that if you modify the program and users interact with it over a network, you must offer them the corresponding source. Running it unmodified for your own internal use is a different situation, so read the license or ask counsel before shipping it inside a product."
+  - q: "Does blocking AI crawlers in robots.txt stop Firecrawl?"
+    a: "Only if Firecrawl honors the rule in the code path being used, and robots.txt is voluntary by design. Firecrawl's own docs document the FirecrawlAgent token, so a disallow rule for it is the documented control. A WAF or bot-management rule is the enforcement layer, and it needs to match on something other than the fixed IP list, which does not exist."
+  - q: "Should I put a Firecrawl rule in my llms.txt?"
+    a: "llms.txt is a content index, not an access-control file. It will not stop any scraper. Use robots.txt for crawl permissions and a WAF for enforcement, and use llms.txt only to point agents at the pages you want them to read."
+---
+
+Firecrawl is the open-source project that keeps showing up whenever someone builds an AI agent that needs to read the web. Its GitHub page showed 203.9k stars and 10.7k forks when I read it on November 19, 2026. Those numbers are large enough that it is worth understanding from both sides of the fetch: as a tool you might run, and as a visitor you might get.
+
+I did not install Firecrawl, sign up for it or run a crawl for this piece. Everything below comes from pages I opened on November 19, 2026: the GitHub repo and its LICENSE file, the Firecrawl docs, its pricing page, its changelog and blog, and the GitHub releases feed. Where a source is silent, I say so rather than fill the gap.
+
+## Key takeaways
+
+- **The newest item is Firecrawl Local.** The changelog dates it November 18, 2026. It is a Rust-based local build you install from crates.io that serves the v2 API on port 3002.
+- **Keyless access dates to June 2026.** The changelog dates v2.11.0, which includes keyless endpoint access, to June 24, 2026. The GitHub release tag says June 19. I could not reconcile the five days.
+- **The docs do state a robots.txt token.** `FirecrawlAgent` is the token Firecrawl matches against robots.txt rules, and the docs warn it may not be the User-Agent header on the request.
+- **There is no fixed IP list.** Per the docs, Firecrawl does not use a fixed set of outbound IPs, so IP blocking is a poor control.
+- **The license is AGPL-3.0.** SDKs and some UI components are MIT, per the README. Section 13 of the AGPL is the part to read if you modify and host it.
+- **Alexandria is cloud-side.** The README says the self-hosted server does not include it.
+
+## What Firecrawl is
+
+Firecrawl describes itself in its README as a web data layer for AI agents. The feature list on the repo page, as of Nov 2026:
+
+- **Search**: "Search the web and get full content from results."
+- **Scrape**: "LLM-ready context from any website as markdown, JSON, screenshots and more."
+- **Interact**: scrape a page, then act on it with AI prompts or code.
+- **Agent**: describe what you need and an AI agent "searches, navigates and retrieves it with no URLs required."
+- **Crawl**: crawl a whole site and return content from every page.
+- **Map**: "Discover all URLs on a website instantly."
+- **Batch Scrape**: scrape many URLs at once.
+
+Unlike a technical crawler that returns a table of URL attributes, Firecrawl returns the content of each page, cleaned into markdown or JSON for a language model.
+
+## What is actually new
+
+I split this into what I can date and what I cannot.
+
+**Firecrawl Local: November 18, 2026.** The [changelog](https://www.firecrawl.dev/changelog) lists "Introducing Firecrawl Local" on that date, and the entry's own page says the same. Its headline claims are "37x faster (vs self-hosted)" and "230x less memory (11 MB idle)." Those are Firecrawl's numbers. I did not benchmark them, and the entry does not say what workload produced them.
+
+The [Firecrawl Local quickstart](https://docs.firecrawl.dev/quickstarts/firecrawl-local.md) has the mechanics, as of Nov 2026:
+
+- Install with `cargo install firecrawl-local`. You need Rust and a C compiler. A Chrome or Chromium install is optional and used for JavaScript-heavy pages.
+- `serve` answers the Firecrawl v2 API on port 3002, bound to 127.0.0.1 by default.
+- `firecrawl-local init` registers the MCP server with tools it finds, including Claude Code, Cursor and Codex, and backs up each config first. The README adds Claude Desktop, Windsurf and Gemini CLI to that list.
+- Limits against the cloud: `json` and `summary` formats are skipped with a warning, browser actions are ignored, screenshots need Chrome, and crawl and batch jobs live in memory and end when `serve` stops.
+- Search, blocked-page fallback and Alexandria data providers go to Firecrawl Cloud unless `FIRECRAWL_CLOUD` is set to `off`.
+
+That last bullet matters for privacy. "Local" does not mean nothing leaves your machine by default.
+
+**Keyless: June 2026, single-sourced for the 1,000-credit figure.** The [v2.11.0 changelog entry](https://www.firecrawl.dev/changelog/v211.md) lists "Keyless access for core endpoints," meaning `/scrape`, `/search`, `/interact` and `/parse` without an API key from official MCP, CLI and SDK clients. The changelog index dates v2.11.0 to June 24, 2026. The [GitHub releases feed](https://github.com/firecrawl/firecrawl/releases) gives the v2.11.0 tag a publish time of June 19, 2026 (UTC). The README states the allowance: "1,000 free credits a month with no API key or signup." The [keyless MCP docs](https://docs.firecrawl.dev/mcp-server/keyless.md) do not repeat that number. They say keyless MCP is rate limited, exposes three tools (`firecrawl_search`, `firecrawl_scrape`, `firecrawl_parse`), and point to the rate-limits page. That page says keyless use is capped per IP address per day by both a request limit and a credit limit, without giving figures. So the monthly number rests on the README alone.
+
+**Alexandria: first posts in September 2026, "550+" from the README.** The README says Alexandria gives agents "550+ data providers in one library" and that it runs on Firecrawl Cloud. The [blog explainer from November 11, 2026](https://www.firecrawl.dev/blog/what-is-alexandria) says only "hundreds of official sources" and gives no count. The [blog index](https://www.firecrawl.dev/blog) shows Alexandria posts going back to September 22, 2026. I cannot give a single launch date, because I did not open the September post and no changelog entry I read is labeled as the launch. The README says the self-hosted server does not include it.
+
+**Agent and spark-2: undated.** The [Agent docs](https://docs.firecrawl.dev/features/agent.md) say every run executes on `spark-2` and that Spark 1 names are deprecated. The releases feed ties the "Spark model family" to v2.8.0 on February 3, 2026. I found no changelog entry that dates spark-2 itself, so I will not.
+
+**Interact: March 25, 2026.** The changelog lists "Introducing /interact" on that date, and the releases feed puts it in v2.9.0 on April 10, 2026. For context, the feed also lists v2.8.0 (Feb 3), v2.10 (May 15) and v2.11.0 (Jun 19).
+
+## Pricing, from the page itself
+
+The [pricing page](https://www.firecrawl.dev/pricing), as of Nov 2026, lists these plans in USD:
+
+| Plan | Monthly price | Credits per month | Concurrent requests |
+|---|---|---|---|
+| Free | $0, no credit card | 1,000 | 2 |
+| Hobby | $19 ($16/month billed annually) | 5,000 | 5 |
+| Standard | $99 ($83/month billed annually) | 100,000 | 25 |
+| Growth | $399 ($333/month billed annually) | 500,000 | 50 |
+| Scale | $749 ($599/month billed annually) | 1,000,000 | 100 |
+| Enterprise | Custom | Custom | Custom |
+
+Rate limits scale with the plan. On Free the page lists 10 requests a minute for scrape and 2 for crawl. On Standard it lists 500 and 100. Credits roll over only on Scale (one month) and Enterprise. Pay-as-you-go top-ups exist on paid plans only, in $5 increments.
+
+One cost note from the Agent docs: most agent runs "consume a few hundred credits," and `maxCredits` defaults to 2,500. At that rate, a Standard plan's 100,000 credits is a few hundred agent runs, before any crawling. I did not find a per-page credit cost for plain crawling on the pages I read, so check that line before you point a crawl at a 50,000-URL site.
+
+## How SEOs and AI-visibility teams use it
+
+Firecrawl's own [SEO platforms page](https://docs.firecrawl.dev/use-cases/seo-platforms.md) makes the pitch: audit entire sites "for SEO and AI readability at scale," and extract "meta tags, header structures, internal links, and content across thousands of pages in a single crawl." Those are vendor claims with no benchmarks attached. Treat them as a description of intent.
+
+What I find credible, because it follows from what the product returns, is a short list of jobs:
+
+1. **Content extraction to markdown.** The cleanest use. You get what a text-only reader would see, without nav, scripts and cookie banners. That is close to the view an LLM retriever works from.
+2. **Full-site inventories.** Map lists URLs, crawl pulls content. Compare against your XML sitemap and find pages the sitemap lacks or pages the crawl never reaches.
+3. **Competitor monitoring.** Re-scrape a fixed set of competitor pages on a schedule and diff the markdown. I did not test how well it works.
+4. **Feeding RAG and agents.** Markdown chunks into a vector store, or live Search and Scrape calls from an agent over MCP.
+
+### A workflow you could run, untested by me
+
+I did not run this. It is a plan built from documented parameters, so verify each step on a small site first.
+
+1. **Start on Firecrawl Local or the free tier**, on a site you own. Keep the first crawl small. The crawl docs list `limit` as the maximum pages to crawl, `maxConcurrency`, a `delay` in seconds between scrapes, and `crawlEntireDomain` for following internal links to sibling and parent paths.
+2. **Crawl to markdown with metadata.** The SEO docs say a crawl returns "structured markdown and metadata for every page."
+3. **Diff against your sitemap.** Use the `sitemap` parameter (the docs list `include`, `skip` and `only`) to see what the crawler finds with and without it. Pages found only by links are pages your sitemap omits. My [XML sitemap guide](/blog/xml-sitemaps-for-ai-crawlers/) covers why that gap matters.
+4. **Compare raw HTML and rendered text.** Run a plain HTTP fetch of a key page next to the markdown result. If a headline or a product table is in one and not the other, you have a rendering gap. [JavaScript SEO for AI crawlers](/blog/javascript-seo-for-ai-crawlers/) explains which bots stop at HTML.
+5. **Read the markdown as an answer engine would.** Is the first 200 words of each page a usable answer? That test is subjective, but it is the one that decides what gets quoted. See [LLM crawler optimization](/blog/llm-crawler-optimization/) for the checklist.
+
+## The flip side: what it looks like from your server
+
+If you run a site, the interesting question is not what Firecrawl can do for you. It is what happens when someone else points it at you.
+
+The [Firecrawl advanced scraping guide](https://docs.firecrawl.dev/advanced-scraping-guide.md) has a section titled "Whitelisting Firecrawl." As of Nov 2026, it says four things that matter.
+
+- **robots.txt is read.** "Firecrawl reads `robots.txt` before it crawls a site," and it applies rules written for `FirecrawlAgent` and for `*`.
+- **There is a named token.** "`FirecrawlAgent` is the token Firecrawl matches against when it applies `robots.txt` rules."
+- **The header may differ.** The same page warns: "Do not assume it is also the `User-Agent` header on the fetch itself."
+- **No fixed IPs.** "Firecrawl does not use a fixed set of outbound IPs." The one address the page lists, `35.245.250.27`, is for `api.firecrawl.dev`, and the docs tell customers to allow it so their own backend can reach the API.
+
+The [crawl docs](https://docs.firecrawl.dev/features/crawl.md) add: "robots.txt is respected unless `ignoreRobotsTxt` is enabled (Enterprise only)." They also list a user-agent parameter described as a "Custom User-Agent string for robots.txt evaluation." Read that carefully. It says the string is used to evaluate robots.txt rules, not necessarily sent as the visible header.
+
+And for the local build, the quickstart says Firecrawl Local "identifies itself in its User-Agent and reads `robots.txt` when crawling," and that site owners can address it as `FirecrawlLocal`.
+
+### What the docs leave unstated
+
+- **Single-page scrapes.** The robots.txt language is in crawl and whitelisting sections. I found no sentence confirming that a one-off `/scrape` call checks robots.txt the same way. Unstated.
+- **The exact request header.** Documented token, undocumented header. The docs tell you to look rather than assume.
+- **Default politeness toward your server.** The crawl `delay` is a parameter the caller sets. I found no stated default per-host rate. Unstated.
+- **Enterprise.** The `ignoreRobotsTxt` option exists for Enterprise customers. A paying customer can, per the docs, choose not to honor your file.
+
+I also opened a [Firecrawl glossary entry on robots.txt](https://www.firecrawl.dev/glossary/web-extraction-apis/what-is-robots-txt-protocol). It says the protocol "operates on voluntary compliance without enforcement capability" and does not describe Firecrawl's own behavior. Third-party bot directories turned up in search; I did not open them and do not repeat their claims.
+
+### How to detect and control it
+
+Layered, from soft to hard:
+
+1. **Log search.** Search your access logs for `Firecrawl` as a substring in the user agent. That catches the polite case. It misses the case where the header is something else, which the docs say may happen.
+2. **robots.txt.** Add a group for the documented token. This is the control the vendor documents:
+
+```
+User-agent: FirecrawlAgent
+Disallow: /
+
+User-agent: FirecrawlLocal
+Disallow: /
+```
+
+   Or allow it only where you want it, for example `Allow: /docs/` and `Disallow: /account/`. My [robots.txt for AI crawlers](/blog/robots-txt-for-ai-crawlers/) guide covers the wider rules, including the mistake of blocking the crawlers that feed citations.
+3. **WAF and bot management.** robots.txt is a request, not a wall. If you need enforcement, rate-limit by behavior (requests per minute per client, headless browser fingerprints, unusual path patterns) because the IP route is closed by Firecrawl's own admission. Your CDN's bot rules are where this belongs.
+4. **Rate limiting at the origin.** A Scale plan lists 100 concurrent requests, so one customer can hit you in parallel. Protect expensive endpoints like search pages and faceted URLs, which is also a [crawl budget](/blog/crawl-budget/) problem.
+5. **llms.txt is not a control.** It is an index for agents that read it. It does nothing to stop one from fetching your pages. If you are deciding whether to publish one, see [does llms.txt actually work](/blog/does-llms-txt-actually-work-data/) and the [implementation guide](/blog/llms-txt-implementation-guide/).
+
+### The access-policy trap
+
+Here is the AI-visibility tension. Many publishers disallow AI training crawlers and allow retrieval crawlers. Firecrawl fits neither bucket. It is a tool a developer rents, and the developer decides why the page is fetched: a price monitor, a competitor audit, chatbot grounding, or a training set. A rule for `FirecrawlAgent` blocks all of those, including a customer's agent trying to read your docs. Decide per path, not per bot name.
+
+## Licensing and self-host reality
+
+This section is a plain reading of what the repo says. It is not legal advice.
+
+The [GitHub README](https://github.com/firecrawl/firecrawl) says the project is "primarily licensed under the GNU Affero General Public License v3.0 (AGPL-3.0)," and that "The SDKs and some UI components are licensed under the MIT License." The [LICENSE file](https://raw.githubusercontent.com/firecrawl/firecrawl/main/LICENSE) is the standard AGPL v3, dated November 19, 2007, with a copyright notice to Sideguide Technologies Inc., and I saw no additional terms in it. The Firecrawl Local changelog entry says it is "100% open source under the same license" without naming it, and the Local docs point to `apps/local` in the main repo.
+
+Section 13 of the AGPL is the line that differs from ordinary GPL. In plain terms: if you modify the program and users can interact with your version over a network, you must prominently offer those users the corresponding source of your version, at no charge. I summarized that from the text; the full paragraph is longer and has a clause about GPLv3-covered works.
+
+Which case you are in is not for me to decide:
+
+- Running an unmodified copy for your own team's audits is the plain case.
+- Modifying the server and exposing it to users, for example as part of a client-facing SEO tool, is the case Section 13 describes.
+- Using the MIT-licensed SDKs to call the hosted API is a separate matter from running the AGPL server.
+
+If a product depends on the answer, ask counsel.
+
+The [self-hosting docs](https://docs.firecrawl.dev/contributing/self-host.md) are honest about the gap with the cloud. As of Nov 2026:
+
+- The default Compose stack runs the API, PostgreSQL, Redis, RabbitMQ, a Playwright service and workers. The README summarizes this as Docker Compose with Redis, PostgreSQL and a browser service, and mentions a Helm chart for Kubernetes.
+- Fire-engine, the part behind advanced anti-bot behavior, is not included by default.
+- Screenshots and page actions are not available in the default stack.
+- Agent, Browser, interact and feedback need Firecrawl Cloud or separately verified services.
+- LLM-backed extraction needs an OpenAI-compatible provider or Ollama.
+- Firecrawl "does not publish a verified minimum host size for this stack."
+
+So "open source" and "the product on the pricing page" are not the same thing. The self-hosted version covers the core fetch-and-convert loop. The agentic and anti-bot features are where the cloud earns its price. The self-hosting page does not mention the license at all, which is why the README and LICENSE file were the sources for that section.
+
+## Alternatives, only where I could verify them
+
+I checked two other open-source projects from their own repos. I did not test either.
+
+- **[Crawl4AI](https://github.com/unclecode/crawl4ai)** shows Apache-2.0 and 87.6k stars on its GitHub page, read November 19, 2026. It offers a self-hosted Docker server. The README I read does not mention robots.txt handling, so I cannot say how it behaves.
+- **[Jina Reader](https://github.com/jina-ai/reader)** shows Apache-2.0 and 12.3k stars. Its approach is a URL prefix: "Convert any URL to an LLM-friendly input with a simple prefix https://r.jina.ai/". It says anonymous traffic is "the most aggressively rate-limited." The README says nothing about robots.txt or a user agent for the service.
+
+Apify is not covered; I did not open its docs. For site owners, neither README answers the robots.txt question, so "check what token it sends" applies to every tool in this class.
+
+## Decision checklist
+
+| Question | If yes | If no |
+|---|---|---|
+| Do you audit sites you do not own, at scale? | Check the target's robots.txt first and set a conservative `delay` and `limit`. | A small crawl on your own site is the safest start. |
+| Is the data sensitive or under NDA? | Prefer Firecrawl Local, and set `FIRECRAWL_CLOUD` to `off` so search and fallbacks do not reach the cloud. | The hosted API is simpler. |
+| Do you need screenshots, actions, Agent or Alexandria? | Plan on Firecrawl Cloud. Local and the default self-host stack do not cover them. | Local or self-host covers fetch and markdown. |
+| Will you modify the server and let others use it? | Read AGPL Section 13 with counsel before you ship. | Unmodified internal use is the simpler case. |
+| Do you run a public site with content you want cited? | Allow `FirecrawlAgent` on public paths, block on private ones, and watch logs. | A blanket disallow is available but blocks benign agents too. |
+| Do you need hard enforcement against scrapers? | Use WAF and bot-management rules based on behavior. robots.txt will not do it. | A robots.txt group for `FirecrawlAgent` and `FirecrawlLocal` is the documented control. |
+| Do you need to know a single-URL scrape honors robots.txt? | Test it against a staging page you control and read your logs. The docs do not say. | Crawl behavior is documented. |
+
+## What I would do
+
+If you run a site, add a deliberate robots.txt group for `FirecrawlAgent` and `FirecrawlLocal`, decide it path by path, and watch your logs for a week. If you build audits, try Firecrawl Local on your own site first and diff its markdown against your raw HTML.
+
+Stars are not a quality signal. The useful facts are smaller: a named token, a missing IP list, one section of the AGPL.
+
+## FAQ
+
+### What is Firecrawl?
+
+An open-source web data layer for AI agents. The README lists Search, Scrape, Interact, Agent, Crawl, Map and Batch Scrape, as of Nov 2026, in a hosted cloud and a self-hostable server.
+
+### Does Firecrawl respect robots.txt?
+
+The docs say yes for crawling: robots.txt is respected unless `ignoreRobotsTxt` is enabled, which is Enterprise only. They do not say whether a single-URL scrape applies the same check, as of Nov 2026.
+
+### What token do I use to block Firecrawl in robots.txt?
+
+`FirecrawlAgent`, per the docs, and `FirecrawlLocal` for the local build. The docs warn the token may not match the User-Agent header on the fetch, so check your logs.
+
+### Can I block Firecrawl by IP address?
+
+Not reliably. The docs say Firecrawl does not use a fixed set of outbound IPs. The one listed address is for calling api.firecrawl.dev, not a scraper source list.
+
+### Is Firecrawl free?
+
+Partly. The pricing page lists a Free plan with 1,000 credits per month, and the README describes Keyless with 1,000 free credits a month. Paid plans start at $19 per month, as of Nov 2026.
+
+### Is it safe to self-host for commercial use under AGPL?
+
+This is not legal advice. The repo is AGPL v3, with SDKs and some UI under MIT. Section 13 requires offering source to network users of a modified version. Ask counsel before shipping it inside a product.
+
+### Does blocking AI crawlers in robots.txt stop Firecrawl?
+
+Only where Firecrawl honors the rule, and robots.txt is voluntary. A group for `FirecrawlAgent` is the documented control. A WAF is the enforcement layer.
+
+### Should I put a Firecrawl rule in my llms.txt?
+
+No. llms.txt is a content index, not access control.
+
+## Sources
+
+All opened November 19, 2026.
+
+- [Firecrawl on GitHub](https://github.com/firecrawl/firecrawl) and its [LICENSE](https://raw.githubusercontent.com/firecrawl/firecrawl/main/LICENSE)
+- [GitHub releases feed](https://github.com/firecrawl/firecrawl/releases)
+- [Firecrawl pricing](https://www.firecrawl.dev/pricing)
+- [Firecrawl changelog](https://www.firecrawl.dev/changelog), including [Firecrawl Local](https://www.firecrawl.dev/changelog/firecrawl-local.md) and [v2.11.0](https://www.firecrawl.dev/changelog/v211.md)
+- [Firecrawl blog](https://www.firecrawl.dev/blog) and [What is Alexandria](https://www.firecrawl.dev/blog/what-is-alexandria)
+- Firecrawl docs: [Firecrawl Local](https://docs.firecrawl.dev/quickstarts/firecrawl-local.md), [Crawl](https://docs.firecrawl.dev/features/crawl.md), [Advanced scraping guide](https://docs.firecrawl.dev/advanced-scraping-guide.md), [Rate limits](https://docs.firecrawl.dev/rate-limits.md), [Agent](https://docs.firecrawl.dev/features/agent.md), [Self-hosting](https://docs.firecrawl.dev/contributing/self-host.md), [Keyless MCP](https://docs.firecrawl.dev/mcp-server/keyless.md), [SEO platforms](https://docs.firecrawl.dev/use-cases/seo-platforms.md)
+- [Crawl4AI](https://github.com/unclecode/crawl4ai) and [Jina Reader](https://github.com/jina-ai/reader) repositories
+
+This is not an endorsement of Firecrawl or any tool named here.

@@ -2581,5 +2581,21 @@
 			"bytes": 73443,
 			"alt": "Thumbnail reading AI Studio now ships custom domains, with a browser address bar changing from an ai.studio subdomain to a custom domain."
 		}
+	},
+	"firecrawl-open-source-web-scraping-ai-agents-seo": {
+		"hero": {
+			"src": "/images/posts/firecrawl-open-source-web-scraping-ai-agents-seo-feature.webp",
+			"width": 1280,
+			"height": 720,
+			"bytes": 41976,
+			"alt": "Thumbnail reading Firecrawl: web data for AI agents, showing a web page turning into clean markdown."
+		},
+		"og": {
+			"src": "/images/posts/firecrawl-open-source-web-scraping-ai-agents-seo-feature-og.jpg",
+			"width": 1200,
+			"height": 630,
+			"bytes": 70454,
+			"alt": "Thumbnail reading Firecrawl: web data for AI agents, showing a web page turning into clean markdown."
+		}
 	}
 }
