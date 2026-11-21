@@ -14,7 +14,10 @@ export const prerender = false;
  * only delivers to the verified destination address set there.
  */
 
-const FROM = 'deals@aiseoshift.com';
+// Sender must be on a zone with Email Routing in the same Cloudflare account
+// as this Worker (Wbcom Designs): wbcomplugins.com. aiseoshift.com's zone
+// stays in the personal account, so it cannot be the sender.
+const FROM = 'deals@wbcomplugins.com';
 const TO = 'shashank@wbcomdesigns.com';
 
 // Origin host -> site label in the email. Anything else is rejected.
@@ -73,7 +76,7 @@ function mime(subject: string, body: string, replyTo: string): string {
 		`To: ${TO}`,
 		`Reply-To: ${replyTo}`,
 		`Subject: =?UTF-8?B?${b64(subject)}?=`,
-		`Message-ID: <${crypto.randomUUID()}@aiseoshift.com>`,
+		`Message-ID: <${crypto.randomUUID()}@wbcomplugins.com>`,
 		`Date: ${new Date().toUTCString()}`,
 		'MIME-Version: 1.0',
 		'Content-Type: text/plain; charset=UTF-8',
