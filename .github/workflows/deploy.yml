@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      HAS_CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
 
     steps:
       - name: Checkout
@@ -35,3 +37,14 @@ jobs:
         with:
           name: aiseoshift-dist
           path: dist/
+
+      # Deploys to the Wbcom Designs Cloudflare account (Worker aiseoshift-com).
+      # Skipped until the CLOUDFLARE_API_TOKEN secret exists, so merging this
+      # changes nothing on its own. Every push to main deploys, including the
+      # scheduled daily empty commit that publishes posts dated today.
+      - name: Deploy to Cloudflare
+        if: env.HAS_CF_TOKEN == 'true'
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 496ea682d68a5f3d045fc8b3a6ec03a4
