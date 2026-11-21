@@ -3,7 +3,7 @@
   "compatibility_flags": [
     "global_fetch_strictly_public"
   ],
-  "name": "aiseoshift",
+  "name": "aiseoshift-com",
   "main": "@astrojs/cloudflare/entrypoints/server",
   "assets": {
     "directory": "./dist",
@@ -12,8 +12,15 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "aiseoshift-claps",
-      "database_id": "438a2fc7-c6c6-4be3-a35f-783e813b53c3"
+      "database_name": "aiseoshift-com-claps",
+      "database_id": "9c166115-c1ba-4ccd-bfb5-1ff66cc41924"
+    }
+  ],
+  // Astro session store. Pinned so CI deploys never auto-provision a new namespace.
+  "kv_namespaces": [
+    {
+      "binding": "SESSION",
+      "id": "5dc89cd3973c4e0c82d324d9031fe8af"
     }
   ],
   "observability": {
