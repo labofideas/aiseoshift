@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # 00:30 UTC every day: publish any posts dated today.
+    - cron: '30 0 * * *'
   workflow_dispatch:
 
 jobs:
@@ -40,8 +43,9 @@ jobs:
 
       # Deploys to the Wbcom Designs Cloudflare account (Worker aiseoshift-com).
       # Skipped until the CLOUDFLARE_API_TOKEN secret exists, so merging this
-      # changes nothing on its own. Every push to main deploys, including the
-      # scheduled daily empty commit that publishes posts dated today.
+      # changes nothing on its own. Every push to main deploys, and so does the
+      # daily schedule above, which publishes posts dated today. (The old empty
+      # commit could not: a push made with GITHUB_TOKEN starts no workflow.)
       - name: Deploy to Cloudflare
         if: env.HAS_CF_TOKEN == 'true'
         run: npx wrangler deploy
