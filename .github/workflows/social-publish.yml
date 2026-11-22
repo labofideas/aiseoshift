@@ -52,7 +52,7 @@ jobs:
           set -euo pipefail
           if [ -n "${{ github.event.inputs.file }}" ]; then
             ADDED="${{ github.event.inputs.file }}"
-          elif [ "$(git log -1 --format=%s)" = "chore: scheduled rebuild $(date -u +%Y-%m-%d)" ]; then
+          elif [ "${{ github.event.workflow_run.event }}" = "schedule" ]; then
             # Scheduled posts: share posts whose pubDate is today (UTC) and that were committed
             # more than a day ago (anything pushed recently was already shared by its own push).
             TODAY=$(date -u +%Y-%m-%d)
