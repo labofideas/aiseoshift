@@ -1,0 +1,115 @@
+---
+title: "Google's September 2026 Spam Update Lands the Same Week It Opens Up Visual Search Data"
+description: On September 24, Google started a global spam update and shipped multimodal reporting in Search Console on the same day. One closes a door. The other opens a window nobody had before.
+deck: Enforcement and transparency almost never arrive together. This week they did, and the pairing tells you more about where Google is headed than either announcement does alone.
+pubDate: 2026-09-25
+category: Research
+tags:
+  - Google spam update
+  - Search Console
+  - multimodal search
+  - Google algorithm
+author: Shashank Dubey
+featured: false
+---
+
+Two things happened on September 24. Google started rolling out its September 2026 spam update, and on the same day it shipped a new multimodal search type in Search Console's performance reports, the first time publishers can see traffic from Google Lens, Circle to Search, and reverse image search broken out on its own. One tightens the rules. The other hands you a dashboard for a channel you could not measure yesterday.
+
+I do not think that timing is coincidence. Read them together and they say the same thing from two directions: Google is taking the AI and visual search layer seriously enough to police it and to instrument it in the same week.
+
+## What actually shipped
+
+The spam update started at 9:15 a.m. PDT on September 24, according to [Google's own Search Status Dashboard](https://status.search.google.com/incidents/XhUDXP7A67iHCD2kmbVu). It is rolling out globally, across every language, and Google has said it may take up to two weeks to fully land, longer than the August 2026 spam update, which finished in two days. John Mueller confirmed the longer timeline directly, saying it is "likely to take longer than some of the previous ones."
+
+This is the fourth confirmed spam update of 2026, after March, June, and August. Google has not published which specific signals or systems changed, which is normal for a spam update and different from a core update, where Google at least confirms the category of change even without naming the algorithm.
+
+The Search Console news is more concrete because [Google wrote a full blog post about it](https://developers.google.com/search/blog/2026/09/web-multimodal-in-sc) rather than a one-line status update. The Performance report now has a multimodal search type filter, alongside the existing web, image, video, and news filters. Turn it on and you see traffic from four sources: Google Lens, Circle to Search on Android, direct image uploads to Google Search, and Chrome's right-click "Search this image" feature. It rolls out globally starting the same day, and it sits inside the same reporting surface Google opened in June for AI Overviews and AI Mode performance.
+
+There is one real limitation worth knowing before you go looking for it. The queries dimension is not available when you filter to multimodal. These are searches built from an image, not typed text, so there is no query string to report. You get impressions, clicks, and position, but not the words someone typed, because there were none.
+
+## Why the timing is the actual story
+
+<figure class="post-figure">
+<svg viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two Google announcements from the same day, September 24, 2026: the spam update enforces against manipulation while the multimodal Search Console report opens visibility into image-based search traffic. Enforcement and transparency, moving together.">
+	<rect width="800" height="260" fill="rgb(246,245,240)" />
+	<text x="40" y="30" font-family="system-ui, sans-serif" font-size="12" letter-spacing="3" fill="rgb(14,17,22)" fill-opacity="0.6">SAME DAY, TWO DIRECTIONS</text>
+	<g font-family="system-ui, sans-serif" fill="rgb(14,17,22)">
+		<g transform="translate(40 60)"><rect width="330" height="150" rx="6" fill="rgb(14,17,22)" /><text x="18" y="34" font-size="13" font-weight="700" fill="rgb(184,85,46)">September 2026 spam update</text><text x="18" y="64" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.75">Global rollout, up to two weeks.</text><text x="18" y="82" font-size="11" fill="rgb(250,250,247)" fill-opacity="0.75">Fourth spam update of 2026.</text><text x="18" y="112" font-size="10" fill="rgb(184,85,46)">Closes a door on manipulation.</text></g>
+		<g transform="translate(430 60)"><rect width="330" height="150" rx="6" fill="rgb(184,85,46)" fill-opacity="0.16" stroke="rgb(184,85,46)" stroke-opacity="0.5" /><text x="18" y="34" font-size="13" font-weight="700" fill="rgb(184,85,46)">Multimodal reporting in Search Console</text><text x="18" y="64" font-size="11" fill-opacity="0.75">Lens, Circle to Search, image</text><text x="18" y="82" font-size="11" fill-opacity="0.75">upload, and Search this image.</text><text x="18" y="112" font-size="10" fill-opacity="0.75">Opens a window into visual search.</text></g>
+	</g>
+	<text x="400" y="242" text-anchor="middle" font-family="Iowan Old Style, Georgia, serif" font-style="italic" font-size="12" fill="rgb(14,17,22)" fill-opacity="0.7">Google rarely ships enforcement and visibility together. This week it did.</text>
+</svg>
+</figure>
+
+Spam updates and new reporting features do not usually share a release day. They come from different teams on different schedules, and most weeks they do not have anything to do with each other. This week they land on the same 24 hours, and they point at the same underlying fact: a growing share of search now happens outside the text box.
+
+Lens, Circle to Search, and image-based queries have been quietly compounding for two years. Google has talked about the growth in vague terms, a slide at an event, a line in an earnings call, but publishers had no first-party way to see any of it in their own data. You could see a traffic bump with no query attached and guess. Now you can filter to it directly.
+
+The spam update is the other half of the same shift. Wherever Google builds a new surface people actually use, expect a spam classifier to show up within a year. AI Overviews got one in May, when manipulating generative answers was added to the spam policy by name. Visual and multimodal search was always going to get its turn once the traffic became worth gaming, and a plausible read of this particular update is that some of what changed on September 24 is aimed at exactly that surface, even though Google has not confirmed it.
+
+## What to actually do about it
+
+Go turn on the multimodal filter this week, even if you expect the numbers to be small. You cannot fix what you cannot see, and most sites have been flying blind on this specific traffic since it started existing. If you sell anything visual, product photos, recipes, DIY projects, fashion, the multimodal number is probably not as small as you assume. The full walkthrough of reading the rest of Search Console's AI-era reports, including the AI Overviews data this feature sits alongside, is in [Google Search Console for AI visibility](/blog/google-search-console-ai-visibility/) and [Google Search Console in the AI era](/blog/google-search-console-ai-era-guide/). If image and video are a real part of what you publish, [multimodal SEO](/blog/multimodal-seo-images-video-audio/) covers how to optimize for this exact surface rather than just measure it.
+
+Do not chase the spam update itself. Google has not said what changed, and reacting to a rumor is how sites talk themselves into breaking something that was working. If your traffic moves during the two-week rollout, wait for it to finish before you touch anything. The pattern from every spam update this year has been the same: sites doing something genuinely manipulative lose visibility, and sites that were not doing that see noise, then settle back roughly where they started. The last time Google named a category of manipulation this explicitly, it was aimed squarely at AI answers, covered in [Google now treats AI answer manipulation as spam](/blog/google-spam-policy-ai-manipulation/), and the same logic likely applies here: know the line, and do not try to walk right up to it.
+
+The connection between the two announcements is the part worth remembering after the news cycle moves on. Google is building instrumentation and enforcement for the same surfaces at the same time now, not years apart the way it used to. If you want to see where the next spam update targets before it is announced, look at where Google just gave you new reporting. That is usually the traffic Google has decided is worth policing, because it is finally worth measuring.
+
+## FAQs
+
+### What is the Google September 2026 spam update?
+
+A global spam update that began rolling out on September 24, 2026, across all languages, expected to take up to two weeks to complete. It is the fourth confirmed spam update of 2026, following updates in March, June, and August. Google has not disclosed which specific signals or ranking systems it changed, which is typical for a spam update.
+
+### What does the new multimodal report in Search Console show?
+
+It adds a multimodal search type filter to the Performance report, showing impressions, clicks, and average position for traffic arriving from Google Lens, Circle to Search on Android, direct image uploads to Google Search, and Chrome's "Search this image" feature. The queries dimension is not available for this traffic, since these are image-based searches with no typed query attached.
+
+### How long will the September 2026 spam update take to roll out?
+
+Google has said it may take up to two weeks, longer than the August 2026 spam update, which completed in two days. John Mueller confirmed the extended timeline directly. During the rollout, ranking fluctuations are expected and not necessarily a sign of a penalty.
+
+### Should I change anything on my site because of this spam update?
+
+Not reactively. Google has not published which signals changed, and adjusting your site based on speculation during an active rollout risks breaking something that was working. Wait for the rollout to finish, then check whether any traffic change persists before making changes.
+
+<script type="application/ld+json">{`
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Google September 2026 spam update?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A global spam update that began rolling out on September 24, 2026, across all languages, expected to take up to two weeks to complete. It is the fourth confirmed spam update of 2026, following updates in March, June, and August. Google has not disclosed which specific signals or ranking systems it changed, which is typical for a spam update."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the new multimodal report in Search Console show?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It adds a multimodal search type filter to the Performance report, showing impressions, clicks, and average position for traffic arriving from Google Lens, Circle to Search on Android, direct image uploads to Google Search, and Chrome's Search this image feature. The queries dimension is not available for this traffic, since these are image-based searches with no typed query attached."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long will the September 2026 spam update take to roll out?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google has said it may take up to two weeks, longer than the August 2026 spam update, which completed in two days. John Mueller confirmed the extended timeline directly. During the rollout, ranking fluctuations are expected and not necessarily a sign of a penalty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I change anything on my site because of this spam update?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not reactively. Google has not published which signals changed, and adjusting your site based on speculation during an active rollout risks breaking something that was working. Wait for the rollout to finish, then check whether any traffic change persists before making changes."
+      }
+    }
+  ]
+}
+`}</script>
